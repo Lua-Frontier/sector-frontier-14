@@ -40,46 +40,10 @@ public sealed partial class IdCardConsoleComponent : Component
     // Put this on shared so we just send the state once in PVS range rather than every time the UI updates.
 
     [DataField, AutoNetworkedField]
-    public List<ProtoId<AccessLevelPrototype>> AccessLevels = new()
-    {
-        "Armory",
-        //"Atmospherics",
-        "Bailiff", // Frontier
-        //"Bar",
-        "Brig",
-        "Brigmedic", // Frontier
-        "Captain",
-        //"Cargo",
-        //"Chapel",
-        "Chemistry",
-        //"ChiefMedicalOfficer",
-        "Command",
-        //"Cryogenics",
-        "Detective", // Frontier: moved into alphabetical order
-        "Engineering",
-        "External",
-        "Frontier", // Frontier
-        //"Hydroponics",
-        "Janitor",
-        //"Kitchen",
-        //"Lawyer",
-        "Mail", // Frontier
-        "Maintenance",
-        "Medical",
-        "Mercenary", // Frontier
-        "ChiefEngineer", // Frontier: moved down, alphabetic w.r.t. "Plant Manager"
-        //"Quartermaster",
-        //"Research",
-        //"ResearchDirector",
-        //"Salvage",
-        "Security",
-        "Sergeant", // Frontier
-        "Service",
-        "HeadOfSecurity", // Frontier: moved down, alphabetic w.r.t. "Sheriff"
-        "HeadOfPersonnel", // Frontier: moved down, alphabetic w.r.t. "Station Representative"
-        "StationTrafficController", // Frontier
-        //"Theatre",
-    };
+    public List<ProtoId<AccessLevelPrototype>> AccessLevels = new();
+
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<DepartmentPrototype>> AllowedDepartments = new();
 
     [Serializable, NetSerializable]
     public sealed class IdCardConsoleBoundUserInterfaceState : BoundUserInterfaceState

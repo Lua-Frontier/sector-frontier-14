@@ -24,6 +24,8 @@
         state: alive
     - type: CombatMode
     - type: Physics
+      bodyType: KinematicController
+      bodyStatus: InAir
     - type: Fixtures
       fixtures:
         fix1:

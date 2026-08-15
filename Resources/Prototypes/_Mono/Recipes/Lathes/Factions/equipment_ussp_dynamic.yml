@@ -1,0 +1,153 @@
+# USSP faction lathe recipes
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponRifleAK502USSP
+  result: WeaponRifleAK502
+  categories:
+  - Weapons
+  materials:
+    Steel: 1800
+    Plasteel: 800
+    Plastic: 1200
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponRifleAK410USSP
+  result: WeaponRifleAK410
+  categories:
+  - Weapons
+  materials:
+    Steel: 2000
+    Plasteel: 1000
+    Plastic: 900
+    Uranium: 10
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponDP29USSP
+  result: WeaponDP29
+  categories:
+  - Weapons
+  materials:
+    Steel: 2500
+    Plasteel: 2000
+    Plastic: 1500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponRevolverMatebaUSSP
+  result: NFWeaponRevolverWard45
+  categories:
+  - Weapons
+  materials:
+    Steel: 3000
+    Plasteel: 3000
+    Wood: 1000
+    Uranium: 1500
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponShotgunBigLeadyUSSP
+  result: WeaponShotgunBigLeady
+  categories:
+  - Weapons
+  materials:
+    Steel: 2500
+    Plasteel: 1500
+    Plastic: 800
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: SeismicChargeUSSP
+  result: SeismicCharge
+  categories:
+  - Weapons
+  - Explosive
+  completetime: 2
+  materials:
+    Plastic: 100
+    Plasma: 200
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: TearGasGrenadeUSSP
+  result: TearGasGrenade
+  categories:
+  - Weapons
+  - Explosive
+  completetime: 2
+  materials:
+    Steel: 100
+    Plasma: 200
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: GrenadeShrapnelUSSP
+  result: GrenadeShrapnel
+  categories:
+  - Weapons
+  - Explosive
+  completetime: 2
+  materials:
+    Steel: 500
+    Plasteel: 200
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: GrenadeIncendiaryUSSP
+  result: GrenadeIncendiary
+  categories:
+  - Weapons
+  - Explosive
+  completetime: 2
+  materials:
+    Steel: 500
+    Plastic: 400
+    Plasma: 200
+
+- type: latheRecipe
+  id: ArmorPlateBlunt_Slash
+  categories:
+  - ArmorNF
+  result: ArmorPlateBlunt_Slash
+  completetime: 15
+  materials:
+    Plasteel: 2000
+    Durathread: 500
+    Plastic: 1000
+
+- type: latheRecipe
+  id: ArmorPlatePierce
+  categories:
+  - ArmorNF
+  result: ArmorPlatePierce
+  completetime: 15
+  materials:
+    Durathread: 500
+    Plastic: 500
+    Plastitanium: 1500
+
+- type: latheRecipe
+  id: ArmorPlateHeat
+  categories:
+  - ArmorNF
+  result: ArmorPlateHeat
+  completetime: 15
+  materials:
+    Steel: 600
+    Durathread: 500
+    PlasmaGlass: 1500
+    UraniumGlass: 1500
+
+- type: latheRecipe
+  id: ArmorPlateSpeed
+  categories:
+  - ArmorNF
+  result: ArmorPlateSpeed
+  completetime: 15
+  materials:
+    Durathread: 1000
+    Brass: 3000
+    Plastitanium: 1000

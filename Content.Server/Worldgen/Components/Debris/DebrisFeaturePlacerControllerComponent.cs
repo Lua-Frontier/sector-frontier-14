@@ -9,7 +9,7 @@ namespace Content.Server.Worldgen.Components.Debris;
 ///     This is used for controlling the debris feature placer.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(DebrisFeaturePlacerSystem))]
+[Access(typeof(DebrisFeaturePlacerSystem), typeof(DebrisPregenSystem))]
 public sealed partial class DebrisFeaturePlacerControllerComponent : Component
 {
     /// <summary>
@@ -32,7 +32,7 @@ public sealed partial class DebrisFeaturePlacerControllerComponent : Component
     /// <summary>
     ///     Radius in which there should be no objects for debris to spawn.
     /// </summary>
-    [DataField("safetyZoneRadius")] public float SafetyZoneRadius = 24.0f;
+    [DataField("safetyZoneRadius")] public float SafetyZoneRadius = 54.0f;
 
     /// <summary>
     ///     The noise channel to use as a density controller.
@@ -45,5 +45,11 @@ public sealed partial class DebrisFeaturePlacerControllerComponent : Component
     public int PendingPointIndex;
 
     public EntityUid? PendingChunk;
+
+    [ViewVariables]
+    public bool Pregenerated;
+
+    [ViewVariables]
+    public Dictionary<Vector2, string> DeferredDebris = new();
 }
 

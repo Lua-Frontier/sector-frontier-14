@@ -79,6 +79,9 @@ public sealed partial class StationSystem : SharedStationSystem
             return;
 
         stationData.Grids.Remove(uid);
+
+        if (stationData.Grids.Count == 0 && !TerminatingOrDeleted(component.Station))
+            QueueDel(component.Station);
     }
 
     public override void Shutdown()
@@ -136,18 +139,30 @@ public sealed partial class StationSystem : SharedStationSystem
     {
         var dict = new Dictionary<string, List<EntityUid>>();
 
-        // Iterate over all BecomesStation
-        foreach (var grid in ev.Grids)
+        var grids = CollectStationCandidateGrids(ev.Map, ev.Grids);
+        foreach (var grid in grids)
         {
-            // We still setup the grid
             if (TryComp<BecomesStationComponent>(grid, out var becomesStation))
                 dict.GetOrNew(becomesStation.Id).Add(grid);
         }
 
-        if (!dict.Any())
+        if (dict.Count == 0 && ev.GameMap.IsGrid && grids.Count > 0 && ev.GameMap.Stations.Count > 0)
         {
-            // Oh jeez, no stations got loaded.
-            // We'll yell about it, but the thing this used to do with creating a dummy is kinda pointless now.
+            if (ev.GameMap.Stations.Count == 1)
+            {
+                var stationId = ev.GameMap.Stations.Keys.First();
+                BindGridsAsStation(stationId, grids, dict);
+            }
+            else if (grids.Count == ev.GameMap.Stations.Count)
+            {
+                var i = 0;
+                foreach (var stationId in ev.GameMap.Stations.Keys)
+                    BindGridsAsStation(stationId, new[] { grids[i++] }, dict);
+            }
+        }
+
+        if (dict.Count == 0)
+        {
             _sawmill.Error($"There were no station grids for {ev.GameMap.ID}!");
         }
 
@@ -164,6 +179,43 @@ public sealed partial class StationSystem : SharedStationSystem
             }
 
             InitializeNewStation(stationConfig, gridIds, ev.StationName);
+        }
+    }
+
+    private List<EntityUid> CollectStationCandidateGrids(MapId mapId, IReadOnlyList<EntityUid> loaded)
+    {
+        var result = new List<EntityUid>();
+        var seen = new HashSet<EntityUid>();
+
+        foreach (var grid in loaded)
+        {
+            if (!grid.IsValid() || !Exists(grid) || !HasComp<MapGridComponent>(grid))
+                continue;
+
+            if (seen.Add(grid))
+                result.Add(grid);
+        }
+
+        var query = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
+        {
+            if (xform.MapID != mapId)
+                continue;
+
+            if (seen.Add(uid))
+                result.Add(uid);
+        }
+
+        return result;
+    }
+
+    private void BindGridsAsStation(string stationId, IEnumerable<EntityUid> grids, Dictionary<string, List<EntityUid>> dict)
+    {
+        foreach (var grid in grids)
+        {
+            var becomes = EnsureComp<BecomesStationComponent>(grid);
+            becomes.Id = stationId;
+            dict.GetOrNew(stationId).Add(grid);
         }
     }
 
@@ -557,6 +609,56 @@ public sealed partial class StationSystem : SharedStationSystem
         }
 
         return null;
+    }
+
+    public bool IsStationSpawnable(EntityUid station, StationDataComponent? data = null)
+    {
+        if (!Resolve(station, ref data, false))
+            return false;
+
+        foreach (var gridUid in data.Grids)
+        {
+            if (!Exists(gridUid) || TerminatingOrDeleted(gridUid))
+                continue;
+
+            if (!_xformQuery.TryGetComponent(gridUid, out var xform))
+                continue;
+
+            if (xform.MapID == MapId.Nullspace || !_map.MapExists(xform.MapID))
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public void DeleteStationsOnMap(MapId mapId)
+    {
+        if (mapId == MapId.Nullspace)
+            return;
+
+        foreach (var station in GetStations())
+        {
+            if (!TryComp<StationDataComponent>(station, out var data))
+                continue;
+
+            var onMap = false;
+            foreach (var gridUid in data.Grids)
+            {
+                if (!Exists(gridUid) || !_xformQuery.TryGetComponent(gridUid, out var xform))
+                    continue;
+
+                if (xform.MapID != mapId)
+                    continue;
+
+                onMap = true;
+                break;
+            }
+
+            if (onMap && !TerminatingOrDeleted(station))
+                DeleteStation(station, data);
+        }
     }
 }
 

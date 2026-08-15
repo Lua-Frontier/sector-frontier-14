@@ -1,0 +1,63 @@
+# source: Structures/Wallmounts/flags.rsi (Soyuz USSP)
+- type: entity
+  parent: BaseFlag
+  id: USSPFlag
+  categories: [ USSP ]
+  suffix: USSP
+  name: USSP flag
+  description: Flag of the Union of Soviet Socialist Planets.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Wallmounts/flags.rsi
+    state: USSPCompany
+  - type: Construction
+    graph: NF_Flags
+    node: USSPFlag
+
+- type: entity
+  parent: BaseFlag
+  id: USSPSFFlagLosyngCentral
+  categories: [ USSP ]
+  suffix: USSP
+  name: лозунг СССП
+  description: Настенный лозунг Союза Советских Социалистических Планет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Wallmounts/flags.rsi
+    state: USSPlosyngCentral
+
+- type: entity
+  parent: BaseFlag
+  id: USSPSFFlagLosyngOne
+  categories: [ USSP ]
+  suffix: USSP
+  name: лозунг СССП
+  description: Настенный лозунг Союза Советских Социалистических Планет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Wallmounts/flags.rsi
+    state: USSPlosyngOne
+
+- type: entity
+  parent: BaseFlag
+  id: USSPSFFlagTall
+  categories: [ USSP ]
+  suffix: USSP
+  name: высокий флаг СССП
+  description: Высокий настенный флаг Союза Советских Социалистических Планет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Wallmounts/flags.rsi
+    state: USSPtallflag
+
+- type: entity
+  parent: BaseFlag
+  id: USSPSFFlagVimpel
+  categories: [ USSP ]
+  suffix: USSP
+  name: вымпел СССП
+  description: Настенный вымпел Союза Советских Социалистических Планет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Wallmounts/flags.rsi
+    state: USSPVimpelflag

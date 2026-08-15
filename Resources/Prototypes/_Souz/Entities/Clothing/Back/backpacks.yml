@@ -1,0 +1,53 @@
+# source: Entities/Clothing/Back/backpacks.yml
+- type: entity
+  parent: [ClothingBackpack, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBackpackSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security backpack
+  description: It's a very robust backpack.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Backpacks/security.rsi
+- type: entity
+  parent: [ClothingBackpack, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBackpackBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic backpack
+  description: It's a very sterile backpack.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Backpacks/brigmedic.rsi
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: USSPSFClothingBackpackERTSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: ERT security backpack
+  description: A spacious backpack with lots of pockets, worn by Security Officers of an Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Backpacks/ertsec.rsi
+
+# source: _DeadSpace/Entities/Clothing/Back/backpacks.yml
+- type: entity
+  parent: ClothingBackpackCaptain
+  id: USSPSFClothingBackpackCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый рюкзак капитана
+  description: Это особый белый рюкзак, изготовляемый исключительно для офицеров NanoTrasen. В нём же не будет чьих-то органов?..
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Backpacks/captain_white.rsi
+- type: entity
+  parent: ClothingBackpackCaptain
+  id: USSPSFClothingBackpackCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрный рюкзак капитана
+  description: Это особый чёрный рюкзак, изготовляемый исключительно для офицеров NanoTrasen. Не удивлюсь, если он забит оружием.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Backpacks/captain_black.rsi

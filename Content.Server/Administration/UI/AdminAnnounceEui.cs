@@ -1,11 +1,10 @@
+using Content.Server._Lua.Announcements;
 using Content.Server.Administration.Managers;
-using Content.Server.Chat;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.EUI;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
-using Robust.Shared.Audio; // Frontier
+using Robust.Shared.Audio;
 
 namespace Content.Server.Administration.UI
 {
@@ -13,12 +12,12 @@ namespace Content.Server.Administration.UI
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
-        private readonly ChatSystem _chatSystem;
+        private readonly FactionAnnouncementSystem _factionAnnounce;
 
         public AdminAnnounceEui()
         {
             IoCManager.InjectDependencies(this);
-            _chatSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<ChatSystem>();
+            _factionAnnounce = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<FactionAnnouncementSystem>();
         }
 
         public override void Opened()
@@ -28,7 +27,11 @@ namespace Content.Server.Administration.UI
 
         public override EuiStateBase GetNewState()
         {
-            return new AdminAnnounceEuiState();
+            return new AdminAnnounceEuiState
+            {
+                Factions = [.. _factionAnnounce.GetFactions()],
+                Sectors = [.. _factionAnnounce.GetSectors()],
+            };
         }
 
         public override void HandleMessage(EuiMessageBase msg)
@@ -49,12 +52,15 @@ namespace Content.Server.Administration.UI
                         case AdminAnnounceType.Server:
                             _chatManager.DispatchServerAnnouncement(doAnnounce.Announcement);
                             break;
-                        // TODO: Per-station announcement support
                         case AdminAnnounceType.Station:
-                            _chatSystem.DispatchGlobalAnnouncement(doAnnounce.Announcement, doAnnounce.Announcer, colorOverride: Color.Gold);
+                            _factionAnnounce.TryAnnounce(doAnnounce.Announcement, doAnnounce.FactionId, doAnnounce.SectorId);
                             break;
-                        case AdminAnnounceType.Antag: // Frontier
-                            _chatSystem.DispatchGlobalAnnouncement(doAnnounce.Announcement, doAnnounce.Announcer, true, new SoundPathSpecifier("/Audio/_Lua/Announcements/war.ogg"), colorOverride: Color.Red); // Lua
+                        case AdminAnnounceType.Antag:
+                            _factionAnnounce.TryAnnounce(
+                                doAnnounce.Announcement,
+                                doAnnounce.FactionId,
+                                doAnnounce.SectorId,
+                                new SoundPathSpecifier("/Audio/_Lua/Announcements/war.ogg"));
                             break;
                     }
 

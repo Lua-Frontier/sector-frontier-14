@@ -1,0 +1,38 @@
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc 'starmap-lore-panel-title'}"
+                   MinSize="360 280"
+                   SetSize="480 420">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical"
+                  SeparationOverride="8"
+                  Margin="10 8 10 10"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+      <Label Name="LoreTitle"
+             Access="Public"
+             Text=""/>
+      <PanelContainer Name="Divider" MinHeight="1" MaxHeight="1" HorizontalExpand="True"/>
+      <PanelContainer Name="BodyPanel" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer.PanelOverride>
+          <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1"/>
+        </PanelContainer.PanelOverride>
+        <ScrollContainer Name="BodyScroll"
+                         HorizontalExpand="True"
+                         VerticalExpand="True"
+                         HScrollEnabled="False"
+                         VScrollEnabled="True"
+                         RectClipContent="True">
+          <Label Name="LoreBody"
+                 Access="Public"
+                 Margin="8"
+                 HorizontalExpand="True"/>
+        </ScrollContainer>
+      </PanelContainer>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

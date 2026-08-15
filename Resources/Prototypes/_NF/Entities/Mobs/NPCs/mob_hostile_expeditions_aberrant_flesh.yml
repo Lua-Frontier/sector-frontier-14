@@ -197,6 +197,11 @@
   #categories: [ HideSpawnMenu ]
   components:
   - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:
@@ -293,6 +298,11 @@
   #categories: [ HideSpawnMenu ]
   components:
   - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:

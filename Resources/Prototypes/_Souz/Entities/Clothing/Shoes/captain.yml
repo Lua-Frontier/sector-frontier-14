@@ -1,0 +1,19 @@
+# source: _DeadSpace/Entities/Clothing/Shoes/captain.yml
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: USSPSFClothingShoesBootsMagCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: магнитные сапоги капитана
+  description: Тёмно-синие магнитные сапоги с золотыми украшениями. Великолепно!
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Shoes/Boots/captain_magboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Souz/Clothing/Shoes/Boots/captain_magboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: StaticPrice
+    price: 750

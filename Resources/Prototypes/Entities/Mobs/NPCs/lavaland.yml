@@ -20,6 +20,9 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
       state: unshaded
       shader: unshaded
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:

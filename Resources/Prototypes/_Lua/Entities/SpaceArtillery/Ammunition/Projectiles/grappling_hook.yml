@@ -2,12 +2,42 @@
 # Copyright (c) 2026 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
+# Do NOT parent GrapplingHook — GrapplingProjectile deletes the hook when any joint is removed
+# and fights ShuttleGrappleTurretSystem.
 - type: entity
   id: BulletShuttleGrapplingHook
   name: shuttle grappling hook
-  parent: GrapplingHook
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
+    - type: EmbeddableProjectile
+      deleteOnRemove: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      noRot: false
+      sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
+      layers:
+        - state: hook
+    - type: Physics
+      bodyType: Dynamic
+      linearDamping: 0
+      angularDamping: 0
+    - type: Projectile
+      deleteOnCollide: false
+      damage:
+        types:
+          Blunt: 0
+    - type: Fixtures
+      fixtures:
+        projectile:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.2"
+          hard: false
+          mask:
+            - Impassable
+            - BulletImpassable
+            - HighImpassable
     - type: TimedDespawn
       lifetime: 4
     - type: ShipWeaponProjectile
@@ -18,5 +48,9 @@
       radarColor: "#53ff6a"
       shape: triangle
       maxDistance: 1024
+    - type: HitscanRadar
+      radarColor: "#53ff6a"
+      lineThickness: 2
+      enabled: true
+      lifeTime: 999999
     - type: ShuttleGrapplingHookProjectile
-

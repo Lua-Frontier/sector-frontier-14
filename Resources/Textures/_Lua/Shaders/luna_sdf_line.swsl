@@ -1,0 +1,34 @@
+preset raw;
+light_mode unshaded;
+
+// SDF capsule stroke in UI pixels.
+// Vertex color (modulate) = stroke.
+// UV.x = half_width, UV.y = seg_len (constant per quad).
+// UV2.x = along-axis [0 .. seg_len], UV2.y = perpendicular [-pad .. pad]
+//
+// No pixel_snap: default preset snaps each corner independently, which shifts
+// SDF centres when pad/size differs between overlapping strokes (e.g. star rings).
+
+varying highp vec4 vColor;
+
+highp float sdSegment(highp vec2 p, highp vec2 a, highp vec2 b) {
+    highp vec2 pa = p - a;
+    highp vec2 ba = b - a;
+    highp float denom = max(dot(ba, ba), 0.000001);
+    highp float h = clamp(dot(pa, ba) / denom, 0.0, 1.0);
+    return length(pa - ba * h);
+}
+
+void vertex() {
+    VERTEX = apply_mvp(VERTEX);
+    vColor = zFromSrgb(modulate);
+}
+
+void fragment() {
+    highp float half_width = UV.x;
+    highp float seg_len = UV.y;
+    highp float d = sdSegment(UV2, vec2(0.0, 0.0), vec2(seg_len, 0.0));
+    highp float aa = 0.75;
+    highp float alpha = 1.0 - smoothstep(half_width - aa, half_width + aa, d);
+    COLOR = vec4(vColor.rgb, vColor.a * alpha);
+}

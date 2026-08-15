@@ -4,12 +4,11 @@
   name: Magnet
   description: A magnetic grabber.
   components:
-  - type: Docking
-    dockType: Magnet
-    receiveOnly: true
-    radarColor: "#001ec5"
-    highlightedRadarColor: "#4073ff"
   - type: MagneticGrabber
+  - type: FireControllable
+    fireCooldown: 0.5
+  - type: ShipGunType
+    shipType: Other
   - type: DeviceLinkSink
     ports:
     - ShutdownMagnet

@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine20mm
   name: "20mm solid ammo loader"
   description: "An ammunition loader containing infinite 20mm solid rounds. Usable by vessel-mounted artillery pieces."
@@ -36,6 +37,7 @@
     price: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 20mmCartridge
   name: cartridge (20mm Solid)
   parent: BaseCartridge
@@ -74,6 +76,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine20mmAS
   name: "20mm AS ammo loader"
   description: "An ammunition loader containing 1250 20mm anti-shield rounds. Usable by vessel-mounted artillery pieces."
@@ -111,6 +114,7 @@
     price: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 20mmCartridgeAS
   name: cartridge (20mm AS)
   parent: BaseCartridge

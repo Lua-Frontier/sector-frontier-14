@@ -4,7 +4,7 @@
   id: 20mmBulletBase
   parent: BaseBullet
   abstract: true
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -38,7 +38,7 @@
   id: 20mmBullet
   name: 20mm bullet
   parent: 20mmBulletBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -55,7 +55,7 @@
   id: 20mmBulletAS # Antishield
   name: 20mm bullet (AS)
   parent: 20mmBulletBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -75,7 +75,7 @@
 - type: entity
   id: 30mmBullet
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -95,7 +95,7 @@
 - type: entity
   id: 30mmBulletHE
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -123,7 +123,7 @@
 - type: entity
   id: 57mmBulletHE
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -157,7 +157,7 @@
 - type: entity
   id: 57mmBulletSmart
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -199,7 +199,7 @@
 - type: entity
   id: 57mmBulletSACLOS
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -244,7 +244,7 @@
   name: shell
   parent: BaseBulletTrigger
   abstract: true
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TimedDespawn
     lifetime: 4.2
@@ -260,7 +260,7 @@
 - type: entity
   id: 90mmBulletHE
   parent: 90mmBulletBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -284,7 +284,7 @@
 - type: entity
   id: 90mmBulletAP
   parent: 90mmBulletBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -306,7 +306,7 @@
 - type: entity
   id: 90mmBulletFlak
   parent: 90mmBulletBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -346,7 +346,7 @@
 - type: entity
   id: Shrapnel90mmFlak
   name: shrapnel
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   parent: BaseBullet
   components:
   - type: Sprite
@@ -388,7 +388,7 @@
   id: 90mmBulletMinelayer
   name: 90mm mine-laying projectile
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -426,7 +426,7 @@
 - type: entity
   id: NavalMine90mm
   name: naval mine
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Sprite
     noRot: false
@@ -494,7 +494,7 @@
   id: 140mmBulletAPHE
   name: 140mm APHE projectile
   parent: BaseBulletTriggerSpent
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -532,7 +532,7 @@
   id: 140mmBulletSACLOS
   name: 140mm SACLOS projectile
   parent: BaseBulletTriggerSpent
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -579,7 +579,7 @@
   id: 220mmBulletAPHE
   name: 220mm APHE projectile
   parent: BaseBulletTriggerSpent
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -617,7 +617,7 @@
   id: 220mmBulletHE
   name: 220mm HE projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -655,7 +655,7 @@
   id: 220mmPelletHE
   name: 220mm HE cluster-projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -690,7 +690,7 @@
 
 - type: entity
   id: 220mmPelletHESpread
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   parent: 220mmPelletHE
   components:
   - type: ProjectileSpread
@@ -702,7 +702,7 @@
   id: 220mmPelletSmart
   name: 220mm HMNG cluster-projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -745,7 +745,7 @@
 
 - type: entity
   id: 220mmPelletSmartSpread
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   parent: 220mmPelletSmart
   components:
   - type: ProjectileSpread
@@ -759,7 +759,7 @@
   id: 255mmBulletAPHE
   name: 255mm APHE projectile
   parent: BaseBulletTriggerSpent
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -797,7 +797,7 @@
   id: 255mmBulletEMP
   name: 255mm EMP projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -838,7 +838,7 @@
   id: 255mmBulletMinelayer
   name: 255mm mine-laying projectile
   parent: BaseBullet
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -876,7 +876,7 @@
 - type: entity
   id: NavalMine255mm
   name: naval mine
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Sprite
     noRot: false
@@ -943,7 +943,7 @@
   id: ShipRailgunProjectile
   name: M381 CHARON 280mm 26.5 kg slug
   parent: BaseBulletTriggerSpent
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -981,7 +981,7 @@
   id: ShipRailgunProjectileEMP
   name: M381 CHARON 280mm 26.5 kg EMP slug
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1019,7 +1019,7 @@
   id: ShipRailgunProjectileAphe
   name: M381 CHARON 280mm 26.5kg APHE slug
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1058,7 +1058,7 @@
   name: M381 CHARON 280mm 1.5kt nuclear slug
   description: Once the genie is out of the bottle, there's no putting it back inside, Tarkhan.
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1098,7 +1098,7 @@
   id: AdderBullet
   name: AdderBullet
   parent: 20mmBulletBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1113,7 +1113,7 @@
 
 - type: entity
   id: AdderSpread
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   parent: AdderBullet
   components:
   - type: ProjectileSpread
@@ -1127,7 +1127,7 @@
   id: ShipLeviathanProjectile
   name: LEVIATHAN 520mm projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1166,7 +1166,7 @@
 - type: entity
   id: ShipShardProjectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1199,7 +1199,7 @@
 - type: entity
   id: ShipFragmentProjectile
   parent: ShipShardProjectile
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1219,7 +1219,7 @@
 - type: entity
   id: ShipPinholeProjectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -1256,7 +1256,7 @@
   id: ShipSunnyFlare
   name: ECM Flare
   parent: SparkFlare
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: RadarBlip
     radarColor: "#32CD32"

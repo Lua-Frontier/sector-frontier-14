@@ -1,5 +1,6 @@
 using System.Buffers;
 using System.Numerics;
+using Content.Client._Lua.Styles;
 using Content.Client.Shuttles.Systems;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared._Mono.Company;
@@ -254,7 +255,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
             var a = vertical ? new Vector2(value, crossStart) : new Vector2(crossStart, value);
             var b = vertical ? new Vector2(value, crossEnd) : new Vector2(crossEnd, value);
-            handle.DrawLine(MapToScreen(a, mapTransform), MapToScreen(b, mapTransform), color);
+            LunaDraw.Line(handle, MapToScreen(a, mapTransform), MapToScreen(b, mapTransform), color);
         }
     }
 
@@ -299,8 +300,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         var eastColor = Color.FromHex("#7E8BA0").WithAlpha(0.82f);
         var headingColor = Color.FromHex("#5EC8E8").WithAlpha(0.9f);
 
-        handle.DrawCircle(center, radius, ringColor, false);
-        handle.DrawCircle(center, 2.5f, ringColor.WithAlpha(0.8f), true);
+        LunaDraw.Circle(handle, center, radius, ringColor, false);
+        LunaDraw.Circle(handle, center, 2.5f, ringColor.WithAlpha(0.8f), true);
         DrawMapCompassNeedle(handle, center, new Vector2(0f, -1f), radius, "N", northColor);
         DrawMapCompassNeedle(handle, center, new Vector2(1f, 0f), radius * 0.82f, "E", eastColor);
         if (_shuttleEntity is { } shuttle && EntManager.EntityExists(shuttle))
@@ -336,9 +337,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         direction = Vector2.Normalize(direction);
         var side = new Vector2(-direction.Y, direction.X);
-        handle.DrawLine(start, end, color);
-        handle.DrawLine(end, end - direction * headLength + side * (headLength * 0.45f), color);
-        handle.DrawLine(end, end - direction * headLength - side * (headLength * 0.45f), color);
+        LunaDraw.Line(handle, start, end, color);
+        LunaDraw.Line(handle, end, end - direction * headLength + side * (headLength * 0.45f), color);
+        LunaDraw.Line(handle, end, end - direction * headLength - side * (headLength * 0.45f), color);
     }
 
     private void DrawSoftMapText(DrawingHandleScreen handle, string text, Vector2 position, float scale, Color color, Color shadow)
@@ -466,7 +467,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
                 var range = _shuttles.GetFTLRange(gridUid);
                 range *= MinimapScale;
-                handle.DrawCircle(gridUiPos, range, Color.Gold, filled: false);
+                LunaDraw.Circle(handle, gridUiPos, range, Color.Gold, filled: false);
             }
         }
 
@@ -495,8 +496,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
             var adjustedPos = Vector2.Transform(mapCoords.Position, matty);
             var localPos = ScalePosition(adjustedPos with { Y = -adjustedPos.Y});
-            handle.DrawCircle(localPos, exclusion.Range * MinimapScale, exclusionColor.WithAlpha(0.05f));
-            handle.DrawCircle(localPos, exclusion.Range * MinimapScale, exclusionColor, filled: false);
+            LunaDraw.Circle(handle, localPos, exclusion.Range * MinimapScale, exclusionColor.WithAlpha(0.05f));
+            LunaDraw.Circle(handle, localPos, exclusion.Range * MinimapScale, exclusionColor, filled: false);
         }
         DrawMapSpaceHazards(handle, matty, viewBox);
 
@@ -641,7 +642,9 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
         foreach (var (color, sendEdges) in _edges)
         {
-            handle.DrawPrimitives(DrawPrimitiveTopology.LineList, sendEdges, color.WithAlpha(0.78f));
+            var edgeColor = color.WithAlpha(0.78f);
+            for (var i = 0; i + 1 < sendEdges.Count; i += 2)
+                LunaDraw.Line(handle, sendEdges[i], sendEdges[i + 1], edgeColor);
         }
 
         foreach (var (position, icon, color) in _glyphs)
@@ -722,24 +725,24 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
                     // Draw FTL buffer around the mouse.
                     var ourFTLBuffer = _shuttles.GetFTLBufferRange(_shuttleEntity.Value, grid);
                     ourFTLBuffer *= MinimapScale;
-                    handle.DrawCircle(mouseLocalPos, ourFTLBuffer, Color.Magenta.WithAlpha(0.01f));
-                    handle.DrawCircle(mouseLocalPos, ourFTLBuffer, Color.Magenta, filled: false);
+                    LunaDraw.Circle(handle, mouseLocalPos, ourFTLBuffer, Color.Magenta.WithAlpha(0.01f));
+                    LunaDraw.Circle(handle, mouseLocalPos, ourFTLBuffer, Color.Magenta, filled: false);
 
                     // Draw line from our shuttle to target
                     // Might need to clip the line if it's too far? But my brain wasn't working so F.
-                    handle.DrawDottedLine(gridUiPos, mouseLocalPos, color, (float) realTime.TotalSeconds * 30f);
+                    LunaDraw.DashedLine(handle, gridUiPos, mouseLocalPos, color, dashLength: 8f, gapLength: 2f, offset: (float) realTime.TotalSeconds * 30f);
 
                     // Draw shuttle pre-vis
                     var mouseVerts = GetMapObject(mouseLocalPos, -_ftlAngle, scale: MinimapScale); // Mono Edit: UI controls and the map are in different coordinate orientations, so the angle has to be negated. (shuttle Y is UI control -Y)
 
                     handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, mouseVerts.Span, color.WithAlpha(0.05f));
-                    handle.DrawPrimitives(DrawPrimitiveTopology.LineLoop, mouseVerts.Span, color);
+                    DrawMapObjectOutline(handle, mouseVerts, color);
 
                     // Draw a notch indicating direction.
                     var ftlLength = GetMapObjectRadius() + 16f;
                     var ftlEnd = mouseLocalPos + (-_ftlAngle).RotateVec(new Vector2(0f, -ftlLength)); // Mono Edit: UI controls and the map are in different coordinate orientations, so the angle has to be negated. (shuttle Y is UI control -Y)
 
-                    handle.DrawLine(mouseLocalPos, ftlEnd, color);
+                    LunaDraw.Line(handle, mouseLocalPos, ftlEnd, color);
                 }
             }
         }
@@ -794,6 +797,16 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         edges.Add(left);
         edges.Add(left);
         edges.Add(bottom);
+    }
+
+    private static void DrawMapObjectOutline(DrawingHandleScreen handle, ValueList<Vector2> mapObject, Color color)
+    {
+        var count = mapObject.Count;
+        if (count < 2)
+            return;
+
+        for (var i = 0; i < count; i++)
+            LunaDraw.Line(handle, mapObject[i], mapObject[(i + 1) % count], color);
     }
 
     /// <summary>

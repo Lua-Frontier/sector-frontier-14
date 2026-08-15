@@ -4,6 +4,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Systems;
+using Content.Server._NF.Cargo.Systems;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Labels.EntitySystems;
@@ -39,6 +40,7 @@ public sealed class SalvageJobBoardSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<EntitySoldEvent>(OnSold);
+        SubscribeLocalEvent<NFEntitySoldEvent>(OnNfSold);
         SubscribeLocalEvent<SalvageJobBoardConsoleComponent, BoundUIOpenedEvent>(OnBUIOpened);
         Subs.BuiEvents<SalvageJobBoardConsoleComponent>(SalvageJobBoardUiKey.Key,
             subs =>
@@ -57,6 +59,20 @@ public sealed class SalvageJobBoardSystem : EntitySystem
             if (!FulfillsSalvageJob(sold, (args.Station, salvageJobsData), out var jobId))
                 continue;
             TryCompleteSalvageJob((args.Station, salvageJobsData), jobId.Value);
+        }
+    }
+
+    private void OnNfSold(ref NFEntitySoldEvent args)
+    {
+        var station = _station.GetOwningStation(args.SourceConsole) ?? _station.GetOwningStation(args.Grid);
+        if (station is not { } stationUid || !TryComp<SalvageJobsDataComponent>(stationUid, out var salvageJobsData))
+            return;
+
+        foreach (var sold in args.Sold)
+        {
+            if (!FulfillsSalvageJob(sold, (stationUid, salvageJobsData), out var jobId))
+                continue;
+            TryCompleteSalvageJob((stationUid, salvageJobsData), jobId.Value);
         }
     }
 

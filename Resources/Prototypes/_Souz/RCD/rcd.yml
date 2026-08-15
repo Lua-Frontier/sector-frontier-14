@@ -1,0 +1,25 @@
+# source: RCD/rcd.yml
+- type: rcd
+  id: USSPSFAirlock
+  category: Airlocks
+  sprite: Interface/Radial/RCD/airlock.png
+  mode: ConstructObject
+  prototype: USSPSFAirlock
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4
+
+
+- type: rcd
+  id: USSPSFAirlockGlass
+  category: Airlocks
+  sprite: Interface/Radial/RCD/glass_airlock.png
+  mode: ConstructObject
+  prototype: USSPSFAirlockGlass
+  cost: 4
+  delay: 4
+  collisionMask: FullTileMask
+  rotation: Camera
+  fx: EffectRCDConstruct4

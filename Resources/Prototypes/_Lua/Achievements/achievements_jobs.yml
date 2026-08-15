@@ -1,0 +1,861 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: achievement
+  id: JobUnlockStationRepresentative
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 1, 22
+  unlockJobAvailable: StationRepresentative
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayStationRepresentative
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockStationRepresentative
+  position: 2, 22
+  unlockJobPlayed: StationRepresentative
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockStationTrafficController
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 1, 23
+  unlockJobAvailable: StationTrafficController
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayStationTrafficController
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockStationTrafficController
+  position: 2, 23
+  unlockJobPlayed: StationTrafficController
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockValet
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 1, 24
+  unlockJobAvailable: Valet
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayValet
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockValet
+  position: 2, 24
+  unlockJobPlayed: Valet
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockMailCarrier
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 1, 25
+  unlockJobAvailable: MailCarrier
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayMailCarrier
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockMailCarrier
+  position: 2, 25
+  unlockJobPlayed: MailCarrier
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockNFJanitor
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 1, 26
+  unlockJobAvailable: NFJanitor
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayNFJanitor
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockNFJanitor
+  position: 2, 26
+  unlockJobPlayed: NFJanitor
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockFrontierEngineer
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 19, 22
+  unlockJobAvailable: FrontierEngineer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayFrontierEngineer
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockFrontierEngineer
+  position: 20, 22
+  unlockJobPlayed: FrontierEngineer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockSDEngineer
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 19, 23
+  unlockJobAvailable: SDEngineer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlaySDEngineer
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockSDEngineer
+  position: 20, 23
+  unlockJobPlayed: SDEngineer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockPlantManager
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 19, 24
+  unlockJobAvailable: PlantManager
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayPlantManager
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockPlantManager
+  position: 20, 24
+  unlockJobPlayed: PlantManager
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockPlantTechnician
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 19, 25
+  unlockJobAvailable: PlantTechnician
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayPlantTechnician
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockPlantTechnician
+  position: 20, 25
+  unlockJobPlayed: PlantTechnician
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockDirectorOfCare
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 4, 22
+  unlockJobAvailable: DirectorOfCare
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayDirectorOfCare
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockDirectorOfCare
+  position: 5, 22
+  unlockJobPlayed: DirectorOfCare
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockMedicalDoctor
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 4, 23
+  unlockJobAvailable: MedicalDoctor
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayMedicalDoctor
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockMedicalDoctor
+  position: 5, 23
+  unlockJobPlayed: MedicalDoctor
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockChemist
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 4, 24
+  unlockJobAvailable: Chemist
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayChemist
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockChemist
+  position: 5, 24
+  unlockJobPlayed: Chemist
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockParamedic
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 4, 25
+  unlockJobAvailable: Paramedic
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayParamedic
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockParamedic
+  position: 5, 25
+  unlockJobPlayed: Paramedic
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockSheriff
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 22
+  unlockJobAvailable: Sheriff
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlaySheriff
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockSheriff
+  position: 8, 22
+  unlockJobPlayed: Sheriff
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockBailiff
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 23
+  unlockJobAvailable: Bailiff
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayBailiff
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockBailiff
+  position: 8, 23
+  unlockJobPlayed: Bailiff
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockSeniorOfficer
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 24
+  unlockJobAvailable: SeniorOfficer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlaySeniorOfficer
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockSeniorOfficer
+  position: 8, 24
+  unlockJobPlayed: SeniorOfficer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockDeputy
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 25
+  unlockJobAvailable: Deputy
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayDeputy
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockDeputy
+  position: 8, 25
+  unlockJobPlayed: Deputy
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockBrigmedic
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 26
+  unlockJobAvailable: Brigmedic
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayBrigmedic
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockBrigmedic
+  position: 8, 26
+  unlockJobPlayed: Brigmedic
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockSecurityGuard
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 27
+  unlockJobAvailable: SecurityGuard
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlaySecurityGuard
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockSecurityGuard
+  position: 8, 27
+  unlockJobPlayed: SecurityGuard
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayCadet
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 7, 28
+  unlockJobPlayed: Cadet
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockMercenary
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 22, 22
+  unlockJobAvailable: Mercenary
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayMercenary
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockMercenary
+  position: 23, 22
+  unlockJobPlayed: Mercenary
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayContractor
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 22, 23
+  unlockJobPlayed: Contractor
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayPilot
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 22, 24
+  unlockJobPlayed: Pilot
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayVip
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 22, 25
+  unlockJobPlayed: Vip
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockNFPirateCaptain
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 10, 22
+  unlockJobAvailable: NFPirateCaptain
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayNFPirateCaptain
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockNFPirateCaptain
+  position: 11, 22
+  unlockJobPlayed: NFPirateCaptain
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockNFPirateFirstMate
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 10, 23
+  unlockJobAvailable: NFPirateFirstMate
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayNFPirateFirstMate
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockNFPirateFirstMate
+  position: 11, 23
+  unlockJobPlayed: NFPirateFirstMate
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayNFPirate
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 10, 24
+  unlockJobPlayed: NFPirate
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostSyndicateShareholder
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 16, 22
+  unlockJobPlayed: OutpostSyndicateShareholder
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanTelecommunicationsOfficer
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 16, 23
+  unlockJobPlayed: OutpostTypanTelecommunicationsOfficer
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanRD
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 16, 24
+  unlockJobAvailable: OutpostTypanRD
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanRD
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanRD
+  position: 17, 24
+  unlockJobPlayed: OutpostTypanRD
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanScience
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 16, 25
+  unlockJobAvailable: OutpostTypanScience
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanScience
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanScience
+  position: 17, 25
+  unlockJobPlayed: OutpostTypanScience
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanMedic
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 13, 22
+  unlockJobAvailable: OutpostTypanMedic
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanMedic
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanMedic
+  position: 14, 22
+  unlockJobPlayed: OutpostTypanMedic
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanAtmosTech
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 13, 23
+  unlockJobAvailable: OutpostTypanAtmosTech
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanAtmosTech
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanAtmosTech
+  position: 14, 23
+  unlockJobPlayed: OutpostTypanAtmosTech
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanCargotech
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 13, 24
+  unlockJobAvailable: OutpostTypanCargotech
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanCargotech
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanCargotech
+  position: 14, 24
+  unlockJobPlayed: OutpostTypanCargotech
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanChef
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 13, 25
+  unlockJobAvailable: OutpostTypanChef
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanChef
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanChef
+  position: 14, 25
+  unlockJobPlayed: OutpostTypanChef
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobUnlockOutpostTypanBotanist
+  name: achievement-job-unlock-name
+  description: achievement-job-unlock-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 13, 26
+  unlockJobAvailable: OutpostTypanBotanist
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanBotanist
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JobUnlockOutpostTypanBotanist
+  position: 14, 26
+  unlockJobPlayed: OutpostTypanBotanist
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger
+
+- type: achievement
+  id: JobPlayOutpostTypanResearcher
+  name: achievement-job-play-name
+  description: achievement-job-play-desc
+  category: achievement-category-jobs
+  prerequisites:
+  - JoinGame
+  position: 13, 27
+  unlockJobPlayed: OutpostTypanResearcher
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Passenger

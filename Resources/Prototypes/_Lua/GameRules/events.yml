@@ -182,7 +182,9 @@
   id: RuleFSFBravo
   components:
   - type: StationEvent
-    startAnnouncement: "Центральное Командование приняло решение. Мы начали подготовку отряда Браво для отправки в сектор Фронтир."
+    startAnnouncement: station-event-fsf-bravo-start-announcement
+    announcementSender: company-announce-sender-nanotrasen
+    announcementScope: Map
     startAudio:
       path: /Audio/_DeadSpace/Announcements/ERT/decision.ogg
     weight: 10 # 10 default
@@ -199,7 +201,9 @@
   id: RuleFSFCharlie
   components:
   - type: StationEvent
-    startAnnouncement: "Центральное Командование приняло решение. Мы начали подготовку отряда Чарли для отправки в сектор Фронтир."
+    startAnnouncement: station-event-fsf-charlie-start-announcement
+    announcementSender: company-announce-sender-nanotrasen
+    announcementScope: Map
     startAudio:
       path: /Audio/_DeadSpace/Announcements/ERT/decision.ogg
     weight: 10 # 10 default

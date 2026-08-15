@@ -1,0 +1,25 @@
+# source: _DeadSpace/Entities/Structures/Doors/Airlocks/airlock.yml
+- type: entity
+  parent: USSPSFAirlock
+  id: USSPSFAirlockLawyer
+  categories: [ USSP ]
+  name: шлюз
+  description: Он открывается, он закрывается, и он может вас раздавить.
+  suffix: USSP, Юридический
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/lawyer.rsi
+  - type: Wires
+    layoutId: USSPSFAirlockSecurity
+- type: entity
+  parent: USSPSFAirlockGlass
+  id: USSPSFAirlockLawyerGlass
+  categories: [ USSP ]
+  name: стеклянный шлюз
+  description: Он открывается, он закрывается, и он может вас раздавить.
+  suffix: USSP, Юридический
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/lawyer.rsi
+  - type: Wires
+    layoutId: USSPSFAirlockSecurity

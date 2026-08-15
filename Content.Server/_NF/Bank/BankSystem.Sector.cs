@@ -11,24 +11,34 @@ public sealed partial class BankSystem : SharedBankSystem
 {
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
 
-    // The interval between sector account increases, in seconds.
     private const float AccountIncreaseInterval = 10.0f;
 
-    // Creates ledger entries for starting account balances.
     private void OnSectorInit(EntityUid entity, SectorBankComponent component, ComponentInit args)
     {
         foreach (var account in component.Accounts)
-            AddLedgerEntry(account.Key, LedgerEntryType.TickingIncome, account.Value.Balance);
+            AddLedgerEntry(account.Key, LedgerEntryType.TickingIncome, account.Value.Balance, component);
     }
 
-    /// <summary>
-    /// Attempts to remove money from a sector bank account.
-    /// </summary>
-    /// <param name="account">The account to be withdrawn from</param>
-    /// <param name="amount">The amount of spesos to remove from the account.</param>
-    /// <returns>true if the transaction was successful, false if it was not.</returns>
+    private bool TryResolveSectorBank(EntityUid? context, SectorBankComponent? bank, [System.Diagnostics.CodeAnalysis.NotNullWhen(true)] out SectorBankComponent? resolved)
+    {
+        if (bank != null)
+        {
+            resolved = bank;
+            return true;
+        }
+
+        if (context != null && _sectorService.TryGetServiceEntity(context.Value, out var localService) && TryComp(localService, out resolved))
+            return true;
+
+        if (TryComp(_sectorService.GetServiceEntity(), out resolved))
+            return true;
+
+        resolved = null;
+        return false;
+    }
+
     [PublicAPI]
-    public bool TrySectorWithdraw(SectorBankAccount account, int amount, LedgerEntryType reason, SectorBankComponent? bank = null)
+    public bool TrySectorWithdraw(SectorBankAccount account, int amount, LedgerEntryType reason, EntityUid? context = null, SectorBankComponent? bank = null)
     {
         if (amount <= 0)
         {
@@ -36,8 +46,7 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        // Lookup sector banks
-        if (bank == null && !TryComp(_sectorService.GetServiceEntity(), out bank))
+        if (!TryResolveSectorBank(context, bank, out bank))
         {
             _log.Info($"TryBankWithdraw: no bank component");
             return false;
@@ -57,19 +66,12 @@ public sealed partial class BankSystem : SharedBankSystem
         }
 
         bankAccount.Balance -= amount;
-        AddLedgerEntry(account, reason, amount);
+        AddLedgerEntry(account, reason, amount, bank);
         return true;
     }
 
-    /// <summary>
-    /// Attempts to add money to a sector bank account.
-    /// </summary>
-    /// <param name="mobUid">The UID that the bank account is connected to, typically the player controlled mob</param>
-    /// <param name="amount">The amount of spesos to remove from the bank account</param>
-    /// <param name="reason">The purpose of this withdrawal</param>
-    /// <returns>true if the transaction was successful, false if it was not</returns>
     [PublicAPI]
-    public bool TrySectorDeposit(SectorBankAccount account, int amount, LedgerEntryType reason, SectorBankComponent? bank=null)
+    public bool TrySectorDeposit(SectorBankAccount account, int amount, LedgerEntryType reason, EntityUid? context = null, SectorBankComponent? bank = null)
     {
         if (amount <= 0)
         {
@@ -77,8 +79,7 @@ public sealed partial class BankSystem : SharedBankSystem
             return false;
         }
 
-        // Lookup sector banks
-        if (bank == null && !TryComp(_sectorService.GetServiceEntity(), out bank))
+        if (!TryResolveSectorBank(context, bank, out bank))
         {
             _log.Info($"TryBankDeposit: no bank component");
             return false;
@@ -92,21 +93,14 @@ public sealed partial class BankSystem : SharedBankSystem
 
         var bankAccount = CollectionsMarshal.GetValueRefOrNullRef(bank.Accounts, account);
         bankAccount.Balance += amount;
-        AddLedgerEntry(account, reason, amount);
+        AddLedgerEntry(account, reason, amount, bank);
         return true;
     }
 
-    /// <summary>
-    /// Retrieves a character's balance via its in-game entity, if it has one.
-    /// </summary>
-    /// <param name="ent">The UID that the bank account is connected to, typically the player controlled mob</param>
-    /// <param name="balance">When successful, contains the account balance in spesos. Otherwise, set to 0.</param>
-    /// <returns>true if the account was successfully queried.</returns>
     [PublicAPI]
-    public bool TryGetBalance(SectorBankAccount account, out int balance)
+    public bool TryGetBalance(SectorBankAccount account, out int balance, EntityUid? context = null)
     {
-        // Lookup sector banks
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? bank))
+        if (!TryResolveSectorBank(context, null, out var bank))
         {
             _log.Info($"TryGetBalance: no bank component");
             balance = 0;
@@ -124,26 +118,28 @@ public sealed partial class BankSystem : SharedBankSystem
         return true;
     }
 
-
     private void UpdateSectorBanks(float frameTime)
     {
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? bank))
-            return;
-
-        bank.SecondsSinceLastIncrease += frameTime;
-
-        float secondsToCredit = 0;
-        while (bank.SecondsSinceLastIncrease > AccountIncreaseInterval)
+        foreach (var service in _sectorService.GetServiceEntities())
         {
-            bank.SecondsSinceLastIncrease -= AccountIncreaseInterval;
-            secondsToCredit += AccountIncreaseInterval;
+            if (!TryComp(service, out SectorBankComponent? bank))
+                continue;
+
+            bank.SecondsSinceLastIncrease += frameTime;
+
+            float secondsToCredit = 0;
+            while (bank.SecondsSinceLastIncrease > AccountIncreaseInterval)
+            {
+                bank.SecondsSinceLastIncrease -= AccountIncreaseInterval;
+                secondsToCredit += AccountIncreaseInterval;
+            }
+
+            var seconds = (int)secondsToCredit;
+            if (seconds <= 0)
+                continue;
+
+            foreach (var (accountId, accountInfo) in bank.Accounts)
+                TrySectorDeposit(accountId, seconds * accountInfo.IncreasePerSecond, LedgerEntryType.TickingIncome, bank: bank);
         }
-
-        int seconds = (int)secondsToCredit;
-        if (seconds <= 0)
-            return;
-
-        foreach (var (accountId, accountInfo) in bank.Accounts)
-            TrySectorDeposit(accountId, seconds * accountInfo.IncreasePerSecond, LedgerEntryType.TickingIncome, bank);
     }
 }

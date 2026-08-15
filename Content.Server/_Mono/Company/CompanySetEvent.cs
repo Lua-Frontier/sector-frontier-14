@@ -1,15 +1,19 @@
+using Robust.Shared.GameObjects;
+
 namespace Content.Server._Mono.Company;
 
 public sealed class CompanySetEvent : EntityEventArgs
 {
-	public string OldCompanyId { get; }
-	public string NewCompanyId { get; }
-	public bool Changed { get; }
+    public EntityUid Entity { get; }
+    public string OldCompanyId { get; }
+    public string NewCompanyId { get; }
+    public bool Changed { get; }
 
-	public CompanySetEvent(string oldCompanyId, string newCompanyId, bool changed)
-	{
-		OldCompanyId = oldCompanyId;
-		NewCompanyId = newCompanyId;
-		Changed = changed;
-	}
+    public CompanySetEvent(EntityUid entity, string oldCompanyId, string newCompanyId, bool changed)
+    {
+        Entity = entity;
+        OldCompanyId = oldCompanyId;
+        NewCompanyId = newCompanyId;
+        Changed = changed;
+    }
 }

@@ -1,0 +1,191 @@
+- type: technology
+  id: UsspThrusterSmall
+  name: research-technology-ussp-thruster-small
+  entityIcon: ThrusterUSSP
+  discipline: NFEngineering
+  factions:
+  - Ussp
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterUSSPMachineCircuitboard
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 2, 0
+
+- type: technology
+  id: UsspThrusterMedium
+  name: research-technology-ussp-thruster-medium
+  entityIcon: ThrusterMediumUSSP
+  discipline: NFEngineering
+  factions:
+  - Ussp
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ThrusterMediumUSSPMachineCircuitboard
+  technologyPrerequisites:
+  - UsspThrusterSmall
+  position: 3, 0
+
+- type: technology
+  id: UsspThrusterLarge
+  name: research-technology-ussp-thruster-large
+  entityIcon: ThrusterLargeUSSP
+  discipline: NFEngineering
+  factions:
+  - Ussp
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+  - ThrusterLargeUSSPMachineCircuitboard
+  technologyPrerequisites:
+  - UsspThrusterMedium
+  position: 4, 0
+
+- type: technology
+  id: UsspBasicSuits
+  name: research-technology-ussp-suits-basic
+  entityIcon: ClothingOuterHardsuitUsspL10
+  discipline: NFEngineering
+  factions:
+  - Ussp
+  tier: 1
+  cost: 25000
+  recipeUnlocks:
+  - ClothingOuterHardsuitUsspL10USSP
+  - ClothingOuterHardsuitUsspL10AUSSP
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 2, 1
+
+- type: technology
+  id: UsspMediumSuits
+  name: research-technology-ussp-suits-medium
+  entityIcon: ClothingOuterHardsuitUsspL27
+  discipline: NFEngineering
+  factions:
+  - Ussp
+  tier: 2
+  cost: 45000
+  recipeUnlocks:
+  - ClothingOuterHardsuitUsspL27USSP
+  - ClothingOuterHardsuitUsspM10USSP
+  technologyPrerequisites:
+  - UsspBasicSuits
+  position: 3, 1
+
+- type: technology
+  id: UsspAdvancedSuits
+  name: research-technology-ussp-suits-advanced
+  entityIcon: ClothingModsuitUSSPZastavnik
+  discipline: NFEngineering
+  factions:
+  - Ussp
+  tier: 3
+  cost: 85000
+  recipeUnlocks:
+  - ClothingModsuitUSSPVaryagUSSP
+  - ClothingModsuitUSSPZastavnikUSSP
+  technologyPrerequisites:
+  - UsspMediumSuits
+  position: 4, 1
+
+- type: technology
+  id: UsspMediumExplosives
+  name: research-technology-ussp-explosives-medium
+  entityIcon: GrenadeShrapnel
+  discipline: NFArsenal
+  factions:
+  - Ussp
+  tier: 1
+  cost: 60000
+  recipeUnlocks:
+  - GrenadeShrapnelUSSP
+  - GrenadeIncendiaryUSSP
+  - SeismicChargeUSSP
+  - TearGasGrenadeUSSP
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 2, 2
+
+- type: technology
+  id: UsspMediumGuns
+  name: research-technology-ussp-guns-medium
+  entityIcon: WeaponRifleAK502
+  discipline: NFArsenal
+  factions:
+  - Ussp
+  tier: 2
+  cost: 35000
+  recipeUnlocks:
+  - WeaponRifleAK502USSP
+  - WeaponRevolverMatebaUSSP
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 2, 3
+
+- type: technology
+  id: UsspAk410
+  name: research-technology-ussp-guns-ak410
+  entityIcon: WeaponRifleAK410
+  discipline: NFArsenal
+  factions:
+  - Ussp
+  tier: 2
+  cost: 25000
+  recipeUnlocks:
+  - WeaponRifleAK410USSP
+  - AmmoBox762x39mmSubsonic
+  technologyPrerequisites:
+  - UsspMediumGuns
+  position: 3, 3
+
+- type: technology
+  id: UsspAdvancedGuns
+  name: research-technology-ussp-guns-advanced
+  entityIcon: WeaponDP29
+  discipline: NFArsenal
+  factions:
+  - Ussp
+  tier: 3
+  cost: 80000
+  recipeUnlocks:
+  - WeaponDP29USSP
+  - MagazineDP29
+  - WeaponShotgunBigLeadyUSSP
+  technologyPrerequisites:
+  - UsspMediumGuns
+  position: 4, 3
+
+- type: technology
+  id: UniversalArmorPlatesT1
+  name: research-technology-universal-armorplates-1
+  entityIcon: ArmorPlateBlunt_Slash
+  discipline: NFArsenal
+  factions:
+  - Ussp
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - ArmorPlateBlunt_Slash
+  - ArmorPlatePierce
+  technologyPrerequisites:
+  - NFAdvancedParts
+  position: 2, 4
+
+- type: technology
+  id: UniversalArmorPlatesT2
+  name: research-technology-universal-armorplates-2
+  entityIcon: ArmorPlateHeat
+  discipline: NFArsenal
+  factions:
+  - Ussp
+  tier: 2
+  cost: 15000
+  recipeUnlocks:
+  - ArmorPlateHeat
+  - ArmorPlateSpeed
+  technologyPrerequisites:
+  - UniversalArmorPlatesT1
+  position: 3, 4

@@ -1,0 +1,72 @@
+# source: Entities/Clothing/Eyes/glasses.yml
+- type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: USSPSFClothingEyesGlassesSunglasses
+  categories: [ USSP ]
+  suffix: USSP
+  name: sun glasses
+  description: A pair of black sunglasses.
+  components:
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - Sunglasses
+    - PetWearable
+    - HamsterWearable
+    - WhitelistChameleon
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingEyesGlassesSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security glasses
+  description: Upgraded sunglasses that provide flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Eyes/Glasses/secglasses.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Eyes/Glasses/secglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Construction
+    graph: GlassesSecHUD
+    node: glassesSec
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - PetWearable
+    - WhitelistChameleon
+  - type: GuideHelp
+    guides:
+    - Security
+  - type: IdentityBlocker
+    coverage: EYES
+
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Eyes/glasses.yml
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, BaseCommandContraband]
+  id: USSPSFClothingEyesGlassesAdvancedOKGB
+  categories: [ USSP ]
+  suffix: USSP
+  name: продвинутые очки КГБ
+  description: Пара бордовых линз в крепкой стальной оправе, защитят от вспышек и покажут состояния здоровья.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Eyes/Hud/Glasses/advanced.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Eyes/Hud/Glasses/advanced.rsi
+  - type: ThermalVision
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 6

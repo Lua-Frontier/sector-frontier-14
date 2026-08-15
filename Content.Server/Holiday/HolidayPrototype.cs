@@ -2,6 +2,7 @@ using Content.Server.Holiday.Greet;
 using Content.Server.Holiday.Interfaces;
 using Content.Server.Holiday.ShouldCelebrate;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Holiday
 {
@@ -31,6 +32,9 @@ namespace Content.Server.Holiday
         /// </summary>
         [DataField("endMonth")]
         public Month EndMonth { get; set; } = Month.Invalid;
+
+        [DataField]
+        public List<ResPath>? LobbyMusic;
 
         [DataField("shouldCelebrate")]
         private IHolidayShouldCelebrate _shouldCelebrate = new DefaultHolidayShouldCelebrate();

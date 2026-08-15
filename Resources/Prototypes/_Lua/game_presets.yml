@@ -3,19 +3,11 @@
 # See AGPLv3.txt for details.
 
 - type: gamePreset
-  id: ShipVsShip
-  name: Режим бой на кораблях
-  description: Выбирайте команду и уничтожте все подкрепления противника
-  showInVote: true
-  supportedMaps: ShipVsShip
-  rules:
-    - ShipVsShip
-
-- type: gamePreset
   id: LuaAdventure
   alias:
     - luaadventure
     - luaadv
+    - adventure
   name: lua-adventure-title
   description: lua-adventure-description
   showInVote: true
@@ -26,4 +18,17 @@
     - BluespaceEventScheduler
     - BluespaceSalvageEventScheduler
     - SmugglingEventScheduler
+    - NFRoundstartVariation
+
+# Hidden: lightweight preset for integration / local tests (no adventure POI bootstrap).
+- type: gamePreset
+  id: LuaTest
+  alias:
+    - luatest
+    - test
+  name: lua-test-title
+  description: lua-test-description
+  showInVote: false
+  rules:
+    - NFBasicStationEventScheduler
     - NFRoundstartVariation

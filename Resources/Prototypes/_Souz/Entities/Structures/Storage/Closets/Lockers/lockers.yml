@@ -1,0 +1,93 @@
+# source: Entities/Structures/Storage/Closets/Lockers/lockers.yml
+- type: entity
+  id: USSPSFLockerCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  parent: LockerBaseSecure
+  name: captain's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: cap
+    stateDoorOpen: cap_open
+    stateDoorClosed: cap_door
+  - type: AccessReader
+    access: [["USSPCaptain"]]
+- type: entity
+  id: USSPSFLockerHeadOfPersonnel
+  categories: [ USSP ]
+  suffix: USSP
+  parent: LockerBaseSecure
+  name: head of personnel's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: hop
+    stateDoorOpen: hop_open
+    stateDoorClosed: hop_door
+  - type: AccessReader
+    access: [["USSPHeadOfPersonnel"]]
+
+# CE
+- type: entity
+  id: USSPSFLockerHeadOfSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  parent: LockerBaseSecure
+  name: head of security's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos
+    stateDoorOpen: hos_open
+    stateDoorClosed: hos_door
+  - type: AccessReader
+    access: [["USSPHeadOfSecurity"]]
+
+# Warden
+- type: entity
+  id: USSPSFLockerBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  parent: LockerBaseSecure
+  name: brigmedic locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["USSPBrigmedic"]]
+
+# Security Officer
+- type: entity
+  id: USSPSFLockerSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  parent: LockerBaseSecure
+  name: security officer's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["USSPSecurity"]]
+- type: entity
+  id: USSPSFLockerBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  parent: LockerBaseSecure
+  name: blue shield locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: blueshield
+    stateDoorOpen: blueshield_open
+    stateDoorClosed: blueshield_door
+  - type: AccessReader
+    access: [["USSPCaptain"]]
+
+# Coroner

@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Client._Lua.Styles;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Client.Graphics;
 using Robust.Shared.Map;
@@ -45,7 +46,7 @@ public partial class ShuttleNavControl
 
                 var ui = Vector2.Transform(mapCoords.Position, worldToView);
                 if (prev != null)
-                    handle.DrawDottedLine(prev.Value, ui, color, animOffset, dashSize: 6f, gapSize: 3f);
+                    LunaDraw.DashedLine(handle, prev.Value, ui, color, dashLength: 6f, gapLength: 3f, offset: animOffset);
                 prev = ui;
             }
         }

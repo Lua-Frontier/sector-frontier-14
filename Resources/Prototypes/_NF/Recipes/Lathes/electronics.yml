@@ -169,6 +169,15 @@
     Glass: 900
 
 - type: latheRecipe
+  id: ThrusterLargeNfsdMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterLargeNfsdMachineCircuitboard
+  materials:
+    Steel: 1200
+    Glass: 1600
+    Plasteel: 400
+
+- type: latheRecipe
   id: ThrusterUSSPMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: ThrusterUSSPMachineCircuitboard
@@ -183,6 +192,48 @@
   materials:
     Steel: 400
     Glass: 900
+
+- type: latheRecipe
+  id: ThrusterPiratesMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterPiratesMachineCircuitboard
+  materials:
+    Steel: 400
+    Glass: 900
+
+- type: latheRecipe
+  id: ThrusterMediumPiratesMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterMediumPiratesMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 1200
+
+- type: latheRecipe
+  id: ThrusterLargePiratesMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterLargePiratesMachineCircuitboard
+  materials:
+    Steel: 1200
+    Glass: 1600
+    Plasteel: 400
+
+- type: latheRecipe
+  id: ThrusterMediumUSSPMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterMediumUSSPMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 1200
+
+- type: latheRecipe
+  id: ThrusterLargeUSSPMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterLargeUSSPMachineCircuitboard
+  materials:
+    Steel: 1200
+    Glass: 1600
+    Plasteel: 400
 
 - type: latheRecipe
   id: LargeThrusterMachineCircuitboard

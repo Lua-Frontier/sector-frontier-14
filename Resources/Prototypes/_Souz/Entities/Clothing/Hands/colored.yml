@@ -1,0 +1,28 @@
+# source: Entities/Clothing/Hands/colored.yml
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: USSPSFClothingHandsGlovesColorBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: black gloves
+  description: Regular black gloves that do not keep you from frying.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Hands/Gloves/Color/black.rsi
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Clothing
+    sprite: _Souz/Clothing/Hands/Gloves/Color/black.rsi
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: ClothingHandsGlovesFingerless
+  - type: Fiber
+    fiberColor: fibers-black
+
+# Insulated Gloves (Yellow Gloves)
+# Currently can not be greyscaled without looking like shit.

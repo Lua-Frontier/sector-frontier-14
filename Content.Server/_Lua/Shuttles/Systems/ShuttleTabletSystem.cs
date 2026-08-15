@@ -15,6 +15,7 @@ using Content.Shared._Lua.Shuttles.UI;
 using Content.Shared._Lua.Shuttles.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared._Mono.FireControl;
+using Content.Shared._Mono.ShipGuns;
 using Content.Server._Mono.FireControl;
 using Content.Server.Shuttles.Components;
 using Content.Server.Popups;
@@ -232,7 +233,8 @@ public sealed class ShuttleTabletSystem : EntitySystem
 
             foreach (var c in fcServer.Controlled)
             {
-                var controllableEntry = new FireControllableEntry(GetNetEntity(c), GetNetCoordinates(Transform(c).Coordinates), MetaData(c).EntityName);
+                var type = TryComp<ShipGunTypeComponent>(c, out var gunType) ? gunType.Type : ShipGunType.Other;
+                var controllableEntry = new FireControllableEntry(GetNetEntity(c), GetNetCoordinates(Transform(c).Coordinates), MetaData(c).EntityName, type);
                 fcControllablesList.Add(controllableEntry);
             }
 

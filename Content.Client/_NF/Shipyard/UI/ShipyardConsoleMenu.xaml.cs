@@ -123,6 +123,9 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         DockRadar.OnRadarClick += OnDockRadarClick; // Lua
     }
 
+    public void SetRadarConsole(EntityUid console)
+    { DockRadar.SetConsole(console); }
+
     public void UpdateDockSelect(NavInterfaceState? nav, NetEntity? selectedPort) // Lua
     {
         if (nav == null)

@@ -9,5 +9,6 @@ store-currency-display-debugdollar =
        *[other] { $amount } Дебаг долларов
     }
 store-currency-display-telecrystal = ТК
+store-currency-display-redspace-coupons = редспейс талоны
 store-currency-display-stolen-essence = Украденная эссенция
 store-currency-display-wizcoin = Маг₭øин™

@@ -1,0 +1,73 @@
+# source: Entities/Clothing/Neck/cloaks.yml
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckCloakCap
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's cloak
+  description: A pompous and comfy blue cloak with a nice gold trim, while not particularly valuable as your other possessions, it sure is fancy.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Cloaks/cap.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckCloakHos
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's cloak
+  description: An exquisite dark and red cloak fitting for those who can assert dominance over wrongdoers. Take a stab at being civil in prosecution!
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Cloaks/hos.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckCloakHop
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's cloak
+  description: A blue cloak with red shoulders and gold buttons, proving you are the gatekeeper to any airlock on the station.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Cloaks/hop.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPSFClothingNeckCloakNanotrasen
+  categories: [ USSP ]
+  suffix: USSP
+  name: nanotrasen cloak
+  description: A stately blue cloak to represent NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Cloaks/nanotrasen.rsi
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckCloakCapFormal
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's formal cloak
+  description: A lavish and decorated cloak for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Cloaks/capcloakformal.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak
+
+# source: _ADT/Entities/Clothing/Neck/cloaks.yml
+- type: entity
+  parent: ClothingNeckBase
+  id: USSPSFADTClothingNeckHoPAltCloak
+  categories: [ USSP ]
+  suffix: USSP
+  name: торжественный плащ главы персонала
+  description: Плащ главы персонала для особых случаев.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Cloaks/HoP_alt_cloak.rsi
+  - type: StealTarget
+    stealGroup: HeadCloak

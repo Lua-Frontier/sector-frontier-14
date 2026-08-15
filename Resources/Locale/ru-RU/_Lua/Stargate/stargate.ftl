@@ -43,6 +43,8 @@ stargate-minimap-merge-2-to-1 = 2 → 1
 stargate-minimap-status = Картограф Lua Technologies
 stargate-minimap-not-planet = Не планета
 stargate-minimap-insert-disk = Вставьте картографический диск
+stargate-minimap-scanning = Сканирование местности...
+stargate-minimap-no-position = Нет данных о позиции
 stargate-minimap-gate = Врата
 stargate-minimap-shuttle = Шаттл
 

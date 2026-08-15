@@ -122,6 +122,9 @@ namespace Content.Server.Bible
                 return;
             }
 
+            var healAttemptEv = new BibleHealAttemptEvent(args.User, args.Target.Value);
+            RaiseLocalEvent(ref healAttemptEv);
+
             // In case the user is trying to mix something, store who's using it and whether or not they're a bible user.
             component.LastInteractingUser = args.User;
             var hasBibleUserComponent = HasComp<BibleUserComponent>(args.User);

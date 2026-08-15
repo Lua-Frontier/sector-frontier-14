@@ -91,6 +91,21 @@
     - type: Transform
 
 - type: entity
+  id: StandardUsspVessel
+  parent:
+    - BaseStation
+    - BaseStationCargoMarket
+    - NFBaseStationCargo
+    - MarketFrontierOutpost
+    - BaseStationJobsSpawning
+    - BaseStationRecords
+    - BaseStationSectorServices
+    - BaseStationAlertLevels
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Transform
+
+- type: entity
   id: StandardMercenaryVessel
   parent:
     - BaseStation

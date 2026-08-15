@@ -1,0 +1,49 @@
+# source: Entities/Clothing/Neck/mantles.yml
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckMantleCap
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's mantle
+  description: A formal mantle to drape around the shoulders. Others stand on the shoulders of giants. You're the giant they stand on.  # Corvax-Resprite
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/mantles/capmantle.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/mantles/capmantle.rsi
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckMantleHOP
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's mantle
+  description: A decorative draping of blue and red over your shoulders, signifying your stamping prowess.  # Corvax-Resprite
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/mantles/hopmantle.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/mantles/hopmantle.rsi
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckMantleHOS
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's mantle
+  description: A plated mantle that one might wrap around the upper torso. The 'scales' of the garment signify the members of security and how you're carrying them on your shoulders.  # Corvax-Resprite
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/mantles/hosmantle.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/mantles/hosmantle.rsi
+- type: entity # Corvax-Resprite: Old mantle renamed and saved as that new entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckMantleHOSShoulder
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's shoulder mantle
+  description: Shootouts with nukies are just another Tuesday for this HoS. This mantle is a symbol of commitment to the station.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/mantles/hosmantle_shoulder.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/mantles/hosmantle_shoulder.rsi

@@ -616,6 +616,8 @@ public sealed class FaxSystem : EntitySystem
         // End Frontier
 
         UpdateUserInterface(uid, component);
+        var sentEv = new FaxSentEvent(args.Actor, uid);
+        RaiseLocalEvent(ref sentEv);
     }
 
     /// <summary>

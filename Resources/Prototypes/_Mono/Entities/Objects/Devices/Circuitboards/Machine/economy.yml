@@ -39,9 +39,9 @@
     stackRequirements:
       CableHV: 5
     tagRequirements:
-      ArmorPlateEconomy3:
+      ArmorPlateEconomy1:
         amount: 1
-        defaultPrototype: ArmorPlateEconomy3
+        defaultPrototype: ArmorPlateEconomy1
       ElectromagnetEconomy1:
         amount: 2
         defaultPrototype: ElectromagnetEconomy1
@@ -85,13 +85,7 @@
     stackRequirements:
       Lithium: 5
       CableHV: 10
-    tagRequirements:
-      ArmorPlateEconomy1: # Stand in for the base of the press or something
-        amount: 1
-        defaultPrototype: ArmorPlateEconomy1
-      ComponentBrickEconomy1:
-        amount: 1
-        defaultPrototype: ComponentBrickEconomy1
+    # Entry-level: no industry comps so progression isn't gated on its own outputs.
   - type: Construction
     deconstructionTarget: null
     graph: IndustrialPress
@@ -114,12 +108,9 @@
       Lithium: 10
       CableHV: 20
     tagRequirements:
-      ArmorPlateEconomy2: # Stand in for the base of the press or something
+      ArmorPlateEconomy1: # T1 only — T2 plates need the arc furnace researched later
         amount: 1
-        defaultPrototype: ArmorPlateEconomy2
-      ComponentBrickEconomy1:
-        amount: 1
-        defaultPrototype: ComponentBrickEconomy1
+        defaultPrototype: ArmorPlateEconomy1
   - type: Construction
     deconstructionTarget: null
     graph: IndustrialPressMMC
@@ -141,13 +132,7 @@
     stackRequirements:
       Lithium: 5
       CableHV: 10
-    tagRequirements:
-      ArmorPlateEconomy1: # Stand in for the base of the press or something
-        amount: 1
-        defaultPrototype: ArmorPlateEconomy1
-      ComponentBrickEconomy1:
-        amount: 1
-        defaultPrototype: ComponentBrickEconomy1
+    # Entry-level: no industry comps so progression isn't gated on its own outputs.
   - type: Construction
     deconstructionTarget: null
     graph: IndustrialPress
@@ -170,12 +155,9 @@
       Lithium: 10
       CableHV: 20
     tagRequirements:
-      ArmorPlateEconomy2: # Stand in for the base of the press or something
+      ArmorPlateEconomy1: # T1 only — T2 plates need the arc furnace researched later
         amount: 1
-        defaultPrototype: ArmorPlateEconomy2
-      ComponentBrickEconomy1:
-        amount: 1
-        defaultPrototype: ComponentBrickEconomy1
+        defaultPrototype: ArmorPlateEconomy1
   - type: Construction
     deconstructionTarget: null
     graph: IndustrialPressMMC

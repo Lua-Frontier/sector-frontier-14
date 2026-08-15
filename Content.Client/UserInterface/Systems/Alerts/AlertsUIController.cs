@@ -9,6 +9,7 @@ using Content.Client._Shitmed.UserInterface.Systems.PartStatus.Widgets;
 using Content.Shared._Lua.Sprint;
 using Content.Shared.Alert;
 using Content.Shared.Lua.CLVar;
+using Content.Shared.Mech.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -228,6 +229,7 @@ public sealed class AlertsUIController : UIController, IOnStateEntered<GameplayS
 
         var player = _player.LocalSession?.AttachedEntity ?? _player.LocalEntity;
         if (player is not { } playerEnt ||
+            _entMan.HasComponent<MechPilotComponent>(playerEnt) ||
             !_entMan.TryGetComponent<LuaSprintComponent>(playerEnt, out var sprint) ||
             sprint.MaxSprint <= 0f)
         {

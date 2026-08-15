@@ -1,3 +1,4 @@
+using Content.Client._Lua.Styles;
 using Content.Client.Shuttles.Systems;
 using Content.Client.Stylesheets;
 using Content.Shared._Lua.SpaceHazards;
@@ -874,12 +875,12 @@ public sealed partial class MapScreen : BoxContainer
             const float radius = 3.5f;
             const float outer = 6f;
 
-            handle.DrawCircle(center, radius, color, false);
-            handle.DrawCircle(center, 1f, color, true);
-            handle.DrawLine(center + new Vector2(0f, -outer), center + new Vector2(0f, -radius - 1f), color);
-            handle.DrawLine(center + new Vector2(0f, radius + 1f), center + new Vector2(0f, outer), color);
-            handle.DrawLine(center + new Vector2(-outer, 0f), center + new Vector2(-radius - 1f, 0f), color);
-            handle.DrawLine(center + new Vector2(radius + 1f, 0f), center + new Vector2(outer, 0f), color);
+            LunaDraw.Circle(handle, center, radius, color, false);
+            LunaDraw.Circle(handle, center, 1f, color, true);
+            LunaDraw.Line(handle, center + new Vector2(0f, -outer), center + new Vector2(0f, -radius - 1f), color);
+            LunaDraw.Line(handle, center + new Vector2(0f, radius + 1f), center + new Vector2(0f, outer), color);
+            LunaDraw.Line(handle, center + new Vector2(-outer, 0f), center + new Vector2(-radius - 1f, 0f), color);
+            LunaDraw.Line(handle, center + new Vector2(radius + 1f, 0f), center + new Vector2(outer, 0f), color);
         }
     }
 }

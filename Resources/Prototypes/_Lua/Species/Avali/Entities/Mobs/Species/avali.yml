@@ -13,6 +13,7 @@
     species: Avali
     hideLayersOnEquip:
     - Hair
+    - Head
     - Snout
     - HeadTop
     - HeadSide
@@ -103,19 +104,28 @@
         visible: false
       - map: [ "id" ]
       - map: [ "gloves" ]
+      - map: [ "finger" ]
+      - map: [ "leftarmband" ] # Mono - armband slot
+      - map: [ "rightarmband" ] # Mono - armband slot
       - map: [ "shoes" ]
       - map: [ "ears" ]
+      - map: [ "necklace" ]
       - map: [ "outerClothing" ]
+      - map: [ "neck" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
-      - map: [ "neck" ]
       - map: [ "back" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "earring" ]
+      - map: [ "hairpin" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "balaclava" ] # Mono - balaclava slot
       - map: [ "mask" ]
       - map: [ "head" ]
+      - map: [ "helmetcover" ] # Mono - helmet cover slot
+      - map: [ "helmetattachment" ] # Mono - helmet attachment slot
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
         visible: false

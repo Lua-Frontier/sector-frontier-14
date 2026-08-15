@@ -1,0 +1,21 @@
+# source: Entities/Structures/Machines/telecomms.yml
+- type: entity
+  parent: TelecomServer
+  id: USSPSFTelecomServer
+  categories: [ HideSpawnMenu, USSP ]
+  suffix: USSP
+  components:
+  - type: Machine
+    board: USSPSFTelecomServerCircuitboard
+
+- type: entity
+  parent: USSPSFTelecomServer
+  id: USSPSFTelecomServerFilledSecurity
+  categories: [ USSP ]
+  suffix: USSP, Security
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - USSPSFEncryptionKeyUssp

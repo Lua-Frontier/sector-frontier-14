@@ -8,6 +8,9 @@
   id: SimpleArtifactMobBase
   suffix: AI
   components:
+    - type: Physics
+      bodyType: KinematicController
+      bodyStatus: InAir
     - type: NpcFactionMember
       factions:
         - ArtifactConstruct

@@ -35,8 +35,14 @@
     walkModifier: 0.9 #Lua 0.95<0.9
     sprintModifier: 0.9 #Lua 0.95<0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitViperGroupStandard
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitViperGroupStandard
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
@@ -84,8 +90,14 @@
     walkModifier: 0.9 #Lua 1<0.9
     sprintModifier: 0.9 #Lua 1<0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitViperGroupMedic
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitViperGroupMedic
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 1500
     vendPrice: 4000

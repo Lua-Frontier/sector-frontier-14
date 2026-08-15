@@ -218,9 +218,7 @@ public sealed partial class NavScreen : BoxContainer
         _weaponTypes.Clear();
         foreach (var controllable in controllables)
         {
-            var entity = _entManager.GetEntity(controllable.NetEntity);
-            if (_entManager.TryGetComponent<ShipGunTypeComponent>(entity, out var typeComp))
-            { _weaponTypes[controllable.NetEntity] = typeComp.Type; }
+            _weaponTypes[controllable.NetEntity] = controllable.Type;
             if (WeaponsList.TryGetValue(controllable.NetEntity, out _))
             { toRemove.Remove(controllable.NetEntity); }
             else
@@ -289,7 +287,12 @@ public sealed partial class NavScreen : BoxContainer
 
     private void OnSelectAllWeapons(BaseButton.ButtonEventArgs args)
     {
-        foreach (var button in WeaponsList.Values) button.Pressed = true;
+        foreach (var (netEntity, button) in WeaponsList)
+        {
+            if (!_weaponTypes.TryGetValue(netEntity, out var type) || type == ShipGunType.Other)
+                continue;
+            button.Pressed = true;
+        }
         NotifyWeaponSelectionChanged();
     }
 

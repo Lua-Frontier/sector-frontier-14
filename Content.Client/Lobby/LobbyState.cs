@@ -319,13 +319,12 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.LobbyBackground != null)
             {
-                Lobby!.Background.SetRSI(_resourceCache.GetResource<RSIResource>(_gameTicker.LobbyBackground).RSI); //Lua animated
+                Lobby!.Background.SetRsiPath(_gameTicker.LobbyBackground);
             }
             else
             {
-                Lobby!.Background.Texture = null;
+                Lobby!.Background.SetRsiPath(null);
             }
-
         }
 
         private void SetReady(bool newReady)

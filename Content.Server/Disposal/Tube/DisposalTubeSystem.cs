@@ -422,8 +422,7 @@ namespace Content.Server.Disposal.Tube
             if (!Resolve(uid, ref entry))
                 return false;
 
-            var xform = Transform(uid);
-            var holder = Spawn(entry.HolderPrototypeId, _transform.GetMapCoordinates(uid, xform: xform));
+            var holder = SpawnHolder(uid, entry);
             var holderComponent = Comp<DisposalHolderComponent>(holder);
 
             foreach (var entity in from.Container.ContainedEntities.ToArray())
@@ -438,6 +437,40 @@ namespace Content.Server.Disposal.Tube
                 holderComponent.Tags.UnionWith(tags);
 
             return _disposableSystem.EnterTube(holder, uid, holderComponent);
+        }
+
+        public bool TryInsert(EntityUid uid, IReadOnlyCollection<EntityUid> entities, IEnumerable<string>? tags = default, DisposalEntryComponent? entry = null)
+        {
+            if (entities.Count == 0 || !Resolve(uid, ref entry))
+                return false;
+
+            var holder = SpawnHolder(uid, entry);
+            var holderComponent = Comp<DisposalHolderComponent>(holder);
+
+            foreach (var entity in entities)
+            {
+                if (TerminatingOrDeleted(entity) || EntityManager.IsQueuedForDeletion(entity))
+                    continue;
+
+                _containerSystem.Insert(entity, holderComponent.Container);
+            }
+
+            if (holderComponent.Container.ContainedEntities.Count == 0)
+            {
+                QueueDel(holder);
+                return false;
+            }
+
+            if (tags != null)
+                holderComponent.Tags.UnionWith(tags);
+
+            return _disposableSystem.EnterTube(holder, uid, holderComponent);
+        }
+
+        private EntityUid SpawnHolder(EntityUid uid, DisposalEntryComponent entry)
+        {
+            var xform = Transform(uid);
+            return Spawn(entry.HolderPrototypeId, _transform.GetMapCoordinates(uid, xform: xform));
         }
     }
 }

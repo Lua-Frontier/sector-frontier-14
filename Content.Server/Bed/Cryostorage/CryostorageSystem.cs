@@ -17,6 +17,7 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mind.Components;
+using Content.Shared._NF.Roles.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
@@ -175,9 +176,12 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         if (!TryComp<CryostorageComponent>(cryostorageEnt, out var cryostorageComponent))
             return;
 
+        comp.GracePeriodEndTime = null;
         // if we have a session, we use that to add back in all the job slots the player had.
         if (userId != null)
         {
+            var jobTrackingOwnsReopen = HasComp<JobTrackingComponent>(ent);
+
             foreach (var uniqueStation in _station.GetStationsSet())
             {
                 if (!TryComp<StationJobsComponent>(uniqueStation, out var stationJobs))
@@ -186,9 +190,12 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
                 if (!_stationJobs.TryGetPlayerJobs(uniqueStation, userId.Value, out var jobs, stationJobs))
                     continue;
 
-                foreach (var job in jobs)
+                if (!jobTrackingOwnsReopen)
                 {
-                    _stationJobs.TryAdjustJobSlot(uniqueStation, job, 1, clamp: true);
+                    foreach (var job in jobs)
+                    {
+                        _stationJobs.TryAdjustJobSlot(uniqueStation, job, 1, clamp: true);
+                    }
                 }
 
                 _stationJobs.TryRemovePlayerJobs(uniqueStation, userId.Value, stationJobs);
@@ -289,7 +296,11 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         var msg = Loc.GetString(locKey, ("time", comp.GracePeriod.TotalMinutes));
         if (TryComp<ActorComponent>(args.Entity, out var actor))
+        {
             _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg, uid, false, actor.PlayerSession.Channel);
+            var enteredEv = new CryostorageEnteredEvent(args.Entity, uid);
+            RaiseLocalEvent(ref enteredEv);
+        }
     }
 
     private List<CryostorageContainedPlayerData> GetAllContainedData(Entity<CryostorageComponent> ent)

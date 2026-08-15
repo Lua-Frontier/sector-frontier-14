@@ -1,0 +1,18 @@
+# source: Entities/Objects/Consumable/Smokeables/Cigars/cigar.yml
+- type: entity
+  id: USSPSFCigarGold
+  categories: [ USSP ]
+  suffix: USSP
+  parent: Cigar
+  name: premium Havanian cigar
+  description: A cigar fit for only the best of the best.
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Consumable/Smokeables/Cigars/cigar-gold.rsi
+    state: unlit-icon
+  - type: Clothing
+    sprite: _Souz/Objects/Consumable/Smokeables/Cigars/cigar-gold.rsi
+    slots: [ mask ]
+    equippedPrefix: unlit
+  - type: Item
+    size: Tiny

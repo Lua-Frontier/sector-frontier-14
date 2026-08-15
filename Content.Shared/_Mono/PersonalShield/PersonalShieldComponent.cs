@@ -32,6 +32,9 @@ public sealed partial class PersonalShieldComponent : Component
     [DataField, AutoNetworkedField]
     public bool Activated;
 
+    [DataField, AutoNetworkedField]
+    public EntityUid? VisualWearer;
+
     [DataField]
     public SoundSpecifier SoundActivate = new SoundPathSpecifier("/Audio/Weapons/ebladeon.ogg");
 

@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._Lua.Sprint;
+using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Timing;
@@ -24,6 +25,9 @@ public sealed class LuaSprintSystem : SharedLuaSprintSystem
         var query = EntityQueryEnumerator<LuaSprintComponent, InputMoverComponent>();
         while (query.MoveNext(out var uid, out var endurance, out var mover))
         {
+            if (HasComp<MechPilotComponent>(uid))
+                continue;
+
             var oldSprint = endurance.CurrentSprint;
             var hadDepleted = endurance.Depleted;
             var isFlying = HasComp<JetpackUserComponent>(uid);

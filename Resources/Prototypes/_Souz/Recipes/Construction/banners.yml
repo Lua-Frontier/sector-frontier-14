@@ -1,0 +1,47 @@
+- type: construction
+  id: USSPSFBannerNanotrasen
+  graph: USSPBannersGraph
+  startNode: start
+  targetNode: USSPSFBannerNanotrasenNode
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: USSPSFBannerSecurity
+  graph: USSPBannersGraph
+  startNode: start
+  targetNode: USSPSFBannerSecurityNode
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: USSPSFBannerFlagUSSP
+  graph: USSPBannersGraph
+  startNode: start
+  targetNode: USSPSFBannerFlagUSSPNode
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: USSPSFBannerUSSP
+  graph: USSPBannersGraph
+  startNode: start
+  targetNode: USSPSFBannerUSSPNode
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

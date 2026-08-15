@@ -11,3 +11,4 @@ lua-research-technology-faction-cybernetics-dermal-armor = Автохирург 
 lua-research-technology-faction-cybernetics-adv-heart = Автохирург протеза сердца
 lua-research-technology-faction-cybernetics-security = Кибернетика СРБС
 lua-research-technology-faction-cybernetics-syndicate = Кибернетика Синдиката
+lua-research-technology-ship-mining-drill = Корабельный шахтёрский бур

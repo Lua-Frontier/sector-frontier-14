@@ -1,0 +1,13 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Uniforms/jumpsuit/okgb.yml
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFClothingUniformJumpsuitTurtleOKGB
+  categories: [ USSP ]
+  suffix: USSP
+  name: водолазка оперативника КГБ
+  description: Тактическая водолазка, созданая для оперативников КГБ.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/okgb.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/okgb.rsi

@@ -150,7 +150,7 @@ namespace Content.Server.Hands.Systems
         }
 
         private void HandleBodyPartEnabled(Entity<HandsComponent> ent, ref BodyPartEnabledEvent args) =>
-            TryAddHand(ent, args.Part, args.Part.Comp.ParentSlot?.Id ?? string.Empty);
+            TryAddHand(ent, args.Part, SharedBodySystem.GetPartSlotContainerId(args.Part.Comp.ParentSlot?.Id ?? string.Empty));
 
         private void HandleBodyPartDisabled(Entity<HandsComponent> ent, ref BodyPartDisabledEvent args)
         {
@@ -158,8 +158,8 @@ namespace Content.Server.Hands.Systems
                 || args.Part.Comp.PartType != BodyPartType.Hand)
                 return;
 
-            // Must match BodyPartAdded/Removed slot ids (e.g. "right hand"), not container ids.
-            RemoveHand(ent.AsNullable(), args.Part.Comp.ParentSlot?.Id ?? string.Empty);
+            // Must match BodyPartAdded/Removed container ids (e.g. "body_part_slot_right hand").
+            RemoveHand(ent.AsNullable(), SharedBodySystem.GetPartSlotContainerId(args.Part.Comp.ParentSlot?.Id ?? string.Empty));
         }
 
         #region interactions

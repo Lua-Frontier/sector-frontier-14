@@ -1,0 +1,26 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Uniforms/jumpskirt/dress.yml
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformPolitRukDress
+  categories: [ USSP ]
+  suffix: USSP
+  name: платье политического отдела
+  description: Красивое бордовое платье.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/dress_politruk.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/dress_politruk.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFClothingUniformJumpskirtHoPTurtle
+  categories: [ USSP ]
+  suffix: USSP
+  name: юбка-комбинезон начальника отдела кадров
+  description: Вай какая она красивая.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hop_turtle.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hop_turtle.rsi

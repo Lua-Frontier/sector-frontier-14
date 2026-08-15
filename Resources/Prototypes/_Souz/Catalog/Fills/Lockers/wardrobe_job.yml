@@ -1,0 +1,12 @@
+# source: Catalog/Fills/Lockers/wardrobe_job.yml
+- type: entity
+  id: USSPSFWardrobeSecurityFilled
+  categories: [ USSP ]
+  suffix: USSP, Filled
+  parent: USSPSFWardrobeSecurity
+  description: "Cross the thin red line."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillWardrobeSecurity

@@ -78,7 +78,8 @@ Sector Frontier 14 — это форк [Frontier Station 14](https://github.com/
 | `_Nuclear14` | Nuclear 14 | https://github.com/Vault-Overseers/nuclear-14 | AGPL 3.0 |
 | `_RMC14` | RMC-14 | https://github.com/RMC-14/RMC-14 | MIT |
 | `_Backman` | Rxup | https://github.com/Rxup/space-station-14 | AGPL 3.0 |
-| `_DeadSpace` | Мёртвый Космос | https://github.com/dead-space-server/space-station-14-fobos | Custom |
+| `_DeadSpace` | Мёртвый Космос | https://github.com/dead-space-server/space-station-14-fobos | Proprietary |
+| `_Souz` | Мёртвый Космос / Союз (USSP) | https://github.com/dead-space-server/space-station-14-fobos | Proprietary |
 | `_Mono` | Monolith | https://github.com/Monolith-Station/Monolith | AGPL 3.0 |
 | `_Theta` | ThetaStation | https://github.com/ThetaStation/ThetaStation | AGPL 3.0 |
 | `Sirena` | Sirena | https://github.com/EvgenRP99/SS14-Sirena | MIT |

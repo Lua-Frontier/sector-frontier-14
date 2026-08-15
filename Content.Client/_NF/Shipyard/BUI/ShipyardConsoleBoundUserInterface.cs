@@ -1,4 +1,5 @@
 using Content.Client._NF.Shipyard.UI;
+using Content.Shared._Lua.Achievements;
 using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared._NF.Shipyard.BUI;
@@ -6,6 +7,7 @@ using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard.Prototypes; // Lua
 using Content.Shared.Containers.ItemSlots;
 using Robust.Client.UserInterface;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes; // Lua
 using static Robust.Client.UserInterface.Controls.BaseButton;
 
@@ -14,6 +16,7 @@ namespace Content.Client._NF.Shipyard.BUI;
 public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 {
     private ShipyardConsoleMenu? _menu;
+    [Dependency] private readonly INetManager _net = default!;
     // private ShipyardRulesPopup? _rulesWindow; // Frontier
     public int Balance { get; private set; }
 
@@ -35,6 +38,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             _menu.OnRenameShip += RenameShip;
             _menu.OnDockPortSelected += SelectDockPort; // Lua
             _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
+            _menu.SetRadarConsole(Owner);
 
             // Disable the NFSD popup for now.
             // var rules = new FormattedMessage();
@@ -47,6 +51,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             //     _rulesWindow.ShipRules.SetMessage(rules);
             //     _rulesWindow.OpenCentered();
             // }
+            _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerShipyard));
         }
     }
 
@@ -93,6 +98,7 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
 
         var vesselId = row.Vessel.ID;
         SendMessage(new ShipyardConsolePurchaseMessage(vesselId));
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.BuyShuttleFromComputerShipyard));
     }
 
     private void SellShip(ButtonEventArgs args)

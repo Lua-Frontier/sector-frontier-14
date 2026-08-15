@@ -98,6 +98,8 @@ public sealed class EmagSystem : EntitySystem
             Dirty(target, emaggedComp);
         }
 
+        if (emaggedEvent.Handled) RaiseLocalEvent(new EmagSuccessEvent(user, target, typeToUse));
+
         return emaggedEvent.Handled;
     }
 
@@ -203,6 +205,8 @@ public enum EmagType
 /// <remarks>Needs to be handled in shared/client, not just the server, to actually show the emagging popup</remarks>
 [ByRefEvent]
 public record struct GotEmaggedEvent(EntityUid UserUid, EmagType Type, bool Handled = false, bool Repeatable = false);
+
+public readonly record struct EmagSuccessEvent(EntityUid User, EntityUid Target, EmagType Type);
 
 // Frontier: demag
 [ByRefEvent]

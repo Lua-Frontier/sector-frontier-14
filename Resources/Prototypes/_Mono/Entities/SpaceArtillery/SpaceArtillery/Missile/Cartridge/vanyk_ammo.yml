@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: VanykMagazine
   name: "Vanyk 150mm HE missile autoloader"
   parent: [BaseItem, RecyclableItemSteelTiny]
@@ -32,6 +33,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: VanquisherMagazine
   name: "Vanquisher 150mm HE missile autoloader"
   parent: [BaseItem, RecyclableItemSteelTiny]
@@ -65,6 +67,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: VanquisherMagazineInfinite
   parent: VanquisherMagazine
   components:
@@ -78,6 +81,7 @@
       - VanykCartridgeUnguided
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: VanykCartridge
   name: 150mm HEAT missile
   description: An individual ASM-150 HEAT missile used in the Vanyk.
@@ -119,6 +123,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: VanykCartridgeUnguided
   name: 150mm HEAT unguided missile
   parent: VanykCartridge

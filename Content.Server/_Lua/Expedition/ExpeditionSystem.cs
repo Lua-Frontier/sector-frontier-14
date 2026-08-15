@@ -5,13 +5,15 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
+using Content.Server._Lua.Achievements;
+using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Stargate.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
+using Content.Shared._Lua.Achievements;
 using Content.Shared._Lua.Expedition;
 using Content.Shared.Lua.CLVar;
 using Content.Shared._NF.CCVar;
@@ -62,8 +64,10 @@ public sealed class ExpeditionSystem : EntitySystem
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly StargatePlanetGeneratorSystem _planetGen = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly ExpeditionRunnerSystem _runner = default!;
+    [Dependency] private readonly ISharedPlayerManager _players = default!;
+    [Dependency] private readonly AchievementSystem _achievements = default!;
     private readonly Queue<QueuedExpeditionRequest> _expeditionQueue = new();
     private readonly HashSet<EntityUid> _queuedStations = new();
     private PendingExpeditionRequest? _pendingExpedition;
@@ -190,7 +194,7 @@ public sealed class ExpeditionSystem : EntitySystem
             data.LandingCoordCode);
     }
 
-    public bool TryClaim(EntityUid console, EntityUid shuttleGrid, ClaimExpeditionMessage args)
+    public bool TryClaim(EntityUid console, EntityUid shuttleGrid, ClaimExpeditionMessage args, EntityUid actor)
     {
         if (!TryResolveExpeditionStation(console, shuttleGrid, out var station, out var data)) return false;
         if (data.Claimed) return false;
@@ -229,12 +233,12 @@ public sealed class ExpeditionSystem : EntitySystem
             TryStartPendingConfirm();
             return true;
         }
-        if (!TryStartExpedition(console, shuttleGrid, station, data, missionParams)) return false;
+        if (!TryStartExpedition(console, shuttleGrid, station, data, missionParams, actor)) return false;
         RefreshAllConsoles();
         return true;
     }
 
-    public bool TryConfirm(EntityUid console, EntityUid shuttleGrid)
+    public bool TryConfirm(EntityUid console, EntityUid shuttleGrid, EntityUid actor)
     {
         if (!TryResolveExpeditionStation(console, shuttleGrid, out var station, out var data) || _pendingExpedition == null || _pendingExpedition.Station != station)
         { return false; }
@@ -245,7 +249,7 @@ public sealed class ExpeditionSystem : EntitySystem
             RefreshAllConsoles();
             return false;
         }
-        if (!TryStartExpedition(console, shuttleGrid, station, data, _pendingExpedition.MissionParams)) return false;
+        if (!TryStartExpedition(console, shuttleGrid, station, data, _pendingExpedition.MissionParams, actor)) return false;
         _pendingExpedition = null;
         RefreshAllConsoles();
         TryStartPendingConfirm();
@@ -359,8 +363,11 @@ public sealed class ExpeditionSystem : EntitySystem
     {
         ClearExpeditionCrewMarkers(uid);
 
+        if (!_sectors.TryGetHubMapId(out var hubMap) || hubMap == MapId.Nullspace)
+            return;
+
         var ghosts = EntityQueryEnumerator<GhostComponent, TransformComponent>();
-        var newCoords = new MapCoordinates(Vector2.Zero, _gameTicker.DefaultMap);
+        var newCoords = new MapCoordinates(Vector2.Zero, hubMap);
         while (ghosts.MoveNext(out var ghostUid, out _, out var xform))
         {
             if (xform.MapUid == uid)
@@ -387,7 +394,8 @@ public sealed class ExpeditionSystem : EntitySystem
         if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null)
             return;
 
-        TryClaim(uid, xform.GridUid.Value, args);
+        TryUnlockExpeditionOpened(args.Actor);
+        TryClaim(uid, xform.GridUid.Value, args, args.Actor);
     }
 
     private void OnConfirmMessage(EntityUid uid, ShuttleConsoleComponent component, ConfirmExpeditionMessage args)
@@ -395,7 +403,8 @@ public sealed class ExpeditionSystem : EntitySystem
         if (!TryComp(uid, out TransformComponent? xform) || xform.GridUid == null)
             return;
 
-        TryConfirm(uid, xform.GridUid.Value);
+        TryUnlockExpeditionOpened(args.Actor);
+        TryConfirm(uid, xform.GridUid.Value, args.Actor);
     }
 
     private void OnCancelMessage(EntityUid uid, ShuttleConsoleComponent component, CancelExpeditionMessage args)
@@ -419,7 +428,8 @@ public sealed class ExpeditionSystem : EntitySystem
         EntityUid shuttleGrid,
         EntityUid station,
         ExpeditionDataComponent data,
-        ExpeditionMissionParams missionParams)
+        ExpeditionMissionParams missionParams,
+        EntityUid initiatingActor)
     {
         var enabled = _cfg.GetCVar(CLVars.SalvageExpeditionEnabled);
         var (_, massAllowed, _, _, blockReason) = EvaluateShuttleConstraints(shuttleGrid, enabled);
@@ -468,6 +478,7 @@ public sealed class ExpeditionSystem : EntitySystem
         data.LandingCoordsX = 0;
         data.LandingCoordsY = 0;
         data.LandingCoordCode = string.Empty;
+        data.InitiatingActor = initiatingActor;
         RefreshStationConsoles(station);
 
         _ = RunExpeditionAsync(console, shuttleGrid, station, data, missionParams);
@@ -491,6 +502,27 @@ public sealed class ExpeditionSystem : EntitySystem
         data.LandingCoordsX = 0;
         data.LandingCoordsY = 0;
         data.LandingCoordCode = string.Empty;
+        data.InitiatingActor = null;
+    }
+
+    private void TryUnlockExpeditionOpened(EntityUid actor)
+    {
+        if (!_players.TryGetSessionByEntity(actor, out var session))
+            return;
+
+        _ = _achievements.TryUnlockAsync(session, AchievementIds.ExpeditionOpened);
+    }
+
+    private async Task TryUnlockFirstExplorerAsync(EntityUid? actor)
+    {
+        if (actor is not { Valid: true } player)
+            return;
+
+        if (!_players.TryGetSessionByEntity(player, out var session))
+            return;
+
+        await _achievements.TryUnlockAsync(session, AchievementIds.ExpeditionOpened);
+        await _achievements.TryUnlockAsync(session, AchievementIds.FirstExplorer);
     }
 
     private async Task YieldGenerationTick()
@@ -574,6 +606,9 @@ public sealed class ExpeditionSystem : EntitySystem
             currentData.GenerationProgress = 1f;
             currentData.Generating = false;
             RefreshStationConsoles(station);
+
+            await TryUnlockFirstExplorerAsync(currentData.InitiatingActor);
+            currentData.InitiatingActor = null;
 
             await YieldGenerationTick();
 

@@ -1,0 +1,35 @@
+# source: _DeadSpace/Entities/Clothing/OuterClothing/pilots.yml
+- type: entity
+  parent: USSPSFClothingOuterHardsuitSecurity
+  id: USSPSFClothingOuterHardsuitPilot
+  categories: [ USSP ]
+  suffix: USSP
+  name: pilot hardsuit
+  description: The second skin of those who love speed and stars.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Hardsuits/pilotsuit.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Hardsuits/pilotsuit.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHelmetHardsuitPilot
+- type: entity
+  parent: USSPSFClothingOuterHardsuitSecurity
+  id: USSPSFClothingOuterHardsuitSecurityPilot
+  categories: [ USSP ]
+  suffix: USSP
+  name: security pilot hardsuit
+  description: For keepers of order among the stars.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Hardsuits/pilotsuitsec.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Hardsuits/pilotsuitsec.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHelmetHardsuitSecurityPilot

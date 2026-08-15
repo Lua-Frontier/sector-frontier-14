@@ -39,4 +39,5 @@ public enum SectorBankAccount : byte
     Typan,
     CentComm,
     Edison,
+    Ussp,
 }

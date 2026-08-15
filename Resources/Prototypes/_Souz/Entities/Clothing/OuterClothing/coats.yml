@@ -1,0 +1,137 @@
+# source: Entities/Clothing/OuterClothing/coats.yml
+- type: entity
+  parent: [USSPSFClothingOuterCoatHoSGreatcoat, BaseC2ContrabandUnredeemable] # DS14
+  id: USSPSFClothingOuterCoatHoSTrench
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's armored trenchcoat
+  description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+- type: entity
+  parent: ClothingOuterArmorBasic # DS14
+  id: USSPSFClothingOuterCoatAMG
+  categories: [ USSP ]
+  suffix: USSP
+  name: armored medical gown
+  description: The version of the medical gown, with elements of a bulletproof vest, looks strange, but your heart is protected.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Coats/brigmedic.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Coats/brigmedic.rsi
+
+# source: _Corvax/Entities/Clothing/OuterClothing/coats.yml
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPSFClothingOuterCoatHoSGreatcoat
+  categories: [ USSP ]
+  suffix: USSP
+  name: armored greatcoat
+  description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/OuterClothing/Coats/hos_greatcoat.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/OuterClothing/Coats/hos_greatcoat.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.4
+          Heat: 0.6
+          Caustic: 0.75
+    - type: StaminaResistance # DS14
+      damageCoefficient: 0.55
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 30
+          reagents:
+          - ReagentId: Fiber
+            Quantity: 30
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPSFClothingOuterCoatSecurityOvercoat
+  categories: [ USSP ]
+  suffix: USSP
+  name: security overcoat
+  description: Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of Nanotrasen Security.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/OuterClothing/Coats/sec_leather.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/OuterClothing/Coats/sec_leather.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.8
+          Slash: 0.8
+          Piercing: 0.6
+          Heat: 0.9
+    - type: StaminaResistance #DS14
+      damageCoefficient: 0.65
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: USSPSFClothingOuterCoatLabSecurityMedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: security medic labcoat
+  description: A suit that protects against minor chemical spills.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/OuterClothing/Coats/labcoat_security_medic.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/OuterClothing/Coats/labcoat_security_medic.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Caustic: 0.75
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, USSPSFClothingOuterCoatLabSecurityMedic]
+  id: USSPSFClothingOuterCoatLabSecurityMedicOpened
+  categories: [ USSP ]
+  suffix: USSP
+  name: security medic labcoat
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPSFClothingOuterCoatCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's jacket
+  description: Captain's formal jacket, inlaid with gold.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Coats/captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Coats/captain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+        Caustic: 0.9
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPSFClothingOuterCoatHOP
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's jacket
+  description: Business jacket of the HOP for a professional look.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Coats/hop.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Coats/hop.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8

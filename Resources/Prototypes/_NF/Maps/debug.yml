@@ -1,7 +1,23 @@
+# Integration tests set game.map=Empty (PoolManager.TestMap). DEBUG GameTicker loads this instead of starmap sectors.
+- type: gameMap
+  id: Empty
+  mapName: Empty
+  mapPath: /Maps/_Lua/Test/empty.yml
+  minPlayers: 0
+  stations:
+    Empty:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Empty"
+        - type: StationJobs
+          availableJobs:
+            Passenger: [ -1, -1 ]
+
 - type: gameMap
   id: NFDev
   mapName: NFDev
-  mapPath: /Maps/_NF/Test/dev_map.yml
+  mapPath: /Maps/_Lua/Test/dev_map.yml
   minPlayers: 0
   stations:
     NFDev:

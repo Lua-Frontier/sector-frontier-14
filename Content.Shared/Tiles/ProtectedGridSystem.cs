@@ -16,8 +16,7 @@ public sealed class ProtectedGridSystem : EntitySystem
         bool preventEmpEvents,
         bool preventExplosions,
         bool preventArtifactTriggers,
-        bool killHostileMobs,
-        bool preventClaiming)
+        bool killHostileMobs)
     {
         var comp = EnsureComp<ProtectedGridComponent>(uid);
         comp.PreventFloorRemoval = preventFloorRemoval;
@@ -27,7 +26,6 @@ public sealed class ProtectedGridSystem : EntitySystem
         comp.PreventExplosions = preventExplosions;
         comp.PreventArtifactTriggers = preventArtifactTriggers;
         comp.KillHostileMobs = killHostileMobs;
-        comp.PreventClaiming = preventClaiming;
         Dirty(uid, comp);
     }
 

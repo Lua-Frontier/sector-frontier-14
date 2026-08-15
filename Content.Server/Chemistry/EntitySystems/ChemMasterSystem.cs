@@ -3,6 +3,7 @@ using Content.Server.Popups;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Events;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -64,6 +65,12 @@ namespace Content.Server.Chemistry.EntitySystems
         private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev)
         {
             UpdateUiState(ent);
+
+            if (ev is BoundUIOpenedEvent opened)
+            {
+                var uiEv = new ChemistryMachineUiOpenedEvent(ent, opened.Actor);
+                RaiseLocalEvent(ref uiEv);
+            }
         }
 
         private void UpdateUiState(Entity<ChemMasterComponent> ent, bool updateLabel = false)

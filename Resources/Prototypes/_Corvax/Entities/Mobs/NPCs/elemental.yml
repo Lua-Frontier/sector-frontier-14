@@ -9,6 +9,7 @@
   - type: Clickable
   - type: Damageable
     damageContainer: Inorganic
+  - type: GravityAffected
   - type: InteractionOutline
   - type: Fixtures
     fixtures:
@@ -70,7 +71,6 @@
   - type: InputMover
   - type: MobMover
   - type: ZombieImmune
-  - type: MovementIgnoreGravity
 
 - type: entity
   abstract: true

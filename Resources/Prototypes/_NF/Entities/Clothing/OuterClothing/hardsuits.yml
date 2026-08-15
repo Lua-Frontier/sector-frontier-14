@@ -31,8 +31,14 @@
     walkModifier: 0.95 #Lua 0.9<0.95
     sprintModifier: 0.95 #Lua 0.8<0.95
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMercenary
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitMercenary
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 - type: entity
   parent: ClothingOuterHardsuitMercenary
@@ -62,8 +68,14 @@
   - type: ClothingSpeedModifier #Lua
     walkModifier: 0.8
     sprintModifier: 0.8
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPrivateSecurity
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitPrivateSecurity
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 # Pilot Hardsuit - Spationaut stats
 - type: entity
@@ -98,8 +110,14 @@
     walkModifier: 1 #Lua 0.9<1
     sprintModifier: 1 #Lua 0.8<1
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPilot
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitPilot
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #ERT Mail Carrier Hardsuit
 - type: entity
@@ -112,8 +130,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/ERTSuits/ertmailcarrier.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTMailCarrier
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTMailCarrier
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 # MAXIM Nerfed: used best stats from spationaut, mining and luxury hardsuits, additionally increased caustic resistance
@@ -142,8 +166,14 @@
     walkModifier: 0.8
     sprintModifier: 0.95 #Lua 0.9<0.95
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaximPrototype
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitMaximPrototype
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 # Syndicate NPC hard suit, unremoveable
 - type: entity
@@ -185,8 +215,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_bronze.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBronze
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdBronze
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -213,8 +249,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_silver.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdSilver
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdSilver
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 - type: entity
@@ -227,8 +269,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_gold.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdGold
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdGold
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 - type: entity
@@ -241,8 +289,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_sheriff.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdSheriff
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdSheriff
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 - type: entity
@@ -255,8 +309,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_brigmed.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdBrigmedic
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdBrigmedic
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 - type: entity
@@ -269,8 +329,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_experimental.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdExperimental
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdExperimental
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -303,8 +369,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_combat.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdCombat
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdCombat
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: Armor
@@ -332,8 +404,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/nfsd_command.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNfsdCommand
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdCommand
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: Armor
@@ -378,8 +456,14 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitScaf
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitScaf
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: PirateBountyItem
     id: ClothingOuterHardsuitScaf
 
@@ -415,8 +499,14 @@
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTacticalMaid
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTacticalMaid
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 - type: entity
   parent: [BaseC2PirateContraband, ClothingOuterHardsuitBaseNF, ContrabandClothing, HardsuitIdentify] # Lua-changes: added HardsuitIdentify, BaseC3PirateContraband > BaseC2PirateContraband
@@ -428,8 +518,14 @@
     sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Hardsuits/pirate_elite.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPirateElite
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitPirateElite
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: Armor
@@ -475,8 +571,14 @@
     walkModifier: 0.5
     sprintModifier: 0.5
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitWizardBrick
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitWizardBrick
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 #Hostile Environment Hardsuit

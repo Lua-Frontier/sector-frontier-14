@@ -171,6 +171,34 @@
       Steel: 5
 
 - type: entity
+  id: ThrusterLargeNfsdMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NFSD large thruster machine board
+  description: A circuitboard for an NFSD large thruster. Requires a 3x3 machine frame.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
+  - type: MachineBoard
+    prototype: ThrusterLargeNfsd
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+    stackRequirements:
+      Steel: 40
+      Plasteel: 10
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 6
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 6
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
   id: ThrusterUSSPMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: USSP thruster machine board
@@ -197,6 +225,126 @@
       Capacitor: 3
     stackRequirements:
       Steel: 5
+
+- type: entity
+  id: ThrusterPiratesMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: pirate thruster machine board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterPirates
+    requirements:
+      Capacitor: 3
+    stackRequirements:
+      Steel: 5
+
+- type: entity
+  id: ThrusterMediumPiratesMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: pirate medium thruster machine board
+  description: A circuitboard for a pirate medium thruster. Requires a 2x2 machine frame.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterMediumPirates
+    frameSize: 2x2
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Steel: 20
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 4
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
+  id: ThrusterLargePiratesMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: pirate large thruster machine board
+  description: A circuitboard for a pirate large thruster. Requires a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterLargePirates
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+    stackRequirements:
+      Steel: 40
+      Plasteel: 10
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 6
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 6
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
+  id: ThrusterMediumUSSPMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: USSP medium thruster machine board
+  description: A circuitboard for a USSP medium thruster. Requires a 2x2 machine frame.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ThrusterMediumUSSP
+    frameSize: 2x2
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Steel: 20
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 4
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
+  id: ThrusterLargeUSSPMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: USSP large thruster machine board
+  description: A circuitboard for a USSP large thruster. Requires a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ThrusterLargeUSSP
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+    stackRequirements:
+      Steel: 40
+      Plasteel: 10
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 6
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 6
+        defaultPrototype: ArmorPlateEconomy1
 
 - type: entity
   id: LargeThrusterMachineCircuitboard

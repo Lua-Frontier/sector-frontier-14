@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine57mmHE
   name: "57mm HE ammo loader"
   description: "An ammunition loader containing infinite 57mm high-explosive rounds. Usable by vessel-mounted artillery pieces."
@@ -28,6 +29,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 57mmCartridgeHE
   name: cartridge (57mm HE)
   parent: BaseCartridge
@@ -67,6 +69,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine57mmSmart
   name: "57mm HMNG ammo loader"
   description: "An ammunition loader containing 600 57mm homing rounds. Usable by vessel-mounted artillery pieces."
@@ -102,6 +105,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 57mmCartridgeSmart
   name: cartridge (57mm HMNG)
   parent: BaseCartridge
@@ -141,6 +145,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine57mmSmartInfinite
   name: "57mm HMNG ammo loader"
   suffix: INFINITE
@@ -161,6 +166,7 @@
       map: [ "enum.GunVisualLayers.Base" ]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine57mmSACLOS
   name: "57mm LG-SACLOS ammo loader"
   description: "An ammunition loader containing 600 57mm laser-guided semi-automatic-command-line-of-sight rounds. Thats a mouthful, but it just means it's guided by you directly mid-flight. Usable by vessel-mounted artillery pieces."
@@ -196,6 +202,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 57mmCartridgeSACLOS
   name: cartridge (57mm LG-SACLOS)
   parent: BaseCartridge
@@ -235,6 +242,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine57mmSACLOSInfinite
   name: "57mm LG-SACLOS ammo loader"
   suffix: INFINITE
@@ -256,7 +264,7 @@
 
 - type: entity
   id: MuzzleFlashEffectAk570
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TimedDespawn
     lifetime: 0.4

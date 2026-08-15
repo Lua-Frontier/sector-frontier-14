@@ -1,0 +1,41 @@
+# source: _DeadSpace/Entities/Objects/Devices/portable_camera_monitor.yml
+- type: entity
+  id: USSPSFPortableCameraMonitor
+  categories: [ USSP ]
+  suffix: USSP
+  parent: [BaseItem, BaseC2ContrabandUnredeemable]
+  name: портативный монитор камер
+  description: Монитор камер, позволяющий следить за вашими идиотами.
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Devices/portable_camera_monitor.rsi
+    state: icon
+  - type: Item
+  - type: ActivatableUI
+    requireActiveHand: false
+    inHandsOnly: true
+    key: enum.SurveillanceCameraMonitorUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCamera
+    transmitFrequencyId: SurveillanceCamera
+  - type: WiredNetworkConnection
+  - type: SurveillanceCameraMonitor
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: USSPSFPortableCameraMonitor
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/component_drop.ogg

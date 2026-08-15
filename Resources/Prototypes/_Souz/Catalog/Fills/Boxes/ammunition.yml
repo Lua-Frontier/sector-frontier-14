@@ -1,0 +1,14 @@
+# source: Catalog/Fills/Boxes/ammunition.yml
+- type: entity
+  name: box of .30 rifle magazines
+  parent: BoxMagazine
+  id: USSPSFBoxMagazineLightRifle
+  categories: [ USSP ]
+  suffix: USSP
+  description: A box full of .30 rifle magazines.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: USSPSFMagazineLightRifle
+        amount: 4

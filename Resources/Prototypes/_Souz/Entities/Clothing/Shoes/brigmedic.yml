@@ -1,0 +1,13 @@
+# source: _DeadSpace/Entities/Clothing/Shoes/brigmedic.yml
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: USSPSFClothingShoesBootsBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: кроссовки дежурного врача
+  description: Лёгкие кроссовки для спорта и марш бросков, до раннего бойца отдела.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Shoes/Boots/sneakersmedsec.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Shoes/Boots/sneakersmedsec.rsi

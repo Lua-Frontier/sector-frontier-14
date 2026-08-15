@@ -55,7 +55,7 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
   - type: StorageFill
     contents:
       - id: PaperLawsLua
@@ -140,7 +140,9 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: []
   - type: ItemSlots
     slots:
       cell_slot:

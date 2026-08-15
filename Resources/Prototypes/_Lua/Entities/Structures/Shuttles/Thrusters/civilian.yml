@@ -2,9 +2,12 @@
   id: Thruster
   parent: BaseThrusterNormal
   name: thruster
+  suffix: Civilian, 60
   components:
   - type: Machine
     board: ThrusterMachineCircuitboard
+  - type: Thruster
+    thrust: 120
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster32.rsi
     layers:
@@ -38,12 +41,13 @@
   id: SmallThruster
   parent: Thruster
   name: small thruster
+  suffix: Civilian, 52.6
   components:
   - type: Machine
     board: SmallThrusterMachineCircuitboard
   - type: Thruster
     baseThrust: 33
-    thrust: 23.1
+    thrust: 34.7
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: Sprite
@@ -80,6 +84,7 @@
   id: ThrusterMedium
   parent: BaseThrusterMedium
   name: medium thruster
+  suffix: Civilian, 82.6
   components:
   - type: Machine
     board: LargeThrusterMachineCircuitboard
@@ -105,6 +110,7 @@
   id: ThrusterLarge
   parent: BaseThrusterLarge
   name: large thruster
+  suffix: Civilian, 90
   components:
   - type: Machine
     board: ThrusterLargeMachineCircuitboard
@@ -112,7 +118,7 @@
     sprite: _Lua/Structures/Shuttles/thruster96.rsi
     offset: 1,-1
     layers:
-    - state: base_rogue_large
+    - state: base_civ_large
       map: ["enum.ThrusterVisualLayers.Base"]
     - state: thrust_large
       map: ["enum.ThrusterVisualLayers.ThrustOn"]

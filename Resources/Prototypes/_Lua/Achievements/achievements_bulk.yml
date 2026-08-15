@@ -1,0 +1,1564 @@
+- type: achievement
+  id: SpeciesHuman
+  name: achievement-species-human-name
+  description: achievement-species-human-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 14
+  unlockSpecies: Human
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: human
+- type: achievement
+  id: SpeciesDwarf
+  name: achievement-species-dwarf-name
+  description: achievement-species-dwarf-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 2, 14
+  unlockSpecies: Dwarf
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: dworf
+- type: achievement
+  id: SpeciesReptilian
+  name: achievement-species-reptilian-name
+  description: achievement-species-reptilian-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 3, 14
+  unlockSpecies: Reptilian
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: unati
+- type: achievement
+  id: SpeciesSlimePerson
+  name: achievement-species-slimeperson-name
+  description: achievement-species-slimeperson-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 4, 14
+  unlockSpecies: SlimePerson
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: slime
+- type: achievement
+  id: SpeciesMoth
+  name: achievement-species-moth-name
+  description: achievement-species-moth-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 5, 14
+  unlockSpecies: Moth
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: nian
+- type: achievement
+  id: SpeciesDiona
+  name: achievement-species-diona-name
+  description: achievement-species-diona-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 6, 14
+  unlockSpecies: Diona
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: diona
+- type: achievement
+  id: SpeciesArachnid
+  name: achievement-species-arachnid-name
+  description: achievement-species-arachnid-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 7, 14
+  unlockSpecies: Arachnid
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: arahnid
+- type: achievement
+  id: SpeciesVox
+  name: achievement-species-vox-name
+  description: achievement-species-vox-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 8, 14
+  unlockSpecies: Vox
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: vox
+- type: achievement
+  id: SpeciesFelinid
+  name: achievement-species-felinid-name
+  description: achievement-species-felinid-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 9, 14
+  unlockSpecies: Felinid
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: felinid
+- type: achievement
+  id: SpeciesOni
+  name: achievement-species-oni-name
+  description: achievement-species-oni-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 15
+  unlockSpecies: Oni
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: oni
+- type: achievement
+  id: SpeciesVulpkanin
+  name: achievement-species-vulpkanin-name
+  description: achievement-species-vulpkanin-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 2, 15
+  unlockSpecies: Vulpkanin
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: vulpkanin
+- type: achievement
+  id: SpeciesHarpy
+  name: achievement-species-harpy-name
+  description: achievement-species-harpy-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 3, 15
+  unlockSpecies: Harpy
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: harpy
+- type: achievement
+  id: SpeciesGoblin
+  name: achievement-species-goblin-name
+  description: achievement-species-goblin-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 4, 15
+  unlockSpecies: Goblin
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: goblin
+- type: achievement
+  id: SpeciesSheleg
+  name: achievement-species-sheleg-name
+  description: achievement-species-sheleg-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 5, 15
+  unlockSpecies: Sheleg
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: sheleg
+- type: achievement
+  id: SpeciesAvali
+  name: achievement-species-avali-name
+  description: achievement-species-avali-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 6, 15
+  unlockSpecies: Avali
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: avali
+- type: achievement
+  id: SpeciesShark
+  name: achievement-species-shark-name
+  description: achievement-species-shark-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 7, 15
+  unlockSpecies: Shark
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: plafeim
+- type: achievement
+  id: SpeciesAriral
+  name: achievement-species-ariral-name
+  description: achievement-species-ariral-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 8, 15
+  unlockSpecies: Ariral
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: ariral
+- type: achievement
+  id: SpeciesDemon
+  name: achievement-species-demon-name
+  description: achievement-species-demon-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 9, 15
+  unlockSpecies: Demon
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: arkana
+- type: achievement
+  id: CompanyNeutral
+  name: achievement-company-neutral-name
+  description: achievement-company-neutral-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 16
+  unlockCompany: Neutral
+  icon:
+    sprite: Structures/Wallmounts/flags.rsi
+    state: blank_flag
+- type: achievement
+  id: CompanyNanotrasen
+  name: achievement-company-nanotrasen-name
+  description: achievement-company-nanotrasen-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 2, 16
+  unlockCompany: Nanotrasen
+  icon:
+    sprite: Structures/Decoration/banner.rsi
+    state: banner
+- type: achievement
+  id: CompanyCentComm
+  name: achievement-company-centcomm-name
+  description: achievement-company-centcomm-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 7, 16
+  unlockCompany: CentComm
+  hidden: true
+  disabled: true
+  icon:
+    sprite: Structures/Decoration/banner.rsi
+    state: banner_centcom
+- type: achievement
+  id: CompanySecurity
+  name: achievement-company-security-name
+  description: achievement-company-security-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 3, 16
+  unlockCompany: Security
+  icon:
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-banner
+- type: achievement
+  id: CompanyStormCreed
+  name: achievement-company-stormcreed-name
+  description: achievement-company-stormcreed-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 4, 16
+  unlockCompany: StormCreed
+  icon:
+    sprite: Structures/Wallmounts/flags.rsi
+    state: Stormcreed_flag
+- type: achievement
+  id: CompanyPirates
+  name: achievement-company-pirates-name
+  description: achievement-company-pirates-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 5, 16
+  unlockCompany: Pirates
+  icon:
+    sprite: Structures/Wallmounts/flags.rsi
+    state: pirate_flag
+- type: achievement
+  id: CompanySyndicate
+  name: achievement-company-syndicate-name
+  description: achievement-company-syndicate-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 6, 16
+  unlockCompany: Syndicate
+  icon:
+    sprite: Structures/Wallmounts/flags.rsi
+    state: syndie_flag
+- type: achievement
+  id: CompanyLuaTech
+  name: achievement-company-luatech-name
+  description: achievement-company-luatech-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 8, 16
+  unlockCompany: LuaTech
+  hidden: true
+  disabled: true
+  icon:
+    sprite: Structures/Decoration/banner.rsi
+    state: banner
+- type: achievement
+  id: KillCarp
+  name: achievement-kill-carp-name
+  description: achievement-kill-carp-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 4, 10
+  unlockKillCount: 28
+  unlockKillPrefix: MobCarp
+  unlockKillPrefixes:
+  - NFMobCarp
+  icon:
+    sprite: Mobs/Aliens/Carps/space.rsi
+    state: alive
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillDragon
+  name: achievement-kill-dragon-name
+  description: achievement-kill-dragon-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 7, 10
+  unlockKillCount: 5
+  unlockKillPrefix: MobCarpDragon
+  unlockKillPrefixes:
+  - NFMobDragon
+  icon:
+    sprite: Mobs/Aliens/Carps/dragon.rsi
+    state: alive
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillShark
+  name: achievement-kill-shark-name
+  description: achievement-kill-shark-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 8, 11
+  unlockKillCount: 13
+  unlockKillPrefix: MobShark
+  unlockKillPrefixes:
+  - NFMobShark
+  icon:
+    sprite: Mobs/Aliens/Carps/sharkminnow.rsi
+    state: alive
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillGoliath
+  name: achievement-kill-goliath-name
+  description: achievement-kill-goliath-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 10, 10
+  unlockKillCount: 3
+  unlockKillPrefix: MobGoliath
+  icon:
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    state: goliath
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillBasilisk
+  name: achievement-kill-basilisk-name
+  description: achievement-kill-basilisk-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 2, 10
+  unlockKillCount: 3
+  unlockKillPrefix: MobBasilisk
+  icon:
+    sprite: Mobs/Aliens/Asteroid/basilisk.rsi
+    state: basilisk
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillXeno
+  name: achievement-kill-xeno-name
+  description: achievement-kill-xeno-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 8, 12
+  unlockKillCount: 9
+  unlockKillPrototypes:
+  - MobXeno
+  - MobXenoDrone
+  - MobXenoPraetorian
+  - MobXenoRavager
+  - MobXenoRunner
+  - MobXenoSpitter
+  - NFMobXeno
+  icon:
+    sprite: Mobs/Aliens/Xenos/burrower.rsi
+    state: running
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillXenoQueen
+  name: achievement-kill-xenoqueen-name
+  description: achievement-kill-xenoqueen-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 9, 12
+  unlockKillCount: 4
+  unlockKillPrototypes:
+  - MobXenoQueen
+  - NFMobXenoQueen
+  icon:
+    sprite: Mobs/Aliens/Xenos/queen.rsi
+    state: running
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillSlime
+  name: achievement-kill-slime-name
+  description: achievement-kill-slime-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 9, 11
+  unlockKillCount: 17
+  unlockKillPrefix: MobAdultSlimes
+  icon:
+    sprite: Mobs/Aliens/slimes.rsi
+    state: blue_adult_slime
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillZombie
+  name: achievement-kill-zombie-name
+  description: achievement-kill-zombie-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 10, 12
+  unlockKillCount: 14
+  unlockKillPrefix: NFMobZombie
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: zombie
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillSpider
+  name: achievement-kill-spider-name
+  description: achievement-kill-spider-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 2, 12
+  unlockKillCount: 12
+  unlockKillPrefix: MobGiantSpider
+  unlockKillPrefixes:
+  - NFMobSpiderSpace
+  icon:
+    sprite: Mobs/Animals/spacespider.rsi
+    state: spacespider
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillHivebot
+  name: achievement-kill-hivebot-name
+  description: achievement-kill-hivebot-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 1, 11
+  unlockKillCount: 14
+  unlockKillPrefix: MobHivebot
+  icon:
+    sprite: Mobs/Aliens/hivebot.rsi
+    state: basic
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillArgocyte
+  name: achievement-kill-argocyte-name
+  description: achievement-kill-argocyte-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 1, 10
+  unlockKillCount: 14
+  unlockKillPrefix: MobArgocyte
+  icon:
+    sprite: Mobs/Aliens/Argocyte/argocyte_common.rsi
+    state: crawler
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillDinosaur
+  name: achievement-kill-dinosaur-name
+  description: achievement-kill-dinosaur-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 6, 10
+  unlockKillCount: 13
+  unlockKillPrefix: MobDinosaur
+  icon:
+    sprite: _NF/Mobs/Dinosaurs/compy.rsi
+    state: compy
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillMercenary
+  name: achievement-kill-mercenary-name
+  description: achievement-kill-mercenary-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 4, 11
+  unlockKillCount: 7
+  unlockKillPrefix: MobMercenary
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: mercenary
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillBloodCult
+  name: achievement-kill-bloodcult-name
+  description: achievement-kill-bloodcult-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 3, 10
+  unlockKillCount: 12
+  unlockKillPrefix: MobBloodCult
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: cult
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillRogueSilicon
+  name: achievement-kill-roguesilicon-name
+  description: achievement-kill-roguesilicon-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 7, 11
+  unlockKillCount: 6
+  unlockKillPrefix: MobRogueSilicon
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: robot
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillWizFed
+  name: achievement-kill-wizfed-name
+  description: achievement-kill-wizfed-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 6, 12
+  unlockKillCount: 5
+  unlockKillPrefix: MobWizFed
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: wizard
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillSpaceBear
+  name: achievement-kill-spacebear-name
+  description: achievement-kill-spacebear-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 1, 12
+  unlockKillCount: 8
+  unlockKillPrefix: NFMobBearSpace
+  icon:
+    sprite: Mobs/Animals/bear.rsi
+    state: bear
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillHorror
+  name: achievement-kill-horror-name
+  description: achievement-kill-horror-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 2, 11
+  unlockKillCount: 2
+  unlockKillPrefix: MobHorrorExpeditions
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: anomalyhorror
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillPunk
+  name: achievement-kill-punk-name
+  description: achievement-kill-punk-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 6, 11
+  unlockKillCount: 14
+  unlockKillPrefix: MobPunk
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: punk
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillExplorer
+  name: achievement-kill-explorer-name
+  description: achievement-kill-explorer-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 8, 10
+  unlockKillCount: 5
+  unlockKillPrefix: MobExplorer
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: explorer
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillSyndicateNaval
+  name: achievement-kill-syndicatenaval-name
+  description: achievement-kill-syndicatenaval-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 3, 12
+  unlockKillCount: 4
+  unlockKillPrefix: MobSyndicateNaval
+  icon:
+    sprite: _Lua/Interface/Achieve/anyachieve.rsi
+    state: syndie
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillWyvern
+  name: achievement-kill-wyvern-name
+  description: achievement-kill-wyvern-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 7, 12
+  unlockKillCount: 5
+  unlockKillPrefix: NFMobRainbowWyvern
+  icon:
+    sprite: _NF/Mobs/Aliens/Carps/wyvern.rsi
+    state: alive
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillSnake
+  name: achievement-kill-snake-name
+  description: achievement-kill-snake-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 10, 11
+  unlockKillCount: 14
+  unlockKillPrefix: MobPurpleSnake
+  unlockKillPrefixes:
+  - NFMobPurpleSnake
+  - NFMobSmallRainbowSnake
+  icon:
+    sprite: Mobs/Aliens/Xenos/purple_snake.rsi
+    state: icon
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillTomato
+  name: achievement-kill-tomato-name
+  description: achievement-kill-tomato-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 5, 12
+  unlockKillCount: 23
+  unlockKillPrefix: MobTomatoKiller
+  icon:
+    sprite: Mobs/Demons/tomatokiller.rsi
+    state: alive
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillKangaroo
+  name: achievement-kill-kangaroo-name
+  description: achievement-kill-kangaroo-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 3, 11
+  unlockKillCount: 11
+  unlockKillPrefix: NFMobKangarooSpace
+  icon:
+    sprite: Mobs/Animals/kangaroo.rsi
+    state: kangaroo-space
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillCobra
+  name: achievement-kill-cobra-name
+  description: achievement-kill-cobra-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 5, 10
+  unlockKillCount: 11
+  unlockKillPrefix: NFMobCobraSpace
+  icon:
+    sprite: Mobs/Aliens/Xenos/purple_snake.rsi
+    state: icon
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillOreCrab
+  name: achievement-kill-orecrab-name
+  description: achievement-kill-orecrab-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 5, 11
+  unlockKillCount: 29
+  unlockKillPrefix: MobOreCrab
+  unlockKillPrefixes:
+  - NFMobOreCrab
+  - MobQuartzCrab
+  - MobIronCrab
+  - MobCoalCrab
+  - MobUraniumCrab
+  - MobBananiumCrab
+  - MobSilverCrab
+  - MobGoldCrab
+  - NFMobBananiumCrab
+  - NFMobGoldCrab
+  - NFMobPlasmaCrab
+  - NFMobSaltCrab
+  - NFMobQuartzCrab
+  - NFMobIronCrab
+  - NFMobUraniumCrab
+  - NFMobSilverCrab
+  - NFMobCoalCrab
+  icon:
+    sprite: Mobs/Elemental/orecrab.rsi
+    state: iron_crab
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillTick
+  name: achievement-kill-tick-name
+  description: achievement-kill-tick-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 4, 12
+  unlockKillCount: 18
+  unlockKillPrefix: NFMobTick
+  icon:
+    sprite: _NF/Mobs/Aliens/spacetick.rsi
+    state: alive
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: KillFleshGolem
+  name: achievement-kill-fleshgolem-name
+  description: achievement-kill-fleshgolem-desc
+  category: achievement-category-general
+  prerequisites:
+  - LeaveMeAlone
+  position: 9, 10
+  unlockKillCount: 15
+  unlockKillPrefix: MobFleshGolem
+  icon:
+    sprite: Mobs/Aliens/flesh.rsi
+    state: golem
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: ImprovedMedicatedSuture1
+    count: 1
+  - id: OintmentAdvanced1
+    count: 1
+- type: achievement
+  id: TutorialGuidebook
+  name: achievement-tutorial-guidebook-name
+  description: achievement-tutorial-guidebook-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialAchievementsWindow
+  position: 2, 1
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: book_icon
+- type: achievement
+  id: TutorialAchievementsWindow
+  name: achievement-tutorial-achievementswindow-name
+  description: achievement-tutorial-achievementswindow-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 1
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: book_icon
+- type: achievement
+  id: TutorialStarmapLore
+  name: achievement-tutorial-starmaplore-name
+  description: achievement-tutorial-starmaplore-desc
+  category: achievement-category-general
+  prerequisites:
+  - ViewInPda
+  position: 4, 1
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: book_icon
+- type: achievement
+  id: TutorialVending
+  name: achievement-tutorial-vending-name
+  description: achievement-tutorial-vending-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialStarmapLore
+  position: 5, 1
+  icon:
+    sprite: Structures/Machines/VendingMachines/snack.rsi
+    state: off
+- type: achievement
+  id: TutorialResearch
+  name: achievement-tutorial-research-name
+  description: achievement-tutorial-research-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialVending
+  position: 6, 1
+  iconLayers:
+  - sprite: Structures/Machines/computers.rsi
+    state: computer
+  - sprite: Structures/Machines/computers.rsi
+    state: rdcomp
+- type: achievement
+  id: TutorialLathe
+  name: achievement-tutorial-lathe-name
+  description: achievement-tutorial-lathe-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialResearch
+  position: 7, 1
+  icon:
+    sprite: Structures/Machines/autolathe.rsi
+    state: icon
+- type: achievement
+  id: TutorialHealthAnalyzer
+  name: achievement-tutorial-healthanalyzer-name
+  description: achievement-tutorial-healthanalyzer-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialLathe
+  position: 8, 1
+  iconLayers:
+  - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    state: icon
+  - sprite: Objects/Specific/Medical/healthanalyzer.rsi
+    state: analyzer
+- type: achievement
+  id: TutorialDefib
+  name: achievement-tutorial-defib-name
+  description: achievement-tutorial-defib-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialHealthAnalyzer
+  position: 9, 1
+  icon:
+    sprite: Objects/Specific/Medical/defib.rsi
+    state: icon
+  rewards:
+  - id: PresentRandomCash
+    count: 1
+  - id: VipBundleDonkpocket
+    count: 1
+- type: achievement
+  id: TutorialBuckle
+  name: achievement-tutorial-buckle-name
+  description: achievement-tutorial-buckle-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 18
+  icon:
+    sprite: Structures/Furniture/chairs.rsi
+    state: chair
+- type: achievement
+  id: TutorialInternals
+  name: achievement-tutorial-internals-name
+  description: achievement-tutorial-internals-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialBuckle
+  position: 2, 18
+  icon:
+    sprite: Objects/Tanks/emergency.rsi
+    state: icon
+- type: achievement
+  id: TutorialMining
+  name: achievement-tutorial-mining-name
+  description: achievement-tutorial-mining-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialInternals
+  position: 3, 18
+  icon:
+    sprite: Objects/Materials/ore.rsi
+    state: iron
+- type: achievement
+  id: TutorialCook
+  name: achievement-tutorial-cook-name
+  description: achievement-tutorial-cook-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialMining
+  position: 4, 18
+  icon:
+    sprite: Structures/Machines/microwave.rsi
+    state: mw
+- type: achievement
+  id: TutorialPlant
+  name: achievement-tutorial-plant-name
+  description: achievement-tutorial-plant-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialCook
+  position: 5, 18
+  icon:
+    sprite: Objects/Specific/Hydroponics/seeds.rsi
+    state: seed
+- type: achievement
+  id: TutorialChemistry
+  name: achievement-tutorial-chemistry-name
+  description: achievement-tutorial-chemistry-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialPlant
+  position: 6, 18
+  icon:
+    sprite: Structures/Machines/mixer.rsi
+    state: mixer_base
+- type: achievement
+  id: TutorialRCD
+  name: achievement-tutorial-rcd-name
+  description: achievement-tutorial-rcd-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialChemistry
+  position: 7, 18
+  icon:
+    sprite: _NF/Objects/Tools/rcd.rsi
+    state: icon
+- type: achievement
+  id: TutorialHandcuffs
+  name: achievement-tutorial-handcuffs-name
+  description: achievement-tutorial-handcuffs-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialRCD
+  position: 8, 18
+  icon:
+    sprite: Objects/Misc/handcuffs.rsi
+    state: handcuff
+- type: achievement
+  id: TutorialCryo
+  name: achievement-tutorial-cryo-name
+  description: achievement-tutorial-cryo-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialHandcuffs
+  position: 9, 18
+  icon:
+    sprite: _Lua/Structures/cryostorage.rsi
+    state: sleeper_0
+- type: achievement
+  id: TutorialGhost
+  name: achievement-tutorial-ghost-name
+  description: achievement-tutorial-ghost-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialCryo
+  position: 10, 18
+  icon:
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    state: animated
+- type: achievement
+  id: TutorialFireExtinguisher
+  name: achievement-tutorial-fireextinguisher-name
+  description: achievement-tutorial-fireextinguisher-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialGhost
+  position: 11, 18
+  icon:
+    sprite: _NF/Objects/Misc/fire_extinguisher.rsi
+    state: fire_extinguisher_closed
+- type: achievement
+  id: TutorialWelder
+  name: achievement-tutorial-welder-name
+  description: achievement-tutorial-welder-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialFireExtinguisher
+  position: 12, 18
+  icon:
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+- type: achievement
+  id: TutorialCrowbar
+  name: achievement-tutorial-crowbar-name
+  description: achievement-tutorial-crowbar-desc
+  category: achievement-category-general
+  prerequisites:
+  - TutorialWelder
+  position: 13, 18
+  icon:
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+- type: achievement
+  id: MiscRecoverCritical
+  name: achievement-misc-recovercritical-name
+  description: achievement-misc-recovercritical-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 19
+  icon:
+    sprite: Objects/Specific/Medical/defib.rsi
+    state: icon
+- type: achievement
+  id: MiscEmag
+  name: achievement-misc-emag-name
+  description: achievement-misc-emag-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 2, 19
+  icon:
+    sprite: Objects/Tools/emag.rsi
+    state: icon
+- type: achievement
+  id: MiscCloned
+  name: achievement-misc-cloned-name
+  description: achievement-misc-cloned-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 3, 19
+  icon:
+    sprite: Structures/Machines/cloning.rsi
+    state: pod_0
+- type: achievement
+  id: MiscDrunk
+  name: achievement-misc-drunk-name
+  description: achievement-misc-drunk-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 4, 19
+  icon:
+    sprite: Objects/Consumable/Drinks/beer.rsi
+    state: icon
+- type: achievement
+  id: MiscPaper
+  name: achievement-misc-paper-name
+  description: achievement-misc-paper-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 5, 19
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper
+- type: achievement
+  id: MiscFax
+  name: achievement-misc-fax-name
+  description: achievement-misc-fax-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 6, 19
+  icon:
+    sprite: Structures/Machines/fax_machine.rsi
+    state: icon
+- type: achievement
+  id: MiscJetpack
+  name: achievement-misc-jetpack-name
+  description: achievement-misc-jetpack-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 7, 19
+  icon:
+    sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi
+    state: icon
+- type: achievement
+  id: MiscMagboots
+  name: achievement-misc-magboots-name
+  description: achievement-misc-magboots-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 8, 19
+  icon:
+    sprite: Clothing/Shoes/Boots/magboots.rsi
+    state: icon
+- type: achievement
+  id: MiscInstrument
+  name: achievement-misc-instrument-name
+  description: achievement-misc-instrument-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 9, 19
+  icon:
+    sprite: Objects/Fun/Instruments/guitar.rsi
+    state: icon
+- type: achievement
+  id: MiscForensic
+  name: achievement-misc-forensic-name
+  description: achievement-misc-forensic-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 10, 19
+  icon:
+    sprite: Objects/Devices/forensic_scanner.rsi
+    state: icon
+- type: achievement
+  id: MiscPull
+  name: achievement-misc-pull-name
+  description: achievement-misc-pull-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 11, 19
+  icon:
+    sprite: Clothing/Hands/Gloves/Color/black.rsi
+    state: icon
+- type: achievement
+  id: MiscCarry
+  name: achievement-misc-carry-name
+  description: achievement-misc-carry-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 20
+  icon:
+    sprite: Clothing/Hands/Gloves/Color/black.rsi
+    state: icon
+- type: achievement
+  id: MiscFtl
+  name: achievement-misc-ftl-name
+  description: achievement-misc-ftl-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 2, 20
+  icon:
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    state: base
+- type: achievement
+  id: MiscHonk
+  name: achievement-misc-honk-name
+  description: achievement-misc-honk-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 3, 20
+  icon:
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+- type: achievement
+  id: MiscBible
+  name: achievement-misc-bible-name
+  description: achievement-misc-bible-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 4, 20
+  icon:
+    sprite: Objects/Specific/Chapel/bible.rsi
+    state: icon
+- type: achievement
+  id: MiscMask
+  name: achievement-misc-mask-name
+  description: achievement-misc-mask-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 5, 20
+  icon:
+    sprite: Clothing/Mask/gas.rsi
+    state: icon
+- type: achievement
+  id: MiscHeadset
+  name: achievement-misc-headset-name
+  description: achievement-misc-headset-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 6, 20
+  icon:
+    sprite: Clothing/Ears/Headsets/base.rsi
+    state: icon
+- type: achievement
+  id: MiscToolbelt
+  name: achievement-misc-toolbelt-name
+  description: achievement-misc-toolbelt-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 7, 20
+  icon:
+    sprite: Clothing/Belt/utility.rsi
+    state: icon
+- type: achievement
+  id: MiscAntag
+  name: achievement-misc-antag-name
+  description: achievement-misc-antag-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 8, 20
+  icon:
+    sprite: Structures/Wallmounts/flags.rsi
+    state: syndie_flag
+- type: achievement
+  id: SoftEmbrace
+  name: achievement-soft-embrace-name
+  description: achievement-soft-embrace-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 11, 20
+  icon:
+    sprite: Structures/Power/Generation/Tesla/energy_ball.rsi
+    state: energy_ball
+  rewards:
+  - id: TeslaToy
+    count: 1
+- type: achievement
+  id: MiscSingularity
+  name: achievement-misc-singularity-name
+  description: achievement-misc-singularity-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 10, 20
+  icon:
+    sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+    state: singularity_1
+  rewards:
+  - id: SingularityToy
+    count: 1
+- type: achievement
+  id: MiscSupermatter
+  name: achievement-misc-supermatter-name
+  description: achievement-misc-supermatter-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 9, 20
+  icon:
+    sprite: Objects/Consumable/Food/Baked/cake.rsi
+    state: suppermatter
+- type: achievement
+  id: MiscAnomaly
+  name: achievement-misc-anomaly-name
+  description: achievement-misc-anomaly-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 1, 21
+  icon:
+    sprite: Structures/Specific/Anomalies/pyro_anom.rsi
+    state: anom
+  rewards:
+  - id: AnomalyScanner
+    count: 1
+- type: achievement
+  id: MiscBomb
+  name: achievement-misc-bomb-name
+  description: achievement-misc-bomb-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 2, 21
+  icon:
+    sprite: Objects/Weapons/Grenades/syndgrenade.rsi
+    state: icon
+  rewards:
+  - id: WeaponLauncherRocketToy
+    count: 1
+- type: achievement
+  id: MiscReviveOther
+  name: achievement-misc-reviveother-name
+  description: achievement-misc-reviveother-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 3, 21
+  icon:
+    sprite: Objects/Specific/Medical/defib.rsi
+    state: icon
+- type: achievement
+  id: MiscSpaceWalk
+  name: achievement-misc-spacewalk-name
+  description: achievement-misc-spacewalk-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 4, 21
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/engineering.rsi
+    state: icon
+- type: achievement
+  id: MiscSpaceWhale
+  name: achievement-misc-spacewhale-name
+  description: achievement-misc-spacewhale-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 12, 20
+  unlockKillCount: 1
+  unlockKillPrototypes:
+  - MobSpaceWhale
+  icon:
+    sprite: _Goobstation/Mobs/SpaceWhale/leviathan.rsi
+    state: head
+  rewards:
+  - id: SpaceWhaleLootBox
+    count: 1
+  - id: SpaceCash
+    count: 100000
+- type: achievement
+  id: MiscCaptain
+  name: achievement-misc-captain-name
+  description: achievement-misc-captain-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 5, 21
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: Captain
+  rewards:
+  - id: CrateFunScurret
+    count: 1
+- type: achievement
+  id: MiscMedical
+  name: achievement-misc-medical-name
+  description: achievement-misc-medical-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 6, 21
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: MedicalDoctor
+  rewards:
+  - id: AdvancedJetInjector
+    count: 1
+- type: achievement
+  id: MiscEngineer
+  name: achievement-misc-engineer-name
+  description: achievement-misc-engineer-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 7, 21
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: StationEngineer
+  rewards:
+  - id: RCDRecharging
+    count: 1
+- type: achievement
+  id: MiscSecurityJob
+  name: achievement-misc-securityjob-name
+  description: achievement-misc-securityjob-desc
+  category: achievement-category-general
+  prerequisites:
+  - JoinGame
+  position: 8, 21
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: SecurityOfficer

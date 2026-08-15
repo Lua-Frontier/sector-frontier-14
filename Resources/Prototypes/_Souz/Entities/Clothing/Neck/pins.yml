@@ -1,0 +1,15 @@
+# source: _Corvax/Entities/Clothing/Neck/pins.yml
+- type: entity
+  parent: ClothingNeckPinBase
+  id: USSPSFClothingNeckUSSPPin
+  categories: [ USSP ]
+  suffix: USSP
+  name: USSP pin
+  description: The pin of United Soviet Socialist Planet.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/Misc/pins.rsi
+    state: comm
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/Misc/pins.rsi
+    equippedPrefix: comm

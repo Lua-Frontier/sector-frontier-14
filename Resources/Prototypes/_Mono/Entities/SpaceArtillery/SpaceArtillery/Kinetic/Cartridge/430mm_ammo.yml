@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: R300ShellHE
   name: 430mm HE shell
   description: Giant sluggish HE shell. Exclusive to the R300.
@@ -43,7 +44,7 @@
   id: R300BulletHE
   name: 430mm HE projectile
   parent: ShipMissileBase # For shootdown
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -90,7 +91,7 @@
 
 - type: entity
   id: MuzzleFlashEffectR300
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TimedDespawn
     lifetime: 0.8

@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server._DV.CustomObjectiveSummary; // Frontier
+using Content.Server._Lua.Sectors;
 using Content.Server._NF.RoundNotifications.Events; // Frontier
 using Content.Server.Announcements;
 using Content.Server.Discord;
@@ -93,25 +94,44 @@ namespace Content.Server.GameTicking
         /// </remarks>
         private void LoadMaps()
         {
-            if (_map.MapExists(DefaultMap))
+            var sectors = EntityManager.System<SectorSystem>();
+            if (sectors.TryGetHubMapId(out var existingHub) && _map.MapExists(existingHub))
                 return;
 
             AddGamePresetRules();
 
-            var maps = new List<GameMapPrototype>();
+            if (ShouldLoadDevMapOnly())
+            {
+                _sawmill.Info("LoadMaps: DEBUG build — loading configured game.map only (no starmap sectors)");
+                LoadConfiguredGameMap();
+                return;
+            }
 
-            // the map might have been force-set by something
-            // (i.e. votemap or forcemap)
+            _sawmill.Info($"LoadMaps: starting starmap autoStart sectors (preset={CurrentPreset?.ID ?? "<null>"})");
+            sectors.StartAllAutoStartSectors();
+            if (!sectors.TryGetHubMapId(out var hub) || !_map.MapExists(hub))
+                throw new SectorBootstrapException("starmap hub sector failed to start; ensure exactly one star has isHub: true with station + autoStart");
+        }
+
+        private static bool ShouldLoadDevMapOnly()
+        {
+#if DEBUG
+            return true;
+#else
+            return false;
+#endif
+        }
+
+        private void LoadConfiguredGameMap()
+        {
+            var maps = new List<GameMapPrototype>();
             var mainStationMap = _gameMapManager.GetSelectedMap();
             if (mainStationMap == null)
             {
-                // otherwise set the map using the config rules
                 _gameMapManager.SelectMapByConfigRules();
                 mainStationMap = _gameMapManager.GetSelectedMap();
             }
 
-            // Small chance the above could return no map.
-            // ideally SelectMapByConfigRules will always find a valid map
             if (mainStationMap != null)
             {
                 maps.Add(mainStationMap);
@@ -132,13 +152,14 @@ namespace Content.Server.GameTicking
                 SendServerMessage(msg);
             }
 
-            // Let game rules dictate what maps we should load.
             RaiseLocalEvent(new LoadingMapsEvent(maps));
+
+            _pendingMapInit.Clear();
 
             if (maps.Count == 0)
             {
                 _map.CreateMap(out var mapId, runMapInit: false);
-                DefaultMap = mapId;
+                _pendingMapInit.Add(mapId);
                 return;
             }
 
@@ -146,9 +167,7 @@ namespace Content.Server.GameTicking
             {
                 LoadGameMap(maps[i], out var mapId);
                 DebugTools.Assert(!_map.IsInitialized(mapId));
-
-                if (i == 0)
-                    DefaultMap = mapId;
+                _pendingMapInit.Add(mapId);
             }
         }
 
@@ -357,25 +376,25 @@ namespace Content.Server.GameTicking
             try
             {
 #endif
-            // If this game ticker is a dummy or the round is already being started, do nothing!
-            if (DummyTicker || _startingRound)
-                return;
+                // If this game ticker is a dummy or the round is already being started, do nothing!
+                if (DummyTicker || _startingRound)
+                    return;
 
-            _startingRound = true;
+                _startingRound = true;
 
-            if (RoundId == 0)
-                IncrementRoundNumber();
+                if (RoundId == 0)
+                    IncrementRoundNumber();
 
-            ReplayStartRound();
+                ReplayStartRound();
 
-            DebugTools.Assert(RunLevel == GameRunLevel.PreRoundLobby);
-            _sawmill.Info("Starting round!");
+                DebugTools.Assert(RunLevel == GameRunLevel.PreRoundLobby);
+                _sawmill.Info("Starting round!");
 
-            SendServerMessage(Loc.GetString("game-ticker-start-round"));
+                SendServerMessage(Loc.GetString("game-ticker-start-round"));
 
-            var readyPlayers = new List<ICommonSession>();
-            var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
-            var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
+                var readyPlayers = new List<ICommonSession>();
+                var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
+                var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
                 foreach (var (userId, status) in _playerGameStatuses)
                 {
                     if (LobbyEnabled && status != PlayerGameStatus.ReadyToPlay) continue;
@@ -389,60 +408,77 @@ namespace Content.Server.GameTicking
                 DebugTools.Assert(_userDb.IsLoadComplete(session), $"Player was readied up but didn't have user DB data loaded yet??");
 #endif
 
-                readyPlayers.Add(session);
-                HumanoidCharacterProfile profile;
-                if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
-                {
-                    profile = (HumanoidCharacterProfile)preferences.SelectedCharacter;
+                    readyPlayers.Add(session);
+                    HumanoidCharacterProfile profile;
+                    if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
+                    {
+                        profile = (HumanoidCharacterProfile)preferences.SelectedCharacter;
+                    }
+                    else
+                    {
+                        profile = HumanoidCharacterProfile.Random();
+                    }
+                    readyPlayerProfiles.Add(userId, profile);
                 }
-                else
-                {
-                    profile = HumanoidCharacterProfile.Random();
-                }
-                readyPlayerProfiles.Add(userId, profile);
-            }
 
                 DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
-            // Just in case it hasn't been loaded previously we'll try loading it.
-            LoadMaps();
+                // Just in case it hasn't been loaded previously we'll try loading it.
+                try
+                {
+                    LoadMaps();
+                }
+                catch (SectorBootstrapException e)
+                {
+                    AbortRoundStartDueToSectorBootstrap(e);
+                    return;
+                }
 
-            // map has been selected so update the lobby info text
-            // applies to players who didn't ready up
-            UpdateInfoText();
+                // map has been selected so update the lobby info text
+                // applies to players who didn't ready up
+                UpdateInfoText();
 
-            StartGamePresetRules();
+                StartGamePresetRules();
 
-            RoundLengthMetric.Set(0);
+                RoundLengthMetric.Set(0);
 
-            var startingEvent = new RoundStartingEvent(RoundId);
-            RaiseLocalEvent(startingEvent);
+                var startingEvent = new RoundStartingEvent(RoundId);
+                RaiseLocalEvent(startingEvent);
 
-            var origReadyPlayers = readyPlayers.ToArray();
+                var origReadyPlayers = readyPlayers.ToArray();
 
-            if (!StartPreset(origReadyPlayers, force))
-            {
-                _startingRound = false;
-                return;
-            }
+                if (!StartPreset(origReadyPlayers, force))
+                {
+                    _startingRound = false;
+                    return;
+                }
 
-            // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
-            _map.InitializeMap(DefaultMap);
+                // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
+                foreach (var pendingMap in _pendingMapInit)
+                {
+                    if (_map.MapExists(pendingMap) && !_map.IsInitialized(pendingMap))
+                        _map.InitializeMap(pendingMap);
+                }
+                _pendingMapInit.Clear();
 
-            SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
+                var sectors = EntityManager.System<SectorSystem>();
+                if (sectors.TryGetHubMapId(out var hubMap) && _map.MapExists(hubMap) && !_map.IsInitialized(hubMap))
+                    _map.InitializeMap(hubMap);
 
-            _roundStartDateTime = DateTime.UtcNow;
-            RunLevel = GameRunLevel.InRound;
+                SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
 
-            RoundStartTimeSpan = _gameTiming.CurTime;
-            SendStatusToAll();
-            ReqWindowAttentionAll();
-            UpdateLateJoinStatus();
-            AnnounceRound();
-            UpdateInfoText();
-            NFRoundStarted(); // Frontier
-            RaiseLocalEvent(new RoundStartedEvent(RoundId)); // Frontier
-            SendRoundStartedDiscordMessage();
+                _roundStartDateTime = DateTime.UtcNow;
+                RunLevel = GameRunLevel.InRound;
+
+                RoundStartTimeSpan = _gameTiming.CurTime;
+                SendStatusToAll();
+                ReqWindowAttentionAll();
+                UpdateLateJoinStatus();
+                AnnounceRound();
+                UpdateInfoText();
+                NFRoundStarted(); // Frontier
+                RaiseLocalEvent(new RoundStartedEvent(RoundId)); // Frontier
+                SendRoundStartedDiscordMessage();
 
 #if EXCEPTION_TOLERANCE
             }
@@ -771,6 +807,19 @@ namespace Content.Server.GameTicking
             return true;
         }
 
+        private void AbortRoundStartDueToSectorBootstrap(SectorBootstrapException e)
+        {
+            _sawmill.Error($"Sector bootstrap failed, aborting round start: {e.Message}");
+            _startingRound = false;
+            ClearGameRules();
+            if (RunLevel != GameRunLevel.PreRoundLobby) return;
+            var delay = TimeSpan.FromMinutes(3);
+            _roundStartTime = _gameTiming.CurTime + delay;
+            RaiseNetworkEvent(new TickerLobbyCountdownEvent(_roundStartTime, Paused));
+            SendStatusToAll();
+            _chatManager.DispatchServerAnnouncement(Loc.GetString("sector-startup-retry", ("minutes", 3)));
+        }
+
         private void UpdateRoundFlow(float frameTime)
         {
             if (RunLevel == GameRunLevel.InRound)
@@ -791,10 +840,16 @@ namespace Content.Server.GameTicking
             {
                 StartRound();
             }
-            // Preload maps so we can start faster
             else if (_roundStartTime - RoundPreloadTime < _gameTiming.CurTime)
             {
-                LoadMaps();
+                try
+                {
+                    LoadMaps();
+                }
+                catch (SectorBootstrapException e)
+                {
+                    AbortRoundStartDueToSectorBootstrap(e);
+                }
             }
         }
 

@@ -21,3 +21,4 @@ loadout-group-contractor-bureaucracy = бюрократия
 loadout-group-contractor-cartridge = картриджи для КПК
 loadout-group-contractor-ears = гарнитуры
 loadout-group-contractor-wallet = кошельки
+loadout-group-contractor-balaclava = балаклава

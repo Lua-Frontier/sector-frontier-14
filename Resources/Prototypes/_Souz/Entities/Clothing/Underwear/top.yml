@@ -1,0 +1,73 @@
+# source: _DeadSpace/Entities/Clothing/Underwear/top.yml
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraHeadofPersonnel
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра начальника отдела кадров
+  description: Cтандартное нижнее бельё начальника отдела кадров.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Civilian/head_of_personnel/women/bra.rsi
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра капитана
+  description: Cтандартное нижнее бельё капитана.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/captain/women/bra.rsi
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraBlueShieldOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра оперативника КГБ
+  description: Cтандартное нижнее бельё оперативника КГБ.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/blueshield/women/bra.rsi
+
+# Engineering
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра дежурного врача
+  description: Cтандартное нижнее бельё дежурного врача.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/brigmedic/women/bra.rsi
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraCadet
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра младшего милиционера
+  description: Cтандартное нижнее бельё младшего милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/cadet/women/bra.rsi
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraHeadofSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра начальника милции
+  description: Cтандартное нижнее бельё начальника милции.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/head_of_security/women/bra.rsi
+- type: entity
+  parent: ClothingUnderwearTopBase
+  id: USSPSFClothingUnderwearTopBraSecurityOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: бра милиционера
+  description: Cтандартное нижнее бельё милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/security_officer/women/bra.rsi

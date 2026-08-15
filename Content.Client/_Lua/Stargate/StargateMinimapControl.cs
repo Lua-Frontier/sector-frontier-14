@@ -52,8 +52,9 @@ public sealed class StargateMinimapControl : Control
         base.Draw(handle);
         handle.DrawRect(new UIBox2(Vector2.Zero, PixelSize), Color.FromHex("#080808"));
         if (!_isStargateWorld) { DrawCentered(handle, Loc.GetString("stargate-minimap-not-planet")); return; }
-        if (!_hasDisk || _chunks.Count == 0) { DrawCentered(handle, Loc.GetString("stargate-minimap-insert-disk")); return; }
-        if (_playerPosition == null) return;
+        if (!_hasDisk) { DrawCentered(handle, Loc.GetString("stargate-minimap-insert-disk")); return; }
+        if (_playerPosition == null) { DrawCentered(handle, Loc.GetString("stargate-minimap-no-position")); return; }
+        if (_chunks.Count == 0) { DrawCentered(handle, Loc.GetString("stargate-minimap-scanning")); return; }
         var center = PixelSize / 2f;
         var minDim = MathF.Min(PixelSize.X, PixelSize.Y);
         if (minDim < 1f) return;

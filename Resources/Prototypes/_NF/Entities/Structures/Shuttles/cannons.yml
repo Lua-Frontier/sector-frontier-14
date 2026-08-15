@@ -2,7 +2,7 @@
 - type: entity
   id: ShuttleGunFriendshipNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunFriendship]
-  categories: [HideSpawnMenu]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   suffix: NFSD
   components:
   - type: Machine
@@ -11,7 +11,7 @@
 - type: entity
   id: ShuttleGunDusterNfsd
   parent: [BaseStructureDisableToolUse, ShuttleGunDuster]
-  categories: [HideSpawnMenu]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   suffix: NFSD
   components:
   - type: Machine
@@ -19,6 +19,7 @@
 
 # Mail
 - type: entity
+  categories: [ ShuttleGun ]
   id: ShuttleGunMailLauncher
   parent: [ ShuttleGunFriendship ]
   name: FWD-6500m "Priority"

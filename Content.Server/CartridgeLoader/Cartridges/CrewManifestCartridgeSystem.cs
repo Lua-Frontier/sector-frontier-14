@@ -57,12 +57,10 @@ public sealed class CrewManifestCartridgeSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var owningStation = _stationSystem.GetOwningStation(uid);
+        var owningStation = _stationSystem.GetOwningStation(uid) ?? uid;
 
-        if (owningStation is null)
-            return;
-
-        var (stationName, entries) = _crewManifest.GetCrewManifest(owningStation.Value);
+        var viewer = _crewManifest.TryGetLoaderHolder(loaderUid) ?? loaderUid;
+        var (stationName, entries) = _crewManifest.GetCrewManifestForViewer(owningStation, viewer);
 
         var state = new CrewManifestUiState(stationName, entries);
         _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);

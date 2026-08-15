@@ -40,7 +40,8 @@
     slot: outerClothing
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
+      cell_slot: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
 
@@ -99,7 +100,13 @@
   - type: Clothing
     sprite: _Lua/Sponsor/Reimon/hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitReimon
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitReimon
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
@@ -119,7 +126,9 @@
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: []
 
 # Helmet
 - type: entity

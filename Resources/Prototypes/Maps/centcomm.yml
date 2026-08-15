@@ -5,9 +5,11 @@
   mapPath: /Maps/_Lua/Maps/port_centcom_grid.yml
   minPlayers: 10
   stations:
-    centcomm:
+    CentComm:
       stationProto: NanotrasenCentralCommand
       components:
+        - type: BecomesStation
+          id: CentComm
         - type: StationNameSetup
           mapNameTemplate: '{0} Центком'
           nameGenerator:

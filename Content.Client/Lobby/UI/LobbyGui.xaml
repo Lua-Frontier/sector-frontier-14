@@ -39,33 +39,45 @@
             <controls:StripeBack>
                 <PanelContainer
                     Name="TopPanel"
-                    MinWidth="722"
                     StyleClasses="LobbyBackground"
                     HorizontalExpand="True">
-                    <BoxContainer
-                        Orientation="Vertical"
-                        HorizontalExpand="True"
-                        Margin="8 8 8 8">
-                        <BoxContainer
-                            Orientation="Horizontal"
-                            MinSize="0 40"
-                            HorizontalAlignment="Center">
-                            <Button Name="Rules" Text="{Loc 'server-info-rules-button'}" MinSize="125 10"/>
-                            <Button Name="Guidebook" Text="{Loc 'server-info-guidebook-button'}" MinSize="125 10"/>
-                            <changelog:ChangelogButton Name="Changelog" MinSize="125 10"/>
-                            <Button Name="Wiki" Text="{Loc 'server-info-wiki-button'}" MinSize="125 10"/>
-                            <vote:VoteCallMenuButton Name="CallVoteButton" MinSize="125 10"/>
-                            <controls:VSpacer Spacing="25"/>
-                            <TextureRect
-                                TextureScale="1 1"
-                                Stretch="KeepCentered"
-                                TexturePath="/Textures/_Lua/Logo/icon/icon-48x48.png"/>
-                            <controls:VSpacer Spacing="25"/>
-                            <Button Name="Boosty" Text="Boosty" MinSize="125 10"/>
-                            <Button Name="Discord" Text="Discord" MinSize="125 10"/>
-                            <Button Name="Telegram" Text="Telegram" MinSize="125 10"/>
-                            <Button Name="Site" Text="Сайт" MinSize="125 10"/>
-                            <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}" MinSize="125 10"/>
+                    <BoxContainer Orientation="Horizontal"
+                                  HorizontalExpand="True"
+                                  MinHeight="56"
+                                  Margin="8 4 8 4"
+                                  SeparationOverride="12">
+                        <BoxContainer Orientation="Horizontal"
+                                      HorizontalExpand="True"
+                                      VerticalAlignment="Stretch"
+                                      SeparationOverride="5"
+                                      RectClipContent="True">
+                            <Button Name="Rules" Text="{Loc 'server-info-rules-button'}" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="Guidebook" Text="{Loc 'server-info-guidebook-button'}" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <changelog:ChangelogButton Name="Changelog" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="Wiki" Text="{Loc 'server-info-wiki-button'}" MinHeight="40" MinWidth="70" VerticalAlignment="Stretch"/>
+                            <vote:VoteCallMenuButton Name="CallVoteButton" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                        </BoxContainer>
+
+                        <TextureRect TextureScale="1 1"
+                                     Stretch="KeepCentered"
+                                     TexturePath="/Textures/_Lua/Logo/icon/icon-48x48.png"
+                                     MinSize="48 48"
+                                     MaxSize="48 48"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+
+                        <BoxContainer Orientation="Horizontal"
+                                      HorizontalExpand="True"
+                                      VerticalAlignment="Stretch"
+                                      SeparationOverride="5"
+                                      RectClipContent="True">
+                            <Control HorizontalExpand="True"/>
+                            <Button Name="RoadmapButton" Text="{Loc 'ui-lobby-roadmap-button'}" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="Boosty" Text="Boosty" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="Discord" Text="Discord" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="Telegram" Text="Telegram" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="Site" Text="{Loc 'server-info-website-button'}" MinHeight="40" MinWidth="90" VerticalAlignment="Stretch"/>
+                            <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}" MinHeight="40" MinWidth="80" VerticalAlignment="Stretch"/>
                         </BoxContainer>
                     </BoxContainer>
                 </PanelContainer>

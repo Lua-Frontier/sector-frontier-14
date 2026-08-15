@@ -21,6 +21,7 @@
   - type: StationEvent
     startAudio:
       path: /Audio/_NF/Announcements/PocketSizedAndy/andy2_breaker_flip.ogg
+    announcementScope: Station
     weight: 7
     earliestStart: 15 # Frontier
     duration: 1
@@ -35,6 +36,7 @@
     earliestStart: 15 # Frontier
     startAnnouncement: station-event-power-grid-check-nf-start-announcement # Frontier: add nf-
     endAnnouncement: station-event-power-grid-check-nf-end-announcement # Frontier: add nf-
+    announcementScope: Station
     startAudio:
       params:
         volume: -0
@@ -60,6 +62,7 @@
     reoccurrenceDelay: 45
     startAnnouncement: station-event-solar-flare-nf-start-announcement
     endAnnouncement: station-event-solar-flare-nf-end-announcement
+    announcementScope: Map
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -73,6 +76,7 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-nf-start-announcement # Frontier: add nf-
+    announcementScope: Station
     startAudio:
       path: /Audio/_Lua/Announcements/attention.ogg # Lua
     earliestStart: 15
@@ -87,6 +91,8 @@
   components:
   - type: StationEvent
     earliestStart: 15 # Frontier
+    startAnnouncement: station-event-ion-storm-nf-start-announcement
+    announcementScope: Map
     weight: 8
     reoccurrenceDelay: 120 # Frontier: 20<120
     duration: 1

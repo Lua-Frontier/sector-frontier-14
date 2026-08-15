@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: 255mmCartridgeAPHE
   name: 255mm APHE shell
   description: A chemically-propelled armor-piercing high-explosive shell for 255mm cannons.
@@ -39,6 +40,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 255mmCartridgeEMP
   name: 255mm EMP shell
   description: A chemically-propelled electromagnetic pulse shell for 255mm cannons.
@@ -79,6 +81,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 255mmCartridgeMinelayer
   name: 255mm minelayer shell
   description: A chemically-propelled shell for 255mm cannons with a timed fuse. When the fuse expires after 1 seconds, it ejects a payload of 4 large anti-ship mines that persist for 1 hour.
@@ -123,6 +126,7 @@
 # Boxes because I hate manually loading 8 shells
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Box255mmAPHE
   name: "255mm APHE ammo box"
   description: "A big box containing 16 255mm APHE rounds. Usable by vessel-mounted artillery pieces."
@@ -155,6 +159,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Box255mmEMP
   name: "255mm EMP ammo box"
   description: "A big box containing 16 255mm EMP rounds. Usable by vessel-mounted artillery pieces."
@@ -187,6 +192,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Box255mmMine
   name: "255mm minelayer ammo box"
   description: "A big box containing 16 255mm minelayer rounds. Usable by vessel-mounted artillery pieces."

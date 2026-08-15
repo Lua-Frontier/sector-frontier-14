@@ -8,10 +8,12 @@ using Robust.Shared.CPUJob.JobQueues.Queues;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Systems;
 using Content.Shared.Administration;
+using Content.Shared.CCVar;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
 using Robust.Server.Player;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -29,8 +31,9 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    private readonly JobQueue _planQueue = new(0.004);
+    private readonly AdjustableJobQueue _planQueue = new(0.008);
 
     private readonly HashSet<ICommonSession> _subscribers = new();
 
@@ -46,6 +49,7 @@ public sealed class HTNSystem : EntitySystem
         SubscribeNetworkEvent<RequestHTNMessage>(OnHTNMessage);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeLoad);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+        Subs.CVar(_cfg, CCVars.NPCPlanQueueBudget, value => _planQueue.BudgetSeconds = value, true);
         OnLoad();
     }
 
@@ -587,6 +591,18 @@ public sealed class HTNSystem : EntitySystem
             }
         }
     }
+}
+
+internal sealed class AdjustableJobQueue : JobQueue
+{
+    public double BudgetSeconds { get; set; }
+
+    public AdjustableJobQueue(double budgetSeconds) : base(budgetSeconds)
+    {
+        BudgetSeconds = budgetSeconds;
+    }
+
+    public override double MaxTime => BudgetSeconds;
 }
 
 /// <summary>

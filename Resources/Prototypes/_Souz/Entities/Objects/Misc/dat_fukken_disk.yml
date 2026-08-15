@@ -1,0 +1,11 @@
+# source: Entities/Objects/Misc/dat_fukken_disk.yml
+- type: entity
+  parent: NukeDisk
+  id: USSPSFNukeDisk
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: SpecialRespawn
+    prototype: USSPSFNukeDisk
+  - type: StealTarget
+    stealGroup: USSPSFNukeDisk

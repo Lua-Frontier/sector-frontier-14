@@ -1,0 +1,14 @@
+# source: Entities/Objects/Fun/sound_maker.yml
+- type: entity
+  parent: BaseWhistle
+  id: USSPSFSecurityWhistle
+  categories: [ USSP ]
+  suffix: USSP
+  description: The sound of it brings fear.
+  components:
+  - type: Sprite
+    state: sec
+  - type: Clothing
+    equippedPrefix: sec
+  - type: Whistle
+    distance: 5

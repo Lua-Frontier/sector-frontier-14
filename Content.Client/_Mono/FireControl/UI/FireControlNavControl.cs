@@ -1,3 +1,4 @@
+using Content.Client._Lua.Styles;
 using Content.Client._Mono.Radar;
 using Content.Client.Shuttles.UI;
 using Content.Shared._Mono.FireControl;
@@ -89,7 +90,7 @@ public sealed class FireControlNavControl : ShuttleNavControl
                 var centerInView = Vector2.Transform(mapCoords.Position, worldToShuttle * shuttleToView);
                 var radiusPixels = excl.Range * MinimapScale;
                 var color = Color.Lime.WithAlpha(0.35f);
-                handle.DrawCircle(centerInView, radiusPixels, color, false);
+                LunaDraw.Circle(handle, centerInView, radiusPixels, color, false);
             }
         }
         // Lua end
@@ -119,7 +120,7 @@ public sealed class FireControlNavControl : ShuttleNavControl
                     var results = _physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates?.EntityId);
 
                     if (!results.Any() && colors.TryGetValue(controllable.NetEntity, out var color))
-                        handle.DrawLine(Vector2.Transform(worldPos, worldToView), cursorViewPos, color.WithAlpha(0.3f));
+                        LunaDraw.Line(handle, Vector2.Transform(worldPos, worldToView), cursorViewPos, color.WithAlpha(0.3f));
                 }
             }
         }

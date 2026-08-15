@@ -1,0 +1,25 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Eyes/lenses.yml
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, BaseCommandContraband]
+  id: USSPSFClothingEyesLensesAdvancedOKGB
+  categories: [ USSP ]
+  suffix: USSP
+  name: продвинутые линзы КГБ
+  description: Пара продвинутых линз для глаз, показывающие состояние здоровье и защищающие от вспышек.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Eyes/Hud/Lenses/advanced.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Eyes/Hud/Lenses/advanced.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Inorganic
+    - Silicon
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 6
+  - type: ThermalVision
+  - type: Battery
+    maxCharge: 800
+    startingCharge: 800

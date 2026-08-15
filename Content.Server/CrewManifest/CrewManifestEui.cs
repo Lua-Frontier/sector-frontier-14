@@ -29,7 +29,7 @@ public sealed class CrewManifestEui : BaseEui
 
     public override CrewManifestEuiState GetNewState()
     {
-        var (name, entries) = _crewManifest.GetCrewManifest(_station);
+        var (name, entries) = _crewManifest.GetCrewManifestForViewer(_station, Player);
         return new(name, entries);
     }
 

@@ -58,6 +58,9 @@ public sealed partial class ExpeditionDataComponent : Component
 
     [ViewVariables]
     public string LandingCoordCode = string.Empty;
+
+    [ViewVariables]
+    public EntityUid? InitiatingActor;
 }
 
 [RegisterComponent]

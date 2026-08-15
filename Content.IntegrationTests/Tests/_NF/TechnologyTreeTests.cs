@@ -20,32 +20,49 @@ public sealed class TechnologyTreeTests
         var server = pair.Server;
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
-
-        Dictionary<Vector2, string> techNamesByPosition = new();
+        var entMan = server.ResolveDependency<IEntityManager>();
 
         await server.WaitPost(() =>
         {
+            var research = entMan.System<ResearchSystem>();
+            var factions = protoManager.EnumeratePrototypes<RndFactionPrototype>()
+                .Select(faction => (ProtoId<RndFactionPrototype>) faction.ID)
+                .ToList();
+            var technologies = protoManager.EnumeratePrototypes<TechnologyPrototype>().ToList();
+
             Assert.Multiple(() =>
             {
-                foreach (var tech in protoManager.EnumeratePrototypes<TechnologyPrototype>())
+                foreach (var tech in technologies)
                 {
-                    var positions = GetDefinedPositions(tech).ToList();
-                    Assert.That(positions.Count, Is.GreaterThan(0), $"Tech {tech.ID} does not define a base position or any faction override positions.");
-
-                    foreach (var position in positions)
-                    {
-                        Assert.That(techNamesByPosition.TryGetValue(position, out var techName), Is.False, $"Tech {tech.ID} has a duplicate position {position} with {techName}.");
-                        techNamesByPosition[position] = tech.ID;
-                    }
+                    Assert.That(GetDefinedPositions(tech).Any(), Is.True,
+                        $"Tech {tech.ID} does not define a base position or any faction override positions.");
 
                     foreach (var recipe in tech.RecipeUnlocks)
                     {
-                        Assert.That(protoManager.TryIndex(recipe, out var proto), Is.True, $"Technology {tech.ID} unlocks recipe {recipe} which does not exist.");
+                        Assert.That(protoManager.TryIndex(recipe, out _), Is.True,
+                            $"Technology {tech.ID} unlocks recipe {recipe} which does not exist.");
                     }
 
                     foreach (var prereq in tech.TechnologyPrerequisites)
                     {
-                        Assert.That(protoManager.TryIndex(prereq, out var proto), Is.True, $"Technology {tech.ID} has {prereq} as a pre-requisite, but {prereq} is not a valid technology.");
+                        Assert.That(protoManager.TryIndex(prereq, out _), Is.True,
+                            $"Technology {tech.ID} has {prereq} as a pre-requisite, but {prereq} is not a valid technology.");
+                    }
+                }
+
+                foreach (var faction in factions)
+                {
+                    Dictionary<Vector2, string> techNamesByPosition = new();
+
+                    foreach (var tech in technologies)
+                    {
+                        if (!research.IsTechnologyFactionAllowed(faction, tech))
+                            continue;
+
+                        var position = research.GetTechnologyPosition(faction, tech);
+                        Assert.That(techNamesByPosition.TryGetValue(position, out var techName), Is.False,
+                            $"Tech {tech.ID} has a duplicate position {position} with {techName} for faction {faction}.");
+                        techNamesByPosition[position] = tech.ID;
                     }
                 }
             });
@@ -84,10 +101,14 @@ public sealed class TechnologyTreeTests
 
     private static IEnumerable<Vector2> GetDefinedPositions(TechnologyPrototype tech)
     {
-        if (tech.Position is { } position) yield return position;
+        if (tech.Position is { } position)
+            yield return position;
+
         foreach (var overridePosition in tech.FactionOverrides.Values.Select(overrideData => overrideData.Position).OfType<Vector2>())
         {
-            if (tech.Position == overridePosition) continue;
+            if (tech.Position == overridePosition)
+                continue;
+
             yield return overridePosition;
         }
     }

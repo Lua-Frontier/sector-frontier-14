@@ -145,7 +145,7 @@ public sealed class CompanySystem : EntitySystem
         Dirty(uid, companyComp);
         SyncNpcFactions(uid, oldCompanyId, companyId);
 
-        RaiseLocalEvent(uid, new CompanySetEvent(oldCompanyId, companyId, changed));
+        RaiseLocalEvent(uid, new CompanySetEvent(uid, oldCompanyId, companyId, changed), true);
     }
 
     public void UpdateStoredCompanyPreference(EntityUid uid, string companyId)

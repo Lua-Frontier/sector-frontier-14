@@ -84,7 +84,7 @@ public sealed partial class CCVars
         CVarDef.Create("entgc.maximum_time_ms", 10, CVar.SERVERONLY); // Frontier: 5<10
 
     public static readonly CVarDef<bool> GatewayGeneratorEnabled =
-        CVarDef.Create("gateway.generator_enabled", true); // Lua: true
+        CVarDef.Create("gateway.generator_enabled", false); // Lua: bye
 
     public static readonly CVarDef<string> TippyEntity =
         CVarDef.Create("tippy.entity", "NFTippy", CVar.SERVER | CVar.REPLICATED); // Frontier: Tippy<NFTippy

@@ -24,9 +24,10 @@ public sealed class AutoUnstuckSystem : EntitySystem
         new(0f, -2f),
     };
 
-    private const float ScanIntervalSeconds = 1f;
+    private const float ScanIntervalSeconds = 3f;
 
     private const float StuckSeconds = 15f;
+    private const float MaxCandidateSpeedSquared = 0.01f;
 
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
@@ -84,20 +85,16 @@ public sealed class AutoUnstuckSystem : EntitySystem
             if (body.BodyType == BodyType.Static || !body.CanCollide) continue;
             if (HasComp<MapGridComponent>(uid) || HasComp<MapComponent>(uid) || HasComp<ShuttleComponent>(uid)) continue;
             if (IsPaused(uid)) continue;
+            if (!_stuckTime.ContainsKey(uid) && body.LinearVelocity.LengthSquared() > MaxCandidateSpeedSquared) continue;
             var hasStaticHardContact = false;
-            var dirSum = Vector2.Zero;
             var contacts = _physics.GetContacts(uid);
             while (contacts.MoveNext(out var contact))
             {
                 if (!contact.IsTouching || !contact.Hard) continue;
-                var other = contact.OtherEnt(uid);
                 var otherBody = contact.OtherBody(uid);
                 if (otherBody.BodyType != BodyType.Static) continue;
-                var selfTx = _physics.GetPhysicsTransform(uid);
-                var otherTx = _physics.GetPhysicsTransform(other);
-                var dir = selfTx.Position - otherTx.Position;
-                if (dir != Vector2.Zero) dirSum += Vector2.Normalize(dir);
                 hasStaticHardContact = true;
+                break;
             }
             if (!hasStaticHardContact)
             {

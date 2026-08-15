@@ -3,6 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponTurretType54
   id: ImpulseLaserBase
   name: Импульсный Лазер
@@ -34,6 +35,7 @@
       proto: BulletMachineGunImpulseTurret
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: [BaseStructureDisableToolUse, ImpulseLaserBase]
   id: ImpulseLaserUnanchor
   suffix: Неоткрепляемый, ShuttleGun
@@ -41,6 +43,7 @@
     mode: SnapgridCenter
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: BaseNFFlatpack
   id: ImpulseLaserBaseFlatpack
   name: упакованный импульсный лазер

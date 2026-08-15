@@ -1,0 +1,54 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc luna-plan-window-title}"
+                   MinSize="1570 880"
+                   SetSize="1570 880">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical"
+                  SeparationOverride="8"
+                  Margin="10 8 10 10"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+
+      <Label Name="Caption" Text="{Loc luna-plan-window-caption}" HorizontalAlignment="Center" />
+
+      <BoxContainer Orientation="Horizontal"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    SeparationOverride="8">
+
+        <PanelContainer Name="DoneColumn" HorizontalExpand="True" VerticalExpand="True">
+          <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="6" VerticalExpand="True">
+            <Label Name="DoneTitle" Text="{Loc luna-plan-column-done}" />
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+              <BoxContainer Name="DoneList" Orientation="Vertical" VerticalExpand="True" />
+            </ScrollContainer>
+          </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer Name="ActiveColumn" HorizontalExpand="True" VerticalExpand="True">
+          <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="6" VerticalExpand="True">
+            <Label Name="ActiveTitle" Text="{Loc luna-plan-column-active}" />
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+              <BoxContainer Name="ActiveList" Orientation="Vertical" VerticalExpand="True" />
+            </ScrollContainer>
+          </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer Name="QueuedColumn" HorizontalExpand="True" VerticalExpand="True">
+          <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="6" VerticalExpand="True">
+            <Label Name="QueuedTitle" Text="{Loc luna-plan-column-queued}" />
+            <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+              <BoxContainer Name="QueuedList" Orientation="Vertical" VerticalExpand="True" />
+            </ScrollContainer>
+          </BoxContainer>
+        </PanelContainer>
+      </BoxContainer>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

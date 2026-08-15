@@ -1,0 +1,145 @@
+# source: _DeadSpace/Entities/Clothing/Underwear/bottom.yml
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersHeadofPersonnel
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры начальника отдела кадров
+  description: Cтандартное нижнее бельё начальника отдела кадров.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Civilian/head_of_personnel/man.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры капитана
+  description: Cтандартное нижнее бельё капитана.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/captain/man.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersBlueShieldOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры оперативника КГБ
+  description: Cтандартное нижнее бельё оперативника КГБ.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/blueshield/man.rsi
+
+# Engineering
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры дежурного врача
+  description: Cтандартное нижнее бельё дежурного врача.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/brigmedic/man.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersCadet
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры младшего милиционера
+  description: Cтандартное нижнее бельё младшего милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/cadet/man.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersHeadofSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры начальника милции
+  description: Cтандартное нижнее бельё начальника милции.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/head_of_security/man.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomBoxersSecurityOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: боксеры милиционера
+  description: Cтандартное нижнее бельё милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/security_officer/man.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesHeadofPersonnel
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги начальника отдела кадров
+  description: Cтандартное нижнее бельё начальника отдела кадров.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Civilian/head_of_personnel/women/pants.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги капитана
+  description: Cтандартное нижнее бельё капитана.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/captain/women/pants.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesBlueShieldOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги оперативника КГБ
+  description: Cтандартное нижнее бельё оперативника КГБ.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/blueshield/women/pants.rsi
+
+# Engineering
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги дежурного врача
+  description: Cтандартное нижнее бельё дежурного врача.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/brigmedic/women/pants.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesCadet
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги младшего милиционера
+  description: Cтандартное нижнее бельё младшего милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/cadet/women/pants.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesHeadofSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги начальника милции
+  description: Cтандартное нижнее бельё начальника милции.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/head_of_security/women/pants.rsi
+- type: entity
+  parent: ClothingUnderwearBottomBase
+  id: USSPSFClothingUnderwearBottomPantiesSecurityOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: стринги милиционера
+  description: Cтандартное нижнее бельё милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/security_officer/women/pants.rsi

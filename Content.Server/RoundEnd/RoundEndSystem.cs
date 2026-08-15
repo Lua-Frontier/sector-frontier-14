@@ -165,8 +165,9 @@ namespace Content.Server.RoundEnd
 
             if (requester != null)
             {
-                var stationUid = _sectorService.GetServiceEntity(); // Frontier: sector-wide alerts
-                // var stationUid = _stationSystem.GetOwningStation(requester.Value); // Frontier: sector-wide alerts
+                EntityUid stationUid = _sectorService.GetServiceEntity();
+                if (_sectorService.TryGetServiceEntity(requester.Value, out var localService))
+                    stationUid = localService;
                 if (TryComp<AlertLevelComponent>(stationUid, out var alertLevel))
                 {
                     duration = _protoManager

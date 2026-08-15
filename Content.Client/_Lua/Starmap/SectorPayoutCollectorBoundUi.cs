@@ -18,7 +18,8 @@ public sealed class PayoutCollectorBoundUserInterface : BoundUserInterface
     {
         base.Open();
         _window = new PayoutCollectorWindow();
-        _window.OnClaim += () => SendMessage(new PayoutCollectorClaimMessage());
+        _window.OnDeposit += () => SendMessage(new PayoutCollectorDepositMessage());
+        _window.OnWithdraw += amount => SendMessage(new PayoutCollectorWithdrawMessage(amount));
         _window.OnClose += Close;
         _window.OpenCentered();
     }

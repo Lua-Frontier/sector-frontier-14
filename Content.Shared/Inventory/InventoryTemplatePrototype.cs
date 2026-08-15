@@ -27,11 +27,28 @@ public sealed partial class SlotDefinition
     [DataField("slotGroup")] public string SlotGroup { get; private set; } = "Default";
     [DataField("stripTime")] public TimeSpan StripTime { get; private set; } = TimeSpan.FromSeconds(4f);
 
+    public const SlotFlags CompactUiSlotFlags =
+        SlotFlags.FINGER | SlotFlags.NECKLACE | SlotFlags.EARRING | SlotFlags.HAIRPIN |
+        SlotFlags.SOCKS | SlotFlags.UNDERWEARB | SlotFlags.UNDERWEART | SlotFlags.WALLET |
+        SlotFlags.ARMBANDRIGHT | SlotFlags.ARMBANDLEFT | SlotFlags.BALACLAVA |
+        SlotFlags.HELMETCOVER | SlotFlags.HELMETATTACHMENT;
+
     [DataField("uiWindowPos", required: true)]
-    public Vector2i UIWindowPosition { get; private set; }
+    public Vector2 UIWindowPosition { get; private set; }
 
     [DataField("strippingWindowPos", required: true)]
     public Vector2i StrippingWindowPos { get; private set; }
+
+    [DataField]
+    public float? UIWindowScale { get; private set; }
+
+    public float GetUiWindowScale()
+    {
+        if (UIWindowScale is { } scale)
+            return scale;
+
+        return (SlotFlags & CompactUiSlotFlags) != 0 ? 0.5f : 1f;
+    }
 
     [DataField("dependsOn")] public string? DependsOn { get; private set; }
 

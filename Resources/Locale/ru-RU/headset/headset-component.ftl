@@ -26,4 +26,5 @@ chat-radio-spiders = Связующая паутина
 chat-radio-hivemind = Улей
 chat-radio-soc = Корпус Специальных Операций
 chat-radio-trade = Торговый
+chat-radio-ussp = СССП ТАККОМ
 chat-radio-source-unknown = Неизвестно

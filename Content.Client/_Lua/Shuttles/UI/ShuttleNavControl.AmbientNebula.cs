@@ -4,6 +4,7 @@
 
 using System.Numerics;
 using Content.Client._Lua.AmbientSpaceEffects;
+using Content.Client._Lua.Styles;
 using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared.Lua.CLVar;
@@ -190,7 +191,7 @@ public partial class ShuttleNavControl
             var next = Vector2.Transform(local + worldOffset, worldToView);
             if (thickness <= 1)
             {
-                handle.DrawLine(prev, next, color);
+                LunaDraw.Line(handle, prev, next, color);
             }
             else
             {
@@ -198,11 +199,11 @@ public partial class ShuttleNavControl
                 if (dir.LengthSquared() > 0.0001f)
                 {
                     var n = Vector2.Normalize(new Vector2(-dir.Y, dir.X)) * 0.75f;
-                    handle.DrawLine(prev + n, next + n, color);
-                    handle.DrawLine(prev - n, next - n, color);
+                    LunaDraw.Line(handle, prev + n, next + n, color);
+                    LunaDraw.Line(handle, prev - n, next - n, color);
                 }
 
-                handle.DrawLine(prev, next, color);
+                LunaDraw.Line(handle, prev, next, color);
             }
 
             prev = next;

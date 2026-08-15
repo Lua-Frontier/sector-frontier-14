@@ -1,0 +1,39 @@
+# source: Entities/Clothing/OuterClothing/bio.yml
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingOuterBioSecurity
+  categories: [ USSP ]
+  name: bio suit
+  suffix: USSP, Security
+  description: A suit that protects against biological contamination, kitted out with additional armor.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Bio/security.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Bio/security.rsi
+  # DS14-start
+  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
+        Heat: 0.80
+        Caustic: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.4
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHatHoodBioSecurity
+    slot: head
+  - type: DiseaseProtection
+    protection: 0.1
+  # DS14-end
+  - type: GroupExamine
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95

@@ -28,6 +28,30 @@ public partial struct StampDisplayInfo
 
     [DataField("reapply")] // Frontier: allow reapplying stamps
     public bool Reapply = false; // Frontier: allow reapplying stamps
+
+    [DataField("stampTexture")]
+    public string? StampTexture;
+
+    [DataField("stampPatternTexture")]
+    public string? StampPatternTexture;
+
+    [DataField("stampScale")]
+    public float StampScale = 1.0f;
+
+    [DataField("stampMainText")]
+    public string? StampMainText;
+
+    [DataField("stampTextMaxScale")]
+    public float StampTextMaxScale;
+
+    [DataField("stampHeaderText")]
+    public string? StampHeaderText;
+
+    [DataField("stampBackgroundText")]
+    public string? StampBackgroundText;
+
+    [DataField("stampCanRotate")]
+    public bool StampCanRotate = true;
 };
 
 // FRONTIER - Stamp types, put it into an enum for modularity purposes.
@@ -63,6 +87,30 @@ public sealed partial class StampComponent : Component
     /// </summary>
     [DataField("sound")]
     public SoundSpecifier? Sound = null;
+
+    [DataField("stampTexture")]
+    public string? StampTexture;
+
+    [DataField("stampPatternTexture")]
+    public string? StampPatternTexture;
+
+    [DataField("stampScale")]
+    public float StampScale = 1.0f;
+
+    [DataField("stampMainText")]
+    public string? StampMainText;
+
+    [DataField("stampTextMaxScale")]
+    public float StampTextMaxScale;
+
+    [DataField("stampHeaderText")]
+    public string? StampHeaderText;
+
+    [DataField("stampBackgroundText")]
+    public string? StampBackgroundText;
+
+    [DataField("stampCanRotate")]
+    public bool StampCanRotate = true;
 
     // Frontier: allow reapplying stamps, protected stamps
     /// <summary>

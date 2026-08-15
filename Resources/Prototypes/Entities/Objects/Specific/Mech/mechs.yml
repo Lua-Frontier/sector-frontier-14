@@ -58,6 +58,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseRunningSpeed: 2
+    baseSprintSpeed: 2
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -182,6 +183,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseRunningSpeed: 3.6
+    baseSprintSpeed: 3.6
 
 - type: entity
   id: MechRipleyBattery
@@ -268,6 +270,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseRunningSpeed: 3.7
+    baseSprintSpeed: 3.7
 
 - type: entity
   parent: MechHamtr
@@ -334,6 +337,7 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseRunningSpeed: 3.6
+    baseSprintSpeed: 3.6
   - type: Access
     groups: # Frontier: contractor access
     - GeneralAccess # Frontier

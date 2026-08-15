@@ -1,0 +1,13 @@
+# source: Entities/Clothing/Belt/belts.yml
+- type: entity
+  parent: USSPSFClothingBeltSecurity
+  id: USSPSFClothingBeltSecurityWebbing
+  categories: [ USSP ]
+  suffix: USSP
+  name: security carrier
+  description: Unique and versatile chest rig, can hold security gear.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Belt/securitywebbing.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Belt/securitywebbing.rsi

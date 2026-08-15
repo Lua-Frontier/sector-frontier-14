@@ -2,27 +2,27 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using System.Linq;
-using Robust.Shared.Timing;
-using Robust.Shared.Map;
-using Content.Server.GameTicking;
+using Content.Server._Lua.Sectors;
+using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
+using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking.Events;
 using Content.Shared.Alert;
+using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Content.Shared.Lua.CLVar;
+using Content.Shared.Lua.PirateIcon.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
-using Content.Shared.Lua.CLVar;
-using Robust.Shared.Configuration;
-using Content.Shared.GameTicking;
-using Content.Server.Chat.Managers;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Content.Server.Explosion.EntitySystems;
-using Content.Shared.Lua.PirateIcon.Components;
-using Content.Server.Chat.Systems;
+using Robust.Shared.Timing;
+using System.Linq;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.LW.PveSector
@@ -31,7 +31,7 @@ namespace Content.Server.LW.PveSector
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
+        [Dependency] private readonly SectorSystem _sectors = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedMindSystem _mindSystem = default!;
         [Dependency] private readonly AlertsSystem _alerts = default!;
@@ -98,7 +98,7 @@ namespace Content.Server.LW.PveSector
 
             _nextScan = _gameTiming.CurTime + ScanInterval;
 
-            var mapId = _gameTicker.DefaultMap;
+            var mapId = _sectors.TryGetHubMapId(out var hub) ? hub : MapId.Nullspace;
             if (mapId == MapId.Nullspace || !_mapManager.MapExists(mapId))
             {
                 ClearAllAlerts();

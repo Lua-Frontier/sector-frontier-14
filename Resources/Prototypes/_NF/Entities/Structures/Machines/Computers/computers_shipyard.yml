@@ -31,6 +31,11 @@
   - type: ActivatableUI
     singleUser: true
     key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: RadarConsole
+    maxRange: 256
+    followEntity: false
+    pannable: true
+    noRotate: true
   - type: UserInterface
     interfaces:
       enum.ShipyardConsoleUiKey.Shipyard:

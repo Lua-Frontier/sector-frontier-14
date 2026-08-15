@@ -59,13 +59,17 @@
         visible: false
       - map: [ "id" ]
       - map: [ "gloves" ]
+      - map: [ "finger" ]
+      - map: [ "leftarmband" ] # Mono - armband slot
+      - map: [ "rightarmband" ] # Mono - armband slot
       - map: [ "shoes" ]
       - map: [ "ears" ]
+      - map: [ "necklace" ]
       - map: [ "outerClothing" ]
+      - map: [ "neck" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
       - map: [ "back" ]
-      - map: [ "neck" ]
       - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
       - map: [ "enum.HumanoidVisualLayers.Tail" ]
@@ -77,9 +81,14 @@
         visible: false
       - map: [ "enum.HumanoidVisualLayers.RArmExtension" ] # Frontier
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "earring" ]
+      - map: [ "hairpin" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "balaclava" ] # Mono - balaclava slot
       - map: [ "mask" ]
       - map: [ "head" ]
+      - map: [ "helmetcover" ] # Mono - helmet cover slot
+      - map: [ "helmetattachment" ] # Mono - helmet attachment slot
       - map: [ enum.InstrumentVisuals.Layer ]
         sprite: _DV/Effects/harpysinger.rsi
         state: singing_music_notes
@@ -203,6 +212,7 @@
       - map: [ "gloves" ]
       - map: [ "shoes" ]
       - map: [ "ears" ]
+      - map: [ "necklace" ]
       - map: [ "outerClothing" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]

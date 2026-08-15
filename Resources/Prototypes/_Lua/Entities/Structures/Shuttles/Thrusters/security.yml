@@ -1,13 +1,13 @@
 - type: entity
   id: ThrusterSecurity
   parent: Thruster
-  suffix: Security
+  suffix: NFSD, 64
   components:
   - type: Machine
     board: ThrusterSecurityMachineCircuitboard
   - type: Thruster
     baseThrust: 100
-    thrust: 122
+    thrust: 128
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster32.rsi
     layers:

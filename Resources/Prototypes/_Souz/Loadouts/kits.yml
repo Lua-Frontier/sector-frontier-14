@@ -1,0 +1,186 @@
+# Forced role kits (weapons / flash / paperwork) — formerly StartingGear equipment/storage
+
+#region Eyes / gloves (missing from clothing loadouts)
+
+- type: loadout
+  id: UsspLoadoutEyesSunglasses
+  equipment:
+    eyes: USSPSFClothingEyesGlassesSunglasses
+
+- type: loadoutGroup
+  id: UsspCaptainEyes
+  name: loadout-group-contractor-glasses
+  loadouts:
+  - UsspLoadoutEyesSunglasses
+  - UsspLoadoutEyesHudCaptain
+  fallbacks:
+  - UsspLoadoutEyesSunglasses
+
+- type: loadout
+  id: UsspLoadoutGlovesCaptain
+  equipment:
+    gloves: USSPSFClothingHandsGlovesCaptain
+
+- type: loadoutGroup
+  id: UsspCaptainGloves
+  name: loadout-group-contractor-gloves
+  loadouts:
+  - UsspLoadoutGlovesCaptain
+  - UsspLoadoutGlovesCaptainWhite
+  - UsspLoadoutGlovesCaptainBlack
+  fallbacks:
+  - UsspLoadoutGlovesCaptain
+
+- type: loadoutGroup
+  id: UsspPolitrukEyes
+  name: loadout-group-contractor-glasses
+  hidden: true
+  loadouts:
+  - UsspLoadoutEyesSecurity
+  fallbacks:
+  - UsspLoadoutEyesSecurity
+
+- type: loadoutGroup
+  id: UsspPolitrukGloves
+  name: loadout-group-contractor-gloves
+  hidden: true
+  loadouts:
+  - UsspLoadoutGlovesBlack
+  fallbacks:
+  - UsspLoadoutGlovesBlack
+
+#endregion
+
+#region Role kits
+
+- type: loadout
+  id: UsspKitFlash
+  storage:
+    back:
+    - Flash
+
+- type: loadout
+  id: UsspKitSecurityOfficer
+  equipment:
+    pocket1: NFWeaponPistolMk58
+  storage:
+    back:
+    - Flash
+    - Magazine9x19mmPistolFMJ
+
+- type: loadout
+  id: UsspKitPolitruk
+  equipment:
+    pocket1: NFWeaponPistolMk58
+  storage:
+    back:
+    - Flash
+    - USSPSFTelephonePolitruk
+    - USSPSFRubberStampPolitruk
+    - Magazine9x19mmPistolFMJ
+
+- type: loadout
+  id: UsspKitBlueShield
+  equipment:
+    pocket1: NFWeaponEnergyPistolLaserAntique
+
+- type: loadoutGroup
+  id: UsspCaptainItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitFlash
+  fallbacks:
+  - UsspKitFlash
+
+- type: loadoutGroup
+  id: UsspHoPItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitFlash
+  fallbacks:
+  - UsspKitFlash
+
+- type: loadoutGroup
+  id: UsspHoSItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitFlash
+  fallbacks:
+  - UsspKitFlash
+
+- type: loadoutGroup
+  id: UsspSecurityCadetItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitFlash
+  fallbacks:
+  - UsspKitFlash
+
+- type: loadoutGroup
+  id: UsspSecurityPilotItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitFlash
+  fallbacks:
+  - UsspKitFlash
+
+- type: loadoutGroup
+  id: UsspBrigmedicItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitFlash
+  fallbacks:
+  - UsspKitFlash
+
+- type: loadoutGroup
+  id: UsspSecurityOfficerItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitSecurityOfficer
+  fallbacks:
+  - UsspKitSecurityOfficer
+
+- type: loadoutGroup
+  id: UsspPolitrukItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitPolitruk
+  fallbacks:
+  - UsspKitPolitruk
+
+- type: loadoutGroup
+  id: UsspBlueShieldItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - UsspKitBlueShield
+  fallbacks:
+  - UsspKitBlueShield
+
+#endregion

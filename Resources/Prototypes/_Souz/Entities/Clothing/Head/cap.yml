@@ -1,0 +1,13 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Head/cap.yml
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: USSPSFClothingHeadPolitrukCap
+  categories: [ USSP ]
+  suffix: USSP
+  name: картуз политического отдела
+  description: Старенький картуз ПолитОтдела. Алый, как кровь революции, он напоминает о цене завоеваний пролетариата.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Soft/politrukcap.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Soft/politrukcap.rsi

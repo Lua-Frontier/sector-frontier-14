@@ -1,0 +1,129 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: WeaponShipMiningDrill
+  parent: [BaseStructure, ConstructibleMachine]
+  name: ship mining drill
+  description: A hull-mounted mining drill. Installs on a 3x2 frame; the bit hangs one tile forward and grinds rock, walls, and tiles in a 5-wide line. Connect a disposal trunk to the hull-side center tile to suck ore into pipes. Toggle it from gunnery control — it does not rotate.
+  suffix: Shuttle
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: false
+    increment: 90
+  - type: Anchorable
+    delay: 8
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-2.25,2.25,0.25"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Sprite
+    sprite: _Lua/Objects/ShuttleWeapons/drill.rsi
+    offset: 1,-1
+    drawdepth: Mobs
+    noRot: false
+    layers:
+    - state: drill
+  - type: Appearance
+  - type: PointLight
+    enabled: false
+    radius: 2.5
+    energy: 1.8
+    color: "#ffb060"
+  - type: AmbientSound
+    enabled: false
+    range: 8
+    volume: -3
+    sound:
+      path: /Audio/Items/drill_hit.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 1500
+  - type: ExtensionCableReceiver
+  - type: FireControllable
+    fireCooldown: 0.5
+  - type: ShipMiningDrill
+    idlePowerLoad: 1500
+    activePowerLoad: 4000
+    mineInterval: 0.4
+    entityDamage:
+      types:
+        Blunt: 25
+        Slash: 25
+        Structural: 150
+  - type: ShipGunType
+    shipType: Mining
+  - type: ShipGunClass
+    shipClass: Light
+    processingPowerCost: 5
+  - type: Tag
+    tags:
+    - Structure
+    - Pickaxe
+  - type: Machine
+    board: ShipMiningDrillMachineCircuitboard
+  - type: Construction
+    graph: Machine3x2
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
+  - type: WiresPanel
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: RequiresGrid
+  - type: RadarBlip
+    radarColor: "#C47A3A"
+    scale: 1
+    visibleFromOtherGrids: true
+    gridConfig:
+      color: "#C47A3A"
+      shape: Square
+      respectZoom: true
+      rotate: true
+      bounds: "-0.25,-2.25,2.25,0.25"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipRepairable
+    repairTime: 8
+    repairCost: 8
+  - type: StaticPrice
+    price: 2500
+  - type: InteractionOutline

@@ -118,12 +118,14 @@
   abstract: true
   components:
     - type: StationCentcomm
+      map: /Maps/_Lua/Maps/port_centcom_grid.yml
 
 - type: entity
   id: BaseStationEvacuation
   abstract: true
   components:
     - type: StationEmergencyShuttle
+      emergencyShuttlePath: /Maps/_Lua/ShuttleEvent/evac_omega.yml
 
 - type: entity
   id: BaseStationAlertLevels

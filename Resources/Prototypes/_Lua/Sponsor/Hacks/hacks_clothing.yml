@@ -11,9 +11,13 @@
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Head/Misc/lua_head.rsi
   - type: Clothing
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Head/Misc/lua_head.rsi
+    slots:
+    - hairpin
+  - type: Item
+    size: Tiny
 
 - type: entity
-  parent: ClothingHandsGlovesCombat
+  parent: RingBase
   id: HacksHandsRing
   name: Кольцо Хакса
   description: Обручальное кольцо Хакса, напоминает вам о теплых временах и о Айрис.
@@ -21,10 +25,10 @@
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Hands/Misc/lua_ring.rsi
+    state: icon
   - type: Clothing
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Hands/Misc/lua_ring.rsi
-  - type: Item
-    size: Tiny
+    equippedState: equipped-FINGER
 
 - type: entity
   parent: [ ClothingShoesBootsMag, GasTankBase ]
@@ -81,6 +85,9 @@
       spinupTime: 1
       breakCooldown: 15
       powerDraw: 0.5
+      blockModifier:
+        coefficients:
+          Asphyxiation: 0
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_White/Clothing/Neck/Cloaks/lua_cape.rsi
 
@@ -99,6 +106,9 @@
       spinupTime: 1
       breakCooldown: 15
       powerDraw: 0.5
+      blockModifier:
+        coefficients:
+          Asphyxiation: 0
   - type: Sprite
     sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Neck/Cloaks/lua_cape_black.rsi
 

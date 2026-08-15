@@ -3,6 +3,27 @@
 # See AGPLv3.txt for details.
 
 - type: department
+  id: OutpostUssp
+  name: department-Outpost-Ussp
+  description: department-Outpost-Ussp-description
+  color: "#B01340"
+  weight: -9
+  roles:
+  - UsspPolitruk
+  - UsspCaptain
+  - UsspBlueShieldOfficer
+  - UsspHeadOfPersonnel
+  - UsspHeadOfSecurity
+  - USSPCommissar
+  - USSPSergeant
+  - USSPRifleman
+  - UsspSecurityOfficer
+  - UsspSecurityPilot
+  - UsspBrigmedic
+  - UsspSecurityCadet
+  - UsspPassenger
+
+- type: department
   id: OutpostSyndicate
   name: department-Outpost-Typan
   description: department-Outpost-Typan-description
@@ -29,17 +50,17 @@
   roles:
   - OpsLuaTech
 
-- type: department
-#  id: StormCreed
-  id: Antag
-  name: department-stormcreed
-  description: department-stormcreed-description
-  color: "#948471"
-  weight: 60
-  roles:
-  - StormCreedCaptain
-  - StormCreedFirstmate
-  - StormCreedSoldier
+#- type: department
+  #id: StormCreed
+  #id: Antag
+  #name: department-stormcreed
+  #description: department-stormcreed-description
+  #color: "#948471"
+  #weight: 60
+  #roles:
+  #- StormCreedCaptain
+  #- StormCreedFirstmate
+  #- StormCreedSoldier
 
 - type: department
   id: Pirates

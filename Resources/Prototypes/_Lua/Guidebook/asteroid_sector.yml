@@ -1,0 +1,13 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: PosterBase
+  id: LuaAsteroidSectorMap
+  name: asteroid sector map
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Guidebook/large_icons/640x512.rsi
+    state: sector_map

@@ -1,0 +1,47 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: gameMap
+  id: UsspStation
+  mapName: 'Экспедиционный Шаттл СССП'
+  mapPath: /Maps/_Lua/Maps/tunguska.yml
+  isGrid: true
+  minPlayers: 0
+  stations:
+    Ussp:
+      stationProto: StandardUsspVessel
+      components:
+      - type: FactionCapture
+        captureWholeStation: true
+      - type: BecomesStation
+        id: Ussp
+      - type: RadarBlipIcon
+        icon: /Textures/_Lua/Interface/Radar/space-station.png
+        scale: 1.2
+        allowWhenHidden: true
+      - type: MailStationDisabled
+      - type: FactionOwnedStation
+        mainBase: true
+      - type: StationNameSetup
+        mapNameTemplate: 'Экспедиционный Шаттл СССП'
+      - type: ExtraStationInformation
+        iconPath: /Textures/_Souz/Structures/Wallmounts/flags.rsi/USSPCompany.png
+        stationSubtext: 'ussp-lobby-outpost-subtext'
+        stationDescription: 'ussp-lobby-outpost-description'
+        requiredCompany: Ussp
+      - type: StationJobs
+        availableJobs:
+          UsspPolitruk: [ 1, 1 ]
+          UsspCaptain: [ 1, 1 ]
+          UsspBlueShieldOfficer: [ 1, 1 ]
+          UsspHeadOfPersonnel: [ 1, 1 ]
+          UsspHeadOfSecurity: [ 1, 1 ]
+          USSPCommissar: [ 1, 1 ]
+          USSPSergeant: [ 2, 2 ]
+          USSPRifleman: [ -1, -1 ]
+          UsspSecurityOfficer: [ 3, 3 ]
+          UsspSecurityPilot: [ 2, 2 ]
+          UsspBrigmedic: [ 2, 2 ]
+          UsspSecurityCadet: [ 3, 3 ]
+          UsspPassenger: [ -1, -1 ]

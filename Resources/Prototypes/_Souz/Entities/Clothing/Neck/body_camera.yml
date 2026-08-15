@@ -1,0 +1,41 @@
+# source: _DeadSpace/Entities/Clothing/Neck/body_camera.yml
+- type: entity
+  parent: ClothingNeckBase # DS14 accessory
+  id: USSPSFClothingNeckBodyCamera
+  categories: [ USSP ]
+  suffix: USSP
+  name: нательная камера
+  description: Лучше не кидать жёлуди рядом с владельцем этой камеры.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/body_camera.rsi
+    state: icon
+  - type: Eye
+  - type: WiredNetworkConnection
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraSetupUiKey.Camera:
+        type: SurveillanceCameraSetupBoundUi
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraSecurity
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCamera
+    networkSet: true
+  - type: StationAiVision
+    range: 4
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  - type: StaticPrice
+    price: 20
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 50

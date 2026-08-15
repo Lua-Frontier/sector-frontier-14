@@ -37,7 +37,7 @@ public sealed partial class GunOperator : HTNOperator, IHtnConditionalShutdown
     /// If true, only opaque objects will block line of sight.
     /// </summary>
     [DataField("opaqueKey")]
-    public bool UseOpaqueForLOSChecks = false;
+    public bool UseOpaqueForLOSChecks = true;
 
     // Like movement we add a component and pass it off to the dedicated system.
 

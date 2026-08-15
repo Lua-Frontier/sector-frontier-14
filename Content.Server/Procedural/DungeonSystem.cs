@@ -40,6 +40,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
 
     private readonly List<(Vector2i, Tile)> _tiles = new();
 
@@ -186,6 +187,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
 
         comp = AddComp<DungeonAtlasTemplateComponent>(map.Value.Owner);
         comp.Path = proto.AtlasPath;
+        _meta.SetEntityName(map.Value.Owner, Loc.GetString("map-name-dungeon-preload", ("file", proto.AtlasPath.Filename)));
         return map.Value.Comp.MapId;
     }
 

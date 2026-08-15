@@ -42,7 +42,7 @@ public abstract class SharedShareSectorSystem : EntitySystem
 
     public HashSet<string> GetKnownSectorIds(
         EntityUid uid,
-        StarmapDataPrototype data,
+        ComposedStarmapData data,
         string? companyId,
         bool globallyUnlocked,
         KnownSectorsComponent? known = null)
@@ -51,6 +51,9 @@ public abstract class SharedShareSectorSystem : EntitySystem
 
         foreach (var def in data.Stars)
         {
+            if (string.Equals(def.StarType, "decorative", StringComparison.OrdinalIgnoreCase))
+                continue;
+
             if (SectorVisibility.IsSectorVisible(def, companyId, globallyUnlocked))
                 result.Add(def.Id);
         }
@@ -60,21 +63,45 @@ public abstract class SharedShareSectorSystem : EntitySystem
 
         foreach (var sectorId in known.LearnedSectorIds)
         {
-            if (!string.IsNullOrWhiteSpace(sectorId))
-                result.Add(sectorId);
+            if (string.IsNullOrWhiteSpace(sectorId))
+                continue;
+
+            if (TryGetSector(data, sectorId, out var learnedDef)
+                && string.Equals(learnedDef.StarType, "decorative", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            result.Add(sectorId);
         }
 
         return result;
     }
 
+    private static bool TryGetSector(ComposedStarmapData data, string sectorId, out StarDefinition def)
+    {
+        foreach (var star in data.Stars)
+        {
+            if (!string.Equals(star.Id, sectorId, StringComparison.OrdinalIgnoreCase))
+                continue;
+            def = star;
+            return true;
+        }
+
+        def = null!;
+        return false;
+    }
+
     public bool KnowsSector(
         EntityUid uid,
-        StarmapDataPrototype data,
+        ComposedStarmapData data,
         string sectorId,
         string? companyId,
         bool globallyUnlocked,
         KnownSectorsComponent? known = null)
     {
+        if (TryGetSector(data, sectorId, out var def)
+            && string.Equals(def.StarType, "decorative", StringComparison.OrdinalIgnoreCase))
+            return false;
+
         if (SectorVisibility.IsSectorVisible(data, sectorId, companyId, globallyUnlocked))
             return true;
 

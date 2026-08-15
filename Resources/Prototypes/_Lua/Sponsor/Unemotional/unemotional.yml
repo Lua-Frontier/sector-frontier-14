@@ -169,17 +169,23 @@
   - type: Clothing
     sprite: _Lua/Sponsor/unemotional/hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitdeFOA
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitdeFOA
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: []
         showEnts: false
         occludes: true
-        ent: null
       cell_slot: !type:ContainerSlot
         showEnts: false
         occludes: true
-        ent: null
   - type: Item
     size: Huge
   - type: PressureProtection

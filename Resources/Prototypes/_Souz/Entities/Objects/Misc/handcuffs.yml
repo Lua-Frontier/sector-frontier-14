@@ -1,0 +1,44 @@
+# source: Entities/Objects/Misc/handcuffs.yml
+- type: entity
+  name: handcuffs
+  description: Used to detain criminals and other assholes.
+  id: USSPSFHandcuffs
+  categories: [ USSP ]
+  suffix: USSP
+  parent: [BaseItem, BaseC2ContrabandUnredeemable]
+  components:
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Handcuff
+    cuffedRSI: Objects/Misc/handcuffs.rsi
+    bodyIconState: body-overlay
+  - type: Sprite
+    sprite: Objects/Misc/handcuffs.rsi
+    state: handcuff
+  - type: Tag
+    tags:
+    - Handcuffs
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 0
+  - type: GuideHelp
+    guides:
+    - Security
+  - type: UseDelay
+    delay: 3
+  #DS14-Start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Goobstation/Items/handling/generic_small_drop.ogg
+  #DS14-End

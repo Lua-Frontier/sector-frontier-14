@@ -1,0 +1,23 @@
+# source: _DeadSpace/Entities/Structures/Doors/Airlocks/SOD/airlockSOD.yml
+- type: entity
+  parent: USSPSFAirlockCentralCommandGlass
+  id: USSPSFAirlockGlassSODLocked
+  categories: [ USSP ]
+  name: стеклянный шлюз
+  description: Он открывается, он закрывается и он может вас раздавить.
+  suffix: USSP, ОСО, Закрыт
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSOD ]
+- type: entity
+  parent: USSPSFAirlockCentralCommand
+  id: USSPSFAirlockSODLocked
+  categories: [ USSP ]
+  name: шлюз
+  description: Он открывается, он закрывается и он может вас раздавить.
+  suffix:  USSP, ОСО, Закрыт
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSOD ]

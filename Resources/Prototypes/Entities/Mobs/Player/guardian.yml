@@ -61,6 +61,10 @@
     - type: InteractionOutline
     - type: Physics
       bodyType: KinematicController
+      bodyStatus: InAir
+    - type: MovementAlwaysTouching
+    - type: CanMoveInAir
+    - type: NoSlip
     - type: Fixtures
       fixtures:
         fix1:

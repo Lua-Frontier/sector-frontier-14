@@ -1,9 +1,11 @@
 using Content.Client.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared._Lua.Achievements;
 using Content.Shared.PDA;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Shared.Network;
 
 namespace Content.Client.PDA
 {
@@ -14,6 +16,7 @@ namespace Content.Client.PDA
 
         [ViewVariables]
         private PdaMenu? _menu;
+        [Dependency] private readonly INetManager _net = default!;
 
         public PdaBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
@@ -26,6 +29,7 @@ namespace Content.Client.PDA
 
             if (_menu == null)
                 CreateMenu();
+            _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ViewInPda));
         }
 
         private void CreateMenu()

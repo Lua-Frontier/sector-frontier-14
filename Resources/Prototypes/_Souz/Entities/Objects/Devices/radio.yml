@@ -1,0 +1,12 @@
+# source: Entities/Objects/Devices/radio.yml
+- type: entity
+  parent: RadioHandheldSecurity
+  id: USSPSFRadioHandheldSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Devices/securityhandy.rsi
+  - type: Item
+    sprite: _Souz/Objects/Devices/securityhandy.rsi
+    heldPrefix: walkietalkie

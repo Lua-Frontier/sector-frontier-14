@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Timing;
@@ -144,6 +145,9 @@ public abstract class SharedGasTankSystem : EntitySystem
         component.ConnectStream = _audio.Stop(component.ConnectStream);
         component.ConnectStream = _audio.PlayPredicted(component.ConnectSound, owner, user)?.Entity;
         UpdateUserInterface(ent);
+
+        var connected = new GasTankInternalsConnectedEvent(owner, internalsUid.Value, user);
+        RaiseLocalEvent(ref connected);
         return true;
     }
 

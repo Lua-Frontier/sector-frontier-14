@@ -1,0 +1,40 @@
+- type: job
+  id: UsspSecurityCadet
+  name: job-name-ussp-security-cadet
+  description: job-description-ussp-security-cadet
+  playTimeTracker: JobUsspSecurityCadet
+  requiredCompany: Ussp
+  salary: 30000
+  startingGear: UsspSecurityCadetGear
+  icon: JobIconUsspSecurityCadet
+  supervisors: job-supervisors-ussp-hos
+  canBeAntag: false
+  hideConsoleVisibility: true
+  access:
+  - USSPSecurity
+  - USSPBrig
+  - USSPMaintenance
+  accessGroups:
+  - USSPGeneral
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspSecurityCadetGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspSecurityCadetChameleonOutfit
+  job: UsspSecurityCadet

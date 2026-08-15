@@ -1,6 +1,7 @@
 using Content.Server.Cargo.Systems;
 using Content.Server.NPC.HTN;
 using Content.Server.Shuttles.Components;
+using Content.Server.Tabletop;
 using Content.Server.Tesla.Components;
 using Content.Shared._Lua.SpaceHazards;
 using Content.Shared._Mono.CCVar;
@@ -34,6 +35,7 @@ public sealed class SpaceCleanupSystem : BaseCleanupSystem<PhysicsComponent>
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TabletopSystem _tabletop = default!;
 
     private float _maxDistance;
     private float _maxGridDistance;
@@ -91,6 +93,9 @@ public sealed class SpaceCleanupSystem : BaseCleanupSystem<PhysicsComponent>
     private bool ShouldEntityCleanup(EntityUid uid, float aggression)
     {
         var xform = Transform(uid);
+
+        if (_tabletop.TabletopMap != MapId.Nullspace && xform.MapID == _tabletop.TabletopMap)
+            return false;
 
         var isStuck = false;
 

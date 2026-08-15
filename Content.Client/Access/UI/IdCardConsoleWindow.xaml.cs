@@ -42,7 +42,8 @@ namespace Content.Client.Access.UI
         private static ProtoId<JobPrototype> _defaultJob = "Contractor"; // Frontier: Passenger<Contractor
 
         public IdCardConsoleWindow(IdCardConsoleBoundUserInterface owner, IPrototypeManager prototypeManager,
-            List<ProtoId<AccessLevelPrototype>> accessLevels)
+            List<ProtoId<AccessLevelPrototype>> accessLevels,
+            List<ProtoId<DepartmentPrototype>>? allowedDepartments = null)
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
@@ -73,19 +74,37 @@ namespace Content.Client.Access.UI
             ShipSuffixLineEdit.OnTextChanged += _ => EnsureValidShuttleName(); // Frontier
             ShipNameSaveButton.OnPressed += _ => SubmitShuttleData(); // Frontier
 
+            HashSet<string>? departmentJobIds = null;
+            if (allowedDepartments is { Count: > 0 })
+            {
+                departmentJobIds = new HashSet<string>(StringComparer.Ordinal);
+                foreach (var deptId in allowedDepartments)
+                {
+                    if (!_prototypeManager.TryIndex(deptId, out DepartmentPrototype? dept))
+                        continue;
+
+                    foreach (var role in dept.Roles)
+                        departmentJobIds.Add(role);
+                }
+            }
+
             var jobs = _prototypeManager.EnumeratePrototypes<JobPrototype>().ToList();
             jobs.Sort((x, y) => string.Compare(x.LocalizedName, y.LocalizedName, StringComparison.CurrentCulture));
 
             foreach (var job in jobs)
             {
-                if (job.HideConsoleVisibility) // Frontier
+                if (departmentJobIds != null)
                 {
-                    continue;
+                    if (!departmentJobIds.Contains(job.ID))
+                        continue;
                 }
-
-                if (!job.OverrideConsoleVisibility.GetValueOrDefault(job.SetPreference))
+                else
                 {
-                    continue;
+                    if (job.HideConsoleVisibility) // Frontier
+                        continue;
+
+                    if (!job.OverrideConsoleVisibility.GetValueOrDefault(job.SetPreference))
+                        continue;
                 }
 
                 _jobPrototypeIds.Add(job.ID);

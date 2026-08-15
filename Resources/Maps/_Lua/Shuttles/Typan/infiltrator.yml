@@ -63,8 +63,6 @@ entities:
     - type: Transform
       pos: 0,0
       parent: invalid
-    - type: BecomesStation
-      id: Infiltrator
     - type: MapGrid
       chunks:
         -1,-1:
@@ -3705,7 +3703,7 @@ entities:
       parent: 4
     - type: ContainerContainer
       containers:
-        toggleable-clothing: !type:ContainerSlot
+        toggleable-clothing: !type:Container
           showEnts: False
           occludes: True
           ent: null
@@ -3726,7 +3724,7 @@ entities:
       parent: 12
     - type: ContainerContainer
       containers:
-        toggleable-clothing: !type:ContainerSlot
+        toggleable-clothing: !type:Container
           showEnts: False
           occludes: True
           ent: null

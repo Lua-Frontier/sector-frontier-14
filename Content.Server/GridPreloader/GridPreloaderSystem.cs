@@ -64,7 +64,7 @@ public sealed class GridPreloaderSystem : SharedGridPreloaderSystem
 
         var mapUid = _map.CreateMap(out var mapId, false);
         var preloader = EnsureComp<GridPreloaderComponent>(mapUid);
-        _meta.SetEntityName(mapUid, "GridPreloader Map");
+        _meta.SetEntityName(mapUid, Loc.GetString("map-name-grid-preloader"));
         _map.SetPaused(mapId, true);
 
         var globalXOffset = 0f;

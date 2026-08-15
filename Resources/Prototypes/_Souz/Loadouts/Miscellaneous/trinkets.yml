@@ -1,0 +1,20 @@
+# source: Loadouts/Miscellaneous/trinkets.yml
+- type: loadout
+  id: USSPSFCigarGold
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Command
+  storage:
+    back:
+    - USSPSFCigarGold
+  groupBy: "smokeables"
+
+# Folders
+
+# source: _DeadSpace/Loadouts/Miscellaneous/trinkets.yml
+- type: loadout
+  id: USSPSFClothingNeckUSSPPin
+  storage:
+    back:
+    - USSPSFClothingNeckUSSPPin
+  groupBy: "pin"

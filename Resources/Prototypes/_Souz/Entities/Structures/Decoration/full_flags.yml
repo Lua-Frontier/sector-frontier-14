@@ -1,0 +1,27 @@
+# source: _DeadSpace/Entities/Structures/Decoration/full_flags.yml
+- type: entity
+  id: USSPSFFullFlagUSSP
+  categories: [ USSP ]
+  parent: BaseStructure
+  name: флаг СССП
+  suffix: USSP, На шесте
+  description: Лаконичное напоминание о том, что даже в 3-е тысячелетие нельзя забывать про рабочий класс.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Souz/Structures/Decoration/full_flags.rsi
+    state: ussp
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.06,-0.4,0.06,0.9"
+        density: 190
+        hard: true
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer

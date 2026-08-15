@@ -39,10 +39,11 @@
     # - !type:OverallPlaytimeRequirement
     #   time: 360000
   access:
-  - SyndicateAgent
-  - NuclearOperative
+  - SyndicateMedical
+  - SyndicateChemistry
+  - SyndicateMaintenance
   accessGroups:
-  - AllAccess
+  - SyndicateGeneral
   special:
   - !type:AddImplantSpecial
     implants: [ DeathAcidifierImplantLWTypan ]

@@ -1,0 +1,15 @@
+# source: _DeadSpace/Entities/Clothing/Back/specific.yml
+- type: entity
+  parent: ClothingBackpackSatchelCaptain
+  id: USSPSFClothingBackpackTailbagCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый подсумок на хвост плафеимов капитана
+  description: Удобный белый подсумок на хвост. Выглядит дорого и блестяще.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Tailbag/captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Back/Tailbag/captain_white.rsi
+
+## Black

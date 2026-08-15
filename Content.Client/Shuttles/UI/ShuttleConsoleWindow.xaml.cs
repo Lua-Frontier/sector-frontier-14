@@ -31,6 +31,8 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
     public event Action<List<NetEntity>>? UndockAllRequest;
     public event Action<List<NetEntity>, bool>? ToggleFTLLockRequest;
     public event Action<bool>? OnStarMapVisibilityChanged;
+    public event Action<bool>? OnMapVisibilityChanged;
+    public event Action<bool>? OnExpVisibilityChanged;
     public event Action? OnWeaponSelectionChanged; // Lua
     public event Action? OnFireControlRefresh; // Lua
     public event Action<ushort, int>? OnClaimExpedition;
@@ -205,11 +207,17 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
             return;
 
         var wasStarMap = _mode == ShuttleConsoleMode.StarMap;
+        var wasMap = _mode == ShuttleConsoleMode.Map;
+        var wasExp = _mode == ShuttleConsoleMode.Exp;
         _mode = mode;
         ClearModes(mode);
         SetupMode(_mode);
         var isStarMap = _mode == ShuttleConsoleMode.StarMap;
+        var isMap = _mode == ShuttleConsoleMode.Map;
+        var isExp = _mode == ShuttleConsoleMode.Exp;
         if (wasStarMap != isStarMap) OnStarMapVisibilityChanged?.Invoke(isStarMap);
+        if (wasMap != isMap) OnMapVisibilityChanged?.Invoke(isMap);
+        if (wasExp != isExp) OnExpVisibilityChanged?.Invoke(isExp);
     }
 
     public enum ShuttleConsoleMode : byte

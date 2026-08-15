@@ -671,6 +671,9 @@ public sealed partial class InjectorSystem : EntitySystem
     /// <param name="target">The entity targeted by the user.</param>
     private void AfterInject(Entity<InjectorComponent> injector, EntityUid user, EntityUid target)
     {
+        var injectedEv = new InjectorInjectedEvent(user, injector, target);
+        RaiseLocalEvent(ref injectedEv);
+
         // Reset the delay, if present.
 
         _useDelay.TryResetDelay(injector);

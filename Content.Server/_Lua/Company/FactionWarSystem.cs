@@ -778,10 +778,9 @@ public sealed class FactionWarSystem : EntitySystem
                 protectedGrid.PreventEmpEvents,
                 protectedGrid.PreventExplosions,
                 protectedGrid.PreventArtifactTriggers,
-                protectedGrid.KillHostileMobs,
-                protectedGrid.PreventClaiming);
+                protectedGrid.KillHostileMobs);
 
-            _protectedGrid.SetProtectionState(grid, false, false, false, false, false, false, false, false);
+            _protectedGrid.SetProtectionState(grid, false, false, false, false, false, false, false);
         }
 
         if (HasComp<GridGodModeComponent>(grid) && _suppressedGridGodMode.Add(grid))
@@ -800,8 +799,7 @@ public sealed class FactionWarSystem : EntitySystem
                 protectedState.PreventEmpEvents,
                 protectedState.PreventExplosions,
                 protectedState.PreventArtifactTriggers,
-                protectedState.KillHostileMobs,
-                protectedState.PreventClaiming);
+                protectedState.KillHostileMobs);
         }
 
         if (_suppressedGridGodMode.Remove(grid) && !HasComp<GridGodModeComponent>(grid))
@@ -872,6 +870,5 @@ public sealed class FactionWarSystem : EntitySystem
         bool PreventEmpEvents,
         bool PreventExplosions,
         bool PreventArtifactTriggers,
-        bool KillHostileMobs,
-        bool PreventClaiming);
+        bool KillHostileMobs);
 }

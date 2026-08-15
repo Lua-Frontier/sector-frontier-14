@@ -174,9 +174,9 @@ namespace Content.Server.Power.EntitySystems
         private void OnReceiverStarted(Entity<ExtensionCableReceiverComponent> receiver, ref ComponentStartup args)
         {
             if (TryComp(receiver.Owner, out PhysicsComponent? physicsComponent))
-            {
                 receiver.Comp.Connectable = physicsComponent.BodyType == BodyType.Static;
-            }
+            else if (Transform(receiver.Owner).Anchored)
+                receiver.Comp.Connectable = true;
 
             if (receiver.Comp.Provider == null)
             {

@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.Clothing;
 using Content.Client.Examine;
 using Content.Client.Verbs.UI;
@@ -252,7 +253,8 @@ namespace Content.Client.Inventory
             [ViewVariables]
             public ContainerSlot? Container;
             public bool HasSlotGroup => SlotDef.SlotGroup != "Default";
-            public Vector2i ButtonOffset => SlotDef.UIWindowPosition;
+            public Vector2 ButtonOffset => SlotDef.UIWindowPosition;
+            public float UiWindowScale => SlotDef.GetUiWindowScale();
             public string SlotName => SlotDef.Name;
             public bool ShowInWindow => SlotDef.ShowInWindow;
             public string SlotGroup => SlotDef.SlotGroup;

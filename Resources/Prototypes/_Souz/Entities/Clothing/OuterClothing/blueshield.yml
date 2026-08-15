@@ -1,0 +1,49 @@
+# source: _DeadSpace/Entities/Clothing/OuterClothing/blueshield.yml
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: USSPSFClothingOuterHardsuitBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: скафандр оперативника КГБ
+  description: Скафандр предназначенный для защитника руководства.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Hardsuits/blueshield.rsi
+    equipSound: /Audio/Mecha/mechmove03.ogg
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+        Radiation: 0.5
+        Caustic: 0.6
+  - type: StaminaResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.95
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHelmetHardsuitBlueShield
+  - type: Item
+    size: Huge
+- type: entity
+  parent: USSPSFClothingOuterCoatHoSGreatcoat
+  id: USSPSFClothingOuterArmorBasicBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: бронежилет оперативника КГБ
+  description: Защитные характеристики данного бронежилета превосходят обычный и идентичны бронированной шинели начальника милиции.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Armor/blueshield_armor.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Armor/blueshield_armor.rsi

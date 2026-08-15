@@ -1,11 +1,13 @@
 using Content.Client.Shuttles.UI;
 using Content.Shared._Lua.Expedition;
+using Content.Shared._Lua.Achievements;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Mono.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Shared.Network;
 using Robust.Shared.Log;
 using Robust.Shared.Map;
 
@@ -17,6 +19,10 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
     [ViewVariables]
     private ShuttleConsoleWindow? _window;
 
+    [Dependency] private readonly INetManager _net = default!;
+
+    private bool _shootingStarted;
+
     public ShuttleConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
     }
@@ -25,6 +31,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
     {
         base.Open();
         _window = this.CreateWindow<ShuttleConsoleWindow>();
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerShuttle));
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;
@@ -34,14 +41,35 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         _window.UndockRequest += OnUndockRequest;
         _window.UndockAllRequest += OnUndockAllRequest;
         _window.ToggleFTLLockRequest += OnToggleFTLLockRequest;
-        _window.OnStarMapVisibilityChanged += visible => SendMessage(new ShuttleConsoleStarMapVisibilityMessage(visible));
+        _window.OnStarMapVisibilityChanged += visible =>
+        {
+            if (visible) _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.StarMapOpened));
+            SendMessage(new ShuttleConsoleStarMapVisibilityMessage(visible));
+        };
+        _window.OnMapVisibilityChanged += visible =>
+        {
+            if (visible) _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.MapViewed));
+        };
+        _window.OnExpVisibilityChanged += visible =>
+        {
+            if (visible) _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ExpeditionOpened));
+        };
         _window.NavContainer.NavRadar.OnRadarClick += (coords) =>
         {
             var netCoords = EntMan.GetNetCoordinates(coords);
             if (_window.NavContainer.NavRadar.IsMouseDown())
             {
                 var selected = _window.NavContainer.GetSelectedWeapons();
-                if (selected.Count > 0) SendMessage(new ShuttleConsoleFireMessage(selected, netCoords));
+                if (selected.Count > 0)
+                {
+                    if (!_shootingStarted)
+                    {
+                        _shootingStarted = true;
+                        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ShootFromShuttle));
+                    }
+
+                    SendMessage(new ShuttleConsoleFireMessage(selected, netCoords));
+                }
             }
             else
             { SendMessage(new ShuttleConsoleFireMessage(new List<NetEntity>(), netCoords)); }
@@ -55,7 +83,11 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         _window.OnFireControlRefresh += () =>
         { SendMessage(new ShuttleConsoleRefreshFireControlMessage()); };
         _window.OnClaimExpedition += (index, seed) => SendMessage(new ClaimExpeditionMessage { Index = index, Seed = seed });
-        _window.OnConfirmExpedition += () => SendMessage(new ConfirmExpeditionMessage());
+        _window.OnConfirmExpedition += () =>
+        {
+            _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ExpeditionOpened));
+            SendMessage(new ConfirmExpeditionMessage());
+        };
         _window.OnCancelExpedition += () => SendMessage(new CancelExpeditionMessage());
         _window.OnFinishExpedition += () => SendMessage(new FinishExpeditionMessage());
         NfOpen(); // Frontier
@@ -70,6 +102,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
     private void OnUndockAllRequest(List<NetEntity> dockEntities)
     {
         SendMessage(new UndockAllRequestMessage(dockEntities));
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.GiveMooring));
     }
 
     private void OnUndockRequest(NetEntity entity)
@@ -78,6 +111,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
         {
             DockEntity = entity,
         });
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.GiveMooring));
     }
 
     private void OnDockRequest(NetEntity entity, NetEntity target)
@@ -87,6 +121,7 @@ public sealed partial class ShuttleConsoleBoundUserInterface : BoundUserInterfac
             DockEntity = entity,
             TargetDockEntity = target,
         });
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.RequestDocking));
     }
 
     private void OnFTLBeaconRequest(NetEntity ent, Angle angle)

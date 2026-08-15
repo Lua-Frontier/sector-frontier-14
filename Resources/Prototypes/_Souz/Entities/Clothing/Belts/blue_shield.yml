@@ -1,0 +1,28 @@
+# source: _DeadSpace/Entities/Clothing/Belts/blue_shield.yml
+- type: entity
+  id: USSPSFClothingBeltMilitaryWebbingBlueShieldFilled
+  categories: [ USSP ]
+  parent: ClothingBeltMilitaryWebbingMed
+  name: РПС оперативника КГБ
+  description: Ременно-плечевая система, которую используют оперативники комитета государственной безопасности. Довольно прочная.
+  suffix: USSP, Заполненный
+  components:
+  - type: StorageFill
+    contents:
+      # - id: ADTCombatHypo # DS14-Soyuz disabled
+      # - id: ADTtelescopicBaton # DS14-Soyuz disabled
+      - id: ChemistryBottleEphedrine
+      - id: ChemistryBottleOmnizine
+        amount: 2
+      - id: ADTObjectsSpecificBicaridineChemistryBottle
+      - id: ADTObjectsSpecificDexalinPlusChemistryBottle
+      - id: ADTObjectsSpecificDermalineChemistryBottle
+      - id: PillCanisterDylovene
+      - id: PillCanisterHyronalin
+      # - id: Zipties # DS14-Soyuz disabled
+        # amount: 2
+      
+  - type: Sprite
+    sprite: _Souz/Clothing/Belt/webbing_blueshield.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Belt/webbing_blueshield.rsi

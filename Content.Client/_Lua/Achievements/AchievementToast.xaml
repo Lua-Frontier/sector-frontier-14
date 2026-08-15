@@ -1,0 +1,19 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:ach="clr-namespace:Content.Client._Lua.Achievements"
+                xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                MinWidth="280"
+                MaxWidth="340"
+                MouseFilter="Ignore">
+  <PanelContainer.PanelOverride>
+    <graphics:StyleBoxFlat BackgroundColor="#0E1218EE" BorderColor="#5EC8E8" BorderThickness="1"/>
+  </PanelContainer.PanelOverride>
+  <BoxContainer Orientation="Horizontal" SeparationOverride="10" Margin="10 8">
+    <ach:AchievementLayeredIcon Name="Icon"
+                                SetSize="48 48"
+                                VerticalAlignment="Center"/>
+    <BoxContainer Orientation="Vertical" SeparationOverride="2" HorizontalExpand="True" VerticalAlignment="Center">
+      <Label Name="Header" Text="{Loc 'achievement-unlocked-toast-header'}"/>
+      <Label Name="Title" ClipText="True"/>
+    </BoxContainer>
+  </BoxContainer>
+</PanelContainer>

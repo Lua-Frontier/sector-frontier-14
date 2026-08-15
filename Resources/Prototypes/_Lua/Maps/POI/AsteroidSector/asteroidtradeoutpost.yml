@@ -2,38 +2,11 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 
-- type: pointOfInterest
-  id: AsteroidTradeOutpost
-  parent: [BasePOI, BaseRepairablePOI]
-  name: 'Чёрный Рынок'
-  minimumDistance: 2500
-  maximumDistance: 3500
-  spawnGroup: AsteroidMarketStation
-  gridPath: /Maps/_Lua/POI/BlackMarket.yml
-  addComponents:
-  - type: RadarBlipIcon
-    icon: /Textures/_Lua/Interface/Radar/black_market.png
-    scale: 1.2
-    allowWhenHidden: true
-  - type: GridGodMode
-  - type: IFF
-    color: "#d93204"
-  - type: ProtectedGrid
-    preventArtifactTriggers: true
-  - type: SolarPoweredGrid
-    trackOnInit: true
-    doNotCull: true
-  - type: WorldGenDistanceCarver
-    distanceThresholds:
-      - maxDistance: 500
-        prob: 0.0
-      - maxDistance: 1000
-        prob: 0.3
-
 - type: gameMap
   id: AsteroidTradeOutpost
   mapName: 'Чёрный Рынок'
   mapPath: /Maps/_Lua/POI/BlackMarket.yml
+  isGrid: true
   minPlayers: 0
   stations:
     AsteroidTradeOutpost:
@@ -41,13 +14,19 @@
       components:
         - type: FactionCapture
           captureWholeStation: true
+        - type: BecomesStation
+          id: AsteroidTradeOutpost
+        - type: RadarBlipIcon
+          icon: /Textures/_Lua/Interface/Radar/black_market.png
+          scale: 1.2
+          allowWhenHidden: true
         - type: FactionOwnedStation
           originalCompany: Neutral
           currentCompany: Neutral
           mainBase: true
         - type: StationNameSetup
-          mapNameTemplate: 'Trade Outpost'
-        - type: ExtraStationInformation #Lua
+          mapNameTemplate: 'Чёрный Рынок'
+        - type: ExtraStationInformation
           iconPath: /Textures/Structures/Wallmounts/flags.rsi/pirate_flag.png
           stationSubtext: 'frontier-lobby-blackmarket-subtext'
           stationDescription: 'frontier-lobby-blackmarket-description'
@@ -60,3 +39,12 @@
             Contractor: [ -1, -1 ]
             Mercenary: [ -1, -1 ]
             OpsLuaTech: [ 1, 1 ]
+      gridComponents:
+      - type: GridGodMode
+      - type: IFF
+        color: "#d93204"
+      - type: ProtectedGrid
+        preventArtifactTriggers: true
+      - type: SolarPoweredGrid
+        trackOnInit: true
+        doNotCull: true

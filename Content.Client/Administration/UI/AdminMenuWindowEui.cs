@@ -22,11 +22,20 @@ namespace Content.Client.Administration.UI
             SendMessage(new AdminAnnounceEuiMsg.DoAnnounce
             {
                 Announcement = Rope.Collapse(_window.Announcement.TextRope),
-                Announcer =  _window.Announcer.Text,
-                AnnounceType =  (AdminAnnounceType) (_window.AnnounceMethod.SelectedMetadata ?? AdminAnnounceType.Station),
+                FactionId = _window.SelectedFactionId,
+                SectorId = _window.SelectedSectorId,
+                AnnounceType = (AdminAnnounceType)(_window.AnnounceMethod.SelectedMetadata ?? AdminAnnounceType.Station),
                 CloseAfter = !_window.KeepWindowOpen.Pressed,
             });
+        }
 
+        public override void HandleState(EuiStateBase state)
+        {
+            if (state is not AdminAnnounceEuiState announceState)
+                return;
+
+            _window.SetFactions(announceState.Factions);
+            _window.SetSectors(announceState.Sectors);
         }
 
         public override void Opened()

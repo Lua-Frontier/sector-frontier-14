@@ -29,6 +29,16 @@
         - MonoWorldgenDeepVoid
 
 - type: worldgenConfig
+  id: UsspSectorDefault
+  components:
+    - type: WorldController
+    - type: BiomeSelection
+      biomes:
+        - UsspSectorClearNear          # 0-11000: empty
+        - MonoWorldgenVeryFarT2Inner   # 11000-15000: single asteroid ring
+        - UsspSectorClearFar           # 15000+: empty catch-all
+
+- type: worldgenConfig
   id: NebulaSpace
   components:
     - type: WorldController

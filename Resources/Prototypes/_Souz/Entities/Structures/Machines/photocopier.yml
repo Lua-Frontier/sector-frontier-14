@@ -1,0 +1,20 @@
+# source: _DeadSpace/Entities/Structures/Machines/photocopier.yml
+- type: entity
+  parent: BaseItem
+  id: USSPSFPhotocopierTonerCartridge
+  categories: [ USSP ]
+  suffix: USSP
+  name: тонер для копировального аппарата
+  description: Пахнет блюспейсом.
+  components:
+  - type: Item
+    sprite: _Souz/Objects/Misc/tonercartridge.rsi
+    size: Small
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/tonercartridge.rsi
+    state: icon
+  - type: StaticPrice
+    price: 80
+  - type: TonerCartridge
+
+# NT

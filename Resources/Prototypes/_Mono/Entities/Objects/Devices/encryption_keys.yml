@@ -1,0 +1,19 @@
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyUssp
+  name: USSP encryption key
+  description: An encryption key for the USSP tactical-level communications channel.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: EncryptionKey
+    channels:
+    - Ussp
+    defaultChannel: Ussp
+  - type: Item
+    sprite: Objects/Devices/encryption_keys.rsi
+  - type: Sprite
+    sprite: Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_rusted
+    - state: sec_label

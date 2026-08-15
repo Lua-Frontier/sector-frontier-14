@@ -1,0 +1,13 @@
+# source: _DeadSpace/Entities/Clothing/Masks/bandanas.yml
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: USSPSFClothingMaskBandSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: бандана милиции
+  description: Плотная тканевая бандана тёмно-красного цвета, принадлежащая станционной службе безопасности СССП.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Bandanas/sec.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Bandanas/sec.rsi

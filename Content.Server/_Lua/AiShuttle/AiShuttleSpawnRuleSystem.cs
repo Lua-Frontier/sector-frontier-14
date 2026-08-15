@@ -12,7 +12,6 @@ using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
-using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Server.Maps.NameGenerators;
@@ -45,35 +44,43 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
         base.Initialize();
     }
 
+    private readonly Dictionary<EntityUid, MapId> _eventMap = new();
+    private MapId _relevantMapId = MapId.Nullspace;
+
     protected override MapId GetRelevantMapId()
     {
-        return GameTicker.DefaultMap;
+        return _relevantMapId;
+    }
+
+    protected override void Added(EntityUid uid, AiShuttleSpawnRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
+    {
+        if (!TryResolveTargetMap(uid, component, out var targetMapId))
+        {
+            _eventMap[uid] = MapId.Nullspace;
+            _relevantMapId = MapId.Nullspace;
+            Log.Error($"AiShuttleSpawnRule: no target map for {ToPrettyString(uid)}; event will not spawn");
+            return;
+        }
+
+        _eventMap[uid] = targetMapId;
+        _relevantMapId = targetMapId;
+        base.Added(uid, component, gameRule, args);
     }
 
     protected override void Started(EntityUid uid, AiShuttleSpawnRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        MapId targetMapId;
-        EntityUid mapUid;
-        if (component.Asteroid)
+
+        if (!_eventMap.TryGetValue(uid, out var targetMapId) ||
+            targetMapId == MapId.Nullspace ||
+            !_map.MapExists(targetMapId))
         {
-            if (!_sectors.TryGetMapId("AsteroidSectorDefault", out targetMapId))
-            { targetMapId = MapId.Nullspace; }
-            if (targetMapId == MapId.Nullspace)
-            {
-                if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
-                targetMapId = GameTicker.DefaultMap;
-                mapUid = defaultMapUid.Value;
-            }
-            else
-            { mapUid = _mapManager.GetMapEntityId(targetMapId); }
+            Log.Error($"AiShuttleSpawnRule: aborting {ToPrettyString(uid)} — target map missing");
+            return;
         }
-        else
-        {
-            if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
-            targetMapId = GameTicker.DefaultMap;
-            mapUid = defaultMapUid.Value;
-        }
+
+        var mapUid = _mapManager.GetMapEntityId(targetMapId);
+        _relevantMapId = targetMapId;
         var spawnCoords = new EntityCoordinates(mapUid, Vector2.Zero);
         _map.CreateMap(out var mapId);
         foreach (var group in component.Groups.Values)
@@ -165,9 +172,34 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
         return false;
     }
 
+    private bool TryResolveTargetMap(EntityUid uid, AiShuttleSpawnRuleComponent component, out MapId targetMapId)
+    {
+        if (string.IsNullOrEmpty(component.SectorStarmap))
+        {
+            Log.Error($"AiShuttleSpawnRule: sectorStarmap is required; aborting {ToPrettyString(uid)}");
+            targetMapId = MapId.Nullspace;
+            return false;
+        }
+
+        if (_sectors.TryGetMapId(component.SectorStarmap, out targetMapId) &&
+            targetMapId != MapId.Nullspace &&
+            _map.MapExists(targetMapId))
+            return true;
+
+        Log.Error($"AiShuttleSpawnRule: sectorStarmap '{component.SectorStarmap}' is not loaded; aborting {ToPrettyString(uid)}");
+        targetMapId = MapId.Nullspace;
+        return false;
+    }
+
     protected override void Ended(EntityUid uid, AiShuttleSpawnRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
+        if (_eventMap.TryGetValue(uid, out var eventMap))
+            _relevantMapId = eventMap;
+
         base.Ended(uid, component, gameRule, args);
+        _eventMap.Remove(uid);
+        _relevantMapId = MapId.Nullspace;
+
         if (component.GridsUid == null) return;
         foreach (var componentGridUid in component.GridsUid)
         {
@@ -175,12 +207,13 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
             if (gridTransform.GridUid is not EntityUid gridUid) return;
             if (component.DeleteGridsOnEnd)
             {
+                var bankContext = gridTransform.MapUid;
                 var gridValue = _pricing.AppraiseGrid(gridUid, null);
                 Del(gridUid);
                 foreach (var (account, rewardCoeff) in component.RewardAccounts)
                 {
                     var reward = (int)(gridValue * rewardCoeff);
-                    _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward);
+                    _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward, bankContext);
                 }
             }
         }

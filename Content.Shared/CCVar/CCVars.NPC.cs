@@ -31,4 +31,9 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<float> NPCPlayerPauseDistance =
         CVarDef.Create("npc.player_pause_distance", 32f);
+
+    public static readonly CVarDef<bool> NPCParallelSteering =
+        CVarDef.Create("npc.parallel_steering", true);
+    public static readonly CVarDef<float> NPCPlanQueueBudget =
+        CVarDef.Create("npc.plan_queue_budget", 0.004f);
 }

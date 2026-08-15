@@ -1,0 +1,97 @@
+# source: Entities/Objects/Tools/jetpacks.yml
+- type: entity
+  parent: BaseAction
+  id: USSPSFActionToggleJetpack
+  categories: [ USSP ]
+  suffix: USSP
+  name: Toggle jetpack
+  description: Toggles the jetpack, giving you movement outside the station.
+  components:
+  - type: Action
+    icon:
+      sprite: _Souz/Objects/Tanks/Jetpacks/blue.rsi
+      state: icon
+    iconOn:
+      sprite: _Souz/Objects/Tanks/Jetpacks/blue.rsi
+      state: icon-on
+    useDelay: 1.0
+  - type: InstantAction
+    event: !type:ToggleJetpackEvent
+
+#Empty blue
+- type: entity
+  id: USSPSFJetpackCaptain
+  categories: [ USSP ]
+  parent: [BaseJetpack, BaseC2ContrabandUnredeemable]
+  name: captain's jetpack
+  suffix: USSP, Empty
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Tanks/Jetpacks/captain.rsi
+  - type: Clothing
+    sprite: _Souz/Objects/Tanks/Jetpacks/captain.rsi
+    slots:
+      - Back
+      - SuitStorage
+  - type: Item
+    sprite: _Souz/Objects/Tanks/Jetpacks/captain.rsi
+    size: Normal
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: USSPSFJetpackCaptainFilled
+
+# Filled captain
+- type: entity
+  id: USSPSFJetpackCaptainFilled
+  categories: [ USSP ]
+  parent: USSPSFJetpackCaptain
+  name: captain's jetpack
+  suffix: USSP, Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 13 minutes of thrust
+      volume: 5
+      temperature: 293.15
+      moles:
+        - 1.025689525 # oxygen
+        - 1.025689525 # nitrogen
+
+#Empty mini
+- type: entity
+  id: USSPSFJetpackSecurity
+  categories: [ USSP ]
+  parent: [JetpackMini, BaseC2ContrabandUnredeemable]
+  name: security mini jetpack
+  description: A compact jetpack utilized by station security when patrolling the station's exterior. Not intended for long range travel, it holds only 1.5 L of gas.
+  suffix: USSP, Empty
+  components:
+  - type: Item
+    sprite: _Souz/Objects/Tanks/Jetpacks/security.rsi
+  - type: Sprite
+    sprite: _Souz/Objects/Tanks/Jetpacks/security.rsi
+  - type: Clothing
+    sprite: _Souz/Objects/Tanks/Jetpacks/security.rsi
+
+#Filled security
+- type: entity
+  id: USSPSFJetpackSecurityFilled
+  categories: [ USSP ]
+  parent: USSPSFJetpackSecurity
+  name: security jetpack
+  suffix: USSP, Filled
+  components:
+  - type: GasTank
+    outputPressure: 42.6
+    air:
+      # 4 minutes of thrust
+      volume: 1.5
+      temperature: 293.15
+      moles:
+        - 0.307706858 # oxygen
+        - 0.307706858 # nitrogen
+
+#Empty void

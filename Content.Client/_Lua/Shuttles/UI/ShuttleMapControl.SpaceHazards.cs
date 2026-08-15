@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Client._Lua.Styles;
 using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.Shuttles.Components;
 using Content.Shared._Lua.SpaceHazards;
@@ -121,7 +122,7 @@ public sealed partial class ShuttleMapControl
             if (radius <= 1f)
                 return;
 
-            handle.DrawCircle(localPos, radius * MinimapScale, color, filled: false);
+            LunaDraw.Circle(handle, localPos, radius * MinimapScale, color, filled: false);
         }
 
         if (body.Kind == CelestialKind.BlackHole)
@@ -306,7 +307,7 @@ public sealed partial class ShuttleMapControl
         foreach (var local in worldPoints)
         {
             var next = ToUi(local);
-            handle.DrawLine(prev, next, color);
+            LunaDraw.Line(handle, prev, next, color);
             prev = next;
         }
     }
@@ -336,7 +337,7 @@ public sealed partial class ShuttleMapControl
                 var adjusted = Vector2.Transform(mapCoords.Position, matty);
                 var ui = ScalePosition(adjusted with { Y = -adjusted.Y });
                 if (prev != null)
-                    handle.DrawDottedLine(prev.Value, ui, color, animOffset);
+                    LunaDraw.DashedLine(handle, prev.Value, ui, color, dashLength: 8f, gapLength: 2f, offset: animOffset);
                 prev = ui;
             }
         }

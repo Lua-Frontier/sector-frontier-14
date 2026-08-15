@@ -1208,7 +1208,6 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
-    - type: ShipCpuLimit
 - proto: AirlockMedicalGlass
   entities:
   - uid: 667
@@ -9228,7 +9227,7 @@ entities:
     - type: Transform
       pos: 5.5,-22.5
       parent: 1
-- proto: WeaponTurretASM501
+- proto: WeaponTurretASM220
   entities:
   - uid: 548
     components:

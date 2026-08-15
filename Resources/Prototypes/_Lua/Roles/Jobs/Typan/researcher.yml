@@ -28,10 +28,10 @@
   #   department: Medical
   #   time: 36000 # 20h
   access:
-  - SyndicateAgent
-  - NuclearOperative
+  - SyndicateResearch
+  - SyndicateMaintenance
   accessGroups:
-  - AllAccess
+  - SyndicateGeneral
   special:
   - !type:AddImplantSpecial
     implants: [ DeathAcidifierImplantLWTypan ]

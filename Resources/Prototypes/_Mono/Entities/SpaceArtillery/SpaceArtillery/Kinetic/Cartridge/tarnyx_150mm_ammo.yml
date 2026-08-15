@@ -2,7 +2,7 @@
   id: ShipTarnyxProjectile
   name: TARNYX 150mm EMP projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -29,6 +29,7 @@
     disableDuration: 5.5
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 150mmEmpShell
   name: 150mm EMP shell
   description: A chemically-propelled EMP shell, used in 150mm cannons such as the TARNYX. Nothing fancy.
@@ -76,7 +77,7 @@
   id: ShipTarnyxApProjectile
   name: TARNYX 150mm AP projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -97,6 +98,7 @@
     lifetime: 5
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 150mmApShell
   name: 150mm AP shell
   description: A chemically-propelled AP shell for 150mm cannons. Its not very good, as most 150mm cannons are optimized for EMP shells. Its a crude method, and it certainly wouldn't pass a TSFN inspection.
@@ -140,7 +142,7 @@
   id: ShipTarnyxApheProjectile
   name: TARNYX 150mm APHE projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -169,6 +171,7 @@
     lifetime: 5
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 150mmApheShell
   name: 150mm APHE shell
   description: A chemically-propelled APHE shell for 150mm cannons. It'll work.

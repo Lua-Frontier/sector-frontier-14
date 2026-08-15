@@ -1,0 +1,352 @@
+# USSP station loadout groups (_Souz gear)
+
+- type: loadout
+  id: UsspLoadoutPassengerPDA
+  equipment:
+    id: USSPSFPassengerPDA
+
+- type: loadoutGroup
+  id: UsspPassengerPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutPassengerPDA
+  fallbacks:
+  - UsspLoadoutPassengerPDA
+
+- type: loadout
+  id: UsspLoadoutSecurityCadetPDA
+  equipment:
+    id: USSPSFSecurityCadetPDA
+
+- type: loadoutGroup
+  id: UsspSecurityCadetPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutSecurityCadetPDA
+  fallbacks:
+  - UsspLoadoutSecurityCadetPDA
+
+- type: loadout
+  id: UsspLoadoutCaptainPDA
+  equipment:
+    id: USSPSFCaptainPDA
+
+- type: loadoutGroup
+  id: UsspCaptainPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutCaptainPDA
+  fallbacks:
+  - UsspLoadoutCaptainPDA
+
+- type: loadout
+  id: UsspLoadoutHoPPDA
+  equipment:
+    id: USSPSFHoPPDA
+
+- type: loadoutGroup
+  id: UsspHoPPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutHoPPDA
+  fallbacks:
+  - UsspLoadoutHoPPDA
+
+- type: loadout
+  id: UsspLoadoutHoSPDA
+  equipment:
+    id: USSPSFHoSPDA
+
+- type: loadoutGroup
+  id: UsspHoSPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutHoSPDA
+  fallbacks:
+  - UsspLoadoutHoSPDA
+
+- type: loadout
+  id: UsspLoadoutSecurityPDA
+  equipment:
+    id: USSPSFSecurityPDA
+
+- type: loadoutGroup
+  id: UsspSecurityPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutSecurityPDA
+  fallbacks:
+  - UsspLoadoutSecurityPDA
+
+- type: loadout
+  id: UsspLoadoutSecurityPilotPDA
+  equipment:
+    id: USSPSFSecurityPilotPDA
+
+- type: loadoutGroup
+  id: UsspSecurityPilotPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutSecurityPilotPDA
+  fallbacks:
+  - UsspLoadoutSecurityPilotPDA
+
+- type: loadout
+  id: UsspLoadoutBrigmedicPDA
+  equipment:
+    id: USSPSFBrigmedicPDA
+
+- type: loadoutGroup
+  id: UsspBrigmedicPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutBrigmedicPDA
+  fallbacks:
+  - UsspLoadoutBrigmedicPDA
+
+- type: loadout
+  id: UsspLoadoutPolitrukPDA
+  equipment:
+    id: USSPSFPolitrukPDA
+
+- type: loadoutGroup
+  id: UsspPolitrukPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutPolitrukPDA
+  fallbacks:
+  - UsspLoadoutPolitrukPDA
+
+- type: loadout
+  id: UsspLoadoutBlueShieldPDA
+  equipment:
+    id: USSPSFBlueShieldOfficerPDA
+
+- type: loadoutGroup
+  id: UsspBlueShieldPDA
+  name: loadout-group-contractor-id
+  hidden: true
+  loadouts:
+  - UsspLoadoutBlueShieldPDA
+  fallbacks:
+  - UsspLoadoutBlueShieldPDA
+
+- type: loadout
+  id: UsspLoadoutJumpsuitSec
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitSec
+
+- type: loadout
+  id: UsspLoadoutJumpsuitCaptain
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitCaptain
+
+- type: loadout
+  id: UsspLoadoutJumpsuitHoS
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitHoS
+
+- type: loadout
+  id: UsspLoadoutJumpsuitHoP
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitHoP
+
+- type: loadout
+  id: UsspLoadoutJumpsuitBrigmedic
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitBrigmedic
+
+- type: loadout
+  id: UsspLoadoutJumpsuitPolitruk
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitPolitRuk
+
+- type: loadout
+  id: UsspLoadoutJumpsuitPilot
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitSecPilot
+
+- type: loadoutGroup
+  id: UsspSecurityJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitSec
+  - UsspLoadoutJumpsuitSecGrey
+  - UsspLoadoutJumpskirtSec
+  - UsspLoadoutJumpskirtSecGrey
+  fallbacks:
+  - UsspLoadoutJumpsuitSec
+
+- type: loadoutGroup
+  id: UsspCaptainJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitCaptain
+  - UsspLoadoutJumpskirtCaptain
+  - UsspLoadoutJumpsuitCapFormal
+  - UsspLoadoutJumpskirtCapFormalDress
+  - UsspLoadoutTurtleneckCaptain
+  - UsspLoadoutJumpskirtTurtleneckCaptain
+  - UsspLoadoutPencilCaptain
+  - UsspLoadoutJumpsuitCaptainWhite
+  - UsspLoadoutJumpsuitCapFormalWhite
+  - UsspLoadoutJumpskirtCaptainWhite
+  - UsspLoadoutTurtleneckCaptainWhite
+  - UsspLoadoutJumpskirtTurtleneckCaptainWhite
+  - UsspLoadoutPencilCaptainWhite
+  - UsspLoadoutJumpsuitCaptainBlack
+  - UsspLoadoutJumpsuitCapFormalBlack
+  - UsspLoadoutJumpskirtCaptainBlack
+  - UsspLoadoutTurtleneckCaptainBlack
+  - UsspLoadoutJumpskirtTurtleneckCaptainBlack
+  - UsspLoadoutPencilCaptainBlack
+  fallbacks:
+  - UsspLoadoutJumpsuitCaptain
+
+- type: loadoutGroup
+  id: UsspHoSJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitHoS
+  - UsspLoadoutJumpsuitHoSAlt
+  - UsspLoadoutJumpsuitHoSBlue
+  - UsspLoadoutJumpsuitHoSGrey
+  - UsspLoadoutJumpsuitHoSParade
+  - UsspLoadoutJumpsuitHosFormal
+  - UsspLoadoutJumpskirtHoS
+  - UsspLoadoutJumpskirtHoSAlt
+  - UsspLoadoutJumpskirtHoSParade
+  - UsspLoadoutJumpskirtHosFormal
+  - UsspLoadoutPencilHoS
+  fallbacks:
+  - UsspLoadoutJumpsuitHoS
+
+- type: loadoutGroup
+  id: UsspHoPJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitHoP
+  - UsspLoadoutJumpsuitHoPTurtle
+  - UsspLoadoutJumpskirtHoP
+  - UsspLoadoutJumpskirtHoPTurtle
+  - UsspLoadoutPencilHoP
+  fallbacks:
+  - UsspLoadoutJumpsuitHoP
+
+- type: loadoutGroup
+  id: UsspBrigmedicJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitBrigmedic
+  - UsspLoadoutJumpskirtBrigmedic
+  - UsspLoadoutPencilBrigmedic
+  - UsspLoadoutJumpskirtOfLife
+  fallbacks:
+  - UsspLoadoutJumpsuitBrigmedic
+
+- type: loadoutGroup
+  id: UsspPolitrukJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitPolitruk
+  - UsspLoadoutJumpsuitPolitrukFormal
+  - UsspLoadoutJumpsuitPolitrukSkirt
+  - UsspLoadoutPolitRukDress
+  - UsspLoadoutPencilPolitRuk
+  fallbacks:
+  - UsspLoadoutJumpsuitPolitruk
+
+- type: loadoutGroup
+  id: UsspSecurityPilotJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitPilot
+  fallbacks:
+  - UsspLoadoutJumpsuitPilot
+
+- type: loadout
+  id: UsspLoadoutHeadSecBeret
+  equipment:
+    head: USSPSFClothingHeadHatBeretSecurity
+
+- type: loadout
+  id: UsspLoadoutHeadHoSBeret
+  equipment:
+    head: USSPSFClothingHeadHatBeretHoS
+
+- type: loadout
+  id: UsspLoadoutHeadCaptain
+  equipment:
+    head: USSPSFClothingHeadHatCaptain
+
+- type: loadout
+  id: UsspLoadoutHeadPolitrukBeret
+  equipment:
+    head: USSPSFClothingHeadHatBeretPolitruk
+
+- type: loadoutGroup
+  id: UsspSecurityHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadSecBeret
+  - UsspLoadoutHeadHelmetBasic
+  - UsspLoadoutHeadHelmetRiot
+  - UsspLoadoutHeadHelmetSecFlash
+
+- type: loadoutGroup
+  id: UsspHoSHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadHoSBeret
+  - UsspLoadoutHeadHoshat
+  - UsspLoadoutHeadCapHoS
+  - UsspLoadoutHeadUshankaHOS
+
+- type: loadoutGroup
+  id: UsspCaptainHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadCaptain
+  - UsspLoadoutHeadCapcap
+  - UsspLoadoutHeadBeretCaptain
+  - UsspLoadoutHeadCaptainHat
+  - UsspLoadoutHeadBeretCaptainWhite
+  - UsspLoadoutHeadCapcapWhite
+  - UsspLoadoutHeadBeretCaptainBlack
+  - UsspLoadoutHeadCapcapBlack
+
+- type: loadoutGroup
+  id: UsspPolitrukHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadPolitrukBeret
+  - UsspLoadoutHeadPolitrukCap
+
+- type: loadout
+  id: UsspLoadoutOuterWinterSec
+  equipment:
+    outerClothing: USSPSFClothingOuterWinterHoSUnarmored
+
+- type: loadoutGroup
+  id: UsspSecurityOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - UsspLoadoutOuterWinterSec
+  - UsspLoadoutOuterVestArmorSec
+  - UsspLoadoutOuterCoatSecurityOvercoat

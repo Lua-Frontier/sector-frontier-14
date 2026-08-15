@@ -84,7 +84,7 @@ public sealed class ShareSectorSystem : SharedShareSectorSystem
         string sectorId,
         string? speakerCompany,
         bool globallyUnlocked,
-        StarmapDataPrototype data)
+        ComposedStarmapData data)
     {
         if (!TryComp<TransformComponent>(speaker, out var speakerXform))
             return 0;
@@ -160,13 +160,13 @@ public sealed class ShareSectorSystem : SharedShareSectorSystem
         return SectorVisibility.NoneCompany;
     }
 
-    private bool TryGetStarmapData(out StarmapDataPrototype data)
+    private bool TryGetStarmapData(out ComposedStarmapData data)
     {
         var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-        return _prototypeManager.TryIndex(dataId, out data!);
+        return StarmapDataComposer.TryCompose(_prototypeManager, dataId, out data!);
     }
 
-    private static bool TryGetSector(StarmapDataPrototype data, string sectorId, out StarDefinition sector)
+    private static bool TryGetSector(ComposedStarmapData data, string sectorId, out StarDefinition sector)
     {
         foreach (var def in data.Stars)
         {

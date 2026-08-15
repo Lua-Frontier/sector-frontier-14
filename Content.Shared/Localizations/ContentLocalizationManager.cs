@@ -178,10 +178,13 @@ namespace Content.Shared.Localizations
         /// </summary>
         public static string FormatPlaytime(TimeSpan time)
         {
-            time = TimeSpan.FromMinutes(Math.Ceiling(time.TotalMinutes));
+            if (time < TimeSpan.Zero)
+                time = TimeSpan.Zero;
+
             var hours = (int)time.TotalHours;
             var minutes = time.Minutes;
-            return Loc.GetString($"zzzz-fmt-playtime", ("hours", hours), ("minutes", minutes));
+            var seconds = time.Seconds;
+            return Loc.GetString("zzzz-fmt-playtime", ("hours", hours), ("minutes", minutes), ("seconds", seconds));
         }
 
         private static ILocValue FormatLoc(LocArgs args)

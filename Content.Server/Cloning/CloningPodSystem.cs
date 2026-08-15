@@ -13,6 +13,7 @@ using Content.Shared.Atmos;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cloning;
+using Content.Shared.Cloning.Events;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Emag.Components;
@@ -106,6 +107,9 @@ public sealed class CloningPodSystem : EntitySystem
             RemComp<BeingClonedComponent>(uid);
             return;
         }
+        var clonedEv = new ClonedMindAddedEvent(uid);
+        RaiseLocalEvent(ref clonedEv);
+
         UpdateStatus(clonedComponent.Parent, CloningPodStatus.Cloning, cloningPodComponent);
     }
     private void OnPortDisconnected(Entity<CloningPodComponent> ent, ref PortDisconnectedEvent args)

@@ -57,6 +57,8 @@ namespace Content.Server.Tabletop
             // Lighting is always disabled in tabletop world.
             mapComp.LightingEnabled = false;
             Dirty(mapUid, mapComp);
+
+            _metaData.SetEntityName(mapUid, Loc.GetString("map-name-tabletop-games"));
         }
 
         /// <summary>

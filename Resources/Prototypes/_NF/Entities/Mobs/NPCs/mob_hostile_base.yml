@@ -232,8 +232,6 @@
   id: MobEnhancedMovement
   abstract: true
   components:
-  - type: MovementAlwaysTouching
-  - type: MovementIgnoreGravity
   - type: NoSlip
   - type: ProtectedFromStepTriggers
   - type: Climbing
@@ -382,6 +380,10 @@
         true
       NavPry: !type:Bool
         true
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
       NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
         true
 
@@ -399,6 +401,10 @@
         true
       NavPry: !type:Bool
         false #Lua true<false
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
       NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
         true
 
@@ -416,6 +422,10 @@
         true
       NavPry: !type:Bool
         true
+      VisionRadius: !type:Single
+        25
+      AggroVisionRadius: !type:Single
+        25
 #      NavSmash: !type:Bool # They use this option too much for my liking, but I'll keep it here as an option
 #        true
 #endregion

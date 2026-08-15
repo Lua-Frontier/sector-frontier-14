@@ -1,4 +1,4 @@
-﻿using Content.Server.Chat.Managers;
+using Content.Server.Chat.Managers;
 using Content.Server.IdentityManagement;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -9,7 +9,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server._White.Examine
 {
-    public sealed class ExaminableCharacterSystem : EntitySystem
+    public sealed partial class ExaminableCharacterSystem : EntitySystem
     {
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly IdentitySystem _identitySystem = default!;
@@ -24,7 +24,13 @@ namespace Content.Server._White.Examine
 
         private void HandleExamine(EntityUid uid, ExaminableCharacterComponent comp, ExaminedEvent args)
         {
-            var selfaware = (args.Examiner == args.Examined);
+            if (!TryComp<ActorComponent>(args.Examiner, out var actorComponent)
+                || !args.IsInDetailsRange)
+                return;
+
+            var showExamine = _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, CCVars.DetailedExamine);
+
+            var selfaware = args.Examiner == args.Examined;
             var logLines = new List<string>();
 
             string canseeloc = "examine-can-see";
@@ -40,22 +46,38 @@ namespace Content.Server._White.Examine
             var name = Loc.GetString(nameloc, ("name", identity));
             logLines.Add($"[color=DarkGray][font size=10]{name}[/font][/color]");
 
+            if (showExamine)
+                args.PushMarkup($"[font size=10]{name}[/font]", 15);
+
             var cansee = Loc.GetString(canseeloc, ("ent", uid));
             logLines.Add($"[color=DarkGray][font size=10]{cansee}[/font][/color]");
+
+            if (showExamine)
+                args.PushMarkup($"[font size=10]{cansee}[/font]", 14);
 
             var slotLabels = new Dictionary<string, string>
             {
                 { "head", "head-" },
+                { "helmetcover", "helmetcover-" },
+                { "helmetattachment", "helmetattachment-" },
                 { "eyes", "eyes-" },
                 { "mask", "mask-" },
+                { "balaclava", "balaclava-" },
                 { "neck", "neck-" },
+                { "necklace", "necklace-" },
                 { "ears", "ears-" },
+                { "earring", "earring-" },
+                { "hairpin", "hairpin-" },
                 { "jumpsuit", "jumpsuit-" },
                 { "outerClothing", "outer-" },
                 { "back", "back-" },
                 { "gloves", "gloves-" },
+                { "finger", "finger-" },
+                { "leftarmband", "leftarmband-" },
+                { "rightarmband", "rightarmband-" },
                 { "belt", "belt-" },
                 { "id", "id-" },
+                { "wallet", "wallet-" },
                 { "shoes", "shoes-" },
                 { "suitstorage", "suitstorage-" }
             };
@@ -78,17 +100,14 @@ namespace Content.Server._White.Examine
                 if (_entityManager.TryGetComponent<MetaDataComponent>(slotEntity, out var metaData))
                 {
                     var item = Loc.GetString(slotLabel, ("item", metaData.EntityName), ("ent", uid));
-                    args.PushMarkup($"[font size=10]{item}[/font]", priority);
+                    if (showExamine)
+                        args.PushMarkup($"[font size=10]{item}[/font]", priority);
                     logLines.Add($"[color=DarkGray][font size=10]{item}[/font][/color]");
                     priority--;
                 }
             }
 
-            if (priority < 13) // If nothing is worn dont show
-            {
-                args.PushMarkup($"[font size=10]{cansee}[/font]", 14);
-            }
-            else
+            if (priority >= 13)
             {
                 string canseenothingloc = "examine-can-see-nothing";
 
@@ -97,15 +116,15 @@ namespace Content.Server._White.Examine
 
                 var canseenothing = Loc.GetString(canseenothingloc, ("ent", uid));
                 logLines.Add($"[color=DarkGray][font size=10]{canseenothing}[/font][/color]");
+
+                if (showExamine)
+                    args.PushMarkup($"[font size=10]{canseenothing}[/font]", priority);
             }
 
             var combinedLog = string.Join("\n", logLines);
 
-            if (TryComp<ActorComponent>(args.Examiner, out var actorComponent))
-            {
-                if (_netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, CCVars.LogInChat))
-                    _chatManager.ChatMessageToOne(ChatChannel.Emotes, combinedLog, combinedLog, EntityUid.Invalid, false, actorComponent.PlayerSession.Channel, recordReplay: false);
-            }
+            if (showExamine && _netConfigManager.GetClientCVar(actorComponent.PlayerSession.Channel, CCVars.LogInChat))
+                _chatManager.ChatMessageToOne(ChatChannel.Emotes, combinedLog, combinedLog, EntityUid.Invalid, false, actorComponent.PlayerSession.Channel, recordReplay: false);
         }
     }
 }

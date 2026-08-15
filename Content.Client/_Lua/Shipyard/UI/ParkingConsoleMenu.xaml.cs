@@ -39,6 +39,9 @@ public sealed partial class ParkingConsoleMenu : FancyWindow
         DockRadar.OnRadarClick += OnDockRadarClick;
     }
 
+    public void SetRadarConsole(EntityUid console)
+    { DockRadar.SetConsole(console); }
+
     public void UpdateState(ParkingConsoleInterfaceState state)
     {
         _hasDeed = state.ShipDeedTitle != null;

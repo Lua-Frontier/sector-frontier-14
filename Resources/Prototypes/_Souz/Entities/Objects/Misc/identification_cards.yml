@@ -1,0 +1,147 @@
+# source: Entities/Objects/Misc/identification_cards.yml
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFPassengerIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: passenger ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idpassenger
+  - type: PresetIdCard
+    job: UsspPassenger
+- type: entity
+  parent: USSPSFPassengerIDCard
+  id: USSPSFSecurityCadetIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: security cadet ID card
+  components:
+  - type: PresetIdCard
+    job: UsspSecurityCadet
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idintern-cadet
+- type: entity
+  parent: [IDCardStandard, BaseC2ContrabandUnredeemable]
+  id: USSPSFCaptainIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: gold
+    - state: idcaptain
+  - type: Item
+    heldPrefix: gold
+  - type: PresetIdCard
+    job: UsspCaptain
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - WhitelistChameleon
+    - WhitelistChameleonIdCard
+    - HighRiskItem
+  - type: StealTarget
+    stealGroup: USSPSFCaptainIDCard
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFSecurityIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: security ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idsecurityofficer
+  - type: PresetIdCard
+    job: UsspSecurityOfficer
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFHoPIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idheadofpersonnel
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: UsspHeadOfPersonnel
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFHoSIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idheadofsecurity
+  - type: Item
+    heldPrefix: silver
+  - type: PresetIdCard
+    job: UsspHeadOfSecurity
+
+# source: _DeadSpace/Entities/Objects/Misc/identification_cards.yml
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFSecurityPilotIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: security pilot ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idsecuritypilot
+  - type: PresetIdCard
+    job: UsspSecurityPilot
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFBrigmedicIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic ID card
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idbrigmedic
+  - type: PresetIdCard
+    job: UsspBrigmedic
+
+# Centcom
+
+# source: _DeadSpace/_Soyuz/Entities/Objects/Misc/identification_cards.yml
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFPolitrukIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  name: ID-карта Политического Руководителя
+  components:
+    - type: Sprite
+      sprite: _Souz/Objects/Misc/id_cards.rsi
+      layers:
+        - state: NKVBCard
+        - state: PolitRuk
+    - type: PresetIdCard
+      job: UsspPolitruk

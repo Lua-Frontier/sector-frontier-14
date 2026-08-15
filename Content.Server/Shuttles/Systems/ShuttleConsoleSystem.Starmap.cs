@@ -5,9 +5,7 @@
 using Content.Server._Lua.Company;
 using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Systems;
-using Content.Server.Backmen.Arrivals;
 using Content.Server.Shuttles.Components;
-using Content.Server.GameTicking;
 using Content.Shared.Lua.CLVar;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
@@ -22,7 +20,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.Linq;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -31,11 +28,9 @@ public sealed partial class ShuttleConsoleSystem
     [Dependency] private readonly StarmapSystem _starmap = default!; // Lua
     [Dependency] private readonly FactionOwnedStationSystem _factionOwnedStations = default!; // Lua
     [Dependency] private readonly SectorSystem _sectors = default!; // Lua
-    [Dependency] private readonly CentcommSystem _centcomm = default!; // CentCom
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!; // Lua
-    [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly FactionWarSystem _factionWar = default!; // Lua
 
     private void OnConsoleDiskInserted(EntityUid uid, ShuttleConsoleComponent component, EntInsertedIntoContainerMessage args) // Lua
@@ -78,87 +73,47 @@ public sealed partial class ShuttleConsoleSystem
 
         var stars = _starmap.CollectStars();
         if (stars.Count == 0)
-        { stars = _starmap.CollectStarsFresh(updateCache: true); }
+            stars = _starmap.CollectStarsFresh(updateCache: true);
         var edges = _starmap.GetHyperlanesCached();
         if ((edges == null || edges.Count == 0) && stars.Count > 0)
-        { edges = EntityManager.System<StarmapSystem>().GetHyperlanesCached(); }
+            edges = EntityManager.System<StarmapSystem>().GetHyperlanesCached();
 
-        var allowCentComStar = false;
-        if (starmapData != null)
-        {
-            foreach (var def in starmapData.Stars)
-            {
-                if (!string.Equals(def.StarType, "centcom", StringComparison.OrdinalIgnoreCase) &&
-                    !string.Equals(def.Id, "CentCom", StringComparison.OrdinalIgnoreCase))
-                    continue;
-
-                allowCentComStar = SectorVisibility.IsSectorVisible(def, viewerCompany, sectorsGloballyUnlocked, viewerLearned);
-                break;
-            }
-        }
-
-        if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
-        {
-            var ccMap = _centcomm.CentComMap;
-            if (!stars.Any(s => s.Map == ccMap))
-            {
-                try
-                {
-                    if (starmapData != null)
-                    {
-                        foreach (var def in starmapData.Stars)
-                        {
-                            if (string.Equals(def.StarType, "centcom", StringComparison.OrdinalIgnoreCase))
-                            {
-                                var ccPos = def.Position;
-                                stars.Add(new Star(ccPos, ccMap, def.Name, ccPos));
-                                Log.Debug($"[Starmap] CentCom star added: allowCentComStar={allowCentComStar} ccMap={ccMap} pos={ccPos}");
-                                break;
-                            }
-                        }
-                    }
-                }
-                catch { }
-            }
-        }
-        else
-        {
-            Log.Debug($"[Starmap] CentCom star NOT added: allowCentComStar={allowCentComStar} CentComMap={_centcomm.CentComMap}");
-        }
         if (currentMap != MapId.Nullspace)
         {
             Star? pivot = null;
             foreach (var s in stars)
-            { if (s.Map == currentMap) { pivot = s; break; } }
+            {
+                if (s.Map == currentMap)
+                {
+                    pivot = s;
+                    break;
+                }
+            }
+
             if (pivot.HasValue)
             {
                 var offset = pivot.Value.Position;
                 for (var i = 0; i < stars.Count; i++)
-                { var s = stars[i]; stars[i] = new Star(s.Position - offset, s.Map, s.Name, s.GlobalPosition - offset); }
+                {
+                    var s = stars[i];
+                    stars[i] = new Star(s.Position - offset, s.Map, s.Name, s.GlobalPosition - offset, s.CanWarp);
+                }
             }
         }
+
         var visibleSectorMaps = new List<MapId>();
         var sectorIdByMap = new Dictionary<MapId, string>();
-        var currentPreset = _ticker.CurrentPreset?.ID;
         if (starmapData != null)
         {
             foreach (var def in starmapData.Stars)
             {
-                if (!TryResolveSectorMapIdForVisibility(def, currentPreset, out var mapId))
+                if (!_sectors.TryGetMapId(def.Id, out var mapId) || mapId == MapId.Nullspace)
                     continue;
 
                 if (!sectorIdByMap.ContainsKey(mapId))
                     sectorIdByMap[mapId] = def.Id;
             }
         }
-
-        try
-        {
-            var frontierMap = _ticker.DefaultMap;
-            if (!sectorIdByMap.ContainsKey(frontierMap))
-                sectorIdByMap[frontierMap] = "FrontierSector";
-        }
-        catch { }
 
         if (currentMap != MapId.Nullspace && !visibleSectorMaps.Contains(currentMap))
             visibleSectorMaps.Add(currentMap);
@@ -170,13 +125,14 @@ public sealed partial class ShuttleConsoleSystem
                 if (!SectorVisibility.IsSectorVisible(def, viewerCompany, sectorsGloballyUnlocked, viewerLearned))
                     continue;
 
-                if (!TryResolveSectorMapIdForVisibility(def, currentPreset, out var mapId))
+                if (!TryResolveStarMapId(def, stars, out var mapId) || mapId == MapId.Nullspace)
                     continue;
 
                 if (!visibleSectorMaps.Contains(mapId))
                     visibleSectorMaps.Add(mapId);
 
-                if (!sectorIdByMap.ContainsKey(mapId))
+                if (!string.Equals(def.StarType, "decorative", StringComparison.OrdinalIgnoreCase)
+                    && !sectorIdByMap.ContainsKey(mapId))
                     sectorIdByMap[mapId] = def.Id;
             }
         }
@@ -194,11 +150,12 @@ public sealed partial class ShuttleConsoleSystem
                         {
                             foreach (var sid in diskComp.AllowedSectorIds)
                             {
-                                if (string.IsNullOrWhiteSpace(sid)) continue;
+                                if (string.IsNullOrWhiteSpace(sid))
+                                    continue;
                                 if (starmapData != null &&
                                     !SectorVisibility.IsSectorVisible(starmapData, sid, viewerCompany, sectorsGloballyUnlocked, viewerLearned))
                                     continue;
-                                if (!TryResolveSectorMapId(sid, currentPreset, out var mapId))
+                                if (!_sectors.TryGetMapId(sid, out var mapId) || mapId == MapId.Nullspace)
                                     continue;
 
                                 if (!visibleSectorMaps.Contains(mapId))
@@ -207,13 +164,18 @@ public sealed partial class ShuttleConsoleSystem
                                     sectorIdByMap[mapId] = sid;
                             }
                         }
+
                         if (diskComp.AllowFtlToCentCom &&
-                            allowCentComStar &&
-                            _centcomm.CentComMap != MapId.Nullspace)
+                            _sectors.TryGetCentComMapId(out var ccMap) &&
+                            ccMap != MapId.Nullspace &&
+                            starmapData != null &&
+                            _sectors.TryGetCentComSectorId(out var ccSectorId) &&
+                            SectorVisibility.IsSectorVisible(starmapData, ccSectorId, viewerCompany, sectorsGloballyUnlocked, viewerLearned))
                         {
-                            var ccMap = _centcomm.CentComMap;
-                            if (!visibleSectorMaps.Contains(ccMap)) visibleSectorMaps.Add(ccMap);
-                            if (!sectorIdByMap.ContainsKey(ccMap)) sectorIdByMap[ccMap] = "CentCom";
+                            if (!visibleSectorMaps.Contains(ccMap))
+                                visibleSectorMaps.Add(ccMap);
+                            if (!sectorIdByMap.ContainsKey(ccMap))
+                                sectorIdByMap[ccMap] = ccSectorId;
                         }
                     }
                 }
@@ -236,7 +198,8 @@ public sealed partial class ShuttleConsoleSystem
                 {
                     var now = IoCManager.Resolve<IGameTiming>().CurTime;
                     cooldown = (float)Math.Max(0, (ms.FTLTime.End - now).TotalSeconds);
-                    if (ms.FTLTime.Start != default && ms.FTLTime.End > ms.FTLTime.Start) cooldownTotal = (float)(ms.FTLTime.End - ms.FTLTime.Start).TotalSeconds;
+                    if (ms.FTLTime.Start != default && ms.FTLTime.End > ms.FTLTime.Start)
+                        cooldownTotal = (float)(ms.FTLTime.End - ms.FTLTime.Start).TotalSeconds;
                 }
             }
             catch
@@ -245,29 +208,7 @@ public sealed partial class ShuttleConsoleSystem
                 ftlTime = default;
             }
         }
-        if (allowCentComStar && _centcomm.CentComMap != MapId.Nullspace)
-        {
-            var ccMap = _centcomm.CentComMap;
-            if (!sectorIdByMap.ContainsKey(ccMap))
-                sectorIdByMap[ccMap] = "CentCom";
-            if (!visibleSectorMaps.Contains(ccMap))
-                visibleSectorMaps.Add(ccMap);
 
-            var frontierIdx = stars.FindIndex(s => s.Map == _ticker.DefaultMap);
-            var ccIdx = stars.FindIndex(s => s.Map == _centcomm.CentComMap);
-            if (frontierIdx >= 0 && ccIdx >= 0)
-            {
-                var a = Math.Min(frontierIdx, ccIdx);
-                var b = Math.Max(frontierIdx, ccIdx);
-                var hasEdge = edges != null && edges.Any(e => (e.A == a && e.B == b) || (e.A == b && e.B == a));
-                if (!hasEdge)
-                {
-                    var edges2 = edges != null ? new List<HyperlaneEdge>(edges) : new List<HyperlaneEdge>();
-                    edges2.Add(new HyperlaneEdge(a, b));
-                    edges = edges2;
-                }
-            }
-        }
         var ownerByMap = new Dictionary<MapId, string>();
         _factionOwnedStations.BuildMapOwnership(ownerByMap);
         return new StarmapConsoleBoundUserInterfaceState(stars, 100f, edges, null, cooldown, cooldownTotal, ftlState, ftlTime, visibleSectorMaps, sectorIdByMap, ownerByMap, new Dictionary<MapId, string>(), sectorsGloballyUnlocked);
@@ -321,12 +262,12 @@ public sealed partial class ShuttleConsoleSystem
         return null;
     }
 
-    private StarmapDataPrototype? TryGetStarmapData()
+    private ComposedStarmapData? TryGetStarmapData()
     {
         try
         {
             var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-            if (_prototypes.TryIndex<StarmapDataPrototype>(dataId, out var data))
+            if (StarmapDataComposer.TryCompose(_prototypes, dataId, out var data))
                 return data;
         }
         catch { }
@@ -334,46 +275,17 @@ public sealed partial class ShuttleConsoleSystem
         return null;
     }
 
-    private bool TryResolveSectorMapIdForVisibility(StarDefinition def, string? currentPreset, out MapId mapId)
+    private bool TryResolveStarMapId(StarDefinition def, List<Star> stars, out MapId mapId)
     {
-        if (string.Equals(def.StarType, "centcom", StringComparison.OrdinalIgnoreCase) ||
-            string.Equals(def.Id, "CentCom", StringComparison.OrdinalIgnoreCase))
+        if (_sectors.TryGetMapId(def.Id, out mapId) && mapId != MapId.Nullspace)
+            return true;
+
+        foreach (var star in stars)
         {
-            mapId = _centcomm.CentComMap;
+            if (!string.Equals(star.Name, def.Name, StringComparison.Ordinal))
+                continue;
+            mapId = star.Map;
             return mapId != MapId.Nullspace;
-        }
-
-        return TryResolveSectorMapId(def.Id, currentPreset, out mapId);
-    }
-
-    private bool TryResolveSectorMapId(string sid, string? currentPreset, out MapId mapId)
-    {
-        if (sid == "FrontierSector")
-        {
-            mapId = _ticker.DefaultMap;
-            return true;
-        }
-
-        if (_sectors.TryGetMapId(sid, out var resolved))
-        {
-            mapId = resolved;
-            return true;
-        }
-
-        if (currentPreset == "LuaAdventure")
-        {
-            string? altId = sid switch
-            {
-                "TypanSector" => "TypanSectorLua",
-                "PirateSector" => "PirateSectorLua",
-                _ => null
-            };
-
-            if (altId != null && _sectors.TryGetMapId(altId, out resolved))
-            {
-                mapId = resolved;
-                return true;
-            }
         }
 
         mapId = MapId.Nullspace;

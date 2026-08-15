@@ -20,6 +20,8 @@ using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
 using Content.Shared._Lua.Expedition;
 using Content.Server._Lua.Stargate.Components;
+using Content.Server._Lua.Shuttles.Systems;
+using Content.Shared._Lua.Shuttles.Components;
 
 namespace Content.Server._Mono.FireControl;
 
@@ -33,6 +35,7 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PowerReceiverSystem _power = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private readonly MagneticLatchSystem _magLatch = default!;
     /// <summary>
     /// Dictionary of entities that have visualization enabled
     /// </summary>
@@ -49,6 +52,7 @@ public sealed partial class FireControlSystem : EntitySystem
         SubscribeLocalEvent<FireControllableComponent, PowerChangedEvent>(OnControllablePowerChanged);
         SubscribeLocalEvent<FireControllableComponent, ComponentShutdown>(OnControllableShutdown);
         SubscribeLocalEvent<FireControllableComponent, EntParentChangedMessage>(OnControllableParentChanged);
+        SubscribeLocalEvent<FireControllableComponent, AnchorStateChangedEvent>(OnControllableAnchorChanged);
 
         // Subscribe to grid split events to ensure we update when grids change
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
@@ -92,6 +96,15 @@ public sealed partial class FireControlSystem : EntitySystem
     private void OnControllablePowerChanged(EntityUid uid, FireControllableComponent component, PowerChangedEvent args)
     {
         if (args.Powered)
+            TryRegister(uid, component);
+        else
+            Unregister(uid, component);
+    }
+
+    private void OnControllableAnchorChanged(EntityUid uid, FireControllableComponent component, ref AnchorStateChangedEvent args)
+    {
+        // Unpowered devices (e.g. docking magnets) never get PowerChangedEvent.
+        if (args.Anchored)
             TryRegister(uid, component);
         else
             Unregister(uid, component);
@@ -495,6 +508,23 @@ public sealed partial class FireControlSystem : EntitySystem
         if (!CanFire(weapon, comp, noServer))
             return false;
 
+        // Docking magnets: fire = detach latch (no gun / LOS required).
+        if (HasComp<MagneticGrabberComponent>(weapon))
+        {
+            comp.NextFire = _timing.CurTime + TimeSpan.FromSeconds(comp.FireCooldown);
+            if (TryComp<MagneticLatchComponent>(weapon, out var latch) && latch.JointId != null)
+                _magLatch.ShutdownLatch(weapon);
+            return true;
+        }
+
+        var activate = new FireControllableActivateEvent();
+        RaiseLocalEvent(weapon, ref activate);
+        if (activate.Handled)
+        {
+            comp.NextFire = _timing.CurTime + TimeSpan.FromSeconds(comp.FireCooldown);
+            return activate.Success;
+        }
+
         // Get weapon and target positions
         var weaponXform = Transform(weapon);
         var weaponPos = _xform.GetWorldPosition(weaponXform);
@@ -746,4 +776,11 @@ public sealed partial class FireControlSystem : EntitySystem
 public sealed class FireControllableStatusReportEvent : EntityEventArgs
 {
     public List<(string type, string content)> StatusReports = new();
+}
+
+[ByRefEvent]
+public struct FireControllableActivateEvent
+{
+    public bool Handled;
+    public bool Success;
 }

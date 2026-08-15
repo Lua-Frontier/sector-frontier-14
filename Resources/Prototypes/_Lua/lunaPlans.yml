@@ -1,0 +1,188 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+#
+# status: Done | Active | Queued
+# labels: LocId keys (roadmap-tag-*)
+
+# Done
+# (empty)
+
+# Active
+- type: lunaPlan
+  id: RoadmapFactionRnd
+  headline: roadmap-entry-faction-rnd-title
+  summary: roadmap-entry-faction-rnd-desc
+  status: Active
+  sort: 1
+  labels:
+  - roadmap-tag-factions
+  - roadmap-tag-rnd
+  - roadmap-tag-gameplay
+
+- type: lunaPlan
+  id: RoadmapUsspStation
+  headline: roadmap-entry-ussp-station-title
+  summary: roadmap-entry-ussp-station-desc
+  status: Active
+  sort: 2
+  labels:
+  - roadmap-tag-ussp
+  - roadmap-tag-mapping
+  - roadmap-tag-factions
+
+# Queued
+- type: lunaPlan
+  id: RoadmapVerifiedBadge
+  headline: roadmap-entry-verified-title
+  summary: roadmap-entry-verified-desc
+  status: Queued
+  sort: 1
+  labels:
+  - roadmap-tag-admin
+  - roadmap-tag-discord
+  - roadmap-tag-qol
+
+- type: lunaPlan
+  id: RoadmapAfkTracking
+  headline: roadmap-entry-afk-title
+  summary: roadmap-entry-afk-desc
+  status: Queued
+  sort: 2
+  labels:
+  - roadmap-tag-anticheat
+  - roadmap-tag-csharp
+
+- type: lunaPlan
+  id: RoadmapMarchEngines
+  headline: roadmap-entry-engines-title
+  summary: roadmap-entry-engines-desc
+  status: Queued
+  sort: 3
+  labels:
+  - roadmap-tag-shuttles
+  - roadmap-tag-gameplay
+
+- type: lunaPlan
+  id: RoadmapNpcRefactor
+  headline: roadmap-entry-npc-title
+  summary: roadmap-entry-npc-desc
+  status: Queued
+  sort: 4
+  labels:
+  - roadmap-tag-npc
+  - roadmap-tag-ai
+
+- type: lunaPlan
+  id: RoadmapPlanetResearch
+  headline: roadmap-entry-planets-title
+  summary: roadmap-entry-planets-desc
+  status: Queued
+  sort: 5
+  labels:
+  - roadmap-tag-planets
+  - roadmap-tag-exploration
+
+- type: lunaPlan
+  id: RoadmapVirtualShipyard
+  headline: roadmap-entry-shipyard-title
+  summary: roadmap-entry-shipyard-desc
+  status: Queued
+  sort: 6
+  labels:
+  - roadmap-tag-shipyard
+  - roadmap-tag-construction
+
+- type: lunaPlan
+  id: RoadmapShipSalvage
+  headline: roadmap-entry-salvage-title
+  summary: roadmap-entry-salvage-desc
+  status: Queued
+  sort: 7
+  labels:
+  - roadmap-tag-shipyard
+  - roadmap-tag-economy
+
+- type: lunaPlan
+  id: RoadmapMeteorSwarm
+  headline: roadmap-entry-meteor-title
+  summary: roadmap-entry-meteor-desc
+  status: Queued
+  sort: 8
+  labels:
+  - roadmap-tag-space
+  - roadmap-tag-events
+
+- type: lunaPlan
+  id: RoadmapNebulaGas
+  headline: roadmap-entry-nebula-gas-title
+  summary: roadmap-entry-nebula-gas-desc
+  status: Queued
+  sort: 9
+  labels:
+  - roadmap-tag-space
+  - roadmap-tag-industry
+
+- type: lunaPlan
+  id: RoadmapFactionOutposts
+  headline: roadmap-entry-outposts-title
+  summary: roadmap-entry-outposts-desc
+  status: Queued
+  sort: 10
+  labels:
+  - roadmap-tag-factions
+  - roadmap-tag-expansion
+
+- type: lunaPlan
+  id: RoadmapAhelpAi
+  headline: roadmap-entry-ahelp-ai-title
+  summary: roadmap-entry-ahelp-ai-desc
+  status: Queued
+  sort: 11
+  labels:
+  - roadmap-tag-admin
+  - roadmap-tag-ai
+  - roadmap-tag-qol
+
+- type: lunaPlan
+  id: RoadmapBanking
+  headline: roadmap-entry-banking-title
+  summary: roadmap-entry-banking-desc
+  status: Queued
+  sort: 12
+  labels:
+  - roadmap-tag-economy
+  - roadmap-tag-balance
+
+- type: lunaPlan
+  id: RoadmapRulesSync
+  headline: roadmap-entry-rules-sync-title
+  summary: roadmap-entry-rules-sync-desc
+  status: Queued
+  sort: 13
+  labels:
+  - roadmap-tag-site
+  - roadmap-tag-discord
+  - roadmap-tag-wiki
+
+- type: lunaPlan
+  id: RoadmapAdminRanks
+  headline: roadmap-entry-admin-ranks-title
+  summary: roadmap-entry-admin-ranks-desc
+  status: Queued
+  sort: 14
+  labels:
+  - roadmap-tag-admin
+  - roadmap-tag-site
+  - roadmap-tag-discord
+
+- type: lunaPlan
+  id: RoadmapSiteSync
+  headline: roadmap-entry-roadmap-sync-title
+  summary: roadmap-entry-roadmap-sync-desc
+  status: Queued
+  sort: 15
+  labels:
+  - roadmap-tag-site
+  - roadmap-tag-ui
+

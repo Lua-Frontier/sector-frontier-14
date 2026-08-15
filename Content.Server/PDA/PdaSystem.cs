@@ -25,9 +25,11 @@ using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared._NF.Shipyard.Components; // Frontier
-using Content.Server._NF.Shipyard.Systems; // Frontier
-using Content.Server._NF.SectorServices; // Frontier
+using Content.Server._Lua.Sectors; // Lua
 using Content.Server._Lua.StationRecords.Systems; // Lua
+using Content.Server._NF.SectorServices; // Frontier
+using Content.Server._NF.Shipyard.Systems; // Frontier
+using Robust.Shared.Map;
 
 namespace Content.Server.PDA
 {
@@ -44,6 +46,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+        [Dependency] private readonly SectorSystem _sectorSystem = default!; // Lua
         [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!; // Lua
 
         public override void Initialize()
@@ -154,7 +157,13 @@ namespace Content.Server.PDA
 
         private void OnAlertLevelChanged(AlertLevelChangedEvent args)
         {
-            UpdateAllPdaUisOnStation();
+            var query = AllEntityQuery<PdaComponent, TransformComponent>();
+            while (query.MoveNext(out var ent, out var comp, out var xform))
+            {
+                if (xform.MapID != args.MapId)
+                    continue;
+                UpdatePdaUi(ent, comp);
+            }
         }
 
         private void UpdateAllPdaUisOnStation()
@@ -256,7 +265,8 @@ namespace Content.Server.PDA
                     IdOwner = id?.FullName,
                     JobTitle = id?.LocalizedJobTitle,
                     StationAlertLevel = pda.StationAlertLevel,
-                    StationAlertColor = pda.StationAlertColor
+                    StationAlertColor = pda.StationAlertColor,
+                    SectorDisplayName = pda.SectorDisplayName
                 },
                 balance, // Frontier
                 ownedShipName, // Frontier
@@ -349,14 +359,19 @@ namespace Content.Server.PDA
 
         private void UpdateAlertLevel(EntityUid uid, PdaComponent pda)
         {
-            //var station = _station.GetOwningStation(uid); // Frontier
-            var station = _sectorService.GetServiceEntity(); // Frontier
+            if (!_sectorService.TryGetServiceEntity(uid, out var station))
+                return;
             if (!TryComp(station, out AlertLevelComponent? alertComp) ||
                 alertComp.AlertLevels == null)
                 return;
             pda.StationAlertLevel = alertComp.CurrentLevel;
             if (alertComp.AlertLevels.Levels.TryGetValue(alertComp.CurrentLevel, out var details))
                 pda.StationAlertColor = details.Color;
+
+            if (TryComp(uid, out TransformComponent? xform) && xform.MapID != MapId.Nullspace)
+                pda.SectorDisplayName = _sectorSystem.GetSectorDisplayName(xform.MapID);
+            else
+                pda.SectorDisplayName = Loc.GetString("alert-level-sector-unknown");
         }
 
         private string? GetDeviceNetAddress(EntityUid uid)

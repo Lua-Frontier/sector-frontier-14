@@ -390,6 +390,9 @@ public sealed class ReflectSystem : EntitySystem
     /// </summary>
     private void RefreshReflectUser(EntityUid user)
     {
+        if (_gameTiming.ApplyingState)
+            return;
+
         bool hasReflectItem = false;
 
         // Check if the entity has hands component

@@ -160,7 +160,7 @@ public sealed partial class ShuttleRecordsSystem
 
         // Ensure that after the deduction math there is more than 0 left in the account.
         var transactionPrice = GetTransactionCost(component, record.PurchasePrice);
-        if (!_bank.TrySectorWithdraw(component.Account, (int)transactionPrice, LedgerEntryType.ShuttleRecordFees))
+        if (!_bank.TrySectorWithdraw(component.Account, (int)transactionPrice, LedgerEntryType.ShuttleRecordFees, uid))
         {
             _popup.PopupEntity(Loc.GetString("shuttle-records-insufficient-funds"), args.Actor);
             _audioSystem.PlayPredicted(component.ErrorSound, uid, null, AudioParams.Default.WithMaxDistance(5f));

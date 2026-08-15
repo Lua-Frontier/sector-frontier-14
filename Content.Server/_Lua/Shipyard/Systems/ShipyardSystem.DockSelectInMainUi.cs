@@ -61,12 +61,13 @@ public sealed partial class ShipyardSystem
         if (allDocks.TryGetValue(gridNet, out var ports)) dockDict[gridNet] = ports;
         var centerEntity = xform.ParentUid != EntityUid.Invalid ? xform.ParentUid : uid;
         var netCoords = new NetCoordinates(GetNetEntity(centerEntity), xform.LocalPosition);
-        var angle = _transform.GetWorldRotation(uid);
+        var angle = Angle.Zero;
         var gridComp = Comp<MapGridComponent>(gridUid);
         var w = gridComp.LocalAABB.Width;
         var h = gridComp.LocalAABB.Height;
         var radius = MathF.Sqrt(w * w + h * h) * 0.5f + 5f;
-        var nav = new NavInterfaceState(radius, netCoords, angle, dockDict, InertiaDampeningMode.Dampen, ServiceFlags.None, null, null, true);
+        var nav = new NavInterfaceState(radius, netCoords, angle, dockDict, InertiaDampeningMode.Dampen, ServiceFlags.None, null, null, true)
+        { RotateWithEntity = false, };
         state = state switch
         {
             ShipyardConsoleInterfaceState baseState => new ShipyardConsoleLuaDockSelectState(baseState, nav, console.SelectedDockPort),

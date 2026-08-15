@@ -1,5 +1,7 @@
+using Content.Server._Lua.Sectors;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
@@ -11,7 +13,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Content.Shared._NF.CryoSleep.Events;
 using System.Diagnostics.CodeAnalysis;
-using Content.Server.Ghost;
 using Content.Shared._Lua.Expedition;
 
 namespace Content.Server._NF.CryoSleep;
@@ -19,6 +20,7 @@ namespace Content.Server._NF.CryoSleep;
 public sealed partial class CryoSleepSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SectorIdleFreezeSystem _sectorIdleFreeze = default!;
 
     private void InitReturning()
     {
@@ -56,6 +58,8 @@ public sealed partial class CryoSleepSystem
 
         var cryopod = storedBody!.Value.Cryopod;
         var body = storedBody.Value.Body;
+        _sectorIdleFreeze.EnsureUnfrozen(storedBody.Value.CryopodMapId);
+
         if (_map.TryGetMap(storedBody.Value.CryopodMapId, out var mapUid) &&
             TryComp<ExpeditionMapComponent>(mapUid.Value, out var expedition) &&
             expedition.Stage != ExpeditionStage.Added)
@@ -75,6 +79,9 @@ public sealed partial class CryoSleepSystem
                 if (IsCryoBlocked(cryopod))
                     continue;
 
+                if (TryComp(cryopod, out TransformComponent? fallbackXform))
+                    _sectorIdleFreeze.EnsureUnfrozen(fallbackXform.MapID);
+
                 if (!IsOccupied(cryoComp) && _container.Insert(body, cryoComp.BodyContainer))
                 {
                     foundFallback = true;
@@ -88,6 +95,9 @@ public sealed partial class CryoSleepSystem
         }
         else
         {
+            if (TryComp(cryopod, out TransformComponent? podXform))
+                _sectorIdleFreeze.EnsureUnfrozen(podXform.MapID);
+
             // NOTE: if the pod is occupied but still exists, do not let the user teleport.
             if (IsOccupied(cryoComp!) || !_container.Insert(body, cryoComp!.BodyContainer))
                 return ReturnToBodyStatus.Occupied;

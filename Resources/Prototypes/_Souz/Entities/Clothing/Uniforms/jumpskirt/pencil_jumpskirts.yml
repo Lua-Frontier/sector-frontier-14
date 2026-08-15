@@ -1,0 +1,26 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Uniforms/jumpskirt/pencil_jumpskirts.yml
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtPencilPolitRuk
+  categories: [ USSP ]
+  suffix: USSP
+  name: юбка-карандаш политического отдела
+  description: Красивая бордовая юбка-карандаш.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_politruk.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_politruk.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtPencilHoP
+  categories: [ USSP ]
+  suffix: USSP
+  name: юбка-карандаш начальника отдела кадров
+  description: Оч красивая.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hop_pencil.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hop_pencil.rsi

@@ -1,8 +1,8 @@
 # Base debris prototypes.
 # Asteroids -> debris.yml | Wrecks -> wrecks.yml | Drones -> drone.yml
-# Biomes / worldgen -> _Lua/World/Biomes/ + _Lua/World/worldgen_default.yml
+# Sizes + spawn rings: Biomes/mono_far.yml
 
-# Shared floating grid debris base (radar + GC + claim)
+# Shared floating grid debris base (radar + GC)
 - type: entity
   id: BaseDebris
   abstract: true
@@ -24,7 +24,6 @@
     visualBias: 2048
   - type: IFF
     flags: HideLabel
-  - type: ClaimableGrid
 
 # NF alias — same as BaseDebris; kept for existing parent refs
 - type: entity

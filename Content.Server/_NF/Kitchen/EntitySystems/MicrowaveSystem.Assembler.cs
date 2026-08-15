@@ -7,6 +7,8 @@ using Content.Shared._NF.Kitchen.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.FixedPoint;
 using Content.Shared.Kitchen;
+using Content.Shared.Kitchen.Components;
+using Content.Shared.Kitchen.Events;
 using Content.Shared.Stacks;
 
 namespace Content.Server.Kitchen.EntitySystems;
@@ -123,6 +125,8 @@ public sealed partial class MicrowaveSystem : EntitySystem
 
         _audio.PlayPvs(component.StartCookingSound, uid);
         var activeComp = AddComp<ActiveMicrowaveComponent>(uid); //microwave is now cooking
+        var cookEv = new MicrowaveCookStartedEvent(uid, user);
+        RaiseLocalEvent(ref cookEv);
         component.CurrentCookTimerTime = (uint)portionedRecipe.Item2 * portionedRecipe.Item1.CookTime;
         activeComp.CookTimeRemaining = component.CurrentCookTimerTime * component.FinalCookTimeMultiplier; // Frontier: CookTimeMultiplier<FinalCookTimeMultiplier
         activeComp.TotalTime = component.CurrentCookTimerTime; //this doesn't scale so that we can have the "actual" time

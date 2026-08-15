@@ -1,8 +1,8 @@
+using Content.Server._Lua.Sectors;
 using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Buckle.Systems;
-using Content.Server.GameTicking; // Frontier
 using Content.Server.Parallax;
 using Content.Server.Procedural;
 using Content.Server.Shuttles.Components;
@@ -71,7 +71,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly GameTicker _ticker = default!; //Frontier: needed to get the main map in FTL
+    [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
 
     private EntityQuery<BuckleComponent> _buckleQuery;

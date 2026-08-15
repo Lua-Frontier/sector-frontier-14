@@ -1,6 +1,7 @@
 # inf ammo for ads/station
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretTarnyx
   name: ADBX-31 TARNYX 150mm EMP Cannon
   parent:
@@ -59,6 +60,7 @@
 # limited ammo for ships
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretTarnyxReload
   name: ADBX-31 TARNYX 150mm EMP Cannon
   parent: BallisticArtilleryUnanchorableCartridge

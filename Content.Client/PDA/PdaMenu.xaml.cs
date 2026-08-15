@@ -238,6 +238,8 @@ namespace Content.Client.PDA
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
+            var sectorName = state.PdaOwnerInfo.SectorDisplayName
+                ?? Loc.GetString("alert-level-sector-unknown");
             var alertLevelKey = alertLevel != null ? $"alert-level-{alertLevel}" : "alert-level-unknown";
             _alertLevel = Loc.GetString(alertLevelKey);
 
@@ -246,7 +248,9 @@ namespace Content.Client.PDA
                 ("color", alertColor),
                 ("level", _alertLevel)
             ));
-            _instructions = Loc.GetString($"{alertLevelKey}-instructions");
+            _instructions = Loc.TryGetString($"{alertLevelKey}-instructions", out var localizedInstructions, ("sector", sectorName))
+                ? localizedInstructions
+                : Loc.GetString("alert-level-unknown-instructions");
             StationAlertLevelInstructions.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level-instructions",
                 ("instructions", _instructions))

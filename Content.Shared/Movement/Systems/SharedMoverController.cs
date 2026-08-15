@@ -247,7 +247,9 @@ public abstract partial class SharedMoverController : VirtualController
             var ev = new CanWeightlessMoveEvent(uid);
             RaiseLocalEvent(uid, ref ev, true);
 
-            touching = ev.CanMove || xform.GridUid != null || MapGridQuery.HasComp(xform.GridUid);
+            touching = ev.CanMove
+                || MapGridQuery.TryComp(xform.GridUid, out var weightlessGrid)
+                    && _mapSystem.TryGetTileRef(xform.GridUid.Value, weightlessGrid, xform.Coordinates, out _);
 
             // If we're not on a grid, and not able to move in space check if we're close enough to a grid to touch.
             if (!touching && MobMoverQuery.TryComp(uid, out var mobMover))

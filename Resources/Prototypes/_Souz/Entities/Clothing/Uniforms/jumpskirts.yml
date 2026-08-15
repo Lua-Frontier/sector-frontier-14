@@ -1,0 +1,133 @@
+# source: Entities/Clothing/Uniforms/jumpskirts.yml
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's jumpskirt
+  description: It's a blue jumpskirt with some gold markings denoting the rank of "Captain".
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/captain.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtHoP
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's jumpskirt
+  description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hop.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hop.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtHoS
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's jumpskirt
+  description: It's bright red and rather crisp, much like security's victims tend to be.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hos.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hos.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtHoSAlt
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's turtleneck
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hos_alt.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hos_alt.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtHoSParadeMale
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's parade uniform
+  description: A head of security's luxury-wear, for special occasions.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/hos_parade.rsi
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic jumpskirt
+  description: This uniform is issued to qualified personnel who have been trained. No one cares that the training took half a day.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/brigmedic.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/brigmedic.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingUniformJumpskirtSec
+  categories: [ USSP ]
+  suffix: USSP
+  name: security jumpskirt
+  description: A jumpskirt made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/security.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/security.rsi
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtCapFormalDress
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's formal dress
+  description: A dress for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/capformaldress.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/capformaldress.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtHosFormal
+  categories: [ USSP ]
+  suffix: USSP
+  name: hos's formal dress
+  description: A dress for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/hosformaldress.rsi
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtOfLife
+  categories: [ USSP ]
+  suffix: USSP
+  name: skirt of life
+  description: A skirt that symbolizes the joy and positivity of our life.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingUniformJumpskirtSecGrey
+  categories: [ USSP ]
+  suffix: USSP
+  name: grey security jumpskirt
+  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/security_grey.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/security_grey.rsi

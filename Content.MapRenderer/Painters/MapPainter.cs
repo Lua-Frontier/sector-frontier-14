@@ -5,10 +5,10 @@ using System.Linq;
 using System.Numerics;
 using System.IO;
 using System.Threading.Tasks;
+using Content.Server._Lua.Sectors;
 using Content.Client.Markers;
 using Content.IntegrationTests;
 using Content.IntegrationTests.Pair;
-using Content.Server.GameTicking;
 using Robust.Client.GameObjects;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
@@ -173,7 +173,10 @@ namespace Content.MapRenderer.Painters
 
                 if (_map is RenderMapPrototype)
                 {
-                    var mapId = sEntityManager.System<GameTicker>().DefaultMap;
+                    var sectors = sEntityManager.System<SectorSystem>();
+                    if (!sectors.TryGetHubMapId(out var mapId) || mapId == MapId.Nullspace)
+                        return;
+
                     _grids = sMapManager.GetAllGrids(mapId).ToArray();
                 }
 

@@ -1,0 +1,13 @@
+# source: _DeadSpace/Entities/Clothing/Belts/brigmedic.yml
+- type: entity
+  parent: ClothingBeltMedical
+  id: USSPSFClothingBeltMedicalSecurityWebbing
+  categories: [ USSP ]
+  suffix: USSP
+  name: разгрузка дежврача
+  description: Специализированная разгрузка, предназначенная для быстрого доступа к медицинским препаратам и материалам в условиях полевых работ. На задней части разгрузки, есть белый крест. С внутренней части вещи есть надпись "Произведено компанией Speysov Weapons Company по заказу СССП".
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Belt/medsecuritywebbing.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Belt/medsecuritywebbing.rsi

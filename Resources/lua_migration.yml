@@ -46,7 +46,8 @@ WeaponMissileLauncherCerberEmpty: WeaponMissileLauncherCerber
 # 2025-06-21 Lua fix thrusters
 ThrusterLuaUnanchored: ThrusterLua
 ThrusterPiratesUnanchored: ThrusterPirates
-ThrusterSyndieUnanchored: ThrusterSyndie
+ThrusterSyndieUnanchored: ThrusterRogue
+ThrusterSyndie: ThrusterRogue
 
 # 2025-06-24 Lua port gunnery server
 GunneryServer: GunneryServerLow
@@ -62,11 +63,11 @@ AirlockExternalGlassUSSPLocked: AirlockExternalGlass
 AirlockExternalShuttleUSSPLocked: AirlockExternalShuttleLocked
 AirlockUSSP: Airlock
 AirlockUSSPGlass: AirlockGlass
-SpawnPointUSSPCommissar: null
-SpawnPointUSSPCorporal: null
-SpawnPointUSSPMedic: null
-SpawnPointUSSPRifleman: null
-SpawnPointUSSPSergeant: null
+SpawnPointUSSPCommissar: SpawnPointCompanyUssp
+SpawnPointUSSPCorporal: SpawnPointCompanyUssp
+SpawnPointUSSPMedic: SpawnPointCompanyUssp
+SpawnPointUSSPRifleman: SpawnPointCompanyUssp
+SpawnPointUSSPSergeant: SpawnPointCompanyUssp
 SuitStorageUssp: SuitStorageEVA
 MachineFTLDrive25S: MachineFTLDrive
 AirlockExternalUSSPLocked: AirlockExternal

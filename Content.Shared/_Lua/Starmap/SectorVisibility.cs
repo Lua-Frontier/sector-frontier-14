@@ -56,6 +56,34 @@ public static class SectorVisibility
     }
 
     public static bool IsSectorVisible(
+        ComposedStarmapData data,
+        string sectorId,
+        string? companyId,
+        bool globallyUnlocked)
+    {
+        return IsSectorVisible(data, sectorId, companyId, globallyUnlocked, null);
+    }
+
+    public static bool IsSectorVisible(
+        ComposedStarmapData data,
+        string sectorId,
+        string? companyId,
+        bool globallyUnlocked,
+        IReadOnlyCollection<string>? learned)
+    {
+        foreach (var def in data.Stars)
+        {
+            if (!string.Equals(def.Id, sectorId, StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            return IsSectorVisible(def, companyId, globallyUnlocked, learned);
+        }
+
+        return globallyUnlocked;
+    }
+
+    [Obsolete("Use ComposedStarmapData overload")]
+    public static bool IsSectorVisible(
         StarmapDataPrototype data,
         string sectorId,
         string? companyId,
@@ -64,6 +92,7 @@ public static class SectorVisibility
         return IsSectorVisible(data, sectorId, companyId, globallyUnlocked, null);
     }
 
+    [Obsolete("Use ComposedStarmapData overload")]
     public static bool IsSectorVisible(
         StarmapDataPrototype data,
         string sectorId,

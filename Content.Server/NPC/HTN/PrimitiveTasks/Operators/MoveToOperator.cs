@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.NPC.Systems;
+using Content.Shared.Interaction;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
@@ -18,6 +19,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
     private NPCSteeringSystem _steering = default!;
     private PathfindingSystem _pathfind = default!;
     private SharedTransformSystem _transform = default!;
+    private SharedInteractionSystem _interaction = default!;
 
     /// <summary>
     /// When to shut the task down.
@@ -69,6 +71,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         _pathfind = sysManager.GetEntitySystem<PathfindingSystem>();
         _steering = sysManager.GetEntitySystem<NPCSteeringSystem>();
         _transform = sysManager.GetEntitySystem<SharedTransformSystem>();
+        _interaction = sysManager.GetEntitySystem<SharedInteractionSystem>();
     }
 
     public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
@@ -84,6 +87,16 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         if (!_entManager.TryGetComponent<TransformComponent>(owner, out var xform) ||
             !_entManager.TryGetComponent<PhysicsComponent>(owner, out var body))
             return (false, null);
+
+        if (StopOnLineOfSight)
+        {
+            var vision = blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(_entManager), _entManager);
+            if (_interaction.InRangeUnobstructed(owner, targetCoordinates, vision))
+            {
+                return (true, new Dictionary<string, object>()
+                { {NPCBlackboard.OwnerCoordinates, targetCoordinates} });
+            }
+        }
 
         if (!_entManager.TryGetComponent<MapGridComponent>(xform.GridUid, out var ownerGrid) ||
             !_entManager.TryGetComponent<MapGridComponent>(_transform.GetGrid(targetCoordinates), out var targetGrid))
@@ -146,6 +159,7 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
         // Re-use the path we may have if applicable.
         var comp = _steering.Register(uid, targetCoordinates);
         comp.ArriveOnLineOfSight = StopOnLineOfSight;
+        comp.LineOfSightRange = blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(_entManager), _entManager);
 
         if (blackboard.TryGetValue<float>(RangeKey, out var range, _entManager))
         {

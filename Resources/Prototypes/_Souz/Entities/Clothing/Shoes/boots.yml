@@ -1,0 +1,54 @@
+# source: Entities/Clothing/Shoes/boots.yml
+- type: entity
+  parent: [ClothingShoesMilitaryBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingShoesBootsJack
+  categories: [ USSP ]
+  suffix: USSP
+  name: jackboots
+  description: Nanotrasen-issue Security combat boots for combat scenarios or combat situations. All combat, all the time.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Shoes/Boots/jackboots.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Shoes/Boots/jackboots.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+
+# source: _DeadSpace/Entities/Clothing/Shoes/boots.yml
+- type: entity
+  parent: ClothingShoesBootsJackFilled
+  id: USSPSFClothingShoesBootsBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: подкованные сапоги оперативника КГБ
+  description: Обувь оперативника КГБ, для боевых операций или боевых действий. Борьба — всё, борьба — всегда.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Shoes/Boots/blueshield_boots.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Shoes/Boots/blueshield_boots.rsi
+
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Shoes/boots.yml
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: USSPSFClothingShoesOKGB
+  categories: [ USSP ]
+  suffix: USSP
+  name: ботинки ОКГБ
+  description: Когда хотите задать жару.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Shoes/Specific/swat.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Shoes/Specific/swat.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  - type: ItemSlots
+    slots:
+      item:
+        startingItem: CombatKnife
+        name: clothing-military-boots-sidearm
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm

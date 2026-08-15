@@ -3,6 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponTurretHarbringer
   id: TeslaTurretBase
   name: Тесла
@@ -20,6 +21,7 @@
       proto: TeslaGunTurretBullet
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: [BaseStructureDisableToolUse, TeslaTurretBase]
   id: TeslaTurretUnanchor
   suffix: Неоткрепляемый для кораблей, ShuttleGun
@@ -27,6 +29,7 @@
     mode: SnapgridCenter
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: BaseNFFlatpack
   id: TeslaTurretBaseFlatpack
   name: упакованная тесла турель

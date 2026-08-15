@@ -31,9 +31,11 @@
             <Label Name="ParkingStatus" Text="" Margin="0 4 0 0" />
         </BoxContainer>
 
-        <luaShipyard:ShipyardDockRadarControl Name="DockRadar"
-                                              HorizontalExpand="True"
-                                              VerticalExpand="True"
-                                              MinSize="340 360" />
+        <LayoutContainer HorizontalExpand="True" VerticalExpand="True" MinSize="340 360">
+            <luaShipyard:ShipyardDockRadarControl Name="DockRadar"
+                                                  HorizontalExpand="True"
+                                                  VerticalExpand="True"
+                                                  MinSize="340 360" />
+        </LayoutContainer>
     </BoxContainer>
 </controls:FancyWindow>

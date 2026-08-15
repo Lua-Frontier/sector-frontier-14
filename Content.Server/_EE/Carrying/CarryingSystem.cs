@@ -304,6 +304,8 @@ namespace Content.Server.Carrying
             carriedComp.Carrier = carrier;
 
             _actionBlockerSystem.UpdateCanMove(carried);
+            var ev = new CarryStartedEvent(carrier, carried);
+            RaiseLocalEvent(ref ev);
         }
 
         public bool TryCarry(EntityUid carrier, EntityUid toCarry, CarriableComponent? carriedComp = null)

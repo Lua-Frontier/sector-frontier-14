@@ -1,0 +1,141 @@
+# source: Entities/Clothing/Uniforms/jumpsuits.yml
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband] # DS14
+  id: USSPSFClothingUniformJumpsuitCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's jumpsuit
+  description: It's a blue jumpsuit with some gold markings denoting the rank of "Captain".
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/captain.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitHoP
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's jumpsuit
+  description: Rather bland and inoffensive. Perfect for vanishing off the face of the universe.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hop.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # DS14
+  id: USSPSFClothingUniformJumpsuitHoS
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's jumpsuit
+  description: It's bright red and rather crisp, much like security's victims tend to be.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitHoSAlt
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's turtleneck
+  description: It's a turtleneck worn by those strong and disciplined enough to achieve the position of Head of Security.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_alt.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_alt.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # DS14
+  id: USSPSFClothingUniformJumpsuitHoSBlue
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's blue jumpsuit
+  description: A blue jumpsuit of Head of Security.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_blue.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_blue.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # DS14
+  id: USSPSFClothingUniformJumpsuitHoSGrey
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's grey jumpsuit
+  description: A grey jumpsuit of Head of Security, which make him look somewhat like a passenger.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_grey.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_grey.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitHoSParadeMale
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's parade uniform
+  description: A male head of security's luxury-wear, for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_parade.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos_parade.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # DS14
+  id: USSPSFClothingUniformJumpsuitBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic jumpsuit
+  description: This uniform is issued to qualified personnel who have been trained. No one cares that the training took half a day.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/brigmedic.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/brigmedic.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingUniformJumpsuitSec
+  categories: [ USSP ]
+  suffix: USSP
+  name: security jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/security.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseC2ContrabandUnredeemable] # DS14
+  id: USSPSFClothingUniformJumpsuitSecGrey
+  categories: [ USSP ]
+  suffix: USSP
+  name: grey security jumpsuit
+  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/security_grey.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/security_grey.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitCapFormal
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's formal suit
+  description: A suit for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/capformal.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/capformal.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitHosFormal
+  categories: [ USSP ]
+  suffix: USSP
+  name: hos's formal suit
+  description: A suit for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hosformal.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hosformal.rsi

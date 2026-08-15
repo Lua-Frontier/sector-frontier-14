@@ -1,0 +1,81 @@
+# source: Entities/Clothing/Ears/headsets.yml
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: USSPSFClothingHeadsetCommand
+  categories: [ USSP ]
+  suffix: USSP
+  name: command headset
+  description: A headset with a commanding channel.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+      - USSPSFEncryptionKeyUssp
+  - type: Sprite
+    sprite: _Souz/Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Ears/Headsets/command.rsi
+  - type: Headset
+    color: "#fcdf03"
+- type: entity
+  parent: [ClothingHeadset, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingHeadsetSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security headset
+  description: This is used by your elite security force.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - USSPSFEncryptionKeyUssp
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Headset
+    color: "#dd3535"
+- type: entity
+  parent: [ClothingHeadset, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingHeadsetBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic headset
+  description: A headset that helps to hear the death cries.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyMedical
+      - USSPSFEncryptionKeyUssp
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/brigmedic.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/brigmedic.rsi
+  - type: Headset
+    color: "#dd3535"
+
+# source: _DeadSpace/Entities/Clothing/Ears/headsets.yml
+- type: entity
+  parent: ClothingHeadsetAlt
+  id: USSPSFClothingHeadsetAltSecurityOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: полноразмерная гарнитура милиции
+  description: Полноразмерная гарнитура милиции.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - USSPSFEncryptionKeyUssp
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Headset
+    color: "#dd3535"

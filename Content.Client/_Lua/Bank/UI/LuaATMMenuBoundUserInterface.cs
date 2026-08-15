@@ -2,15 +2,19 @@
 // Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
-using Robust.Client.UserInterface;
-using Content.Shared._NF.Bank.Events;
+using Content.Shared._Lua.Achievements;
 using Content.Shared._Lua.Bank.Events;
 using Content.Shared._Lua.Bank.UI;
+using Content.Shared._NF.Bank.Events;
+using Robust.Client.UserInterface;
+using Robust.Shared.Network;
 
 namespace Content.Client._Lua.Bank.UI;
 
 public sealed class LuaATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
+    [Dependency] private readonly INetManager _net = default!;
+
     private LuaATMMenu? _menu;
 
     protected override void Open()
@@ -21,6 +25,8 @@ public sealed class LuaATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : 
 
         _menu.WithdrawRequest += OnWithdraw;
         _menu.DepositRequest += OnDeposit;
+
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerBankATM));
     }
 
     private void OnWithdraw(int amount)

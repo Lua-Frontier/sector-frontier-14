@@ -4,7 +4,7 @@
   id: ShipMediumPlasmaProjectile
   name: plasma projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -41,7 +41,7 @@
   id: ShipCerberusPlasma
   name: plasma projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -72,6 +72,7 @@
     maxIntensity: 6
 
 - type: entity
+  categories: [ ShuttleGun ]
   name: cerberus spread
   parent: ShipMediumPlasmaProjectile
   id: CerberusSpread
@@ -87,7 +88,7 @@
   id: ShipAutopulserPlasmaProjectile
   name: plasma projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -124,7 +125,7 @@
   id: ShipPlasmaProjectileScylla
   name: plasma projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -159,7 +160,7 @@
   id: ShipGlassingBeamPlasmaProjectile
   name: plasma projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -197,7 +198,7 @@
   id: ShipM25Projectile
   name: M25 projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -230,7 +231,7 @@
   id: ShipRubiconProjectile
   name: EMP projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -263,7 +264,7 @@
   id: ShipDymereProjectile
   name: Ionized Gas Projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -302,7 +303,7 @@
   id: ShipNeutronProjectile
   name: neutron projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -339,7 +340,7 @@
   id: ShipIonProjectile
   name: ion shot
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -378,7 +379,7 @@
   id: ShipAntiMatterProjectile
   name: antimatter projectile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -416,7 +417,7 @@
 - type: entity
   parent: BasicHitscan
   id: PhalanxLaser
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -443,7 +444,7 @@
 - type: entity
   parent: BasicHitscan
   id: ApolloLaser
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -471,7 +472,7 @@
 - type: entity
   parent: ApolloLaser
   id: PrometheusLaser
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: HitscanBasicDamage
     damage:
@@ -490,7 +491,7 @@
 - type: entity
   parent: BasicHitscan
   id: TachyonLaser
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -519,7 +520,7 @@
 - type: entity
   parent: BasicHitscan
   id: SunderLaser
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -548,7 +549,7 @@
 - type: entity
   parent: BasicHitscan
   id: GaussRound
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: HitscanBasicVisuals
     muzzleFlash:
@@ -576,7 +577,7 @@
 
 - type: entity
   id: TachyonExplosion
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger
@@ -588,7 +589,7 @@
 
 - type: entity
   id: SunderExplosion
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger
@@ -600,7 +601,7 @@
 
 - type: entity
   id: PrometheusExplosion
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger

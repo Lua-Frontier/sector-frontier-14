@@ -1,6 +1,7 @@
 ui-lobby-minimize-button = Скрыть интерфейс
 ui-lobby-character-button = Настройки персонажа
 ui-lobby-servers-button = Наши сервера
+ui-lobby-roadmap-button = Планы
 
 ui-lobby-previous-track = ⏮
 ui-lobby-stop-track = ⏹

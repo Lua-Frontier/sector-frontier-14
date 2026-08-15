@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   parent: BaseStructure
   id: WeaponTurretBaseLaser
   abstract: true
@@ -91,6 +92,7 @@
       price: 750
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponTurretBaseLaser
   id: WeaponTurretLaserLuaTech
   name: оборонная турель "LuaTech"
@@ -123,6 +125,7 @@
     - LuaTech
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponLaserTurretL1Phalanx
   id: WeaponTurretLaserShuttleLuaTech
   name: лазерная турель LuaTech
@@ -154,6 +157,7 @@
   - type: LuaTech
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponLaserTurretPrometheus
   id: WeaponTurretBigLaserShuttleLuaTech
   name: большая лазерная турель LuaTech

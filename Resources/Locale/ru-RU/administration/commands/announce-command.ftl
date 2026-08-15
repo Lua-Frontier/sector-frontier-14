@@ -1,0 +1,9 @@
+cmd-announce-desc = Отправить игровое объявление от лица фракции в выбранный сектор.
+cmd-announce-help = {$command} <сообщение> [фракция] [сектор] [цвет] [звук]
+cmd-announce-sender = Центральное Командование
+cmd-announce-arg-message = <сообщение>
+cmd-announce-arg-faction = [фракция]
+cmd-announce-arg-sector = [сектор]
+cmd-announce-arg-color = [цвет]
+cmd-announce-arg-sound = [звук]
+cmd-announce-error-identity = Неизвестная фракция или сектор. Укажите id фракции (Nanotrasen, Ussp, Syndicate, Neutral, Pirates, LuaTech) и id сектора либо all.

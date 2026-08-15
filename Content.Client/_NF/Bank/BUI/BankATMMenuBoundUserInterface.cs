@@ -1,6 +1,8 @@
 using Content.Client._NF.Bank.UI;
 using Content.Shared._NF.Bank.BUI;
+using Content.Shared._Lua.Achievements;
 using Content.Shared._NF.Bank.Events;
+using Robust.Shared.Network;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.Cargo.BUI;
@@ -8,6 +10,7 @@ namespace Content.Client.Cargo.BUI;
 public sealed class BankATMMenuBoundUserInterface : BoundUserInterface
 {
     private BankATMMenu? _menu;
+    [Dependency] private readonly INetManager _net = default!;
 
     public BankATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
 
@@ -20,6 +23,7 @@ public sealed class BankATMMenuBoundUserInterface : BoundUserInterface
             _menu = this.CreateWindow<BankATMMenu>();
             _menu.WithdrawRequest += OnWithdraw;
             _menu.DepositRequest += OnDeposit;
+            _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerBankATM));
         }
     }
 

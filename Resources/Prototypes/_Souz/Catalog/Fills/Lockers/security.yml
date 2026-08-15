@@ -1,0 +1,41 @@
+# source: Catalog/Fills/Lockers/security.yml
+- type: entity
+  id: USSPSFLockerSecurityFilled
+  categories: [ USSP ]
+  suffix: USSP, Filled
+  parent: USSPSFLockerSecurity
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerSecurity
+- type: entity
+  id: USSPSFLockerBrigmedicFilled
+  categories: [ USSP ]
+  suffix: USSP, Brigmedic, Filled
+  parent: USSPSFLockerBrigmedic
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillLockerBrigmedic
+
+# source: _DeadSpace/Catalog/Fills/Lockers/security.yml
+- type: entity
+  id: USSPSFLockerBlueShieldFilled
+  categories: [ USSP ]
+  suffix: USSP, BlueShield, Filled
+  parent: USSPSFLockerBlueShield
+  components:
+  - type: StorageFill
+    contents:
+      - id: MedkitCombatFilled
+      - id: MedkitAdvancedFilled
+      - id: USSPSFFlashlightSeclite
+      - id: USSPSFRubberStampBlueShield
+      - id: USSPSFCigarGoldCase
+      - id: USSPSFUSSPFlippo # DS14-Soyuz
+      - id: NFWeaponEnergyPistolDisablerPractice
+      - id: USSPSFClothingEyesGlassesAdvancedOKGB # DS14-Soyuz
+      - id: USSPSFClothingMaskGasSwat
+      - id: USSPSFClothingHeadHelmetBlueShield

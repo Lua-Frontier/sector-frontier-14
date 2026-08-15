@@ -30,37 +30,39 @@
 #            NFPirate: [ 6, 6 ]
 
 # for StormCreed
-- type: gameMap
-  id: Murena
-  mapName: 'SC-RUST/MUR3NA-5.5'
-  mapPath: /Maps/_Lua/Maps/Murena.yml
-  isGrid: true
-  minPlayers: 0
-  stations:
-    Murena:
-      stationProto: StandardPiratesVessel
-      components:
-        - type: FactionCapture
-          captureWholeStation: true
-        - type: RadarBlipIcon
-          icon: /Textures/_Lua/Interface/Radar/space-station.png
-          scale: 1.2
-          allowWhenHidden: true
-        - type: MailStationDisabled
-        - type: FactionOwnedStation
-          mainBase: true
-        - type: StationNameSetup
-          mapNameTemplate: 'SC-RUST/MUR3NA-5.5'
-        - type: ExtraStationInformation
-          iconPath: /Textures/Structures/Wallmounts/flags.rsi/Stormcreed_flag.png
-          stationSubtext: 'stormcreed-lobby-outpost-subtext'
-          stationDescription: 'stormcreed-lobby-outpost-description'
-          requiredCompany: StormCreed
-        - type: StationJobs
-          availableJobs:
-            StormCreedCaptain: [ 1, 1 ]
-            StormCreedFirstmate: [ 2, 2 ]
-            StormCreedSoldier: [ 6, 6 ]
+# - type: gameMap
+#   id: Murena
+#   mapName: 'SC-RUST/MUR3NA-5.5'
+#   mapPath: /Maps/_Lua/Maps/Murena.yml
+#   isGrid: true
+#   minPlayers: 0
+#   stations:
+#     Murena:
+#       stationProto: StandardPiratesVessel
+#       components:
+#         - type: FactionCapture
+#           captureWholeStation: true
+#         - type: BecomesStation
+#           id: Murena
+#         - type: RadarBlipIcon
+#           icon: /Textures/_Lua/Interface/Radar/space-station.png
+#           scale: 1.2
+#           allowWhenHidden: true
+#         - type: MailStationDisabled
+#         - type: FactionOwnedStation
+#           mainBase: true
+#         - type: StationNameSetup
+#           mapNameTemplate: 'SC-RUST/MUR3NA-5.5'
+#         - type: ExtraStationInformation
+#           iconPath: /Textures/Structures/Wallmounts/flags.rsi/Stormcreed_flag.png
+#           stationSubtext: 'stormcreed-lobby-outpost-subtext'
+#           stationDescription: 'stormcreed-lobby-outpost-description'
+#           requiredCompany: StormCreed
+#         - type: StationJobs
+#           availableJobs:
+#             StormCreedCaptain: [ 1, 1 ]
+#             StormCreedFirstmate: [ 2, 2 ]
+#             StormCreedSoldier: [ 6, 6 ]
 
 - type: gameMap
   id: CoveLua

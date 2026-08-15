@@ -22,6 +22,12 @@
       components:
       - Anomaly # Friendly to inner anomaly host
   - type: MovementIgnoreGravity
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.5
     baseRunningSpeed: 3.5
@@ -72,7 +78,6 @@
     damage:
       types:
         Heat: -0.2
-  - type: NoSlip
   - type: Pullable
   - type: ZombieImmune
   - type: NameIdentifier

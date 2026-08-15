@@ -1,0 +1,31 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: ShipMiningDrillMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ship mining drill machine board
+  description: A machine printed circuit board for a hull-mounted mining drill. Requires a 3x2 machine frame.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: WeaponShipMiningDrill
+    frameSize: 3x2
+    requirements:
+      MatterBin: 2
+      Manipulator: 4
+    stackRequirements:
+      Steel: 15
+      Plasteel: 8
+      Plasma: 5
+      CableHV: 4
+    tagRequirements:
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1

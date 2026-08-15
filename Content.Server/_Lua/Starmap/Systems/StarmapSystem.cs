@@ -5,9 +5,10 @@
 using Content.Server.Shuttles.Systems;
 using Content.Server._Lua.Sectors;
 using Content.Shared._Lua.Starmap;
-using Content.Shared._Lua.Starmap.Components;
 using Content.Shared._Lua.Shuttles;
 using Content.Shared.Examine;
+using Content.Shared.Lua.CLVar;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using System.Numerics;
 using Robust.Shared.Prototypes;
@@ -23,6 +24,7 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
@@ -99,45 +101,49 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
     {
         var stars = new List<Star>();
         var seenMaps = new HashSet<MapId>();
-        var starMapQuery = AllEntityQuery<StarMapComponent>();
-        while (starMapQuery.MoveNext(out var uid, out var starMap))
+        var seenChartOnlyNames = new HashSet<string>(StringComparer.Ordinal);
+
+        foreach (var decorative in GetDecorativeStarsFromData())
         {
-            foreach (var s in starMap.StarMap)
+            if (string.IsNullOrEmpty(decorative.Name) || !seenChartOnlyNames.Add(decorative.Name))
+                continue;
+            stars.Add(decorative);
+        }
+
+        try
+        {
+            foreach (var s in _sectorStarMap.GetSectorStars())
             {
-                if (_mapManager.MapExists(s.Map) && seenMaps.Add(s.Map))
+                if (seenMaps.Add(s.Map))
                     stars.Add(s);
             }
         }
-        try
-        {
-            if (_sectorStarMap != null)
-            {
-                var sectorStars = _sectorStarMap.GetSectorStars();
-                foreach (var s in sectorStars)
-                {
-                    if (seenMaps.Add(s.Map))
-                        stars.Add(s);
-                }
-            }
-        }
         catch { }
+
         return stars;
+    }
+
+    private List<Star> GetDecorativeStarsFromData()
+    {
+        var result = new List<Star>();
+        var dataId = _cfg.GetCVar(CLVars.StarmapDataId);
+        if (!StarmapDataComposer.TryCompose(_prototypes, dataId, out var data))
+            return result;
+
+        foreach (var def in data.Stars)
+        {
+            if (!string.Equals(def.StarType, "decorative", StringComparison.OrdinalIgnoreCase))
+                continue;
+
+            result.Add(new Star(def.Position, MapId.Nullspace, def.Name, def.Position, canWarp: false));
+        }
+
+        return result;
     }
 
     private void OnMapRemoved(MapRemovedEvent ev)
     {
-        var removed = ev.MapId;
-        var q = AllEntityQuery<StarMapComponent>();
-        var changed = false;
-        while (q.MoveNext(out var uid, out var comp))
-        {
-            var count = comp.StarMap.RemoveAll(s => s.Map == removed);
-            if (count > 0)
-            {
-                changed = true;
-            }
-        }
-        if (changed) InvalidateCache();
+        InvalidateCache();
     }
 
     private List<Star>? _cachedStars;
@@ -145,16 +151,13 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
 
     private void EnsureCache()
     {
-        if (_cachedStars != null && _cachedStars.Count > 0 && _cachedEdges != null) return;
+        if (_cachedStars != null && _cachedStars.Count > 0 && _cachedEdges != null)
+            return;
+
         var stars = GetAllStars();
         if (stars.Count == 0)
-        {
-            try { _sectorStarMap?.UpdateAllStarMaps(); }
-            catch { }
-            stars = GetAllStars();
-        }
-        if (stars.Count == 0)
-        { return; }
+            return;
+
         stars.Sort((x, y) =>
         {
             var c = x.Map.GetHashCode().CompareTo(y.Map.GetHashCode());
@@ -205,11 +208,24 @@ public sealed partial class StarmapSystem : SharedStarmapSystem
 
         try
         {
-            if (_prototypes.TryIndex<StarmapDataPrototype>("StarmapData", out var data))
+            if (StarmapDataComposer.TryCompose(_prototypes, "StarmapData", out var data))
             {
                 var idToStarIndex = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
                 foreach (var def in data.Stars)
                 {
+                    var matched = false;
+                    for (var i = 0; i < n; i++)
+                    {
+                        if (!string.Equals(stars[i].Name, def.Name, StringComparison.Ordinal))
+                            continue;
+                        idToStarIndex[def.Id] = i;
+                        matched = true;
+                        break;
+                    }
+
+                    if (matched)
+                        continue;
+
                     for (var i = 0; i < n; i++)
                     {
                         if (Vector2.Distance(stars[i].Position, def.Position) < 0.1f)

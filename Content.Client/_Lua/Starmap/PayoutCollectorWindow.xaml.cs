@@ -18,10 +18,13 @@ public sealed partial class PayoutCollectorWindow : LunaWindow
 {
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    public event Action? OnClaim;
+    public event Action? OnDeposit;
+    public event Action<int>? OnWithdraw;
 
     private TimeSpan _nextPayoutAt;
     private TimeSpan _interval = TimeSpan.FromSeconds(3600);
+    private int? _withdrawAmount;
+    private int _balance;
 
     public PayoutCollectorWindow()
     {
@@ -29,7 +32,13 @@ public sealed partial class PayoutCollectorWindow : LunaWindow
         IoCManager.InjectDependencies(this);
         ApplyLunaChrome();
         ApplyLunaInterior();
-        ClaimButton.OnPressed += _ => OnClaim?.Invoke();
+        DepositButton.OnPressed += _ => OnDeposit?.Invoke();
+        WithdrawButton.OnPressed += _ =>
+        {
+            if (_withdrawAmount is { } amount)
+                OnWithdraw?.Invoke(amount);
+        };
+        WithdrawEdit.OnTextChanged += OnAmountChanged;
     }
 
     private void ApplyLunaInterior()
@@ -43,14 +52,22 @@ public sealed partial class PayoutCollectorWindow : LunaWindow
         LunaWindowStyle.StyleMuted(NextPayoutLabel);
         LunaWindowStyle.StyleValue(NextPayoutText);
         LunaWindowStyle.StyleProgressCooldown(NextPayoutBar);
+        LunaWindowStyle.StyleMuted(DepositCaption);
+        LunaWindowStyle.StyleValue(DepositLabel);
         LunaWindowStyle.StyleHeading(HistoryHeadingLabel);
         LunaWindowStyle.StyleMuted(HistoryEmptyLabel);
-        ClaimButton.AddStyleClass(StyleNano.StyleClassButtonNavCompact);
-        if (ClaimButton.Label != null)
-        {
-            ClaimButton.Label.FontOverride = LunaWindowStyle.FontSmall;
-            ClaimButton.Label.FontColorOverride = LunaWindowStyle.AccentGood;
-        }
+        DepositButton.AddStyleClass(StyleNano.StyleClassButtonNavCompact);
+        WithdrawButton.AddStyleClass(StyleNano.StyleClassButtonNavCompact);
+        StyleButton(DepositButton);
+        StyleButton(WithdrawButton);
+    }
+
+    private static void StyleButton(Button button)
+    {
+        if (button.Label == null)
+            return;
+        button.Label.FontOverride = LunaWindowStyle.FontSmall;
+        button.Label.FontColorOverride = LunaWindowStyle.AccentGood;
     }
 
     public void Update(PayoutCollectorBuiState state)
@@ -67,9 +84,12 @@ public sealed partial class PayoutCollectorWindow : LunaWindow
             ("amount", state.PayoutPerStation),
             ("interval", FormatInterval(state.IntervalSeconds)));
 
+        _balance = state.Accumulated;
         _interval = TimeSpan.FromSeconds(Math.Max(1, state.IntervalSeconds));
         _nextPayoutAt = state.NextPayoutAt;
         UpdateNextPayoutProgress();
+        UpdateDeposit(state.Deposit);
+        UpdateWithdrawEnabled();
 
         HistoryContainer.RemoveAllChildren();
         var history = state.ClaimHistory ?? new List<PayoutClaimHistoryEntry>();
@@ -81,9 +101,10 @@ public sealed partial class PayoutCollectorWindow : LunaWindow
         {
             foreach (var entry in history)
             {
+                var locId = entry.IsDeposit ? "payout-history-deposit" : "payout-history-withdraw";
                 var row = new Label
                 {
-                    Text = Loc.GetString("payout-history-entry",
+                    Text = Loc.GetString(locId,
                         ("name", entry.CharacterName),
                         ("amount", entry.Amount)),
                 };
@@ -91,8 +112,26 @@ public sealed partial class PayoutCollectorWindow : LunaWindow
                 HistoryContainer.AddChild(row);
             }
         }
+    }
 
-        ClaimButton.Disabled = state.Accumulated <= 0;
+    private void UpdateDeposit(int amount)
+    {
+        DepositButton.Disabled = amount <= 0;
+        DepositLabel.Text = amount >= 0
+            ? Loc.GetString("payout-deposit-amount", ("amount", amount))
+            : Loc.GetString("payout-wrong-cash");
+    }
+
+    private void OnAmountChanged(LineEdit.LineEditEventArgs args)
+    {
+        var parsable = int.TryParse(args.Text, out var amount) && amount > 0;
+        _withdrawAmount = parsable ? amount : null;
+        UpdateWithdrawEnabled();
+    }
+
+    private void UpdateWithdrawEnabled()
+    {
+        WithdrawButton.Disabled = _withdrawAmount is not { } amount || amount > _balance;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

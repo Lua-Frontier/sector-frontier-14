@@ -1,0 +1,12 @@
+research-technology-ussp-thruster-small = Двигатель СССП
+research-technology-ussp-thruster-medium = Средний двигатель СССП
+research-technology-ussp-thruster-large = Большой двигатель СССП
+research-technology-universal-armorplates-1 = Баллистические композиты
+research-technology-universal-armorplates-2 = Продвинутые бронепластины
+research-technology-ussp-suits-basic = Базовая экипировка СССП
+research-technology-ussp-suits-medium = Стандартная экипировка СССП
+research-technology-ussp-suits-advanced = Продвинутая экипировка СССП
+research-technology-ussp-explosives-medium = Взрывчатка СССП
+research-technology-ussp-guns-medium = Стандартное вооружение СССП
+research-technology-ussp-guns-ak410 = Специализированное вооружение СССП
+research-technology-ussp-guns-advanced = Продвинутое вооружение СССП

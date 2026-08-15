@@ -1,5 +1,5 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2025 LuaWorld
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
 using Robust.Shared.Serialization;
@@ -17,11 +17,13 @@ public sealed class PayoutClaimHistoryEntry
 {
     public string CharacterName;
     public int Amount;
+    public bool IsDeposit;
 
-    public PayoutClaimHistoryEntry(string characterName, int amount)
+    public PayoutClaimHistoryEntry(string characterName, int amount, bool isDeposit = false)
     {
         CharacterName = characterName;
         Amount = amount;
+        IsDeposit = isDeposit;
     }
 }
 
@@ -30,6 +32,7 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
 {
     public int OwnedStations;
     public int Accumulated;
+    public int Deposit;
     public string Faction;
     public int PayoutPerStation;
     public int IntervalSeconds;
@@ -39,6 +42,7 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
     public PayoutCollectorBuiState(
         int ownedStations,
         int accumulated,
+        int deposit,
         string faction,
         int payoutPerStation,
         int intervalSeconds,
@@ -47,6 +51,7 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
     {
         OwnedStations = ownedStations;
         Accumulated = accumulated;
+        Deposit = deposit;
         Faction = faction;
         PayoutPerStation = payoutPerStation;
         IntervalSeconds = intervalSeconds;
@@ -56,6 +61,17 @@ public sealed class PayoutCollectorBuiState : BoundUserInterfaceState
 }
 
 [Serializable, NetSerializable]
-public sealed class PayoutCollectorClaimMessage : BoundUserInterfaceMessage
+public sealed class PayoutCollectorWithdrawMessage : BoundUserInterfaceMessage
+{
+    public int Amount;
+
+    public PayoutCollectorWithdrawMessage(int amount)
+    {
+        Amount = amount;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class PayoutCollectorDepositMessage : BoundUserInterfaceMessage
 {
 }

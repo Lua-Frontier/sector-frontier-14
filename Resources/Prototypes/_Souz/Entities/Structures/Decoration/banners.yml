@@ -1,0 +1,112 @@
+# source: Entities/Structures/Decoration/banners.yml
+- type: entity
+  id: USSPSFBannerNanotrasen
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner.rsi
+    state: banner
+  - type: Construction
+    graph: USSPBannersGraph
+    node: USSPSFBannerNanotrasenNode
+
+- type: entity
+  id: USSPSFBannerRevolution
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BannerBase
+  name: revolution banner
+  description: A banner displaying revolution. Viva!
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner.rsi
+    state: banner_revolution
+
+- type: entity
+  id: USSPSFBannerSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BannerBase
+  name: security banner
+  description: A banner displaying the colors of the security department. You're surprised it's not vandalised.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner.rsi
+    state: banner_security
+  - type: Construction
+    graph: USSPBannersGraph
+    node: USSPSFBannerSecurityNode
+
+# source: _DeadSpace/Entities/Structures/Decoration/banners.yml
+- type: entity
+  id: BannerOPZ
+  parent: BannerBase
+  name: знамя ОПЗ
+  description: Под знаменем ОПЗ галактика обрела известные нам границы.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner2.rsi
+    state: opz
+- type: entity
+  id: BannerSNK
+  parent: BannerBase
+  name: знамя СНК
+  description: Символ свободного мира, ставший наживкой для стервятников.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner2.rsi
+    state: snk
+- type: entity
+  id: BannerEmpire
+  parent: BannerBase
+  name: знамя Империи
+  description: Символ страны, которая несколько веков уничтожает редспейс угрозу.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner2.rsi
+    state: empire
+
+# source: _DeadSpace/Entities/Structures/Decoration/banners.yml
+#- type: entity
+#  id: USSPSFBannerUSSP
+#  parent: BannerBase
+#  name: знамя СССП
+#  description: Благодаря знамени СССП в галактике прекратилось рабство.
+#  components:
+#  - type: Sprite
+#    sprite: _Souz/Structures/Decoration/banner2.rsi
+#    state: ussp
+# source: _DeadSpace/_Soyuz/Entities/Structures/Decoration/banners.yml
+- type: entity
+  id: USSPSFBannerFlagUSSP
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BannerBase
+  name: флаг СССП
+  description: Скромный государственный флаг Союза Советских Социалистических Планет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner3.rsi
+    state: USSPFlag
+  - type: Construction
+    graph: USSPBannersGraph
+    node: USSPSFBannerFlagUSSPNode
+
+- type: entity
+  id: USSPSFBannerUSSP
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BannerBase
+  name: знамя СССП
+  description: Гордое, золотистое знамя Союза Советских Социалистических Планет, отражающие в себе культуру и волю народов.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Decoration/banner3.rsi
+    state: USSPBanner
+  - type: Construction
+    graph: USSPBannersGraph
+    node: USSPSFBannerUSSPNode

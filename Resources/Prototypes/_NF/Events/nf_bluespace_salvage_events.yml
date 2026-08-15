@@ -16,7 +16,7 @@
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
   - type: BluespaceErrorRule
-    asteroid: true
+    sectorStarmap: AsteroidSectorDefault
     groups:
       grid: !type:GridSpawnGroup
         nameDataset: NamesScrap
@@ -35,7 +35,6 @@
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
-        - type: ClaimableGrid # Mono
         paths:
 #        - /Maps/_NF/Shuttles/Scrap/canister.yml # Too small
         - /Maps/_NF/Shuttles/Scrap/disciple.yml
@@ -71,7 +70,7 @@
 #     duration: 1800 # 30 minutes
 #     maxDuration: 1800 # 30 minutes
 #   - type: BluespaceErrorRule
-#     asteroid: true
+#     sectorStarmap: AsteroidSectorDefault
 #     groups:
 #       grid: !type:GridSpawnGroup
 #         nameDataset: NamesScrap
@@ -125,7 +124,7 @@
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
   - type: BluespaceErrorRule
-    asteroid: true
+    sectorStarmap: AsteroidSectorDefault
     groups:
       grid: !type:GridSpawnGroup
         nameDataset: NamesCustomScrap
@@ -144,7 +143,6 @@
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
-        - type: ClaimableGrid # Mono
         paths:
         - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS1.yml
         - /Maps/_Lua/Bluespace/CustomScrap/FrontierSector/FS2.yml
@@ -174,7 +172,7 @@
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes
   - type: BluespaceErrorRule
-    asteroid: true
+    sectorStarmap: AsteroidSectorDefault
     groups:
       grid: !type:GridSpawnGroup
         nameDataset: NamesCustomScrap
@@ -193,7 +191,6 @@
         - type: ProtectedGrid
           preventArtifactTriggers: true
         - type: PreventPilot
-        - type: ClaimableGrid # Mono
         paths:
         - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS1.yml
         - /Maps/_Lua/Bluespace/CustomScrap/AsteroidSector/AS2.yml

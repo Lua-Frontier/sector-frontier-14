@@ -1,0 +1,21 @@
+# source: Catalog/Fills/Crates/armory.yml
+- type: entity
+  parent: [CrateWeaponSecure, BaseC2ContrabandUnredeemable]
+  id: USSPSFCrateSecurityRiot
+  categories: [ USSP ]
+  suffix: USSP
+  name: swat crate
+  description: Contains two sets of riot armor, helmets, shields, and enforcers loaded with beanbags. Extra ammo is included. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: USSPSFClothingOuterArmorRiot
+      amount: 2
+    - id: USSPSFClothingHeadHelmetRiot
+      amount: 2
+    - id: USSPSFWeaponShotgunEnforcerRubber
+      amount: 2
+    - id: NFAmmunitionBoxShellShotgunBeanbag
+      amount: 2
+    - id: RiotShield
+      amount: 2

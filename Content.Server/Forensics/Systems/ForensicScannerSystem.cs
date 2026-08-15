@@ -103,14 +103,15 @@ namespace Content.Server.Forensics
             _audioSystem.PlayPvs(_audioSystem.ResolveSound(_confirmSound), uidOrigin);
 
             if (spesoAmount > 0)
-                _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount, LedgerEntryType.AntiSmugglingBonus);
+                _bank.TrySectorDeposit(SectorBankAccount.Nfsd, spesoAmount, LedgerEntryType.AntiSmugglingBonus, uidOrigin);
             else
                 spesoAmount = 0;
 
             if (fucAmount > 0)
             {
                 // Accumulate sector-wide FUCs, pay out if min threshold met
-                if (TryComp<SectorDeadDropComponent>(_service.GetServiceEntity(), out var sectorDD))
+                if (_service.TryGetServiceEntity(uidOrigin, out var service) &&
+                    TryComp<SectorDeadDropComponent>(service, out var sectorDD))
                 {
                     sectorDD.FUCAccumulator += fucAmount;
                     if (sectorDD.FUCAccumulator >= _minFUCPayout)

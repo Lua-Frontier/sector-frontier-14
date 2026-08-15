@@ -1,0 +1,50 @@
+- type: job
+  id: UsspBrigmedic
+  name: job-name-ussp-brigmedic
+  description: job-description-ussp-brigmedic
+  playTimeTracker: JobUsspBrigmedic
+  requiredCompany: Ussp
+  salary: 40000
+  startingGear: UsspBrigmedicGear
+  icon: JobIconUsspBrigmedic
+  supervisors: job-supervisors-ussp-hos
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 28800
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 28800
+  access:
+  - USSPMedical
+  - USSPSecurity
+  - USSPBrigmedic
+  - USSPBrig
+  - USSPMaintenance
+  - USSPExternal
+  accessGroups:
+  - USSPGeneral
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspBrigmedicGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspBrigmedicChameleonOutfit
+  job: UsspBrigmedic

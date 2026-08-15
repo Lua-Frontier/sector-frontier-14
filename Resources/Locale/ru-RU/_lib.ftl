@@ -42,3 +42,5 @@ zzzz-fmt-energy-watt-hours =
         [4] ТВт·ч
         *[5] ???
         }
+
+zzzz-fmt-playtime = {$hours}ч {$minutes}м {$seconds}с

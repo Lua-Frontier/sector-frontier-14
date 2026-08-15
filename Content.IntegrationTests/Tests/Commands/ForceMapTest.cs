@@ -19,7 +19,7 @@ public sealed class ForceMapTest
 - type: gameMap
   id: {TestMapIneligibleName}
   mapName: {TestMapIneligibleName}
-  mapPath: /Maps/Test/empty.yml
+  mapPath: /Maps/_Lua/Test/empty.yml
   minPlayers: 20
   maxPlayers: 80
   stations:
@@ -32,7 +32,7 @@ public sealed class ForceMapTest
 - type: gameMap
   id: {TestMapEligibleName}
   mapName: {TestMapEligibleName}
-  mapPath: /Maps/Test/empty.yml
+  mapPath: /Maps/_Lua/Test/empty.yml
   minPlayers: 0
   stations:
     Empty:

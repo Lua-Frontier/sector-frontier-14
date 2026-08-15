@@ -1,0 +1,115 @@
+- type: entity
+  parent: ClothingModsuitBootsBase
+  id: ClothingModsuitBootsUSSPVaryag
+  name: Marshevyye Varyag
+  description: Heavy-duty boots designed for combat and EVA.
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Shoes/Modsuits/ussp-varyag.rsi
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET-sealed
+      shoes-vox:
+      - state: equipped-FEET-sealed-vox
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+
+- type: entity
+  parent: ClothingModsuitBootsBase
+  id: ClothingModsuitBootsUSSPZastavnik
+  name: Sapogi Zastavnika
+  description: Thick, reinforced boots with magnetic stabilizers and shock absorption.
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Shoes/Modsuits/ussp-zastavnik.rsi
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET-sealed
+      shoes-vox:
+      - state: equipped-FEET-sealed-vox
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+
+- type: entity
+  parent: ClothingModsuitBootsBase
+  id: ClothingModsuitBootsRogue
+  name: RX-01 modsuit boots
+  description: Magnetized voidboots to help you avoid slips, trips, and Feds.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Shoes/Modsuits/rogue.rsi
+  - type: Magboots
+    requiresGrid: false
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET-sealed
+      shoes-vox:
+      - state: equipped-FEET-sealed-vox
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+
+# Volta
+- type: entity
+  parent: ClothingModsuitBootsBase
+  id: ClothingModsuitBootsVolta
+  name: Volta Modsuit Boots
+  description: Made to get militaristically oily.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Shoes/Modsuits/tsfmc-volta.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: NoSlip
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET-sealed
+      shoes-vox:
+      - state: equipped-FEET-sealed-vox
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75
+
+# Gallóglach
+- type: entity
+  parent: ClothingModsuitBootsBase
+  id: ClothingModsuitBootsMercenary
+  name: mercenary modsuit boots
+  description: The suits Actuator Enhancement System paired with the built in magboots make boarding actions a breeze.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Shoes/Modsuits/mercenary.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9 # Mono
+    sprintModifier: 0.9 # Mono
+  - type: JumpAbility
+    jumpDistance: 4
+    jumpSound: /Audio/Effects/Footsteps/suitstep2.ogg
+  - type: ActionGrant
+    actions:
+    - ActionGravityJump
+  - type: ItemActionGrant
+    actions:
+    - ActionGravityJump
+    activeIfWorn: true
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET-sealed
+      shoes-vox:
+      - state: equipped-FEET-sealed-vox

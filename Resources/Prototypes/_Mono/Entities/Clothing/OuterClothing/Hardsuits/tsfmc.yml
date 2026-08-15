@@ -11,7 +11,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73-outer.rsi #Lua
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM73
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM73
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: Armor
@@ -45,7 +51,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M74-outer.rsi #Lua
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM74
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM74
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Armor
     modifiers:
       coefficients:
@@ -72,8 +84,14 @@
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M75-outer.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M75-outer.rsi #Lua
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM75
+  - type: ToggleableClothing 
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM75
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Armor
     modifiers:
       coefficients:
@@ -100,8 +118,14 @@
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92-outer.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92-outer.rsi #Lua
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM92
+  - type: ToggleableClothing 
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM92
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: PressureProtection
@@ -146,8 +170,14 @@
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73c-outer.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73c-outer.rsi #Lua
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM73-C
+  - type: ToggleableClothing 
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM73-C
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: Armor
@@ -180,8 +210,14 @@
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi #Lua
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM92-X
+  - type: ToggleableClothing 
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM92-X
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: PressureProtection
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
@@ -229,8 +265,14 @@
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93-outer.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93-outer.rsi #Lua
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM93
+  - type: ToggleableClothing 
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM93
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -264,8 +306,14 @@
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93c-outer.rsi #Lua
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93c-outer.rsi #Lua
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitTSFMCM93-C
+  - type: ToggleableClothing 
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitTSFMCM93-C
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor

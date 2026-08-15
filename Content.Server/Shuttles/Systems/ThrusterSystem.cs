@@ -24,6 +24,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Localizations;
 using Content.Shared.Power;
 using Content.Shared.DeviceLinking.Events; // Frontier
+using Content.Shared.Shuttles.Events;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -188,6 +189,7 @@ public sealed class ThrusterSystem : EntitySystem
                 apcPower.Load = 1;  // Frontier
             DisableThruster(uid, component);
             args.Handled = true;
+            RaiseLocalEvent(new ThrusterDisabledByUserEvent(args.User, uid));
         }
         else if (CanEnable(uid, component))
         {
@@ -481,6 +483,7 @@ public sealed class ThrusterSystem : EntitySystem
         }
 
         component.IsOn = false;
+        component.Firing = false;
 
         if (!TryComp(gridId, out ShuttleComponent? shuttleComponent))
             return;
@@ -595,7 +598,7 @@ public sealed class ThrusterSystem : EntitySystem
         {
             if (comp.NextFire > curTime) continue;
             comp.NextFire += comp.FireCooldown;
-            if (!comp.Firing || comp.Damage == null) continue;
+            if (!comp.IsOn || !comp.Enabled || !comp.Firing || comp.Damage == null) continue;
             if (comp.Type == ThrusterType.Angular) continue;
             if (comp.BurnPoly.Count < 3) continue;
             var xform = Transform(ent);

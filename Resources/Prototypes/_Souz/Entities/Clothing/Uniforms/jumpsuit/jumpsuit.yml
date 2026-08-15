@@ -1,0 +1,52 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Uniforms/jumpsuit/jumpsuit.yml
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitPolitRukFormal
+  categories: [ USSP ]
+  suffix: USSP
+  name: костюм политического отдела
+  description: Красивый бордовый костюм.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/politrukformal.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/politrukformal.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitPolitRuk
+  categories: [ USSP ]
+  suffix: USSP
+  name: комбинезон политического отдела
+  description: Красивый бордовый комбинезон.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/politrukjumpsuit.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/politrukjumpsuit.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitHoPTurtle
+  categories: [ USSP ]
+  suffix: USSP
+  name: водолазка начальника отдела кадров
+  description: Я завидую владельцу этой водолазки.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hop_turtle.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/hop_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformUSSPJumpsuit
+  categories: [ USSP ]
+  suffix: USSP
+  name: футболка с гербом СССП
+  description: Самая стильная футболка во всём государстве.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/ussp_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/ussp_jumpsuit.rsi

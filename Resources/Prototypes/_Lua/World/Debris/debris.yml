@@ -1,6 +1,6 @@
 # Asteroid debris prototypes (vanilla + NF).
-# Bases -> base.yml (BaseDebris / NFBaseDebris) | Wrecks -> wrecks.yml | Drones -> drone.yml
-# Far-ring spawn tables: Biomes/mono_far.yml
+# Sizes + spawn rings: Biomes/mono_far.yml
+# Bases -> base.yml | Wrecks -> wrecks.yml | Drones -> drone.yml
 
 #region Vanilla / legacy
 - type: entity
@@ -13,8 +13,8 @@
       floorTileset:
       - FloorAsteroidSand
       blobDrawProb: 0.5
-      radius: 6
-      floorPlacements: 16
+      radius: 13
+      floorPlacements: 36
     - type: SimpleFloorPlanPopulator
       entries:
         FloorAsteroidSand:
@@ -85,44 +85,35 @@
 
 - type: entity
   id: AsteroidDebrisSmall
-  parent: BaseAsteroidDebris
+  parent: [BaseAsteroidDebris, NFBaseAsteroidSmall]
   name: asteroid debris small
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 8
 
 - type: entity
   id: AsteroidDebrisMedium
-  parent: BaseAsteroidDebris
+  parent: [BaseAsteroidDebris, NFBaseAsteroidMedium]
   name: asteroid debris medium
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 16
 
 - type: entity
   id: AsteroidDebrisLarge
-  parent: BaseAsteroidDebris
+  parent: [BaseAsteroidDebris, NFBaseAsteroidLarge]
   name: asteroid debris large
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 24
 
 - type: entity
   id: AsteroidDebrisLarger
-  parent: BaseAsteroidDebris
+  parent: [BaseAsteroidDebris, NFBaseAsteroidLarger]
   name: asteroid debris larger
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      radius: 12
-      floorPlacements: 36
 
 - type: entity
   id: AsteroidSalvageSmall
@@ -593,126 +584,7 @@
       allowWhenHidden: true
 # endregion Scrap Table
 
-# region Asteroid Sizes
-- type: entity
-  id: NFBaseAsteroidSmall
-  name: asteroid debris small
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 16
-      radius: 6
-
-- type: entity
-  id: NFBaseAsteroidMedium
-  name: asteroid debris medium
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 24
-      radius: 8
-
-- type: entity
-  id: NFBaseAsteroidLarge
-  name: asteroid debris large
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 36
-      radius: 10
-
-- type: entity
-  id: NFBaseAsteroidExtraLarge
-  name: asteroid debris extra large
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 52
-      radius: 12
-
-- type: entity
-  id: NFBaseAsteroidHuge
-  name: asteroid debris huge
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 72
-      radius: 16
-
-- type: entity
-  id: NFBaseAsteroidExtraHuge
-  name: asteroid debris extra huge
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 96
-      radius: 18
-
-- type: entity
-  id: NFBaseAsteroidEnormous
-  name: asteroid debris enormous
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 124
-      radius: 20
-
-- type: entity
-  id: NFBaseAsteroidExtraEnormous
-  name: asteroid debris extra enormous
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 156
-      radius: 22
-
-- type: entity
-  id: NFBaseAsteroidMassive
-  name: asteroid debris massive
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 192
-      radius: 24
-
-- type: entity
-  id: NFBaseAsteroidExtraMassive
-  name: asteroid debris extra massive
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 232
-      radius: 24
-
-- type: entity
-  id: NFBaseAsteroidGigantic
-  name: asteroid debris gigantic
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 276
-      radius: 26
-
-- type: entity
-  id: NFBaseAsteroidExtraGigantic
-  name: asteroid debris extra gigantic
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 324
-      radius: 28
-# endregion Asteroid Sizes
+# Sizes (radius / floorPlacements): Biomes/mono_far.yml
 
 # region Asteroid Entities
 - type: entity

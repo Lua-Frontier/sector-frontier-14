@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
+using Content.Server.Holiday;
 using Content.Shared.Audio;
 using Content.Shared.Audio.Events;
 using Content.Shared.CCVar;
@@ -55,6 +56,13 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<RoundStartingEvent>(OnRoundStart);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnProtoReload);
+        SubscribeLocalEvent<HolidaysRefreshedEvent>(OnHolidaysRefreshed);
+    }
+
+    private void OnHolidaysRefreshed(HolidaysRefreshedEvent ev)
+    {
+        _lobbyPlaylist = ShuffleLobbyPlaylist();
+        RaiseNetworkEvent(new LobbyPlaylistChangedEvent(_lobbyPlaylist));
     }
 
     private void OnRoundCleanup(RoundRestartCleanupEvent ev)
@@ -96,6 +104,18 @@ public sealed class ContentAudioSystem : SharedContentAudioSystem
 
     private string[] ShuffleLobbyPlaylist()
     {
+        if (_cfg.GetCVar(CCVars.HolidaysEnabled))
+        {
+            var now = DateTime.Now;
+            foreach (var holiday in _prototypeManager.EnumeratePrototypes<HolidayPrototype>())
+            {
+                if (holiday.LobbyMusic is not { Count: > 0 } music || !holiday.ShouldCelebrate(now))
+                    continue;
+
+                return music.Select(x => x.ToString()).ToArray();
+            }
+        }
+
         if (_lobbyMusicCollection == null)
         {
             return [];

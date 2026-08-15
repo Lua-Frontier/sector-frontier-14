@@ -1,0 +1,762 @@
+# source: Entities/Structures/Doors/Airlocks/access.yml
+- type: entity
+  parent: USSPSFAirlock
+  id: USSPSFAirlockServiceLocked
+  categories: [ USSP ]
+  suffix: USSP, Service, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsService ]
+  - type: Wires
+    layoutId: AirlockService
+- type: entity
+  parent: USSPSFAirlockLawyer # DS14
+  id: USSPSFAirlockLawyerLocked
+  categories: [ USSP ]
+  suffix: USSP, Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsLawyer ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockTheatreLocked
+  categories: [ USSP ]
+  suffix: USSP, Theatre, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsTheatre ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockServiceTheatreLocked
+  categories: [ USSP ]
+  suffix: USSP, Service, Theatre, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsServiceTheatre ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockChapelLocked
+  categories: [ USSP ]
+  suffix: USSP, Chapel, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChapel ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockJanitorLocked
+  categories: [ USSP ]
+  suffix: USSP, Janitor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsJanitor ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockKitchenLocked
+  categories: [ USSP ]
+  suffix: USSP, Kitchen, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsKitchen ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockBarLocked
+  categories: [ USSP ]
+  suffix: USSP, Bar, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsBar ]
+- type: entity
+  parent: USSPSFAirlockServiceLocked
+  id: USSPSFAirlockBarKitchenLocked
+  categories: [ USSP ]
+  suffix: USSP, Bar&Kitchen, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsBarKitchen ]
+- type: entity
+  parent: USSPSFAirlockHydroponics
+  id: USSPSFAirlockHydroponicsLocked
+  categories: [ USSP ]
+  suffix: USSP, Hydroponics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHydroponics ]
+- type: entity
+  parent: USSPSFAirlockFreezer
+  id: USSPSFAirlockFreezerLocked
+  categories: [ USSP ]
+  suffix: USSP, Kitchen, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsKitchen ]
+- type: entity
+  parent: USSPSFAirlockFreezer
+  id: USSPSFAirlockFreezerKitchenHydroLocked
+  categories: [ USSP ]
+  suffix: USSP, Kitchen/Hydroponics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsKitchenHydroponics ]
+- type: entity
+  parent: USSPSFAirlockFreezer
+  id: USSPSFAirlockFreezerHydroponicsLocked
+  categories: [ USSP ]
+  suffix: USSP, Hydroponics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHydroponics ]
+- type: entity
+  parent: USSPSFAirlockEngineering
+  id: USSPSFAirlockEngineeringLocked
+  categories: [ USSP ]
+  suffix: USSP, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsEngineering ]
+- type: entity
+  parent: USSPSFAirlockAtmospherics
+  id: USSPSFAirlockAtmosphericsLocked
+  categories: [ USSP ]
+  suffix: USSP, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsAtmospherics ]
+- type: entity
+  parent: USSPSFAirlockCargo
+  id: USSPSFAirlockCargoLocked
+  categories: [ USSP ]
+  suffix: USSP, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCargo ]
+- type: entity
+  parent: USSPSFAirlockSalvage
+  id: USSPSFAirlockSalvageLocked
+  categories: [ USSP ]
+  suffix: USSP, Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSalvage ]
+- type: entity
+  parent: USSPSFAirlockMedical
+  id: USSPSFAirlockMedicalLocked
+  categories: [ USSP ]
+  suffix: USSP, Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMedical ]
+- type: entity
+  parent: USSPSFAirlockVirology
+  id: USSPSFAirlockVirologyLocked
+  categories: [ USSP ]
+  suffix: USSP, Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMedicalVirology ] # DS14
+- type: entity
+  parent: USSPSFAirlockChemistry
+  id: USSPSFAirlockChemistryLocked
+  categories: [ USSP ]
+  suffix: USSP, Chemistry, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChemistry ]
+- type: entity
+  parent: USSPSFAirlockMedical
+  id: USSPSFAirlockMedicalMorgueLocked
+  categories: [ USSP ]
+  suffix: USSP, Morgue, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMorgue ]
+- type: entity
+  parent: USSPSFAirlockScience
+  id: USSPSFAirlockScienceLocked
+  categories: [ USSP ]
+  suffix: USSP, Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsResearch ]
+- type: entity
+  parent: USSPSFAirlockScience
+  id: USSPSFAirlockMedicalScienceLocked
+  categories: [ USSP ]
+  suffix: USSP, Medical/Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMedicalResearch ]
+- type: entity
+  parent: USSPSFAirlockCentralCommand
+  id: USSPSFAirlockCentralCommandLocked
+  categories: [ USSP ]
+  suffix: USSP, Central Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCentralCommand ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockCommandLocked
+  categories: [ USSP ]
+  suffix: USSP, Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCommand ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockCaptainLocked
+  categories: [ USSP ]
+  suffix: USSP, Captain, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCaptain ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockChiefMedicalOfficerLocked
+  categories: [ USSP ]
+  suffix: USSP, ChiefMedicalOfficer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChiefMedicalOfficer ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockChiefEngineerLocked
+  categories: [ USSP ]
+  suffix: USSP, ChiefEngineer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChiefEngineer ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockHeadOfSecurityLocked
+  categories: [ USSP ]
+  suffix: USSP, HeadOfSecurity, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHeadOfSecurity ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockResearchDirectorLocked
+  categories: [ USSP ]
+  suffix: USSP, ResearchDirector, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsResearchDirector ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockHeadOfPersonnelLocked
+  categories: [ USSP ]
+  suffix: USSP, HeadOfPersonnel, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHeadOfPersonnel ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockQuartermasterLocked
+  categories: [ USSP ]
+  suffix: USSP, Quartermaster, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsQuartermaster ]
+- type: entity
+  parent: USSPSFAirlockSecurity
+  id: USSPSFAirlockSecurityLocked
+  categories: [ USSP ]
+  suffix: USSP, Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSecurity ]
+- type: entity
+  parent: USSPSFAirlockSecurity
+  id: USSPSFAirlockDetectiveLocked
+  categories: [ USSP ]
+  suffix: USSP, Detective, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsDetective ]
+- type: entity
+  parent: USSPSFAirlockSecurity
+  id: USSPSFAirlockBrigLocked
+  categories: [ USSP ]
+  suffix: USSP, Brig, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsBrig ]
+- type: entity
+  parent: USSPSFAirlockSecurity
+  id: USSPSFAirlockSecurityLawyerLocked
+  categories: [ USSP ]
+  suffix: USSP, Security/Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSecurityLawyer ]
+- type: entity
+  parent: USSPSFAirlockSecurity
+  id: USSPSFAirlockArmoryLocked
+  categories: [ USSP ]
+  suffix: USSP, Armory, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsArmory ]
+  - type: Wires
+    layoutId: AirlockArmory
+- type: entity
+  parent: USSPSFAirlockSecurity
+  id: USSPSFAirlockVaultLocked
+  categories: [ USSP ]
+  suffix: USSP, Vault, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsVault ]
+- type: entity
+  parent: USSPSFAirlockCommand
+  id: USSPSFAirlockEVALocked
+  categories: [ USSP ]
+  suffix: USSP, EVA, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsExternal ]
+
+# Glass Airlocks
+- type: entity
+  parent: USSPSFAirlockGlass
+  id: USSPSFAirlockServiceGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Service, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsService ]
+  - type: Wires
+    layoutId: AirlockService
+- type: entity
+  parent: USSPSFAirlockLawyerGlass # DS14
+  id: USSPSFAirlockLawyerGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsLawyer ]
+- type: entity
+  parent: USSPSFAirlockServiceGlassLocked
+  id: USSPSFAirlockTheatreGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Theatre, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsTheatre ]
+- type: entity
+  parent: USSPSFAirlockServiceGlassLocked
+  id: USSPSFAirlockServiceTheatreGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Service, Theatre, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsServiceTheatre ]
+- type: entity
+  parent: USSPSFAirlockServiceGlassLocked
+  id: USSPSFAirlockJanitorGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Janitor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsJanitor ]
+- type: entity
+  parent: USSPSFAirlockHydroponicsGlass
+  id: USSPSFAirlockHydroGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Hydroponics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHydroponics ]
+- type: entity
+  parent: USSPSFAirlockServiceGlassLocked
+  id: USSPSFAirlockChapelGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Chapel, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChapel ]
+- type: entity
+  parent: USSPSFAirlockStandardGlass
+  id: USSPSFAirlockChapelStandardGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Chapel, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChapel ]
+  - type: Wires
+    layoutId: AirlockService
+- type: entity
+  parent: USSPSFAirlockEngineeringGlass
+  id: USSPSFAirlockEngineeringGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsEngineering ]
+- type: entity
+  parent: USSPSFAirlockAtmosphericsGlass
+  id: USSPSFAirlockAtmosphericsGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsAtmospherics ]
+- type: entity
+  parent: USSPSFAirlockCargoGlass
+  id: USSPSFAirlockCargoGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCargo ]
+- type: entity
+  parent: USSPSFAirlockSalvageGlass
+  id: USSPSFAirlockSalvageGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSalvage ]
+- type: entity
+  parent: USSPSFAirlockChemistryGlass
+  id: USSPSFAirlockChemistryGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Chemistry, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChemistry ]
+- type: entity
+  parent: USSPSFAirlockMedicalGlass
+  id: USSPSFAirlockMedicalMorgueGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Morgue, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMorgue ]
+- type: entity
+  parent: USSPSFAirlockMedicalGlass
+  id: USSPSFAirlockMedicalGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMedical ]
+- type: entity
+  parent: USSPSFAirlockVirologyGlass
+  id: USSPSFAirlockVirologyGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMedicalVirology ] # DS14
+- type: entity
+  parent: USSPSFAirlockScienceGlass
+  id: USSPSFAirlockScienceGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsResearch ]
+- type: entity
+  parent: USSPSFAirlockScienceGlass
+  id: USSPSFAirlockMedicalScienceGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Medical/Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMedicalResearch ]
+- type: entity
+  parent: USSPSFAirlockCentralCommandGlass
+  id: USSPSFAirlockCentralCommandGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Central Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCentralCommand ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockCommandGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCommand ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockCaptainGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Captain, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsCaptain ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockChiefMedicalOfficerGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, ChiefMedicalOfficer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChiefMedicalOfficer ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockChiefEngineerGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, ChiefEngineer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsChiefEngineer ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockHeadOfSecurityGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, HeadOfSecurity, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHeadOfSecurity ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockResearchDirectorGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, ResearchDirector, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsResearchDirector ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockHeadOfPersonnelGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, HeadOfPersonnel, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsHeadOfPersonnel ]
+- type: entity
+  parent: USSPSFAirlockCommandGlass
+  id: USSPSFAirlockQuartermasterGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Quartermaster, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsQuartermaster ]
+- type: entity
+  parent: USSPSFAirlockSecurityGlass
+  id: USSPSFAirlockSecurityGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSecurity ]
+- type: entity
+  parent: USSPSFAirlockSecurityGlass
+  id: USSPSFAirlockDetectiveGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Detective, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsDetective ]
+- type: entity
+  parent: USSPSFAirlockSecurityGlass
+  id: USSPSFAirlockBrigGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Brig, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsBrig ]
+- type: entity
+  parent: USSPSFAirlockSecurityGlass
+  id: USSPSFAirlockSecurityLawyerGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Security/Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSecurityLawyer ]
+- type: entity
+  parent: USSPSFAirlockSecurityGlass
+  id: USSPSFAirlockArmoryGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Armory, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsArmory ]
+- type: entity
+  parent: USSPSFAirlockCommandGlassLocked
+  id: USSPSFAirlockEVAGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, EVA, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsExternal ]
+- type: entity
+  parent: USSPSFAirlockSyndicateGlass
+  id: USSPSFAirlockSyndicateGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSyndicateAgent ]
+- type: entity
+  parent: USSPSFAirlockSyndicateGlass
+  id: USSPSFAirlockSyndicateNukeopGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsNukeop ]
+
+# Maintenance Hatches
+- type: entity
+  parent: USSPSFAirlockMaintGlass
+  id: USSPSFAirlockMaintGlassLocked
+  categories: [ USSP ]
+  suffix: USSP, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsMaintenance ]
+- type: entity
+  parent: USSPSFAirlockCommandLocked
+  id: USSPSFAirlockMaintCommandLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockEngineeringLocked
+  id: USSPSFAirlockMaintEngiLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockAtmosphericsLocked
+  id: USSPSFAirlockMaintAtmoLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockServiceTheatreLocked
+  id: USSPSFAirlockMaintServiceTheatreLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockMedicalLocked
+  id: USSPSFAirlockMaintMedLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockSecurityLocked
+  id: USSPSFAirlockMaintSecLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockCaptainLocked
+  id: USSPSFAirlockMaintCaptainLocked
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+- type: entity
+  parent: USSPSFAirlockSyndicate
+  id: USSPSFAirlockSyndicateLocked
+  categories: [ USSP ]
+  suffix: USSP, Syndicate, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsSyndicateAgent ]
+- type: entity
+  parent: USSPSFAirlockSyndicate
+  id: USSPSFAirlockSyndicateNukeopLocked
+  categories: [ USSP ]
+  suffix: USSP, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ USSPSFDoorElectronicsNukeop ]

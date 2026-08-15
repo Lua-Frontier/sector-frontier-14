@@ -1,0 +1,154 @@
+# source: _DeadSpace/Roles/Jobs/CentComm/station_blueshieldofficer.yml
+- type: job
+  id: UsspBlueShieldOfficer
+  name: job-name-ussp-blue-shield
+  description: job-description-ussp-blue-shield
+  playTimeTracker: JobUsspBlueShieldOfficer
+  requiredCompany: Ussp
+  salary: 70000
+  startingGear: UsspBlueShieldOfficerGear
+  icon: JobIconUsspBlueShieldOfficer
+  supervisors: job-supervisors-ussp-politruk
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Engineering
+    time: 36000
+  - !type:DepartmentTimeRequirement
+    department: Medical
+    time: 36000
+  - !type:RoleTimeRequirement
+    role: JobUsspHeadOfSecurity
+    time: 36000
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 36000
+  - !type:OverallPlaytimeRequirement
+    time: 324000
+  - !type:AgeRequirement
+    requiredAge: 24
+  access:
+  - USSPCommand
+  - USSPCaptain
+  - USSPBrig
+  - USSPSecurity
+  - USSPArmory
+  - USSPMaintenance
+  - USSPService
+  - USSPExternal
+  - USSPResearch
+  - USSPMedical
+  - USSPEngineering
+  - USSPCargo
+  accessGroups:
+  - USSPAll
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspBlueShieldOfficerGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspBlueShieldOfficerChameleonOutfit
+  job: UsspBlueShieldOfficer
+
+- type: entity
+  parent: BasePDA
+  id: USSPSFBlueShieldOfficerPDA
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Pda
+    id: USSPSFBlueShieldOfficerIDCard
+  - type: Sprite
+    sprite: _Souz/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+      state: pda-okgb
+    - state: light_overlay
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: unshaded
+      visible: false
+    - state: id_overlay
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: unshaded
+      visible: false
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-okgb
+  - type: PdaBorderColor
+    borderColor: "#12445b"
+    accentHColor: "#772d32"
+    accentVColor: "#772d31"
+  - type: Icon
+    sprite: _Souz/Objects/Devices/pda.rsi
+    state: pda-okgb
+  - type: HealthAnalyzer
+    scanDelay: 1
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSFBlueShieldOfficerIDCard
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+    - type: Sprite
+      sprite: _Souz/Objects/Misc/id_cards.rsi
+      layers:
+        - state: NKVBCard
+        - state: idokgb
+    - type: PresetIdCard
+      job: UsspBlueShieldOfficer
+
+- type: entity
+  parent: ClothingBackpack
+  id: USSPSFClothingBackpackBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: модифицированный рюкзак оперативника КГБ
+  description: Рюкзак оперативника КГБ с функцией РИГ.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/blueshield.rsi
+  - type: Storage
+    grid:
+    - 0,0,7,5
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingOuterHardsuitBlueShield
+    requiredSlot: BACK
+    slot: outerClothing
+  - type: Clothing
+    equipDelay: 1
+    unequipDelay: 1
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: []
+  - type: StorageFill
+    contents:
+      - id: Zipties
+        amount: 3
+      - id: ADTtelescopicBaton # ADT
+      - id: HandheldCrewMonitor
+  - type: ExplosionResistance
+    damageCoefficient: 0.6

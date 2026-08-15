@@ -3,6 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: [BallisticArtillery, BallisticArtilleryTier1HP]
   id: WeaponShuttleGrapplingTurret
   name: Турель-гарпун
@@ -15,10 +16,10 @@
       radarColor: "#229e51"
       scale: 1
     - type: Sprite
-      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets20mm.rsi
+      sprite: _Lua/Objects/SpaceArtillery/grappling.rsi
       drawdepth: Mobs
       layers:
-        - state: turrets20mm
+        - state: turret
     - type: ContainerContainer
       containers:
         machine_board: !type:Container
@@ -33,11 +34,11 @@
       range: 700
     - type: FireControllable
     - type: Gun
-      fireRate: 0.5
+      fireRate: 1
       projectileSpeed: 75
-      selectedMode: SemiAuto
+      selectedMode: FullAuto
       availableModes:
-        - SemiAuto
+        - FullAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
     - type: ProjectileBatteryAmmoProvider
       proto: BulletShuttleGrapplingHook
@@ -49,7 +50,7 @@
     - type: ShipGunClass
       shipClass: Light
     - type: ShipGunType
-      shipType: Ballistic
+      shipType: Other
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 100

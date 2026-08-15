@@ -47,6 +47,7 @@
 
 # ---- 20mm ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLua20mm
   name: cartridge (20mm)
   parent: 20mmCartridge
@@ -64,6 +65,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineLua20mm
   name: 20mm ammo loader
   description: An ammunition loader for Lua 20mm ship guns.
@@ -83,6 +85,7 @@
 
 # ---- 53mm ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLua53mm
   name: cartridge (53mm)
   parent: 57mmCartridgeHE
@@ -100,6 +103,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineLua53mm
   name: 53mm ammo loader
   description: An ammunition loader for Lua 53mm ship guns.
@@ -119,6 +123,7 @@
 
 # ---- 80mm ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLua80mm
   name: cartridge (80mm)
   parent: 90mmCartridgeHE
@@ -136,6 +141,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineLua80mm
   name: 80mm ammo loader
   description: An ammunition loader for Lua 80mm ship guns.
@@ -155,6 +161,7 @@
 
 # ---- 105mm ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLua105mm
   name: shell (105mm)
   parent: 90mmCartridgeHE
@@ -172,6 +179,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineLua105mm
   name: 105mm ammo loader
   description: An ammunition loader for Lua 105mm mortars.
@@ -191,6 +199,7 @@
 
 # ---- 120mm (direct cartridge feed, like AK820) ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLua120mm
   name: shell (120mm)
   parent: 120mmCartridgeAPHEDS
@@ -209,6 +218,7 @@
 
 # ---- 140mm ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLua140mm
   name: shell (140mm)
   parent: 140mmCartridge
@@ -226,6 +236,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineLua140mm
   name: 140mm ammo loader
   description: An ammunition loader for Lua 140mm mortars.
@@ -245,6 +256,7 @@
 
 # ---- Missiles ----
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeNightHunter
   name: Tomahawk missile
   parent: MissileCartridge50mmHE
@@ -257,6 +269,7 @@
     proto: BulletTomahawk
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineNightHunter
   name: Night Hunter missile loader
   description: Missile magazine for the Night Hunter launcher.
@@ -272,6 +285,7 @@
       - MissileNightHunter
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeLancer
   name: Spear missile
   parent: VanykCartridge
@@ -284,6 +298,7 @@
     proto: BulletWolf
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineLancer
   name: Lancer missile loader
   description: Missile magazine for the Lancer-14 launcher.
@@ -299,6 +314,7 @@
       - MissileLancer
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CartridgeCerber
   name: Anaconda missile
   parent: MissileCartridge250mm
@@ -312,6 +328,7 @@
   # Sprite: inherit Mono MissileCartridge250mm (generic_cartridges.rsi / tovek)
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MagazineCerber
   name: Cerber missile loader
   description: Missile magazine for the Cerber-X launcher.

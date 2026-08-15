@@ -1,0 +1,25 @@
+# source: Recipes/Construction/structures.yml
+- type: construction
+  id: USSPSFAirlock
+  graph: USSPSFAirlock
+  startNode: start
+  targetNode: airlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+
+- type: construction
+  id: USSPSFAirlockGlass
+  graph: USSPSFAirlock
+  startNode: start
+  targetNode: glassAirlock
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

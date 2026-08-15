@@ -1,0 +1,47 @@
+# rifleman
+
+- type: loadout
+  id: USSPRiflemanPDA
+  equipment:
+    id: USSPRiflemanPDA
+
+- type: loadoutGroup
+  id: USSPRiflemanPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - USSPRiflemanPDA
+  fallbacks:
+  - USSPRiflemanPDA
+
+# sergeant
+
+- type: loadout
+  id: USSPSergeantPDA
+  equipment:
+    id: USSPSergeantPDA
+
+- type: loadoutGroup
+  id: USSPSergeantPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - USSPSergeantPDA
+  fallbacks:
+  - USSPSergeantPDA
+
+# commissar
+
+- type: loadout
+  id: USSPCommissarPDA
+  equipment:
+    id: USSPCommissarPDA
+
+- type: loadoutGroup
+  id: USSPCommissarPDA
+  name: loadout-group-contractor-id
+  hidden: true # No point in showing this, it gets auto-selected.
+  loadouts:
+  - USSPCommissarPDA
+  fallbacks:
+  - USSPCommissarPDA

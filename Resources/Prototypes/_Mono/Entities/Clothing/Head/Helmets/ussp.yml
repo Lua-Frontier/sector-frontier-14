@@ -1,0 +1,44 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetHeavyUSSP
+  name: USSP heavy helmet
+  description: A heavy helmet ballistic helmet, it offers decent protection.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Head/Helmets/ussp_combat_heavy_helmet.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Head/Helmets/ussp_combat_heavy_helmet.rsi
+  - type: IngestionBlocker
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+  - type: StaticPrice
+    price: 500
+    vendPrice: 2500
+
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: ClothingHeadHelmetCombatUSSP
+  name: USSP field helmet
+  description: A standard USSP field helmet fitted with a compact antenna array, a feature of newer designs shaped by DST requirements.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Head/Helmets/ussp_combat_helmet.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Head/Helmets/ussp_combat_helmet.rsi
+

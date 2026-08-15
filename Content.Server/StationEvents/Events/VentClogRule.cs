@@ -22,7 +22,7 @@ public sealed class VentClogRule : StationEventSystem<VentClogRuleComponent>
     {
         base.Started(uid, component, gameRule, args);
 
-        if (!TryGetRandomStation(out var chosenStation))
+        if (!TryGetRandomStationForEvent(uid, out var chosenStation))
             return;
 
         // TODO: "safe random" for chems. Right now this includes admin chemicals.

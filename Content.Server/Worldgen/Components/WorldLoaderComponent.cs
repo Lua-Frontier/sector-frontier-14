@@ -20,5 +20,17 @@ public sealed partial class WorldLoaderComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)] [DataField]
     public bool Disabled;
+
+    [ViewVariables]
+    public readonly List<EntityUid> LoadedChunks = new();
+
+    [ViewVariables]
+    public EntityUid? LastMap;
+
+    [ViewVariables]
+    public Vector2i LastChunk;
+
+    [ViewVariables]
+    public int LastChunkRadius = -1;
 }
 

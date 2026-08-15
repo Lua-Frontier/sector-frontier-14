@@ -1,0 +1,53 @@
+# source: Entities/Objects/Devices/door_remote.yml
+- type: entity
+  parent: [DoorRemoteDefault, BaseCommandContraband]
+  id: USSPSFDoorRemoteCustom
+  categories: [ USSP ]
+  suffix: USSP
+  name: custom door remote
+  description: A gadget which can open and bolt doors remotely. This advanced variant does not have built-in access, instead inheriting the ID access of the user.
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#0077FF"
+    - state: door_remotescreencolour
+      color: "#0033EE"
+  - type: Access
+  - type: DoorRemote
+    includeUserAccess: true
+- type: entity
+  parent: [DoorRemoteDefault, BaseCommandContraband]
+  id: USSPSFDoorRemoteSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security door remote
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#a31000"
+    - state: door_remotescreencolour
+      color: "#e81300"
+  - type: Access
+    groups:
+    - USSPSecurityAccess
+- type: entity
+  parent: [DoorRemoteDefault, BaseCommandContraband]
+  id: USSPSFDoorRemoteService
+  categories: [ USSP ]
+  suffix: USSP
+  name: service door remote
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#58c800"
+    - state: door_remotescreencolour
+      color: "#3a7231"
+  - type: Access
+    groups:
+    - USSPServiceAccess

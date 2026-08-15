@@ -26,9 +26,8 @@ namespace Content.Server.Construction.Completions
 
             if (EntityPrototypeHelpers.HasComponent<StackComponent>(Prototype))
             {
-                var stackEnt = entityManager.SpawnEntity(Prototype, coordinates);
-                var stack = entityManager.GetComponent<StackComponent>(stackEnt);
-                entityManager.EntitySysManager.GetEntitySystem<StackSystem>().SetCount(stackEnt, Amount, stack);
+                var stackSystem = entityManager.EntitySysManager.GetEntitySystem<StackSystem>();
+                stackSystem.SpawnMultiple(Prototype, Amount, coordinates);
             }
             else
             {

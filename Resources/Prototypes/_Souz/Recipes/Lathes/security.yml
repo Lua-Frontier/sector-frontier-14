@@ -1,0 +1,54 @@
+# source: Recipes/Lathes/security.yml
+- type: latheRecipe
+  id: USSPSFClothingEyesHudSecurity
+  result: USSPSFClothingEyesHudSecurity
+  categories:
+  - Clothing
+  completetime: 2
+  materials:
+    Steel: 300
+    Glass: 200
+
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: USSPSFHandcuffs
+  result: USSPSFHandcuffs
+  materials:
+    Steel: 300
+
+
+- type: latheRecipe
+  parent: BaseToolRecipe
+  id: USSPSFHoloprojectorSecurity
+  result: HoloprojectorSecurityEmpty
+  materials:
+    Steel: 300
+    Glass: 50
+    Plastic: 50
+
+
+
+## Weapons
+
+# Melee
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeSidearm
+  id: USSPSFWeaponFlareGunSecurity
+  result: USSPSFWeaponFlareGunSecurity
+  materials:
+    Plastic: 100
+    Steel: 400
+    Glass: 20
+
+# DS14-Soyuz-start
+
+# source: _DeadSpace/Recipes/Lathes/security.yml
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: USSPSFTruncheonsec
+  result: USSPSFTruncheonsec
+  materials:
+    Plasteel: 1000
+    Plasma: 500

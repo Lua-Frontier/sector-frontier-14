@@ -1,7 +1,7 @@
 - type: entity
   id: ThrusterLua
   parent: Thruster
-  suffix: LuaTech, Tier 5
+  suffix: LuaTech, 120
   components:
   - type: LuaTech
   - type: NebulaThrustResistance
@@ -10,7 +10,7 @@
     board: ThrusterLuaMachineCircuitboard
   - type: Thruster
     baseThrust: 100
-    thrust: 160
+    thrust: 240
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster32.rsi
     layers:
@@ -32,7 +32,7 @@
   id: OmniThrusterLua
   parent: BaseThrusterLarge
   name: omni thruster
-  suffix: LuaTech, Tier 5, Magnetic
+  suffix: LuaTech, Magnetic, 120
   components:
   - type: LuaTech
   - type: NebulaThrustResistance
@@ -53,8 +53,8 @@
   - type: Thruster
     thrusterType: Omnidirectional
     baseThrust: 800
-    thrust: 1280
-    angularThrustExtra: 1900
+    thrust: 1920
+    angularThrustExtra: 2850
   - type: Fixtures
     fixtures:
       fix1:

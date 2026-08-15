@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.ADT;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -17,8 +16,8 @@ public sealed class AnimatedBackgroundControl : TextureRect
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    private string _rsiPath = "/Textures/_Lua/LobbyScreens/backgrounds/cube.rsi";
-    public RSI? _RSI;
+    private string? _rsiPath;
+    private RSI? _rsi;
     private const int States = 1;
 
     private List<AnimatedLobbyScreenPrototype>? _backgrounds;
@@ -33,94 +32,162 @@ public sealed class AnimatedBackgroundControl : TextureRect
     public AnimatedBackgroundControl()
     {
         IoCManager.InjectDependencies(this);
-
-        InitializeStates();
-    }
-
-    private void EnsureBackgroundsLoaded()
-    {
-        if (_backgrounds != null) return;
-        _backgrounds = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>().ToList();
-        if (_backgrounds.Count == 0) return;
-        _currentBackgroundIndex = _backgrounds.FindIndex(p => NormalizeTexturePath(p.Path) == _rsiPath);
-        if (_currentBackgroundIndex < 0) _currentBackgroundIndex = 0;
     }
 
     private static string NormalizeTexturePath(string path)
     {
-        if (string.IsNullOrEmpty(path)) return "/Textures/";
+        if (string.IsNullOrEmpty(path))
+            return "/Textures/";
+
         return path.StartsWith("/Textures/") ? path : $"/Textures/{path}";
     }
 
-    private void InitializeStates()
+    public void SetRsiPath(string? path)
     {
-        try
+        if (string.IsNullOrEmpty(path))
         {
-            _RSI = _resourceCache.GetResource<RSIResource>(_rsiPath).RSI;
-        }
-        catch
-        {
-            var normalized = NormalizeTexturePath(_rsiPath);
-            _RSI = _resourceCache.GetResource<RSIResource>(normalized).RSI;
-            _rsiPath = normalized;
+            ClearBackground();
+            return;
         }
 
-        for (var i = 0; i < States; i++)
-        {
-            if (!_RSI.TryGetState((i + 1).ToString(), out var state))
-                continue;
-
-            _frames[i] = state.GetFrames(RsiDirection.South);
-            _frameDelays[i] = state.GetDelays();
-            _frameCounter[i] = 0;
-        }
+        _rsiPath = NormalizeTexturePath(path);
+        LoadFromPath();
     }
 
     public void SetRSI(RSI? rsi)
     {
-        _RSI = rsi;
-        InitializeStates();
+        if (rsi == null)
+        {
+            ClearBackground();
+            return;
+        }
+
+        _rsi = rsi;
+        ApplyRsiStates();
+    }
+
+    private void ClearBackground()
+    {
+        _rsiPath = null;
+        _rsi = null;
+        Texture = null;
+
+        for (var i = 0; i < States; i++)
+        {
+            _frames[i] = [];
+            _frameDelays[i] = [];
+            _frameCounter[i] = 0;
+            _timer[i] = 0;
+        }
+    }
+
+    private void LoadFromPath()
+    {
+        if (_rsiPath == null)
+        {
+            ClearBackground();
+            return;
+        }
+
+        try
+        {
+            _rsi = _resourceCache.GetResource<RSIResource>(_rsiPath).RSI;
+        }
+        catch
+        {
+            _rsiPath = NormalizeTexturePath(_rsiPath);
+            _rsi = _resourceCache.GetResource<RSIResource>(_rsiPath).RSI;
+        }
+
+        ApplyRsiStates();
+    }
+
+    private void ApplyRsiStates()
+    {
+        if (_rsi == null)
+        {
+            Texture = null;
+            return;
+        }
+
+        for (var i = 0; i < States; i++)
+        {
+            _timer[i] = 0;
+            _frameCounter[i] = 0;
+
+            if (!_rsi.TryGetState((i + 1).ToString(), out var state))
+            {
+                _frames[i] = [];
+                _frameDelays[i] = [];
+                continue;
+            }
+
+            _frames[i] = state.GetFrames(RsiDirection.South);
+            _frameDelays[i] = state.GetDelays();
+
+            if (_frames[i].Length > 0)
+                Texture = _frames[i][0];
+        }
+    }
+
+    private List<AnimatedLobbyScreenPrototype> GetAvailableBackgrounds()
+    {
+        return AnimatedLobbyScreenPrototype.GetAvailable(_prototypeManager, DateTime.Now);
     }
 
     public void NextBackground()
     {
-        EnsureBackgroundsLoaded();
-        if (_backgrounds == null || _backgrounds.Count == 0) return;
-        _currentBackgroundIndex = (_currentBackgroundIndex + 1) % _backgrounds.Count;
-        _rsiPath = NormalizeTexturePath(_backgrounds[_currentBackgroundIndex].Path);
-        InitializeStates();
+        CycleBackground(1);
     }
 
     public void PreviousBackground()
     {
-        EnsureBackgroundsLoaded();
-        if (_backgrounds == null || _backgrounds.Count == 0) return;
-        _currentBackgroundIndex--;
-        if (_currentBackgroundIndex < 0)  _currentBackgroundIndex = _backgrounds.Count - 1;
-        _rsiPath = NormalizeTexturePath(_backgrounds[_currentBackgroundIndex].Path);
-        InitializeStates();
+        CycleBackground(-1);
+    }
+
+    private void CycleBackground(int delta)
+    {
+        _backgrounds = GetAvailableBackgrounds();
+        if (_backgrounds.Count == 0)
+            return;
+
+        _currentBackgroundIndex = _rsiPath == null
+            ? -1
+            : _backgrounds.FindIndex(p => NormalizeTexturePath(p.Path) == _rsiPath);
+
+        if (_currentBackgroundIndex < 0)
+            _currentBackgroundIndex = 0;
+
+        _currentBackgroundIndex = (_currentBackgroundIndex + delta + _backgrounds.Count) % _backgrounds.Count;
+        SetRsiPath(_backgrounds[_currentBackgroundIndex].Path);
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
 
-        for (var i = 0; i < _frames.Length; i++)
+        for (var i = 0; i < States; i++)
         {
             var delays = _frameDelays[i];
-            if (delays.Length == 0)
+            var frames = _frames[i];
+            if (delays == null || frames == null || delays.Length == 0 || frames.Length == 0)
                 continue;
 
             _timer[i] += args.DeltaSeconds;
 
             var currentFrameIndex = _frameCounter[i];
+            if (currentFrameIndex >= delays.Length || currentFrameIndex >= frames.Length)
+            {
+                _frameCounter[i] = 0;
+                currentFrameIndex = 0;
+            }
 
             if (!(_timer[i] >= delays[currentFrameIndex]))
                 continue;
 
             _timer[i] -= delays[currentFrameIndex];
-            _frameCounter[i] = (currentFrameIndex + 1) % _frames[i].Length;
-            Texture = _frames[i][_frameCounter[i]];
+            _frameCounter[i] = (currentFrameIndex + 1) % frames.Length;
+            Texture = frames[_frameCounter[i]];
         }
     }
 
@@ -149,9 +216,13 @@ public sealed class AnimatedBackgroundControl : TextureRect
 
     public void RandomizeBackground()
     {
-        var backgroundsProto = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>().ToList();
+        var backgroundsProto = GetAvailableBackgrounds();
+        if (backgroundsProto.Count == 0)
+            return;
+
         var index = _random.Next(backgroundsProto.Count);
-        _rsiPath = NormalizeTexturePath(backgroundsProto[index].Path);
-        InitializeStates();
+        _backgrounds = backgroundsProto;
+        _currentBackgroundIndex = index;
+        SetRsiPath(backgroundsProto[index].Path);
     }
 }

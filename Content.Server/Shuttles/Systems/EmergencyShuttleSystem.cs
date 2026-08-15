@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
+using Content.Server._Lua.Sectors;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -70,7 +71,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly Content.Server.Backmen.Arrivals.CentcommSystem _centcommSystem = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 
@@ -89,6 +90,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         SubscribeLocalEvent<StationEmergencyShuttleComponent, StationPostInitEvent>(OnStationStartup);
         //SubscribeLocalEvent<StationCentcommComponent, ComponentShutdown>(OnCentcommShutdown);
         SubscribeLocalEvent<StationCentcommComponent, MapInitEvent>(OnStationInit);
+        SubscribeLocalEvent<Content.Server._NF.GameTicking.Events.StationsGeneratedEvent>(OnStationsGenerated);
 
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLStartedEvent>(OnEmergencyFTL);
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLCompletedEvent>(OnEmergencyFTLComplete);
@@ -255,7 +257,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
             _deviceNetworkSystem.QueuePacket(shuttle, null, payload, net.TransmitFrequency);
         }
-        _centcommSystem.CentComStarUnlocked = true;
+        _sectors.UnlockCentComFtl();
     }
 
     /// <summary>
@@ -403,29 +405,29 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // TODO: Need filter extensions or something don't blame me.
         _audio.PlayGlobal(audioFile, Filter.Broadcast(), true);
 
-        _centcommSystem.EnableFtl(_centcommSystem.CentComMapUid!.Value.Owner); // backmen: centcom
+        _sectors.UnlockCentComFtl();
     }
 
     private void OnStationInit(EntityUid uid, StationCentcommComponent component, MapInitEvent args)
     {
-        // This is handled on map-init, so that centcomm has finished initializing by the time the StationPostInitEvent
-        // gets raised
         if (!_emergencyShuttleEnabled)
             return;
 
-        // Post mapinit? fancy
         if (TryComp(component.Entity, out TransformComponent? xform))
-        {
             component.MapEntity = xform.MapUid;
-            return;
-        }
-
-        AddCentcomm(uid, component);
     }
 
     private void OnStationStartup(Entity<StationEmergencyShuttleComponent> ent, ref StationPostInitEvent args)
     {
+        if (!TryComp<StationCentcommComponent>(ent.Owner, out var centcomm) || centcomm.MapEntity == null)
+            return;
+
         AddEmergencyShuttle((ent, ent));
+    }
+
+    private void OnStationsGenerated(Content.Server._NF.GameTicking.Events.StationsGeneratedEvent ev)
+    {
+        SetupEmergencyShuttle();
     }
 
     /// <summary>
@@ -488,13 +490,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (!_emergencyShuttleEnabled)
             return;
 
-        var centcommQuery = AllEntityQuery<StationCentcommComponent>();
-
-        while (centcommQuery.MoveNext(out var uid, out var centcomm))
-        {
-            AddCentcomm(uid, centcomm);
-        }
-
         var query = AllEntityQuery<StationEmergencyShuttleComponent>();
 
         while (query.MoveNext(out var uid, out var comp))
@@ -503,34 +498,29 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
     }
 
-    // start-backmen: centcom
     private void AddCentcomm(EntityUid station, StationCentcommComponent component)
     {
-        var centcom = EntityManager.System<Content.Server.Backmen.Arrivals.CentcommSystem>();
         DebugTools.Assert(LifeStage(station) >= EntityLifeStage.MapInitialized);
-        if (component.MapEntity != null || component.Entity != null)
+
+        if (!_sectors.TryGetCentCom(out var mapUid, out var mapId, out var grid))
         {
-            Log.Warning("Attempted to re-add an existing centcomm map.");
+            Log.Error($"Failed to attach centcomm for {ToPrettyString(station)}: CentCom sector not loaded");
+            return;
         }
 
-        centcom.EnsureCentcom(true);
-
-        component.MapEntity = centcom.CentComMapUid;
-        component.Entity = centcom.CentComGrid;
-        component.ShuttleIndex = centcom.ShuttleIndex;
-        Log.Info($"Attached centcomm grid {ToPrettyString(centcom.CentComGrid)} on map {ToPrettyString(centcom.CentComMapUid)} for station {ToPrettyString(station)}");
+        component.MapEntity = mapUid;
+        component.Entity = grid;
+        component.MapId = mapId;
+        component.ShuttleIndex = _sectors.EmergencyShuttleIndex;
     }
 
     public HashSet<EntityUid> GetCentcommMaps()
     {
         var maps = new HashSet<EntityUid>();
-
-        if(_centcommSystem.CentComMapUid != null)
-            maps.Add(_centcommSystem.CentComMapUid.Value);
-
+        if (_sectors.GetCentComMapUid() is { } mapUid)
+            maps.Add(mapUid);
         return maps;
     }
-    // end-backmen: centcom
 
     private void AddEmergencyShuttle(Entity<StationEmergencyShuttleComponent?, StationCentcommComponent?> ent)
     {
@@ -552,26 +542,27 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             ent.Comp1.EmergencyShuttle = null;
         }
 
+        if (ent.Comp2.MapEntity == null || ent.Comp2.Entity == null)
+            AddCentcomm(ent.Owner, ent.Comp2);
+
         if (!TryComp(ent.Comp2.MapEntity, out MapComponent? map))
         {
             Log.Error($"Failed to add emergency shuttle - centcomm has not been initialized? {ToPrettyString(ent)}");
             return;
         }
 
-        // Load escape shuttle
         var shuttlePath = ent.Comp1.EmergencyShuttlePath;
         if (!_loader.TryLoadGrid(map.MapId,
             shuttlePath,
             out var shuttle,
-            // Should be far enough... right? I'm too lazy to bounds check CentCom rn.
-            offset: new Vector2(500f + _centcommSystem.ShuttleIndex, 0f)))
+            offset: new Vector2(500f + _sectors.EmergencyShuttleIndex, 0f)))
         {
             Log.Error($"Unable to spawn emergency shuttle {shuttlePath} for {ToPrettyString(ent)}");
             return;
         }
 
-        _centcommSystem.ShuttleIndex += Comp<MapGridComponent>(shuttle.Value).LocalAABB.Width + ShuttleSpawnBuffer;
-        ent.Comp2.ShuttleIndex = _centcommSystem.ShuttleIndex;
+        _sectors.EmergencyShuttleIndex += Comp<MapGridComponent>(shuttle.Value).LocalAABB.Width + ShuttleSpawnBuffer;
+        ent.Comp2.ShuttleIndex = _sectors.EmergencyShuttleIndex;
 
         ent.Comp1.EmergencyShuttle = shuttle;
         EnsureComp<ProtectedGridComponent>(shuttle.Value);

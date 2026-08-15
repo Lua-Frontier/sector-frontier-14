@@ -19,6 +19,7 @@ public sealed class SurplusBundleSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<SurplusBundleComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SurplusBundleComponent, CurrencyInsertAttemptEvent>(OnCurrencyInsertAttempt);
     }
 
     private void OnMapInit(EntityUid uid, SurplusBundleComponent component, MapInitEvent args)
@@ -27,6 +28,12 @@ public sealed class SurplusBundleSystem : EntitySystem
             return;
 
         FillStorage((uid, component, store));
+        RemComp<StoreComponent>(uid);
+    }
+
+    private void OnCurrencyInsertAttempt(EntityUid uid, SurplusBundleComponent component, CurrencyInsertAttemptEvent args)
+    {
+        args.Cancel();
     }
 
     private void FillStorage(Entity<SurplusBundleComponent, StoreComponent> ent)

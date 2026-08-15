@@ -1,0 +1,111 @@
+# source: Entities/Clothing/Hands/gloves.yml
+- type: entity
+  parent: [ClothingHandsBase, BaseCommandContraband]
+  id: USSPSFClothingHandsGlovesCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain gloves
+  description: Regal blue gloves, with a nice gold trim. Swanky.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Hands/Gloves/captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Hands/Gloves/captain.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-regal-blue
+  - type: FingerprintMask
+# DS14-start 
+  - type: PhysicalComposition
+    materialComposition:
+      Durathread: 10
+      Plasteel: 10
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1.5
+    damage:
+      types:
+       Blunt: 7
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
+# DS14-end
+- type: entity
+  parent: [USSPSFClothingHandsGlovesColorBlack, BaseC2ContrabandEngineeringUnredeemable]
+  id: USSPSFClothingHandsGlovesCombat
+  categories: [ USSP ]
+  suffix: USSP
+  name: combat gloves
+  description: These tactical gloves are fireproof and shock resistant.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Hands/Gloves/combat.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Hands/Gloves/combat.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-black
+
+# can't parent combat gloves since they are butcherable
+
+# source: _DeadSpace/Entities/Clothing/Hands/gloves.yml
+- type: entity
+  parent: USSPSFClothingHandsGlovesCombat
+  id: USSPSFClothingHandsGlovesBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: боевые перчатки оперативника КГБ
+  description: Эти тактические перчатки огнеупорны и ударопрочны.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Hands/Gloves/blueshield_gloves.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Hands/Gloves/blueshield_gloves.rsi
+- type: entity
+  parent: USSPSFClothingHandsGlovesCaptain
+  id: USSPSFClothingHandsGlovesCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белые капитанские перчатки
+  description: Королевские белые перчатки с золотой  пластиной. Чистота.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Hands/Gloves/captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Hands/Gloves/captain_white.rsi
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-regal-white
+- type: entity
+  parent: USSPSFClothingHandsGlovesCaptain
+  id: USSPSFClothingHandsGlovesCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрные капитанские перчатки
+  description: Королевские чёрные перчатки с золотой пластиной. Строгость.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Hands/Gloves/captain_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Hands/Gloves/captain_black.rsi
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-regal-black
+
+# source: _Corvax/Entities/Clothing/Hands/gloves.yml
+- type: entity
+  parent: ClothingHandsBase
+  id: USSPSFClothingHandsGlovesCentcomNaval
+  categories: [ USSP ]
+  suffix: USSP
+  name: nanotrasen naval gloves
+  description: A high quality pair of thick gloves covered in gold stitching, given to Nanotrasen's Naval Commanders.
+  components:
+    - type: Sprite
+      sprite: _Corvax/Clothing/Hands/Gloves/centcom_naval.rsi
+    - type: Clothing
+      sprite: _Corvax/Clothing/Hands/Gloves/centcom_naval.rsi
+    - type: Insulated

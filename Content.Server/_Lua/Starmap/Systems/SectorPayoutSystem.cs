@@ -1,28 +1,49 @@
-// LuaWorld - This file is licensed under AGPLv3
-// Copyright (c) 2025 LuaWorld
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
 using Content.Server._Lua.Company;
-using Content.Server._Lua.Starmap.Components;
 using Content.Shared._Lua.Starmap;
+using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Lua.CLVar;
+using Content.Shared.Popups;
+using Content.Shared.Stacks;
+using Content.Server.Hands.Systems;
+using Content.Server.Stack;
+using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Content.Server._Lua.Starmap.Systems;
 
-public sealed class SectorPayoutSystem : EntitySystem
+public sealed class SectorPayoutSystem : SharedSectorPayoutSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly FactionOwnedStationSystem _ownedStations = default!;
+    [Dependency] private readonly StackSystem _stack = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     private int _intervalSeconds = 3600;
     private int _perStation = 1;
+
+    private readonly Dictionary<string, FactionPayoutLedger> _ledgers = new(StringComparer.Ordinal);
+
+    private sealed class FactionPayoutLedger
+    {
+        public int Accumulated;
+        public TimeSpan LastAccrualAt;
+        public List<PayoutClaimHistoryEntry> ClaimHistory = new();
+    }
 
     public override void Initialize()
     {
@@ -30,42 +51,22 @@ public sealed class SectorPayoutSystem : EntitySystem
         Subs.CVar(_cfg, CLVars.StationPayoutIntervalSeconds, v => _intervalSeconds = Math.Max(1, v), true);
         Subs.CVar(_cfg, CLVars.StationPayoutPerStation, v => _perStation = Math.Max(0, v), true);
 
+        SubscribeLocalEvent<FactionPayoutCollectorComponent, EntInsertedIntoContainerMessage>(OnCashSlotChanged);
+        SubscribeLocalEvent<FactionPayoutCollectorComponent, EntRemovedFromContainerMessage>(OnCashSlotChanged);
+
         Subs.BuiEvents<FactionPayoutCollectorComponent>(PayoutCollectorUiKey.Key, subs =>
         {
-            subs.Event<PayoutCollectorClaimMessage>(OnClaim);
+            subs.Event<PayoutCollectorWithdrawMessage>(OnWithdraw);
+            subs.Event<PayoutCollectorDepositMessage>(OnDeposit);
             subs.Event<BoundUIOpenedEvent>(OnUiOpened);
         });
     }
 
-    public override void Update(float frameTime)
+    private void OnCashSlotChanged(EntityUid uid, FactionPayoutCollectorComponent comp, ContainerModifiedMessage args)
     {
-        base.Update(frameTime);
-        var now = _timing.CurTime;
-        var interval = TimeSpan.FromSeconds(Math.Max(1, _intervalSeconds));
-        var perStation = _perStation;
-        var q = AllEntityQuery<FactionPayoutCollectorComponent, TransformComponent>();
-        while (q.MoveNext(out var uid, out var comp, out _))
-        {
-            if (comp.LastAccrualAt == TimeSpan.Zero)
-                comp.LastAccrualAt = now - interval;
-
-            var elapsed = now - comp.LastAccrualAt;
-            if (elapsed < interval)
-                continue;
-
-            var ticks = (int) (elapsed / interval);
-            var owned = _ownedStations.CountOwnedStations(comp.Faction);
-            var accrued = false;
-            if (owned > 0 && perStation > 0 && ticks > 0)
-            {
-                comp.Accumulated += ticks * owned * perStation;
-                accrued = true;
-            }
-
-            comp.LastAccrualAt += interval * ticks;
-            if (accrued || ticks > 0)
-                PushUi((uid, comp));
-        }
+        if (args.Container.ID != FactionPayoutCollectorComponent.CashSlotId)
+            return;
+        PushUi((uid, comp));
     }
 
     private void OnUiOpened(Entity<FactionPayoutCollectorComponent> ent, ref BoundUIOpenedEvent args)
@@ -73,43 +74,190 @@ public sealed class SectorPayoutSystem : EntitySystem
         PushUi(ent);
     }
 
-    private void OnClaim(Entity<FactionPayoutCollectorComponent> ent, ref PayoutCollectorClaimMessage msg)
+    private void OnWithdraw(Entity<FactionPayoutCollectorComponent> ent, ref PayoutCollectorWithdrawMessage msg)
     {
-        var amount = ent.Comp.Accumulated;
-        if (amount <= 0 || string.IsNullOrWhiteSpace(ent.Comp.CurrencyPrototypePerUnit))
+        if (string.IsNullOrWhiteSpace(ent.Comp.Faction) || msg.Amount <= 0)
+        {
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            PushUi(ent);
+            return;
+        }
+
+        AccrueFaction(ent.Comp.Faction);
+        var ledger = GetOrCreateLedger(ent.Comp.Faction);
+        if (ledger.Accumulated < msg.Amount)
+        {
+            _popup.PopupEntity(Loc.GetString("payout-insufficient-funds"), ent.Owner, msg.Actor);
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            PushUiForFaction(ent.Comp.Faction);
+            return;
+        }
+
+        ledger.Accumulated -= msg.Amount;
+        AddHistory(ledger, Identity.Name(msg.Actor, EntityManager), msg.Amount, isDeposit: false);
+
+        var cash = _stack.Spawn(msg.Amount, ent.Comp.CashType, Transform(msg.Actor).Coordinates);
+        _hands.PickupOrDrop(msg.Actor, cash);
+
+        _popup.PopupEntity(Loc.GetString("payout-withdraw-successful"), ent.Owner, msg.Actor);
+        _audio.PlayPvs(ent.Comp.ConfirmSound, ent.Owner);
+        PushUiForFaction(ent.Comp.Faction);
+    }
+
+    private void OnDeposit(Entity<FactionPayoutCollectorComponent> ent, ref PayoutCollectorDepositMessage msg)
+    {
+        if (string.IsNullOrWhiteSpace(ent.Comp.Faction))
         {
             PushUi(ent);
             return;
         }
 
-        ent.Comp.Accumulated = 0;
-        ent.Comp.ClaimHistory.Insert(0, new PayoutClaimHistoryEntry(Identity.Name(msg.Actor, EntityManager), amount));
-        if (ent.Comp.ClaimHistory.Count > FactionPayoutCollectorComponent.MaxClaimHistory)
-            ent.Comp.ClaimHistory.RemoveRange(
+        AccrueFaction(ent.Comp.Faction);
+
+        if (!TryGetInsertedCash(ent.Comp, out var cashEntity, out var stack) || stack.Count <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("payout-deposit-empty"), ent.Owner, msg.Actor);
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            PushUi(ent);
+            return;
+        }
+
+        if (stack.StackTypeId != ent.Comp.CashType)
+        {
+            _popup.PopupEntity(Loc.GetString("payout-wrong-cash"), ent.Owner, msg.Actor);
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            PushUi(ent);
+            return;
+        }
+
+        if (ent.Comp.CashSlot.ContainerSlot is not { } cashSlot ||
+            !_container.Remove(cashEntity, cashSlot))
+        {
+            _popup.PopupEntity(Loc.GetString("payout-transaction-denied"), ent.Owner, msg.Actor);
+            _audio.PlayPvs(ent.Comp.ErrorSound, ent.Owner);
+            PushUi(ent);
+            return;
+        }
+
+        var amount = stack.Count;
+        var ledger = GetOrCreateLedger(ent.Comp.Faction);
+        ledger.Accumulated += amount;
+        AddHistory(ledger, Identity.Name(msg.Actor, EntityManager), amount, isDeposit: true);
+        QueueDel(cashEntity);
+
+        _popup.PopupEntity(Loc.GetString("payout-deposit-successful"), ent.Owner, msg.Actor);
+        _audio.PlayPvs(ent.Comp.ConfirmSound, ent.Owner);
+        PushUiForFaction(ent.Comp.Faction);
+    }
+
+    private static void AddHistory(FactionPayoutLedger ledger, string name, int amount, bool isDeposit)
+    {
+        ledger.ClaimHistory.Insert(0, new PayoutClaimHistoryEntry(name, amount, isDeposit));
+        if (ledger.ClaimHistory.Count > FactionPayoutCollectorComponent.MaxClaimHistory)
+            ledger.ClaimHistory.RemoveRange(
                 FactionPayoutCollectorComponent.MaxClaimHistory,
-                ent.Comp.ClaimHistory.Count - FactionPayoutCollectorComponent.MaxClaimHistory);
+                ledger.ClaimHistory.Count - FactionPayoutCollectorComponent.MaxClaimHistory);
+    }
 
-        var xform = Transform(ent.Owner);
-        for (var i = 0; i < amount; i++)
-            EntityManager.SpawnEntity(ent.Comp.CurrencyPrototypePerUnit, xform.Coordinates);
+    private bool TryGetInsertedCash(
+        FactionPayoutCollectorComponent comp,
+        out EntityUid cashEntity,
+        [NotNullWhen(true)] out StackComponent? stack)
+    {
+        cashEntity = default;
+        stack = null;
+        var item = comp.CashSlot.ContainerSlot?.ContainedEntity;
+        if (item == null || !TryComp(item.Value, out stack))
+            return false;
 
-        PushUi(ent);
+        cashEntity = item.Value;
+        return true;
+    }
+
+    private int GetDepositValue(FactionPayoutCollectorComponent comp)
+    {
+        if (!TryGetInsertedCash(comp, out _, out var stack))
+            return 0;
+        if (stack.StackTypeId != comp.CashType)
+            return -1;
+        return stack.Count;
+    }
+
+    private bool AccrueFaction(string faction)
+    {
+        var now = _timing.CurTime;
+        var interval = TimeSpan.FromSeconds(Math.Max(1, _intervalSeconds));
+        var ledger = GetOrCreateLedger(faction);
+
+        if (ledger.LastAccrualAt == TimeSpan.Zero)
+            ledger.LastAccrualAt = now - interval;
+
+        var elapsed = now - ledger.LastAccrualAt;
+        if (elapsed < interval)
+            return false;
+
+        var ticks = (int) (elapsed / interval);
+        var owned = _ownedStations.CountOwnedStations(faction);
+        if (owned > 0 && _perStation > 0 && ticks > 0)
+            ledger.Accumulated += ticks * owned * _perStation;
+
+        ledger.LastAccrualAt += interval * ticks;
+        return true;
+    }
+
+    private FactionPayoutLedger GetOrCreateLedger(string faction)
+    {
+        if (!_ledgers.TryGetValue(faction, out var ledger))
+        {
+            ledger = new FactionPayoutLedger();
+            _ledgers[faction] = ledger;
+        }
+
+        return ledger;
+    }
+
+    private void PushUiForFaction(string faction)
+    {
+        var q = AllEntityQuery<FactionPayoutCollectorComponent>();
+        while (q.MoveNext(out var uid, out var comp))
+        {
+            if (!string.Equals(comp.Faction, faction, StringComparison.Ordinal))
+                continue;
+            SetUiState((uid, comp));
+        }
     }
 
     private void PushUi(Entity<FactionPayoutCollectorComponent> ent)
     {
+        var accrued = !string.IsNullOrWhiteSpace(ent.Comp.Faction) && AccrueFaction(ent.Comp.Faction);
+        if (accrued)
+        {
+            PushUiForFaction(ent.Comp.Faction);
+            return;
+        }
+
+        SetUiState(ent);
+    }
+
+    private void SetUiState(Entity<FactionPayoutCollectorComponent> ent)
+    {
+        var ledger = string.IsNullOrWhiteSpace(ent.Comp.Faction)
+            ? null
+            : GetOrCreateLedger(ent.Comp.Faction);
+
         var owned = _ownedStations.CountOwnedStations(ent.Comp.Faction);
         var interval = TimeSpan.FromSeconds(Math.Max(1, _intervalSeconds));
-        var last = ent.Comp.LastAccrualAt == TimeSpan.Zero
+        var last = ledger == null || ledger.LastAccrualAt == TimeSpan.Zero
             ? _timing.CurTime
-            : ent.Comp.LastAccrualAt;
+            : ledger.LastAccrualAt;
         var nextPayoutAt = last + interval;
-        var history = ent.Comp.ClaimHistory
-            .Select(e => new PayoutClaimHistoryEntry(e.CharacterName, e.Amount))
-            .ToList();
+        var history = ledger == null
+            ? new List<PayoutClaimHistoryEntry>()
+            : ledger.ClaimHistory.Select(e => new PayoutClaimHistoryEntry(e.CharacterName, e.Amount, e.IsDeposit)).ToList();
         var state = new PayoutCollectorBuiState(
             owned,
-            ent.Comp.Accumulated,
+            ledger?.Accumulated ?? 0,
+            GetDepositValue(ent.Comp),
             ent.Comp.Faction,
             _perStation,
             _intervalSeconds,

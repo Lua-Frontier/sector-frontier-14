@@ -70,11 +70,6 @@ public sealed class MagneticLatchSystem : EntitySystem
             if (target.Magnets.Count == 0)
                 RemComp<MagneticLatchTargetComponent>(component.LatchedToEntity.Value);
         }
-        if (TryComp(uid, out DockingComponent? dock))
-        {
-            dock.DockedWith = null;
-
-        }
         _appearance.SetData(uid, MagneticLatchVisuals.State, MagneticLatchVisualState.Idle);
         SetCooldown(uid);
         component.JointId = null;

@@ -30,7 +30,7 @@ public sealed class JobTest
 - type: gameMap
   id: {_map}
   mapName: {_map}
-  mapPath: /Maps/Test/empty.yml
+  mapPath: /Maps/_Lua/Test/empty.yml
   minPlayers: 0
   stations:
     Empty:

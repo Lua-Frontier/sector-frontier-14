@@ -1,0 +1,17 @@
+# source: Entities/Objects/Consumable/Smokeables/Cigars/case.yml
+- type: entity
+  id: USSPSFCigarGoldCase
+  categories: [ USSP ]
+  suffix: USSP
+  parent: CigarCase
+  name: premium cigar case
+  description: "A case of premium Havanian cigars. You'll only see heads with these."
+  components:
+  - type: StorageFill
+    contents:
+    - id: USSPSFCigarGold
+      amount: 8
+# DS14-start
+  - type: Sprite
+    sprite: _Souz/Objects/Consumable/Smokeables/Cigars/case.rsi
+# DS14-end

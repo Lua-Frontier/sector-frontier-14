@@ -1,4 +1,5 @@
 using Content.Server.Worldgen.Systems;
+using Content.Server.Worldgen.Systems.Debris;
 
 namespace Content.Server.Worldgen.Components;
 
@@ -7,7 +8,7 @@ namespace Content.Server.Worldgen.Components;
 ///     Does not support unloading.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(LocalityLoaderSystem))]
+[Access(typeof(LocalityLoaderSystem), typeof(DebrisFeaturePlacerSystem))]
 public sealed partial class LocalityLoaderComponent : Component
 {
     /// <summary>

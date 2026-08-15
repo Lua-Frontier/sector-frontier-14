@@ -1,0 +1,45 @@
+- type: job
+  id: UsspHeadOfPersonnel
+  name: job-name-ussp-hop
+  description: job-description-ussp-hop
+  playTimeTracker: JobUsspHeadOfPersonnel
+  requiredCompany: Ussp
+  salary: 55000
+  startingGear: UsspHeadOfPersonnelGear
+  icon: JobIconUsspHeadOfPersonnel
+  supervisors: job-supervisors-ussp-captain
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 36000
+  access:
+  - USSPHeadOfPersonnel
+  - USSPCommand
+  - USSPMaintenance
+  - USSPService
+  accessGroups:
+  - USSPGeneral
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspHeadOfPersonnelGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspHeadOfPersonnelChameleonOutfit
+  job: UsspHeadOfPersonnel

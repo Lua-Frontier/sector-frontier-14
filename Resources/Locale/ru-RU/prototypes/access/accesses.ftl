@@ -34,6 +34,24 @@ id-card-access-level-station-ai = Artifical Intelligence
 id-card-access-level-borg = Cyborg
 id-card-access-level-basic-silicon = Robot
 id-card-access-level-syndicate-agent = Агент Синдиката
+id-card-access-level-syndicate-high = Синдикат (старший)
+id-card-access-level-syndicate-command = Синдикат (командование)
+id-card-access-level-syndicate-telecom = Синдикат (офицер связи)
+id-card-access-level-syndicate-rd = Синдикат (директор исследований)
+id-card-access-level-syndicate-security = Синдикат (охрана)
+id-card-access-level-syndicate-brig = Синдикат (бриг)
+id-card-access-level-syndicate-armory = Синдикат (оружейная)
+id-card-access-level-syndicate-maintenance = Синдикат (тех. тоннели)
+id-card-access-level-syndicate-external = Синдикат (внешний)
+id-card-access-level-syndicate-service = Синдикат (сервис)
+id-card-access-level-syndicate-engineering = Синдикат (инженерный)
+id-card-access-level-syndicate-atmospherics = Синдикат (атмосферный)
+id-card-access-level-syndicate-medical = Синдикат (медицинский)
+id-card-access-level-syndicate-chemistry = Синдикат (химия)
+id-card-access-level-syndicate-research = Синдикат (научный)
+id-card-access-level-syndicate-cargo = Синдикат (снабжение)
+id-card-access-level-syndicate-kitchen = Синдикат (кухня)
+id-card-access-level-syndicate-hydroponics = Синдикат (гидропоника)
 id-card-access-level-central-command = Центральное командование
 
 # Временно

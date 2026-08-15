@@ -1,5 +1,6 @@
 using Content.Server.StationEvents.Events;
 using Content.Shared.Radio;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
@@ -63,4 +64,7 @@ public sealed partial class SolarFlareRuleComponent : Component
     [DataField]
     public bool AllChannels;
     // End Frontier
+
+    [ViewVariables]
+    public MapId TargetMap = MapId.Nullspace;
 }

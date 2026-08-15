@@ -45,7 +45,7 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
 
 # Belt
 - type: entity
@@ -94,7 +94,13 @@
   - type: Clothing
     sprite: _Lua/Sponsor/Kelic/hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitKelic
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitKelic
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: ClothingSpeedModifier
@@ -115,7 +121,7 @@
     containers:
       storagebase: !type:Container
         ents: []
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
       cell_slot: !type:ContainerSlot {}
   - type: HideLayerClothing
     slots:
@@ -312,7 +318,7 @@
 
 # Rings
 - type: entity
-  parent: ClothingHandsBase
+  parent: RingBase
   id: ClothingHandsRingDiamondKelic
   name: обручальное кольцо с алмазом
   description: Кольцо из чистой платины, в центре которого находится алмаз. На кольце виднеется гравировка "Эйрин".
@@ -320,15 +326,17 @@
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/Kelic/ring_eirin.rsi
+    state: icon
   - type: Clothing
     sprite: _Lua/Sponsor/Kelic/ring_eirin.rsi
+    equippedState: equipped-FINGER
   - type: Item
     size: Tiny
   - type: StaticPrice
     price: 1000
 
 - type: entity
-  parent: ClothingHandsBase
+  parent: RingBase
   id: ClothingHandsRingRubinoKelic
   name: кольцо с рубином
   description: Кольцо из чистой платины, в центре которого находится рубин. На кольце виднеется гравировка "Келик".
@@ -336,8 +344,10 @@
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/Kelic/ring_kelik.rsi
+    state: icon
   - type: Clothing
     sprite: _Lua/Sponsor/Kelic/ring_kelik.rsi
+    equippedState: equipped-FINGER
   - type: Item
     size: Tiny
   - type: StaticPrice
