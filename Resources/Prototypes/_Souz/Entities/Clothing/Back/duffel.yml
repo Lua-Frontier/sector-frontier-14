@@ -1,0 +1,31 @@
+# source: Entities/Clothing/Back/duffel.yml
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: USSPSFClothingBackpackDuffelCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's duffel bag
+  description: A large duffel bag for holding extra captainly goods.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Duffels/captain.rsi
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBackpackDuffelSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security duffel bag
+  description: A large duffel bag for holding extra security related goods.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Duffels/security.rsi
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBackpackDuffelBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic duffel bag
+  description: A large duffel bag for holding extra medical related goods.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Duffels/brigmedic.rsi

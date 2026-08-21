@@ -63,6 +63,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly FactionOwnedStationSystem _ownedStations = default!;
         [Dependency] private readonly StationJobsSystem _stationJobs = default!;
         [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+        [Dependency] private readonly StationSystem _station = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
@@ -72,7 +73,7 @@ namespace Content.Server.GameTicking
         [ViewVariables] private bool _initialized;
         [ViewVariables] private bool _postInitialized;
 
-        [ViewVariables] public MapId DefaultMap { get; private set; }
+        private readonly List<MapId> _pendingMapInit = new();
 
         private ISawmill _sawmill = default!;
 

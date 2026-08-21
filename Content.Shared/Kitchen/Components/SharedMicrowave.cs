@@ -77,7 +77,7 @@ namespace Content.Shared.Kitchen.Components
         Bloody
     }
 
-    [NetSerializable, Serializable]
+    [Serializable, NetSerializable]
     public enum MicrowaveUiKey
     {
         Key,

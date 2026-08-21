@@ -34,8 +34,14 @@
     walkModifier: 0.8 #Lua 0.7<0.8
     sprintModifier: 0.85 #Lua 0.7<0.85
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitAtmos
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitAtmos
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -75,8 +81,14 @@
     walkModifier: 0.9 #Lua 0.7<0.9
     sprintModifier: 0.9 #Lua 0.7<0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitEngineering
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitEngineering
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -119,8 +131,14 @@
     walkModifier: 1 #Lua 0.9<1
     sprintModifier: 1 #Lua 0.8<1
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSpatio
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSpatio
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - Hardsuit
@@ -157,8 +175,14 @@
     walkModifier: 0.75
     sprintModifier: 0.75
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSalvage
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSalvage
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -196,8 +220,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitGoliath
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitGoliath
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Construction
     graph: HardsuitGoliath
     node: hardsuitGoliath
@@ -237,8 +267,14 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitMaxim
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Security Hardsuit
 - type: entity
@@ -269,8 +305,14 @@
     walkModifier: 0.75
     sprintModifier: 0.75
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSecurity
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSecurity
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -305,8 +347,14 @@
     walkModifier: 0.8
     sprintModifier: 0.75
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitBrigmedic
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Warden's Hardsuit
 - type: entity
@@ -336,8 +384,14 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitWarden
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitWarden
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Captain's Hardsuit
 - type: entity
@@ -372,8 +426,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitCap
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitCap
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -411,8 +471,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringWhite
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitEngineeringWhite
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -448,8 +514,14 @@
     walkModifier: 0.95
     sprintModifier: 0.95
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMedical
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitMedical
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -499,8 +571,14 @@
     - HighRiskItem
     - CorgiWearable
     - Hardsuit
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitRd
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitRd
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 750
   - type: StealTarget
@@ -537,8 +615,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSecurityRed
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSecurityRed
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -570,8 +654,14 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitLuxury
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitLuxury
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -609,8 +699,14 @@
     walkModifier: 1
     sprintModifier: 1
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSyndie
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSyndie
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - MonkeyWearable
@@ -633,8 +729,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSyndieMedic
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSyndieMedic
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - Hardsuit
@@ -697,8 +799,14 @@
     walkModifier: 0.8 #Lua 0.9<0.8
     sprintModifier: 0.8 #Lua 0.9<0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSyndieElite
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -736,8 +844,14 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSyndieCommander
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -775,8 +889,14 @@
     walkModifier: 0.65
     sprintModifier: 0.65
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitCybersun
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitCybersun
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - Hardsuit # _Lua
@@ -818,8 +938,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitWizard
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitWizard
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - CorgiWearable
@@ -853,8 +979,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitLing
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitLing
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Pirate EVA Suit (Deep Space EVA Suit)
 #Despite visually appearing like a softsuit, it functions exactly like a hardsuit would (parents off of base hardsuit, has resistances and toggleable clothing, etc.) so it goes here.
@@ -885,8 +1017,14 @@
     walkModifier: 0.6
     sprintModifier: 0.6
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPirateEVA
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitPirateEVA
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 0
 
@@ -920,8 +1058,14 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitPirateCap
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitPirateCap
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 0
 
@@ -937,8 +1081,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTLeader
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 # Lua-changes-start:
   - type: PressureProtection
     highPressureMultiplier: 0.05
@@ -973,8 +1123,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTChaplain
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTChaplain
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 # Lua-changes-start:
   - type: PressureProtection
     highPressureMultiplier: 0.2
@@ -1007,8 +1163,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTEngineer
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTEngineer
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: FireProtection
     reduction: 0.8
 
@@ -1023,8 +1185,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTMedical
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -1058,8 +1226,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTSecurity
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTSecurity
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - Hardsuit
@@ -1098,8 +1272,14 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitERTJanitor
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Deathsquad
 - type: entity
@@ -1137,8 +1317,14 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitDeathsquad
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitDeathsquad
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 1
   - type: Tag
@@ -1217,8 +1403,14 @@
   - type: Construction
     graph: ClownHardsuit
     node: clownHardsuit
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitClown
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitClown
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Mime Hardsuit
 - type: entity
@@ -1234,8 +1426,14 @@
   - type: Construction
     graph: MimeHardsuit
     node: mimeHardsuit
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMime
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitMime
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #Santa's Hardsuit
 - type: entity
@@ -1264,5 +1462,11 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSanta
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSanta
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock

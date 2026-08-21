@@ -20,7 +20,7 @@ public sealed partial class MonoCVars
     ///     Whether to log every single entity cleanup deletes.
     /// </summary>
     public static readonly CVarDef<bool> CleanupLog =
-        CVarDef.Create("mono.cleanup.log", true, CVar.SERVERONLY);
+        CVarDef.Create("mono.cleanup.log", false, CVar.SERVERONLY);
 
     /// <summary>
     ///     Don't delete non-grids at most this close to a grid.
@@ -32,7 +32,7 @@ public sealed partial class MonoCVars
     ///     How far away from any players can a mob be until it gets cleaned up.
     /// </summary>
     public static readonly CVarDef<float> MobCleanupDistance =
-        CVarDef.Create("mono.cleanup.mob.distance", 1280.0f, CVar.SERVERONLY);
+        CVarDef.Create("mono.cleanup.mob.distance", 768.0f, CVar.SERVERONLY);
 
     /// <summary>
     ///     How far away from any players can a grid be until it gets cleaned up.
@@ -44,7 +44,7 @@ public sealed partial class MonoCVars
     ///     How much can a grid at most be worth for it to be cleaned up.
     /// </summary>
     public static readonly CVarDef<float> GridCleanupMaxValue =
-        CVarDef.Create("mono.cleanup.grid.max_value", 30000.0f, CVar.SERVERONLY);
+        CVarDef.Create("mono.cleanup.grid.max_value", 20000.0f, CVar.SERVERONLY);
 
     /// <summary>
     ///     At most how many tiles for a grid to have for it to be cleaned up more aggressively.
@@ -56,7 +56,7 @@ public sealed partial class MonoCVars
     ///     Duration, in seconds, for how long a grid has to fulfill cleanup conditions to get cleaned up.
     /// </summary>
     public static readonly CVarDef<float> GridCleanupDuration =
-        CVarDef.Create("mono.grid_cleanup_duration", 60f * 30f, CVar.SERVERONLY);
+        CVarDef.Create("mono.grid_cleanup_duration", 60f * 10f, CVar.SERVERONLY);
 
     /// <summary>
     ///     How far away from any players does a spaced entity have to be in order to get cleaned up.
@@ -68,7 +68,7 @@ public sealed partial class MonoCVars
     ///     How much can a spaced entity at most be worth for it to be cleaned up.
     /// </summary>
     public static readonly CVarDef<float> SpaceCleanupMaxValue =
-        CVarDef.Create("mono.cleanup.space.max_value", 10000.0f, CVar.SERVERONLY);
+        CVarDef.Create("mono.cleanup.space.max_value", 5000.0f, CVar.SERVERONLY);
 
     /// <summary>
     ///     After a shuttle impact, how aggressively to sweep. Makes sweep more willing to delete items close to grids or players.
@@ -94,7 +94,7 @@ public sealed partial class MonoCVars
     ///     How often to clean up space garbage entities, in seconds.
     /// </summary>
     public static readonly CVarDef<float> SpaceGarbageCleanupInterval =
-        CVarDef.Create("mono.space_garbage_cleanup_interval", 300.0f, CVar.SERVERONLY);
+        CVarDef.Create("mono.space_garbage_cleanup_interval", 180.0f, CVar.SERVERONLY);
 
     #region Audio
 

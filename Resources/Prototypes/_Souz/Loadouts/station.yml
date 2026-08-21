@@ -1,0 +1,605 @@
+# Shared station USSP loadouts built from existing _Souz / vanilla entities.
+
+# Backpacks
+- type: loadout
+  id: UsspLoadoutBackpack
+  equipment:
+    back: ClothingBackpack
+
+- type: loadout
+  id: UsspLoadoutSatchel
+  equipment:
+    back: ClothingBackpackSatchel
+
+- type: loadout
+  id: UsspLoadoutDuffel
+  equipment:
+    back: ClothingBackpackDuffel
+
+- type: loadout
+  id: UsspLoadoutBackpackSecurity
+  equipment:
+    back: USSPSFClothingBackpackSecurity
+
+- type: loadout
+  id: UsspLoadoutSatchelSecurity
+  equipment:
+    back: USSPSFClothingBackpackSatchelSecurity
+
+- type: loadout
+  id: UsspLoadoutDuffelSecurity
+  equipment:
+    back: USSPSFClothingBackpackDuffelSecurity
+
+- type: loadout
+  id: UsspLoadoutBackpackBrigmedic
+  equipment:
+    back: USSPSFClothingBackpackBrigmedic
+
+- type: loadout
+  id: UsspLoadoutSatchelBrigmedic
+  equipment:
+    back: USSPSFClothingBackpackSatchelBrigmedic
+
+- type: loadout
+  id: UsspLoadoutDuffelBrigmedic
+  equipment:
+    back: USSPSFClothingBackpackDuffelBrigmedic
+
+- type: loadout
+  id: UsspLoadoutBackpackCaptain
+  equipment:
+    back: USSPSFClothingBackpackCaptainWhite
+
+- type: loadout
+  id: UsspLoadoutBackpackBlueShield
+  equipment:
+    back: USSPSFClothingBackpackBlueShield
+
+- type: loadoutGroup
+  id: UsspCivilianBackpack
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutBackpack
+  - UsspLoadoutSatchel
+  - UsspLoadoutDuffel
+  fallbacks:
+  - UsspLoadoutBackpack
+
+- type: loadoutGroup
+  id: UsspSecurityBackpack
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutBackpackSecurity
+  - UsspLoadoutSatchelSecurity
+  - UsspLoadoutDuffelSecurity
+  fallbacks:
+  - UsspLoadoutBackpackSecurity
+
+- type: loadoutGroup
+  id: UsspBrigmedicBackpack
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutBackpackBrigmedic
+  - UsspLoadoutSatchelBrigmedic
+  - UsspLoadoutDuffelBrigmedic
+  fallbacks:
+  - UsspLoadoutBackpackBrigmedic
+
+- type: loadoutGroup
+  id: UsspCaptainBackpack
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutBackpackCaptain
+  - UsspLoadoutBackpackCaptainBlack
+  - UsspLoadoutSatchelCaptain
+  - UsspLoadoutSatchelCaptainWhite
+  - UsspLoadoutSatchelCaptainBlack
+  - UsspLoadoutDuffelCaptain
+  - UsspLoadoutDuffelCaptainWhite
+  - UsspLoadoutDuffelCaptainBlack
+  - UsspLoadoutBackpackSecurity
+  fallbacks:
+  - UsspLoadoutBackpackCaptain
+
+- type: loadoutGroup
+  id: UsspBlueShieldBackpack
+  name: loadout-group-contractor-backpack
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutBackpackBlueShield
+  - UsspLoadoutBackpackSecurity
+  fallbacks:
+  - UsspLoadoutBackpackBlueShield
+
+# Shoes
+- type: loadout
+  id: UsspLoadoutShoesJack
+  equipment:
+    shoes: USSPSFClothingShoesBootsJack
+
+- type: loadout
+  id: UsspLoadoutShoesBrigmedic
+  equipment:
+    shoes: USSPSFClothingShoesBootsBrigmedic
+
+- type: loadout
+  id: UsspLoadoutShoesOKGB
+  equipment:
+    shoes: USSPSFClothingShoesOKGB
+
+- type: loadout
+  id: UsspLoadoutShoesBlueShield
+  equipment:
+    shoes: USSPSFClothingShoesBootsBlueShield
+
+- type: loadout
+  id: UsspLoadoutShoesLaceup
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+- type: loadout
+  id: UsspLoadoutShoesBlack
+  equipment:
+    shoes: ClothingShoesColorBlack
+
+- type: loadoutGroup
+  id: UsspSecurityShoes
+  name: loadout-group-contractor-shoes
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutShoesJack
+  fallbacks:
+  - UsspLoadoutShoesJack
+
+- type: loadoutGroup
+  id: UsspBrigmedicShoes
+  name: loadout-group-contractor-shoes
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutShoesBrigmedic
+  - UsspLoadoutShoesJack
+  fallbacks:
+  - UsspLoadoutShoesBrigmedic
+
+- type: loadoutGroup
+  id: UsspBlueShieldShoes
+  name: loadout-group-contractor-shoes
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutShoesOKGB
+  - UsspLoadoutShoesBlueShield
+  fallbacks:
+  - UsspLoadoutShoesOKGB
+
+- type: loadoutGroup
+  id: UsspCommandShoes
+  name: loadout-group-contractor-shoes
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutShoesLaceup
+  - UsspLoadoutShoesBlack
+  fallbacks:
+  - UsspLoadoutShoesLaceup
+
+# Ears
+- type: loadout
+  id: UsspLoadoutEarsGrey
+  equipment:
+    ears: ClothingHeadsetGrey
+
+- type: loadout
+  id: UsspLoadoutEarsSecurity
+  equipment:
+    ears: USSPSFClothingHeadsetSecurity
+
+- type: loadout
+  id: UsspLoadoutEarsBrigmedic
+  equipment:
+    ears: USSPSFClothingHeadsetBrigmedic
+
+- type: loadout
+  id: UsspLoadoutEarsCommand
+  equipment:
+    ears: USSPSFClothingHeadsetAltCommand
+
+- type: loadout
+  id: UsspLoadoutEarsCommandHeadset
+  equipment:
+    ears: USSPSFClothingHeadsetCommand
+
+- type: loadout
+  id: UsspLoadoutEarsHoS
+  equipment:
+    ears: USSPSFClothingHeadsetAltSecurity
+
+- type: loadout
+  id: UsspLoadoutEarsPilot
+  equipment:
+    ears: USSPSFClothingHeadsetAltSecurityOfficer
+
+- type: loadoutGroup
+  id: UsspCivilianEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutEarsGrey
+  fallbacks:
+  - UsspLoadoutEarsGrey
+
+- type: loadoutGroup
+  id: UsspSecurityEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutEarsSecurity
+  fallbacks:
+  - UsspLoadoutEarsSecurity
+
+- type: loadoutGroup
+  id: UsspBrigmedicEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutEarsBrigmedic
+  fallbacks:
+  - UsspLoadoutEarsBrigmedic
+
+- type: loadoutGroup
+  id: UsspCommandEars
+  name: loadout-group-contractor-ears
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutEarsCommand
+  - UsspLoadoutEarsCommandHeadset
+  fallbacks:
+  - UsspLoadoutEarsCommand
+
+- type: loadoutGroup
+  id: UsspHoSEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutEarsHoS
+  fallbacks:
+  - UsspLoadoutEarsHoS
+
+- type: loadoutGroup
+  id: UsspPilotEars
+  name: loadout-group-contractor-ears
+  hidden: true
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutEarsPilot
+  fallbacks:
+  - UsspLoadoutEarsPilot
+
+# Uniforms
+- type: loadout
+  id: UsspLoadoutJumpsuitPassenger
+  equipment:
+    jumpsuit: USSPSFClothingUniformUSSPJumpsuit
+
+- type: loadout
+  id: UsspLoadoutJumpskirtPassengerGrey
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtColorGrey
+
+- type: loadout
+  id: UsspLoadoutJumpsuitPassengerGrey
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+
+- type: loadoutGroup
+  id: UsspPassengerJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitPassenger
+  - UsspLoadoutJumpsuitPassengerGrey
+  - UsspLoadoutJumpskirtPassengerGrey
+  fallbacks:
+  - UsspLoadoutJumpsuitPassenger
+
+- type: loadout
+  id: UsspLoadoutJumpskirtBrigmedic
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpskirtBrigmedic
+
+- type: loadout
+  id: UsspLoadoutJumpsuitHoPTurtle
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitHoPTurtle
+
+- type: loadout
+  id: UsspLoadoutJumpskirtHoP
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpskirtHoP
+
+- type: loadout
+  id: UsspLoadoutJumpsuitBlueShield
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitBlueShield
+
+- type: loadout
+  id: UsspLoadoutJumpsuitPolitrukFormal
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitPolitRukFormal
+
+- type: loadout
+  id: UsspLoadoutJumpsuitPolitrukSkirt
+  equipment:
+    jumpsuit: USSPSFClothingUniformJumpsuitPolitRukSkirt
+
+- type: loadoutGroup
+  id: UsspBlueShieldJumpsuit
+  name: loadout-group-contractor-jumpsuit
+  minLimit: 1
+  loadouts:
+  - UsspLoadoutJumpsuitBlueShield
+  - UsspLoadoutJumpsuitTurtleOKGB
+  fallbacks:
+  - UsspLoadoutJumpsuitBlueShield
+
+# Head
+- type: loadout
+  id: UsspLoadoutHeadBrigmedic
+  equipment:
+    head: USSPSFClothingHeadHatBeretBrigmedic
+
+- type: loadout
+  id: UsspLoadoutHeadHopcap
+  equipment:
+    head: USSPSFClothingHeadHatHopcap
+
+- type: loadout
+  id: UsspLoadoutHeadHopBeret
+  equipment:
+    head: USSPSFClothingHeadHatBeretHop
+
+- type: loadout
+  id: UsspLoadoutHeadBlueShield
+  equipment:
+    head: USSPSFClothingHeadHatBeretBlueShield
+
+- type: loadout
+  id: UsspLoadoutHeadPolitrukCap
+  equipment:
+    head: USSPSFClothingHeadPolitrukCap
+
+- type: loadoutGroup
+  id: UsspBrigmedicHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadBrigmedic
+  - UsspLoadoutHeadBeretSecMedic
+  - UsspLoadoutHeadHelmetSecMedic
+
+- type: loadoutGroup
+  id: UsspHoPHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadHopcap
+  - UsspLoadoutHeadHopBeret
+
+- type: loadoutGroup
+  id: UsspBlueShieldHead
+  name: loadout-group-contractor-head
+  loadouts:
+  - UsspLoadoutHeadBlueShield
+  - UsspLoadoutHeadHelmetBlueShield
+
+# Outer
+- type: loadout
+  id: UsspLoadoutOuterVestMedSec
+  equipment:
+    outerClothing: USSPSFClothingOuterVestArmorMedSec
+
+- type: loadout
+  id: UsspLoadoutOuterCoatLabBrigmedic
+  equipment:
+    outerClothing: USSPSFClothingOuterCoatLabSecurityMedic
+
+- type: loadout
+  id: UsspLoadoutOuterWinterHoP
+  equipment:
+    outerClothing: USSPSFClothingOuterWinterHoP
+
+- type: loadout
+  id: UsspLoadoutOuterCoatHoP
+  equipment:
+    outerClothing: USSPSFClothingOuterCoatHOP
+
+- type: loadout
+  id: UsspLoadoutOuterCoatOKGB
+  equipment:
+    outerClothing: USSPSFClothingOuterCoatOKGB
+
+- type: loadout
+  id: UsspLoadoutOuterBlackCoatOKGB
+  equipment:
+    outerClothing: USSPSFClothingOuterBlackCoatOKGB
+
+- type: loadout
+  id: UsspLoadoutOuterWinterCap
+  equipment:
+    outerClothing: USSPSFClothingOuterWinterCap
+
+- type: loadout
+  id: UsspLoadoutOuterCoatCaptain
+  equipment:
+    outerClothing: USSPSFClothingOuterCoatCaptain
+
+- type: loadout
+  id: UsspLoadoutOuterCoatHoS
+  equipment:
+    outerClothing: USSPSFClothingOuterCoatHoSTrench
+
+- type: loadoutGroup
+  id: UsspBrigmedicOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - UsspLoadoutOuterVestMedSec
+  - UsspLoadoutOuterCoatLabBrigmedic
+  - UsspLoadoutOuterCoatAMG
+  - UsspLoadoutOuterVestSecurityMedic
+  - UsspLoadoutOuterCoatLabBrigOpened
+
+- type: loadoutGroup
+  id: UsspHoPOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - UsspLoadoutOuterWinterHoP
+  - UsspLoadoutOuterCoatHoP
+
+- type: loadoutGroup
+  id: UsspBlueShieldOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - UsspLoadoutOuterArmorBasicBlueShield
+  - UsspLoadoutOuterCoatOKGB
+  - UsspLoadoutOuterBlackCoatOKGB
+
+- type: loadoutGroup
+  id: UsspCaptainOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - UsspLoadoutOuterWinterCap
+  - UsspLoadoutOuterCoatCaptain
+  - UsspLoadoutOuterCarapace
+  - UsspLoadoutOuterCarapaceWhite
+  - UsspLoadoutOuterCarapaceBlack
+  - UsspLoadoutOuterWinterCapWhite
+  - UsspLoadoutOuterWinterCapBlack
+
+- type: loadoutGroup
+  id: UsspHoSOuterClothing
+  name: loadout-group-contractor-outerclothing
+  loadouts:
+  - UsspLoadoutOuterCoatHoS
+  - UsspLoadoutOuterWinterSec
+  - UsspLoadoutOuterCoatHoSGreatcoat
+  - UsspLoadoutOuterWinterHoSArmored
+
+# Belts / gloves / eyes / neck
+- type: loadout
+  id: UsspLoadoutBeltSecurity
+  equipment:
+    belt: USSPSFClothingBeltSecurity
+
+- type: loadout
+  id: UsspLoadoutBeltBrigmedic
+  equipment:
+    belt: USSPSFClothingBeltMedicalSecurityWebbing
+
+- type: loadout
+  id: UsspLoadoutBeltBlueShield
+  equipment:
+    belt: USSPSFClothingBeltMilitaryWebbingBlueShieldFilled
+
+- type: loadoutGroup
+  id: UsspSecurityBelt
+  name: loadout-group-contractor-belt
+  loadouts:
+  - UsspLoadoutBeltSecurity
+  - UsspLoadoutBeltSecurityWebbing
+
+- type: loadoutGroup
+  id: UsspBrigmedicBelt
+  name: loadout-group-contractor-belt
+  loadouts:
+  - UsspLoadoutBeltBrigmedic
+
+- type: loadoutGroup
+  id: UsspBlueShieldBelt
+  name: loadout-group-contractor-belt
+  loadouts:
+  - UsspLoadoutBeltBlueShield
+
+- type: loadout
+  id: UsspLoadoutGlovesLatex
+  equipment:
+    gloves: ClothingHandsGlovesLatex
+
+- type: loadout
+  id: UsspLoadoutGlovesCombat
+  equipment:
+    gloves: USSPSFClothingHandsGlovesCombat
+
+- type: loadout
+  id: UsspLoadoutGlovesBlack
+  equipment:
+    gloves: USSPSFClothingHandsGlovesColorBlack
+
+- type: loadoutGroup
+  id: UsspBrigmedicGloves
+  name: loadout-group-contractor-gloves
+  loadouts:
+  - UsspLoadoutGlovesLatex
+
+- type: loadoutGroup
+  id: UsspSecurityGloves
+  name: loadout-group-contractor-gloves
+  loadouts:
+  - UsspLoadoutGlovesCombat
+  - UsspLoadoutGlovesBlack
+
+- type: loadout
+  id: UsspLoadoutEyesMedical
+  equipment:
+    eyes: ClothingEyesHudMedical
+
+- type: loadout
+  id: UsspLoadoutEyesSecurity
+  equipment:
+    eyes: USSPSFClothingEyesGlassesSecurity
+
+- type: loadout
+  id: UsspLoadoutEyesOKGB
+  equipment:
+    eyes: USSPSFClothingEyesGlassesAdvancedOKGB
+
+- type: loadoutGroup
+  id: UsspBrigmedicEyes
+  name: loadout-group-contractor-glasses
+  loadouts:
+  - UsspLoadoutEyesMedical
+
+- type: loadoutGroup
+  id: UsspSecurityEyes
+  name: loadout-group-contractor-glasses
+  loadouts:
+  - UsspLoadoutEyesSecurity
+  - UsspLoadoutEyesHudSecurity
+  - UsspLoadoutEyesEyepatchHudSecurity
+
+- type: loadoutGroup
+  id: UsspBlueShieldEyes
+  name: loadout-group-contractor-glasses
+  loadouts:
+  - UsspLoadoutEyesOKGB
+  - UsspLoadoutEyesLensesOKGB
+  - UsspLoadoutEyesSecurity
+
+- type: loadout
+  id: UsspLoadoutNeckHoP
+  equipment:
+    neck: USSPSFClothingNeckMantleHOP
+
+- type: loadoutGroup
+  id: UsspHoPNeck
+  name: loadout-group-contractor-neck
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - UsspLoadoutNeckHoP
+  - UsspLoadoutNeckCloakHop
+  - UsspLoadoutNeckHoPAltCloak

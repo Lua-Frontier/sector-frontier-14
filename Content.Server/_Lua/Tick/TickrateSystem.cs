@@ -17,6 +17,8 @@ namespace Content.Server._Lua.Tick
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IGameTiming _time = default!;
 
+        private ISawmill _sawmill = default!;
+
         private static readonly Gauge ServerFps = Metrics.CreateGauge(
             "robust_server_fps",
             "Server frames per second (FramesPerSecondAvg).");
@@ -25,22 +27,38 @@ namespace Content.Server._Lua.Tick
             "robust_server_tickrate",
             "Current server tickrate (net.tickrate).");
 
-        private TimeSpan? _lowFpsSince;
-        private TimeSpan _lastLowFps;
-        private TimeSpan _lastIncrease;
+        private static readonly Gauge PhysicsTickrate = Metrics.CreateGauge(
+            "robust_physics_target_tickrate",
+            "Current physics target minimum tickrate (physics.target_minimum_tickrate).");
+
+        private static readonly Gauge ServerHeadroom = Metrics.CreateGauge(
+            "robust_server_headroom",
+            "Server FPS headroom ratio (fps / net.tickrate).");
+
+        private TimeSpan? _lowHeadroomSince;
+        private TimeSpan? _goodHeadroomSince;
         private TimeSpan _lastCheck;
+        private TimeSpan _lastTickrateChange;
         private bool _dynamicEnabled;
         private int _minTickrate;
         private int _maxTickrate;
         private float _checkIntervalSeconds;
         private float _lowFpsMin;
         private float _lowFpsMax;
+        private float _highFpsMin;
+        private float _decreaseHeadroom;
+        private float _increaseHeadroom;
+        private float _headroomSmooth;
+        private float _changeCooldownSeconds;
         private float _decreaseDelaySeconds;
         private float _increaseDelaySeconds;
+        private float _headroomEma = -1f;
 
         public override void Initialize()
         {
             base.Initialize();
+            _sawmill = Logger.GetSawmill("tickrate.dynamic");
+
             _cfg.OnValueChanged(CLVars.NetDynamicTick, dynamicEnabled =>
             {
                 _dynamicEnabled = dynamicEnabled;
@@ -51,6 +69,11 @@ namespace Content.Server._Lua.Tick
             _cfg.OnValueChanged(CLVars.NetDynamicTickCheckInterval, value => _checkIntervalSeconds = value, true);
             _cfg.OnValueChanged(CLVars.NetDynamicTickLowFpsMin, value => _lowFpsMin = value, true);
             _cfg.OnValueChanged(CLVars.NetDynamicTickLowFpsMax, value => _lowFpsMax = value, true);
+            _cfg.OnValueChanged(CLVars.NetDynamicTickHighFpsMin, value => _highFpsMin = value, true);
+            _cfg.OnValueChanged(CLVars.NetDynamicTickDecreaseHeadroom, value => _decreaseHeadroom = value, true);
+            _cfg.OnValueChanged(CLVars.NetDynamicTickIncreaseHeadroom, value => _increaseHeadroom = value, true);
+            _cfg.OnValueChanged(CLVars.NetDynamicTickHeadroomSmooth, value => _headroomSmooth = value, true);
+            _cfg.OnValueChanged(CLVars.NetDynamicTickChangeCooldown, value => _changeCooldownSeconds = value, true);
             _cfg.OnValueChanged(CLVars.NetDynamicTickDecreaseDelay, value => _decreaseDelaySeconds = value, true);
             _cfg.OnValueChanged(CLVars.NetDynamicTickIncreaseDelay, value => _increaseDelaySeconds = value, true);
         }
@@ -62,45 +85,118 @@ namespace Content.Server._Lua.Tick
             var checkInterval = TimeSpan.FromSeconds(Math.Max(0.1f, _checkIntervalSeconds));
             if (now - _lastCheck < checkInterval) return;
             _lastCheck = now;
+
+            var netTickrate = Math.Max(1, _cfg.GetCVar(CVars.NetTickrate));
             var srvfps = _time.FramesPerSecondAvg;
+            var headroom = srvfps / netTickrate;
+            _headroomEma = _headroomEma < 0f || _headroomSmooth <= 0f
+                ? (float)headroom
+                : _headroomEma + _headroomSmooth * ((float)headroom - _headroomEma);
+
             ServerFps.Set(srvfps);
-            ServerTickrate.Set(_cfg.GetCVar(CVars.NetTickrate));
+            ServerTickrate.Set(netTickrate);
+            PhysicsTickrate.Set(_cfg.GetCVar(CVars.TargetMinimumTickrate));
+            ServerHeadroom.Set(_headroomEma);
+
             if (!_dynamicEnabled) return;
+
             var minTickrate = Math.Min(_minTickrate, _maxTickrate);
             var maxTickrate = Math.Max(_minTickrate, _maxTickrate);
-            var lowFpsMin = Math.Min(_lowFpsMin, _lowFpsMax);
-            var lowFpsMax = Math.Max(_lowFpsMin, _lowFpsMax);
+            var decreaseHeadroom = ResolveDecreaseHeadroom(maxTickrate);
+            var increaseHeadroom = Math.Max(decreaseHeadroom, ResolveIncreaseHeadroom(maxTickrate));
             var decreaseDelay = TimeSpan.FromSeconds(Math.Max(0.1f, _decreaseDelaySeconds));
             var increaseDelay = TimeSpan.FromSeconds(Math.Max(0.1f, _increaseDelaySeconds));
-            if (srvfps >= lowFpsMin && srvfps <= lowFpsMax)
+            var changeCooldown = TimeSpan.FromSeconds(Math.Max(0f, _changeCooldownSeconds));
+            if (now - _lastTickrateChange < changeCooldown)
+                return;
+
+            if (_headroomEma <= decreaseHeadroom)
             {
-                if (_lowFpsSince == null) _lowFpsSince = now;
-                if (now - _lowFpsSince >= decreaseDelay)
+                _goodHeadroomSince = null;
+                if (_lowHeadroomSince == null) _lowHeadroomSince = now;
+                if (now - _lowHeadroomSince >= decreaseDelay)
                 {
                     var cur = _cfg.GetCVar(CVars.NetTickrate);
-                    if (cur > minTickrate) _cfg.SetCVar(CVars.NetTickrate, cur - 1);
-                    _lowFpsSince = now;
+                    if (cur > minTickrate)
+                    {
+                        var step = CalcStep(decreaseHeadroom - _headroomEma);
+                        SetNetTickrate(cur - step, minTickrate, maxTickrate, "low headroom");
+                        _lastTickrateChange = now;
+                    }
+                    _lowHeadroomSince = now;
                 }
-                _lastLowFps = now;
+            }
+            else if (_headroomEma >= increaseHeadroom)
+            {
+                _lowHeadroomSince = null;
+                if (_goodHeadroomSince == null) _goodHeadroomSince = now;
+                if (now - _goodHeadroomSince >= increaseDelay)
+                {
+                    var cur = _cfg.GetCVar(CVars.NetTickrate);
+                    if (cur < maxTickrate)
+                    {
+                        SetNetTickrate(cur + 1, minTickrate, maxTickrate, "recovered headroom");
+                        _lastTickrateChange = now;
+                    }
+                    _goodHeadroomSince = now;
+                }
             }
             else
-            { _lowFpsSince = null; }
-
-            if (now - _lastLowFps >= increaseDelay && now - _lastIncrease >= increaseDelay)
             {
-                var cur = _cfg.GetCVar(CVars.NetTickrate);
-                if (cur < maxTickrate) _cfg.SetCVar(CVars.NetTickrate, cur + 1);
-                _lastIncrease = now;
+                _lowHeadroomSince = null;
+                _goodHeadroomSince = null;
             }
+        }
+
+        private float ResolveDecreaseHeadroom(int maxTickrate)
+        {
+            if (_decreaseHeadroom > 0f)
+                return _decreaseHeadroom;
+
+            var fpsThreshold = Math.Max(_lowFpsMin, _lowFpsMax);
+            return fpsThreshold / Math.Max(1, maxTickrate);
+        }
+
+        private float ResolveIncreaseHeadroom(int maxTickrate)
+        {
+            if (_increaseHeadroom > 0f)
+                return _increaseHeadroom;
+
+            return _highFpsMin / Math.Max(1, maxTickrate);
+        }
+
+        private static int CalcStep(float excess)
+        {
+            if (excess < 1f)
+                return 1;
+
+            return Math.Min(3, (int)Math.Ceiling(excess));
+        }
+
+        private void SetNetTickrate(int tickrate, int minTickrate, int maxTickrate, string reason)
+        {
+            var current = _cfg.GetCVar(CVars.NetTickrate);
+            tickrate = Math.Clamp(tickrate, minTickrate, maxTickrate);
+            if (tickrate == current)
+                return;
+
+            _cfg.SetCVar(CVars.NetTickrate, tickrate);
+            _sawmill.Info(
+                "Dynamic tickrate changed {Current}->{Tickrate} ({Reason}, headroom={Headroom:0.00})",
+                current,
+                tickrate,
+                reason,
+                _headroomEma);
         }
 
         private void ResetTimers()
         {
             var now = _time.RealTime;
-            _lowFpsSince = null;
-            _lastLowFps = now;
-            _lastIncrease = now;
+            _lowHeadroomSince = null;
+            _goodHeadroomSince = null;
             _lastCheck = now;
+            _lastTickrateChange = now;
+            _headroomEma = -1f;
         }
     }
 }

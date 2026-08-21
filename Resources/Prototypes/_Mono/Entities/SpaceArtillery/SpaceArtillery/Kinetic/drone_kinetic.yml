@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretShard
   name: Light mass driver "Shard"
   parent:
@@ -56,6 +57,7 @@
     shipClass: Light
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretFragment
   name: "\"Fragment\" modified mass driver"
   parent: WeaponTurretShard
@@ -102,6 +104,7 @@
     shipClass: Medium
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretPinhole
   name: Pinhole-class railgun
   parent:

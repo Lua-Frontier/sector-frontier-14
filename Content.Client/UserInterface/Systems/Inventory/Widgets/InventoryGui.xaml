@@ -18,13 +18,10 @@
             HorizontalExpand="False"
             VerticalExpand="False"
             ButtonTexturePath="Slots/toggle"/>
-        <inventory:ItemSlotButtonContainer
+        <inventory:InventoryDisplay
             Name="InventoryHotbar"
             Access="Public"
             Visible="False"
-            MaxColumns="3"
-            SlotGroup="Default"
-            ExpandBackwards="True"
             VerticalExpand="True"
             HorizontalAlignment="Center"
         />

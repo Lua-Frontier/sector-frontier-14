@@ -1,24 +1,113 @@
 - type: entity
-  id: ThrusterSyndie
+  id: ThrusterRogue
   parent: Thruster
-  suffix: Syndicate
+  suffix: Syndicate, 76
   components:
+  - type: Machine
+    board: ThrusterRogueMachineCircuitboard
   - type: Thruster
     baseThrust: 100
-    thrust: 136
+    thrust: 152
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster32.rsi
     layers:
-    - state: base
+    - state: base_rogue
       map: ["enum.ThrusterVisualLayers.Base"]
     - state: thrust
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
-      color: "#C44D57"
+      color: "#8F002B"
     - state: thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded
       visible: false
       offset: 0, 1
-      color: "#C44D57"
+      color: "#8F002B"
+
+- type: entity
+  id: ThrusterRogueStealth
+  parent: [BaseStructureDisableToolUse, ThrusterRogue]
+  name: stealth thruster
+  suffix: Syndicate, Stealth, 60
+  description: A thruster with a reduced drive-plume and thermal output, but significantly less thrust.
+  components:
+  - type: NebulaThrustResistance
+    resistance: 0.5
+  - type: Thruster
+    baseThrust: 50
+    thrust: 60
+    heatSignatureRatio: 7.5
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster32.rsi
+    layers:
+    - state: base_stealth
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#8F002B"
+    - state: thrust_burn_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 1
+      color: "#8F002B"
+  - type: Anchorable
+    flags: Anchorable
+
+- type: entity
+  id: ThrustermediumRogue
+  parent: ThrusterMedium
+  suffix: Syndicate, 104.6
+  components:
+  - type: Thruster
+    baseThrust: 350
+    thrust: 732.2
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster64.rsi
+    offset: 0.5,-0.5
+    layers:
+    - state: base_rogue_medium
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_medium
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#8F002B"
+    - state: thrust_burn_medium_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2
+      color: "#8F002B"
+
+- type: entity
+  id: ThrusterLargeRogue
+  parent: ThrusterLarge
+  name: large thruster
+  suffix: Syndicate, 114
+  components:
+  - type: Machine
+    board: ThrusterLargeMachineCircuitboard
+  - type: Thruster
+    baseThrust: 800
+    thrust: 1824
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster96.rsi
+    offset: 1,-1
+    layers:
+    - state: base_rogue_large
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_large
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#8F002B"
+    - state: thrust_burn_large_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2.8
+      color: "#8F002B"

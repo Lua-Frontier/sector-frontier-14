@@ -1,7 +1,7 @@
-using Content.Server.GameTicking.Prototypes;
+using Content.Server.Holiday;
 using Content.Shared.ADT;
+using Content.Shared.CCVar;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 using System.Linq;
 
 namespace Content.Server.GameTicking;
@@ -12,23 +12,32 @@ public sealed partial class GameTicker
     public string? LobbyBackground { get; private set; }
 
     [ViewVariables]
-    private List<string>? _lobbyBackgrounds; //Lua private List<ResPath>? _lobbyBackgrounds;
-
-    //private static readonly string[] WhitelistedBackgroundExtensions = new string[] {"png", "jpg", "jpeg", "webp"};
+    private List<string>? _lobbyBackgrounds;
 
     private void InitializeLobbyBackground()
     {
-        //_lobbyBackgrounds = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
-        _lobbyBackgrounds = _prototypeManager.EnumeratePrototypes<AnimatedLobbyScreenPrototype>()
-            .Select(x => x.Path) //Lua .Select(x => x.Background)
-            //.Where(x => WhitelistedBackgroundExtensions.Contains(x.Extension))
-            .ToList();
-
+        SubscribeLocalEvent<HolidaysRefreshedEvent>(OnHolidaysRefreshedLobbyBackground);
         RandomizeLobbyBackground();
     }
 
-    private void RandomizeLobbyBackground() {
-        //LobbyBackground = _lobbyBackgrounds!.Any() ? _robustRandom.Pick(_lobbyBackgrounds!).ToString() : null;
-        LobbyBackground = _lobbyBackgrounds!.Any() ? _robustRandom.Pick(_lobbyBackgrounds!) : null; //Lua
+    private void OnHolidaysRefreshedLobbyBackground(HolidaysRefreshedEvent ev)
+    {
+        RandomizeLobbyBackground();
+        if (RunLevel == GameRunLevel.PreRoundLobby)
+            SendStatusToAll();
+    }
+
+    private void RandomizeLobbyBackground()
+    {
+        var holidaysEnabled = _cfg.GetCVar(CCVars.HolidaysEnabled);
+        var available = AnimatedLobbyScreenPrototype.GetAvailable(
+            _prototypeManager,
+            DateTime.Now,
+            holidaysEnabled);
+
+        _lobbyBackgrounds = available.Select(x => x.Path).ToList();
+        LobbyBackground = _lobbyBackgrounds.Count > 0
+            ? _robustRandom.Pick(_lobbyBackgrounds)
+            : null;
     }
 }

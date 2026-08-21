@@ -1,0 +1,32 @@
+preset raw;
+light_mode unshaded;
+
+// SDF filled disk / ring in UI pixels (UV2 = offset from center).
+// Vertex color (modulate) = stroke.
+// UV.x = radius, UV.y = half_width (0 = filled disk, >0 = ring).
+//
+// No pixel_snap: default preset snaps each corner independently, so a ring
+// (larger pad) and its filled star (smaller pad) land on different centres.
+
+varying highp vec4 vColor;
+
+void vertex() {
+    VERTEX = apply_mvp(VERTEX);
+    vColor = zFromSrgb(modulate);
+}
+
+void fragment() {
+    highp float radius = UV.x;
+    highp float half_width = UV.y;
+    highp float dist = length(UV2);
+    highp float aa = 0.75;
+    highp float d;
+    if (half_width < 0.01) {
+        d = dist - radius;
+    } else {
+        d = abs(dist - radius) - half_width;
+    }
+
+    highp float alpha = 1.0 - smoothstep(-aa, aa, d);
+    COLOR = vec4(vColor.rgb, vColor.a * alpha);
+}

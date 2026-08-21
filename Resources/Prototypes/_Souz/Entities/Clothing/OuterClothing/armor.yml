@@ -1,0 +1,71 @@
+# source: Entities/Clothing/OuterClothing/armor.yml
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  id: USSPSFClothingOuterArmorCaptainCarapace
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's carapace
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Armor/captain_carapace.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Armor/captain_carapace.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingOuterArmorRiot
+  categories: [ USSP ]
+  suffix: USSP
+  name: riot suit
+  description: A suit of semi-flexible polycarbonate body armor with heavy padding to protect against melee attacks. Perfect for fighting delinquents around the station.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Armor/riot.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Armor/riot.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.6 # DS14-value
+        Heat: 0.7 # DS14-value
+        Caustic: 0.9
+  - type: StaminaResistance #DS14
+    damageCoefficient: 0.25
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: GroupExamine
+  - type: ClothingSpeedModifier # DS14
+    walkModifier: 1
+    sprintModifier: 1
+
+# source: _DeadSpace/Entities/Clothing/OuterClothing/armor.yml
+- type: entity
+  parent: USSPSFClothingOuterArmorCaptainCarapace
+  id: USSPSFClothingOuterArmorCaptainCarapaceWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый панцирь капитана
+  description: Белый бронированный нагрудник, обеспечивающий защиту и повышенный стиль. Блеск.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Armor/captain_carapace_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Armor/captain_carapace_white.rsi
+
+- type: entity
+  parent: USSPSFClothingOuterArmorCaptainCarapace
+  id: USSPSFClothingOuterArmorCaptainCarapaceBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрный панцирь капитана
+  description: Чёрный бонированный нагрудник, обеспечивающий защиту и повышенный стиль. Lorica musculata.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Armor/captain_carapace_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Armor/captain_carapace_black.rsi

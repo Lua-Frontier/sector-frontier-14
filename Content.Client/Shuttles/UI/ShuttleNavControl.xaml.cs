@@ -1,3 +1,4 @@
+using Content.Client._Lua.Styles;
 using Content.Client._Mono.Radar;
 using Content.Client.Resources;
 using Content.Client.Shuttles.Systems;
@@ -344,7 +345,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
             var center = new Vector2(PixelSize.X * 0.5f, PixelSize.Y * 0.5f);
             var radius = MathF.Min(PixelSize.X, PixelSize.Y) * 0.42f;
-            handle.DrawCircle(center, radius, Color.White.WithAlpha(alpha));
+            LunaDraw.Circle(handle, center, radius, Color.White.WithAlpha(alpha));
 
             var up = new Vector2(0f, -radius);
             var down = new Vector2(0f, radius);
@@ -364,10 +365,10 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     var bottomLeft = center + (down + leftOffs) / MathF.Sqrt(2f);
                     var bottomRight = center + (down + rightOffs) / MathF.Sqrt(2f);
 
-                    handle.DrawLine(topLeft, bottomRight, iconColor);
-                    handle.DrawLine(bottomLeft, topRight, iconColor);
-                    handle.DrawLine(left, right, iconColor);
-                    handle.DrawLine(bottom, top, iconColor);
+                    LunaDraw.Line(handle, topLeft, bottomRight, iconColor);
+                    LunaDraw.Line(handle, bottomLeft, topRight, iconColor);
+                    LunaDraw.Line(handle, left, right, iconColor);
+                    LunaDraw.Line(handle, bottom, top, iconColor);
                     break;
                 }
                 case RadarModeButtonIcon.Rotation:
@@ -384,8 +385,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                         var thisPointDown = center - thisOffs;
                         var oldPointUp = center + prevOffs;
                         var oldPointDown = center - prevOffs;
-                        handle.DrawLine(oldPointUp, thisPointUp, iconColor);
-                        handle.DrawLine(oldPointDown, thisPointDown, iconColor);
+                        LunaDraw.Line(handle, oldPointUp, thisPointUp, iconColor);
+                        LunaDraw.Line(handle, oldPointDown, thisPointDown, iconColor);
                         prevOffs = thisOffs;
                     }
                     break;
@@ -401,17 +402,17 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     var innerRadius = radius * 0.4f;
                     var innerTop = center + up * 0.6f;
 
-                    handle.DrawCircle(innerTop, innerRadius, iconColor, false);
-                    handle.DrawLine(stemTop, bottom, iconColor);
-                    handle.DrawLine(crossLeft, crossRight, iconColor);
-                    handle.DrawLine(bottom, leftFluke, iconColor);
-                    handle.DrawLine(bottom, rightFluke, iconColor);
+                    LunaDraw.Circle(handle, innerTop, innerRadius, iconColor, false);
+                    LunaDraw.Line(handle, stemTop, bottom, iconColor);
+                    LunaDraw.Line(handle, crossLeft, crossRight, iconColor);
+                    LunaDraw.Line(handle, bottom, leftFluke, iconColor);
+                    LunaDraw.Line(handle, bottom, rightFluke, iconColor);
                     break;
                 }
                 case RadarModeButtonIcon.Reset:
                 {
                     var iconColor = Color.Red.WithAlpha(0.95f);
-                    handle.DrawLine(left, right, iconColor);
+                    LunaDraw.Line(handle, left, right, iconColor);
                     break;
                 }
                 default:
@@ -627,7 +628,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 var centerInView = Vector2.Transform(mapCoords.Position, worldToShuttle * shuttleToView);
                 var radiusPixels = excl.Range * MinimapScale;
                 var color = Color.Lime.WithAlpha(0.35f);
-                handle.DrawCircle(centerInView, radiusPixels, color, false);
+                LunaDraw.Circle(handle, centerInView, radiusPixels, color, false);
             }
         }
         // Lua end
@@ -1077,7 +1078,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             {
                 var consolePositionWorld = _transform.GetWorldPosition((EntityUid)_consoleEntity);
                 var p = Vector2.Transform(consolePositionWorld, worldToShuttle * shuttleToView);
-                handle.DrawCircle(p, 5, Color.ToSrgb(Color.Cyan), true);
+                LunaDraw.Circle(handle, p, 5, Color.ToSrgb(Color.Cyan), true);
             }
         }
 
@@ -1088,7 +1089,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
         Angle angle = updateRatio * Math.Tau;
         var origin = ScalePosition(-new Vector2(Offset.X, -Offset.Y));
-        handle.DrawLine(origin, origin + angle.ToVec() * ScaledMinimapRadius * 1.42f, Color.Red.WithAlpha(0.1f));
+        LunaDraw.Line(handle, origin, origin + angle.ToVec() * ScaledMinimapRadius * 1.42f, Color.Red.WithAlpha(0.1f));
 
         // Get blips
         var rawBlips = _blips.GetCurrentBlips();
@@ -1173,7 +1174,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var endPosInView = Vector2.Transform(line.End, worldToShuttle * shuttleToView);
 
             if (monoViewBounds.Contains(startPosInView) || monoViewBounds.Contains(endPosInView))
-                handle.DrawLine(startPosInView, endPosInView, line.Color);
+                LunaDraw.Line(handle, startPosInView, endPosInView, line.Color);
         }
 
         // Draw hitscan lines from the radar blips system
@@ -1187,7 +1188,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             if (monoViewBounds.Contains(startPosInView) || monoViewBounds.Contains(endPosInView))
             {
                 // Draw the line with the specified thickness and color
-                handle.DrawLine(startPosInView, endPosInView, line.Color);
+                LunaDraw.Line(handle, startPosInView, endPosInView, line.Color);
 
                 // For thicker lines, draw multiple lines side by side
                 if (line.Thickness > 1.0f)
@@ -1200,8 +1201,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                     for (float i = 1; i <= line.Thickness; i += 1.0f)
                     {
                         var offset = perpendicular * i;
-                        handle.DrawLine(startPosInView + offset, endPosInView + offset, line.Color);
-                        handle.DrawLine(startPosInView - offset, endPosInView - offset, line.Color);
+                        LunaDraw.Line(handle, startPosInView + offset, endPosInView + offset, line.Color);
+                        LunaDraw.Line(handle, startPosInView - offset, endPosInView - offset, line.Color);
                     }
                 }
             }
@@ -1266,7 +1267,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 };
 
                 handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, color.WithAlpha(0.8f));
-                handle.DrawPrimitives(DrawPrimitiveTopology.LineStrip, verts, color);
+                LunaDraw.Polyline(handle, verts, color);
             }
 
             // Frontier: draw dock labels (done last to appear on top of all docks, still fights with other grids)
@@ -1371,7 +1372,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 v2 = Vector2.Transform(v2, matrix);
                 v2.Y = -v2.Y;
                 v2 = ScalePosition(v2);
-                handle.DrawLine(v1, v2, visuals.ShieldColor);
+                LunaDraw.Line(handle, v1, v2, visuals.ShieldColor);
             }
         }
     }

@@ -1,0 +1,43 @@
+# source: Paintables/airlock_groups.yml
+- type: paintableGroup
+  id: USSPSFAirlockStandard
+  time: 3
+  cost: 3
+  defaultStyle: basic
+  styles:
+    atmospherics: USSPSFAirlockAtmospherics
+    basic: USSPSFAirlock
+    cargo: USSPSFAirlockCargo
+    chemistry: USSPSFAirlockChemistry
+    command: USSPSFAirlockCommand
+    engineering: USSPSFAirlockEngineering
+    freezer: USSPSFAirlockFreezer
+    hydroponics: USSPSFAirlockHydroponics
+    lawyer: USSPSFAirlockLawyer
+    maintenance: USSPSFAirlockMaint
+    medical: USSPSFAirlockMedical
+    salvage: USSPSFAirlockSalvage
+    science: USSPSFAirlockScience
+    security: USSPSFAirlockSecurity
+    virology: USSPSFAirlockVirology
+
+- type: paintableGroup
+  id: USSPSFAirlockGlass
+  time: 3
+  cost: 3
+  defaultStyle: basic
+  styles:
+    atmospherics: USSPSFAirlockAtmosphericsGlass
+    basic: USSPSFAirlockGlass
+    cargo: USSPSFAirlockCargoGlass
+    chemistry: USSPSFAirlockChemistryGlass
+    command: USSPSFAirlockCommandGlass
+    engineering: USSPSFAirlockEngineeringGlass
+    hydroponics: USSPSFAirlockHydroponicsGlass
+    lawyer: USSPSFAirlockLawyerGlass
+    maintenance: USSPSFAirlockMaintGlass
+    medical: USSPSFAirlockMedicalGlass
+    salvage: USSPSFAirlockSalvageGlass
+    science: USSPSFAirlockScienceGlass
+    security: USSPSFAirlockSecurityGlass
+    virology: USSPSFAirlockVirologyGlass

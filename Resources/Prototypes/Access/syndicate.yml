@@ -1,3 +1,6 @@
+# Syndicate / Typan faction access — parallel to USSP departmental set
+# Keeps SyndicateAgent + NuclearOperative for existing doors/entities.
+
 - type: accessLevel
   id: NuclearOperative
   name: id-card-access-level-nuclear-operative
@@ -7,9 +10,128 @@
   name: id-card-access-level-syndicate-agent
 
 - type: accessLevel
+  id: SyndicateHigh
+  name: id-card-access-level-syndicate-high
+
+- type: accessLevel
+  id: SyndicateCommand
+  name: id-card-access-level-syndicate-command
+
+- type: accessLevel
+  id: SyndicateTelecomOfficer
+  name: id-card-access-level-syndicate-telecom
+
+- type: accessLevel
+  id: SyndicateResearchDirector
+  name: id-card-access-level-syndicate-rd
+
+- type: accessLevel
+  id: SyndicateSecurity
+  name: id-card-access-level-syndicate-security
+
+- type: accessLevel
+  id: SyndicateBrig
+  name: id-card-access-level-syndicate-brig
+
+- type: accessLevel
+  id: SyndicateArmory
+  name: id-card-access-level-syndicate-armory
+
+- type: accessLevel
+  id: SyndicateMaintenance
+  name: id-card-access-level-syndicate-maintenance
+
+- type: accessLevel
+  id: SyndicateExternal
+  name: id-card-access-level-syndicate-external
+
+- type: accessLevel
+  id: SyndicateService
+  name: id-card-access-level-syndicate-service
+
+- type: accessLevel
+  id: SyndicateEngineering
+  name: id-card-access-level-syndicate-engineering
+
+- type: accessLevel
+  id: SyndicateAtmospherics
+  name: id-card-access-level-syndicate-atmospherics
+
+- type: accessLevel
+  id: SyndicateMedical
+  name: id-card-access-level-syndicate-medical
+
+- type: accessLevel
+  id: SyndicateChemistry
+  name: id-card-access-level-syndicate-chemistry
+
+- type: accessLevel
+  id: SyndicateResearch
+  name: id-card-access-level-syndicate-research
+
+- type: accessLevel
+  id: SyndicateCargo
+  name: id-card-access-level-syndicate-cargo
+
+- type: accessLevel
+  id: SyndicateKitchen
+  name: id-card-access-level-syndicate-kitchen
+
+- type: accessLevel
+  id: SyndicateHydroponics
+  name: id-card-access-level-syndicate-hydroponics
+
+# Legacy aliases used by older maps / protos — same names kept as levels
+- type: accessLevel
   id: TelecomOfficer
-  name: id-card-access-level-telecom-officer
+  name: id-card-access-level-syndicate-telecom
 
 - type: accessLevel
   id: ResearchDirectorTypan
-  name: id-card-access-level-research-director-typan
+  name: id-card-access-level-syndicate-rd
+
+- type: accessGroup
+  id: SyndicateGeneral
+  tags:
+  - SyndicateAgent
+  - SyndicateMaintenance
+  - SyndicateExternal
+
+- type: accessGroup
+  id: SyndicateAll
+  tags:
+  - SyndicateAgent
+  - SyndicateHigh
+  - SyndicateCommand
+  - SyndicateTelecomOfficer
+  - SyndicateResearchDirector
+  - SyndicateSecurity
+  - SyndicateBrig
+  - SyndicateArmory
+  - SyndicateMaintenance
+  - SyndicateExternal
+  - SyndicateService
+  - SyndicateEngineering
+  - SyndicateAtmospherics
+  - SyndicateMedical
+  - SyndicateChemistry
+  - SyndicateResearch
+  - SyndicateCargo
+  - SyndicateKitchen
+  - SyndicateHydroponics
+  - NuclearOperative
+
+- type: accessGroup
+  id: SyndicateSecurityAccess
+  tags:
+  - SyndicateSecurity
+  - SyndicateBrig
+  - SyndicateArmory
+  - SyndicateTelecomOfficer
+
+- type: accessGroup
+  id: SyndicateServiceAccess
+  tags:
+  - SyndicateService
+  - SyndicateKitchen
+  - SyndicateHydroponics

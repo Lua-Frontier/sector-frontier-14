@@ -3,6 +3,7 @@ ent-WeaponRifleMR8C = VFD MR-8C DMR (7.62x54mm)
 
 ent-WeaponRifleAK502 = NCI AK-502 (7.62x51mm)
     .desc = Стандартная боевая винтовка USSP. Использует патроны калибра 7,62x51 мм.
+    .suffix = СССП
 
 ent-WeaponRifleVulcanFCMC = HWM FCM-C "Vulcan" (7.62x51mm)
     .desc = Гражданская боевая винтовка среднего калибра (Fusil de Combat Moyen Civil) производства Herstal Weapon Manufacture «Vulcan» калибра 762x51 мм. Эта гражданская версия имеет только полуавтоматический режим и уменьшенную скорострельность.

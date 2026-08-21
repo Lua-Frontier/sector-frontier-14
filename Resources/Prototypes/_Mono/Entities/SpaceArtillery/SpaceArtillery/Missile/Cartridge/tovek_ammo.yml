@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: PaladinMagazine
   name: "Paladin 250mm HE missile autoloader"
   parent: [BaseItem, RecyclableItemSteelTiny]
@@ -32,6 +33,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: PaladinMagazineInfinite
   parent: PaladinMagazine
   components:
@@ -45,6 +47,7 @@
       - MissileCartridge250mm
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: PaladinMagazineEMPHE
   name: "Paladin 250mm EMPHE missile autoloader"
   parent: PaladinMagazine
@@ -58,6 +61,7 @@
       - MissileCartridge250mm
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: PaladinMagazineEMPHEInfinite
   parent: PaladinMagazineEMPHE
   components:
@@ -71,6 +75,7 @@
       - MissileCartridge250mm
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: PaladinMagazineHV
   name: "Paladin 250mm HV missile autoloader"
   parent: PaladinMagazine
@@ -84,6 +89,7 @@
       - MissileCartridge250mm
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: PaladinMagazineHVInfinite
   parent: PaladinMagazineHV
   components:
@@ -97,6 +103,7 @@
       - MissileCartridge250mm
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: TovekCartridge
   name: 250mm EMPHE missile
   description: An individual ASM-250 EMPHE missile for a Tovek/Paladin launcher.
@@ -138,6 +145,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MissileCartridge250mm
   name: 250mm HEAT missile
   description: An individual ASM-250 HEAT missile for a Tovek/Paladin launcher.
@@ -178,6 +186,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MissileCartridge250mmHV
   name: 250mm HV missile
   description: An individual ASM-250 high-velocity missile for a Tovek/Paladin launcher.

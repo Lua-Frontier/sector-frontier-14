@@ -1,46 +1,49 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Server.EUI;
+using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Server.StationRecords;
-using Content.Server.StationRecords.Systems;
+using Content.Shared._Mono.Company;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.CrewManifest;
 using Content.Shared.GameTicking;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.StationRecords;
+using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
 
 namespace Content.Server.CrewManifest;
 
 public sealed class CrewManifestSystem : EntitySystem
 {
     [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
     [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedJobSystem _jobs = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     /// <summary>
     ///     Cached crew manifest entries. The alternative is to outright
     ///     rebuild the crew manifest every time the state is requested:
     ///     this is inefficient.
     /// </summary>
-    private readonly Dictionary<EntityUid, CrewManifestEntries> _cachedEntries = new();
-
     private readonly Dictionary<EntityUid, Dictionary<ICommonSession, CrewManifestEui>> _openEuis = new();
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<AfterGeneralRecordCreatedEvent>(AfterGeneralRecordCreated);
-        SubscribeLocalEvent<RecordModifiedEvent>(OnRecordModified);
-        SubscribeLocalEvent<RecordRemovedEvent>(OnRecordRemoved);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeNetworkEvent<RequestCrewManifestMessage>(OnRequestCrewManifest);
 
@@ -59,7 +62,6 @@ public sealed class CrewManifestSystem : EntitySystem
         }
 
         _openEuis.Clear();
-        _cachedEntries.Clear();
     }
 
     private void OnRequestCrewManifest(RequestCrewManifestMessage message, EntitySessionEventArgs args)
@@ -73,57 +75,59 @@ public sealed class CrewManifestSystem : EntitySystem
         OpenEui(GetEntity(message.Id), sessionCast);
     }
 
-    // Not a big fan of this one. Rebuilds the crew manifest every time
-    // somebody spawns in, meaning that at round start, it rebuilds the crew manifest
-    // wrt the amount of players readied up.
-    private void AfterGeneralRecordCreated(AfterGeneralRecordCreatedEvent ev)
-    {
-        BuildCrewManifest(ev.Key.OriginStation);
-        UpdateEuis(ev.Key.OriginStation);
-    }
-
-    private void OnRecordModified(RecordModifiedEvent ev)
-    {
-        BuildCrewManifest(ev.Key.OriginStation);
-        UpdateEuis(ev.Key.OriginStation);
-    }
-
-    private void OnRecordRemoved(RecordRemovedEvent ev)
-    {
-        BuildCrewManifest(ev.Key.OriginStation);
-        UpdateEuis(ev.Key.OriginStation);
-    }
-
     private void OnBoundUiClose(EntityUid uid, CrewManifestViewerComponent component, BoundUIClosedEvent ev)
     {
         if (!Equals(ev.UiKey, component.OwnerKey))
             return;
 
-        var owningStation = _stationSystem.GetOwningStation(uid);
-        if (owningStation == null || !TryComp(ev.Actor, out ActorComponent? actorComp))
-        {
+        var owningStation = _stationSystem.GetOwningStation(uid) ?? uid;
+        if (!TryComp(ev.Actor, out ActorComponent? actorComp))
             return;
-        }
 
-        CloseEui(owningStation.Value, actorComp.PlayerSession, uid);
+        CloseEui(owningStation, actorComp.PlayerSession, uid);
     }
 
-    /// <summary>
-    ///     Gets the crew manifest for a given station, along with the name of the station.
-    /// </summary>
-    /// <param name="station">Entity uid of the station.</param>
-    /// <returns>The name and crew manifest entries (unordered) of the station.</returns>
     public (string name, CrewManifestEntries? entries) GetCrewManifest(EntityUid station)
     {
-        var valid = _cachedEntries.TryGetValue(station, out var manifest);
-        return (valid ? MetaData(station).EntityName : string.Empty, valid ? manifest : null);
+        return (string.Empty, BuildFactionManifest());
     }
 
-    private void UpdateEuis(EntityUid station)
+    public (string name, CrewManifestEntries? entries) GetCrewManifestForViewer(EntityUid station, ICommonSession session)
     {
-        if (_openEuis.TryGetValue(station, out var euis))
+        return (string.Empty, FilterEntriesForViewer(BuildFactionManifest(), session));
+    }
+
+    public (string name, CrewManifestEntries? entries) GetCrewManifestForViewer(EntityUid station, EntityUid viewer)
+    {
+        var raw = BuildFactionManifest();
+
+        if (TryComp(viewer, out ActorComponent? actor))
+            return (string.Empty, FilterEntriesForViewer(raw, actor.PlayerSession));
+
+        return (string.Empty, FilterEntriesForCompany(raw, GetEntityCompanyId(viewer), adminView: false));
+    }
+
+    public EntityUid? TryGetLoaderHolder(EntityUid loaderUid)
+    {
+        if (_container.TryGetContainingContainer((loaderUid, null, null), out var container))
+            return container.Owner;
+
+        return null;
+    }
+
+    private void UpdateEuis(EntityUid key)
+    {
+        if (_openEuis.TryGetValue(key, out var euis))
         {
             foreach (var eui in euis.Values)
+            {
+                eui.StateDirty();
+            }
+        }
+
+        foreach (var euis2 in _openEuis.Values)
+        {
+            foreach (var eui in euis2.Values)
             {
                 eui.StateDirty();
             }
@@ -140,33 +144,18 @@ public sealed class CrewManifestSystem : EntitySystem
             return;
         }
 
-        var owningStation = _stationSystem.GetOwningStation(uid);
-        if (owningStation == null || !TryComp(msg.Actor, out ActorComponent? actorComp))
-        {
+        if (!TryComp(msg.Actor, out ActorComponent? actorComp))
             return;
-        }
 
         if (!_configManager.GetCVar(CCVars.CrewManifestUnsecure) && component.Unsecure)
-        {
             return;
-        }
 
-        OpenEui(owningStation.Value, actorComp.PlayerSession, uid);
+        var key = _stationSystem.GetOwningStation(uid) ?? uid;
+        OpenEui(key, actorComp.PlayerSession, uid);
     }
 
-    /// <summary>
-    ///     Opens a crew manifest EUI for a given player.
-    /// </summary>
-    /// <param name="station">Station that we're displaying the crew manifest for.</param>
-    /// <param name="session">The player's session.</param>
-    /// <param name="owner">If this EUI should be 'owned' by an entity.</param>
     public void OpenEui(EntityUid station, ICommonSession session, EntityUid? owner = null)
     {
-        if (!HasComp<StationRecordsComponent>(station))
-        {
-            return;
-        }
-
         if (!_openEuis.TryGetValue(station, out var euis))
         {
             euis = new();
@@ -174,9 +163,7 @@ public sealed class CrewManifestSystem : EntitySystem
         }
 
         if (euis.ContainsKey(session))
-        {
             return;
-        }
 
         var eui = new CrewManifestEui(station, owner, this);
         euis.Add(session, eui);
@@ -185,19 +172,8 @@ public sealed class CrewManifestSystem : EntitySystem
         eui.StateDirty();
     }
 
-    /// <summary>
-    ///     Closes an EUI for a given player.
-    /// </summary>
-    /// <param name="station">Station that we're displaying the crew manifest for.</param>
-    /// <param name="session">The player's session.</param>
-    /// <param name="owner">The owner of this EUI, if there was one.</param>
     public void CloseEui(EntityUid station, ICommonSession session, EntityUid? owner = null)
     {
-        if (!HasComp<StationRecordsComponent>(station))
-        {
-            return;
-        }
-
         if (!_openEuis.TryGetValue(station, out var euis)
             || !euis.TryGetValue(session, out var eui))
         {
@@ -211,42 +187,122 @@ public sealed class CrewManifestSystem : EntitySystem
         }
 
         if (euis.Count == 0)
-        {
             _openEuis.Remove(station);
-        }
     }
 
     /// <summary>
     ///     Builds the crew manifest for a station. Stores it in the cache afterwards.
     /// </summary>
-    /// <param name="station"></param>
-    private void BuildCrewManifest(EntityUid station)
+    private CrewManifestEntries BuildFactionManifest()
     {
-        var iter = _recordsSystem.GetRecordsOfType<GeneralStationRecord>(station);
-
-        var entries = new CrewManifestEntries();
-
         var entriesSort = new List<(JobPrototype? job, CrewManifestEntry entry)>();
-        foreach (var recordObject in iter)
-        {
-            var record = recordObject.Item2;
-            var entry = new CrewManifestEntry(record.Name, record.JobTitle, record.JobIcon, record.JobPrototype);
+        var query = EntityQueryEnumerator<CompanyComponent, MetaDataComponent, MindContainerComponent>();
 
-            _prototypeManager.TryIndex(record.JobPrototype, out JobPrototype? job);
+        while (query.MoveNext(out var uid, out var company, out var meta, out _))
+        {
+            if (!_mind.TryGetMind(uid, out var mindId, out var mindComp))
+                continue;
+
+            var companyId = string.IsNullOrWhiteSpace(company.CompanyName) ? "None" : company.CompanyName;
+
+            string? playerName = null;
+            if (TryComp(uid, out ActorComponent? actor))
+                playerName = actor.PlayerSession.Name;
+            else if (mindComp.UserId != null &&
+                     _playerManager.TryGetSessionById(mindComp.UserId.Value, out var session))
+                playerName = session.Name;
+
+            _jobs.MindTryGetJob(mindId, out var job);
+            var jobTitle = job?.LocalizedName ?? Loc.GetString("generic-unknown-title");
+            var jobIcon = job?.Icon ?? "JobIconUnknown";
+            var jobProto = job?.ID ?? string.Empty;
+
+            var entry = new CrewManifestEntry(
+                meta.EntityName,
+                jobTitle,
+                jobIcon,
+                jobProto,
+                companyId,
+                playerName);
+
             entriesSort.Add((job, entry));
         }
 
         entriesSort.Sort((a, b) =>
         {
-            var cmp = JobUIComparer.Instance.Compare(a.job, b.job);
-            if (cmp != 0)
-                return cmp;
+            var nameCmp = string.Compare(a.entry.Name, b.entry.Name, StringComparison.CurrentCultureIgnoreCase);
+            if (nameCmp != 0)
+                return nameCmp;
 
-            return string.Compare(a.entry.Name, b.entry.Name, StringComparison.CurrentCultureIgnoreCase);
+            return JobUIComparer.Instance.Compare(a.job, b.job);
         });
 
-        entries.Entries = entriesSort.Select(x => x.entry).ToArray();
-        _cachedEntries[station] = entries;
+        return new CrewManifestEntries
+        {
+            Entries = entriesSort.Select(x => x.entry).ToArray(),
+        };
+    }
+
+    private CrewManifestEntries FilterEntriesForViewer(CrewManifestEntries raw, ICommonSession session)
+    {
+        if (IsAdminObserver(session))
+            return FilterEntriesForCompany(raw, companyId: null, adminView: true);
+
+        return FilterEntriesForCompany(raw, GetViewerCompanyId(session), adminView: false);
+    }
+
+    private CrewManifestEntries FilterEntriesForCompany(CrewManifestEntries raw, string? companyId, bool adminView)
+    {
+        IEnumerable<CrewManifestEntry> source = raw.Entries;
+
+        if (!adminView)
+        {
+            var filterId = string.IsNullOrWhiteSpace(companyId) ? "None" : companyId;
+            source = source.Where(e =>
+                string.Equals(
+                    string.IsNullOrWhiteSpace(e.CompanyId) ? "None" : e.CompanyId,
+                    filterId,
+                    StringComparison.OrdinalIgnoreCase));
+        }
+
+        var filtered = source
+            .Select(e => adminView
+                ? e
+                : new CrewManifestEntry(e.Name, e.JobTitle, e.JobIcon, e.JobPrototype, e.CompanyId, playerName: null))
+            .OrderBy(e => e.Name, StringComparer.CurrentCultureIgnoreCase)
+            .ThenBy(e => e.CompanyId, StringComparer.OrdinalIgnoreCase)
+            .ToArray();
+
+        return new CrewManifestEntries
+        {
+            Entries = filtered,
+            GroupByCompany = true,
+        };
+    }
+
+    private string GetViewerCompanyId(ICommonSession session)
+    {
+        if (session.AttachedEntity is { } ent)
+            return GetEntityCompanyId(ent);
+
+        return "None";
+    }
+
+    private string GetEntityCompanyId(EntityUid uid)
+    {
+        if (TryComp(uid, out CompanyComponent? company) && !string.IsNullOrWhiteSpace(company.CompanyName))
+            return company.CompanyName;
+
+        return "None";
+    }
+
+    private bool IsAdminObserver(ICommonSession session)
+    {
+        if (session.AttachedEntity is not { } ent)
+            return false;
+
+        var proto = MetaData(ent).EntityPrototype;
+        return proto != null && proto.ID == GameTicker.AdminObserverPrototypeName;
     }
 }
 

@@ -1,0 +1,37 @@
+# source: _DeadSpace/Entities/Clothing/Uniforms/security.yml
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpsuitSecPilot
+  categories: [ USSP ]
+  suffix: USSP
+  name: комбинезон пилота милиции
+  description: Комбинезон из прочного материала, обеспечивающий надёжную защиту.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Uniforms/Jumpsuit/pilot.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Uniforms/Jumpsuit/pilot.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtPencilBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: костюм-карандаш дежурного врача
+  description: ифицированным и прошедшим обучение лицам. Никого не волнует, что обучение продлилось полдня.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_brigmedic.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_brigmedic.rsi
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtPencilHoS
+  categories: [ USSP ]
+  suffix: USSP
+  name: женский костюм-карандаш начальника милиции
+  description: С такого красивого костюма долго придёться выводить кровь.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_hos.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_hos.rsi

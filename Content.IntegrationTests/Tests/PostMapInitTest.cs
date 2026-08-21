@@ -31,7 +31,7 @@ namespace Content.IntegrationTests.Tests
     public sealed class PostMapInitTest
     {
         private const bool SkipTestMaps = true;
-        private const string TestMapsPath = "/Maps/_NF/Test/"; // Frontier: _NF
+        private const string TestMapsPath = "/Maps/_Lua/Test/";
 
         private static readonly string[] NoSpawnMaps =
         {
@@ -41,11 +41,9 @@ namespace Content.IntegrationTests.Tests
 
         private static readonly string[] Grids =
         {
-            // Frontier: no upstream maps, define our own.
-            // "/Maps/centcomm.yml",
             AdminTestArenaSystem.ArenaMapPath,
-            "/Maps/_NF/Shuttles/Admin/fishbowl.yml"
-            // End Frontier
+            "/Maps/_Lua/Shuttles/escape_pod_small.yml",
+            "/Maps/_Lua/ShuttleEvent/evac_omega.yml",
         };
 
         private static readonly string[] DoNotMapWhitelist =
@@ -58,7 +56,7 @@ namespace Content.IntegrationTests.Tests
             // "/Maps/Shuttles/ShuttleEvent/honki.yml", // Contains golden honker, clown's rubber stamp
             // "/Maps/Shuttles/ShuttleEvent/instigator.yml", // Contains EXP-320g "Friendship"
             // "/Maps/Shuttles/ShuttleEvent/syndie_evacpod.yml", // Contains syndicate rubber stamp
-            "/Maps/_NF/Outpost/frontier.yml", // Contains janitorial bomb suit closet
+            "/Maps/_Lua/Outpost/frontier.yml", // Contains janitorial bomb suit closet
             "/Maps/_NF/POI/tinnia.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/POI/lpbravo.yml", // Contains syndicate rubber stamp
             "/Maps/_NF/Shuttles/Admin/fishbowl.yml", // Contains CentComm folder
@@ -370,7 +368,7 @@ namespace Content.IntegrationTests.Tests
 
                 var grids = mapManager.GetAllGrids(mapId).ToList();
                 var gridUids = grids.Select(o => o.Owner).ToList();
-                targetGrid = gridUids.First();
+                Assert.That(gridUids, Is.Not.Empty, $"Map {mapProto} loaded with no grids");
 
                 foreach (var grid in grids)
                 {
@@ -387,9 +385,12 @@ namespace Content.IntegrationTests.Tests
                     }
                 }
 
+                Assert.That(targetGrid, Is.Not.Null,
+                    $"Map {mapProto} has no station grids. Add BecomesStation to a grid with id matching the gameMap stations key.");
+
                 // Test shuttle can dock.
                 // This is done inside gamemap test because loading the map takes ages and we already have it.
-                var station = entManager.GetComponent<StationMemberComponent>(targetGrid!.Value).Station;
+                var station = entManager.GetComponent<StationMemberComponent>(targetGrid.Value).Station;
                 if (entManager.TryGetComponent<StationEmergencyShuttleComponent>(station, out var stationEvac))
                 {
                     var shuttlePath = stationEvac.EmergencyShuttlePath;
@@ -490,6 +491,7 @@ namespace Content.IntegrationTests.Tests
                 // Frontier: FIXME - hacky test fix
                 .Where(x =>
                     x.ID == PoolManager.TestMap || // Frontier: check test map
+                    x.MapPath.ToString().StartsWith("/Maps/_Lua/Test") ||
                     (x.MapPath.ToString().StartsWith("/Maps/_NF") && // Frontier: check frontier maps only
                     !x.MapPath.ToString().StartsWith("/Maps/_NF/Shuttles") && // Frontier: skip shuttles (not loaded as maps)
                     !x.MapPath.ToString().StartsWith("/Maps/_NF/POI")) // Frontier: skip POIs (not loaded as maps)

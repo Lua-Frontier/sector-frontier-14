@@ -1,0 +1,133 @@
+# source: Entities/Clothing/OuterClothing/wintercoats.yml
+- type: entity
+  parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
+  id: USSPSFClothingOuterWinterCap
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's winter coat
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: CAP-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: CAP-inhand-left
+      right:
+      - state: CAP-inhand-right
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: CAP-equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHatHoodWinterCaptain
+  # DS14-start: CaptainResprite
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
+        Caustic: 0.75 # not the full 90% from ss13 because of the head
+  # DS14-end
+- type: entity
+  parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband]
+  id: USSPSFClothingOuterWinterHoP
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's winter coat
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: HOP-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: HOP-inhand-left
+      right:
+      - state: HOP-inhand-right
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: HOP-equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHatHoodWinterHOP
+
+
+##########################################################
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingOuterWinterHoS
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's armored winter coat
+  description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHatHoodWinterHOS
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: [ ]
+##########################################################
+- type: entity
+  parent: [ClothingOuterWinterCoatToggleable, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingOuterWinterHoSUnarmored
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's winter coat
+  description: A sturdy coat, a warm coat, but not an armored coat.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: HOS-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: HOS-inhand-left
+      right:
+      - state: HOS-inhand-right
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: HOS-equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: USSPSFClothingHeadHatHoodWinterHOS
+
+# source: _DeadSpace/Entities/Clothing/OuterClothing/wintercoats.yml
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterWinterCoat]
+  id: USSPSFClothingOuterWinterCoatCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белая зимняя куртка капитана
+  description: Шикарная белая зимняя куртка с золотыми элементами и чёрным мехом. Царь во дворца.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/captain_white.rsi
+- type: entity
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterWinterCoat]
+  id: USSPSFClothingOuterWinterCoatCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрная зимняя куртка капитана
+  description: Шикарная чёрная зимняя куртка с золотыми элементами и мехом. Олицетворение строгости и хладнокровия.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/captain_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/WinterCoats/captain_black.rsi

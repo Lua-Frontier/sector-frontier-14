@@ -1,0 +1,31 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformUSSP
+  name: USSP uniform
+  description: Standard fatigues of the USSP Armed Forces.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Uniforms/Jumpsuit/ussp.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Uniforms/Jumpsuit/ussp.rsi
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorVitals
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformServiceDressUSSP
+  name: USSP Service Dress
+  description: More formal attire for servicemen, styled after the uniforms worn during the struggle against the early TSF.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Uniforms/Jumpsuit/ussp_service_dress.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/Uniforms/Jumpsuit/ussp_service_dress.rsi
+  - type: SuitSensor
+    randomMode: false
+    mode: SensorVitals

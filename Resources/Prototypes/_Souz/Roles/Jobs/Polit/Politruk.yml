@@ -1,0 +1,75 @@
+- type: job
+  id: UsspPolitruk
+  name: job-name-ussp-politruk
+  description: job-description-ussp-politruk
+  playTimeTracker: JobUsspPolitruk
+  requiredCompany: Ussp
+  salary: 85000
+  weight: 20
+  displayWeight: 20
+  startingGear: UsspPolitrukGear
+  icon: JobIconUsspPolitruk
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 180000 # 50 hours
+  - !type:RoleTimeRequirement
+    role: JobUsspCaptain
+    time: 36000 # 10 hours
+  - !type:RoleTimeRequirement
+    role: JobUsspHeadOfSecurity
+    time: 90000 # 25 hours
+  - !type:RoleTimeRequirement
+    role: JobUsspBlueShieldOfficer
+    time: 36000 # 10 hours
+  - !type:OverallPlaytimeRequirement
+    time: 720000 # 200 hours
+  - !type:AgeRequirement
+    requiredAge: 24
+  access:
+  - USSPCommand
+  - USSPCaptain
+  - USSPBrig
+  - USSPSecurity
+  - USSPArmory
+  - USSPMaintenance
+  - USSPService
+  - USSPExternal
+  - USSPResearch
+  - USSPMedical
+  - USSPEngineering
+  - USSPCargo
+  accessGroups:
+  - USSPAll
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, TrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+    - type: CommandStaff
+
+- type: startingGear
+  id: UsspPolitrukGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspPolitrukChameleonOutfit
+  job: UsspPolitruk
+  hasMindShield: true
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorBlack
+    ears: USSPSFClothingHeadsetAltCommand

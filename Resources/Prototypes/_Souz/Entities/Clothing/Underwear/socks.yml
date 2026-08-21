@@ -1,0 +1,99 @@
+# source: _DeadSpace/Entities/Clothing/Underwear/socks.yml
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksHeadofPersonnel
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки начальника отдела кадров
+  description: Стандартные носки начальника отдела кадров.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Civilian/head_of_personnel/socks.rsi
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки капитана
+  description: Стандартные носки капитана.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/captain/socks.rsi
+
+# White
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белые носки капитана
+  description: Стандартные белые носки капитана.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/captain/socks_white.rsi
+
+# Black
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрные носки капитана
+  description: Стандартные чёрные носки капитана.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/captain/socks_black.rsi
+
+## Blueshield
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksBlueShieldOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки оперативника КГБ
+  description: Стандартные носки оперативника КГБ.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Command/blueshield/socks.rsi
+
+## Engineering
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksHeadOfSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки начальника милиции
+  description: Стандартные носки начальника милиции.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/head_of_security/socks.rsi
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки дежурного врача
+  description: Стандартные носки дежурного врача.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/brigmedic/socks.rsi
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksCadet
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки младшего милиционера
+  description: Стандартные носки младшего милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/cadet/socks.rsi
+- type: entity
+  parent: ClothingUnderwearSocksBase
+  id: USSPSFClothingUnderwearSocksSecurityOfficer
+  categories: [ USSP ]
+  suffix: USSP
+  name: носки милиционера
+  description: Стандартные носки милиционера.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Underwear/Security/security_officer/socks.rsi

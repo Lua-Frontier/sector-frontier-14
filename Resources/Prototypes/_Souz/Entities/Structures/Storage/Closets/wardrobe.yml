@@ -1,0 +1,13 @@
+# source: Entities/Structures/Storage/Closets/wardrobe.yml
+- type: entity
+  id: USSPSFWardrobeSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  parent: WardrobeBase
+  name: security wardrobe
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: generic
+    stateDoorOpen: generic_open
+    stateDoorClosed: red_door

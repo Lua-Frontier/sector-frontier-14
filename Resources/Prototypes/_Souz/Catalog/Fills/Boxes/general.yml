@@ -1,0 +1,28 @@
+# source: Catalog/Fills/Boxes/general.yml
+- type: entity
+  name: PDA box
+  parent: BoxCardboard
+  id: USSPSFBoxPDA
+  categories: [ USSP ]
+  suffix: USSP
+  description: A box of spare PDA microcomputers.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFPassengerPDA
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box
+      - state: pda
+- type: entity
+  name: USSP encryption key box
+  parent: BoxEncryptionKeyPassenger
+  id: USSPSFBoxEncryptionKeySecurity
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFEncryptionKeyUssp
+        amount: 4

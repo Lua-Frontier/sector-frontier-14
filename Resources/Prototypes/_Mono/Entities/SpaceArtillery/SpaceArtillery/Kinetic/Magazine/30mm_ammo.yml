@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine30mm
   name: "30mm solid ammo loader"
   description: "An ammunition loader containing infinite 30mm solid rounds. Usable by vessel-mounted artillery pieces."
@@ -34,6 +35,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 30mmCartridge
   name: cartridge (30x173mm AP)
   parent: BaseCartridge
@@ -73,6 +75,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Magazine30mmHE
   name: "30mm HE ammo loader"
   description: "An ammunition loader containing 2000 30mm HE rounds. Usable by vessel-mounted artillery pieces."
@@ -108,6 +111,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 30mmCartridgeHE
   name: cartridge (30x173mm HE)
   parent: BaseCartridge

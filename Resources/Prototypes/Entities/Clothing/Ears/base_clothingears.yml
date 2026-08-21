@@ -1,0 +1,12 @@
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: ClothingEarringBase
+  components:
+  - type: Clothing
+    slots: [ earring ]
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - Earring

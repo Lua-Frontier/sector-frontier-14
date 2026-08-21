@@ -1,0 +1,26 @@
+# source: Entities/Objects/Devices/Electronics/door.yml
+- type: entity
+  id: USSPSFDoorElectronics
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BaseElectronics
+  name: door electronics
+  description: An electronics board used in doors and airlocks.
+  components:
+    - type: Sprite
+      sprite: _Souz/Objects/Misc/module.rsi
+      state: door_electronics
+    - type: Tag
+      tags:
+        - DoorElectronics
+    - type: DoorElectronics
+    - type: AccessReader
+    - type: ActivatableUI
+      key: enum.DoorElectronicsConfigurationUiKey.Key
+      requiredItems:
+        tags:
+        - DoorElectronicsConfigurator
+    - type: UserInterface
+      interfaces:
+        enum.DoorElectronicsConfigurationUiKey.Key:
+          type: DoorElectronicsBoundUserInterface

@@ -64,11 +64,14 @@ public sealed class MantisBladesSystem : EntitySystem
             part.Body.Value,
             ent.Comp.BladeProto,
             handLocation,
-            out ent.Comp.BladeUid,
+            out var newBlade,
             ent.Comp.BladeUid);
 
         if (args.Handled)
+        {
+            ent.Comp.BladeUid = newBlade;
             _audio.PlayPvs(ent.Comp.BladeUid == null ? ent.Comp.RetractSound : ent.Comp.ExtendSound, ent);
+        }
     }
 
     private void OnShutdown(Entity<MantisBladeArmComponent> ent, ref ComponentShutdown args)

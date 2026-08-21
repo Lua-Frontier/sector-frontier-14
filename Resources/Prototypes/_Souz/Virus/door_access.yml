@@ -1,0 +1,9 @@
+# source: _DeadSpace/Virus/door_access.yml
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsMedicalVirology
+  categories: [ USSP ]
+  suffix: USSP, Medical, Locked, virology
+  components:
+  - type: AccessReader
+    access: [["USSPMedical"]]

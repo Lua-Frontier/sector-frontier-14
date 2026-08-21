@@ -1,0 +1,280 @@
+# source: Entities/Clothing/Head/hats.yml
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security beret
+  description: A beret with the security department's insignia. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/beret_security.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/beret_security.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - PetWearable
+    - CorgiWearable
+    - HamsterWearable
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretHoS
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security's beret
+  description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/beret_hos.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/beret_hos.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedical beret
+  description: A white beret for brigmedics.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/beret_brigmedic.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/beret_brigmedic.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: USSPSFClothingHeadHatCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's hardhat
+  description: Feels good being the king.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/captain.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: USSPSFClothingHeadHatHopcap
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of personnel's cap
+  description: A stylish cap worn by the Head of Personnel. Shows paperwork who's in charge.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/hopcap.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/hopcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: USSPSFClothingHeadHatHoshat
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security cap
+  description: A stylish cap worn by the Head of Security. Shows the officers who's in charge.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/hoshat.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/hoshat.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatCapcap
+  categories: [ USSP ]
+  suffix: USSP
+  name: cap cap
+  description: A grand, stylish cap worn by the Captain. Shows the station who's in charge.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/capcap.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/capcap.rsi
+  - type: Item
+    sprite: _Souz/Clothing/Head/Hats/capcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+  - type: BlockMovement
+
+# source: _DeadSpace/Entities/Clothing/Head/hats.yml
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: берет офицера "Синий Щит"
+  description: Серый берет с кокардой подразделения "Синий Щит".
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/beret_blueshield.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/beret_blueshield.rsi
+- type: entity
+  parent: USSPSFClothingHeadHelmetBasic
+  id: USSPSFClothingHeadHatUshankaHOS
+  categories: [ USSP ]
+  suffix: USSP
+  name: бронеушанка начальника милиции
+  description: Ушанка с бронеплитой из кевлара.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/hos_ushanka.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/hos_ushanka.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+
+# Taipan
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: берет капитана
+  description: Синий берет с кокардой в виде звезды.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/captain2.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/captain2.rsi
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый берет капитана
+  description: Белый берет с кокардой в виде звезды.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/captain_white.rsi
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрный берет капитана
+  description: Чёрный берет с кокардой в виде звезды.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/captain_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/captain_black.rsi
+- type: entity
+  parent: USSPSFClothingHeadHatCapcap
+  id: USSPSFClothingHeadHatCapcapWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белая фуражка капитана
+  description: Белая фуражка с кокардой в виде звезды.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/capcap_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/capcap_white.rsi
+  - type: Item
+    sprite: _Souz/Clothing/Head/Hats/capcap_white.rsi
+- type: entity
+  parent: USSPSFClothingHeadHatCapcap
+  id: USSPSFClothingHeadHatCapcapBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрная фуражка капитана
+  description: Чёрная фуражка с кокардой в виде звезды.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/capcap_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/capcap_black.rsi
+  - type: Item
+    sprite: _Souz/Clothing/Head/Hats/capcap_black.rsi
+
+# source: _Corvax/Entities/Clothing/Head/hats.yml
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatCapHoS
+  categories: [ USSP ]
+  suffix: USSP
+  name: head of security cap
+  description: The robust standard-issue cap of the Head of Security. For showing the officers who's in charge.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Head/Hats/hoshat2.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Head/Hats/hoshat2.rsi
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatBeretSecurityMedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: security medic beret
+  description: A robust beret with the medical insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Head/Hats/beret_security_medic.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Head/Hats/beret_security_medic.rsi
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadCaptainHat
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's hat
+  description: A special hat made to order for the captain.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/caphat.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/caphat.rsi

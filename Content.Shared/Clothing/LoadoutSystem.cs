@@ -110,6 +110,12 @@ public sealed class LoadoutSystem : EntitySystem
 
     public string GetName(LoadoutPrototype loadout)
     {
+        if (Loc.TryGetString($"loadout-{loadout.ID}", out var localized))
+            return localized;
+
+        if (!string.IsNullOrEmpty(loadout.Name))
+            return loadout.Name;
+
         if (loadout.DummyEntity is not null && _protoMan.TryIndex<EntityPrototype>(loadout.DummyEntity, out var proto))
             return proto.Name;
 

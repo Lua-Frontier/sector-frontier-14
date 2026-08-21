@@ -1,0 +1,28 @@
+# source: Entities/Objects/Weapons/Guns/flare_gun.yml
+- type: entity
+  name: security shell gun
+  parent: [WeaponFlareGun, BaseC2ContrabandUnredeemable]
+  id: USSPSFWeaponFlareGunSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  description: A modified flare gun originally designed to be used by security to launch non-lethal shotgun shells, however it can also fire lethal shells without risk.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/flaregun_security.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Small
+    sprite: Objects/Weapons/Guns/Shotguns/flaregun_security.rsi
+  - type: ItemSlots
+    slots:
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+            - ShellShotgun
+  - type: Tag
+    tags:
+    - Sidearm

@@ -1,0 +1,8 @@
+- type: entity
+  id: RadioImplanterUssp
+  suffix: radio Ussp
+  parent:  BaseImplantOnlyImplanter
+  categories: [ USSP ]
+  components:
+  - type: Implanter
+    implant: UsspTrackingImplant

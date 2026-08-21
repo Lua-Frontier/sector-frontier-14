@@ -1,0 +1,45 @@
+#MARK: USSP
+- type: entity
+  parent: IDCardStandard
+  id: USSPRiflemanIDCard
+  name: USSP rifleman ID card
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: PresetIdCard
+    job: USSPRifleman
+  - type: Sprite
+    sprite: _Mono/Objects/Misc/id_cards.rsi
+    layers:
+    - state: usspbase
+    - state: id_rifleman
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSergeantIDCard
+  name: USSP serzhant ID card
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: PresetIdCard
+    job: USSPSergeant
+  - type: Sprite
+    sprite: _Mono/Objects/Misc/id_cards.rsi
+    layers:
+    - state: usspbase
+    - state: id_sergeant
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPCommissarIDCard
+  name: USSP commissar ID card
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: PresetIdCard
+    job: USSPCommissar
+  - type: Sprite
+    sprite: _Mono/Objects/Misc/id_cards.rsi
+    layers:
+    - state: usspbase
+    - state: id_commissar

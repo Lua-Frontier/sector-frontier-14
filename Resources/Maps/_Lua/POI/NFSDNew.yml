@@ -6993,7 +6993,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,7.5
       parent: 1
-- proto: AirlockNfsdBrigGlassLocked
+- proto: AirlockSecurityLawyerGlassLocked
   entities:
   - uid: 139
     components:
@@ -7005,6 +7005,8 @@ entities:
     - type: Transform
       pos: 11.5,-14.5
       parent: 1
+- proto: AirlockNfsdBrigGlassLocked
+  entities:
   - uid: 141
     components:
     - type: Transform
@@ -7375,6 +7377,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -10.5,-38.5
       parent: 1
+- proto: AirlockSecurityLawyerLocked
+  entities:
+  - uid: 232
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,-8.5
+      parent: 1
 - proto: AirlockNfsdBrigLocked
   entities:
   - uid: 130
@@ -7529,12 +7539,6 @@ entities:
     components:
     - type: Transform
       pos: 34.5,-4.5
-      parent: 1
-  - uid: 232
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 18.5,-8.5
       parent: 1
   - uid: 12252
     components:
@@ -47273,6 +47277,8 @@ entities:
     - type: Transform
       pos: 14.5,-12.5
       parent: 1
+    - type: FaxMachine
+      name: Аванпост СРБС - ПЮД
   - uid: 7621
     components:
     - type: Transform
@@ -75947,15 +75953,13 @@ entities:
       rot: -6.283185307179586 rad
       pos: -30.658182,6.566913
       parent: 1
-- proto: PhotocopierBase
+- proto: PhotocopierCommand
   entities:
   - uid: 11396
     components:
     - type: Transform
       pos: 18.5,-12.5
       parent: 1
-- proto: PhotocopierCommand
-  entities:
   - uid: 11397
     components:
     - type: Transform

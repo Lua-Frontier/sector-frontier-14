@@ -16,3 +16,14 @@
   parent: [BaseGoldCircuitboardRecipe, BaseMedicalMachineRecipeCategory]
   id: SmartFridgeCircuitboard
   result: SmartFridgeCircuitboard
+
+- type: latheRecipe
+  parent: [BaseGoldCircuitboardRecipe, BaseSupplyMachineRecipeCategory]
+  id: ShipMiningDrillMachineCircuitboard
+  result: ShipMiningDrillMachineCircuitboard
+  completetime: 8
+  materials:
+    Steel: 1000
+    Glass: 500
+    Gold: 200
+    Plastic: 300

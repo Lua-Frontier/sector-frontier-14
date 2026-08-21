@@ -10,8 +10,10 @@ share-sector-chat-message = { $x }, { $y }
 share-sector-popup-speaker = Вы сообщили координаты сектора людям рядом: { $count }.
 share-sector-popup-recipient = Вы узнали новые координаты сектора.
 
-share-sector-name-FrontierSector = Фронтир
-share-sector-name-CentCom = Центральное командование
-share-sector-name-AsteroidSectorDefault = Поле астероидов
-share-sector-name-TypanSector = Нордфолл
-share-sector-name-PirateSector = Сектор пиратов
+# Elysian Shore — playable sectors; Inner Orion Spur — CentCom (Alioth)
+share-sector-name-FrontierSector = Frontier Sector
+share-sector-name-CentCom = Alioth
+share-sector-name-AsteroidSectorDefault = Procyon
+share-sector-name-TypanSector = Epsilon Eridani
+share-sector-name-PirateSector = Luyten's Star
+share-sector-name-KrasnayaZarya = Krasnaya Zarya

@@ -1,0 +1,54 @@
+# source: Entities/Clothing/Eyes/hud.yml
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingEyesHudSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security hud
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Eyes/Hud/sec.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Eyes/Hud/sec.rsi
+  - type: EyeProtection
+    protectionTime: 5
+  - type: GuideHelp
+    guides:
+    - Security
+  - type: Tag
+    tags:
+    - HudSecurity
+    - PetWearable
+    - WhitelistChameleon
+- type: entity
+  parent: [USSPSFClothingEyesHudSecurity, ClothingHeadEyeBaseFlippable]
+  id: USSPSFClothingEyesEyepatchHudSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security hud eyepatch
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records. For true patriots.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Eyes/Hud/secpatch.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Eyes/Hud/secpatch.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - WhitelistChameleon
+    - HudSecurity
+
+# source: _DeadSpace/Entities/Clothing/Eyes/hud.yml
+- type: entity
+  parent: ClothingEyesHudAdvanced
+  id: USSPSFClothingEyesHudCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: золотые очки капитана
+  description: Превосходные золотые очки, производимые для капитанов. Их ношение добавляет +15 к стилю.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Eyes/Hud/captain_hud.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Eyes/Hud/captain_hud.rsi

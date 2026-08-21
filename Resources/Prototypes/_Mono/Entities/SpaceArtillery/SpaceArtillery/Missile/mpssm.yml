@@ -6,7 +6,7 @@
   id: ShipMissileASM19
   name: MPSSM  anti-ship EMPHE missile
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -55,7 +55,7 @@
   id: RocketMk248
   name: MPSSM Mk.248 HEAT rocket
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:

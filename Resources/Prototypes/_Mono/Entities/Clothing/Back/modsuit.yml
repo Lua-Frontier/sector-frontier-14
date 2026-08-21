@@ -1,0 +1,191 @@
+- type: entity
+  parent: ClothingModsuitBase
+  id: ClothingModsuitUSSPVaryag
+  name: USSP Varyag Modsuit Core
+  description: The power and life-support core of the Varyag modsuit.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Back/Modsuits/ussp-varyag.rsi
+  - type: ToggleableClothing
+    clothingPrototypes:
+      head: ClothingModsuitHelmetUSSPVaryag
+      gloves: ClothingModsuitGauntletsUSSPVaryag
+      outerClothing: ClothingModsuitChestplateUSSPVaryag
+      shoes: ClothingModsuitBootsUSSPVaryag
+
+- type: entity
+  parent: ClothingModsuitUSSPVaryag
+  id: ClothingModsuitUSSPVaryagPowerCell
+  suffix: High-Capacity Battery
+  categories: [ USSP ]
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          components:
+            - PowerCell
+
+- type: entity
+  parent: ClothingModsuitBase
+  id: ClothingModsuitUSSPZastavnik
+  name: USSP Zastavnik Modsuit Core
+  description: The sealed backpack unit powering the Zastavnik suit’s life support and locking mechanisms.
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Back/Modsuits/ussp-zastavnik.rsi
+  - type: ToggleableClothing
+    clothingPrototypes:
+      head: ClothingModsuitHelmetUSSPZastavnik
+      gloves: ClothingModsuitGauntletsUSSPZastavnik
+      outerClothing: ClothingModsuitChestplateUSSPZastavnik
+      shoes: ClothingModsuitBootsUSSPZastavnik
+
+- type: entity
+  parent: ClothingModsuitUSSPZastavnik
+  id: ClothingModsuitUSSPZastavnikPowerCell
+  suffix: High-Capacity Battery
+  categories: [ USSP ]
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          components:
+            - PowerCell
+
+- type: entity
+  parent: ClothingModsuitBase
+  id: ClothingModsuitRogue
+  name: RX-01 hardsuit control unit
+  description: Core control unit for the RX-01. Survives power spikes, hull breaches, and black market ingenuity. Somehow. Also has built in experimental voidboots.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Back/Modsuits/rogue.rsi
+  - type: Storage # Extra space - Mono
+    grid:
+    - 0,0,7,3
+    maxItemSize: Huge
+  - type: ToggleableClothing
+    clothingPrototypes:
+      head: ClothingModsuitHelmetRogue
+      gloves: ClothingModsuitGauntletsRogue
+      outerClothing: ClothingModsuitChestplateRogue
+      shoes: ClothingModsuitBootsRogue
+  - type: PowerCellDraw
+    drawRate: 0.2 # Sealed draw rate
+    useRate: 0.5 # Draw rate for sealing
+  - type: Construction
+    graph: Modsuit
+    node: rogue
+
+- type: entity
+  parent: ClothingModsuitRogue
+  id: ClothingModsuitRoguePowerCell
+  suffix: High-Capacity Battery
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          components:
+            - PowerCell
+
+# Volta
+- type: entity
+  parent: ClothingModsuitBase
+  id: ClothingModsuitVolta
+  name: TSF Volta Experimental Modsuit
+  description: A modified sidegrade of the sapper modsuit model for TSFMC, featuring improved ballistic plates and explosion deflecting systems.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Back/Modsuits/tsfmc-volta.rsi
+  - type: Storage # Extra space - Mono
+    grid:
+    - 0,0,7,3
+    maxItemSize: Huge
+  - type: ToggleableClothing
+    clothingPrototypes:
+      head: ClothingModsuitHelmetVolta
+      gloves: ClothingModsuitGauntletsVolta
+      outerClothing: ClothingModsuitChestplateVolta
+      shoes: ClothingModsuitBootsVolta
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-sealed
+      back-resomi:
+      - state: equipped-BACKPACK-sealed-resomi
+  - type: Construction
+    graph: Modsuit
+    node: engineer
+
+- type: entity
+  parent: ClothingModsuitVolta
+  id: ClothingModsuitVoltaPowerCell
+  suffix: High-Capacity Battery
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          components:
+            - PowerCell
+
+# Gallóglach
+
+- type: entity
+  parent: ClothingModsuitBase
+  id: ClothingModsuitMercenary
+  name: mercenary gallóglach hardsuit control unit
+  description: A modular hardsuit control module unit equipped with enhanced actuators in the legs to allow for rapid assault or retreat actions.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/Back/Modsuits/mercenary.rsi
+  - type: Storage # Extra space - Mono
+    grid:
+    - 0,0,7,3
+    maxItemSize: Huge
+  - type: ToggleableClothing
+    clothingPrototypes:
+      head: ClothingModsuitHelmetMercenary
+      gloves: ClothingModsuitGauntletsMercenary
+      outerClothing: ClothingModsuitChestplateMercenary
+      shoes: ClothingModsuitBootsMercenary
+  - type: SealableClothingVisuals
+    spriteLayer: sealed
+    clothingVisuals:
+      back:
+      - state: equipped-BACKPACK-sealed
+      back-resomi:
+      - state: equipped-BACKPACK-sealed-resomi
+  - type: Construction
+    graph: Modsuit
+    node: mercenary
+
+- type: entity
+  parent: ClothingModsuitMercenary
+  id: ClothingModsuitMercenaryPowerCell
+  suffix: High-Capacity Battery
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHigh
+        whitelist:
+          components:
+            - PowerCell

@@ -16,6 +16,17 @@
     # - MCXeno # Kideo
 
 - type: entity
+  id: ComputerShipyardUssp
+  parent: BaseMothershipComputer
+  name: ussp shipyard console
+  description: Used to purchase and sell USSP vessels.
+  categories: [ USSP ]
+  components:
+  - type: ShipyardListing
+    shuttles:
+    - Gadyuka
+
+- type: entity
   id: ComputerShipyardBASBlackMarket
   parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyardBase]
   name: Консоль верфи Чёрного Рынка

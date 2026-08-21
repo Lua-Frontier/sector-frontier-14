@@ -1,6 +1,7 @@
 # Base
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryBase
   abstract: true
   placement:
@@ -75,6 +76,7 @@
   - type: GravityAffected # gravrefactor
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryUnanchorable
   parent: BallisticArtilleryBase
   abstract: true
@@ -82,6 +84,7 @@
   - type: RequiresGrid
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtillery
   parent: BallisticArtilleryBase
   abstract: true
@@ -93,6 +96,7 @@
     id: ShipWeapon
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryBaseCartridge
   abstract: true
   placement:
@@ -168,6 +172,7 @@
     - Applicating
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryCartridge
   parent: BallisticArtilleryBaseCartridge
   abstract: true
@@ -183,6 +188,7 @@
     id: ShipWeapon
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryUnanchorableCartridge
   parent: BallisticArtilleryBaseCartridge
   abstract: true
@@ -190,6 +196,7 @@
   - type: RequiresGrid
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryBaseMagazine
   abstract: true
   placement:
@@ -273,6 +280,7 @@
     - Applicating
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryMagazine
   parent: BallisticArtilleryBaseMagazine
   abstract: true
@@ -288,6 +296,7 @@
     id: ShipWeapon
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryUnanchorableMagazine
   parent: BallisticArtilleryBaseMagazine
   abstract: true
@@ -297,6 +306,7 @@
 # Durabilities - You can vary from this, this is just the main standard. Size of the gun is often used when deciding durability. More size, more likely to get hit.
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryTier1HP # Basic weapons, e.g PD. Reinforced wall level.
   suffix: T1
   abstract: true
@@ -323,6 +333,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryTier2HP # Normal weapons, slightly stronger than plastitanium. This is the baseline durability for your average sized anchorable weapon.
   abstract: true
   suffix: T2
@@ -343,6 +354,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryTier3HP # Medium weapons. Reinforced plastitanium level. Typical for medium-class weapons. In-between heavy artillery and standard anchorables.
   abstract: true
   suffix: T3
@@ -369,6 +381,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryTier4HP # Capital Weapons. Cyrexas, main cannons. Anything really big.
   abstract: true
   suffix: T4
@@ -395,6 +408,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: BallisticArtilleryTier5HP # Supercapital class armament, station outpost weaponry and capital pre-fracture weaponry, around 4x Reinforced Plastitanium Health.
   abstract: true
   suffix: T5

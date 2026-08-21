@@ -54,6 +54,12 @@ public sealed partial class NPCRangedCombatComponent : Component
     public float ShootDelay = 0.2f;
 
     [ViewVariables(VVAccess.ReadWrite)]
+    public float TargetLeadScale = 1f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float? ProjectileSpeedOverride;
+
+    [ViewVariables(VVAccess.ReadWrite)]
     public float ShootAccumulator;
 
     /// <summary>

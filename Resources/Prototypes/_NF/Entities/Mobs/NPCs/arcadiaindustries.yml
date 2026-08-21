@@ -86,6 +86,23 @@
   #- MobArcIndTimedDespawn
   description: A syndicate hologuardian that seems to have been modified by unknown means.
   components:
+    - type: Physics
+      bodyType: KinematicController
+      bodyStatus: InAir
+    - type: MovementAlwaysTouching
+    - type: CanMoveInAir
+    - type: NoSlip
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - Opaque
     - type: Sprite
       drawdepth: Mobs
       sprite: _NF/Mobs/ArcadiaIndustries/arcind_guardians.rsi

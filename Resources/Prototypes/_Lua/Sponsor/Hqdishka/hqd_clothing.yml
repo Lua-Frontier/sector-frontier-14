@@ -2,7 +2,7 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 - type: entity
-  parent: ClothingHandsGlovesCombat
+  parent: RingBase
   id: IrisHandsRing
   name: Кольцо Айрис
   description: Обручальное кольцо Айрис, напоминает вам о теплых временах и о Хаксе.
@@ -10,10 +10,10 @@
   components:
   - type: Sprite
     sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Hands/Misc/iris_ring.rsi
+    state: icon
   - type: Clothing
     sprite: _Lua/Sponsor/Iris/Iris_Blue/Clothing/Hands/Misc/iris_ring.rsi
-  - type: Item
-    size: Tiny
+    equippedState: equipped-FINGER
 
 - type: entity
   parent: ClothingUniformBase

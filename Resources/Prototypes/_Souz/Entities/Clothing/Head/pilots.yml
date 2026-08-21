@@ -1,0 +1,67 @@
+# source: _DeadSpace/Entities/Clothing/Head/pilots.yml
+- type: entity
+  parent: USSPSFClothingHeadHelmetHardsuitSecurity
+  id: USSPSFClothingHeadHelmetHardsuitPilot
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  name: pilot hardsuit helmet
+  description: The steering wheel is imprinted in the visor of this helmet.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hardsuits/pilotsuithelm.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hardsuits/pilotsuithelm.rsi
+  - type: PointLight
+    color: white
+- type: entity
+  parent: USSPSFClothingHeadHelmetHardsuitSecurity
+  id: USSPSFClothingHeadHelmetHardsuitSecurityPilot
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  name: security pilot hardsuit helmet
+  description: Looks like something that inspires order.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hardsuits/pilotsuithelmsec.rsi
+    #DS14-Soyuz-start
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-head-light
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-light-vulpkanin
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-light-reptilian
+        shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-head-vulpkanin
+      - state: equipped-head-unshaded-vulpkanin
+        shader: unshaded
+      head-reptilian:
+      - state: equipped-head-reptilian
+      - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+        #DS14-Soyuz-end
+  - type: PointLight
+    color: '#fce883' #DS14-soyuz
+    radius: 6
+    energy: 3

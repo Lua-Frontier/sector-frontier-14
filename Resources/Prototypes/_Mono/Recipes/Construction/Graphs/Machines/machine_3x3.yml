@@ -14,13 +14,19 @@
               value: false
           steps:
             - material: Steel
-              amount: 45
-              doAfter: 7.5
+              amount: 30
+              doAfter: 5
+            - material: Steel
+              amount: 15
+              doAfter: 2.5
         - to: destroyedMachineFrame
           steps:
             - material: Steel
-              amount: 45
-              doAfter: 7.5
+              amount: 30
+              doAfter: 5
+            - material: Steel
+              amount: 15
+              doAfter: 2.5
 
     - node: missingWires
       entity: UnfinishedMachineFrame3x3

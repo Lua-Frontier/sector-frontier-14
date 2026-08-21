@@ -30,11 +30,21 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<float> NetDynamicTickLowFpsMin =
             CVarDef.Create("net.dynamic_tick.low_fps_min", 1f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickLowFpsMax =
-            CVarDef.Create("net.dynamic_tick.low_fps_max", 20f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.low_fps_max", 130f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickHighFpsMin =
+            CVarDef.Create("net.dynamic_tick.high_fps_min", 200f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickDecreaseHeadroom =
+            CVarDef.Create("net.dynamic_tick.decrease_headroom", 4.33f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickIncreaseHeadroom =
+            CVarDef.Create("net.dynamic_tick.increase_headroom", 6.67f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickHeadroomSmooth =
+            CVarDef.Create("net.dynamic_tick.headroom_smooth", 0.3f, CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<float> NetDynamicTickChangeCooldown =
+            CVarDef.Create("net.dynamic_tick.change_cooldown", 4f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickDecreaseDelay =
-            CVarDef.Create("net.dynamic_tick.decrease_delay", 15f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.decrease_delay", 3f, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<float> NetDynamicTickIncreaseDelay =
-            CVarDef.Create("net.dynamic_tick.increase_delay", 1200f, CVar.SERVERONLY | CVar.ARCHIVE);
+            CVarDef.Create("net.dynamic_tick.increase_delay", 10f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<int> TransferMaxAmountPerOperation =
             CVarDef.Create("yupi.transfer.max_amount_per_operation", 50_000, CVar.SERVER | CVar.ARCHIVE);
@@ -58,14 +68,10 @@ namespace Content.Shared.Lua.CLVar
             CVarDef.Create("zone.pvp_enabled", false, CVar.SERVERONLY | CVar.ARCHIVE,
                 "Отключить или включить пвп зоны.");
 
-        public static readonly CVarDef<bool> LoadStarmapRoundstart =
-            CVarDef.Create("starmap.load_roundstart", true, CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapIncludeSectors =
             CVarDef.Create("starmap.include_sectors", true, CVar.ARCHIVE);
         public static readonly CVarDef<string> StarmapDataId =
             CVarDef.Create("starmap.data_id", "StarmapData", CVar.ARCHIVE);
-        public static readonly CVarDef<bool> StarmapLazyLoading =
-            CVarDef.Create("starmap.lazy_loading", true, CVar.ARCHIVE);
         public static readonly CVarDef<bool> StarmapRequireSectorDisks =
             CVarDef.Create("starmap.require_sector_disks", false, CVar.SERVERONLY | CVar.ARCHIVE);
         public static readonly CVarDef<bool> StargateGuideShown =
@@ -190,6 +196,15 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<bool> StargateWorldClearSavesOnRoundEnd =
             CVarDef.Create("stargate.world_clear_saves_on_round_end", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<bool> SectorIdleFreezeEnabled =
+            CVarDef.Create("sector.idle_freeze_enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<int> SectorIdleFreezeDelaySeconds =
+            CVarDef.Create("sector.idle_freeze_delay_seconds", 90, CVar.SERVERONLY | CVar.ARCHIVE);
+
+        public static readonly CVarDef<float> SectorIdleFreezeCheckIntervalSeconds =
+            CVarDef.Create("sector.idle_freeze_check_interval_seconds", 10f, CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> SalvageExpeditionEnabled =
             CVarDef.Create("salvage.expedition.enabled", true, CVar.SERVERONLY);

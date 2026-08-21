@@ -1,0 +1,36 @@
+- type: job
+  id: UsspPassenger
+  name: job-name-ussp-passenger
+  description: job-description-ussp-passenger
+  playTimeTracker: JobUsspPassenger
+  requiredCompany: Ussp
+  salary: 25000
+  startingGear: UsspPassengerGear
+  icon: JobIconUsspPassenger
+  supervisors: job-supervisors-ussp-hop
+  canBeAntag: false
+  hideConsoleVisibility: true
+  access:
+  - USSP
+  accessGroups:
+  - USSPGeneral
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspPassengerGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspPassengerChameleonOutfit
+  job: UsspPassenger

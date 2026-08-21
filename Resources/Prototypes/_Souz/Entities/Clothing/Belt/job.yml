@@ -1,0 +1,55 @@
+# source: Entities/Clothing/Belt/job.yml
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBeltSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security belt
+  description: Can hold security gear like handcuffs and flashes.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Belt/security.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Belt/security.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Storage
+    whitelist:
+      tags:
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      - Sidearm
+      - MagazinePistol
+      - MagazineMagnum
+      - CombatKnife
+      - Truncheon
+      - HandGrenade
+      components:
+      - Stunbaton
+      - FlashOnTrigger
+      - SmokeOnTrigger
+      - Flash
+      - Handcuff
+      - BallisticAmmoProvider
+      - CartridgeAmmo
+      - DoorRemote
+      - Whistle
+      - BalloonPopper
+  - type: ItemMapper
+    sprite: Clothing/Belt/belt_overlay.rsi
+    mapLayers:
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+      tear_gas_grenade:
+        whitelist:
+          components:
+          - SmokeOnTrigger
+  - type: Appearance

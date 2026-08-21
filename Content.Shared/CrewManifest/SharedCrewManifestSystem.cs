@@ -38,8 +38,9 @@ public sealed class CrewManifestEntries
     /// <summary>
     ///     Entries in the crew manifest. Goes by department ID.
     /// </summary>
-    // public Dictionary<string, List<CrewManifestEntry>> Entries = new();
     public CrewManifestEntry[] Entries = Array.Empty<CrewManifestEntry>();
+
+    public bool GroupByCompany;
 }
 
 [Serializable, NetSerializable]
@@ -53,12 +54,24 @@ public sealed class CrewManifestEntry
 
     public string JobPrototype { get; }
 
-    public CrewManifestEntry(string name, string jobTitle, string jobIcon, string jobPrototype)
+    public string CompanyId { get; }
+
+    public string? PlayerName { get; }
+
+    public CrewManifestEntry(
+        string name,
+        string jobTitle,
+        string jobIcon,
+        string jobPrototype,
+        string companyId = "",
+        string? playerName = null)
     {
         Name = name;
         JobTitle = jobTitle;
         JobIcon = jobIcon;
         JobPrototype = jobPrototype;
+        CompanyId = companyId;
+        PlayerName = playerName;
     }
 }
 

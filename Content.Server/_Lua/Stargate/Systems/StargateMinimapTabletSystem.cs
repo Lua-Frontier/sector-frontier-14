@@ -21,7 +21,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Maths;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using System.Linq;
 using System.Numerics;
 namespace Content.Server._Lua.Stargate.Systems;
 public sealed class StargateMinimapTabletSystem : EntitySystem
@@ -37,7 +36,6 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     private TimeSpan _nextUpdate;
     private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(0.5);
 
-    // Reusable buffers to avoid per-frame allocations
     private readonly Dictionary<Vector2i, uint[]> _chunksBuffer = new();
     private readonly List<StargateMinimapMarker> _markersBuffer = new();
     private readonly List<Vector2> _questZonesBuffer = new();
@@ -64,7 +62,7 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     {
         var disk = GetDisk(uid, 1);
         if (disk == null || !TryComp<StargateMinimapDiskComponent>(disk, out var dc)) return;
-        var pd = GetCurrentPlanetData(dc);
+        var pd = GetPlanetDataForHolder(uid, dc, createIfMissing: true);
         if (pd == null) return;
         if (pd.Markers.Count >= 64) return;
         var label = args.Label ?? $"M{pd.Markers.Count + 1}";
@@ -75,7 +73,7 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     {
         var disk = GetDisk(uid, 1);
         if (disk == null || !TryComp<StargateMinimapDiskComponent>(disk, out var dc)) return;
-        var pd = GetCurrentPlanetData(dc);
+        var pd = GetPlanetDataForHolder(uid, dc, createIfMissing: false);
         if (pd == null) return;
         if (args.Index < 0 || args.Index >= pd.Markers.Count) return;
         pd.Markers.RemoveAt(args.Index);
@@ -123,35 +121,16 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
         {
             var player = FindHoldingPlayer(uid);
             if (player == null) continue;
-            var xform = Transform(player.Value);
-            if (xform.MapUid == null) continue;
-
-            byte[]? address = null;
-
-            if (TryComp<StargateDestinationComponent>(xform.MapUid.Value, out var dest))
-            {
-                address = dest.Address;
-            }
-            else if (HasComp<ExpeditionPlanetComponent>(xform.MapUid.Value))
-            {
-                address = ExpeditionAddress(xform.MapUid.Value);
-            }
-
-            if (address == null) continue;
+            if (!TryGetPlanetContext(player.Value, out var mapUid, out var address, out _))
+                continue;
 
             var disk = GetDisk(uid, 1);
             if (disk == null || !TryComp<StargateMinimapDiskComponent>(disk, out var dc)) continue;
 
-            dc.CurrentPlanetAddress = address;
-
-            var planetKey = AddressKey(address);
-            if (!dc.Planets.TryGetValue(planetKey, out var pd))
-            {
-                pd = new StargateMinimapPlanetData();
-                dc.Planets[planetKey] = pd;
-            }
-            if (!TryComp<MapGridComponent>(xform.MapUid.Value, out var grid)) continue;
-            ExploreTiles(xform.MapUid.Value, grid, xform, pd);
+            SyncCurrentPlanet(dc, address);
+            var pd = EnsurePlanetData(dc, address);
+            if (!TryComp<MapGridComponent>(mapUid, out var grid)) continue;
+            ExploreTiles(mapUid, grid, Transform(player.Value), pd);
             UpdateUiState(uid);
         }
     }
@@ -246,43 +225,45 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
         var player = FindHoldingPlayer(uid);
         var isSg = false;
         var isExpedition = false;
+        byte[]? address = null;
         Vector2? gatePos = null;
         Vector2? playerPos = null;
-        if (player != null)
+        if (player != null && TryGetPlanetContext(player.Value, out var mapUid, out var planetAddress, out isExpedition))
         {
-            var xform = Transform(player.Value);
-            if (xform.MapUid != null)
+            isSg = true;
+            address = planetAddress;
+            playerPos = _xform.GetWorldPosition(Transform(player.Value));
+            if (isExpedition && TryComp<ExpeditionPlanetComponent>(mapUid, out var expPlanet))
             {
-                if (TryComp<StargateDestinationComponent>(xform.MapUid.Value, out var dest))
-                {
-                    isSg = true;
-                    if (dest.GateUid != null && TryComp<TransformComponent>(dest.GateUid.Value, out var gx))
-                        gatePos = _xform.GetWorldPosition(gx);
-                    playerPos = _xform.GetWorldPosition(xform);
-                }
-                else if (TryComp<ExpeditionPlanetComponent>(xform.MapUid.Value, out var expPlanet))
-                {
-                    isSg = true;
-                    isExpedition = true;
-                    gatePos = GetExpeditionShuttlePosition(xform.MapUid.Value)
-                        ?? new Vector2(expPlanet.LandingOrigin.X, expPlanet.LandingOrigin.Y);
-                    playerPos = _xform.GetWorldPosition(xform);
-                }
+                gatePos = GetExpeditionShuttlePosition(mapUid)
+                    ?? new Vector2(expPlanet.LandingOrigin.X, expPlanet.LandingOrigin.Y);
+            }
+            else if (TryComp<StargateDestinationComponent>(mapUid, out var dest) &&
+                     dest.GateUid != null &&
+                     TryComp<TransformComponent>(dest.GateUid.Value, out var gx))
+            {
+                gatePos = _xform.GetWorldPosition(gx);
             }
         }
+
         var d1 = GetDisk(uid, 1);
         var d2 = GetDisk(uid, 2);
-        // Reuse buffers instead of allocating new collections each call
         _chunksBuffer.Clear();
         _markersBuffer.Clear();
         if (d1 != null && TryComp<StargateMinimapDiskComponent>(d1, out var dc))
         {
-            var pd = GetCurrentPlanetData(dc);
-            if (pd != null)
+            if (player != null && isSg && address != null)
             {
-                // No Clone() needed: SetUiState serializes immediately, so server data won't be mutated by client
-                foreach (var (k, v) in pd.Chunks) _chunksBuffer[k] = v;
-                _markersBuffer.AddRange(pd.Markers);
+                SyncCurrentPlanet(dc, address);
+                if (dc.Planets.TryGetValue(AddressKey(address), out var pd))
+                {
+                    foreach (var (k, v) in pd.Chunks) _chunksBuffer[k] = v;
+                    _markersBuffer.AddRange(pd.Markers);
+                }
+            }
+            else if (!isSg)
+            {
+                dc.CurrentPlanetAddress = Array.Empty<byte>();
             }
         }
         CollectQuestTargetZones(player, isSg, _questZonesBuffer);
@@ -320,12 +301,64 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
         return new[] { (byte) 255, (byte) (id >> 24), (byte) (id >> 16), (byte) (id >> 8), (byte) id };
     }
 
-    private static StargateMinimapPlanetData? GetCurrentPlanetData(StargateMinimapDiskComponent dc)
+    private bool TryGetPlanetContext(EntityUid player, out EntityUid mapUid, out byte[] address, out bool isExpedition)
     {
-        if (dc.CurrentPlanetAddress.Length == 0)
-            return null;
-        dc.Planets.TryGetValue(AddressKey(dc.CurrentPlanetAddress), out var pd);
+        mapUid = default;
+        address = Array.Empty<byte>();
+        isExpedition = false;
+        var xform = Transform(player);
+        if (xform.MapUid == null)
+            return false;
+
+        mapUid = xform.MapUid.Value;
+        if (TryComp<StargateDestinationComponent>(mapUid, out var dest))
+        {
+            address = dest.Address;
+            return address.Length > 0;
+        }
+
+        if (HasComp<ExpeditionPlanetComponent>(mapUid))
+        {
+            address = ExpeditionAddress(mapUid);
+            isExpedition = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    private static void SyncCurrentPlanet(StargateMinimapDiskComponent dc, byte[] address)
+    {
+        if (dc.CurrentPlanetAddress.AsSpan().SequenceEqual(address))
+            return;
+        dc.CurrentPlanetAddress = (byte[])address.Clone();
+    }
+
+    private static StargateMinimapPlanetData EnsurePlanetData(StargateMinimapDiskComponent dc, byte[] address)
+    {
+        var key = AddressKey(address);
+        if (!dc.Planets.TryGetValue(key, out var pd))
+        {
+            pd = new StargateMinimapPlanetData();
+            dc.Planets[key] = pd;
+        }
         return pd;
+    }
+
+    private StargateMinimapPlanetData? GetPlanetDataForHolder(EntityUid tablet, StargateMinimapDiskComponent dc, bool createIfMissing)
+    {
+        var player = FindHoldingPlayer(tablet);
+        if (player == null || !TryGetPlanetContext(player.Value, out _, out var address, out _))
+            return null;
+
+        SyncCurrentPlanet(dc, address);
+        if (!createIfMissing)
+        {
+            dc.Planets.TryGetValue(AddressKey(address), out var existing);
+            return existing;
+        }
+
+        return EnsurePlanetData(dc, address);
     }
 
     private const float QuestZoneRadius = 21f;
@@ -358,7 +391,6 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
 
             var realPos = _xform.GetWorldPosition(targetXform);
 
-            // Reuse seeded Random by value — no allocation needed
             var rng = new Random(uid.Id);
             var angle = rng.NextDouble() * Math.PI * 2;
             var dist = rng.NextDouble() * QuestZoneMaxOffset;

@@ -55,6 +55,7 @@
   - ContrabandClothing # Frontier
   - ContrabandDetection # Frontier
   - LuaTech # Lua
+  - HostileSyndicate
 
 - type: npcFaction
   id: LuaTech
@@ -85,6 +86,7 @@
   - Goblin
   - Pibble
   - NFSyndicate
+  - HostileSyndicate
   - WizFedFaction
   - BloodCultNF
   - NFPirate
@@ -105,3 +107,41 @@
   - PointDefenseGun
   - IndependentShip
   - HostileIndependentShip
+
+# Expedition Syndicate mobs — do not share NFSyndicate with player company.
+- type: npcFaction
+  id: HostileSyndicate
+  hostile:
+  ## SS14 factions
+  - NanoTrasen
+  - Neutral
+  - Syndicate
+  - SimpleHostile
+  - SimpleNeutral
+  - Passive
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - Xeno
+  - Wizard
+  - Dragon
+  - Xenoborg
+  ## Frontier Factions
+  - Monkey
+  - Goblin
+  - NFSyndicate
+  - WizFedFaction
+  - BloodCultNF
+  - NFPirate
+  - ExplorersExpeditionNF
+  - ArtifactConstruct
+  - StreetGangNF
+  - DinosaursNF
+  - MercenariesExpeditionNF
+  - SiliconsExpeditionNF
+  - AberrantFleshExpeditionNF
+  - ContrabandClothing
+  - ContrabandDetection
+  ## Lua
+  - LuaNordFoll
+  - LuaTech

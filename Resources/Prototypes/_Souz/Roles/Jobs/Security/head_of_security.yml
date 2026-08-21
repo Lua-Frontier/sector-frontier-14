@@ -1,0 +1,51 @@
+- type: job
+  id: UsspHeadOfSecurity
+  name: job-name-ussp-hos
+  description: job-description-ussp-hos
+  playTimeTracker: JobUsspHeadOfSecurity
+  requiredCompany: Ussp
+  salary: 60000
+  startingGear: UsspHeadOfSecurityGear
+  icon: JobIconUsspHeadOfSecurity
+  supervisors: job-supervisors-ussp-captain
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 54000
+  - !type:RoleTimeRequirement
+    role: JobUsspSecurityOfficer
+    time: 36000
+  access:
+  - USSPHeadOfSecurity
+  - USSPCommand
+  - USSPSecurity
+  - USSPBrig
+  - USSPArmory
+  - USSPMaintenance
+  - USSPExternal
+  accessGroups:
+  - USSPGeneral
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspHeadOfSecurityGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspHeadOfSecurityChameleonOutfit
+  job: UsspHeadOfSecurity

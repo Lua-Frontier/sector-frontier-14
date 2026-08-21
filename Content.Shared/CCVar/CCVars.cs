@@ -52,4 +52,7 @@ public sealed partial class CCVars : CVars
 
     public static readonly CVarDef<bool> CoalesceIdenticalMessages =
         CVarDef.Create("white.coalesce_identical_messages", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED); // WD EDIT
+
+    public static readonly CVarDef<bool> DetailedExamine =
+        CVarDef.Create("misc.detailed_examine", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
 }

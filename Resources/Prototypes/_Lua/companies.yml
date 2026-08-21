@@ -48,15 +48,18 @@
 #   form: Нейтральные
 #   disabled: true
 
-# - type: company
-#   id: Ussp
-#   name: СССП
-#   iconPath: /Textures/_Mono/Companies/USSP.png
-#   description: ussp-description
-#   motd: ussp-motd
-#   color: "#B01340"
-#   form: Протогонисты
-#   disabled: true
+- type: company
+  id: Ussp
+  name: СССП
+  iconPath: /Textures/_Souz/Structures/Wallmounts/flags.rsi/USSPCompany.png
+  description: ussp-description
+  motd: ussp-motd
+  color: "#B01340"
+  form: Протогонисты
+  showCompanyRadar: true
+  leaderJobs: [ UsspPolitruk ]
+  npcFactions: [ Ussp ]
+  announcementTitle: company-announce-sender-ussp
 
 # - type: company
 #   id: LuaHoly
@@ -66,7 +69,6 @@
 #   form: Нейтральные
 #   disabled: true
 
-# НЕ ТРОГАТЬ - ПРИВАТНЫЕ ФРАКЦИИ
 - type: company
   id: LuaTech
   name: Lua Technologies
@@ -84,6 +86,7 @@
   hiddenFromNonMembers: true
   leaderJobs: [ OpsLuaTech ]
   npcFactions: [ LuaTech ]
+  announcementTitle: company-announce-sender-luatech
 
 - type: company
   id: BrokenAi
@@ -119,6 +122,7 @@
   hiddenFromNonMembers: true
   leaderJobs: [ StationRepresentative ]
   npcFactions: [ NanoTrasen ]
+  announcementTitle: company-announce-sender-nanotrasen
 
 - type: company
   id: Security
@@ -143,19 +147,20 @@
   form: Нейтральные
   hiddenFromNonMembers: true
   npcFactions: [ Neutral ]
+  announcementTitle: company-announce-sender-neutral
 
-- type: company
-  id: StormCreed
-  name: Кодекс Бури
-  iconPath: /Textures/Structures/Wallmounts/flags.rsi/Stormcreed_flag.png
-  description: stormcreed-description
-  motd: stormcreed-motd
-  color: "#948471"
-  form: Антаганисты
-  showCompanyRadar: true
-  hiddenFromNonMembers: true
-  aliesOnRadar: true
-  leaderJobs: [ StormCreedCaptain ]
+# - type: company
+#   id: StormCreed
+#   name: Кодекс Бури
+#   iconPath: /Textures/Structures/Wallmounts/flags.rsi/Stormcreed_flag.png
+#   description: stormcreed-description
+#   motd: stormcreed-motd
+#   color: "#948471"
+#   form: Антаганисты
+#   showCompanyRadar: true
+#   hiddenFromNonMembers: true
+#   aliesOnRadar: true
+#   leaderJobs: [ StormCreedCaptain ]
 
 - type: company
   id: Pirates
@@ -170,6 +175,7 @@
   aliesOnRadar: true
   leaderJobs: [ NFPirateCaptain ]
   npcFactions: [ NFPirate ]
+  announcementTitle: company-announce-sender-pirates
 
 - type: company
   id: Syndicate
@@ -182,5 +188,5 @@
   hiddenFromNonMembers: true
   aliesOnRadar: true
   leaderJobs: [ OutpostTypanTelecommunicationsOfficer ]
-  npcFactions: [ Syndicate, NFSyndicate, LuaNordFoll ]
-# НЕ ТРОГАТЬ
+  npcFactions: [ Syndicate, LuaNordFoll ]
+  announcementTitle: company-announce-sender-syndicate

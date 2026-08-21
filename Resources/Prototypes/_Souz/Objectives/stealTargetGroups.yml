@@ -1,0 +1,31 @@
+# source: Objectives/stealTargetGroups.yml
+- type: stealTargetGroup
+  id: USSPSFCaptainIDCard
+  name: steal-target-groups-captain-id-card
+  sprite:
+    sprite: _Souz/Objects/Misc/id_cards.rsi
+    state: icon-captain
+
+- type: stealTargetGroup
+  id: USSPSFJetpackCaptainFilled
+  name: steal-target-groups-jetpack-captain-filled
+  sprite:
+    sprite: _Souz/Objects/Tanks/Jetpacks/captain.rsi
+    state: icon
+
+- type: stealTargetGroup
+  id: USSPSFNukeDisk
+  name: steal-target-groups-nuke-disk
+  sprite:
+    sprite: Objects/Misc/nukedisk.rsi
+    state: icon
+
+# Thief Collection
+
+# source: _DeadSpace/Objectives/stealTargetGroups.yml
+- type: stealTargetGroup
+  id: USSPSFPortableCameraMonitor
+  name: steal-target-groups-portable-camera-monitor
+  sprite:
+    sprite: _Souz/Objects/Devices/portable_camera_monitor.rsi
+    state: icon

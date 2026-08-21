@@ -1,6 +1,7 @@
 using Robust.Shared.Serialization;
 using Robust.Shared.Map;
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared._Mono.ShipGuns;
 
 namespace Content.Shared._Mono.FireControl;
 
@@ -92,10 +93,13 @@ public struct FireControllableEntry
     /// </summary>
     public string Name;
 
-    public FireControllableEntry(NetEntity entity, NetCoordinates coordinates, string name)
+    public ShipGunType Type;
+
+    public FireControllableEntry(NetEntity entity, NetCoordinates coordinates, string name, ShipGunType type = ShipGunType.Other)
     {
         NetEntity = entity;
         Coordinates = coordinates;
         Name = name;
+        Type = type;
     }
 }

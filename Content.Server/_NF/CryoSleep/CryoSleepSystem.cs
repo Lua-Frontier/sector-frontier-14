@@ -7,7 +7,7 @@ using Content.Server.Ghost;
 using Content.Server.Interaction;
 using Content.Server.Mind;
 using Content.Server.Popups;
-using Content.Server.GameTicking; //Lua
+using Content.Server._Lua.Sectors;
 using Content.Shared._NF.CCVar;
 using Content.Shared._NF.CryoSleep;
 using Content.Shared._NF.CryoSleep.Events;
@@ -67,11 +67,12 @@ public sealed partial class CryoSleepSystem : EntitySystem
     [Dependency] private readonly ShipyardSystem _shipyard = default!; // For the FoundOrganics method
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!; //Lua
     [Dependency] private readonly IMapManager _mapManager = default!; //Lua
-    [Dependency] private readonly GameTicker _gameTicker = default!; //Lua
+    [Dependency] private readonly SectorSystem _sectors = default!; //Lua
     [Dependency] private readonly IConfigurationManager _cfg = default!; //Lua
     [Dependency] private readonly TagSystem _tag = default!; // Lua
     [Dependency] private readonly InventorySystem _inventory = default!; //For cryosleep warnings
@@ -108,6 +109,7 @@ public sealed partial class CryoSleepSystem : EntitySystem
         {
             _storageMap = _map.CreateMap(out var map);
             _map.SetPaused(map, true);
+            _meta.SetEntityName(_storageMap.Value, Loc.GetString("map-name-cryo-storage"));
         }
 
         return _storageMap.Value;
@@ -522,7 +524,10 @@ public sealed partial class CryoSleepSystem : EntitySystem
             //Lua start
             _mind.TransferTo(mindEntity, null, createGhost: false, mind: mind);
 
-            var mapEntity = _mapManager.GetMapEntityId(_gameTicker.DefaultMap);
+            if (!_sectors.TryGetHubMapId(out var hubMap) || hubMap == MapId.Nullspace)
+                return;
+
+            var mapEntity = _mapManager.GetMapEntityId(hubMap);
             var defaultCoords = new EntityCoordinates(mapEntity, Vector2.Zero);
 
             var ghost = _ghost.SpawnGhost((mindEntity, mind), defaultCoords, canReturn: false);

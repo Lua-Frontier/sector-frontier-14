@@ -325,6 +325,12 @@ public sealed class RCDSystem : EntitySystem
         // Finalize the operation (this should handle prediction properly)
         FinalizeRCDOperation(uid, component, gridUid.Value, mapGrid, tile, position, args.Direction, args.Target, args.User);
 
+        if (_net.IsServer)
+        {
+            var completedEv = new RCDOperationCompletedEvent(args.User, uid);
+            RaiseLocalEvent(ref completedEv);
+        }
+
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);
         _sharedCharges.AddCharges(uid, -args.Cost);

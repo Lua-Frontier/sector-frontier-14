@@ -65,7 +65,14 @@ public sealed partial class PersonalShieldOverlay : Overlay
             if (shield.Runtime.Form <= 0f && shield.Runtime.Shatter <= 0f)
                 continue;
 
-            if (!_inventory.TryGetContainingEntity(uid, out var wearer))
+            EntityUid? wearer = null;
+            if (shield.VisualWearer is { Valid: true } visual
+                && _entManager.EntityExists(visual))
+                wearer = visual;
+            else if (_inventory.TryGetContainingEntity(uid, out var containing))
+                wearer = containing;
+
+            if (wearer == null)
                 continue;
 
             if (!_entManager.TryGetComponent(wearer, out SpriteComponent? sprite) || !sprite.Visible)

@@ -198,6 +198,25 @@
       technologyPrerequisites:
       - NFIndustrialOreProcessor
 - type: technology
+  id: LuaShipMiningDrill
+  name: lua-research-technology-ship-mining-drill
+  entityIcon: WeaponShipMiningDrill
+  discipline: NFSalvage
+  factions:
+  - Nanotrasen
+  tier: 1
+  cost: 7500
+  recipeUnlocks:
+  - ShipMiningDrillMachineCircuitboard
+  technologyPrerequisites:
+  - NFMassExcavation
+  position: 5.2, 6.2
+  factionOverrides:
+    Nanotrasen:
+      position: -1.067, -8.889
+      technologyPrerequisites:
+      - LuaAdvancedSalvageMagmite
+- type: technology
   id: NFAdvancedSalvageWeapons
   name: nf-research-technology-advanced-salvage-weapons
   entityIcon: WeaponCrusherGlaive

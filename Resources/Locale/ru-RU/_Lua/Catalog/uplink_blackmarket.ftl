@@ -216,6 +216,3 @@ uplink-security-rechargerpistol-desc = Улучшенная версия вин�
 
 uplink-security-rifletemperature-name = температурная винтовка
 uplink-security-rifletemperature-desc = Легкий энергетический пистолет-пулемет, наносящий электрические и кислотные ожоги. Вопреки названию, нагревает только пятую точку стрелка.
-
-uplink-security-eshieldgen-name = Генератор защитного поля
-uplink-security-eshieldgen-desc = Массивный генератор поля, защищающего от всех внешних воздействий. Надевается на пояс.

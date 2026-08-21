@@ -31,15 +31,26 @@ public sealed class PlacementLoggerSystem : EntitySystem
             _ => LogType.Action
         };
 
+        var impact = ev.PlacementEventAction == PlacementEventAction.Create
+            ? LogImpact.Extreme
+            : LogImpact.Medium;
+
+        var action = ev.PlacementEventAction switch
+        {
+            PlacementEventAction.Create => "spawned",
+            PlacementEventAction.Erase => "deleted",
+            _ => ev.PlacementEventAction.ToString().ToLowerInvariant()
+        };
+
         if (actorEntity != null)
-            _adminLogger.Add(logType, LogImpact.Medium,
-                $"{ToPrettyString(actorEntity.Value):actor} used placement system to {ev.PlacementEventAction.ToString().ToLower()} {ToPrettyString(ev.EditedEntity):subject} at {ev.Coordinates}");
+            _adminLogger.Add(logType, impact,
+                $"{ToPrettyString(actorEntity.Value):user} {action} {ToPrettyString(ev.EditedEntity):entity} at {ev.Coordinates:coordinates}");
         else if (actor != null)
-            _adminLogger.Add(logType, LogImpact.Medium,
-                $"{actor:actor} used placement system to {ev.PlacementEventAction.ToString().ToLower()} {ToPrettyString(ev.EditedEntity):subject} at {ev.Coordinates}");
+            _adminLogger.Add(logType, impact,
+                $"{actor:user} {action} {ToPrettyString(ev.EditedEntity):entity} at {ev.Coordinates:coordinates}");
         else
-            _adminLogger.Add(logType, LogImpact.Medium,
-                $"Placement system {ev.PlacementEventAction.ToString().ToLower()}ed {ToPrettyString(ev.EditedEntity):subject} at {ev.Coordinates}");
+            _adminLogger.Add(logType, impact,
+                $"{action} {ToPrettyString(ev.EditedEntity):entity} at {ev.Coordinates:coordinates}");
     }
 
     private void OnTilePlacement(PlacementTileEvent ev)
@@ -49,12 +60,12 @@ public sealed class PlacementLoggerSystem : EntitySystem
 
         if (actorEntity != null)
             _adminLogger.Add(LogType.Tile, LogImpact.Medium,
-                $"{ToPrettyString(actorEntity.Value):actor} used placement system to set tile {_tileDefinitionManager[ev.TileType].Name} at {ev.Coordinates}");
+                $"{ToPrettyString(actorEntity.Value):user} set tile {_tileDefinitionManager[ev.TileType].Name} at {ev.Coordinates:coordinates}");
         else if (actor != null)
             _adminLogger.Add(LogType.Tile, LogImpact.Medium,
-                $"{actor} used placement system to set tile {_tileDefinitionManager[ev.TileType].Name} at {ev.Coordinates}");
+                $"{actor:user} set tile {_tileDefinitionManager[ev.TileType].Name} at {ev.Coordinates:coordinates}");
         else
             _adminLogger.Add(LogType.Tile, LogImpact.Medium,
-                $"Placement system set tile {_tileDefinitionManager[ev.TileType].Name} at {ev.Coordinates}");
+                $"set tile {_tileDefinitionManager[ev.TileType].Name} at {ev.Coordinates:coordinates}");
     }
 }

@@ -24,7 +24,13 @@
   - type: Clothing
     sprite: _Lua/Sponsor/EllisTinker/hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitEllisTinker
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitEllisTinker
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: PressureProtection
@@ -48,14 +54,14 @@
     tags: [] # ignore "WhitelistChameleon" tag
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: []
         showEnts: false
         occludes: true
-        ent: null
       cell_slot: !type:ContainerSlot
         showEnts: false
         occludes: true
-        ent: null
       beakerSlot: !type:ContainerSlot # imperial hardsuit injection
 
 - type: entity
@@ -201,7 +207,8 @@
     slot: outerClothing
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
+      cell_slot: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
   - type: Tag

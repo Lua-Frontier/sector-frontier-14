@@ -1054,6 +1054,74 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PlayerAchievement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("player_achievement_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AchievementId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("achievement_id");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_id");
+
+                    b.Property<DateTime?>("RewardClaimedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("reward_claimed_at");
+
+                    b.Property<DateTime>("UnlockedAt")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("unlocked_at");
+
+                    b.HasKey("Id")
+                        .HasName("PK_player_achievement");
+
+                    b.HasIndex("PlayerId", "AchievementId")
+                        .IsUnique();
+
+                    b.ToTable("player_achievement", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.PlayerAchievementProgress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("player_achievement_progress_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AchievementId")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)")
+                        .HasColumnName("achievement_id");
+
+                    b.Property<Guid>("PlayerId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("player_id");
+
+                    b.Property<int>("Progress")
+                        .HasColumnType("integer")
+                        .HasColumnName("progress");
+
+                    b.HasKey("Id")
+                        .HasName("PK_player_achievement_progress");
+
+                    b.HasIndex("PlayerId", "AchievementId")
+                        .IsUnique();
+
+                    b.ToTable("player_achievement_progress", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Preference", b =>
                 {
                     b.Property<int>("Id")

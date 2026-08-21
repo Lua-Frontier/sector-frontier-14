@@ -20,3 +20,6 @@ public record struct CloningEvent(CloningSettingsPrototype Settings, EntityUid C
 /// </summary>
 [ByRefEvent]
 public record struct CloningItemEvent(EntityUid CloneUid);
+
+[ByRefEvent]
+public readonly record struct ClonedMindAddedEvent(EntityUid CloneUid);

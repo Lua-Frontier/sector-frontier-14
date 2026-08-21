@@ -65,7 +65,12 @@
                                             Disabled="True"/>
                 </BoxContainer>
                 <PanelContainer VerticalAlignment="Bottom">
-                    <luaShipyard:ShipyardDockRadarControl Name="DockRadar" MinSize="400 400"/>
+                    <LayoutContainer MinSize="400 400">
+                        <luaShipyard:ShipyardDockRadarControl Name="DockRadar"
+                                                              HorizontalExpand="True"
+                                                              VerticalExpand="True"
+                                                              MinSize="400 400"/>
+                    </LayoutContainer>
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat BorderColor="#444444" BorderThickness="2"/>
                     </PanelContainer.PanelOverride>

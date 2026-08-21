@@ -16,6 +16,26 @@ public sealed class HideLayerClothingSystem : EntitySystem
         SubscribeLocalEvent<HideLayerClothingComponent, ClothingGotUnequippedEvent>(OnHideGotUnequipped);
         SubscribeLocalEvent<HideLayerClothingComponent, ClothingGotEquippedEvent>(OnHideGotEquipped);
         SubscribeLocalEvent<HideLayerClothingComponent, ItemMaskToggledEvent>(OnHideToggled);
+        SubscribeLocalEvent<HideLayerClothingComponent, ComponentStartup>(OnHideStartup);
+        SubscribeLocalEvent<HideLayerClothingComponent, ComponentShutdown>(OnHideShutdown);
+    }
+
+    private void OnHideStartup(Entity<HideLayerClothingComponent> ent, ref ComponentStartup args)
+    {
+        if (!TryComp(ent, out ClothingComponent? clothing) || clothing.InSlot == null)
+            return;
+
+        var wearer = Transform(ent).ParentUid;
+        SetLayerVisibility(ent!, wearer, hideLayers: true);
+    }
+
+    private void OnHideShutdown(Entity<HideLayerClothingComponent> ent, ref ComponentShutdown args)
+    {
+        if (!TryComp(ent, out ClothingComponent? clothing) || clothing.InSlot == null)
+            return;
+
+        var wearer = Transform(ent).ParentUid;
+        SetLayerVisibility(ent!, wearer, hideLayers: false);
     }
 
     private void OnHideToggled(Entity<HideLayerClothingComponent> ent, ref ItemMaskToggledEvent args)

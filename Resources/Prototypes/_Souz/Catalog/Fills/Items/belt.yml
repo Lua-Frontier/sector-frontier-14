@@ -1,0 +1,75 @@
+# source: Catalog/Fills/Items/belt.yml
+- type: entityTable
+  id: BeltHeadOfSecurityEntityTable
+  table: !type:AllSelector
+    children:
+    - id: USSPSFTruncheonsec
+    - id: USSPSFHandcuffs
+    - id: USSPSFHandcuffs
+    - id: USSPSFHoloprojectorSecurity
+    - id: USSPSFRadioHandheldSecurity
+
+- type: entity
+  id: USSPSFClothingBeltSecurityFilled
+  categories: [ USSP ]
+  parent: USSPSFClothingBeltSecurity
+  suffix: USSP, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable
+
+# DS14-start
+- type: entity
+  id: USSPSFClothingBeltSecurityWebbingFilled
+  categories: [ USSP ]
+  parent: USSPSFClothingBeltSecurityWebbing
+  suffix: USSP, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltSecurityEntityTable
+
+# DS14-start
+- type: entity
+  id: USSPSFClothingBeltHeadOfSecurityWebbingFilled
+  categories: [ USSP ]
+  parent: USSPSFClothingBeltSecurityWebbing
+  suffix: USSP, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BeltHeadOfSecurityEntityTable
+# DS14-end
+- type: entity
+  id: USSPSFClothingBeltSheathFilled
+  categories: [ USSP ]
+  parent: ClothingBeltSheath
+  suffix: USSP, Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CaptainSabre
+
+# source: _DeadSpace/Catalog/Fills/Items/belt.yml
+- type: entity
+  id: USSPSFClothingBeltMedicalSecurityWebbingFilled
+  categories: [ USSP ]
+  parent: USSPSFClothingBeltMedicalSecurityWebbing
+  suffix: USSP, Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Brutepack
+        amount: 2
+      - id: Ointment
+        amount: 1
+      - id: Bloodpack
+        amount: 1
+      - id: Gauze
+      - id: EmergencyMedipen #You never know what people are going to latejoin into
+        amount: 2

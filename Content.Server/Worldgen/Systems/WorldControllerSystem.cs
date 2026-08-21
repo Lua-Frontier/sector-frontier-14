@@ -19,7 +19,7 @@ public sealed class WorldControllerSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     private const int PlayerLoadRadius = 2;
-    private static readonly TimeSpan ChunkEvictionDelay = TimeSpan.FromMinutes(5);
+    private static readonly TimeSpan ChunkEvictionDelay = TimeSpan.FromMinutes(2);
 
     private static readonly TimeSpan ChunkUnloadGrace = TimeSpan.FromSeconds(20);
     private const int MaxChunkLoadsPerTick = 6;
@@ -44,6 +44,7 @@ public sealed class WorldControllerSystem : EntitySystem
         SubscribeLocalEvent<LoadedChunkComponent, ComponentStartup>(OnChunkLoadedCore);
         SubscribeLocalEvent<LoadedChunkComponent, ComponentShutdown>(OnChunkUnloadedCore);
         SubscribeLocalEvent<WorldChunkComponent, ComponentShutdown>(OnChunkShutdown);
+        SubscribeLocalEvent<WorldLoaderComponent, ComponentShutdown>(OnWorldLoaderShutdown);
     }
 
     /// <summary>
@@ -101,6 +102,12 @@ public sealed class WorldControllerSystem : EntitySystem
         evict.EvictAt = _gameTiming.RealTime + ChunkEvictionDelay;
     }
 
+    private void OnWorldLoaderShutdown(EntityUid uid, WorldLoaderComponent component, ComponentShutdown args)
+    {
+        RemoveCachedLoader(uid, component);
+        ResetLoaderCache(component);
+    }
+
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
@@ -134,20 +141,47 @@ public sealed class WorldControllerSystem : EntitySystem
         while (loaderEnum.MoveNext(out var uid, out var worldLoader, out var xform))
         {
             if (worldLoader.Disabled) // Frontier: disable world loading
+            {
+                RemoveCachedLoader(uid, worldLoader);
+                ResetLoaderCache(worldLoader);
                 continue; // Frontier
+            }
 
             var mapOrNull = xform.MapUid;
             if (mapOrNull is null)
+            {
+                RemoveCachedLoader(uid, worldLoader);
+                ResetLoaderCache(worldLoader);
                 continue;
+            }
             var map = mapOrNull.Value;
             if (!_controllerMaps.Contains(map))
+            {
+                RemoveCachedLoader(uid, worldLoader);
+                ResetLoaderCache(worldLoader);
                 continue;
+            }
 
             var wc = _xformSys.GetWorldPosition(xform);
-            var coords = WorldGen.WorldToChunkCoords(wc);
-            var chunks = new GridPointsNearEnumerator(coords.Floored(),
-                (int) Math.Ceiling(worldLoader.Radius / (float) WorldGen.ChunkSize) + 1);
+            var coords = WorldGen.WorldToChunkCoords(wc).Floored();
+            var chunkRadius = (int) Math.Ceiling(worldLoader.Radius / (float) WorldGen.ChunkSize) + 1;
+
+            if (worldLoader.LastMap == map &&
+                worldLoader.LastChunk == coords &&
+                worldLoader.LastChunkRadius == chunkRadius &&
+                worldLoader.LoadedChunks.Count > 0)
+            {
+                anyChunksRequested = true;
+                RefreshCachedLoader(uid, worldLoader);
+                continue;
+            }
+
+            RemoveCachedLoader(uid, worldLoader);
+            worldLoader.LoadedChunks.Clear();
+
+            var chunks = new GridPointsNearEnumerator(coords, chunkRadius);
             var controller = _controllerQuery.GetComponent(map);
+            var cacheComplete = true;
 
             while (chunks.MoveNext(out var chunk))
             {
@@ -158,7 +192,10 @@ public sealed class WorldControllerSystem : EntitySystem
                 if (!_loadedQuery.TryGetComponent(ent.Value, out var loaded))
                 {
                     if (loadBudget <= 0)
+                    {
+                        cacheComplete = false;
                         continue;
+                    }
 
                     loaded = AddComp<LoadedChunkComponent>(ent.Value);
                     loadedCount++;
@@ -168,6 +205,19 @@ public sealed class WorldControllerSystem : EntitySystem
                 loaded.UnloadAfter = null;
                 loaded.Loaders ??= new List<EntityUid>(4);
                 loaded.Loaders.Add(uid);
+                worldLoader.LoadedChunks.Add(ent.Value);
+            }
+
+            if (cacheComplete)
+            {
+                worldLoader.LastMap = map;
+                worldLoader.LastChunk = coords;
+                worldLoader.LastChunkRadius = chunkRadius;
+            }
+            else
+            {
+                worldLoader.LastMap = null;
+                worldLoader.LastChunkRadius = -1;
             }
         }
 
@@ -258,6 +308,41 @@ public sealed class WorldControllerSystem : EntitySystem
         }
 
         ProcessChunkEvictions();
+    }
+
+    private void RefreshCachedLoader(EntityUid uid, WorldLoaderComponent loader)
+    {
+        for (var i = loader.LoadedChunks.Count - 1; i >= 0; i--)
+        {
+            var chunkUid = loader.LoadedChunks[i];
+            if (!_loadedQuery.TryGetComponent(chunkUid, out var loaded))
+            {
+                loader.LoadedChunks.RemoveAt(i);
+                continue;
+            }
+
+            loaded.UnloadAfter = null;
+            loaded.Loaders ??= new List<EntityUid>(4);
+            loaded.Loaders.Add(uid);
+        }
+    }
+
+    private void RemoveCachedLoader(EntityUid uid, WorldLoaderComponent loader)
+    {
+        foreach (var chunkUid in loader.LoadedChunks)
+        {
+            if (!_loadedQuery.TryGetComponent(chunkUid, out var loaded) || loaded.Loaders is null)
+                continue;
+
+            loaded.Loaders.Remove(uid);
+        }
+    }
+
+    private static void ResetLoaderCache(WorldLoaderComponent loader)
+    {
+        loader.LoadedChunks.Clear();
+        loader.LastMap = null;
+        loader.LastChunkRadius = -1;
     }
 
     private void ProcessChunkEvictions()

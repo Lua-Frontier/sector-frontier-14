@@ -49,8 +49,8 @@
   - type: Clothing
     sprite: Clothing/Head/Misc/flower-wreath.rsi
     slots:
-    - HEAD
-    - neck
+    - hairpin
+    - necklace
   - type: Construction
     graph: flowerwreath
     node: flowerwreath
@@ -370,6 +370,9 @@
     sprite: Clothing/Head/Misc/hairflower.rsi
   - type: Clothing
     sprite: Clothing/Head/Misc/hairflower.rsi
+    slots:
+    - HEAD
+    - hairpin
 
 - type: entity
   parent: ClothingHeadBase

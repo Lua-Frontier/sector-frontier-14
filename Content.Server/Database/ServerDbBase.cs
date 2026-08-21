@@ -1484,6 +1484,69 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
+        public async Task<List<PlayerAchievement>> GetPlayerAchievements(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.PlayerAchievement.Where(p => p.PlayerId == player).ToListAsync(cancel);
+        }
+
+        public async Task<bool> TryUnlockAchievement(Guid player, string achievementId, DateTime unlockedAt)
+        {
+            await using var db = await GetDb();
+            var rows = await db.DbContext.Database.ExecuteSqlInterpolatedAsync($@"INSERT INTO player_achievement (player_id, achievement_id, unlocked_at) VALUES ({player}, {achievementId}, {unlockedAt}) ON CONFLICT (player_id, achievement_id) DO NOTHING");
+            return rows > 0;
+        }
+
+        public async Task<bool> TryClaimAchievementReward(Guid player, string achievementId, DateTime claimedAt)
+        {
+            await using var db = await GetDb();
+            var rows = await db.DbContext.Database.ExecuteSqlInterpolatedAsync($@"UPDATE player_achievement SET reward_claimed_at = {claimedAt} WHERE player_id = {player} AND achievement_id = {achievementId} AND reward_claimed_at IS NULL");
+            return rows > 0;
+        }
+        public async Task<int> ClearPlayerAchievements(Guid player)
+        {
+            await using var db = await GetDb();
+            var rows = await db.DbContext.PlayerAchievement.Where(p => p.PlayerId == player).ToListAsync();
+            if (rows.Count == 0) return 0;
+            db.DbContext.PlayerAchievement.RemoveRange(rows);
+            await db.DbContext.SaveChangesAsync();
+            return rows.Count;
+        }
+
+        public async Task<List<PlayerAchievementProgress>> GetPlayerAchievementProgress(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            return await db.DbContext.PlayerAchievementProgress.Where(p => p.PlayerId == player).ToListAsync(cancel);
+        }
+
+        public async Task<int> IncrementAchievementProgress(Guid player, string achievementId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var rows = await db.DbContext.Database.ExecuteSqlInterpolatedAsync($@"
+                INSERT INTO player_achievement_progress (player_id, achievement_id, progress)
+                VALUES ({player}, {achievementId}, 1)
+                ON CONFLICT (player_id, achievement_id)
+                DO UPDATE SET progress = player_achievement_progress.progress + 1");
+
+            if (rows == 0)
+                return 0;
+
+            return await db.DbContext.PlayerAchievementProgress
+                .Where(p => p.PlayerId == player && p.AchievementId == achievementId)
+                .Select(p => p.Progress)
+                .SingleAsync(cancel);
+        }
+
+        public async Task<int> ClearPlayerAchievementProgress(Guid player)
+        {
+            await using var db = await GetDb();
+            var rows = await db.DbContext.PlayerAchievementProgress.Where(p => p.PlayerId == player).ToListAsync();
+            if (rows.Count == 0) return 0;
+            db.DbContext.PlayerAchievementProgress.RemoveRange(rows);
+            await db.DbContext.SaveChangesAsync();
+            return rows.Count;
+        }
+
         public async Task<bool> GetBlacklistStatusAsync(NetUserId player)
         {
             await using var db = await GetDb();

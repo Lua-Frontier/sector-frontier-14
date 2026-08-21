@@ -147,4 +147,23 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public bool WarningAnnounced;
+
+    [DataField]
+    public StationEventAnnouncementScope AnnouncementScope = StationEventAnnouncementScope.Map;
+
+    [DataField]
+    public string? AnnouncementSender;
+
+    [ViewVariables]
+    public EntityUid? AnnouncementTarget;
+
+    [ViewVariables]
+    public bool LocalStartAnnounced;
+}
+
+public enum StationEventAnnouncementScope
+{
+    Global,
+    Map,
+    Station,
 }

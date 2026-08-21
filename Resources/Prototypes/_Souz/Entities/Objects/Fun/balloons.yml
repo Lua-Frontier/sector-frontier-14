@@ -1,0 +1,14 @@
+# source: Entities/Objects/Fun/balloons.yml
+- type: entity
+  parent: BalloonNT
+  id: USSPSFBalloonNT
+  categories: [ USSP ]
+  suffix: USSP
+  name: nanotrasen balloon
+  description: Specially designed to inflict maximum psychological damage to Syndicate operatives.
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Fun/Balloons/nanotrasen.rsi
+    state: icon
+  - type: Item
+    sprite: _Souz/Objects/Fun/Balloons/nanotrasen.rsi

@@ -1,0 +1,32 @@
+# source: Entities/Structures/Storage/Crates/crates.yml
+- type: entity
+  id: USSPSFCrateLockBoxSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  parent: CrateBaseLockBox
+  name: security lock box
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#2788ce"
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: overlay-closed
+      color: "#2788ce"
+      map: [ lid_overlay ]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "-0.46875,0.03125"
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: OverrideSell
+    overrideAccount: Security
+  - type: AccessReader
+    access: [["USSPSecurity"]]

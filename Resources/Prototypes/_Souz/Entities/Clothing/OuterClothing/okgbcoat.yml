@@ -1,0 +1,26 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/OuterClothing/okgbcoat.yml
+- type: entity
+  parent: [ClothingOuterStorageBase, USSPSFClothingOuterArmorBasicBlueShield]
+  id: USSPSFClothingOuterCoatOKGB
+  categories: [ USSP ]
+  suffix: USSP
+  name: бронешинель оперативника КГБ
+  description: Шинель, усиленная специальными сплавами для дополнительной защиты. Выдается только самым элитным оперативникам КГБ.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/OuterClothing/Coats/okgb.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/OuterClothing/Coats/okgb.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, USSPSFClothingOuterArmorBasicBlueShield]
+  id: USSPSFClothingOuterBlackCoatOKGB
+  categories: [ USSP ]
+  suffix: USSP
+  name: тёмная бронешинель оперативника КГБ
+  description: Шинель, усиленная специальными сплавами для дополнительной защиты. Выдается только самым элитным оперативникам КГБ.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/OuterClothing/Coats/blackokgb.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/OuterClothing/Coats/blackokgb.rsi

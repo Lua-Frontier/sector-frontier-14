@@ -42,6 +42,8 @@ namespace Content.Server.Database
         public DbSet<ServerBanHit> ServerBanHit { get; set; } = default!;
 
         public DbSet<PlayTime> PlayTime { get; set; } = default!;
+        public DbSet<PlayerAchievement> PlayerAchievement { get; set; } = default!;
+        public DbSet<PlayerAchievementProgress> PlayerAchievementProgress { get; set; } = default!;
         public DbSet<UploadedResourceLog> UploadedResourceLog { get; set; } = default!;
         public DbSet<AdminNote> AdminNotes { get; set; } = null!;
         public DbSet<AdminWatchlist> AdminWatchlists { get; set; } = null!;
@@ -135,6 +137,14 @@ namespace Content.Server.Database
 
             modelBuilder.Entity<PlayTime>()
                 .HasIndex(v => new { v.PlayerId, Role = v.Tracker })
+                .IsUnique();
+
+            modelBuilder.Entity<PlayerAchievement>()
+                .HasIndex(v => new { v.PlayerId, v.AchievementId })
+                .IsUnique();
+
+            modelBuilder.Entity<PlayerAchievementProgress>()
+                .HasIndex(v => new { v.PlayerId, v.AchievementId })
                 .IsUnique();
 
             modelBuilder.Entity<AdminLogPlayer>()
@@ -881,6 +891,42 @@ namespace Content.Server.Database
         public string Tracker { get; set; } = null!;
 
         public TimeSpan TimeSpent { get; set; }
+    }
+
+    [Table("player_achievement")]
+    public sealed class PlayerAchievement
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
+        [Required, ForeignKey("player")]
+        public Guid PlayerId { get; set; }
+
+        [Required, MaxLength(128)]
+        public string AchievementId { get; set; } = null!;
+
+        public DateTime UnlockedAt { get; set; }
+
+        public DateTime? RewardClaimedAt { get; set; }
+    }
+
+    [Table("player_achievement_progress")]
+    public sealed class PlayerAchievementProgress
+    {
+        [Required, Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("player_achievement_progress_id")]
+        public int Id { get; set; }
+
+        [Required, ForeignKey("player")]
+        [Column("player_id")]
+        public Guid PlayerId { get; set; }
+
+        [Required, MaxLength(128)]
+        [Column("achievement_id")]
+        public string AchievementId { get; set; } = null!;
+
+        [Column("progress")]
+        public int Progress { get; set; }
     }
 
     [Table("uploaded_resource_log")]

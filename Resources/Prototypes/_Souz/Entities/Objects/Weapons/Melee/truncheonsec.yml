@@ -1,0 +1,74 @@
+# source: _DeadSpace/Entities/Objects/Weapons/Melee/truncheonsec.yml
+- type: entity
+  name: боевое мачете СБ
+  parent: Stunbaton
+  id: USSPSFTruncheonsec
+  categories: [ USSP ]
+  suffix: USSP
+  description: Электрошоковое мачете для обездвиживания или убийства людей. Имеет нелетальный и летальный режимы. Является улучшением шоковой дубинки для действительно трудных ситуаций.
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Weapons/Melee/truncheon_sec.rsi
+    layers:
+    - state: stunbaton_off
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Item
+    heldPrefix: off
+    sprite: _Souz/Objects/Weapons/Melee/truncheon_sec.rsi
+  - type: Clothing
+    sprite: _Souz/Objects/Weapons/Melee/truncheon_sec.rsi
+    quickEquip: false
+    slots:
+    - Belt
+    - Back
+  - type: Stunbaton
+    energyPerUse: 35
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 0
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    bluntStaminaDamageFactor: 2.0
+    angle: 60
+    animation: WeaponArcThrust
+  - type: StaminaDamageOnHit
+    damage: 40
+    sound: /Audio/Weapons/egloves.ogg
+  - type: StaminaDamageOnCollide
+    damage: 40
+    sound: /Audio/Weapons/egloves.ogg
+  - type: Sharp
+  - type: Execution
+    doAfterDuration: 4.0
+  - type: Reflect
+    reflectProb: .15
+    spread: 90
+  - type: StaticPrice
+    price: 120
+
+- type: entity
+  name: боевое мачете ОСЩ
+  parent: USSPSFTruncheonsec
+  id: USSPSFTruncheonBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  description: Электрошоковое мачете для обездвиживания или убийства людей. Имеет нелетальный и летальный режимы. Является улучшением шоковой дубинки для действительно трудных ситуаций.
+  components:
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 3
+        Slash: 10
+        Heat: 15
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnHit
+    damage: 0

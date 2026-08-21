@@ -307,6 +307,18 @@ namespace Content.Server.Database
 
         #endregion
 
+        #region Achievements
+
+        Task<List<PlayerAchievement>> GetPlayerAchievements(Guid player, CancellationToken cancel = default);
+        Task<bool> TryUnlockAchievement(Guid player, string achievementId, DateTime unlockedAt);
+        Task<bool> TryClaimAchievementReward(Guid player, string achievementId, DateTime claimedAt);
+        Task<int> ClearPlayerAchievements(Guid player);
+        Task<List<PlayerAchievementProgress>> GetPlayerAchievementProgress(Guid player, CancellationToken cancel = default);
+        Task<int> IncrementAchievementProgress(Guid player, string achievementId, CancellationToken cancel = default);
+        Task<int> ClearPlayerAchievementProgress(Guid player);
+
+        #endregion
+
         #region Admin Notes
 
         Task<int> AddAdminNote(int? roundId, Guid player, TimeSpan playtimeAtNote, string message, NoteSeverity severity, bool secret, Guid createdBy, DateTimeOffset createdAt, DateTimeOffset? expiryTime);
@@ -936,6 +948,46 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SetAcceptedPublicOffer(player, time));
+        }
+
+        public Task<List<PlayerAchievement>> GetPlayerAchievements(Guid player, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerAchievements(player, cancel));
+        }
+        public Task<bool> TryUnlockAchievement(Guid player, string achievementId, DateTime unlockedAt)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.TryUnlockAchievement(player, achievementId, unlockedAt));
+        }
+
+        public Task<bool> TryClaimAchievementReward(Guid player, string achievementId, DateTime claimedAt)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.TryClaimAchievementReward(player, achievementId, claimedAt));
+        }
+        public Task<int> ClearPlayerAchievements(Guid player)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.ClearPlayerAchievements(player));
+        }
+
+        public Task<List<PlayerAchievementProgress>> GetPlayerAchievementProgress(Guid player, CancellationToken cancel = default)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerAchievementProgress(player, cancel));
+        }
+
+        public Task<int> IncrementAchievementProgress(Guid player, string achievementId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.IncrementAchievementProgress(player, achievementId, cancel));
+        }
+
+        public Task<int> ClearPlayerAchievementProgress(Guid player)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.ClearPlayerAchievementProgress(player));
         }
 
         public Task<int> AddAdminNote(int? roundId, Guid player, TimeSpan playtimeAtNote, string message, NoteSeverity severity, bool secret, Guid createdBy, DateTimeOffset createdAt, DateTimeOffset? expiryTime)

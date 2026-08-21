@@ -43,9 +43,12 @@ public sealed partial class FireControlWindow : FancyWindow
 
     private void SelectAllWeapons(BaseButton.ButtonEventArgs args)
     {
-        foreach (var button in WeaponsList.Values)
+        foreach (var kvp in WeaponsList)
         {
-            button.Pressed = true;
+            if (!_weaponTypes.TryGetValue(kvp.Key, out var type) || type == ShipGunType.Other)
+                continue;
+
+            kvp.Value.Pressed = true;
         }
 
         OnWeaponSelectionChanged?.Invoke();
@@ -220,12 +223,7 @@ public sealed partial class FireControlWindow : FancyWindow
             // Store the weapon name and entity for filtering
             _weaponNameToEntity[controllable.Name] = controllable.NetEntity;
 
-            // Store the weapon type if available
-            var entity = _entityManager.GetEntity(controllable.NetEntity);
-            if (_entityManager.TryGetComponent<ShipGunTypeComponent>(entity, out var typeComp))
-            {
-                _weaponTypes[controllable.NetEntity] = typeComp.Type;
-            }
+            _weaponTypes[controllable.NetEntity] = controllable.Type;
 
             if (WeaponsList.TryGetValue(controllable.NetEntity, out var existingButton))
             {

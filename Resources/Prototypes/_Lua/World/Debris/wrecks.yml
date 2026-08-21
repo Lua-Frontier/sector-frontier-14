@@ -1,6 +1,6 @@
 # Wreck / scrap debris prototypes (vanilla + NF).
-# Bases -> base.yml (BaseDebris / NFBaseDebris) | Asteroids -> debris.yml
-# Far-ring spawn tables: Biomes/mono_far.yml
+# Sizes + spawn rings: Biomes/mono_far.yml
+# Bases -> base.yml | Asteroids -> debris.yml
 
 #region Vanilla scrap
 
@@ -21,8 +21,8 @@
         - FloorSteel
         - Lattice
       blobDrawProb: 0.5
-      radius: 6
-      floorPlacements: 16
+      radius: 23
+      floorPlacements: 114
     - type: SimpleFloorPlanPopulator
       entries:
         Plating:
@@ -144,34 +144,28 @@
 
 - type: entity
   id: ScrapDebrisSmall
-  parent: BaseScrapDebris
+  parent: [BaseScrapDebris, NFBaseWreckSmall]
   name: Scrap Debris Small
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 8
 
 - type: entity
   id: ScrapDebrisMedium
-  parent: BaseScrapDebris
+  parent: [BaseScrapDebris, NFBaseWreckMedium]
   name: Scrap Debris Medium
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
-    - type: BlobFloorPlanBuilder
-      floorPlacements: 16
 
 - type: entity
   id: ScrapDebrisLarge
-  parent: BaseScrapDebris
+  parent: [BaseScrapDebris, NFBaseWreckLarge]
   name: Scrap Debris Large
   categories: [ HideSpawnMenu ]
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 12
-      floorPlacements: 24
       blobDrawProb: 0.625
 
 
@@ -183,8 +177,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 18
-      floorPlacements: 54
+      radius: 31
+      floorPlacements: 257
       blobDrawProb: 0.675
 
 
@@ -196,8 +190,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 18
-      floorPlacements: 54
+      radius: 31
+      floorPlacements: 257
       blobDrawProb: 0.3
 
 
@@ -209,8 +203,8 @@
   components:
     - type: MapGrid
     - type: BlobFloorPlanBuilder
-      radius: 24
-      floorPlacements: 80
+      radius: 34
+      floorPlacements: 317
       blobDrawProb: 0.75
 
 - type: entity
@@ -417,77 +411,7 @@
     flags: HideLabel
     color: "#E1C16E"
 
-# region Wreck Sizes
-- type: entity
-  id: NFBaseWreckSmall
-  name: wreck debris small
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 52
-    radius: 12
-
-- type: entity
-  id: NFBaseWreckMedium
-  name: wreck debris medium
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 72
-    radius: 14
-
-- type: entity
-  id: NFBaseWreckLarge
-  name: wreck debris large
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 96
-    radius: 16
-
-- type: entity
-  id: NFBaseWreckExtraLarge
-  name: wreck debris large extra large
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 124
-    radius: 18
-
-- type: entity
-  id: NFBaseWreckHuge
-  name: wreck debris huge
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 156
-    radius: 20
-
-- type: entity
-  id: NFBaseWreckExtraHuge
-  name: wreck debris extra huge
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 192
-    radius: 22
-
-- type: entity
-  id: NFBaseWreckEnormous
-  name: wreck debris enormous
-  categories: [ HideSpawnMenu ]
-  abstract: true
-  components:
-  - type: BlobFloorPlanBuilder
-    floorPlacements: 232
-    radius: 24
-# endregion Wreck Sizes
+# Sizes (radius / floorPlacements): Biomes/mono_far.yml
 
 # region Wrecks
 - type: entity

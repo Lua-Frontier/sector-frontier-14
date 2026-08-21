@@ -37,6 +37,15 @@
 - type: entity
   abstract: true
   parent: ClothingNeckBase
+  id: ClothingNecklaceBase
+  components:
+  - type: Clothing
+    slots:
+    - necklace
+
+- type: entity
+  abstract: true
+  parent: ClothingNeckBase
   id: ClothingScarfBase
   components:
   - type: Tag

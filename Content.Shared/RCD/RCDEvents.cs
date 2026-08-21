@@ -1,7 +1,11 @@
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.RCD;
+
+[ByRefEvent]
+public readonly record struct RCDOperationCompletedEvent(EntityUid User, EntityUid Rcd);
 
 [Serializable, NetSerializable]
 public sealed class RCDSystemMessage(ProtoId<RCDPrototype> protoId) : BoundUserInterfaceMessage

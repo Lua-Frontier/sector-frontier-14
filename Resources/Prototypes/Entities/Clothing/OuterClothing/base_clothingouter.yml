@@ -125,13 +125,20 @@
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
+      cell_slot: !type:ContainerSlot {} # Frontier: powered hardsuits add this on init
       storagebase: !type:Container
         ents: []
+  - type: UserInterface # Goobstation - Modsuits radial toggle
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
 
 - type: entity
   abstract: true
-  parent: [RecyclableItemClothHardsuit, SpaceOuterClothingBase, GeigerCounterClothing, AllowSuitStorageClothing] # Frontier: added RecyclableItemClothHardsuit
+  parent: [RecyclableItemClothHardsuit, SpaceOuterClothingBase, GeigerCounterClothing, AllowSuitStorageClothing, ClothingArmorPlate] # Frontier: added RecyclableItemClothHardsuit; Mono - armor plates
   id: ClothingOuterHardsuitBase
   name: base hardsuit
   components:
@@ -162,7 +169,15 @@
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface # Goobstation - Modsuits radial toggle
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
   - type: GroupExamine
   - type: Tag
     tags:
@@ -249,7 +264,7 @@
     slot: head
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
       storagebase: !type:Container
         ents: []
 

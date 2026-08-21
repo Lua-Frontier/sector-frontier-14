@@ -1,0 +1,43 @@
+# source: Wires/layouts.yml
+- type: wireLayout
+  id: USSPSFAirlock
+  wires:
+  - !type:PowerWireAction
+  - !type:PowerWireAction
+    pulseTimeout: 15
+  - !type:LogWireAction
+  - !type:DoorBoltWireAction
+  - !type:DoorBoltLightWireAction
+  - !type:DoorTimingWireAction
+  - !type:DoorSafetyWireAction
+  - !type:AiInteractWireAction
+
+
+- type: wireLayout
+  parent: USSPSFAirlock
+  id: USSPSFAirlockSecurity
+
+
+- type: wireLayout
+  parent: USSPSFAirlock
+  id: USSPSFAirlockCargo
+
+
+- type: wireLayout
+  parent: USSPSFAirlock
+  id: USSPSFAirlockEngineering
+
+
+- type: wireLayout
+  parent: USSPSFAirlock
+  id: USSPSFAirlockMedical
+
+
+- type: wireLayout
+  parent: USSPSFAirlock
+  id: USSPSFAirlockScience
+
+
+- type: wireLayout
+  parent: HighSec
+  id: USSPSFAirlockCommand

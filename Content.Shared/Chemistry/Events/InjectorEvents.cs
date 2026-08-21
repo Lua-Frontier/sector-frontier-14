@@ -1,8 +1,11 @@
-﻿using Content.Shared.DoAfter;
+using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.Events;
+
+[ByRefEvent]
+public readonly record struct InjectorInjectedEvent(EntityUid User, EntityUid Injector, EntityUid Target);
 
 /// <summary>
 /// Raised on the injector when the doafter has finished.

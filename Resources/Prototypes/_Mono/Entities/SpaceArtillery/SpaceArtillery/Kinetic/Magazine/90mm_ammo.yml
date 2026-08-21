@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmMagazineHE
   name: "90mm HE ammo loader"
   description: "An ammunition loader containing infinite 90mm high-explosive rounds. Usable by 90mm vessel-mounted artillery pieces."
@@ -28,6 +29,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmCartridgeHE
   name: cartridge (90mm HE)
   parent: BaseCartridge
@@ -58,6 +60,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmMagazineAP
   name: "90mm AP ammo loader"
   description: "An ammunition loader containing infinite 90mm armor-piercing rounds. Usable by 90mm vessel-mounted artillery pieces."
@@ -87,6 +90,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmCartridgeAP
   name: cartridge (90mm AP)
   parent: BaseCartridge
@@ -117,6 +121,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmMagazineFlak
   name: "90mm flak ammo loader"
   description: "An ammunition loader containing infinite 90mm flak rounds. Usable by 90mm vessel-mounted artillery pieces."
@@ -146,6 +151,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmCartridgeFlak
   name: cartridge (90mm flak)
   parent: BaseCartridge
@@ -176,6 +182,7 @@
     damageModifierSet: Metallic
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmMagazineMinelayerInfinite
   name: "90mm minelayer ammo loader"
   description: "An ammunition loader containing infinite 90mm minelayer rounds. Usable by 90mm vessel-mounted artillery pieces."
@@ -206,6 +213,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmMagazineMinelayer
   name: "90mm minelayer ammo loader"
   description: "An ammunition loader containing 400 90mm minelayer rounds. Usable by 90mm vessel-mounted artillery pieces."
@@ -241,6 +249,7 @@
   - type: Appearance
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: 90mmCartridgeMinelayer
   name: cartridge (90mm minelayer)
   parent: BaseCartridge

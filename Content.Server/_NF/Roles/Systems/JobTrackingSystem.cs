@@ -1,6 +1,6 @@
+using Content.Server._Lua.Sectors;
 using Content.Server._NF.CryoSleep;
 using Content.Server.Afk;
-using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Roles.Components;
@@ -10,6 +10,7 @@ using Content.Shared.Roles;
 using Content.Shared.Tag;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._NF.Roles.Systems;
@@ -21,7 +22,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 {
     [Dependency] private readonly IAfkManager _afk = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
@@ -56,7 +57,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
                 return;
 
             // The character is back, readjust their job slot if you can.
-            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 0);
+            _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, -1);
         }
         catch (ArgumentException)
         {
@@ -68,30 +69,42 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
     private void OnJobMindRemoved(Entity<JobTrackingComponent> ent, ref MindRemovedMessage ev)
     {
-        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value) || _tag.HasTag(ent.Owner, _dontReopenRoleTag)) // Lua
+        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value))
             return;
 
-        OpenJob(ent);
+        if (_tag.HasTag(ent.Owner, _dontReopenRoleTag))
+        {
+            ent.Comp.Active = false;
+            return;
+        }
+
+        OpenJob(ent, ev.Mind.Comp.UserId);
     }
 
     private void OnJobBeforeCryoEntered(Entity<JobTrackingComponent> ent, ref CryosleepBeforeMindRemovedEvent ev)
     {
-        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value) || _tag.HasTag(ent.Owner, _dontReopenRoleTag)) // Lua
+        if (ent.Comp.Job == null || !ent.Comp.Active || !JobShouldBeReopened(ent.Comp.Job.Value))
             return;
+        if (_tag.HasTag(ent.Owner, _dontReopenRoleTag))
+        {
+            ent.Comp.Active = false;
+            ev.DeleteEntity = false;
+            return;
+        }
 
-        OpenJob(ent);
+        OpenJob(ent, ev.User);
         ev.DeleteEntity = false;
     }
 
-    public void OpenJob(Entity<JobTrackingComponent> ent)
+    public void OpenJob(Entity<JobTrackingComponent> ent, NetUserId? userId = null)
     {
         if (ent.Comp.Job is not { } job)
             return;
 
+        ent.Comp.Active = false;
+
         if (!TryComp<StationJobsComponent>(ent.Comp.SpawnStation, out var stationJobs))
             return;
-
-        ent.Comp.Active = false;
 
         try
         {
@@ -106,6 +119,11 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
                 return;
 
             _stationJobs.TryAdjustJobSlot(ent.Comp.SpawnStation, job, 1);
+
+            if (userId != null)
+                _stationJobs.TryRemovePlayerJobs(ent.Comp.SpawnStation, userId.Value, stationJobs);
+            else if (_player.TryGetSessionByEntity(ent, out var session))
+                _stationJobs.TryRemovePlayerJobs(ent.Comp.SpawnStation, session.UserId, stationJobs);
         }
         catch (ArgumentException)
         {
@@ -143,7 +161,8 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 
             if (!job.Active
                 || job.Job != jobProtoId
-                || xform.MapID != _gameTicker.DefaultMap // Skip if they're in cryo or on expedition
+                || !_sectors.TryGetHubMapId(out var hubMap)
+                || xform.MapID != hubMap
                 || !_player.TryGetSessionByEntity(uid, out var session)
                 || session.State.Status != SessionStatus.InGame)
                 continue;

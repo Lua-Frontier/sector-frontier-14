@@ -1,0 +1,67 @@
+# Military USSP kits — formerly StartingGear pockets/storage
+
+- type: loadout
+  id: USSPKitRifleman
+  equipment:
+    pocket1: NFWeaponPistolPollock
+    pocket2: Magazine9x19mmPistolFMJ
+  storage:
+    back:
+    - RadioHandheldNF
+    - BookUSSPLaw
+
+- type: loadout
+  id: USSPKitSergeant
+  equipment:
+    pocket1: NFWeaponPistolPollock
+    pocket2: Magazine9x19mmPistolFMJ
+  storage:
+    back:
+    - RadioHandheldNF
+    - BookUSSPLaw
+
+- type: loadout
+  id: USSPKitCommissar
+  equipment:
+    pocket1: WeaponRevolverPython357
+    pocket2: SpeedLoader357_magnumFMJ
+  storage:
+    back:
+    - RadioHandheldNF
+    - RubberStampUSSPTaccomm
+    - BookUSSPLaw
+    - BookTheCommonCauseFirstEdition
+    - USSPHandheldOverwatchConsole
+
+- type: loadoutGroup
+  id: USSPRiflemanItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - USSPKitRifleman
+  fallbacks:
+  - USSPKitRifleman
+
+- type: loadoutGroup
+  id: USSPSergeantItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - USSPKitSergeant
+  fallbacks:
+  - USSPKitSergeant
+
+- type: loadoutGroup
+  id: USSPCommissarItems
+  name: loadout-group-contractor-backpack-items
+  hidden: true
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - USSPKitCommissar
+  fallbacks:
+  - USSPKitCommissar

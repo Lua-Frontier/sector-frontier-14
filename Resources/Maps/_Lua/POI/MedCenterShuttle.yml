@@ -14109,41 +14109,13 @@ entities:
     - type: Transform
       pos: 0.14630446,12.710607
       parent: 1
-- proto: DrinkCherryBlossom
+- proto: DrinkFlaskBar
   entities:
   - uid: 2
-    mapInit: true
-    paused: true
     components:
-    - type: MetaData
-      desc: Сладковатая прозрачная жидкость с лёгким розоватым оттенком.
-      name: стакан расцвет сакуры
     - type: Transform
-      pos: -8.57205,-6.8857074
+      pos: -11.508291,-9.20083
       parent: 1
-    - type: SolutionContainerManager
-      solutions: null
-      containers:
-      - drink
-    - type: TransformableContainer
-      transformed: True
-      currentReagent: CherryBlossom
-      initialDescription: Лёгкий освежающий напиток с нежным ароматом цветущей сакуры.
-    - type: MeleeWeapon
-      nextAttack: -40.666625
-    - type: EmitSoundOnCollide
-      nextSound: -51270.4153962
-    - type: ContainerContainer
-      containers:
-        solution@drink: !type:ContainerSlot
-          ent: 3
-    - type: NameModifier
-      baseName: стакан-метаморф
-    - type: Forensics
-      residues: []
-      dnas: []
-      fibers: []
-      fingerprints: []
 - proto: DrinkFlaskBar
   entities:
   - uid: 1970
@@ -30198,8 +30170,8 @@ entities:
         stampedName: stamp-component-stamped-name-engineer
       content: >-
         Моя работал, но у Моя обеденный перерыв.
-         Если моя не забудет, моя подключит аппараты клонирования мультитулом. 
-         Если моя забудет, то уже Твоя подключать их, 
+         Если моя не забудет, моя подключит аппараты клонирования мультитулом.
+         Если моя забудет, то уже Твоя подключать их,
         на всякий случай моя мультитул оставить тут.
   - uid: 4094
     components:

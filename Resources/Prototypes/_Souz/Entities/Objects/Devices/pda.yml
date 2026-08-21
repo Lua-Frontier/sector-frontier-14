@@ -1,0 +1,712 @@
+# source: Entities/Objects/Devices/pda.yml
+
+- type: entity
+
+  parent: BasePDA
+
+  id: USSPSFPassengerPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: passenger PDA
+
+  description: Why isn't it gray?
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFPassengerIDCard
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda
+
+  - type: PdaBorderColor
+
+    borderColor: "#67665a" # DS14
+
+- type: entity
+
+  parent: BaseSecurityPDA
+
+  id: USSPSFSecurityCadetPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: security cadet PDA
+
+  description: Why isn't it red?
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFSecurityCadetIDCard
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-interncadet
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-interncadet
+
+  - type: PdaBorderColor
+
+    borderColor: "#67665a" # DS14
+
+    accentVColor: "#2f303c" # DS14
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-interncadet
+
+- type: entity
+
+  parent: BasePDA
+
+  id: USSPSFCaptainPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: captain PDA
+
+  description: Surprisingly no different from your PDA.
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFCaptainIDCard
+
+    penSlot:
+
+      startingItem: USSPSFPenCap
+
+      priority: -1
+
+      whitelist:
+
+        tags:
+
+        - Write
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-captain
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-captain
+
+  - type: PdaBorderColor
+
+    borderColor: "#7C5D00"
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-captain
+
+- type: entity
+
+  parent: BasePDA
+
+  id: USSPSFHoPPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: head of personnel PDA
+
+  description: Looks like it's been chewed on.
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFHoPIDCard
+
+    penSlot:
+
+      startingItem: USSPSFPenHop
+
+      priority: -1
+
+      whitelist:
+
+        tags:
+
+        - Write
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-hop
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-hop
+
+  - type: PdaBorderColor
+
+    borderColor: "#789876"
+
+    accentHColor: "#12445b" # DS14
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-hop
+
+  - type: CartridgeLoader
+
+    uiKey: enum.PdaUiKey.Key
+
+    preinstalled:
+
+      - CrewManifestCartridge
+
+      - NotekeeperCartridge
+
+      - NanoTaskCartridge
+
+      - NewsReaderCartridge
+
+      - NanoChatCartridge
+
+- type: entity
+
+  parent: BaseSecurityPDA
+
+  id: USSPSFHoSPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: head of security PDA
+
+  description: Whosoever bears this PDA is the law.
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFHoSIDCard
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-hos
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-hos
+
+  - type: PdaBorderColor
+
+    borderColor: "#2f303c" # DS14
+
+    accentHColor: "#12445b" # DS14
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-hos
+
+  - type: CartridgeLoader
+
+    preinstalled:
+
+    - CrewManifestCartridge
+
+    - NotekeeperCartridge
+
+    - NanoTaskCartridge
+
+    - NewsReaderCartridge
+
+    - WantedListCartridge
+
+    - LogProbeCartridge
+
+    - NanoChatCartridge
+
+- type: entity
+
+  parent: BaseSecurityPDA
+
+  id: USSPSFSecurityPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: security PDA
+
+  description: Red to hide the stains of passenger blood.
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFSecurityIDCard
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-security
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-security
+
+  - type: PdaBorderColor
+
+    borderColor: "#2f303c" # DS14
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-security
+
+- type: entity
+
+  parent: BaseMedicalPDA
+
+  id: USSPSFBrigmedicPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: brigmedic PDA
+
+  description: I wonder whose pulse is on the screen? I hope it doesn't stop...
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFBrigmedicIDCard
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-brigmedic
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-brigmedic
+
+  - type: PdaBorderColor
+
+    borderColor: "#2f303c" # DS14
+
+    accentHColor: "#817d6f" # DS14
+
+    accentVColor: "#817d6f" # DS14
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-brigmedic
+
+  - type: CartridgeLoader
+
+    preinstalled:
+
+    - CrewManifestCartridge
+
+    - NotekeeperCartridge
+
+    - NanoTaskCartridge
+
+    - NewsReaderCartridge
+
+    - WantedListCartridge
+
+    - MedTekCartridge
+
+    - NanoChatCartridge
+
+
+
+# source: _DeadSpace/Entities/Objects/Devices/pda.yml
+
+- type: entity
+
+  parent: BasePDA
+
+  id: USSPSFSecurityPilotPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: security pilot PDA
+
+  description: Smells like space shuttles.
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFSecurityPilotIDCard
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-security
+
+    - state: light_overlay
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-security
+
+  - type: PdaBorderColor
+
+    borderColor: "#2f303c"
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-security
+
+  - type: CartridgeLoader
+
+    uiKey: enum.PdaUiKey.Key
+
+    preinstalled:
+
+    - CrewManifestCartridge
+
+    - NotekeeperCartridge
+
+    - NanoTaskCartridge
+
+    - NewsReaderCartridge
+
+    - WantedListCartridge
+
+    - AstroNavCartridge
+
+    - NanoChatCartridge
+
+
+
+# source: _DeadSpace/_Soyuz/Entities/Objects/Devices/pda.yml
+
+- type: entity
+
+  parent: BaseWidePDA
+
+  id: USSPSFPolitrukPDA
+
+  categories: [ USSP ]
+
+  suffix: USSP
+
+  name: КПК Политического Руководителя
+
+  description: Скромный, алый как Советской флаг, КПК Политического руководителя Управления ПолитКонтроля НКВБ. В нем довольно много записей о разного рода коммунизме. Почему этот глаз смотрит вечно на тебя?
+
+  components:
+
+  - type: Pda
+
+    id: USSPSFPolitrukIDCard
+
+    penSlot:
+
+      startingItem: USSPSFLuxuryPen
+
+      priority: -1
+
+      whitelist:
+
+        tags:
+
+        - Write
+
+  - type: Sprite
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    layers:
+
+    - map: [ "enum.PdaVisualLayers.Base" ]
+
+      state: pda-politruk
+
+    - state: light_overlay_wide
+
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+
+      shader: unshaded
+
+      visible: false
+
+    - state: id_overlay_wide
+
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+
+      shader: unshaded
+
+      visible: false
+
+  - type: Appearance
+
+    appearanceDataInit:
+
+     enum.PdaVisuals.PdaType:
+
+       !type:String
+
+       pda-politruk
+
+  - type: PdaBorderColor
+
+    borderColor: "#9b2d30"
+
+  - type: Icon
+
+    sprite: _Souz/Objects/Devices/pda.rsi
+
+    state: pda-politruk
+

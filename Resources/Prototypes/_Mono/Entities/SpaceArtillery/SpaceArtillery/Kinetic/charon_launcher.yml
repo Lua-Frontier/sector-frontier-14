@@ -1,4 +1,5 @@
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretCharonBase
   parent: BallisticArtilleryTier4HP
   name: M381 CHARON mass driver
@@ -65,6 +66,7 @@
 # Station one w/ infinite ammo
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretCharon
   name: M381 CHARON mass driver
   parent: [WeaponTurretCharonBase, BallisticArtilleryUnanchorable]
@@ -85,6 +87,7 @@
 # Ship one w/ limited ammo
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: WeaponTurretCharonReload
   name: M381 CHARON mass driver
   parent: [WeaponTurretCharonBase, BallisticArtilleryUnanchorableCartridge]

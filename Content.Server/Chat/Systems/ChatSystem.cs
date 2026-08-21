@@ -32,6 +32,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -361,19 +362,14 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playSound)
         {
-            if (announcementSound == null)
-            {
-                if (sender == Loc.GetString("chat-manager-sender-announcement")) announcementSound = new SoundPathSpecifier(CentComAnnouncementSound); // Corvax-Announcements: Support custom alert sound from admin panel
-            }
-
-            _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.GetSound(announcementSound), Filter.Broadcast(), true, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f));
+            PlayAnnouncementSound(announcementSound, Filter.Broadcast());
 
             if (author != null && TryComp<TTSComponent>(author.Value, out var tts) && tts.VoicePrototypeId != null) // For comms console announcements
             {
                 var ev = new AnnounceSpokeEvent(tts.VoicePrototypeId, originalMessage, author.Value);
                 RaiseLocalEvent(ev);
             }
-            else if (usePresetTTS && sender == Loc.GetString("chat-manager-sender-announcement")) // For admin announcements from Centcomm with preset voices
+            else if (usePresetTTS && sender == Loc.GetString("comms-console-announcement-title-centcom")) // For admin announcements from Centcomm with preset voices
             {
                 voice = _centcommTTS;
                 var ev = new AnnounceSpokeEvent(voice, originalMessage, null);
@@ -386,6 +382,21 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
+    }
+
+    public void DispatchMapAnnouncement(
+        MapId mapId,
+        string message,
+        string? sender = null,
+        bool playSound = true,
+        SoundSpecifier? announcementSound = null,
+        Color? colorOverride = null)
+    {
+        if (mapId == MapId.Nullspace)
+            return;
+
+        var filter = Filter.Empty().AddInMap(mapId, EntityManager);
+        DispatchFilteredAnnouncement(filter, message, sender: sender, playSound: playSound, announcementSound: announcementSound, colorOverride: colorOverride);
     }
 
     /// <summary>
@@ -412,9 +423,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
         if (playSound)
-        {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
-        }
+            PlayAnnouncementSound(announcementSound, filter);
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
 
@@ -452,11 +461,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
         if (playDefaultSound)
-        {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
-        }
+            PlayAnnouncementSound(announcementSound, filter);
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
+    }
+
+    private void PlayAnnouncementSound(SoundSpecifier? announcementSound, Filter filter)
+    {
+        var sound = announcementSound ?? new SoundPathSpecifier(DefaultAnnouncementSound);
+        var args = announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f);
+        _audio.PlayGlobal(_audio.GetSound(sound), filter, true, args);
     }
 
     #endregion

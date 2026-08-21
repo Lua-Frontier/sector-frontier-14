@@ -1,7 +1,7 @@
 - type: entity
   id: ThrusterNfsd
   parent: ThrusterSecurity
-  suffix: NFSD
+  suffix: NFSD, 64
   components:
   - type: Machine
     board: ThrusterNfsdMachineCircuitboard
@@ -25,11 +25,11 @@
 - type: entity
   id: ThrusterMediumNfsd
   parent: ThrusterMedium
-  suffix: NFSD
+  suffix: NFSD, 88.1
   components:
   - type: Thruster
     baseThrust: 350
-    thrust: 469.7
+    thrust: 616.7
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster64.rsi
     offset: 0.5,-0.5
@@ -49,17 +49,46 @@
       color: "#FF0DA1"
 
 - type: entity
+  id: ThrusterLargeNfsd
+  parent: ThrusterLarge
+  name: large thruster
+  suffix: NFSD, 96
+  components:
+  - type: Machine
+    board: ThrusterLargeNfsdMachineCircuitboard
+  - type: Thruster
+    baseThrust: 800
+    thrust: 1536
+  - type: Sprite
+    sprite: _Lua/Structures/Shuttles/thruster96.rsi
+    offset: 1,-1
+    layers:
+    - state: base_nfsd_large
+      map: ["enum.ThrusterVisualLayers.Base"]
+    - state: thrust_large
+      map: ["enum.ThrusterVisualLayers.ThrustOn"]
+      shader: unshaded
+      visible: false
+      color: "#FF0DA1"
+    - state: thrust_burn_large_unshaded
+      map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
+      shader: unshaded
+      visible: false
+      offset: 0, 2.8
+      color: "#FF0DA1"
+
+- type: entity
   id: ThrusterNfsdStealh
   parent: [BaseStructureDisableToolUse, ThrusterNfsd]
   name: stealth thruster
-  suffix: NFSD, Stealth
+  suffix: NFSD, Stealth, 60
   description: A thruster with a reduced drive-plume and thermal output, but significantly less thrust.
   components:
   - type: NebulaThrustResistance
     resistance: 0.5
   - type: Thruster
     baseThrust: 50
-    thrust: 50
+    thrust: 60
     heatSignatureRatio: 7.5
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster32.rsi

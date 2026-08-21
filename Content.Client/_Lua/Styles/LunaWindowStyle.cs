@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
+using System.Text;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -9,6 +10,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.IoC;
 using Robust.Shared.Maths;
 
@@ -55,6 +57,7 @@ public static class LunaWindowStyle
     public const int FontSizeSmall = 10;
     public const int FontSizeBody = 12;
     public const int FontSizeTitle = 13;
+    public const int FontSizeMapLabel = 14;
     public const int FontSizeFooter = 8;
     public const float ProgressBarHeight = 14f;
     public const float ProgressBarHeightThick = 30f;
@@ -63,12 +66,14 @@ public static class LunaWindowStyle
     private static Font? _fontSmall;
     private static Font? _fontBody;
     private static Font? _fontTitle;
+    private static Font? _fontMapLabel;
     private static Font? _fontFooter;
 
     public static Font FontTiny => _fontTiny ??= Cache().NotoStack(size: FontSizeTiny);
     public static Font FontSmall => _fontSmall ??= Cache().NotoStack(size: FontSizeSmall);
     public static Font FontBody => _fontBody ??= Cache().NotoStack(size: FontSizeBody);
     public static Font FontTitle => _fontTitle ??= Cache().NotoStack(variation: "Bold", size: FontSizeTitle);
+    public static Font FontMapLabel => _fontMapLabel ??= Cache().NotoStack(variation: "Bold", size: FontSizeMapLabel);
     public static Font FontFooter => _fontFooter ??= Cache().NotoStack(size: FontSizeFooter);
 
     private static IResourceCache Cache() => IoCManager.Resolve<IResourceCache>();
@@ -157,6 +162,54 @@ public static class LunaWindowStyle
             divider.PanelOverride = ThinDivider();
     }
 
+    public static void ApplyWindowChrome(DefaultWindow window)
+    {
+        if (window.ChildCount < 2)
+            return;
+
+        if (window.GetChild(0) is PanelContainer frame)
+        {
+            frame.ModulateSelfOverride = Color.White;
+            frame.PanelOverride = Frame();
+        }
+
+        if (window.GetChild(1) is not BoxContainer layout || layout.ChildCount < 2)
+            return;
+
+        if (layout.GetChild(0) is PanelContainer header)
+        {
+            header.ModulateSelfOverride = Color.White;
+            header.PanelOverride = TitleBar();
+
+            if (header.ChildCount > 0 &&
+                header.GetChild(0) is BoxContainer titleRow &&
+                titleRow.ChildCount > 0 &&
+                titleRow.GetChild(0) is Label titleLabel)
+            {
+                titleLabel.FontOverride = FontTitle;
+                titleLabel.FontColorOverride = TextPrimary;
+            }
+        }
+
+        const string dividerName = "LuaLunaHeaderDivider";
+        if (layout.GetChild(1) is PanelContainer existing && existing.Name == dividerName)
+        {
+            existing.PanelOverride = ThinDivider();
+            return;
+        }
+
+        var divider = new PanelContainer
+        {
+            Name = dividerName,
+            MinHeight = 1,
+            MaxHeight = 1,
+            HorizontalExpand = true,
+            PanelOverride = ThinDivider()
+        };
+        layout.AddChild(divider);
+        divider.SetPositionInParent(1);
+    }
+
     public static void ApplyCompactStyle(Control root)
     {
         foreach (var child in root.Children)
@@ -227,6 +280,69 @@ public static class LunaWindowStyle
         label.AddStyleClass(StyleNano.StyleClassLabelSmall);
         label.FontOverride = FontTiny;
         label.FontColorOverride = TextPrimary;
+    }
+
+    public static void StyleLoreBody(Label label, string text, float maxWidth, Color? color = null)
+    {
+        label.AddStyleClass(StyleNano.StyleClassLabelSmall);
+        label.FontOverride = FontTiny;
+        label.FontColorOverride = color ?? TextSecondary;
+        label.Text = WrapText(text, FontTiny, maxWidth);
+    }
+
+    public static string WrapText(string text, Font font, float maxWidth)
+    {
+        if (string.IsNullOrEmpty(text) || maxWidth <= 8f)
+            return text;
+
+        const float uiScale = 1f;
+        var result = new StringBuilder();
+        var paragraphs = text.Replace("\r\n", "\n").Split('\n');
+        for (var p = 0; p < paragraphs.Length; p++)
+        {
+            if (p > 0)
+                result.Append('\n');
+
+            var paragraph = paragraphs[p];
+            if (paragraph.Length == 0)
+                continue;
+
+            var line = string.Empty;
+            foreach (var word in paragraph.Split(' '))
+            {
+                if (word.Length == 0)
+                    continue;
+
+                var candidate = line.Length == 0 ? word : $"{line} {word}";
+                if (MeasureWidth(candidate, font, uiScale) <= maxWidth || line.Length == 0)
+                {
+                    line = candidate;
+                    continue;
+                }
+
+                result.Append(line);
+                result.Append('\n');
+                line = word;
+            }
+
+            result.Append(line);
+        }
+
+        return result.ToString();
+    }
+
+    private static float MeasureWidth(string text, Font font, float uiScale)
+    {
+        var width = 0;
+        foreach (var rune in text.EnumerateRunes())
+        {
+            var metrics = font.GetCharMetrics(rune, uiScale);
+            if (metrics == null)
+                continue;
+            width += metrics.Value.Advance;
+        }
+
+        return width / uiScale;
     }
 
     public static void StyleDivider(PanelContainer panel) => panel.PanelOverride = ThinDivider();

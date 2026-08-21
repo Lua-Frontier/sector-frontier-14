@@ -318,22 +318,17 @@ internal sealed partial class ChatManager : IChatManager
                 ("playerName", player.Name),
                 ("message", FormattedMessage.EscapeText(message)));
         }
-
-        if (player.Name == "ahahahahha")
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName","[color=#66b6ff]a[/color][color=#5bbbfc]h[/color][color=#4fbff8]a[/color][color=#44c4f5]h[/color][color=#39c9f1]a[/color][color=#2dcdee]h[/color][color=#22d2ea]a[/color][color=#17d7e7]h[/color][color=#0bdbe3]h[/color][color=#00e0e0]a[/color]"), ("message", FormattedMessage.EscapeText(message)));
-        }
         if (player.Name == "HacksLua")
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#46082B]H[/color][color=#461041]a[/color][color=#451857]c[/color][color=#451F6C]k[/color][color=#442782]s[/color][color=#5A3C99]L[/color][color=#7152AF]u[/color][color=#8767C6]a[/color]"), ("message", FormattedMessage.EscapeText(message)));
-        }
-        if (player.Name == "hqdishka")
-        {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#D97FE4]h[/color][color=#C487E5]q[/color][color=#AE90E5]d[/color][color=#9998E6]i[/color][color=#83A1E7]s[/color][color=#6EA9E8]h[/color][color=#58B2E8]k[/color][color=#43BAE9]a[/color]"), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#4F36DF]H[/color][color=#4453DF]a[/color][color=#386FE0]c[/color][color=#2D8CE0]k[/color][color=#22A9E0]s[/color][color=#17C6E0]L[/color][color=#0BE2E1]u[/color][color=#00FFE1]a[/color]"), ("message", FormattedMessage.EscapeText(message)));
         }
         if (player.Name == "JoBot")
         {
-            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#FF69B4]JoBot[/color]"), ("message", FormattedMessage.EscapeText(message)));
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#ff69b4]J[/color][color=#ff6e87]o[/color][color=#ff735a]B[/color][color=#ff772d]o[/color][color=#ff7c00]t[/color]"), ("message", FormattedMessage.EscapeText(message)));
+        }
+        if (player.Name == "AziDRAGON")
+        {
+            wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message", ("playerName", "[color=#b048ad]A[/color]zi[color=#bb4b98]D[/color][color=#c54f82]R[/color][color=#d0526d]A[/color][color=#db5557]G[/color][color=#e55942]O[/color][color=#f05c2c]N[/color]"), ("message", FormattedMessage.EscapeText(message)));
         }
 
         //TODO: player.Name color, this will need to change the structure of the MsgChatMessage

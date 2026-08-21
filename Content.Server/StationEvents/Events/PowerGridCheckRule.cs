@@ -1,6 +1,7 @@
 using System.Threading;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
@@ -21,7 +22,7 @@ namespace Content.Server.StationEvents.Events
         {
             base.Started(uid, component, gameRule, args);
 
-            if (!TryGetRandomStation(out var chosenStation))
+            if (!TryGetRandomStationForEvent(uid, out var chosenStation))
                 return;
 
             component.AffectedStation = chosenStation.Value;
@@ -59,7 +60,10 @@ namespace Content.Server.StationEvents.Events
             component.AnnounceCancelToken = new CancellationTokenSource();
             Timer.Spawn(3000, () =>
             {
-                Audio.PlayGlobal(component.PowerOnSound, Filter.Broadcast(), true);
+                if (!TryComp<StationDataComponent>(component.AffectedStation, out var stationData))
+                    return;
+
+                Audio.PlayGlobal(component.PowerOnSound, StationSystem.GetInStation(stationData), true);
             }, component.AnnounceCancelToken.Token);
             component.Unpowered.Clear();
         }

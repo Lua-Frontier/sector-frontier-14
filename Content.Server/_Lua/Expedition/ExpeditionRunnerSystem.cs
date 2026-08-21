@@ -3,8 +3,8 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Server._Lua.Sectors;
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Mind;
 using Content.Server.Shuttles.Components;
@@ -42,7 +42,7 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoles = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -278,7 +278,8 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
             { destination = new EntityCoordinates(stationData.ReturnMapUid.Value, stationData.ReturnWorldPosition); }
             else
             {
-                var mapId = _gameTicker.DefaultMap;
+                if (!_sectors.TryGetHubMapId(out var mapId) || mapId == MapId.Nullspace)
+                    continue;
                 if (!_mapSystem.TryGetMap(mapId, out var returnMapUid)) continue;
                 destination = new EntityCoordinates(returnMapUid.Value, FindFallbackReturnLocation(mapId));
             }

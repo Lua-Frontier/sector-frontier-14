@@ -1,0 +1,97 @@
+# source: _ADT/Entities/Objects/Fun/nine.yml
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFADTClothingHeadHatBMF
+  categories: [ USSP ]
+  suffix: USSP
+  name: парадная фуражка ВКФ СССП
+  description: Белый парадная фуражка Военно-космического флота СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/Nine/bmf.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/Nine/bmf.rsi
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFADTClothingHeadMil
+  categories: [ USSP ]
+  suffix: USSP
+  name: малиновый берет СВ СССП
+  description: Малиновый берет военнослужащих войск СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/Nine/millitary.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/Nine/millitary.rsi
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFADTClothingHeadBorder
+  categories: [ USSP ]
+  suffix: USSP
+  name: зелёный Берет ПВ СССП
+  description: Зелёный берет военнослужащих Пограничных войск СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/Nine/border.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/Nine/border.rsi
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFADTClothingUniformBMF
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый парадная форма ВКФ СССП
+  description: Полная парадная форма Военно-космического флота СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Nine/bmf.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Nine/bmf.rsi
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFADTClothingUniformKVD
+  categories: [ USSP ]
+  suffix: USSP
+  name: парадная форма КДВ и ВДВ СССП
+  description: Полная парадная форма Космо-Десантных Войск и Воздушно-десантных войск ССО
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Nine/kvd.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Nine/kvd.rsi
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFADTClothingUniformSea
+  categories: [ USSP ]
+  suffix: USSP
+  name: парадная форма МП СССП
+  description: Полная парадная форма Морской Пехоты СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Nine/sea.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Nine/sea.rsi
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFADTClothingUniformMillitary
+  categories: [ USSP ]
+  suffix: USSP
+  name: парадная форма СВ СССП
+  description: Полная парадная форма Сухопутных Войск СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Nine/millitary.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Nine/millitary.rsi
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFADTClothingUniformBorder
+  categories: [ USSP ]
+  suffix: USSP
+  name: парадная форма ПВ СССП
+  description: Полная парадная форма пограничных войск СССП
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Nine/border.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Nine/border.rsi

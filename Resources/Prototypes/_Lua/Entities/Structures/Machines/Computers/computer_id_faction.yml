@@ -1,0 +1,84 @@
+# Faction ID card computers — share BaseComputerId (no NT accessLevels hardcoded in C#).
+
+- type: entity
+  parent: BaseComputerId
+  id: ComputerIdUssp
+  name: USSP ID card computer
+  description: Terminal for programming USSP personnel ID cards.
+  suffix: USSP
+  categories: [ USSP ]
+  components:
+  - type: IdCardConsole
+    allowedDepartments:
+    - OutpostUssp
+    accessLevels:
+    - USSP
+    - USSPHigh
+    - USSPCommand
+    - USSPCaptain
+    - USSPHeadOfPersonnel
+    - USSPHeadOfSecurity
+    - USSPSecurity
+    - USSPBrig
+    - USSPArmory
+    - USSPBrigmedic
+    - USSPMaintenance
+    - USSPExternal
+    - USSPService
+    - USSPEngineering
+    - USSPAtmospherics
+    - USSPChiefEngineer
+    - USSPMedical
+    - USSPChemistry
+    - USSPChiefMedicalOfficer
+    - USSPResearch
+    - USSPResearchDirector
+    - USSPCargo
+    - USSPQuartermaster
+    - USSPSalvage
+    - USSPBar
+    - USSPKitchen
+    - USSPHydroponics
+    - USSPChapel
+    - USSPTheatre
+    - USSPJanitor
+    - USSPLawyer
+    - USSPDetective
+    - USSPSOD
+  - type: AccessReader
+    access: [["USSPCaptain"], ["USSPHeadOfPersonnel"], ["USSPCommand"]]
+
+- type: entity
+  parent: BaseComputerId
+  id: ComputerIdTypan
+  name: Typan ID card computer
+  description: Terminal for programming Typan Syndicate personnel ID cards.
+  suffix: Typan
+  categories: [ Syndicate ]
+  components:
+  - type: IdCardConsole
+    allowedDepartments:
+    - OutpostSyndicate
+    accessLevels:
+    - SyndicateAgent
+    - SyndicateHigh
+    - SyndicateCommand
+    - SyndicateTelecomOfficer
+    - SyndicateResearchDirector
+    - SyndicateSecurity
+    - SyndicateBrig
+    - SyndicateArmory
+    - SyndicateMaintenance
+    - SyndicateExternal
+    - SyndicateService
+    - SyndicateEngineering
+    - SyndicateAtmospherics
+    - SyndicateMedical
+    - SyndicateChemistry
+    - SyndicateResearch
+    - SyndicateCargo
+    - SyndicateKitchen
+    - SyndicateHydroponics
+    - NuclearOperative
+  - type: AccessReader
+    access: [["SyndicateTelecomOfficer"], ["SyndicateResearchDirector"], ["SyndicateCommand"]]

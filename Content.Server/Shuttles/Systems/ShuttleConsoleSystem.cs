@@ -21,6 +21,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Construction.Components; // Frontier
 using Content.Shared._Mono.FireControl; // Lua
+using Content.Shared._Mono.ShipGuns; // Lua
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Power;
@@ -439,6 +440,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 continue;
             // End Frontier
 
+            if (HasComp<MagneticGrabberComponent>(uid))
+                continue;
+
             var gridDocks = result.GetOrNew(GetNetEntity(xform.GridUid.Value));
 
             var state = new DockingPortState()
@@ -519,7 +523,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 fcConnected = true;
                 var list = new List<FireControllableEntry>();
                 foreach (var c in fcServer.Controlled)
-                { list.Add(new FireControllableEntry(GetNetEntity(c), GetNetCoordinates(Transform(c).Coordinates), MetaData(c).EntityName)); }
+                {
+                    var type = TryComp<ShipGunTypeComponent>(c, out var gunType) ? gunType.Type : ShipGunType.Other;
+                    list.Add(new FireControllableEntry(GetNetEntity(c), GetNetCoordinates(Transform(c).Coordinates), MetaData(c).EntityName, type));
+                }
                 fcControllables = list.ToArray();
             }
             // End Lua

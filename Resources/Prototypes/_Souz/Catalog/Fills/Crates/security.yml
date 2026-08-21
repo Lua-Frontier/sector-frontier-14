@@ -1,0 +1,136 @@
+# source: Catalog/Fills/Crates/security.yml
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityArmor
+  categories: [ USSP ]
+  suffix: USSP
+  name: armor crate
+  description: Contains three bulletproof vests. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorBulletproof
+        amount: 3
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityHelmet
+  categories: [ USSP ]
+  suffix: USSP
+  name: helmet crate
+  description: Contains three standard-issue brain buckets. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFClothingHeadHelmetBasic
+        amount: 3
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityNonlethal
+  categories: [ USSP ]
+  suffix: USSP
+  name: nonlethals crate
+  description: Contains a mix of disablers, stun batons, and flashes. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: NFWeaponEnergyPistolDisablerPractice
+        amount: 3
+      - id: Stunbaton
+        amount: 3
+      - id: USSPSFBoxFlashbang
+      - id: Flash
+        amount: 3
+#      - Pepperspray
+#      - GrenadeTeargas
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecuritySupplies
+  categories: [ USSP ]
+  suffix: USSP
+  name: security supplies crate
+  description: Contains various supplies for the station's Security team. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFBoxHandcuff
+      - id: USSPSFBoxSechud
+#      - SecBelt
+#      - SecGasmask
+#      - SpacelawBook
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityBiosuit
+  categories: [ USSP ]
+  suffix: USSP
+  name: security bio suit crate
+  description: Contains 3 biohazard suits to ensure that no disease will distract you from your duties. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFClothingOuterBioSecurity
+        amount: 3
+      - id: ClothingHandsGlovesLatex
+        amount: 3
+      - id: ClothingMaskSterile
+        amount: 3
+- type: entity
+  id: USSPSFCrateSecurityHardsuit
+  categories: [ USSP ]
+  suffix: USSP
+  parent: CrateSecgear
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFClothingOuterHardsuitSecurity
+        amount: 2
+      - id: USSPSFClothingShoesBootsMagSecurity
+        amount: 2
+- type: entity
+  id: USSPSFCrateSecurityUSSPjuggernaut
+  categories: [ USSP ]
+  suffix: USSP
+  parent: CrateSecgear
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFClothingOuterArmorUSSPjuggernaut
+      - id: USSPSFADTClothingHeadUSSPjuggernautHelmetArmored
+      - id: USSPSFClothingUniformJumpsuitUSSPBlack
+      - id: USSPSFClothingHandsGlovesLeatherUSSPBlack
+      - id: USSPSFClothingShoesUSSPBlack
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityJetpack
+  categories: [ USSP ]
+  suffix: USSP
+  name: jetpack crate
+  description: Contains 3 jetpack. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFJetpackSecurity
+        amount: 3
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityGlovesCombat
+  categories: [ USSP ]
+  suffix: USSP
+  name: combat gloves crate
+  description: Contains 2 combat gloves. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFClothingHandsGlovesCombat
+        amount: 2
+- type: entity
+  parent: CrateSecgear
+  id: USSPSFCrateSecurityBootsMagSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: magnetic shoes crate
+  description: Contains 2 magnetic shoeы. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: USSPSFClothingShoesBootsMagSecurity
+        amount: 2

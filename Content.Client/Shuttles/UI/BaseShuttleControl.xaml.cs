@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Lua.Styles;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Mono.GridEdgeMarker; // Mono
 using Content.Shared.Maps; // Mono
@@ -113,7 +114,7 @@ public partial class BaseShuttleControl : MapGridControl
             var text = $"{radius:0}m";
             var textDimensions = handle.GetDimensions(Font, text, UIScale);
 
-            handle.DrawCircle(origin, scaledRadius, color, false);
+            LunaDraw.Circle(handle, origin, scaledRadius, color, false);
             handle.DrawString(Font, origin + new Vector2(0f, -scaledRadius) - new Vector2(0f, textDimensions.Y), text, UIScale, color);
         }
 
@@ -125,7 +126,7 @@ public partial class BaseShuttleControl : MapGridControl
             // TODO: Handle distance properly.
             var aExtent = angle.ToVec() * ScaledMinimapRadius * 1.42f;
             var lineColor = RadarRadialLineColor.WithAlpha(0.02f); // Lua
-            handle.DrawLine(origin - aExtent, origin + aExtent, lineColor);
+            LunaDraw.Line(handle, origin - aExtent, origin + aExtent, lineColor);
         }
     }
 
@@ -135,7 +136,7 @@ public partial class BaseShuttleControl : MapGridControl
         var origin = MidPointVector; // Mono - stay with azimuth HUD when panning
         var aExtent = (angle - Math.Tau / 4).ToVec() * ScaledMinimapRadius * 1.42f;
         var lineColor = Color.Red.WithAlpha(0.1f);
-        handle.DrawLine(origin, origin + aExtent, lineColor);
+        LunaDraw.Line(handle, origin, origin + aExtent, lineColor);
     }
     // End Frontier Corvax
 
@@ -196,11 +197,11 @@ public partial class BaseShuttleControl : MapGridControl
                         : isMajor
                             ? majorTickColor
                             : baseTickColor;
-            handle.DrawLine(outer, inner, tickColor);
+            LunaDraw.Line(handle, outer, inner, tickColor);
             if (isNorth)
             {
                 var sideOffset = new Vector2(-inwardNormal.Y, inwardNormal.X) * 0.35f;
-                handle.DrawLine(outer + sideOffset, inner + sideOffset, tickColor.WithAlpha(0.46f));
+                LunaDraw.Line(handle, outer + sideOffset, inner + sideOffset, tickColor.WithAlpha(0.46f));
             }
 
             if (!isMajor)
@@ -246,7 +247,7 @@ public partial class BaseShuttleControl : MapGridControl
         var cardinalLabelColor = subtleGray.WithAlpha(0.9f);
         var labelShadowColor = Color.Black.WithAlpha(0.36f);
 
-        handle.DrawCircle(origin, radius, subtleGray.WithAlpha(0.12f), false);
+        LunaDraw.Circle(handle, origin, radius, subtleGray.WithAlpha(0.12f), false);
 
         for (var step = 0; step < 360 / azimuthMinorTickStepDegrees; step++)
         {
@@ -273,11 +274,11 @@ public partial class BaseShuttleControl : MapGridControl
                         : isMajor
                             ? majorTickColor
                             : baseTickColor;
-            handle.DrawLine(outer, inner, tickColor);
+            LunaDraw.Line(handle, outer, inner, tickColor);
             if (isNorth)
             {
                 var sideOffset = new Vector2(-direction.Y, direction.X) * 0.35f;
-                handle.DrawLine(outer + sideOffset, inner + sideOffset, tickColor.WithAlpha(0.46f));
+                LunaDraw.Line(handle, outer + sideOffset, inner + sideOffset, tickColor.WithAlpha(0.46f));
             }
 
             if (!isMajor)
@@ -304,8 +305,8 @@ public partial class BaseShuttleControl : MapGridControl
         var ringColor = Color.White.WithAlpha(0.08f);
         var northColor = Color.FromHex("#776C43");
         var eastColor = Color.FromHex("#4C6572");
-        handle.DrawCircle(compassCenter, compassRadius, ringColor, false);
-        handle.DrawCircle(compassCenter, 2.5f, ringColor.WithAlpha(0.48f), true);
+        LunaDraw.Circle(handle, compassCenter, compassRadius, ringColor, false);
+        LunaDraw.Circle(handle, compassCenter, 2.5f, ringColor.WithAlpha(0.48f), true);
 
         DrawCompassNeedle(handle, compassCenter, compassRadius, GetAzimuthDirection(heading, 0f), "N", northColor);
         DrawCompassNeedle(handle, compassCenter, compassRadius * 0.82f, GetAzimuthDirection(heading, 90f), "E", eastColor);
@@ -341,9 +342,9 @@ public partial class BaseShuttleControl : MapGridControl
 
         direction = Vector2.Normalize(direction);
         var left = new Vector2(-direction.Y, direction.X);
-        handle.DrawLine(start, end, color);
-        handle.DrawLine(end, end - direction * headLength + left * (headLength * 0.45f), color);
-        handle.DrawLine(end, end - direction * headLength - left * (headLength * 0.45f), color);
+        LunaDraw.Line(handle, start, end, color);
+        LunaDraw.Line(handle, end, end - direction * headLength + left * (headLength * 0.45f), color);
+        LunaDraw.Line(handle, end, end - direction * headLength - left * (headLength * 0.45f), color);
     }
 
     private static bool TryGetViewportEdgePoint(

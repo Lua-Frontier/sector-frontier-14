@@ -24,7 +24,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
 
-    private static readonly EntProtoId DefaultTraitorRule = "Traitor";
+    private static readonly EntProtoId DefaultTraitorRule = "TraitorReinforcement";
     private static readonly EntProtoId DefaultInitialInfectedRule = "Zombie";
     private static readonly EntProtoId DefaultNukeOpRule = "LoneOpsSpawn";
     private static readonly EntProtoId DefaultRevsRule = "Revolutionary";

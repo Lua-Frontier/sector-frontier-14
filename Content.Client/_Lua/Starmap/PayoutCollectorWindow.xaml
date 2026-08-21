@@ -2,8 +2,8 @@
                    xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
                    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                    Title="{Loc 'payout-window-title'}"
-                   MinSize="340 450"
-                   SetSize="340 485">
+                   MinSize="340 520"
+                   SetSize="340 555">
   <PanelContainer Name="Shell" Margin="4 2 4 4">
     <PanelContainer.PanelOverride>
       <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
@@ -28,12 +28,20 @@
                VerticalAlignment="Center"/>
       </BoxContainer>
       <PanelContainer Name="Divider" MinHeight="1" MaxHeight="1" HorizontalExpand="True"/>
+      <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+        <Label Name="DepositCaption" Text="{Loc 'payout-deposit-label'}" VerticalAlignment="Center"/>
+        <Label Name="DepositLabel" Text="{Loc 'payout-deposit-none'}" HorizontalExpand="True" VerticalAlignment="Center"/>
+        <Button Name="DepositButton" Text="{Loc 'payout-deposit'}" MinWidth="96"/>
+      </BoxContainer>
+      <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+        <LineEdit Name="WithdrawEdit" HorizontalExpand="True" PlaceHolder="{Loc 'payout-withdraw-placeholder'}"/>
+        <Button Name="WithdrawButton" Text="{Loc 'payout-withdraw'}" MinWidth="96"/>
+      </BoxContainer>
       <Label Name="HistoryHeadingLabel" Text="{Loc 'payout-history-title'}"/>
       <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="140">
         <BoxContainer Name="HistoryContainer" Orientation="Vertical" SeparationOverride="2"/>
       </ScrollContainer>
       <Label Name="HistoryEmptyLabel" Text="{Loc 'payout-last-claim-none'}"/>
-      <Button Name="ClaimButton" Text="{Loc 'payout-claim'}" HorizontalExpand="True"/>
     </BoxContainer>
   </PanelContainer>
 </styles:LunaWindow>

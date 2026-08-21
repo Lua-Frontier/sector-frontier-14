@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client.Lobby;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
+using Content.Shared._Lua.Achievements;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;
@@ -12,6 +13,7 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Enums;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Construction.UI
@@ -30,6 +32,7 @@ namespace Content.Client.Construction.UI
         [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
+        [Dependency] private readonly INetManager _net = default!;
         private readonly SpriteSystem _spriteSystem;
 
         private readonly IConstructionMenuView _constructionView;
@@ -125,6 +128,8 @@ namespace Content.Client.Construction.UI
         public void OnHudCraftingButtonToggled(BaseButton.ButtonToggledEventArgs args)
         {
             WindowOpen = args.Pressed;
+            if (args.Pressed)
+                _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ConfigureHere));
         }
 
         /// <inheritdoc />
@@ -603,6 +608,7 @@ namespace Content.Client.Construction.UI
                 WindowOpen = true;
                 _uiManager.GetActiveUIWidget<GameTopMenuBar>()
                     .CraftingButton.SetClickPressed(true); // This does not call CraftingButtonToggled
+                _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ConfigureHere));
             }
         }
 

@@ -5,9 +5,7 @@
 using System.Numerics;
 using Content.Server._Lua.Sectors;
 using Content.Server.GameTicking;
-using Content.Server.Station.Components;
 using Content.Shared._Lua.Starmap;
-using Content.Shared._Lua.Starmap.Components;
 using Content.Shared.Lua.CLVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -28,7 +26,7 @@ public sealed class SectorStarMapSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        Timer.Spawn(2000, () => { UpdateAllStarMaps(); });
+        Timer.Spawn(2000, () => InvalidateStarmapCache());
     }
 
     public override void Update(float frameTime)
@@ -37,10 +35,12 @@ public sealed class SectorStarMapSystem : EntitySystem
         if (_updateTimer <= 0)
         {
             _updateTimer = 30f;
-            UpdateAllStarMaps();
+            InvalidateStarmapCache();
         }
         else
-        { _updateTimer -= frameTime; }
+        {
+            _updateTimer -= frameTime;
+        }
     }
 
     public List<Star> GetSectorStars()
@@ -54,7 +54,7 @@ public sealed class SectorStarMapSystem : EntitySystem
         try
         {
             var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-            if (!_prototypes.TryIndex<StarmapDataPrototype>(dataId, out var data))
+            if (!StarmapDataComposer.TryCompose(_prototypes, dataId, out var data))
                 return sectorStars;
 
             foreach (var def in data.Stars)
@@ -70,45 +70,11 @@ public sealed class SectorStarMapSystem : EntitySystem
                         continue;
                 }
 
-                MapId mapId;
-
-                if (def.StarType == "frontier")
-                {
-                    mapId = GetFrontierSectorMapId();
-                    if (mapId == MapId.Nullspace) continue;
-                }
-                else if (def.StarType == "centcom")
-                {
+                if (!_sectorSystem.TryGetMapId(def.Id, out var mapId) || mapId == MapId.Nullspace)
                     continue;
-                }
-                else
-                {
-                    if (!_sectorSystem.TryGetMapId(def.Id, out var resolved))
-                    {
-                        if (currentPreset == "LuaAdventure")
-                        {
-                            var altId = def.Id switch
-                            {
-                                "TypanSector" => "TypanSectorLua",
-                                "PirateSector" => "PirateSectorLua",
-                                _ => null
-                            };
-                            if (altId == null || !_sectorSystem.TryGetMapId(altId, out resolved))
-                                continue;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                    mapId = resolved;
-                }
-
-                if (mapId == MapId.Nullspace) continue;
 
                 var displayName = GetMapEntityName(mapId) ?? def.Name;
-                var star = new Star(def.Position, mapId, displayName, Vector2.Zero);
-                sectorStars.Add(star);
+                sectorStars.Add(new Star(def.Position, mapId, displayName, Vector2.Zero));
             }
         }
         catch { }
@@ -116,31 +82,19 @@ public sealed class SectorStarMapSystem : EntitySystem
         return sectorStars;
     }
 
-    private MapId GetFrontierSectorMapId()
-    {
-        try
-        {
-            var defaultMap = _ticker.DefaultMap;
-            if (_mapManager.MapExists(defaultMap)) return defaultMap;
-        }
-        catch { }
-        return MapId.Nullspace;
-    }
+    public void UpdateAllStarMaps() => InvalidateStarmapCache();
 
-    public void UpdateAllStarMaps()
+    public void ForceUpdateAllStarMaps() => InvalidateStarmapCache();
+
+    public void OnStationCreated(EntityUid stationUid) => InvalidateStarmapCache();
+
+    public void TriggerStarMapUpdate() => InvalidateStarmapCache();
+
+    private void InvalidateStarmapCache()
     {
         try
         {
-            var sectorStars = GetSectorStars();
-            var starMapQuery = AllEntityQuery<StarMapComponent>();
-            var updatedCount = 0;
-            while (starMapQuery.MoveNext(out var uid, out var starMap))
-            {
-                UpdateStarMap(starMap, sectorStars);
-                updatedCount++;
-            }
-            try { EntityManager.System<StarmapSystem>().InvalidateCache(refreshConsoles: false); }
-            catch { }
+            EntityManager.System<StarmapSystem>().InvalidateCache(refreshConsoles: false);
         }
         catch { }
     }
@@ -150,17 +104,13 @@ public sealed class SectorStarMapSystem : EntitySystem
         try
         {
             var mapUid = _mapManager.GetMapEntityId(mapId);
-            if (TryComp<MetaDataComponent>(mapUid, out var meta) && !string.IsNullOrWhiteSpace(meta.EntityName)) return meta.EntityName;
+            if (TryComp<MetaDataComponent>(mapUid, out var meta) && !string.IsNullOrWhiteSpace(meta.EntityName))
+                return meta.EntityName;
         }
         catch { }
+
         return null;
     }
-
-    public void ForceUpdateAllStarMaps()
-    { UpdateAllStarMaps(); }
-
-    public void OnStationCreated(EntityUid stationUid)
-    { UpdateAllStarMaps(); }
 
     public string GetDiagnosticInfo()
     {
@@ -170,46 +120,29 @@ public sealed class SectorStarMapSystem : EntitySystem
         try
         {
             var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-            if (_prototypes.TryIndex<StarmapDataPrototype>(dataId, out var data))
+            if (StarmapDataComposer.TryCompose(_prototypes, dataId, out var data))
             {
                 info.AppendLine($"Stars defined: {data.Stars.Length}");
                 info.AppendLine($"Hyperlanes defined: {data.Hyperlanes.Length}");
                 foreach (var def in data.Stars)
-                {
-                    info.AppendLine($"  {def.Name} ({def.Id}): pos={def.Position} type={def.StarType}");
-                }
+                    info.AppendLine($"  {def.Name} ({def.Id}): pos={def.Position} type={def.StarType} hub={def.IsHub}");
             }
             else
             {
                 info.AppendLine($"StarmapData prototype '{dataId}' not found!");
             }
         }
-        catch (Exception ex) { info.AppendLine($"Error: {ex.Message}"); }
+        catch (Exception ex)
+        {
+            info.AppendLine($"Error: {ex.Message}");
+        }
 
         info.AppendLine("\nSector MapIds:");
-        var frontierMapId = GetFrontierSectorMapId();
-        info.AppendLine($"  Frontier: {frontierMapId}");
+        if (_sectorSystem.TryGetHubMapId(out var hubMap))
+            info.AppendLine($"  Hub: {hubMap} ({_sectorSystem.GetHubSectorId()})");
+        if (_sectorSystem.TryGetCentComMapId(out var ccMap))
+            info.AppendLine($"  CentCom: {ccMap}");
 
-        var starMapQuery = AllEntityQuery<StarMapComponent>();
-        var starMapCount = 0;
-        while (starMapQuery.MoveNext(out var uid, out var starMap))
-            starMapCount++;
-        info.AppendLine($"\nStarMap components found: {starMapCount}");
         return info.ToString();
     }
-
-    private void UpdateStarMap(StarMapComponent starMap, List<Star> sectorStars)
-    {
-        try
-        {
-            var names = new HashSet<string>();
-            foreach (var st in sectorStars) { if (!string.IsNullOrEmpty(st.Name)) names.Add(st.Name); }
-            foreach (var name in names) { starMap.RemoveStarByName(name); }
-            foreach (var star in sectorStars) { starMap.AddStar(star); }
-        }
-        catch { }
-    }
-
-    public void TriggerStarMapUpdate()
-    { UpdateAllStarMaps(); }
 }

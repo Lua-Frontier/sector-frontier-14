@@ -52,7 +52,7 @@ public sealed class StationJobsTest
         $"  id: {StationMapId}\n" +
         $"  minPlayers: 0\n" +
         $"  mapName: {StationMapId}\n" +
-        $"  mapPath: /Maps/Test/empty.yml\n" +
+        $"  mapPath: /Maps/_Lua/Test/empty.yml\n" +
         $"  stations:\n" +
         $"    Station:\n" +
         $"      mapNameTemplate: {StationMapId}\n" +

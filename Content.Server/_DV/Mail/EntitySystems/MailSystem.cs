@@ -240,7 +240,7 @@ namespace Content.Server._DV.Mail.EntitySystems
             _popupSystem.PopupEntity(Loc.GetString("mail-unlocked-reward", ("bounty", component.Bounty)), uid, args.User); // Frontier - Remove the mention of station income
             component.IsProfitable = false;
 
-            _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty, LedgerEntryType.MailDelivered);
+            _bank.TrySectorDeposit(SectorBankAccount.Frontier, component.Bounty, LedgerEntryType.MailDelivered, uid);
         }
 
         private void OnExamined(EntityUid uid, MailComponent component, ExaminedEvent args)

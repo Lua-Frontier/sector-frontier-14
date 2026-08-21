@@ -115,9 +115,12 @@
         state: body-overlay-2
         visible: false
       - map: [ "gloves" ]
+      - map: [ "leftarmband" ] # Mono - armband slot
+      - map: [ "rightarmband" ] # Mono - armband slot
       - map: [ "shoes" ]
       - map: [ "ears" ]
       - map: [ "id" ]
+      - map: [ "necklace" ]
       - map: [ "outerClothing" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
@@ -128,8 +131,11 @@
       - map: [ "enum.HumanoidVisualLayers.Hair" ]
       - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
       - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "balaclava" ] # Mono - balaclava slot
       - map: [ "mask" ]
       - map: [ "head" ]
+      - map: [ "helmetcover" ] # Mono - helmet cover slot
+      - map: [ "helmetattachment" ] # Mono - helmet attachment slot
       - map: [ "pocket1" ]
       - map: [ "pocket2" ]
       - map: [ "clownedon" ] # Dynamically generated

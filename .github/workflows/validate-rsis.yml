@@ -7,6 +7,9 @@ on:
   pull_request:
     paths:
       - '**.rsi/**'
+      - '.github/rsi-schema.json'
+      - '.github/validate_rsis.py'
+      - '.github/workflows/validate-rsis.yml'
 
 jobs:
   validate_rsis:
@@ -14,17 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
-      - name: Setup Submodule
-        run: git submodule update --init
-      - name: Pull engine updates
-        uses: space-wizards/submodule-dependency@v0.1.5
-      - name: Set up Python 3.10 # Frontier
-        uses: actions/setup-python@v3 # Frontier
-        with: # Frontier
-          python-version: "3.10" # Frontier
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
       - name: Install Python dependencies
         run: |
           pip3 install --ignore-installed --user pillow jsonschema
       - name: Validate RSIs
         run: |
-          python3 RobustToolbox/Schemas/validate_rsis.py Resources/
+          python3 .github/validate_rsis.py Resources/

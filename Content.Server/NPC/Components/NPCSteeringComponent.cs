@@ -81,6 +81,9 @@ public sealed partial class NPCSteeringComponent : Component
     [DataField("lineOfSightTimeRequired")]
     public float LineOfSightTimeRequired = 0.5f;
 
+    [DataField("lineOfSightRange")]
+    public float LineOfSightRange = 10f;
+
     [ViewVariables] public CancellationTokenSource? PathfindToken = null;
 
     /// <summary>

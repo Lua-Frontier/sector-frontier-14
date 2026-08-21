@@ -2,41 +2,29 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using System;
-using Content.Server._Lua.AmbientSpaceEffects;
 using Content.Server._Lua.Company;
 using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Components;
-using Content.Server.Backmen.Arrivals;
-using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
-using Content.Server.Worldgen.Components.GC;
-using Content.Server.Worldgen.Prototypes;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
 using Content.Shared._Mono.Company;
 using Content.Shared.Backmen.Arrivals;
-using Content.Shared.Dataset;
 using Content.Shared.Lua.CLVar;
-using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 
 namespace Content.Server._Lua.Starmap.Systems
@@ -44,217 +32,22 @@ namespace Content.Server._Lua.Starmap.Systems
     public sealed class SimpleStarmapSystem : EntitySystem
     {
         [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
-        [Dependency] private readonly MapSystem _mapSystem = default!;
         [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly StarmapSystem _starmap = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly ISerializationManager _serializer = default!;
-        [Dependency] private readonly CentcommSystem _centcomm = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        [Dependency] private readonly GameTicker _ticker = default!;
         [Dependency] private readonly SectorSystem _sectors = default!;
         [Dependency] private readonly SharedContainerSystem _containers = default!;
         [Dependency] private readonly FactionWarSystem _factionWar = default!;
-        private StarmapConfigPrototype? _cfg;
-
-        private readonly Dictionary<MapId, StarDefinition> _pendingLazyStars = new();
 
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<StarMapComponent, ComponentStartup>(OnStarMapStartup);
             SubscribeLocalEvent<FTLCompletedEvent>(OnFtlCompleted);
-            try { if (_prototypeManager.TryIndex<StarmapConfigPrototype>("StarmapConfig", out var c)) _cfg = c; } catch { }
         }
-
-        private void OnStarMapStartup(EntityUid uid, StarMapComponent component, ComponentStartup args)
-        { }
-
-        public void LoadStarsFromData(EntityUid uid, StarMapComponent component)
-        {
-            var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-            if (!_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data))
-                return;
-
-            var lazyLoading = _configurationManager.GetCVar(CLVars.StarmapLazyLoading);
-
-            foreach (var def in data.Stars)
-            {
-                if (def.StarType == "centcom" || def.StarType == "frontier" || def.StarType == "sector")
-                    continue;
-
-                var currentPreset = _ticker.CurrentPreset?.ID;
-                if (def.RequiredGamePresets != null && def.RequiredGamePresets.Length > 0)
-                {
-                    if (currentPreset == null || !def.RequiredGamePresets.Contains(currentPreset))
-                        continue;
-                }
-                else if (!string.IsNullOrWhiteSpace(def.RequiredGamePreset))
-                {
-                    if (currentPreset != def.RequiredGamePreset)
-                        continue;
-                }
-
-                if (def.AutoStart || !lazyLoading)
-                {
-                    if (TryLoadStarMap(def, out var mapId))
-                    {
-                        var star = new Star(def.Position, mapId, def.Name, def.Position);
-                        component.StarMap.Add(star);
-                    }
-                }
-                else
-                {
-                    _mapSystem.CreateMap(out var mapId);
-                    TrySetMapEntityName(mapId, def.Name);
-                    var star = new Star(def.Position, mapId, def.Name, def.Position);
-                    component.StarMap.Add(star);
-                    _pendingLazyStars[mapId] = def;
-                }
-            }
-
-            try { EntityManager.System<StarmapSystem>().InvalidateCache(); } catch { }
-        }
-
-        private bool TryLoadStarMap(StarDefinition def, out MapId mapId)
-        {
-            _mapSystem.CreateMap(out mapId);
-            try
-            {
-                var mapUid = _mapManager.GetMapEntityId(mapId);
-
-                var configs = def.EnumerateWorldgenConfigs().ToArray();
-                if (configs.Length > 0)
-                {
-                    WorldgenConfigPrototype.ApplyMany(mapUid, configs, _prototypeManager, _serializer, EntityManager);
-                    EntityManager.System<AmbientSpaceFieldPlacerSystem>().InitializePlacer(mapUid);
-                }
-
-                if (def.ParallaxPool.Length > 0)
-                {
-                    var parallaxId = _random.Pick(def.ParallaxPool);
-                    var parallax = EnsureComp<ParallaxComponent>(mapUid);
-                    parallax.Parallax = parallaxId;
-                }
-
-                if (!string.IsNullOrWhiteSpace(def.Station))
-                {
-                    try
-                    {
-                        var loader = EntityManager.System<Robust.Shared.EntitySerialization.Systems.MapLoaderSystem>();
-                        var mapPath = new Robust.Shared.Utility.ResPath($"/Maps/_Lua/Maps/{def.Station.ToLowerInvariant()}.yml");
-                        var beaconPath = new Robust.Shared.Utility.ResPath("/Maps/_Lua/Maps/beaconstar.yml");
-                        loader.TryLoadGrid(mapId, beaconPath, out _);
-                    }
-                    catch { }
-                }
-
-                TrySetMapEntityName(mapId, def.Name);
-                TryRenameBeaconGrid(mapId, def.Name);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        public bool TryLazyLoadStar(MapId mapId)
-        {
-            if (!_pendingLazyStars.TryGetValue(mapId, out var def))
-                return false;
-
-            _pendingLazyStars.Remove(mapId);
-
-            try
-            {
-                var mapUid = _mapManager.GetMapEntityId(mapId);
-
-                var configs = def.EnumerateWorldgenConfigs().ToArray();
-                if (configs.Length > 0)
-                {
-                    WorldgenConfigPrototype.ApplyMany(mapUid, configs, _prototypeManager, _serializer, EntityManager);
-                    EntityManager.System<AmbientSpaceFieldPlacerSystem>().InitializePlacer(mapUid);
-                }
-
-                if (def.ParallaxPool.Length > 0)
-                {
-                    var parallaxId = _random.Pick(def.ParallaxPool);
-                    var parallax = EnsureComp<ParallaxComponent>(mapUid);
-                    parallax.Parallax = parallaxId;
-                }
-
-                if (!string.IsNullOrWhiteSpace(def.Station))
-                {
-                    try
-                    {
-                        var loader = EntityManager.System<Robust.Shared.EntitySerialization.Systems.MapLoaderSystem>();
-                        var beaconPath = new Robust.Shared.Utility.ResPath("/Maps/_Lua/Maps/beaconstar.yml");
-                        loader.TryLoadGrid(mapId, beaconPath, out _);
-                    }
-                    catch { }
-                }
-
-                TryRenameBeaconGrid(mapId, def.Name);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
-
-        private void TryRenameBeaconGrid(MapId mapId, string starName)
-        {
-            try
-            {
-                var query = AllEntityQuery<BecomesStationComponent, TransformComponent, MetaDataComponent>();
-                while (query.MoveNext(out var uid, out var becomes, out var xform, out var meta))
-                {
-                    if (xform.MapID != mapId) continue;
-                    if (!string.Equals(becomes.Id, "Beacon", StringComparison.Ordinal)) continue;
-                    EntityManager.System<MetaDataSystem>().SetEntityName(uid, $"Маяк \"{starName}\"");
-                    break;
-                }
-                var qWarp = AllEntityQuery<MetaDataComponent, TransformComponent>();
-                while (qWarp.MoveNext(out var uid, out var meta, out var xform))
-                {
-                    if (xform.MapID != mapId) continue;
-                    var pid = meta.EntityPrototype?.ID;
-                    if (!string.Equals(pid, "WarpPoint", StringComparison.Ordinal)) continue;
-                    EntityManager.System<MetaDataSystem>().SetEntityName(uid, $"Маяк \"{starName}\"");
-                    break;
-                }
-            }
-            catch { }
-        }
-
-        private void TrySetMapEntityName(MapId mapId, string name)
-        {
-            try
-            {
-                var mapUid = _mapManager.GetMapEntityId(mapId);
-                var metaSys = EntityManager.System<MetaDataSystem>();
-                metaSys.SetEntityName(mapUid, $"[STAR] {name}");
-            }
-            catch { }
-        }
-
-        private bool IsGcAbleGrid(EntityUid gridUid)
-        {
-            if (HasComp<GCAbleObjectComponent>(gridUid)) return true;
-            var query = AllEntityQuery<GCAbleObjectComponent>();
-            while (query.MoveNext(out var comp))
-            { if (comp.LinkedGridEntity == gridUid) return true; }
-            return false;
-        }
-
-        public Star? GetStarByName(StarMapComponent component, string starName)
-        { return component.StarMap.FirstOrDefault(s => s.Name == starName); }
 
         public void WarpToStar(EntityUid consoleUid, Star star, EntityUid? actor = null)
         {
@@ -262,29 +55,32 @@ namespace Content.Server._Lua.Starmap.Systems
             var shuttleUid = consoleTransform.GridUid;
             if (shuttleUid == null) { return; }
             if (!TryComp<ShuttleComponent>(shuttleUid.Value, out var shuttleComponent)) { return; }
+            if (!star.CanWarp)
+            { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-decorative-no-warp"), consoleUid); return; }
             if (HasComp<WarpTransitComponent>(shuttleUid.Value))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("shuttle-console-in-ftl"), consoleUid); return; }
             if (!_mapManager.MapExists(star.Map))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
-            TryLazyLoadStar(star.Map);
             var mapUid = _mapManager.GetMapEntityId(star.Map);
             if (star.Position == Vector2.Zero)
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-already-here"), consoleUid); return; }
             var currentMap = consoleTransform.MapID;
             var stars = _starmap.CollectStars();
-            var isCentComTarget = _centcomm != null && _centcomm.CentComMap != MapId.Nullspace && star.Map == _centcomm.CentComMap;
-            var isInCentCom = _centcomm != null && _centcomm.CentComMap != MapId.Nullspace && currentMap == _centcomm.CentComMap;
+            _sectors.TryGetCentComMapId(out var centComMap);
+            _sectors.TryGetHubMapId(out var hubMap);
+            var isCentComTarget = centComMap != MapId.Nullspace && star.Map == centComMap;
+            var isInCentCom = centComMap != MapId.Nullspace && currentMap == centComMap;
             if (!isCentComTarget)
             {
                 if (isInCentCom)
                 {
-                    if (star.Map != _ticker.DefaultMap)
+                    if (hubMap == MapId.Nullspace || star.Map != hubMap)
                     { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
                 }
                 else if (!IsAdjacentByHyperlane(currentMap, star, stars))
                 { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
             }
-            if (isCentComTarget && _centcomm != null && !_centcomm.CentComStarUnlocked && !HasComp<AllowFtlToCentComComponent>(shuttleUid.Value))
+            if (isCentComTarget && !_sectors.CentComStarUnlocked && !HasComp<AllowFtlToCentComComponent>(shuttleUid.Value))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
             if (!CanAccessSector(consoleUid, star.Map, actor))
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-hyperlane"), consoleUid); return; }
@@ -331,7 +127,7 @@ namespace Content.Server._Lua.Starmap.Systems
                 try
                 {
                     var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-                    if (_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data) &&
+                    if (StarmapDataComposer.TryCompose(_prototypeManager, dataId, out var data) &&
                         !SectorVisibility.IsSectorVisible(data, sectorId, company, globallyUnlocked, learned))
                         return false;
                 }
@@ -343,20 +139,20 @@ namespace Content.Server._Lua.Starmap.Systems
             if (!_configurationManager.GetCVar(CLVars.StarmapRequireSectorDisks))
                 return true;
 
-            if (targetMap == _ticker.DefaultMap)
+            if (_sectors.TryGetHubMapId(out var hubMap) && targetMap == hubMap)
                 return true;
-            if (_centcomm != null && _centcomm.CentComMap != MapId.Nullspace && targetMap == _centcomm.CentComMap)
+            if (_sectors.TryGetCentComMapId(out var centComMap) && targetMap == centComMap)
                 return true;
             if (!_containers.TryGetContainer(consoleUid, "disk_slot", out var diskCont) || diskCont.ContainedEntities.Count == 0)
                 return false;
             var disk = diskCont.ContainedEntities[0];
             if (!TryComp<StarMapCoordinatesDiskComponent>(disk, out var diskComp) || diskComp.AllowedSectorIds.Count == 0)
                 return false;
-            var currentPreset = _ticker.CurrentPreset?.ID;
             foreach (var sid in diskComp.AllowedSectorIds)
             {
-                if (string.IsNullOrWhiteSpace(sid)) continue;
-                if (!TryResolveSectorMapId(sid, currentPreset, out var mapId))
+                if (string.IsNullOrWhiteSpace(sid))
+                    continue;
+                if (!_sectors.TryGetMapId(sid, out var mapId))
                     continue;
 
                 if (mapId == targetMap)
@@ -368,61 +164,9 @@ namespace Content.Server._Lua.Starmap.Systems
 
         private string? ResolveSectorId(MapId targetMap)
         {
-            if (targetMap == _ticker.DefaultMap)
-                return "FrontierSector";
-            if (_centcomm != null && _centcomm.CentComMap != MapId.Nullspace && targetMap == _centcomm.CentComMap)
-                return "CentCom";
-
-            try
-            {
-                var dataId = _configurationManager.GetCVar(CLVars.StarmapDataId);
-                if (_prototypeManager.TryIndex<StarmapDataPrototype>(dataId, out var data))
-                {
-                    var currentPreset = _ticker.CurrentPreset?.ID;
-                    foreach (var def in data.Stars)
-                    {
-                        if (TryResolveSectorMapId(def.Id, currentPreset, out var mapId) && mapId == targetMap)
-                            return def.Id;
-                    }
-                }
-            }
-            catch { }
-
+            if (_sectors.TryGetSectorId(targetMap, out var sectorId))
+                return sectorId;
             return null;
-        }
-
-        private bool TryResolveSectorMapId(string sid, string? currentPreset, out MapId mapId)
-        {
-            if (sid == "FrontierSector")
-            {
-                mapId = _ticker.DefaultMap;
-                return true;
-            }
-
-            if (_sectors.TryGetMapId(sid, out var resolved))
-            {
-                mapId = resolved;
-                return true;
-            }
-
-            if (currentPreset == "LuaAdventure")
-            {
-                var altId = sid switch
-                {
-                    "TypanSector" => "TypanSectorLua",
-                    "PirateSector" => "PirateSectorLua",
-                    _ => null
-                };
-
-                if (altId != null && _sectors.TryGetMapId(altId, out resolved))
-                {
-                    mapId = resolved;
-                    return true;
-                }
-            }
-
-            mapId = MapId.Nullspace;
-            return false;
         }
 
         private bool IsAdjacentByHyperlane(MapId currentMap, Star target, List<Star> stars)

@@ -6,6 +6,7 @@ using Content.Client.Lobby;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.CCVar;
+using Content.Shared._Lua.Achievements;
 using Content.Shared.Guidebook;
 using Content.Shared.Lua.CLVar;
 using Content.Shared.Input;
@@ -13,6 +14,7 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;
+using Robust.Shared.Network;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Prototypes;
@@ -26,6 +28,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly JobRequirementsManager _jobRequirements = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     private const int PlaytimeOpenGuidebook = 180; // Frontier 60<180
 
@@ -233,6 +236,7 @@ public sealed class GuidebookUIController : UIController, IOnStateEntered<LobbyS
         _guideWindow.Tree.SetAllExpanded(true, 0); // Frontier: 1->0 (too many entries at depth 2)
 
         _guideWindow.OpenCenteredRight();
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.TutorialGuidebook));
     }
 
     public void OpenGuidebook(

@@ -1,3 +1,4 @@
+using Content.Shared._Mono.Company;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -9,6 +10,9 @@ public sealed partial class SpawnPointComponent : Component, ISpawnPoint
     [DataField("job_id")]
     public ProtoId<JobPrototype>? Job;
 
+    [DataField("company")]
+    public ProtoId<CompanyPrototype>? Company;
+
     /// <summary>
     /// The type of spawn point
     /// </summary>
@@ -17,7 +21,7 @@ public sealed partial class SpawnPointComponent : Component, ISpawnPoint
 
     public override string ToString()
     {
-        return $"{Job} {SpawnType}";
+        return $"{Job} {Company} {SpawnType}";
     }
 }
 

@@ -1,0 +1,13 @@
+# source: _DeadSpace/Entities/Clothing/Neck/capes.yml
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: USSPSFClothingNeckCapeBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: плащ оперативника КГБ
+  description: Данный плащ соткан из самой качественной ткани для оперативника Комитета Государственной Безопасности.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/blueshield.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/blueshield.rsi

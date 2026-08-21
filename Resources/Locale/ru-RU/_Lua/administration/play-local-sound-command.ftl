@@ -1,0 +1,10 @@
+play-local-sound-command-description = Проигрывает позиционный звук в точке, где стоял админ (на гриде или в космосе). Можно ограничить сектор, радиус и список игроков.
+play-local-sound-command-help = playlocalsound <path> [volume] [sector|range] [user 1] ... [user n]
+play-local-sound-command-player-not-found = Игрок "{ $username }" не найден.
+play-local-sound-command-volume-parse = Задан неправильный уровень громкости { $volume }.
+play-local-sound-command-range-parse = Задан неправильный радиус/диапазон { $range }. Укажите sector или число.
+play-local-sound-command-no-origin = Нужен игрок с телом (или указанный user), чтобы определить сектор/позицию.
+play-local-sound-command-arg-path = <path>
+play-local-sound-command-arg-volume = [volume]
+play-local-sound-command-arg-range = [sector|range]
+play-local-sound-command-arg-usern = [user { $user }]

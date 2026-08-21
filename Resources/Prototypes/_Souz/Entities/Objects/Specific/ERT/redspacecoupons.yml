@@ -1,0 +1,50 @@
+# Redspace coupons — USSP faction currency (from Soyuz ERT)
+
+- type: entity
+  parent: [BaseItem, BaseC2ContrabandUnredeemable]
+  id: RedSpaceCoupons
+  name: redspace coupon
+  description: A small redspace coupon voucher.
+  suffix: 20
+  categories: [ USSP ]
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Specific/redspacecoupons.rsi
+    state: redspace
+  - type: Item
+    sprite: _Souz/Objects/Specific/redspacecoupons.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: RedSpaceCoupons
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      RedSpaceCoupons: 1
+
+- type: entity
+  parent: RedSpaceCoupons
+  id: RedSpaceCoupons1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: RedSpaceCoupons
+  id: RedSpaceCoupons5
+  suffix: 5
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: RedSpaceCoupons
+  id: RedSpaceCoupons10
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10

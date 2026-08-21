@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNecklaceBase
   id: ClothingNeckCrucifix
   name: crucifix
   description: Damn, it feels good to be so pious.
@@ -21,7 +21,7 @@
   - type: NFTreasure
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingNecklaceBase
   id: ClothingNeckBellCollar
   name: bell collar
   description: A way to inform others about your presence, or just to annoy everyone around you!
@@ -37,7 +37,7 @@
 - type: entity
   parent:
   - BaseC3CultContraband
-  - ClothingNeckBase
+  - ClothingNecklaceBase
   - ContrabandClothing
   id: ClothingNeckAmuletBloodCult
   name: ascended cultist amulet

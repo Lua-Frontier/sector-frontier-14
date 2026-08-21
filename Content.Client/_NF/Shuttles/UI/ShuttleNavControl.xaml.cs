@@ -1,6 +1,7 @@
 // New Frontiers - This file is licensed under AGPLv3
 // Copyright (c) 2024 New Frontiers Contributors
 // See AGPLv3.txt for details.
+using Content.Client._Lua.Styles;
 using Content.Shared._Mono.FireControl; // Lua
 using Content.Shared._NF.Shuttles.Events;
 using Content.Shared.Physics; // Lua
@@ -109,7 +110,7 @@ public partial class ShuttleNavControl // Mono
                 continue;
             var ray = new CollisionRay(worldPos, direction.Normalized(), (int)CollisionGroup.Impassable);
             var results = physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates?.EntityId);
-            if (!results.Any() && blipColors.TryGetValue(controllable.NetEntity, out var color)) handle.DrawLine(Vector2.Transform(worldPos, worldToView), cursorViewPos, color.WithAlpha(0.3f));
+            if (!results.Any() && blipColors.TryGetValue(controllable.NetEntity, out var color)) LunaDraw.Line(handle, Vector2.Transform(worldPos, worldToView), cursorViewPos, color.WithAlpha(0.3f));
         }
     }
     // End Lua
@@ -345,7 +346,7 @@ public partial class ShuttleNavControl // Mono
         switch (shape)
         {
             case RadarBlipShape.Circle:
-                handle.DrawCircle(position, size, color);
+                LunaDraw.Circle(handle, position, size, color);
                 break;
             case RadarBlipShape.Square:
                 var halfSize = size / 2;

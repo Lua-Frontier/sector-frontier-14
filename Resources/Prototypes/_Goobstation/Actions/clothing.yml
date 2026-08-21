@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseAction
+  id: ActionClothingSeal
+  name: Seal clothing
+  description: Seals your current clothing.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ConfirmableAction
+    confirmDelay: 0
+    primeTime: 2
+    popup: sealable-clothing-action-popup
+  - type: Action
+    checkCanInteract: true
+    checkConsciousness: true
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Goobstation/Actions/modsuit.rsi
+      state: activate
+    iconOn:
+      sprite: _Goobstation/Actions/modsuit.rsi
+      state: activate-ready
+  - type: InstantAction
+    event: !type:SealClothingEvent {}

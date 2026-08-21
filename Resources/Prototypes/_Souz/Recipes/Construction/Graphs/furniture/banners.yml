@@ -1,0 +1,108 @@
+- type: constructionGraph
+  id: USSPBannersGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: USSPSFBannerNanotrasenNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: USSPSFBannerSecurityNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: USSPSFBannerFlagUSSPNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+        - to: USSPSFBannerUSSPNode
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+              doAfter: 1
+
+    - node: USSPSFBannerNanotrasenNode
+      entity: USSPSFBannerNanotrasen
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: USSPSFBannerSecurityNode
+      entity: USSPSFBannerSecurity
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: USSPSFBannerFlagUSSPNode
+      entity: USSPSFBannerFlagUSSP
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: USSPSFBannerUSSPNode
+      entity: USSPSFBannerUSSP
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1

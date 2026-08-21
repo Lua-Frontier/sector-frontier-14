@@ -1,0 +1,11 @@
+# source: Catalog/Fills/Lockers/biohazard.yml
+- type: entity
+  id: USSPSFClosetL3SecurityFilled
+  categories: [ USSP ]
+  suffix: USSP, Filled, Security
+  parent: USSPSFClosetL3Security
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillBiohazardGearSecurity

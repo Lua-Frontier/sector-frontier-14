@@ -6,12 +6,13 @@
   parent: CrateBaseSecure
   suffix: Корабельное вооружение
   id: CrateShipWeaponBase
-  categories: [ HideSpawnMenu ]
+  abstract: true
   components:
   - type: Sprite
     sprite: _Lua/Structures/Storage/Crates/sweapon.rsi
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeaponImpulseLaser
   parent: CrateShipWeaponBase
   name: ящик с упакованным импульсным лазером
@@ -23,6 +24,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeaponTeslaTurret
   parent: CrateShipWeaponBase
   name: ящик с упакованной тесла турелью
@@ -34,6 +36,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateWeaponMissileLauncherStarColosusFlatpack
   parent: CrateShipWeaponBase
   name: ящик с упакованной ядерной артиллерийской установкой "Звездный Колосс"
@@ -45,6 +48,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateWeaponMissileStarColosus
   parent: CrateShipWeaponBase
   name: ящик с ядерной ракетой класса "Инферно"
@@ -56,6 +60,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeapon20mmBase
   parent: CrateShipWeaponBase
   name: ящик с лёгким пулемётом (.20мм)
@@ -67,6 +72,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeapon53mmBase
   parent: CrateShipWeaponBase
   name: ящик с средним пулемётом (.53мм)
@@ -78,6 +84,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeapon80mmBase
   parent: CrateShipWeaponBase
   name: ящик с тяжёлым пулемётом (.80мм)
@@ -89,6 +96,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeapon105mmBase
   parent: CrateShipWeaponBase
   name: ящик с малым миномётом (.105мм)
@@ -100,6 +108,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeapon120mmBase
   parent: CrateShipWeaponBase
   name: ящик с средним миномётом (.120мм)
@@ -111,6 +120,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateArmoryWeapon140mmBase
   parent: CrateShipWeaponBase
   name: ящик с тяжёлым миномётом (.140мм)
@@ -122,6 +132,7 @@
         amount: 1
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: CrateWeaponTargetingPadFlatpack
   parent: CrateShipWeaponBase
   name: ящик с упакованной консолью управления огнём и сервером
@@ -139,6 +150,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным FSS-600 блюспейс двигателем
   description: Содержит 1 упакованный FSS-600 блюспейс двигатель
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -150,6 +162,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ИИ шаттла
   description: Содержит 1 упакованный ИИ шаттла.
+  categories: [ HideSpawnMenu ]
   components:
   - type: StorageFill
     contents:
@@ -163,7 +176,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным L85 20mm autocannon
   description: содержит 1 упакованный L85 20mm autocannon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -175,7 +188,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ADBP-7 DRAVON 57mm Autocannon
   description: содержит 1 упакованный ADBP-7 DRAVON 57mm Autocannon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -188,7 +201,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным AK570 90mm heavy autocannon
   description: содержит 1 упакованный AK570 90mm heavy autocannon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -200,7 +213,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ADBX-31 TARNYX 150mm EMP Cannon
   description: содержит 1 упакованный ADBX-31 TARNYX 150mm EMP Cannon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -212,7 +225,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным CYREXA 220mm cannon
   description: содержит 1 упакованный CYREXA 220mm cannon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -225,7 +238,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным M381 CHARON mass driver
   description: содержит 1 упакованный M381 CHARON mass driver
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -237,7 +250,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным Bofors 255mm cannon
   description: содержит 1 упакованный Bofors 255mm cannon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -251,7 +264,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным MARAUDER-type plasma weapon
   description: содержит 1 упакованный MARAUDER-type plasma weapon
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -263,7 +276,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным M220 RUBICON EMP launcher
   description: содержит 1 упакованный M220 RUBICON EMP launcher
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -275,7 +288,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ADEX-9 DYMERE Turbolaser
   description: содержит 1 упакованный ADEX-9 DYMERE Turbolaser
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -289,7 +302,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ADMP-27 VESPERA Rapid-Fire Pod
   description: содержит 1 упакованный ADMP-27 VESPERA Rapid-Fire Pod
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -302,7 +315,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ASM-302 pod
   description: содержит 1 упакованный ASM-302 pod
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -314,7 +327,7 @@
   parent: CrateShipWeaponBase
   name: ящик с упакованным ADMX-23 TOVEK Hybrid EMP Pod
   description: содержит 1 упакованный ADMX-23 TOVEK Hybrid EMP Pod
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -326,7 +339,7 @@
   parent: CrateShipWeaponBase
   name: L-1 Phalanx
   description: A light laser emplactment designed by the Pantheon Collective, used to shred threats of all types
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -338,7 +351,7 @@
   parent: CrateShipWeaponBase
   name: L-20 Apollo Heavy Laser Cannon
   description: One of the Pantheon Collective's top weapons, the Apollo is aptly named for its beams heating surfaces to beyond the temperature of nearby stars.
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -350,7 +363,7 @@
   parent: CrateShipWeaponBase
   name: RAC-30 Draupnir Autocannon
   description: A more heavy duty rapid rife autocannon, firing a hail of rounds much like its namesake became a hail of spears.
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -362,7 +375,7 @@
   parent: CrateShipWeaponBase
   name: Type-54C plasma autopulser
   description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -374,7 +387,7 @@
   parent: CrateShipWeaponBase
   name: Type-241 plasma lance
   description: A devastating weapon, usually used for large scale fire support and strategic destruction.
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -386,7 +399,7 @@
   parent: CrateShipWeaponBase
   name: GPOB-L Light Munitions Bay
   description: A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:
@@ -398,7 +411,7 @@
   parent: CrateShipWeaponBase
   name: ASM-220 torpedo VLS
   description: A heavy torpedo VLS relying on manual loading to work, usually done at harbor. However, it has high-yield missiles for its size.
-  categories: [ HideSpawnMenu ]
+  categories: [ ShuttleGun ]
   components:
   - type: StorageFill
     contents:

@@ -122,6 +122,9 @@ public sealed class RadioSystem : EntitySystem
     /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
     public void SendRadioInternal(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, int? frequency, bool escapeMarkup, bool ignoreRange, LanguagePrototype? language = null) // Nuclear-14: add frequency // Lua SendRadioMessage<SendRadioInternal add ignoreRange
     {
+        if (!Exists(messageSource) || !Exists(radioSource))
+            return;
+
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
             return;

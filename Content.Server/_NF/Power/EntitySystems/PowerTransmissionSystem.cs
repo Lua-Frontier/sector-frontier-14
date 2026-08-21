@@ -100,7 +100,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
                 xmit.AccumulatedEnergy = 0.0f;
                 var depositSpesos = (int)depositValue;
                 if (depositSpesos > 0)
-                    _bank.TrySectorDeposit(xmit.Account, depositSpesos, LedgerEntryType.PowerTransmission);
+                    _bank.TrySectorDeposit(xmit.Account, depositSpesos, LedgerEntryType.PowerTransmission, uid);
             }
 
             bool powered = power.NetworkLoad.Enabled && power.NetworkLoad.ReceivingPower > 0;

@@ -1,0 +1,67 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc admin-alert-level-window-title}"
+                   MinSize="720 460"
+                   SetSize="760 500">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical"
+                  SeparationOverride="8"
+                  Margin="10 8 10 10"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+
+      <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" SeparationOverride="8">
+
+        <!-- Sectors -->
+        <PanelContainer Name="SectorsPanel" HorizontalExpand="True" VerticalExpand="True" MinWidth="340">
+          <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1"/>
+          </PanelContainer.PanelOverride>
+          <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="6" VerticalExpand="True">
+            <Label Name="SectorsTitle" Text="{Loc admin-alert-level-sectors-title}" StyleClasses="LabelHeading" />
+            <Label Name="SectorsSubtitle" Text="{Loc admin-alert-level-sectors-subtitle}" />
+            <ItemList Name="SectorsList"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      SelectMode="Single" />
+          </BoxContainer>
+        </PanelContainer>
+
+        <!-- Controls -->
+        <PanelContainer Name="ControlsPanel" MinWidth="280" MaxWidth="320" VerticalExpand="True">
+          <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1"/>
+          </PanelContainer.PanelOverride>
+          <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="8" VerticalExpand="True">
+            <Label Name="ControlsTitle" Text="{Loc admin-alert-level-controls-title}" StyleClasses="LabelHeading" />
+
+            <Label Name="SelectedSectorLabel" Text="{Loc admin-alert-level-no-sector}" />
+
+            <Label Text="{Loc admin-alert-level-level-label}" />
+            <OptionButton Name="LevelDropdown" HorizontalExpand="True" />
+
+            <CheckBox Name="LockedCheck" Text="{Loc admin-alert-level-locked}" />
+
+            <Button Name="ApplySectorButton" Text="{Loc admin-alert-level-apply-sector}" Disabled="True" HorizontalExpand="True" />
+            <Button Name="ApplyGlobalButton" Text="{Loc admin-alert-level-apply-global}" HorizontalExpand="True" />
+            <Button Name="RefreshButton" Text="{Loc admin-alert-level-refresh}" HorizontalExpand="True" />
+
+            <Control VerticalExpand="True" />
+          </BoxContainer>
+        </PanelContainer>
+      </BoxContainer>
+
+      <PanelContainer Name="StatusPanel" HorizontalExpand="True">
+        <PanelContainer.PanelOverride>
+          <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1"/>
+        </PanelContainer.PanelOverride>
+        <Label Name="StatusLabel" Margin="8 6" HorizontalExpand="True" />
+      </PanelContainer>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

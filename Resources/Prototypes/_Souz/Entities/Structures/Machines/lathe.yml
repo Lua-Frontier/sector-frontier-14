@@ -1,0 +1,52 @@
+# source: Entities/Structures/Machines/lathe.yml
+- type: entity
+  id: USSPSFSecurityTechFab
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BaseLatheLube
+  name: security techfab
+  description: Prints equipment for use by security crew.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/techfab.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: sec
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: Machine
+    board: USSPSFSecurityTechFabCircuitboard
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
+    - SecurityEquipment
+    - SecurityExplosives
+    - MonoUSSPWeaponsDynamicRanged
+    - MonoUSSPMiscDynamic
+    - MonoUSSPArmorDynamic
+    staticPacks:
+    - SecurityEquipmentStatic
+    - SecurityPracticeStatic
+    - SecurityAmmoStatic
+    - SecurityWeaponsStatic
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Security]

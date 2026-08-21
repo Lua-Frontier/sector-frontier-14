@@ -2,6 +2,7 @@
   id: Frontier
   mapName: 'Сектор Фронтир'
   mapPath: /Maps/_Lua/Outpost/frontier.yml
+  isGrid: true
   minPlayers: 0
   maxPlayers: 100
   randomRotation: false
@@ -20,6 +21,8 @@
         - type: FactionCapture
           captureWholeStation: true
         - type: FrontierParking # Lua
+        - type: BecomesStation
+          id: Frontier
         - type: RadarBlipIcon
           icon: /Textures/_Lua/Interface/Radar/space-station.png
           scale: 1.2

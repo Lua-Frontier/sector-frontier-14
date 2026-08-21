@@ -1,0 +1,130 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Universal company spawn point: any job of the company can spawn here
+# (round-start and latejoin). Place on faction stations instead of per-job spawners.
+
+- type: entity
+  id: SpawnPointCompanyBase
+  parent: MarkerBase
+  abstract: true
+  suffix: Company Spawn
+  components:
+  - type: SpawnPoint
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    state: green
+
+- type: entity
+  id: SpawnPointCompanyUssp
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: СССП
+  categories: [ USSP ]
+  components:
+  - type: SpawnPoint
+    company: Ussp
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: _Souz/Structures/Wallmounts/flags.rsi
+    state: USSPCompany
+
+- type: entity
+  id: SpawnPointCompanySyndicate
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: Синдикат
+  categories: [ Syndicate ]
+  components:
+  - type: SpawnPoint
+    company: Syndicate
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: Structures/Wallmounts/flags.rsi
+    state: syndie_flag
+
+- type: entity
+  id: SpawnPointCompanyPirates
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: Пираты
+  categories: [ Pirates ]
+  components:
+  - type: SpawnPoint
+    company: Pirates
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: Structures/Wallmounts/flags.rsi
+    state: pirate_flag
+
+- type: entity
+  id: SpawnPointCompanyNanotrasen
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: Nanotrasen
+  categories: [ Nanotrasen ]
+  components:
+  - type: SpawnPoint
+    company: Nanotrasen
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: Structures/Decoration/banner.rsi
+    state: banner
+
+- type: entity
+  id: SpawnPointCompanyLuaTech
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: LuaTech
+  categories: [ LuaTech ]
+  components:
+  - type: SpawnPoint
+    company: LuaTech
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: _Lua/Structures/Wallmounts/flags.rsi
+    state: luatech
+
+- type: entity
+  id: SpawnPointCompanyCentComm
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: CentComm
+  categories: [ CentComm ]
+  components:
+  - type: SpawnPoint
+    company: CentComm
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: Structures/Decoration/banner.rsi
+    state: banner_centcom
+
+- type: entity
+  id: SpawnPointCompanySecurity
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: СРБС
+  categories: [ Security ]
+  components:
+  - type: SpawnPoint
+    company: Security
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: _NF/Structures/Decoration/banner.rsi
+    state: nfsd-banner
+
+- type: entity
+  id: SpawnPointCompanyNeutral
+  parent: SpawnPointCompanyBase
+  name: точка спавна фракции
+  suffix: Нейтральные
+  categories: [ Neutral ]
+  components:
+  - type: SpawnPoint
+    company: Neutral
+    spawn_type: LateJoin
+  - type: Sprite
+    sprite: Structures/Wallmounts/flags.rsi
+    state: blank_flag

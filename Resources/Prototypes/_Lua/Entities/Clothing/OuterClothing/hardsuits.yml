@@ -89,7 +89,13 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBlueShield
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitBlueShield
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
 
@@ -107,7 +113,13 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitNanotrasenStandart
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNanotrasenStandart
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: Armor
@@ -154,7 +166,13 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSecurityPilot
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSecurityPilot
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
 
@@ -172,7 +190,13 @@
     highPressureMultiplier: 0.45
     lowPressureMultiplier: 1000
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBrigmedicWhite
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitBrigmedicWhite
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: Armor
@@ -228,7 +252,13 @@
     sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitCapspaceHelmetReinforced
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitCapspaceHelmetReinforced
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 #region FSF
 
@@ -261,7 +291,13 @@
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFBaseBravo
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFBaseBravo
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
@@ -303,7 +339,13 @@
   - type: StaminaResistance
     damageCoefficient: 0.3
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFCommandBravo
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFCommandBravo
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -343,7 +385,13 @@
   - type: StaminaResistance
     damageCoefficient: 0.5
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFBaseCharlie
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFBaseCharlie
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -382,7 +430,13 @@
   - type: StaminaResistance
     damageCoefficient: 0.3
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFCommandCharlie
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFCommandCharlie
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
@@ -418,7 +472,13 @@
         Radiation: 0.30
         Caustic: 0.45
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFCommanderBravo
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFCommanderBravo
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -445,7 +505,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits/fsf_bravo_specialist_hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFSpecialistBravo
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFSpecialistBravo
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: Armor
@@ -503,7 +569,13 @@
         Radiation: 0.20
         Caustic: 0.35
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFCommanderCharlie
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFCommanderCharlie
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -529,7 +601,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits/fsf_charlie_specialist_hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFSpecialistCharlie
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFSpecialistCharlie
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
@@ -572,7 +650,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits_Alt/fsf_commander_hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFCommanderAlt
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFCommanderAlt
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
@@ -609,7 +693,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits_Alt/fsf_medium_hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFMediumAlt
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFMediumAlt
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - Hardsuit
@@ -654,7 +744,13 @@
   - type: Clothing
     sprite: _Lua/Clothing/OuterClothing/Hardsuits/FSFSuits_Alt/fsf_light_hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSFLightAlt
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSFLightAlt
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: HardsuitIdentification
     emaggable: false
   - type: HardsuitDNARadial
@@ -705,7 +801,13 @@
     sprintModifier: 0.85 #Lua 0.95<0.85
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBloodRedHardsuit
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitBloodRedHardsuit
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
@@ -748,7 +850,13 @@
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBloodRedHardsuitelite
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitBloodRedHardsuitelite
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 1500
     vendPrice: 4000
@@ -789,7 +897,13 @@
     walkModifier: 0.90
     sprintModifier: 0.90
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitChiefEngineerMOD
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitChiefEngineerMOD
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 15000
     vendPrice: 40000
@@ -823,14 +937,21 @@
     coolingCoefficient: 0.1
   - type: GroupExamine
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBotanist
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitBotanist
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ClothingIgnoreKudzu
   - type: Tag
     tags:
     - WhitelistChameleon
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
+      cell_slot: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
   - type: DamageOnInteractProtection

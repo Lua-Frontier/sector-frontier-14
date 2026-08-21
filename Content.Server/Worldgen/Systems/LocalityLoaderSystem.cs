@@ -1,9 +1,10 @@
 using Content.Server.Worldgen.Components;
+using Content.Server.Worldgen.Components.Debris;
 using Robust.Server.GameObjects;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Server._NF.Salvage; // Frontier
 using Content.Server.StationEvents.Events; // Frontier
-using Content.Server._Mono.GridClaimer;
+using Content.Server._Mono.Cleanup;
 using Content.Server._Lua.Worldgen;
 using Robust.Shared.Spawners;
 
@@ -18,7 +19,9 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!; // Frontier
 
     // Duration to reset the despawn timer to when a debris is loaded into a player's view.
-    private const float DebrisActiveDuration = 3600; //20 минут
+    private const float DebrisActiveDuration = 1200; // 20 minutes
+    private const float LoaderCheckInterval = 1f;
+    private float _loaderCheckAccumulator;
 
     // Frontier: space debris destruction
     public override void Initialize()
@@ -30,6 +33,12 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
+        _loaderCheckAccumulator += frameTime;
+        if (_loaderCheckAccumulator < LoaderCheckInterval)
+            return;
+
+        _loaderCheckAccumulator = 0f;
+
         var e = EntityQueryEnumerator<LocalityLoaderComponent, TransformComponent>();
         var loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         var xformQuery = GetEntityQuery<TransformComponent>();
@@ -64,8 +73,7 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
                         if ((_xformSys.GetWorldPosition(loaderXform) - _xformSys.GetWorldPosition(xform)).Length() > loadable.LoadingDistance)
                             continue;
 
-                        // Reset the TimedDespawnComponent's lifetime when loaded
-                        ResetTimedDespawn(uid);
+                        PrepareLoadedStructure(uid);
 
                         RaiseLocalEvent(uid, new LocalStructureLoadedEvent());
                         RemCompDeferred<LocalityLoaderComponent>(uid);
@@ -76,10 +84,24 @@ public sealed class LocalityLoaderSystem : BaseWorldSystem
             }
         }
     }
+
+    private void PrepareLoadedStructure(EntityUid uid)
+    {
+        if (TryComp<PregenDebrisComponent>(uid, out var pregen))
+        {
+            pregen.AwaitingLocality = false;
+            RemCompDeferred<CleanupImmuneComponent>(uid);
+            EnsureComp<GridCleanupGridComponent>(uid);
+            return;
+        }
+
+        // Reset the TimedDespawnComponent's lifetime when loaded.
+        ResetTimedDespawn(uid);
+    }
+
     private void ResetTimedDespawn(EntityUid uid)
     {
-        if (TryComp<ClaimableGridComponent>(uid, out var claimable) && claimable.Claimed ||
-            TryComp<SafeMiningComponent>(uid, out var safeMining) && safeMining.RefCount > 0)
+        if (TryComp<SafeMiningComponent>(uid, out var safeMining) && safeMining.RefCount > 0)
         {
             if (HasComp<TimedDespawnComponent>(uid))
                 RemCompDeferred<TimedDespawnComponent>(uid);

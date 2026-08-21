@@ -1,11 +1,14 @@
-using System.Numerics;
+using Content.Server._Lua.Sectors;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared.Radio;
+using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.Server.GameTicking; // Intentionally colliding namespaces to extend the class
 
@@ -34,7 +37,29 @@ public sealed partial class GameTicker
 
     private void NFRoundStarted()
     {
-        _greetingEntity = Spawn(_greetingRadioSource, new MapCoordinates(Vector2.Zero, DefaultMap));
+        MapId mapId = MapId.Nullspace;
+        var sectors = EntityManager.System<SectorSystem>();
+        if (sectors.TryGetHubMapId(out var hubMap) && _map.MapExists(hubMap))
+        {
+            mapId = hubMap;
+        }
+        else
+        {
+            var query = EntityQueryEnumerator<StationDataComponent, TransformComponent>();
+            while (query.MoveNext(out _, out _, out var xform))
+            {
+                if (xform.MapID != MapId.Nullspace && _map.MapExists(xform.MapID))
+                {
+                    mapId = xform.MapID;
+                    break;
+                }
+            }
+        }
+
+        if (mapId == MapId.Nullspace)
+            return;
+
+        _greetingEntity = Spawn(_greetingRadioSource, new MapCoordinates(Vector2.Zero, mapId));
     }
 
     private void NFRoundRestartCleanup()
@@ -63,6 +88,9 @@ public sealed partial class GameTicker
 
         if (playtime < _newPlayerGreetingMaxTime)
         {
+            if (_greetingEntity == EntityUid.Invalid || !EntityManager.EntityExists(_greetingEntity))
+                return;
+
             _radio.SendRadioMessage(_greetingEntity, Loc.GetString("latejoin-arrival-new-player-announcement",
                     ("character", MetaData(mob).EntityName),
                     ("station", station)),

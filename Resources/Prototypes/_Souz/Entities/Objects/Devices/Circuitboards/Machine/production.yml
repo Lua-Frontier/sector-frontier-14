@@ -1,0 +1,35 @@
+# source: Entities/Objects/Devices/Circuitboards/Machine/production.yml
+- type: entity
+  id: USSPSFSecurityTechFabCircuitboard
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BaseMachineCircuitboard
+  name: security techfab machine board
+  description: A machine printed circuit board for a security techfab.
+  components:
+    - type: Sprite
+      state: security
+    - type: MachineBoard
+      prototype: USSPSFSecurityTechFab
+      requirements:
+        MatterBin: 2
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker
+- type: entity
+  id: USSPSFTelecomServerCircuitboard
+  categories: [ USSP ]
+  suffix: USSP
+  parent: BaseMachineCircuitboard
+  name: telecommunication server machine board
+  description: A machine printed circuit board for an telecommunication server.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: USSPSFTelecomServer
+    stackRequirements:
+      Steel: 1
+      Cable: 2

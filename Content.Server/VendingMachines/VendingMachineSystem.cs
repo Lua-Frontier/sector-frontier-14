@@ -458,7 +458,7 @@ namespace Content.Server.VendingMachines
                             if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
                                 continue;
                             var tax = (int)Math.Floor(totalPrice * taxCoeff);
-                            _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax);
+                            _bankSystem.TrySectorDeposit(account, tax, LedgerEntryType.VendorTax, uid);
                         }
                     }
 

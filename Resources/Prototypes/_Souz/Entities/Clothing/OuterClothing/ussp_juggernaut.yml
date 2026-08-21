@@ -1,0 +1,59 @@
+# source: _ADT/Entities/Clothing/OuterClothing/ussp_juggernaut.yml
+- type: entity
+  parent: ClothingHeadHelmetBase
+  id: USSPSFADTClothingHeadUSSPjuggernautHelmetArmored
+  categories: [ USSP ]
+  suffix: USSP
+  name: бронешлем "ТШ-6"
+  description: Тяжелый защитный с высоким уровнем защиты "Вулкан" предназначен для использования в комплекте боевого снаряжения с целью круговой защиты головы человека шестого класса от пуль стрелкового оружия.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/ussphelmet.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/ussphelmet.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+  - type: GroupExamine
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: USSPSFClothingOuterArmorUSSPjuggernaut
+  categories: [ USSP ]
+  suffix: USSP
+  name: бронежилет шторм М55 "Воин"
+  description: Тяжёлый штурмовой бронежилет Шторм М5 «Воин» в полном комплекте, представляет собой усиленный вариант бронежилетов серии «Шторм».
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/OuterClothing/Armor/usspjuggernaut.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/OuterClothing/Armor/usspjuggernaut.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.75
+  - type: StaminaResistance #DS14
+    damageCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: GroupExamine

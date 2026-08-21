@@ -104,11 +104,6 @@ public sealed partial class ShuttleSystem
             _physics.SetLinearVelocity(args.OtherEntity, linear, body: otherPhys);
             _physics.SetAngularVelocity(args.OurEntity, 0f, body: ourPhys);
             _physics.SetAngularVelocity(args.OtherEntity, 0f, body: otherPhys);
-            if (TryComp(magnetUid.Value, out DockingComponent? dock))
-            {
-                dock.DockedWith = wallUid;
-
-            }
             _appearance.SetData(magnetUid.Value, MagneticLatchVisuals.State, MagneticLatchVisualState.Latched);
             handled = true;
             return;

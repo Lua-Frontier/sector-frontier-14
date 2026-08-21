@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Chemistry.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Shared.Chemistry;
+using Content.Shared.Chemistry.Events;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.FixedPoint;
@@ -67,6 +68,12 @@ namespace Content.Server.Chemistry.EntitySystems
         private void SubscribeUpdateUiState<T>(Entity<ReagentDispenserComponent> ent, ref T ev)
         {
             UpdateUiState(ent);
+
+            if (ev is BoundUIOpenedEvent opened)
+            {
+                var uiEv = new ChemistryMachineUiOpenedEvent(ent, opened.Actor);
+                RaiseLocalEvent(ref uiEv);
+            }
         }
 
         // Frontier: auto-label on insert

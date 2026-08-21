@@ -1,0 +1,105 @@
+# source: _Corvax/sponsor.yml
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPSFClothingHeadHatCapLeatherHoS
+  categories: [ USSP ]
+  name: leather head of security's cap
+  description: Pretty old stuff for these times, bringing back old memories...
+  suffix: USSP, Sponsor
+  components:
+    - type: Sprite
+      sprite: _Corvax/Sponsor/NEKISH/Clothing/Head/Hats/hoscap.rsi
+    - type: Clothing
+      sprite: _Corvax/Sponsor/NEKISH/Clothing/Head/Hats/hoscap.rsi
+    # DS14-start
+    - type: PhysicalComposition
+      materialComposition:
+        Cloth: 100
+    # DS14-end
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFClothingUniformJumpsuitHoSOld
+  categories: [ USSP ]
+  name: old head of security's jumpsuit
+  description: Pretty old stuff for these times, bringing back old memories...
+  suffix: USSP, Sponsor
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Uniforms/Jumpsuit/hos.rsi
+    # DS14-start
+    - type: PhysicalComposition
+      materialComposition:
+        Cloth: 200
+    # DS14-end
+
+# ken41k
+- type: entity
+  parent: USSPSFClothingHandsGlovesCombat
+  id: USSPSFClothingHandsGlovesLeatherUSSPBlack
+  categories: [ USSP ]
+  name: old ussp leather gloves
+  description: Black leather gloves from USSP
+  suffix: USSP, Sponsor
+  components:
+    - type: Sprite
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/Hands/Gloves/ussp.rsi
+    - type: Clothing
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/Hands/Gloves/ussp.rsi
+    # DS14-start
+    - type: PhysicalComposition
+      materialComposition:
+        Cloth: 100
+    # DS14-end
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPSFClothingOuterCoatUSSPOvercoatBlack
+  categories: [ USSP ]
+  name: old ussp armored overcoat
+  description: Pretty old stuff from USSP
+  suffix: USSP, Sponsor
+  components:
+    - type: Sprite
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/OuterClothing/Coats/ussp.rsi
+    - type: Clothing
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/OuterClothing/Coats/ussp.rsi
+    # DS14-start
+    - type: PhysicalComposition
+      materialComposition:
+        Cloth: 500
+    # DS14-end
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFClothingUniformJumpsuitUSSPBlack
+  categories: [ USSP ]
+  name: old ussp jumpsuit
+  description: Pretty old stuff from USSP
+  suffix: USSP, Sponsor
+  components:
+    - type: Sprite
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/Uniforms/Jumpsuit/ussp.rsi
+    - type: Clothing
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/Uniforms/Jumpsuit/ussp.rsi
+    # DS14-start
+    - type: PhysicalComposition
+      materialComposition:
+        Cloth: 200
+    # DS14-end
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: USSPSFClothingShoesUSSPBlack
+  categories: [ USSP ]
+  name: old ussp boots
+  description: Pretty old stuff from USSP
+  suffix: USSP, Sponsor
+  components:
+    - type: Sprite
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/Shoes/ussp.rsi
+    - type: Clothing
+      sprite: _Corvax/Sponsor/jesuisunfou/Clothing/Shoes/ussp.rsi
+    # DS14-start
+    - type: PhysicalComposition
+      materialComposition:
+        Cloth: 200
+    # DS14-end

@@ -182,6 +182,7 @@
 #region Wyverns
 - type: entity
   parent:
+  - FlyingMobBase
   - MobMovementSpeedModifierRanged
   - NFMobCarpBase
   - MobCarp
@@ -194,6 +195,10 @@
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
+  - type: MovementAlwaysTouching
   - type: Fixtures
     fixtures:
       fix1:

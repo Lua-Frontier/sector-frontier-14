@@ -15,6 +15,28 @@ public sealed partial class CCVars
     /// </summary>
     public static readonly CVarDef<string> WorldgenConfig =
         CVarDef.Create("worldgen.worldgen_config", "NFDefault", CVar.SERVERONLY); // Frontier: Default<NFDefault
+
+    public static readonly CVarDef<bool> WorldgenDebrisPregenEnabled =
+        CVarDef.Create("worldgen.debris_pregen_enabled", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> WorldgenDebrisPregenRadius =
+        CVarDef.Create("worldgen.debris_pregen_radius", 30000f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> WorldgenDebrisClusterEnabled =
+        CVarDef.Create("worldgen.debris_cluster_enabled", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> WorldgenDebrisClusterSpacing =
+        CVarDef.Create("worldgen.debris_cluster_spacing", 768f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> WorldgenDebrisClusterRadius =
+        CVarDef.Create("worldgen.debris_cluster_radius", 250f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> WorldgenDebrisClusterJitter =
+        CVarDef.Create("worldgen.debris_cluster_jitter", 0.28f, CVar.SERVERONLY);
+
+    public static readonly CVarDef<float> WorldgenDebrisClusterCountScale =
+        CVarDef.Create("worldgen.debris_cluster_count_scale", 1.3f, CVar.SERVERONLY);
+
     public static readonly CVarDef<float> BiomeLoadRange =
         CVarDef.Create("biome.load_range", 16f, CVar.ARCHIVE | CVar.SERVERONLY);
     public static readonly CVarDef<int> BiomeChunkBudget =

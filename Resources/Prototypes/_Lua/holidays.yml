@@ -1,0 +1,17 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Day the USSP faction was introduced to Frontier (21-22 August)
+- type: holiday
+  id: UsspIntroductionDay
+  name: holiday-name-ussp-introduction
+  beginDay: 21
+  beginMonth: August
+  endDay: 22
+  endMonth: August
+  lobbyMusic:
+    - /Audio/_Lua/Lobby/SOVIET_MARCH_Composer_James_Hannigan.ogg
+  greet:
+    !type:Custom
+    text: holiday-custom-ussp-introduction

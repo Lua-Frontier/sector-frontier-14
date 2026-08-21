@@ -1,0 +1,339 @@
+# source: Entities/Objects/Devices/Electronics/door_access.yml
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsCaptain
+  categories: [ USSP ]
+  suffix: USSP, Captain, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPCaptain"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsHeadOfPersonnel
+  categories: [ USSP ]
+  suffix: USSP, HeadOfPersonnel, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPHeadOfPersonnel"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsCommand
+  categories: [ USSP ]
+  suffix: USSP, Command, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPCommand"]]
+
+# Service
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsBar
+  categories: [ USSP ]
+  suffix: USSP, Bar, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPBar"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsBarKitchen
+  categories: [ USSP ]
+  suffix: USSP, Bar, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPBar"], ["USSPKitchen"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsHydroponics
+  categories: [ USSP ]
+  suffix: USSP, Hydroponics, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPHydroponics"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsChapel
+  categories: [ USSP ]
+  suffix: USSP, Chapel, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPChapel"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsTheatre
+  categories: [ USSP ]
+  suffix: USSP, Theatre, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPTheatre"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsKitchen
+  categories: [ USSP ]
+  suffix: USSP, Kitchen, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPKitchen"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsKitchenHydroponics
+  categories: [ USSP ]
+  suffix: USSP, Kitchen/Hydroponics, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPKitchen"], ["USSPHydroponics"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsJanitor
+  categories: [ USSP ]
+  suffix: USSP, Janitor, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPJanitor"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsLawyer
+  categories: [ USSP ]
+  suffix: USSP, Lawyer, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPLawyer"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsService
+  categories: [ USSP ]
+  suffix: USSP, Service, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPService"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsServiceTheatre
+  categories: [ USSP ]
+  suffix: USSP, Service, Theatre, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPService"], ["USSPTheatre"]]
+
+# Cargo
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsQuartermaster
+  categories: [ USSP ]
+  suffix: USSP, Quartermaster, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPQuartermaster"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsSalvage
+  categories: [ USSP ]
+  suffix: USSP, Salvage, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPSalvage"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsCargo
+  categories: [ USSP ]
+  suffix: USSP, Cargo, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPCargo"]]
+
+# Engineering
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsChiefEngineer
+  categories: [ USSP ]
+  suffix: USSP, ChiefEngineer, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPChiefEngineer"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsAtmospherics
+  categories: [ USSP ]
+  suffix: USSP, Atmospherics, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPAtmospherics"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsEngineering
+  categories: [ USSP ]
+  suffix: USSP, Engineering, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPEngineering"]]
+
+# Science
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsMorgue
+  categories: [ USSP ]
+  suffix: USSP, Morgue, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPMedical"], ["USSPDetective"], ["USSPChapel"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsResearchDirector
+  categories: [ USSP ]
+  suffix: USSP, ResearchDirector, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPResearchDirector"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsMedicalResearch
+  categories: [ USSP ]
+  suffix: USSP, Medical/Science, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPResearch"], ["USSPMedical"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsResearch
+  categories: [ USSP ]
+  suffix: USSP, Research, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPResearch"]]
+
+# Security
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsHeadOfSecurity
+  categories: [ USSP ]
+  suffix: USSP, HeadOfSecurity, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPHeadOfSecurity"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsArmory
+  categories: [ USSP ]
+  suffix: USSP, Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPArmory"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsDetective
+  categories: [ USSP ]
+  suffix: USSP, Detective, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPDetective"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsSecurity
+  categories: [ USSP ]
+  suffix: USSP, Security, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPSecurity"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsSecurityLawyer
+  categories: [ USSP ]
+  suffix: USSP, Security/Lawyer, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPSecurity"], ["USSPLawyer"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsBrig
+  categories: [ USSP ]
+  suffix: USSP, Brig, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPBrig"]]
+
+# Medical
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsChiefMedicalOfficer
+  categories: [ USSP ]
+  suffix: USSP, ChiefMedicalOfficer, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPChiefMedicalOfficer"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsChemistry
+  categories: [ USSP ]
+  suffix: USSP, Chemistry, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPChemistry"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsMedical
+  categories: [ USSP ]
+  suffix: USSP, Medical, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPMedical"]]
+
+# Syndicate
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsNukeop
+  categories: [ USSP ]
+  suffix: USSP, Nukeop, Locked
+  components:
+  - type: AccessReader
+    access: [["NuclearOperative"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsSyndicateAgent
+  categories: [ USSP ]
+  suffix: USSP, SyndicateAgent, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
+# Misc
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsCentralCommand
+  categories: [ USSP ]
+  suffix: USSP, CentralCommand, Locked
+  components:
+  - type: AccessReader
+    access: [["CentralCommand"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsExternal
+  categories: [ USSP ]
+  suffix: USSP, External, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPExternal"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsMaintenance
+  categories: [ USSP ]
+  suffix: USSP, Maintenance, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPMaintenance"]]
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsVault
+  categories: [ USSP ]
+  suffix: USSP, Vault, Locked
+  components:
+  - type: AccessReader
+    access: [["USSPSecurity"], ["USSPCommand"]]
+
+# source: _DeadSpace/Entities/Objects/Devices/Electronics/door_access.yml
+- type: entity
+  parent: USSPSFDoorElectronics
+  id: USSPSFDoorElectronicsSOD
+  categories: [ USSP ]
+  suffix: USSP, ОСО, Закрыт
+  components:
+  - type: AccessReader
+    access: [["USSPSOD"]]

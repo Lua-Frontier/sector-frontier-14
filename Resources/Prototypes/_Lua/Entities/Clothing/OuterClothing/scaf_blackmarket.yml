@@ -36,7 +36,13 @@
     sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitWarlord
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitWarlord
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 750
     vendPrice: 2500
@@ -78,8 +84,14 @@
     walkModifier: 0.75
     sprintModifier: 0.75
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitUSSPCombat
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitUSSPCombat
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 750
     vendPrice: 2500
@@ -121,8 +133,14 @@
     walkModifier: 0.85
     sprintModifier: 0.85
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitUSSPLightOfficer
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitUSSPLightOfficer
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 750
     vendPrice: 2500
@@ -164,8 +182,14 @@
     walkModifier: 0.85
     sprintModifier: 0.85
   - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitUSSPLightMK2
+  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitUSSPLightMK2
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: StaticPrice
     price: 750
     vendPrice: 2500

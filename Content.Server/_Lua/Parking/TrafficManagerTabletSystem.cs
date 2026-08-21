@@ -159,7 +159,7 @@ public sealed class TrafficManagerTabletSystem : EntitySystem
         var result = _shipyard.TrySellShuttleToGrid(targetGrid.Value, shuttleUid, EntityUid.Invalid, out var bill);
         if (result.Error != ShipyardSaleError.Success)
         { _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-sell-failed-organics"), user, user, PopupType.SmallCaution); return; }
-        if (bill > 0) _bank.TrySectorDeposit(SectorBankAccount.Frontier, bill, LedgerEntryType.StationDepositAssetsSold);
+        if (bill > 0) _bank.TrySectorDeposit(SectorBankAccount.Frontier, bill, LedgerEntryType.StationDepositAssetsSold, stationUid);
         _popup.PopupEntity(Loc.GetString("traffic-manager-tablet-popup-sold", ("amount", bill)), user, user, PopupType.Medium);
     }
 

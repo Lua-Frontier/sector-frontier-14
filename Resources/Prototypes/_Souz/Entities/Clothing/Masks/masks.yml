@@ -1,0 +1,103 @@
+# source: Entities/Clothing/Masks/masks.yml
+- type: entity
+  parent: [ClothingMaskGas, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingMaskGasSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security gas mask
+  description: A standard issue Security gas mask.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Souz/Clothing/Mask/gassecurity.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Mask/gassecurity.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: Tag
+    tags:
+    - HamsterWearable
+- type: entity
+  parent: [ClothingMaskGasAtmos, BaseCommandContraband]
+  id: USSPSFClothingMaskGasCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's gas mask
+  description: Nanotrasen cut corners and repainted a spare atmospheric gas mask, but don't tell anyone.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Mask/gascaptain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Mask/gascaptain.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: USSPSFClothingMaskBreathMedicalSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: military-style medical mask
+  description: A medical mask with a small layer of protection against damage and viruses, similar to the one used in the medical units of the first corporate war.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Souz/Clothing/Mask/medicalsecurity.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Mask/medicalsecurity.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+- type: entity
+  parent: [ClothingMaskGas, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingMaskGasSwat
+  categories: [ USSP ]
+  suffix: USSP
+  name: swat gas mask
+  description: A elite issue Security gas mask.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Mask/swat.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Mask/swat.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    hideOnToggle: true
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.95
+        Heat: 0.95
+
+# source: _DeadSpace/Entities/Clothing/Masks/masks.yml
+- type: entity
+  parent: USSPSFClothingMaskGasSwat
+  id: USSPSFClothingMaskGasBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрный боевой противогаз офицера "Синий Щит"
+  description: Высокопрочная дыхательная маска с возможностью подключения к дыхательному баллону.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Mask/blueshield_mask.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Mask/blueshield_mask.rsi

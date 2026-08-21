@@ -1,0 +1,84 @@
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:ach="clr-namespace:Content.Client._Lua.Achievements"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc 'ui-achievements-title'}"
+                   MinSize="1910 980"
+                   SetSize="1910 980">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="10 8 10 10">
+      <LayoutContainer Name="TreeHost"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      MinHeight="400">
+        <ScrollContainer Name="TreeScroll"
+                        HScrollEnabled="True"
+                        VScrollEnabled="True">
+          <ach:AchievementsTreeView Name="TreeView"/>
+        </ScrollContainer>
+
+        <Label Name="ProgressCounter"
+               HorizontalAlignment="Left"
+               Align="Left"
+               MouseFilter="Ignore"/>
+
+        <PanelContainer Name="DetailPanel"
+                        SetWidth="340"
+                        MaxWidth="340"
+                        MinWidth="280"
+                        SetHeight="390"
+                        MaxHeight="390"
+                        MinHeight="390"
+                        MouseFilter="Stop"
+                        Margin="12">
+          <BoxContainer Name="DetailColumn"
+                        Orientation="Vertical"
+                        SeparationOverride="6"
+                        Margin="12 10 12 10">
+            <ach:AchievementLayeredIcon Name="DetailIcon"
+                                      HorizontalAlignment="Center"
+                                      SetSize="56 56"/>
+            <Label Name="DetailTitle"
+                   HorizontalAlignment="Center"
+                   Align="Center"
+                   ClipText="True"/>
+            <Label Name="DetailStatus"
+                   HorizontalAlignment="Center"
+                   Align="Center"/>
+            <ScrollContainer Name="DetailScroll"
+                             HorizontalExpand="True"
+                             VerticalExpand="True"
+                             MinHeight="100"
+                             HScrollEnabled="False"
+                             VScrollEnabled="True">
+              <RichTextLabel Name="DetailDescription"
+                             HorizontalExpand="True"/>
+            </ScrollContainer>
+            <BoxContainer Name="RewardPanel"
+                          Orientation="Vertical"
+                          SeparationOverride="4"
+                          Visible="False">
+              <Label Name="RewardTitle"
+                     Text="{Loc 'ui-achievements-reward-title'}"/>
+              <BoxContainer Name="RewardItems"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            SeparationOverride="6"/>
+              <Button Name="ClaimRewardButton"
+                      Text="{Loc 'ui-achievements-reward-claim'}"/>
+              <Label Name="RewardClaimedLabel"
+                     Text="{Loc 'ui-achievements-reward-claimed'}"
+                     Visible="False"/>
+            </BoxContainer>
+            <Label Name="DetailUnlockedAt"
+                   HorizontalAlignment="Center"
+                   Align="Center"/>
+          </BoxContainer>
+        </PanelContainer>
+      </LayoutContainer>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

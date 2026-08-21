@@ -1,0 +1,46 @@
+- type: entity
+  name: USSP rubber stamp
+  parent: RubberStampBase
+  id: RubberStampUSSP
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ussp
+    stampedColor: "#b2224b"
+    stampState: "paper_stamp-mono-ussp"
+  - type: StaticPrice
+    price: 50
+    vendPrice: 500
+  - type: Sprite
+    sprite: _Mono/Objects/Misc/stamps.rsi
+    state: stamp-ussp
+
+- type: entity
+  name: USSP TACCOMM rubber stamp
+  parent: RubberStampBase
+  id: RubberStampUSSPTaccomm
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ussp-taccomm
+    stampedColor: "#ff0026"
+    stampState: "paper_stamp-mono-ussp-taccomm"
+  - type: Sprite
+    state: stamp-syndicate
+
+- type: entity
+  name: USSP STRATCOMM rubber stamp
+  parent: RubberStampBase
+  id: RubberStampUSSPStratcomm
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ussp-stratcomm
+    stampedColor: "#ff0026"
+    stampState: "paper_stamp-mono-ussp-stratcomm"
+  - type: Sprite
+    sprite: _Mono/Objects/Misc/stamps.rsi
+    state: stamp-ussp-stratcomm

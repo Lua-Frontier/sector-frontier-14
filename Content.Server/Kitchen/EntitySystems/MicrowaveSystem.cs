@@ -27,6 +27,7 @@ using Content.Server.Lightning;
 using Content.Shared.Item;
 using Content.Shared.Kitchen;
 using Content.Shared.Kitchen.Components;
+using Content.Shared.Kitchen.Events;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Tag;
@@ -647,6 +648,8 @@ namespace Content.Server.Kitchen.EntitySystems
 
             _audio.PlayPvs(component.StartCookingSound, uid);
             var activeComp = AddComp<ActiveMicrowaveComponent>(uid); //microwave is now cooking
+            var cookEv = new MicrowaveCookStartedEvent(uid, user);
+            RaiseLocalEvent(ref cookEv);
             activeComp.CookTimeRemaining = component.CurrentCookTimerTime * component.FinalCookTimeMultiplier; // Frontier: CookTimeMultiplier<FinalCookTimeMultiplier
             activeComp.TotalTime = component.CurrentCookTimerTime; //this doesn't scale so that we can have the "actual" time
             activeComp.PortionedRecipe = portionedRecipe;

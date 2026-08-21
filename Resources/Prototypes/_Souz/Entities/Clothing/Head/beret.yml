@@ -1,0 +1,33 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Head/beret.yml
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: USSPSFClothingHeadHatBeretPolitruk
+  categories: [ USSP ]
+  suffix: USSP
+  name: фуражка политического отдела
+  description: Уставная фуражка ПолитОтдела, с черным околышем как флаг НКВБ и красной, как флаг революцией, тульей. Кокарда ПолитОтдела с легонько помигивает вам в темноте, ища вокруг контрреволюцию и врагов народа.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/politrukberet.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/politrukberet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: USSPSFClothingHeadHatBeretHop
+  categories: [ USSP ]
+  suffix: USSP
+  name: берет начальника отдела кадров
+  description: Какая же она ахуенная.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hats/beret_hop.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hats/beret_hop.rsi

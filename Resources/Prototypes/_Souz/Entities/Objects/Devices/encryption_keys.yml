@@ -1,0 +1,21 @@
+# USSPSF encryption — only faction Ussp key remains; Common uses vanilla EncryptionKeyCommon
+
+- type: entity
+  parent: [EncryptionKey, BaseC2ContrabandUnredeemable]
+  id: USSPSFEncryptionKeyUssp
+  categories: [ USSP ]
+  suffix: USSP
+  name: USSP encryption key
+  description: An encryption key for the USSP tactical communications channel.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Ussp
+    defaultChannel: Ussp
+  - type: Sprite
+    layers:
+    - state: crypt_gray
+    - state: sec_label
+  - type: Tag
+    tags:
+    - EncryptionSecurity

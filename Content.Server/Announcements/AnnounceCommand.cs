@@ -1,17 +1,18 @@
+using Content.Server._Lua.Announcements;
 using Content.Server.Administration;
-using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
 using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.Announcements;
 
 [AdminCommand(AdminFlags.Moderator)]
 public sealed class AnnounceCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly FactionAnnouncementSystem _factionAnnounce = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IResourceManager _res = default!;
 
@@ -26,26 +27,22 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
             case 0:
                 shell.WriteError(Loc.GetString("shell-need-minimum-one-argument"));
                 return;
-            case > 4:
+            case > 5:
                 shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
                 return;
         }
 
         var message = args[0];
-        var sender = Loc.GetString("cmd-announce-sender");
-        var color = Color.Gold;
-        var sound = new SoundPathSpecifier("/Audio/_Lua/Announcements/announce.ogg"); // Lua
+        var factionId = args.Length >= 2 ? args[1] : FactionAnnouncementSystem.DefaultFactionId;
+        var sectorId = args.Length >= 3 ? args[2] : FactionAnnouncementSystem.AllSectorsId;
+        Color? color = null;
+        SoundSpecifier? sound = null;
 
-        // Optional sender argument
-        if (args.Length >= 2)
-            sender = args[1];
-
-        // Optional color argument
-        if (args.Length >= 3)
+        if (args.Length >= 4)
         {
             try
             {
-                color = Color.FromHex(args[2]);
+                color = Color.FromHex(args[3]);
             }
             catch
             {
@@ -54,11 +51,15 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
             }
         }
 
-        // Optional sound argument
-        if (args.Length >= 4)
-            sound = new SoundPathSpecifier(args[3]);
+        if (args.Length >= 5)
+            sound = new SoundPathSpecifier(args[4]);
 
-        _chat.DispatchGlobalAnnouncement(message, sender, true, sound, color);
+        if (!_factionAnnounce.TryAnnounce(message, factionId, sectorId, sound, color))
+        {
+            shell.WriteError(Loc.GetString("cmd-announce-error-identity"));
+            return;
+        }
+
         shell.WriteLine(Loc.GetString("shell-command-success"));
     }
 
@@ -67,10 +68,15 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
         return args.Length switch
         {
             1 => CompletionResult.FromHint(Loc.GetString("cmd-announce-arg-message")),
-            2 => CompletionResult.FromHint(Loc.GetString("cmd-announce-arg-sender")),
-            3 => CompletionResult.FromHint(Loc.GetString("cmd-announce-arg-color")),
-            4 => CompletionResult.FromHintOptions(
-                CompletionHelper.AudioFilePath(args[3], _proto, _res),
+            2 => CompletionResult.FromHintOptions(
+                _factionAnnounce.GetFactions().Select(f => f.Id),
+                Loc.GetString("cmd-announce-arg-faction")),
+            3 => CompletionResult.FromHintOptions(
+                _factionAnnounce.GetSectors().Select(s => s.Id),
+                Loc.GetString("cmd-announce-arg-sector")),
+            4 => CompletionResult.FromHint(Loc.GetString("cmd-announce-arg-color")),
+            5 => CompletionResult.FromHintOptions(
+                CompletionHelper.AudioFilePath(args[4], _proto, _res),
                 Loc.GetString("cmd-announce-arg-sound")
             ),
             _ => CompletionResult.Empty

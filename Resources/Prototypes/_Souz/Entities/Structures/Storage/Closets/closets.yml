@@ -1,0 +1,14 @@
+# source: Entities/Structures/Storage/Closets/closets.yml
+- type: entity
+  id: USSPSFClosetL3Security
+  categories: [ USSP ]
+  suffix: USSP
+  parent: ClosetL3
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: bio_sec
+    stateDoorOpen: bio_sec_open
+    stateDoorClosed: bio_sec_door
+
+# Janitor variant

@@ -3,18 +3,21 @@
 // See AGPLv3.txt for details.
 
 using Content.Client._Lua.Shipyard.UI;
+using Content.Shared._Lua.Achievements;
 using Content.Shared._Lua.Shipyard.BUI;
 using Content.Shared._Lua.Shipyard.BUIStates;
 using Content.Shared._Lua.Shipyard.Events;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Client.UserInterface;
+using Robust.Shared.Network;
 
 namespace Content.Client._Lua.Shipyard.BUI;
 
 public sealed class ParkingConsoleBoundUserInterface : BoundUserInterface
 {
     private ParkingConsoleMenu? _menu;
+    [Dependency] private readonly INetManager _net = default!;
 
     public ParkingConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -29,6 +32,8 @@ public sealed class ParkingConsoleBoundUserInterface : BoundUserInterface
         _menu.OnRecall += _ => SendMessage(new ShipyardConsolePurchaseMessage(string.Empty));
         _menu.OnDockPortSelected += port => SendMessage(new SelectDockPortMessage(port));
         _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
+        _menu.SetRadarConsole(Owner);
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerShipyardParking));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

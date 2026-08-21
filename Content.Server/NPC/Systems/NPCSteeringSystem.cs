@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,12 +21,14 @@ using Content.Shared.NPC.Events;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Configuration;
+using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Threading;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Prying.Systems;
@@ -67,6 +70,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedCombatModeSystem _combat = default!;
+    [Dependency] private readonly IParallelManager _parallel = default!;
 
     private EntityQuery<FixturesComponent> _fixturesQuery;
     private EntityQuery<MovementSpeedModifierComponent> _modifierQuery;
@@ -86,11 +90,15 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 
     private bool _pathfinding = true;
 
+    private bool _parallelSteering = true;
+
     public static readonly Vector2[] Directions = new Vector2[InterestDirections];
 
     private readonly HashSet<ICommonSession> _subscribedSessions = new();
 
     private object _obstacles = new();
+
+    private readonly ConcurrentQueue<(EntityUid Uid, NPCSteeringComponent Steering)> _deferredObstacles = new();
 
     private int _activeSteeringCount;
 
@@ -113,6 +121,7 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         UpdatesBefore.Add(typeof(SharedPhysicsSystem));
         Subs.CVar(_configManager, CCVars.NPCEnabled, SetNPCEnabled, true);
         Subs.CVar(_configManager, CCVars.NPCPathfinding, SetNPCPathfinding, true);
+        Subs.CVar(_configManager, CCVars.NPCParallelSteering, value => _parallelSteering = value, true);
 
         SubscribeLocalEvent<NPCSteeringComponent, ComponentShutdown>(OnSteeringShutdown);
         SubscribeNetworkEvent<RequestNPCSteeringDebugEvent>(OnDebugRequest);
@@ -244,10 +253,9 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
             index++;
         }
 
-        // Dependency issues across threads.
         var options = new ParallelOptions
         {
-            MaxDegreeOfParallelism = 1,
+            MaxDegreeOfParallelism = _parallelSteering ? _parallel.ParallelProcessCount : 1,
         };
         var curTime = _timing.CurTime;
 
@@ -256,8 +264,17 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
         Parallel.For(0, index, options, i =>
         {
             var (uid, steering, mover, xform) = npcs[i];
-            Steer(uid, steering, mover, xform, frameTime, curTime);
+            try
+            {
+                Steer(uid, steering, mover, xform, frameTime, curTime);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"NPC steering failed for {ToPrettyString(uid)}:\n{e}");
+            }
         });
+
+        ProcessDeferredObstacles();
 
         ActiveSteeringGauge.Set(_activeSteeringCount);
 
@@ -281,6 +298,48 @@ public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
             filter.AddPlayers(_subscribedSessions);
 
             RaiseNetworkEvent(new NPCSteeringDebugEvent(data), filter);
+        }
+    }
+
+    private void ProcessDeferredObstacles()
+    {
+        while (_deferredObstacles.TryDequeue(out var item))
+        {
+            var (uid, steering) = item;
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            if (!steering.CurrentPath.TryPeek(out var node) || IsFreeSpace(uid, steering, node))
+                continue;
+
+            SteeringObstacleStatus status;
+            try
+            {
+                lock (_obstacles)
+                {
+                    status = TryHandleFlags(uid, steering, node);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Deferred NPC obstacle handling failed for {ToPrettyString(uid)}:\n{e}");
+                continue;
+            }
+
+            switch (status)
+            {
+                case SteeringObstacleStatus.Completed:
+                    steering.DoAfterId = null;
+                    if (steering.CurrentPath.Count > 0)
+                        steering.CurrentPath.Dequeue();
+                    break;
+                case SteeringObstacleStatus.Failed:
+                    steering.DoAfterId = null;
+                    steering.Status = SteeringStatus.NoPath;
+                    if (TryComp(uid, out InputMoverComponent? mover))
+                        SetDirection(uid, mover, steering, Vector2.Zero);
+                    break;
+            }
         }
     }
 

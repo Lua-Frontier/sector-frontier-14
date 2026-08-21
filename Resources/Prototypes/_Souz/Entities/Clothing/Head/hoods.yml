@@ -1,0 +1,48 @@
+# source: Entities/Clothing/Head/hoods.yml
+- type: entity
+  parent: ClothingHeadHatHoodBioGeneral
+  id: USSPSFClothingHeadHatHoodBioSecurity
+  categories: [ USSP ]
+  name: bio hood
+  suffix: USSP, Security
+  description: A hood that protects the head and face from biological contaminants.
+  components:
+  - type: IdentityBlocker
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hoods/Bio/security.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hoods/Bio/security.rsi
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: USSPSFClothingHeadHatHoodWinterCaptain
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  name: captain's winter coat hood
+  description: An expensive hood, to keep the captain's head warm.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hoods/Coat/hoodcaptain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hoods/Coat/hoodcaptain.rsi
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: USSPSFClothingHeadHatHoodWinterHOP
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  name: head of personnel's winter coat hood
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hoods/Coat/hoodhop.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hoods/Coat/hoodhop.rsi
+- type: entity
+  parent: ClothingHeadHatHoodWinterBase
+  id: USSPSFClothingHeadHatHoodWinterHOS
+  suffix: USSP
+  categories: [ HideSpawnMenu, USSP ]
+  name: head of security's winter coat hood
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hoods/Coat/hoodhos.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hoods/Coat/hoodhos.rsi

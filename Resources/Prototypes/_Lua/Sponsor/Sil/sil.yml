@@ -49,13 +49,20 @@
   - type: Clothing
     sprite: _Lua/Sponsor/Sil/hardsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitSil
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitSil
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot
+      toggleable-clothing: !type:Container
+      storagebase: !type:Container
+        ents: []
         showEnts: false
         occludes: true
-        ent: null
       cell_slot: !type:ContainerSlot
   - type: ItemSlots
     slots:
@@ -305,7 +312,8 @@
     slot: outerClothing
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot {}
+      toggleable-clothing: !type:Container {}
+      cell_slot: !type:ContainerSlot {}
       storagebase: !type:Container
         ents: []
   - type: Tag

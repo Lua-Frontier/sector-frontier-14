@@ -28,6 +28,34 @@
       uiWindowPos: 2,1
       strippingWindowPos: 2,2
       displayName: Gloves
+    - name: finger
+      slotTexture: finger
+      slotFlags: FINGER
+      stripTime: 2
+      uiWindowPos: 3,1
+      strippingWindowPos: 4,1
+      displayName: Finger
+    - name: necklace
+      slotTexture: necklace
+      slotFlags: NECKLACE
+      stripTime: 2
+      uiWindowPos: 3,1.5
+      strippingWindowPos: 4,0
+      displayName: Necklace
+    - name: earring
+      slotTexture: earring
+      slotFlags: EARRING
+      stripTime: 2
+      uiWindowPos: 3,2
+      strippingWindowPos: 4,2
+      displayName: Earring
+    - name: hairpin
+      slotTexture: hairpin
+      slotFlags: HAIRPIN
+      stripTime: 2
+      uiWindowPos: 3,2.5
+      strippingWindowPos: 4,3
+      displayName: Hairpin
     - name: neck
       slotTexture: neck
       slotFlags: NECK
@@ -64,7 +92,7 @@
       slotTexture: socks
       slotFlags: SOCKS
       stripTime: 6
-      uiWindowPos: 3,0
+      uiWindowPos: 2,0
       strippingWindowPos: 0,6
       displayName: Socks
       stripHidden: true
@@ -72,7 +100,7 @@
       slotTexture: underwearb
       slotFlags: UNDERWEARB
       stripTime: 6
-      uiWindowPos: 3,1
+      uiWindowPos: 2,0.5
       strippingWindowPos: 1,6
       displayName: Panties
       stripHidden: true
@@ -80,7 +108,7 @@
       slotTexture: underweart
       slotFlags: UNDERWEART
       stripTime: 6
-      uiWindowPos: 3,2
+      uiWindowPos: 2.5,0.5
       strippingWindowPos: 2,6
       displayName: Bra
       stripHidden: true
@@ -153,8 +181,47 @@
       slotTexture: wallet
       slotFlags: WALLET
       stripTime: 6
-      uiWindowPos: 2,0
+      uiWindowPos: 2.5,0
       strippingWindowPos: 2,3
       dependsOn: jumpsuit
       displayName: Wallet
     # End Frontier: wallet slot
+    # Mono slots
+    - name: rightarmband
+      slotTexture: armband_right
+      slotFlags: ARMBANDRIGHT
+      stripTime: 6
+      uiWindowPos: 2.5,3
+      strippingWindowPos: 3,2
+      displayName: Right_armband
+    - name: leftarmband
+      slotTexture: armband_left
+      slotFlags: ARMBANDLEFT
+      stripTime: 6
+      uiWindowPos: 2,3
+      strippingWindowPos: 3,1
+      displayName: Left_armband
+    - name: balaclava
+      slotTexture: balaclava
+      slotFlags: BALACLAVA
+      stripTime: 6
+      uiWindowPos: 3,3
+      strippingWindowPos: 3,0
+      displayName: Balaclava
+    - name: helmetcover
+      slotTexture: helmet_cover
+      slotFlags: HELMETCOVER
+      stripTime: 3
+      uiWindowPos: 2.5,3.5
+      strippingWindowPos: 3,3
+      dependsOn: head
+      displayName: Helmet cover
+    - name: helmetattachment
+      slotTexture: helmet_attachment
+      slotFlags: HELMETATTACHMENT
+      stripTime: 3
+      uiWindowPos: 2,3.5
+      strippingWindowPos: 3,4
+      dependsOn: head
+      displayName: Helmet_attachment
+    # End Mono slots

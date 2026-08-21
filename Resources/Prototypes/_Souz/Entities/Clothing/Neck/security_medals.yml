@@ -1,0 +1,49 @@
+# source: _DeadSpace/Entities/Clothing/Neck/security_medals.yml
+- type: entity
+  parent: ClothingNecklaceBase
+  id: USSPSFClothingNeckSecurityOfficerMedal
+  categories: [ USSP ]
+  suffix: USSP
+  name: медаль офицера службы безопасности
+  description: Медаль для того, кто готов отдать свою жизнь ради защиты экипажа.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/SecMedals/officer.rsi
+    scale: "0.75,0.75"
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/SecMedals/officer.rsi
+  - type: Tag
+    tags:
+      - Medal
+- type: entity
+  parent: ClothingNecklaceBase
+  id: USSPSFClothingNeckSecurityHeadOfSecurityMedal
+  categories: [ USSP ]
+  suffix: USSP
+  name: медаль главы службы безопасности
+  description: Медаль для того, кто готов взять на себя ответственность за безопасность целой станции.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/SecMedals/hos.rsi
+    scale: "0.75,0.75"
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/SecMedals/hos.rsi
+  - type: Tag
+    tags:
+      - Medal
+- type: entity
+  parent: ClothingNecklaceBase
+  id: USSPSFClothingNeckSecurityBrigMedicMedal
+  categories: [ USSP ]
+  suffix: USSP
+  name: медаль бригмедика
+  description: Медаль для того, кто рискует своей жизнью ради спасения своих товарищей.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/SecMedals/brigmed.rsi
+    scale: "0.75,0.75"
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/SecMedals/brigmed.rsi
+  - type: Tag
+    tags:
+      - Medal

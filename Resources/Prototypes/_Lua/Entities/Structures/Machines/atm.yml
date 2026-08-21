@@ -46,6 +46,7 @@
   id: StationAdminBankATMTypan
   description: Используется для управления банковским счетом станции.
   suffix: Тайпан
+  categories: [ Syndicate ]
   components:
   - type: Sprite
     netsync: false
@@ -63,4 +64,17 @@
   - type: StationBankATM
     account: Typan
   - type: AccessReader
-    access: [["TelecomOfficer"], ["ResearchDirectorTypan"]]
+    access: [["SyndicateTelecomOfficer"], ["SyndicateResearchDirector"], ["SyndicateCommand"]]
+
+- type: entity
+  name: консоль администрирования станции
+  parent: BaseStationAdminBankATM
+  id: StationAdminBankATMUssp
+  description: Используется для управления банковским счётом СССП.
+  suffix: USSP
+  categories: [ USSP ]
+  components:
+  - type: StationBankATM
+    account: Ussp
+  - type: AccessReader
+    access: [["USSPCaptain"], ["USSPHeadOfPersonnel"], ["USSPHeadOfSecurity"], ["USSPCommand"]]

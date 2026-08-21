@@ -3,6 +3,7 @@
 using Content.Server._Mono.Ships.Systems;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Mono.FireControl;
+using Content.Shared._Mono.ShipGuns;
 using Content.Shared.GameTicking;
 using Content.Shared.Popups;
 using Content.Shared.Power;
@@ -217,6 +218,9 @@ public sealed partial class FireControlSystem : EntitySystem
                 controlled.NetEntity = EntityManager.GetNetEntity(controllable);
                 controlled.Coordinates = GetNetCoordinates(Transform(controllable).Coordinates);
                 controlled.Name = MetaData(controllable).EntityName;
+                controlled.Type = TryComp<ShipGunTypeComponent>(controllable, out var gunType)
+                    ? gunType.Type
+                    : ShipGunType.Other;
 
                 controllables.Add(controlled);
             }

@@ -1576,7 +1576,7 @@ public sealed partial class ShuttleSystem
 
         foreach (var fixture in manager.Fixtures.Values)
         {
-            if (xform.MapID == _ticker.DefaultMap)
+            if (_sectors.TryGetHubMapId(out var hubMap) && xform.MapID == hubMap)
                 break; //Frontier - FTL is too buggy to let it just fucking gib people wtf - so we disable for frontier's z-level
 
             if (!fixture.Hard)

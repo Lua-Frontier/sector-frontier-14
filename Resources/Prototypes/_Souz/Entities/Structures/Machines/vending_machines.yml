@@ -1,0 +1,210 @@
+# source: Entities/Structures/Machines/vending_machines.yml
+- type: entity
+  parent: VendingMachine
+  id: USSPSFVendingMachineCola
+  categories: [ USSP ]
+  suffix: USSP
+  name: Robust Softdrinks
+  description: A softdrink vendor provided by Robust Industries, LLC.
+  components:
+  - type: VendingMachine
+    pack: RobustSoftdrinksInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 1.9
+    initialStockQuality: 0.33
+  - type: DatasetVocalizer
+    dataset: RobustSoftdrinksAds
+  - type: SpeakOnUIClosed
+    pack: RobustSoftdrinksGoodbyes
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/VendingMachines/cola.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3c5eb5"
+- type: entity
+  parent: USSPSFVendingMachineCola
+  id: USSPSFVendingMachineColaBlack
+  categories: [ USSP ]
+  suffix: USSP, Black
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/VendingMachines/cola-black.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#423438"
+- type: entity
+  parent: USSPSFVendingMachineCola
+  id: USSPSFVendingMachineColaRed
+  categories: [ USSP ]
+  suffix: USSP
+  name: Space Cola Vendor
+  description: It vends cola, in space.
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/VendingMachines/cola-red.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#A50824"
+- type: entity
+  parent: USSPSFVendingMachineCola
+  id: USSPSFVendingMachineSpaceUp
+  categories: [ USSP ]
+  suffix: USSP
+  name: Space-Up! Vendor
+  description: Indulge in an explosion of flavor.
+  components:
+  - type: VendingMachine
+    pack: SpaceUpInventory
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/VendingMachines/spaceup.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#44964A"
+- type: entity
+  parent: USSPSFVendingMachineCola
+  id: USSPSFVendingMachineSoda
+  categories: [ USSP ]
+  suffix: USSP, Soda
+  components:
+  - type: VendingMachine
+    pack: SodaInventory
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/VendingMachines/soda.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#CBC6BE"
+- type: entity
+  parent: VendingMachine
+  id: USSPSFVendingMachineSec
+  categories: [ USSP ]
+  suffix: USSP
+  name: SecTech
+  description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
+  components:
+  - type: VendingMachine
+    pack: SecTechInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: DatasetVocalizer
+    dataset: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/sec.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: AccessReader
+    access: [["USSPSecurity"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+  - type: GuideHelp
+    guides:
+    - Security
+  - type: TTS
+    voice: Glowtron
+- type: entity
+  parent: VendingMachine
+  id: USSPSFVendingMachineSovietSoda
+  categories: [ USSP ]
+  name: ВОДА
+  description: An old vending machine containing sweet water.
+  suffix: USSP, VODA
+  components:
+  - type: VendingMachine
+    pack: BodaInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    initialStockQuality: 0.33
+  - type: DatasetVocalizer
+    dataset: BodaAds
+  - type: SpeakOnUIClosed
+    pack: BodaGoodbyes
+  - type: Sprite
+    sprite: _Souz/Structures/Machines/VendingMachines/sovietsoda.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false # DS14
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#389690"
+  - type: RussianAccent

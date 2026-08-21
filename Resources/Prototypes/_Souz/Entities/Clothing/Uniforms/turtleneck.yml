@@ -1,0 +1,79 @@
+# source: _DeadSpace/Entities/Clothing/Uniforms/turtleneck.yml
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformTurtleneckCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: водолазка капитана
+  description: Синяя водолазка с золотыми элементами, удобно и стильно.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpsuit/turtleneck_captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpsuit/turtleneck_captain.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtTurtleneckCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: юбка-водолазка капитана
+  description: Синяя юбка-водолазка с золотыми элементами, удобно и стильно.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpskirt/turtleneck_captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpskirt/turtleneck_captain.rsi
+
+## White
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformTurtleneckCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белая водолазка капитана
+  description: Белая водолазка с золотыми элементами, удобно и стильно. Не смейте пачкать её в крови!
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpsuit/turtleneck_captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpsuit/turtleneck_captain_white.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtTurtleneckCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белая юбка-водолазка капитана
+  description: Белая юбка-водолазка с золотыми элементами, удобно и стильно. Не смейте пачкать её в крови!
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpskirt/turtleneck_captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpskirt/turtleneck_captain_white.rsi
+
+## Black
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformTurtleneckCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрная водолазка капитана
+  description: Чёрная водолазка с золотыми элементами, удобно и стильно. Крови видно не будет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpsuit/turtleneck_captain_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpsuit/turtleneck_captain_black.rsi
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: USSPSFClothingUniformJumpskirtTurtleneckCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрная юбка-водолазка капитана
+  description: Чёрная юбка-водолазка с золотыми элементами, удобно и стильно. Крови видно не будет.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpskirt/turtleneck_captain_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Turtleneck/Jumpskirt/turtleneck_captain_black.rsi
+
+#Mercenary

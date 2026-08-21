@@ -266,6 +266,11 @@
     factions:
     - BloodCultNF
   - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:
@@ -367,6 +372,9 @@
     factions:
     - BloodCultNF
   - type: CanMoveInAir
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/_NF/Effects/silence.ogg

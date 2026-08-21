@@ -1,0 +1,13 @@
+# source: _DeadSpace/Entities/Clothing/Uniforms/blueshield.yml
+- type: entity
+  parent: ClothingUniformBase
+  id: USSPSFClothingUniformJumpsuitBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: комбинезон оперативника КГБ
+  description: Текстилевый комбинезон, обшитый в некоторых местах толстой кожей.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/blueshield.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpsuit/blueshield.rsi

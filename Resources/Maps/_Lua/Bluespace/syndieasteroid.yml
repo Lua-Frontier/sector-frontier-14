@@ -1506,7 +1506,6 @@ entities:
     - type: NavMap
     - type: IFF
       color: '#D93204FF'
-    - type: ShipCpuLimit
 - proto: ActionHardsuitOpenDNARadial
   entities:
   - uid: 3
@@ -12009,7 +12008,7 @@ entities:
       parent: 1
     - type: ContainerContainer
       containers:
-        toggleable-clothing: !type:ContainerSlot
+        toggleable-clothing: !type:Container
           showEnts: False
           occludes: True
           ent: null

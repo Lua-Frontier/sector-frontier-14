@@ -811,6 +811,14 @@ public abstract class SharedAutodocSystem : EntitySystem
             if (ent.Comp2.CurrentSurgery is { } args)
             {
                 var (body, part, currentSurgery) = args;
+                if (IsTendWoundsSurgery(currentSurgery) && !HasTendWoundsDamage(body, part, currentSurgery))
+                {
+                    ent.Comp2.CurrentSurgery = null;
+                    ent.Comp2.SurgeryIndex++;
+                    UpdateUi((ent.Owner, ent.Comp1));
+                    return false;
+                }
+
                 if (StartSurgeryOrThrow((ent.Owner, ent.Comp1), body, part, currentSurgery))
                     return false;
 
@@ -916,6 +924,9 @@ public abstract class SharedAutodocSystem : EntitySystem
                 !HasComp<OrganReattachedComponent>(organ),
             AutodocOperationKind.RemoveOrgan => ent.Comp2.Item is { } removedOrgan &&
                 TryComp<OrganComponent>(removedOrgan, out var removedOrganComp) && removedOrganComp.Body != patient,
+            AutodocOperationKind.TendWounds =>
+                !HasTendWoundsDamage(patient.Value, ent.Comp2.TargetPart, SurgeryTendWoundsBrute) &&
+                !HasTendWoundsDamage(patient.Value, ent.Comp2.TargetPart, SurgeryTendWoundsBurn),
             _ => false
         };
     }

@@ -33,11 +33,10 @@
     - !type:OverallPlaytimeRequirement
       time: 150000
   access:
-  - SyndicateAgent
-  - NuclearOperative
-  - ResearchDirectorTypan
+  - SyndicateCommand
+  - SyndicateResearchDirector
   accessGroups:
-  - AllAccess
+  - SyndicateAll
   special:
   - !type:AddImplantSpecial
     implants: [ DeathAcidifierImplantLWTypan ]

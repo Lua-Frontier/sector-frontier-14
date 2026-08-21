@@ -1,4 +1,5 @@
 using Content.Server._Corvax.Respawn; // Frontier
+using Content.Server._Lua.Sectors;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking.Events;
@@ -59,6 +60,9 @@ namespace Content.Server.GameTicking
             var query = EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent>();
             while (query.MoveNext(out var uid, out _, out _))
             {
+                if (!_station.IsStationSpawnable(uid))
+                    continue;
+
                 spawnableStations.Add(uid);
             }
 
@@ -192,6 +196,13 @@ namespace Content.Server.GameTicking
                 _chatManager.DispatchServerMessage(player,
                     Loc.GetString("game-ticker-latejoin-station-company-denied",
                         ("stationName", Name(station))));
+                return;
+            }
+
+            if (station != EntityUid.Invalid && !_station.IsStationSpawnable(station))
+            {
+                _chatManager.DispatchServerMessage(player,
+                    Loc.GetString("game-ticker-latejoin-station-unavailable", ("stationName", Name(station))));
                 return;
             }
 
@@ -621,9 +632,10 @@ namespace Content.Server.GameTicking
                 return spawn;
             }
 
-            if (_map.MapExists(DefaultMap))
+            var sectors = EntityManager.System<SectorSystem>();
+            if (sectors.TryGetHubMapId(out var hubMap) && _map.MapExists(hubMap))
             {
-                var mapUid = _map.GetMapOrInvalid(DefaultMap);
+                var mapUid = _map.GetMapOrInvalid(hubMap);
                 if (!TerminatingOrDeleted(mapUid))
                     return new EntityCoordinates(mapUid, Vector2.Zero);
             }

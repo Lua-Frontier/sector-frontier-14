@@ -3,6 +3,7 @@ using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Content.Shared.Stacks;
 using Content.Shared.Shuttles.Components;
+using Content.Server.Shuttles.Events;
 
 namespace Content.Server._Mono.Ships;
 
@@ -63,6 +64,9 @@ public sealed class BluespaceFuelSystem : EntitySystem
 
     private void OnFtlStartup(EntityUid uid, FTLComponent comp, ComponentStartup args)
     {
+        var startupEv = new FTLComponentStartupEvent(uid);
+        RaiseLocalEvent(ref startupEv);
+
         if (_consumedAtStart.Contains(uid)) return;
 
         foreach (var (fuelComp, xform) in EntityQuery<BluespaceFuelComponent, TransformComponent>())

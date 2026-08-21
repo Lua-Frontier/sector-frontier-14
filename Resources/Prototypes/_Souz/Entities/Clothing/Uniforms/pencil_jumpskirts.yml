@@ -1,0 +1,37 @@
+# source: _DeadSpace/Entities/Clothing/Uniforms/pencil_jumpskirts.yml
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtPencilCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: костюм-карандаш капитана
+  description: Строгий синий костюм капитана в стиле "карандаш" придает образу строгость. Облегающий пиджак и прямая юбка создают изысканный силуэт, подходящий для различных событий, от деловых встреч до увольнения любого члена экипажа.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_captain.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_captain.rsi
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtPencilCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый костюм-карандаш капитана
+  description: Строгий белый костюм капитана в стиле "карандаш" придает образу строгость. Облегающий пиджак и прямая юбка создают изысканный силуэт, подходящий для различных событий, от деловых встреч до увольнения ГСБ за тоталитаризм в отделе.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_captain_white.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_captain_white.rsi
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: USSPSFClothingUniformJumpskirtPencilCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрный костюм-карандаш капитана
+  description: Строгий чёрный костюм капитана в стиле "карандаш" придает образу строгость. Облегающий пиджак и прямая юбка создают изысканный силуэт, подходящий для различных событий, от деловых встреч до увольнения клоуна за "смешные" шутки.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_captain_black.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Uniforms/Jumpskirt/pencil_captain_black.rsi

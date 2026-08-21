@@ -4,7 +4,7 @@
   id: ShipMissileASM220HE
   name: ASM-220 torpedo (HE)
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -59,6 +59,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Asm220TorpedoHE
   name: ASM-220 high-explosive torpedo
   description: Contains a large explosive payload. High-Explosive is an understatement.
@@ -105,7 +106,7 @@
   id: ShipMissileASM220HESACLOS
   name: ASM-220 torpedo (HE-SACLOS)
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -160,6 +161,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Asm220TorpedoHESACLOS
   name: ASM-220 high-explosive SACLOS torpedo
   description: Contains a large explosive payload. High-Explosive is an understatement. This one is equipped with a SACLOS guidance system and requires manual guidance to target, but can move faster.
@@ -206,7 +208,7 @@
   id: ShipMissileASM220LOSAT
   name: ASM-220 LOSAT hyper-penetrator
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -259,6 +261,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Asm220TorpedoLOSAT
   name: ASM-220 LOSAT missile
   description: Effectively a large plastitanium hyper-penetrator. Tears through hull with ease.
@@ -305,7 +308,7 @@
   id: ShipMissileASM220ECM
   name: ASM-220 torpedo (ECM)
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -363,6 +366,7 @@
           collection: MetalBreak
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: Asm220TorpedoECM
   name: ASM-220 ECM torpedo
   description: Compared to a standard HE torpedo, this one is much more destructive to electronics due to an EMP payload installed inside, though it's almost completely harmless to the hull.

@@ -5,13 +5,13 @@
   viewScale: 2
   uiZoom: 16
   twinkleSpeed: 1.6
-  nebulaExponent: 1.5
-  nebulaIntensity: 0
+  nebulaExponent: 1.35
+  nebulaIntensity: 1.4
   bgSlowness: 0.9992
   bgWorldScale: 0.022
-  bgNebulaMul: 0
-  horizonColorMul: 0.35
-  baseColorMul: 0.60
+  bgNebulaMul: 1
+  horizonColorMul: 0.55
+  baseColorMul: 0.70
   layerCount: 12
   layerCountLQ: 6
   lowQualityStarLayers: [0, 2, 4, 6]
@@ -182,21 +182,22 @@
   id: AspidParallax
   parent: BaseTelescope
   seed: 3
-  scrollSpeed: 0.0015, 0.0015
-  starDensity: 0.9
-  baseColor: "#070712"
+  scrollSpeed: 0.0012, -0.0008
+  starDensity: 0.95
+  baseColor: "#0A0418"
   nebulaColor: "#7C4DFF"
-  accentColor: "#7FDBFF"
-  horizonColor: "#EF6CFF"
+  accentColor: "#B388FF"
+  horizonColor: "#E040FB"
+  nebulaIntensity: 1.7
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
-  - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
-    slowness: 0.80
-    scale: 0.8, 0.8
-    scrolling: -0.0005, -0.0009
+  - path: /Textures/_Corvax/Parallax/DeltaParallaxNeb.png
+    slowness: 0.995
+    scale: 1.4, 1.4
+    scrolling: 0.004, -0.002
+  - path: /Textures/Parallaxes/debris_small.png
+    slowness: 0.96
+    scale: 0.55, 0.55
+    scrolling: 0.015, 0.004
 
 - type: parallax
   id: AmberStation
@@ -208,6 +209,7 @@
   nebulaColor: "#F5A623"
   accentColor: "#FFE08A"
   horizonColor: "#B34A12"
+  nebulaIntensity: 1.6
   imageLayers:
   - path: /Textures/Parallaxes/Asteroids.png
     slowness: 0.990
@@ -233,29 +235,39 @@
   id: BagelStation
   parent: BaseTelescope
   seed: 5
-  scrollSpeed: 0.0015, 0.0015
+  scrollSpeed: 0.001, 0.0018
   starDensity: 1
-  baseColor: "#07070F"
-  nebulaColor: "#008FF0"
-  accentColor: "#C78080"
-  horizonColor: "#B3B3FF"
+  baseColor: "#040812"
+  nebulaColor: "#1E88E5"
+  accentColor: "#90CAF9"
+  horizonColor: "#1565C0"
+  nebulaIntensity: 1.55
   imageLayers:
   - path: /Textures/Parallaxes/planet.png
     slowness: 0.998046875
     scale: 1, 1
     tiled: false
+  - path: /Textures/_Lua/Effects/parallax_noise_opacity.png
+    slowness: 0.992
+    scale: 1.2, 1.2
+    scrolling: 0.003, 0.001
 
 - type: parallax
   id: CoreStation
   parent: BaseTelescope
   seed: 6
-  scrollSpeed: 0.0015, 0.0015
-  starDensity: 1.2
-  baseColor: "#100505"
-  nebulaColor: "#FF4D2E"
-  accentColor: "#FFD166"
-  horizonColor: "#5A189A"
+  scrollSpeed: 0.0018, 0.0005
+  starDensity: 1.15
+  baseColor: "#140202"
+  nebulaColor: "#FF3D00"
+  accentColor: "#FFAB00"
+  horizonColor: "#6A1B9A"
+  nebulaIntensity: 1.85
   imageLayers:
+  - path: /Textures/_Corvax/Parallax/LavaParallax.png
+    slowness: 0.996
+    scale: 1.1, 1.1
+    scrolling: 0.002, 0.0
   - path: /Textures/Parallaxes/core_planet.png
     slowness: 0.998046875
     scale: 1, 1
@@ -271,6 +283,7 @@
   nebulaColor: "#83C5BE"
   accentColor: "#EDF6F9"
   horizonColor: "#3A86FF"
+  nebulaIntensity: 1.5
   imageLayers:
   - path: /Textures/Parallaxes/XenoParallaxNeb.png
     slowness: 0.967046875
@@ -280,37 +293,44 @@
   id: KettleStation
   parent: BaseTelescope
   seed: 8
-  scrollSpeed: 0.0015, 0.0015
-  starDensity: 1
-  baseColor: "#0A0612"
-  nebulaColor: "#C77DFF"
-  accentColor: "#80FFDB"
-  horizonColor: "#FF70A6"
+  scrollSpeed: -0.001, 0.002
+  starDensity: 1.05
+  baseColor: "#120414"
+  nebulaColor: "#F72585"
+  accentColor: "#B5179E"
+  horizonColor: "#7209B7"
+  nebulaIntensity: 1.75
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
+  - path: /Textures/_Lua/Parallaxes/NordFoll/Asteroids.png
     slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
-  - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
-    slowness: 0.80
-    scale: 0.8, 0.8
-    scrolling: -0.0005, -0.0009
+    scale: 1.15, 1.15
+    scrolling: -0.01, 0.006
+  - path: /Textures/_Lua/Parallaxes/NordFoll/AsteroidsBack.png
+    slowness: 0.82
+    scale: 0.85, 0.85
+    scrolling: 0.004, -0.008
 
 - type: parallax
   id: OriginStation
   parent: BaseTelescope
   seed: 9
-  scrollSpeed: 0.0015, 0.0015
-  starDensity: 1
-  baseColor: "#060C10"
-  nebulaColor: "#38A3A5"
-  accentColor: "#F4F1DE"
-  horizonColor: "#6D597A"
+  scrollSpeed: 0.0008, 0.0015
+  starDensity: 0.95
+  baseColor: "#031014"
+  nebulaColor: "#00B4D8"
+  accentColor: "#90E0EF"
+  horizonColor: "#0077B6"
+  nebulaIntensity: 1.6
   imageLayers:
   - path: /Textures/Parallaxes/gas_giant.png
     slowness: 0.998046875
     scale: 1, 1
     tiled: false
+  - path: /Textures/Parallaxes/debris_large.png
+    slowness: 0.97
+    scale: 0.4, 0.4
+    scrolling: 0.012, -0.003
+    worldHomePosition: 80, -40
 
 - type: parallax
   id: PlasmaStation
@@ -322,6 +342,7 @@
   nebulaColor: "#C77DFF"
   accentColor: "#F72585"
   horizonColor: "#4CC9F0"
+  nebulaIntensity: 1.65
   imageLayers:
   - path: /Textures/Parallaxes/planet.png
     slowness: 0.998046875
@@ -340,12 +361,13 @@
   id: TrainStation
   parent: BaseTelescope
   seed: 11
-  scrollSpeed: 0.0015, 0.0015
+  scrollSpeed: 0, 0.0025
   starDensity: 1
-  baseColor: "#070A0B"
+  baseColor: "#061210"
   nebulaColor: "#2A9D8F"
   accentColor: "#E9C46A"
   horizonColor: "#E76F51"
+  nebulaIntensity: 1.7
   imageLayers:
   - path: /Textures/Parallaxes/Asteroids.png
     slowness: 0.968046875
@@ -356,6 +378,10 @@
     slowness: 0.938046875
     scrolling: 0, -0.708046875
     scale: 1, 1
+  - path: /Textures/Parallaxes/debris_small.png
+    slowness: 0.92
+    scale: 0.45, 0.45
+    scrolling: 0.02, -0.03
 
 - type: parallax
   id: Wizard
@@ -367,11 +393,12 @@
   nebulaColor: "#9D4EDD"
   accentColor: "#FFD6FF"
   horizonColor: "#00B4D8"
+  nebulaIntensity: 1.6
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
+  - path: /Textures/_Corvax/Parallax/AvriteParallaxNeb.png
+    slowness: 0.994
+    scale: 1.3, 1.3
+    scrolling: 0.005, 0.002
   - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
     slowness: 0.80
     scale: 0.8, 0.8
@@ -383,10 +410,11 @@
   seed: 13
   scrollSpeed: 0.0015, 0.0015
   starDensity: 0.85
-  baseColor: "#080810"
-  nebulaColor: "#6A7A88"
-  accentColor: "#D8DEE2"
-  horizonColor: "#3A4A5A"
+  baseColor: "#0A0C12"
+  nebulaColor: "#8D99AE"
+  accentColor: "#EDF2F4"
+  horizonColor: "#2B2D42"
+  nebulaIntensity: 1.15
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/Asteroids/ThreePlanets.png
     slowness: 0.998046875
@@ -407,45 +435,42 @@
   id: LuaSpace
   parent: BaseTelescope
   seed: 14
-  scrollSpeed: 0.0015, 0.0015
-  starDensity: 1.1
-  baseColor: "#07070F"
-  nebulaColor: "#48CAE4"
-  accentColor: "#F1FAEE"
-  horizonColor: "#7209B7"
+  scrollSpeed: 0.0022, 0.001
+  starDensity: 1.2
+  baseColor: "#020814"
+  nebulaColor: "#00E5FF"
+  accentColor: "#76FF03"
+  horizonColor: "#2979FF"
+  nebulaIntensity: 1.8
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
-  - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
-    slowness: 0.80
-    scale: 0.8, 0.8
-    scrolling: -0.0005, -0.0009
+  - path: /Textures/_Lua/Parallaxes/FrontierParallaxNeb.png
+    slowness: 0.996
+    scale: 1.0, 1.0
+    scrolling: 0.006, 0.002
+  - path: /Textures/_NF/Parallaxes/Asteroids.png
+    slowness: 0.94
+    scale: 1.1, 1.1
+    scrolling: 0.012, -0.004
 
 - type: parallax
   id: LuaDarkSpace
   parent: BaseTelescope
   seed: 15
-  scrollSpeed: 0.0012, 0.0012
-  starDensity: 0.7
-  baseColor: "#05010C"
-  nebulaColor: "#3C096C"
-  accentColor: "#B8C0FF"
+  scrollSpeed: 0.0009, 0.0009
+  starDensity: 0.55
+  baseColor: "#020008"
+  nebulaColor: "#5A189A"
+  accentColor: "#9D4EDD"
   horizonColor: "#240046"
+  nebulaIntensity: 1.9
   imageLayers:
   - path: /Textures/_Lua/Effects/parallax_noise_opacity.png
     slowness: 0.998046875
-    scale: 1, 1
+    scale: 1.3, 1.3
+    scrolling: 0.001, 0.001
   - path: /Textures/_Lua/Parallaxes/LuaDarkSpace/LuaVioletMoon.png
     slowness: 0.998046875
-    scale: 0.50, 0.50
-    controlHomePosition: 361, 292
-    worldHomePosition: 0, 0
-    tiled: false
-  - path: /Textures/_Lua/Parallaxes/LuaDarkSpace/LuaVioletMoon.png
-    slowness: 0.998040075
-    scale: 0.50, 0.50
+    scale: 0.55, 0.55
     controlHomePosition: 361, 292
     worldHomePosition: 0, 0
     tiled: false
@@ -460,6 +485,7 @@
   nebulaColor: "#DDA15E"
   accentColor: "#FFF3B0"
   horizonColor: "#5F0F40"
+  nebulaIntensity: 1.55
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/FrontierParallaxNeb.png
     slowness: 0.998046875
@@ -489,6 +515,7 @@
   nebulaColor: "#E09F3E"
   accentColor: "#FFF3B0"
   horizonColor: "#9E2A2B"
+  nebulaIntensity: 1.5
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
     slowness: 0.97
@@ -509,11 +536,12 @@
   nebulaColor: "#D62828"
   accentColor: "#FFFFFF"
   horizonColor: "#2A9D8F"
+  nebulaIntensity: 1.55
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
+  - path: /Textures/_Corvax/Parallax/IceParallax.png
+    slowness: 0.995
     scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
+    scrolling: 0.003, 0.001
   - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
     slowness: 0.80
     scale: 0.8, 0.8
@@ -529,6 +557,7 @@
   nebulaColor: "#669BBC"
   accentColor: "#FDF0D5"
   horizonColor: "#780000"
+  nebulaIntensity: 1.5
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/FrontierParallaxNeb.png
     slowness: 0.998046875
@@ -552,6 +581,7 @@
   nebulaColor: "#FF00FF"
   accentColor: "#FFFF00"
   horizonColor: "#00FFFF"
+  nebulaIntensity: 2
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
     slowness: 0.97
@@ -567,20 +597,21 @@
   parent: BaseTelescope
   seed: 21
   scrollSpeed: 0.002, -0.001
-  starDensity: 1
-  baseColor: "#070B14"
-  nebulaColor: "#BDE0FE"
-  accentColor: "#FFFFFF"
-  horizonColor: "#F8C291"
+  starDensity: 1.1
+  baseColor: "#061018"
+  nebulaColor: "#4FC3F7"
+  accentColor: "#E1F5FE"
+  horizonColor: "#FFB74D"
+  nebulaIntensity: 1.65
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
-  - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
-    slowness: 0.80
-    scale: 0.8, 0.8
-    scrolling: -0.0005, -0.0009
+  - path: /Textures/_Corvax/Parallax/SillyOcean.png
+    slowness: 0.997
+    scale: 1.25, 1.25
+    scrolling: 0.005, -0.002
+  - path: /Textures/Parallaxes/debris_small.png
+    slowness: 0.93
+    scale: 0.5, 0.5
+    scrolling: -0.01, 0.006
 
 - type: parallax
   id: Dirt
@@ -588,10 +619,11 @@
   seed: 22
   scrollSpeed: 0.0015, 0.0015
   starDensity: 0.9
-  baseColor: "#080A0C"
-  nebulaColor: "#F1FAEE"
-  accentColor: "#8D6E63"
-  horizonColor: "#F4A261"
+  baseColor: "#0A0704"
+  nebulaColor: "#A1887F"
+  accentColor: "#D7CCC8"
+  horizonColor: "#6D4C41"
+  nebulaIntensity: 1.35
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
     slowness: 0.97
@@ -608,10 +640,11 @@
   seed: 23
   scrollSpeed: 0.0015, 0.0015
   starDensity: 1
-  baseColor: "#070C10"
-  nebulaColor: "#FFFFFF"
-  accentColor: "#4F772D"
-  horizonColor: "#FFD6A5"
+  baseColor: "#041208"
+  nebulaColor: "#66BB6A"
+  accentColor: "#C8E6C9"
+  horizonColor: "#2E7D32"
+  nebulaIntensity: 1.45
   imageLayers:
   - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
     slowness: 0.97
@@ -627,16 +660,17 @@
   parent: BaseTelescope
   seed: 24
   scrollSpeed: 0.0015, 0.0015
-  starDensity: 1.1
-  baseColor: "#080C12"
-  nebulaColor: "#F8FBFF"
-  accentColor: "#DCEAF5"
-  horizonColor: "#E0FBFC"
+  starDensity: 1.15
+  baseColor: "#081018"
+  nebulaColor: "#E3F2FD"
+  accentColor: "#FFFFFF"
+  horizonColor: "#90CAF9"
+  nebulaIntensity: 1.4
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
+  - path: /Textures/_Corvax/Parallax/SillyIceParallax.png
+    slowness: 0.996
+    scale: 1.15, 1.15
+    scrolling: 0.002, 0.001
   - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
     slowness: 0.80
     scale: 0.8, 0.8
@@ -648,16 +682,22 @@
   seed: 25
   scrollSpeed: 0.002, 0
   starDensity: 1
-  baseColor: "#060A05"
-  nebulaColor: "#ECF39E"
-  accentColor: "#90A955"
-  horizonColor: "#DDA15E"
+  baseColor: "#071205"
+  nebulaColor: "#C0CA33"
+  accentColor: "#EEFF41"
+  horizonColor: "#827717"
+  nebulaIntensity: 1.7
   imageLayers:
-  - path: /Textures/_Lua/Parallaxes/Tortuga/Asteroids.png
-    slowness: 0.97
-    scale: 1.2, 1.2
-    scrolling: 0.008, 0.001
-  - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
-    slowness: 0.80
-    scale: 0.8, 0.8
-    scrolling: -0.0005, -0.0009
+  - path: /Textures/_Lua/Parallaxes/NordFoll/core_planet.png
+    slowness: 0.998
+    scale: 0.95, 0.95
+    tiled: false
+    worldHomePosition: 40, -20
+  - path: /Textures/_NF/Parallaxes/Asteroids.png
+    slowness: 0.95
+    scale: 1.25, 1.25
+    scrolling: 0.014, 0.002
+  - path: /Textures/Parallaxes/debris_large.png
+    slowness: 0.88
+    scale: 0.5, 0.5
+    scrolling: -0.008, 0.005

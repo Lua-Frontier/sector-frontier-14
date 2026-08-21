@@ -77,13 +77,15 @@ public struct Star
     public Vector2 GlobalPosition;
     public string Name;
     public MapId Map;
+    public bool CanWarp;
 
-    public Star(Vector2 position, MapId map, string name, Vector2 globalPosition)
+    public Star(Vector2 position, MapId map, string name, Vector2 globalPosition, bool canWarp = true)
     {
         Position = position;
         Name = name;
         Map = map;
         GlobalPosition = globalPosition;
+        CanWarp = canWarp;
     }
 }
 

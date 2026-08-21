@@ -84,6 +84,27 @@
 
 - type: entity
   parent: CoordinatesDisk
+  id: CoordinatesDiskUssp
+  name: coordinates disk (USSP)
+  components:
+  - type: StarMapCoordinatesDisk
+    allowedSectors:
+    - Krasnaya Zarya
+    - Asteroid Field
+    allowedSectorIds:
+    - KrasnayaZarya
+    - AsteroidSectorDefault
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:DoActsBehavior { acts: [ Destruction ] }
+
+- type: entity
+  parent: CoordinatesDisk
   id: CoordinatesDiskMercenary
   name: coordinates disk (Mercenary)
   components:
@@ -115,6 +136,7 @@
     - LuaTech Sector
     - Pirate Sector
     - Mercenary Sector
+    - Krasnaya Zarya
     - Asteroid Field
     allowedSectorIds:
     - FrontierSector
@@ -122,6 +144,7 @@
     - LuaTechSector
     - PirateSector
     - MercenarySector
+    - KrasnayaZarya
     - AsteroidSectorDefault
     allowFtlToCentCom: true
   - type: Damageable

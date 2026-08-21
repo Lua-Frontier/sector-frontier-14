@@ -6,7 +6,7 @@
   id: BulletMachineGunImpulseTurret
   name: импульсный лазер
   parent: ShipAutopulserPlasmaProjectile
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Sprite
     sprite: _Lua/Objects/SpaceArtillery/laserturret.rsi
@@ -15,7 +15,7 @@
 
 - type: entity
   parent: PrometheusLaser
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   id: RedHeavyLaserSyndie
   components:
   - type: HitscanBasicVisuals
@@ -33,7 +33,7 @@
 
 - type: entity
   id: SynLaserExplosion
-  categories: [ HideSpawnMenu, Spawner ]
+  categories: [ HideSpawnMenu, Spawner, ShuttleGun ]
   components:
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger
@@ -48,4 +48,4 @@
   name: tesla gun lightning
   id: TeslaGunTurretBullet
   parent: ShipIonProjectile
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]

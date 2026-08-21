@@ -1,0 +1,55 @@
+# source: Entities/Clothing/Head/helmets.yml
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingHeadHelmetBasic
+  categories: [ USSP ]
+  suffix: USSP
+  name: helmet
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Helmets/security.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Helmets/security.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet
+
+#Mercenary Helmet
+- type: entity
+  parent: [ClothingHeadHelmetBase, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingHeadHelmetRiot
+  categories: [ USSP ]
+  suffix: USSP
+  name: light riot helmet
+  description: It's a helmet specifically designed to protect against close range attacks.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Helmets/light_riot.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Helmets/light_riot.rsi
+  - type: IngestionBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.95
+        Heat: 0.95 # DS14-value
+
+#Bombsuit Helmet
+
+# source: _Corvax/Entities/Clothing/Head/helmets.yml
+- type: entity
+  parent: USSPSFClothingHeadHelmetBasic
+  id: USSPSFClothingHeadHelmetSecurityMedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: security medic helmet
+  description: A standard issue combat helmet for security medics. Has decent tensile strength and armor. Keep your head down.
+  components:
+    - type: Sprite
+      sprite: _Souz/Clothing/Head/Helmets/security_medic.rsi
+    - type: Clothing
+      sprite: _Souz/Clothing/Head/Helmets/security_medic.rsi

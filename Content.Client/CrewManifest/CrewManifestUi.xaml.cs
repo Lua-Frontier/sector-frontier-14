@@ -21,8 +21,8 @@ public sealed partial class CrewManifestUi : DefaultWindow
         CrewManifestListing.DisposeAllChildren();
         CrewManifestListing.RemoveAllChildren();
 
-        StationNameContainer.Visible = entries != null;
-        StationName.Text = name;
+        StationNameContainer.Visible = false;
+        StationName.Text = string.Empty;
 
         if (entries == null)
             return;

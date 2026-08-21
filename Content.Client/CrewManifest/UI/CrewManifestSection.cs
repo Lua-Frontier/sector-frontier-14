@@ -15,6 +15,16 @@ public sealed class CrewManifestSection : BoxContainer
         SpriteSystem spriteSystem,
         DepartmentPrototype section,
         List<CrewManifestEntry> entries)
+        : this(prototypeManager, spriteSystem, Loc.GetString(section.Name), entries, showPlayerNames: false)
+    {
+    }
+
+    public CrewManifestSection(
+        IPrototypeManager prototypeManager,
+        SpriteSystem spriteSystem,
+        string sectionTitle,
+        List<CrewManifestEntry> entries,
+        bool showPlayerNames)
     {
         Orientation = LayoutOrientation.Vertical;
         HorizontalExpand = true;
@@ -22,7 +32,7 @@ public sealed class CrewManifestSection : BoxContainer
         AddChild(new Label()
         {
             StyleClasses = { "LabelBig" },
-            Text = Loc.GetString(section.Name)
+            Text = sectionTitle
         });
 
         var gridContainer = new GridContainer()
@@ -35,11 +45,15 @@ public sealed class CrewManifestSection : BoxContainer
 
         foreach (var entry in entries)
         {
+            var displayName = entry.Name;
+            if (showPlayerNames && !string.IsNullOrWhiteSpace(entry.PlayerName))
+                displayName = Loc.GetString("crew-manifest-name-with-player", ("name", entry.Name), ("player", entry.PlayerName));
+
             var name = new RichTextLabel()
             {
                 HorizontalExpand = true,
             };
-            name.SetMessage(entry.Name);
+            name.SetMessage(displayName);
 
             var titleContainer = new BoxContainer()
             {

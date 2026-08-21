@@ -1,0 +1,13 @@
+# source: _DeadSpace/Entities/Objects/Devices/patrol_tablet.yml
+- type: entity
+  parent: HandheldCrewMonitor
+  id: USSPSFPatrolTablet
+  categories: [ USSP ]
+  suffix: USSP
+  name: Patrol Tablet
+  components:
+  - type: Sprite
+    sprite: _Souz/Objects/Devices/patroltablet.rsi
+    state: tablet
+  - type: ScaleVisuals
+    scale: 0.65,0.65

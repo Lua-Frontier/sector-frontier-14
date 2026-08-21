@@ -39,3 +39,16 @@
   params:
     positionInput: 0,0
     life: 0
+
+# Luna UI SDF strokes (starmap etc.) — coverage AA at original 1px weight.
+# Per-draw color/params are vertex-packed (UV + modulate); no uniforms — Clyde
+# defers draws and would otherwise apply the last SetParameter to every stroke.
+- type: shader
+  id: LunaSdfLine
+  kind: source
+  path: "/Textures/_Lua/Shaders/luna_sdf_line.swsl"
+
+- type: shader
+  id: LunaSdfDisk
+  kind: source
+  path: "/Textures/_Lua/Shaders/luna_sdf_disk.swsl"

@@ -1,0 +1,13 @@
+# source: _DeadSpace/_Soyuz/Entities/Clothing/Neck/scarfUSSP.yml
+- type: entity
+  parent: ClothingScarfBase
+  id: USSPSFClothingNeckScarfClownUssp
+  categories: [ USSP ]
+  suffix: USSP
+  name: ярко-красный длинный шарф
+  description: Шарф костюма известного клоуна в СССП пропитанного запахом спирта.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Neck/scarfClownUSSP.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Neck/scarfClownUSSP.rsi

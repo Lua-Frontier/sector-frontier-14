@@ -291,7 +291,7 @@ public sealed class FrontierParkingSystem : EntitySystem
                 state.HasViolation = true;
                 return ApplyFineResult.InsufficientFunds;
             }
-            _bank.TrySectorDeposit(SectorBankAccount.Frontier, FineAmount, LedgerEntryType.StationDepositFines);
+            _bank.TrySectorDeposit(SectorBankAccount.Frontier, FineAmount, LedgerEntryType.StationDepositFines, frontierStation);
             var notifyText = Loc.GetString("frontier-parking-notification-fined", ("amount", FineAmount));
             _chat.ChatMessageToOne(ChatChannel.Notifications, notifyText, notifyText, EntityUid.Invalid, false, session.Channel);
             TrySendFaxNotice(frontierStation, shuttleUid, deed);
@@ -358,7 +358,7 @@ public sealed class FrontierParkingSystem : EntitySystem
                 }
                 return;
             }
-            _bank.TrySectorDeposit(SectorBankAccount.Frontier, FineAmount, LedgerEntryType.StationDepositFines);
+            _bank.TrySectorDeposit(SectorBankAccount.Frontier, FineAmount, LedgerEntryType.StationDepositFines, frontierStation);
             TrySendFaxNotice(frontierStation, shuttleUid, deed);
             if (_tracked.TryGetValue(shuttleUid, out var st2))
             {

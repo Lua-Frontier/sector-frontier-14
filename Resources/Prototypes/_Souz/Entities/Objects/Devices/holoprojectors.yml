@@ -1,0 +1,21 @@
+# source: Entities/Objects/Devices/holoprojectors.yml
+- type: entity
+  parent: Holoprojector
+  id: USSPSFHoloprojectorSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: holobarrier projector
+  description: Creates a solid but fragile holographic barrier.
+  components:
+  - type: HolosignProjector
+    signProto: HolosignSecurity
+    chargeUse: 90
+  - type: Sprite
+    sprite: _Souz/Objects/Devices/Holoprojectors/security.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+    - SecBeltEquip
+  - type: StaticPrice
+    price: 50

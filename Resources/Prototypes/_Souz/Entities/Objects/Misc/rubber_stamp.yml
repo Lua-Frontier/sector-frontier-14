@@ -1,0 +1,161 @@
+- type: entity
+  name: captain's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: USSPSFRubberStampCaptain
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-captain
+    stampedColor: "#f04343"
+    stampState: "paper_stamp-cap"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/nt_print_pattern.png"
+    stampScale: 0.92
+  - type: Sprite
+    state: stamp-cap
+
+- type: entity
+  name: head of personnel's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: USSPSFRubberStampHop
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hop
+    stampedColor: "#6ec0ea"
+    stampState: "paper_stamp-hop"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/headdep_print_pattern.png"
+    stampScale: 0.92
+    stampHeaderText: "Кадры"
+    stampBackgroundText: "СССП"
+  - type: Sprite
+    state: stamp-hop
+
+- type: entity
+  name: head of security's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: USSPSFRubberStampHos
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hos
+    stampedColor: "#cc0000"
+    stampState: "paper_stamp-hos"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/headdep_print_pattern.png"
+    stampScale: 0.92
+    stampHeaderText: "Милиция"
+    stampBackgroundText: "СССП"
+  - type: Sprite
+    state: stamp-hos
+
+- type: entity
+  name: APPROVED rubber stamp
+  parent: RubberStampBaseAlt
+  id: USSPSFRubberStampApproved
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-approved
+    stampedColor: "#00be00"
+    stampState: "paper_stamp-ok"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/nt_print_pattern.png"
+    stampScale: 0.92
+  - type: Sprite
+    state: stamp-ok
+
+- type: entity
+  name: DENIED rubber stamp
+  parent: RubberStampBaseAlt
+  id: USSPSFRubberStampDenied
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-denied
+    stampedColor: "#a23e3e"
+    stampState: "paper_stamp-deny"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/reject_print.png"
+    stampScale: 0.92
+    stampCanRotate: false
+  - type: Sprite
+    state: stamp-deny
+
+- type: entity
+  name: brigmedic's rubber stamp
+  parent: RubberStampBase
+  id: USSPSFRubberStampBrigmedic
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-brigmedic
+    stampedColor: "#CC2369"
+    stampState: "paper_stamp-hos"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/headdep_print_pattern.png"
+    stampScale: 0.92
+    stampHeaderText: "Милиция"
+    stampBackgroundText: "СССП"
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/rubberstampbrigmedic.rsi
+    state: stamp-brigmedic
+
+- type: entity
+  name: blue shield rubber stamp
+  parent: RubberStampBase
+  id: USSPSFRubberStampBlueShield
+  suffix: USSP
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-blueshield
+    stampedColor: "#491a1e"
+    stampState: "paper_stamp-cap"
+    stampTexture: "/Textures/_Souz/Objects/Misc/paper_stamps.rsi/paper_stamp-blueshield.png"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/deparmforce_print_pattern.png"
+    stampScale: 0.84
+    stampTextMaxScale: 0.54
+    stampCanRotate: false
+  - type: Sprite
+    state: stamp-cap
+
+- type: entity
+  parent: RubberStampBase
+  id: USSPSFRubberStampPolitruk
+  suffix: USSP
+  name: печать политического руководителя
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-politruk
+    stampedColor: "#962929"
+    stampState: "paper_stamp-cap"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/deparmforce_print_pattern.png"
+    stampScale: 0.92
+    stampHeaderText: "Полит. отдел"
+    stampBackgroundText: "Наркомат Всесоюзной Безопасности"
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/stamp.rsi
+    state: stamp-pr
+
+- type: entity
+  parent: RubberStampBase
+  id: USSPSFRubberStampPolitkom
+  suffix: USSP
+  name: печать политического комиссара
+  categories: [ DoNotMap, USSP ]
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-politkom
+    stampedColor: "#a03434"
+    stampState: "paper_stamp-cap"
+    stampPatternTexture: "/Textures/_Souz/Interface/Stamps/deparmforce_print_pattern.png"
+    stampScale: 0.92
+    stampCanRotate: false
+    stampHeaderText: "Полит. отдел"
+    stampBackgroundText: "Наркомат Всесоюзной Безопасности"
+  - type: Sprite
+    sprite: _Souz/Objects/Misc/stamp.rsi
+    state: stamp-pk

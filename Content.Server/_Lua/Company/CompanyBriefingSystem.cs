@@ -3,11 +3,14 @@
 // See AGPLv3.txt for details.
 
 using Content.Server.AlertLevel;
-using Content.Server.EUI;
+using Content.Server._Lua.Sectors;
 using Content.Server._Mono.Company;
 using Content.Server._NF.SectorServices;
 using Content.Shared._Lua.Company;
 using Content.Shared._Mono.Company;
+using Content.Shared.GameTicking;
+using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.Text;
@@ -16,18 +19,25 @@ namespace Content.Server._Lua.Company;
 
 public sealed class CompanyBriefingSystem : EntitySystem
 {
-    [Dependency] private readonly EuiManager _euiManager = default!;
     [Dependency] private readonly FactionWarSystem _wars = default!;
     [Dependency] private readonly CompanyMotdSystem _motds = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private readonly SectorSystem _sectorSystem = default!;
 
-    private readonly Dictionary<ICommonSession, CompanyBriefingEui> _briefingUis = new();
+    private readonly HashSet<NetUserId> _shownBriefings = new();
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<CompanyComponent, CompanySetEvent>(OnCompanySet);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => _shownBriefings.Clear());
+        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
+    }
+
+    private void OnPlayerDetached(PlayerDetachedEvent ev)
+    {
+        _shownBriefings.Remove(ev.Player.UserId);
     }
 
     private void OnCompanySet(Entity<CompanyComponent> ent, ref CompanySetEvent args)
@@ -38,24 +48,32 @@ public sealed class CompanyBriefingSystem : EntitySystem
         if (!TryComp<ActorComponent>(ent, out var actor))
             return;
 
-        if (!_prototypes.TryIndex<CompanyPrototype>(args.NewCompanyId, out var prototype))
+        if (!_shownBriefings.Add(actor.PlayerSession.UserId))
             return;
 
-        var briefing = BuildBriefing(args.NewCompanyId);
+        if (!_prototypes.HasIndex<CompanyPrototype>(args.NewCompanyId))
+            return;
+
+        var briefing = BuildBriefing(args.NewCompanyId, ent);
         if (string.IsNullOrWhiteSpace(briefing))
+        {
+            _shownBriefings.Remove(actor.PlayerSession.UserId);
             return;
+        }
 
-        OpenBriefingPopup(actor.PlayerSession, prototype.Name, prototype.Color, briefing);
+        RaiseNetworkEvent(
+            new CompanyBriefingOverlayMessage(briefing),
+            Filter.SinglePlayer(actor.PlayerSession));
     }
 
-    private string BuildBriefing(string companyId)
+    private string BuildBriefing(string companyId, EntityUid entity)
     {
         var builder = new StringBuilder();
 
         AppendSection(builder, BuildCompanyIntro(companyId));
         AppendSection(builder, BuildLeaderMotd(companyId));
 
-        AppendSection(builder, TryBuildAlertLevelBriefing());
+        AppendSection(builder, TryBuildAlertLevelBriefing(entity));
         AppendSection(builder, BuildWarBriefing(companyId));
 
         return builder.ToString();
@@ -82,19 +100,25 @@ public sealed class CompanyBriefingSystem : EntitySystem
         return Loc.GetString("company-briefing-leader-motd", ("text", motd));
     }
 
-    private string TryBuildAlertLevelBriefing()
+    private string TryBuildAlertLevelBriefing(EntityUid entity)
     {
-        if (!TryComp<AlertLevelComponent>(_sectorService.GetServiceEntity(), out var alert)
+        if (!_sectorService.TryGetServiceEntity(entity, out var service)
+            || !TryComp<AlertLevelComponent>(service, out var alert)
             || string.IsNullOrWhiteSpace(alert.CurrentLevel))
         {
             return string.Empty;
         }
 
         var level = alert.CurrentLevel;
+        var sectorName = Loc.GetString("alert-level-sector-unknown");
+        if (TryComp(entity, out TransformComponent? xform) && xform.MapID != MapId.Nullspace)
+            sectorName = _sectorSystem.GetSectorDisplayName(xform.MapID);
+
         var levelName = Loc.TryGetString($"alert-level-{level}", out var localizedName)
             ? localizedName
             : level;
-        var instructions = Loc.TryGetString($"alert-level-{level}-instructions", out var localizedInstructions)
+        var instructionsKey = $"alert-level-{level}-instructions";
+        var instructions = Loc.TryGetString(instructionsKey, out var localizedInstructions, ("sector", sectorName))
             ? localizedInstructions
             : Loc.GetString("alert-level-unknown-instructions");
 
@@ -138,24 +162,5 @@ public sealed class CompanyBriefingSystem : EntitySystem
             builder.Append('\n').Append('\n');
 
         builder.Append(section);
-    }
-
-    private void OpenBriefingPopup(ICommonSession session, string title, Color color, string text)
-    {
-        if (string.IsNullOrWhiteSpace(text))
-            return;
-
-        if (_briefingUis.Remove(session, out var existing))
-            existing.Close();
-
-        var eui = new CompanyBriefingEui(title, color, text, OnBriefingClosed);
-        _briefingUis[session] = eui;
-        _euiManager.OpenEui(eui, session);
-    }
-
-    private void OnBriefingClosed(ICommonSession session, CompanyBriefingEui eui)
-    {
-        if (_briefingUis.TryGetValue(session, out var current) && ReferenceEquals(current, eui))
-            _briefingUis.Remove(session);
     }
 }

@@ -327,8 +327,12 @@
     job: OutpostTypanCargotech
   - type: Access
     tags:
+    - SyndicateCargo
+    - SyndicateMaintenance
+    - SyndicateExternal
     - SyndicateAgent
-    - NuclearOperative
+    groups:
+    - SyndicateGeneral
 
 
 - type: entity
@@ -345,16 +349,14 @@
     job: OutpostTypanTelecommunicationsOfficer
   - type: Access
     tags:
-    - Armory
-    - Cargo
-    - Medical
-    - Engineering
-    - Research
-    - Service
+    - SyndicateTelecomOfficer
+    - SyndicateCommand
+    - SyndicateSecurity
+    - SyndicateBrig
+    - SyndicateArmory
     - SyndicateAgent
-    - Quartermaster
-    - ResearchDirector
-    - NuclearOperative
+    groups:
+    - SyndicateAll
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -370,11 +372,13 @@
     job: OutpostTypanAtmosTech
   - type: Access
     tags:
-    - Engineering
+    - SyndicateAtmospherics
+    - SyndicateEngineering
+    - SyndicateMaintenance
+    - SyndicateExternal
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateGeneral
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -390,10 +394,12 @@
     job: OutpostTypanMedic
   - type: Access
     tags:
+    - SyndicateMedical
+    - SyndicateChemistry
+    - SyndicateMaintenance
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateGeneral
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -409,10 +415,11 @@
     job: OutpostTypanRD
   - type: Access
     tags:
+    - SyndicateCommand
+    - SyndicateResearchDirector
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateAll
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -428,10 +435,11 @@
     job: OutpostTypanScience
   - type: Access
     tags:
+    - SyndicateResearch
+    - SyndicateMaintenance
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateGeneral
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -446,10 +454,12 @@
     job: OutpostTypanBotanist
   - type: Access
     tags:
+    - SyndicateHydroponics
+    - SyndicateService
+    - SyndicateMaintenance
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateGeneral
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -464,10 +474,12 @@
     job: OutpostTypanChef
   - type: Access
     tags:
+    - SyndicateKitchen
+    - SyndicateService
+    - SyndicateMaintenance
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateGeneral
 
 - type: entity
   parent: [IDCardStandard, BaseC3SyndicateContraband]
@@ -482,10 +494,11 @@
     job: OutpostTypanResearcher
   - type: Access
     tags:
+    - SyndicateResearch
+    - SyndicateMaintenance
     - SyndicateAgent
-    - NuclearOperative
     groups:
-    - AllAccess
+    - SyndicateGeneral
 
 - type: entity
   parent: IDCardStandard

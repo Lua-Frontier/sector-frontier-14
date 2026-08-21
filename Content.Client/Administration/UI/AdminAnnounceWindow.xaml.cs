@@ -23,10 +23,75 @@ namespace Content.Client.Administration.UI
             AnnounceMethod.SetItemMetadata(0, AdminAnnounceType.Station);
             AnnounceMethod.AddItem(_localization.GetString("admin-announce-type-server"));
             AnnounceMethod.SetItemMetadata(1, AdminAnnounceType.Server);
-            AnnounceMethod.AddItem(_localization.GetString("admin-announce-type-antag"));  // Frontier
-            AnnounceMethod.SetItemMetadata(2, AdminAnnounceType.Antag);  // Frontier
+            AnnounceMethod.AddItem(_localization.GetString("admin-announce-type-antag"));
+            AnnounceMethod.SetItemMetadata(2, AdminAnnounceType.Antag);
             AnnounceMethod.OnItemSelected += AnnounceMethodOnOnItemSelected;
+            FactionOption.OnItemSelected += args => FactionOption.SelectId(args.Id);
+            SectorOption.OnItemSelected += args => SectorOption.SelectId(args.Id);
             Announcement.OnKeyBindUp += AnnouncementOnOnTextChanged;
+        }
+
+        public string SelectedFactionId => TryGetSelectedMetadata(FactionOption) as string ?? string.Empty;
+
+        public string SelectedSectorId => TryGetSelectedMetadata(SectorOption) as string ?? "all";
+
+        public void SetFactions(IReadOnlyList<AdminAnnounceFactionInfo> factions)
+        {
+            var previous = SelectedFactionId;
+            FactionOption.Clear();
+
+            var selected = false;
+            for (var i = 0; i < factions.Count; i++)
+            {
+                var faction = factions[i];
+                FactionOption.AddItem(faction.Title, i);
+                FactionOption.SetItemMetadata(i, faction.Id);
+                if (faction.Id == previous)
+                {
+                    FactionOption.SelectId(i);
+                    selected = true;
+                }
+            }
+
+            if (!selected && FactionOption.ItemCount > 0)
+                FactionOption.SelectId(0);
+        }
+
+        public void SetSectors(IReadOnlyList<AdminAnnounceSectorInfo> sectors)
+        {
+            var previous = SelectedSectorId;
+            SectorOption.Clear();
+
+            var selected = false;
+            for (var i = 0; i < sectors.Count; i++)
+            {
+                var sector = sectors[i];
+                SectorOption.AddItem(sector.Name, i);
+                SectorOption.SetItemMetadata(i, sector.Id);
+                if (sector.Id == previous)
+                {
+                    SectorOption.SelectId(i);
+                    selected = true;
+                }
+            }
+
+            if (!selected && SectorOption.ItemCount > 0)
+                SectorOption.SelectId(0);
+        }
+
+        private static object? TryGetSelectedMetadata(OptionButton button)
+        {
+            if (button.ItemCount <= 0)
+                return null;
+
+            try
+            {
+                return button.SelectedMetadata;
+            }
+            catch (KeyNotFoundException)
+            {
+                return null;
+            }
         }
 
         private void AnnouncementOnOnTextChanged(GUIBoundKeyEventArgs args)
@@ -37,8 +102,10 @@ namespace Content.Client.Administration.UI
         private void AnnounceMethodOnOnItemSelected(OptionButton.ItemSelectedEventArgs args)
         {
             AnnounceMethod.SelectId(args.Id);
-            Announcer.Editable = ((AdminAnnounceType?)args.Button.SelectedMetadata ?? AdminAnnounceType.Station) == AdminAnnounceType.Station
-            || ((AdminAnnounceType?)args.Button.SelectedMetadata ?? AdminAnnounceType.Antag) == AdminAnnounceType.Antag; // Frontier
+            var type = (AdminAnnounceType?)args.Button.SelectedMetadata ?? AdminAnnounceType.Station;
+            var inGame = type is AdminAnnounceType.Station or AdminAnnounceType.Antag;
+            FactionOption.Disabled = !inGame;
+            SectorOption.Disabled = !inGame;
         }
     }
 }

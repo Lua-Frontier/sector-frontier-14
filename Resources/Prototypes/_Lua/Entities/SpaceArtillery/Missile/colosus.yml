@@ -3,6 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponTurretASM220
   id: WeaponMissileLauncherStarColosus
   name: Ядерная артиллерийская установка "Звездный Колосс"
@@ -23,6 +24,7 @@
     proto: MissileTND
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: WeaponMissileLauncherStarColosus
   id: WeaponMissileLauncherStarColosusEmpty
   suffix: Пустой, ShuttleGun
@@ -36,6 +38,7 @@
     proto: MissileTND
 
 - type: entity
+  categories: [ ShuttleGun ]
   parent: BaseNFFlatpack
   id: WeaponMissileLauncherStarColosusFlatpack
   name: упакованная ядерная артиллерийская установка "Звездный Колосс"
@@ -54,9 +57,10 @@
   id: BulletTND
   name: Инферно
   parent: ShipMissileASM220HE
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
 
 - type: entity
+  categories: [ ShuttleGun ]
   id: MissileTND
   name: ядерная ракета класса "Инферно"
   suffix: Missile

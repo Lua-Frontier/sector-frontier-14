@@ -3,4 +3,46 @@
   name: ERP
   description: ERP-gated prototypes
 
+# Faction categories (spawn menu / mapping filter)
+- type: entityCategory
+  id: LuaTech
+  name: entity-category-name-luatech
+  suffix: entity-category-suffix-luatech
 
+- type: entityCategory
+  id: CentComm
+  name: entity-category-name-centcomm
+  suffix: entity-category-suffix-centcomm
+
+- type: entityCategory
+  id: Security
+  name: entity-category-name-security
+  suffix: entity-category-suffix-security
+
+- type: entityCategory
+  id: Neutral
+  name: entity-category-name-neutral
+  suffix: entity-category-suffix-neutral
+
+- type: entityCategory
+  id: Nanotrasen
+  name: entity-category-name-nanotrasen
+  suffix: entity-category-suffix-nanotrasen
+
+- type: entityCategory
+  id: Syndicate
+  name: entity-category-name-syndicate
+  suffix: entity-category-suffix-syndicate
+
+- type: entityCategory
+  id: Pirates
+  name: entity-category-name-pirates
+  suffix: entity-category-suffix-pirates
+
+- type: entityCategory
+  id: ShuttleGun
+  name: entity-category-name-shuttlegun
+  suffix: entity-category-suffix-shuttlegun
+  components:
+  - ShipGunType
+  - AmmoLoader

@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 // Just f... https://www.youtube.com/watch?v=rAs2wOlIfYU
 
+using Content.Client._Lua.Styles;
 using Content.Shared._Mono.Radar;
 using Robust.Client.Graphics;
 using System.Numerics;
@@ -45,8 +46,8 @@ public partial class ShuttleNavControl
         var j2 = Hash01(netUid.GetHashCode() * 7919);
         var ghostOfs = dir * (j1 * blipScale) + normal * ((j2 - 0.5f) * blipScale * 2f);
         var ghostR = blipScale * 0.5f;
-        handle.DrawCircle(position + ghostOfs, ghostR * 1.5f, gradColor.WithAlpha(alpha * 0.5f * 0.08f), filled: true);
-        handle.DrawCircle(position + ghostOfs, ghostR, gradColor.WithAlpha(alpha * 0.5f * 0.2f), filled: true);
+        LunaDraw.Circle(handle, position + ghostOfs, ghostR * 1.5f, gradColor.WithAlpha(alpha * 0.5f * 0.08f), filled: true);
+        LunaDraw.Circle(handle, position + ghostOfs, ghostR, gradColor.WithAlpha(alpha * 0.5f * 0.2f), filled: true);
     }
     private float GetPingFadeStrength(Vector2 position)
     {

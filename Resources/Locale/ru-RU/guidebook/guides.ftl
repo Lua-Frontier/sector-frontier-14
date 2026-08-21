@@ -150,4 +150,3 @@ guide-entry-rules-ban-durations = Сроки банов
 guide-entry-writing = Разметка письма
 guide-entry-glossary = Словарь терминов
 guide-entry-misc = Разное
-guide-entry-gridclaimer = Захват Обломка

@@ -1,0 +1,30 @@
+# source: _DeadSpace/_Soyuz/Roles/Jobs/Polit/Politruk.yml
+- type: entity
+  parent: RadioHandheld
+  id: USSPSFTelephonePolitruk
+  categories: [ USSP ]
+  suffix: USSP
+  name: устройство связи с ГШ
+  description: Устройство связи, которое выдаётся политическим руководителям для связи с Генеральным Штабом в экстренных случаях.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Souz/Ert/telephone_iaa.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Souz/Ert/telephone_iaa.rsi
+    quickEquip: false
+    slots:
+      - Belt
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: AccessReader
+    access:
+    - - USSPCommand
+      - USSPSecurity
+      - USSPService
+      - USSPBrig
+      - USSPMaintenance

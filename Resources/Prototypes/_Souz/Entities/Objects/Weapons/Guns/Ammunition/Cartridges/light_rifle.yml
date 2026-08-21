@@ -1,0 +1,11 @@
+# source: Entities/Objects/Weapons/Guns/Ammunition/Cartridges/light_rifle.yml
+- type: entity
+  parent: BaseCartridgeLightRifle
+  id: USSPSFCartridgeLightRifle
+  categories: [ USSP ]
+  suffix: USSP
+  name: cartridge (.30 rifle)
+  description: A classic intermediate cartridge used by many combat rifles and LMGs. Standard kinetic ammunition is common and useful in most situations.
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30

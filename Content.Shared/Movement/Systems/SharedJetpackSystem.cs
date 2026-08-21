@@ -237,6 +237,9 @@ public abstract partial class SharedJetpackSystem : EntitySystem
         {
             SetupUser(user.Value, uid, component);
             EnsureComp<ActiveJetpackComponent>(uid);
+
+            var enabledEv = new JetpackEnabledEvent(user.Value, uid);
+            RaiseLocalEvent(ref enabledEv);
         }
         else
         {

@@ -1,13 +1,12 @@
 ﻿using System.Linq;
-using Content.Server.GameTicking.Events;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
-using Content.Server.Station.Systems;
 using Content.Shared.GameTicking;
 using Robust.Server.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Arrivals.CentComm;
 
@@ -15,6 +14,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -22,6 +22,32 @@ public sealed class CentCommSpawnSystem : EntitySystem
 
         SubscribeLocalEvent<StationCentCommDirectorComponent, CentCommEvent>(OnCentCommEvent);
         SubscribeLocalEvent<StationCentCommDirectorComponent, ComponentStartup>(OnComponentStartup);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var curTime = _gameTiming.CurTime;
+        var q = EntityQueryEnumerator<StationCentCommDirectorComponent, StationSpawningComponent>();
+        while (q.MoveNext(out var stationUid, out var centcomDirector, out _))
+        {
+            if (centcomDirector.EventSchedule.Count == 0 || curTime < centcomDirector.NextEventTick)
+                continue;
+
+            var curEvent = centcomDirector.EventSchedule[0];
+            centcomDirector.EventSchedule.RemoveAt(0);
+
+            if (centcomDirector.EventSchedule.Count > 0)
+                centcomDirector.NextEventTick = curTime + centcomDirector.EventSchedule[0].timeOffset;
+
+            Log.Info($"Running event: {curEvent}");
+
+            var ev = new CentCommEvent(stationUid, curEvent.eventId);
+            RaiseLocalEvent(stationUid, ev, true);
+            if (!ev.Handled)
+                Log.Warning($"Running event: {curEvent} is not handled");
+        }
     }
 
     private void OnComponentStartup(Entity<StationCentCommDirectorComponent> ent, ref ComponentStartup args)
@@ -131,7 +157,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
         var result = new List<EntityCoordinates>();
 
         var q = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        while (q.MoveNext(out var uid, out var spawnPoint, out var transform))
+        while (q.MoveNext(out _, out var spawnPoint, out var transform))
         {
             if (spawnPoint.SpawnType != SpawnPointType.LateJoin || transform.GridUid == null)
                 continue;

@@ -1,0 +1,21 @@
+# source: _DeadSpace/Entities/Clothing/Back/duffels.yml
+- type: entity
+  parent: USSPSFClothingBackpackDuffelCaptain
+  id: USSPSFClothingBackpackDuffelCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белый вещмешок капитана
+  description: Большой белый вещмешок для хранения дополнительных капитанских вещей. Лишь бы не банки с кровью...
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Duffels/captain_white.rsi
+- type: entity
+  parent: USSPSFClothingBackpackDuffelCaptain
+  id: USSPSFClothingBackpackDuffelCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрный вещмешок капитана
+  description: Большой чёрный вещмешок для хранения дополнительных капитанских вещей. Можно засунуть больше оружия.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Duffels/captain_black.rsi

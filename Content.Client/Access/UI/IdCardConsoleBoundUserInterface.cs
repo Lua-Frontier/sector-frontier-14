@@ -5,6 +5,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CrewManifest;
+using Content.Shared.Roles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
@@ -35,10 +36,13 @@ namespace Content.Client.Access.UI
         {
             base.Open();
             List<ProtoId<AccessLevelPrototype>> accessLevels;
+            List<ProtoId<DepartmentPrototype>>? allowedDepartments = null;
 
             if (EntMan.TryGetComponent<IdCardConsoleComponent>(Owner, out var idCard))
             {
                 accessLevels = idCard.AccessLevels;
+                if (idCard.AllowedDepartments.Count > 0)
+                    allowedDepartments = idCard.AllowedDepartments;
             }
             else
             {
@@ -46,7 +50,7 @@ namespace Content.Client.Access.UI
                 _idCardConsoleSystem.Log.Error($"No IdCardConsole component found for {EntMan.ToPrettyString(Owner)}!");
             }
 
-            _window = new IdCardConsoleWindow(this, _prototypeManager, accessLevels)
+            _window = new IdCardConsoleWindow(this, _prototypeManager, accessLevels, allowedDepartments)
             {
                 Title = EntMan.GetComponent<MetaDataComponent>(Owner).EntityName
             };

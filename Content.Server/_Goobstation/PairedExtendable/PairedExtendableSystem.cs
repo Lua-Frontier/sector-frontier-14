@@ -17,13 +17,32 @@ public sealed class PairedExtendableSystem : EntitySystem
         if (!TryComp<HandsComponent>(user, out var hands))
             return false;
 
-        var handId = _hands.EnumerateHands((user, hands)).FirstOrDefault(hand => hands.Hands[hand].Location == side);
+        string? handId = null;
+        if (currentExtendable != null)
+        {
+            foreach (var hand in _hands.EnumerateHands((user, hands)))
+            {
+                if (_hands.TryGetHeldItem(user, hand, out var held) && held == currentExtendable)
+                {
+                    handId = hand;
+                    break;
+                }
+            }
+        }
+
+        handId ??= _hands.EnumerateHands((user, hands)).FirstOrDefault(hand => hands.Hands[hand].Location == side);
         if (handId == null)
             return false;
 
         if (_hands.TryGetHeldItem(user, handId, out var activeItem) && activeItem == currentExtendable)
         {
             Del(activeItem.Value);
+            return true;
+        }
+
+        if (currentExtendable != null && Exists(currentExtendable.Value))
+        {
+            Del(currentExtendable.Value);
             return true;
         }
 

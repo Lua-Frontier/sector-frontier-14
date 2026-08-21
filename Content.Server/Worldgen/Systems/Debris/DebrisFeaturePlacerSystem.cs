@@ -1,14 +1,18 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._Mono.Cleanup;
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.GC;
 using Content.Server.Worldgen.Tools;
 using Content.Server._Lua.Stargate.Components;
+using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
@@ -27,41 +31,68 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IPrototypeManager _protos = default!;
 
     private ISawmill _sawmill = default!;
     private const int StargateInitialDebrisBudget = 18;
     private const int StargateTickDebrisBudget = 12;
 
     private List<Entity<MapGridComponent>> _mapGrids = new();
+    private readonly HashSet<EntityUid> _pendingPlacers = new();
+    private readonly List<EntityUid> _pendingPlacerScratch = new();
+    private bool _debrisPregenEnabled;
+    private float _debrisPregenRadius;
+    private bool _clusterEnabled;
+    private float _clusterSpacing;
+    private float _clusterRadius;
+    private float _clusterJitter;
+    private float _clusterCountScale;
+    private string _mapGridCompName = "MapGrid";
 
     /// <inheritdoc />
     public override void Initialize()
     {
         _sawmill = _logManager.GetSawmill("world.debris.feature_placer");
+        _mapGridCompName = Factory.GetComponentName<MapGridComponent>();
         SubscribeLocalEvent<DebrisFeaturePlacerControllerComponent, WorldChunkLoadedEvent>(OnChunkLoaded);
         SubscribeLocalEvent<DebrisFeaturePlacerControllerComponent, WorldChunkUnloadedEvent>(OnChunkUnloaded);
+        SubscribeLocalEvent<DebrisFeaturePlacerControllerComponent, ComponentShutdown>(OnPlacerShutdown);
         SubscribeLocalEvent<OwnedDebrisComponent, ComponentShutdown>(OnDebrisShutdown);
         SubscribeLocalEvent<OwnedDebrisComponent, MoveEvent>(OnDebrisMove);
         SubscribeLocalEvent<OwnedDebrisComponent, TryCancelGC>(OnTryCancelGC); // Mono Re-add
         SubscribeLocalEvent<SimpleDebrisSelectorComponent, TryGetPlaceableDebrisFeatureEvent>(
             OnTryGetPlacableDebrisEvent);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisPregenEnabled, value => _debrisPregenEnabled = value, true);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisPregenRadius, value => _debrisPregenRadius = value, true);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisClusterEnabled, value => _clusterEnabled = value, true);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisClusterSpacing, value => _clusterSpacing = value, true);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisClusterRadius, value => _clusterRadius = value, true);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisClusterJitter, value => _clusterJitter = value, true);
+        Subs.CVar(_cfg, CCVars.WorldgenDebrisClusterCountScale, value => _clusterCountScale = value, true);
     }
 
     public override void Update(float frameTime)
     {
-        base.Update(frameTime);
+        if (_pendingPlacers.Count == 0)
+            return;
 
-        var query = EntityQueryEnumerator<DebrisFeaturePlacerControllerComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        _pendingPlacerScratch.Clear();
+        _pendingPlacerScratch.AddRange(_pendingPlacers);
+
+        foreach (var uid in _pendingPlacerScratch)
         {
-            if (comp.PendingPoints == null || comp.PendingChunk == null)
+            if (!TryComp<DebrisFeaturePlacerControllerComponent>(uid, out var comp) ||
+                comp.PendingPoints == null ||
+                comp.PendingChunk == null)
+            {
+                _pendingPlacers.Remove(uid);
                 continue;
+            }
 
             if (!TryComp<WorldChunkComponent>(comp.PendingChunk.Value, out var chunk))
             {
-                comp.PendingPoints = null;
-                comp.PendingPointIndex = 0;
-                comp.PendingChunk = null;
+                ClearPending(uid, comp);
                 continue;
             }
 
@@ -71,16 +102,25 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
             if (!TryComp<MapComponent>(chunk.Map, out var map))
                 continue;
 
-            var done = PlaceDebrisPoints(uid, comp, comp.PendingChunk.Value, chunk.Map, map.MapId, comp.PendingPoints, comp.PendingPointIndex, StargateTickDebrisBudget);
+            var done = PlaceDebrisPoints(uid, comp, comp.PendingChunk.Value, chunk.Map, map.MapId, comp.PendingPoints, comp.PendingPointIndex, StargateTickDebrisBudget, false);
             comp.PendingPointIndex = done;
 
             if (comp.PendingPointIndex >= comp.PendingPoints.Count)
-            {
-                comp.PendingPoints = null;
-                comp.PendingPointIndex = 0;
-                comp.PendingChunk = null;
-            }
+                ClearPending(uid, comp);
         }
+    }
+
+    private void OnPlacerShutdown(EntityUid uid, DebrisFeaturePlacerControllerComponent component, ComponentShutdown args)
+    {
+        _pendingPlacers.Remove(uid);
+    }
+
+    private void ClearPending(EntityUid uid, DebrisFeaturePlacerControllerComponent component)
+    {
+        component.PendingPoints = null;
+        component.PendingPointIndex = 0;
+        component.PendingChunk = null;
+        _pendingPlacers.Remove(uid);
     }
 
     /// <summary>
@@ -88,7 +128,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     /// </summary>
     private void OnTryCancelGC(EntityUid uid, OwnedDebrisComponent component, ref TryCancelGC args)
     {
-        args.Cancelled |= HasComp<LoadedChunkComponent>(component.OwningController);
+        args.Cancelled |= HasComp<PregenDebrisComponent>(uid) || HasComp<LoadedChunkComponent>(component.OwningController);
     }
 
     /// <summary>
@@ -145,6 +185,25 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     private void OnChunkUnloaded(EntityUid uid, DebrisFeaturePlacerControllerComponent component,
         ref WorldChunkUnloadedEvent args)
     {
+        if (component.Pregenerated)
+        {
+            foreach (var (_, debris) in component.OwnedDebris)
+            {
+                if (debris is null || Deleted(debris.Value))
+                    continue;
+
+                if (!HasComp<PregenDebrisComponent>(debris.Value))
+                {
+                    _gc.TryGCEntity(debris.Value);
+                    continue;
+                }
+
+                DisarmPregenLocality(debris.Value);
+            }
+
+            return;
+        }
+
         foreach (var (_, debris) in component.OwnedDebris) // Mono Re-add
         {
             if (debris is not null)
@@ -152,9 +211,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         }
 
         component.DoSpawns = true;
-        component.PendingPoints = null;
-        component.PendingPointIndex = 0;
-        component.PendingChunk = null;
+        ClearPending(uid, component);
     }
 
     /// <summary>
@@ -196,23 +253,49 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     private void OnChunkLoaded(EntityUid uid, DebrisFeaturePlacerControllerComponent component,
         ref WorldChunkLoadedEvent args)
     {
-        if (component.DoSpawns == false)
+        if (component.Pregenerated)
+        {
+            ArmPregenLocality(component);
+            SpawnDeferredDebris(uid, component, args.Chunk);
             return;
+        }
+
+        if (_debrisPregenEnabled &&
+            TryComp<WorldChunkComponent>(args.Chunk, out var pregenChunk) &&
+            IsInsidePregenRadius(pregenChunk.Coordinates))
+            return;
+
+        TryPlaceDebrisForChunk(args.Chunk, component, false);
+    }
+
+    public int TryPlaceDebrisForChunk(
+        EntityUid chunkUid,
+        DebrisFeaturePlacerControllerComponent component,
+        bool pregen,
+        int budget = int.MaxValue)
+    {
+        if (component.DoSpawns == false)
+            return 0;
 
         component.DoSpawns = false; // Don't repeat yourself if this crashes.
 
-        if (!TryComp<WorldChunkComponent>(args.Chunk, out var chunk))
-            return;
+        if (!TryComp<WorldChunkComponent>(chunkUid, out var chunk))
+            return 0;
 
         var chunkMap = chunk.Map;
 
         if (!TryComp<MapComponent>(chunkMap, out var map))
-            return;
+            return 0;
 
         var densityChannel = component.DensityNoiseChannel;
-        var density = _noiseIndex.Evaluate(uid, densityChannel, chunk.Coordinates + new Vector2(0.5f, 0.5f));
+        var density = _noiseIndex.Evaluate(chunkUid, densityChannel, chunk.Coordinates + new Vector2(0.5f, 0.5f));
         if (density == 0)
-            return;
+        {
+            if (pregen)
+                component.Pregenerated = true;
+
+            return 0;
+        }
 
         List<Vector2>? points = null;
 
@@ -226,18 +309,34 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
                 .ToList();
         }
 
-        points ??= GeneratePointsInChunk(args.Chunk, density, chunk.Coordinates, chunkMap);
+        points ??= GeneratePointsInChunk(chunkUid, density, chunk.Coordinates, chunkMap);
 
         var mapId = map.MapId;
-        var budget = HasComp<StargateDestinationComponent>(chunkMap) ? StargateInitialDebrisBudget : int.MaxValue;
-        var done = PlaceDebrisPoints(uid, component, args.Chunk, chunkMap, mapId, points, 0, budget);
+        var placementBudget = budget;
+        if (!pregen && HasComp<StargateDestinationComponent>(chunkMap))
+            placementBudget = StargateInitialDebrisBudget;
 
-        if (done < points.Count)
+        var done = PlaceDebrisPoints(chunkUid, component, chunkUid, chunkMap, mapId, points, 0, placementBudget, pregen);
+
+        if (!pregen && done < points.Count)
         {
             component.PendingPoints = points;
             component.PendingPointIndex = done;
-            component.PendingChunk = args.Chunk;
+            component.PendingChunk = chunkUid;
+            _pendingPlacers.Add(chunkUid);
         }
+
+        if (pregen)
+        {
+            component.Pregenerated = true;
+            if (HasComp<LoadedChunkComponent>(chunkUid))
+            {
+                ArmPregenLocality(component);
+                SpawnDeferredDebris(chunkUid, component, chunkUid);
+            }
+        }
+
+        return done;
     }
 
     /// <summary>
@@ -261,17 +360,106 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         var offs = (int)((WorldGen.ChunkSize - WorldGen.ChunkSize / 8.0f) / 2.0f);
         var topLeft = new Vector2(-offs, -offs);
         var lowerRight = new Vector2(offs, offs);
-        var enumerator = _sampler.SampleRectangle(topLeft, lowerRight, density);
+        var sampleDistance = density;
+        if (_clusterEnabled && _clusterCountScale > 0f)
+            sampleDistance /= MathF.Sqrt(_clusterCountScale);
+
+        var enumerator = _sampler.SampleRectangle(topLeft, lowerRight, sampleDistance);
         var debrisPoints = new List<Vector2>();
 
         var realCenter = WorldGen.ChunkToWorldCoordsCentered(coords.Floored());
 
         while (enumerator.MoveNext(out var debrisPoint))
         {
-            debrisPoints.Add(realCenter + debrisPoint.Value);
+            var worldPoint = realCenter + debrisPoint.Value;
+            if (_clusterEnabled && !IsWorldPointInCluster(worldPoint))
+                continue;
+
+            debrisPoints.Add(worldPoint);
         }
 
         return debrisPoints;
+    }
+
+    public bool ChunkIntersectsCluster(Vector2i chunkCoords)
+    {
+        if (!_clusterEnabled || _clusterSpacing <= 0f || _clusterRadius <= 0f)
+            return true;
+
+        var origin = WorldGen.ChunkToWorldCoords(chunkCoords);
+        var chunkBox = new Box2(origin, origin + new Vector2(WorldGen.ChunkSize, WorldGen.ChunkSize));
+        return ClusterIntersects(chunkBox);
+    }
+
+    private bool IsWorldPointInCluster(Vector2 worldPos)
+    {
+        if (!_clusterEnabled || _clusterSpacing <= 0f || _clusterRadius <= 0f)
+            return true;
+
+        var radiusSq = _clusterRadius * _clusterRadius;
+        var cx = (int) MathF.Floor(worldPos.X / _clusterSpacing);
+        var cy = (int) MathF.Floor(worldPos.Y / _clusterSpacing);
+
+        for (var x = cx - 1; x <= cx + 1; x++)
+        {
+            for (var y = cy - 1; y <= cy + 1; y++)
+            {
+                if (Vector2.DistanceSquared(worldPos, GetClusterCenter(new Vector2i(x, y))) <= radiusSq)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool ClusterIntersects(Box2 box)
+    {
+        var search = _clusterRadius + _clusterSpacing * MathF.Max(0f, _clusterJitter);
+        var minCell = new Vector2i(
+            (int) MathF.Floor((box.Left - search) / _clusterSpacing),
+            (int) MathF.Floor((box.Bottom - search) / _clusterSpacing));
+        var maxCell = new Vector2i(
+            (int) MathF.Floor((box.Right + search) / _clusterSpacing),
+            (int) MathF.Floor((box.Top + search) / _clusterSpacing));
+
+        for (var x = minCell.X; x <= maxCell.X; x++)
+        {
+            for (var y = minCell.Y; y <= maxCell.Y; y++)
+            {
+                if (CircleIntersects(GetClusterCenter(new Vector2i(x, y)), _clusterRadius, box))
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    private Vector2 GetClusterCenter(Vector2i cell)
+    {
+        var origin = new Vector2(cell.X * _clusterSpacing, cell.Y * _clusterSpacing);
+        var jitter = _clusterSpacing * Math.Clamp(_clusterJitter, 0f, 0.45f);
+        var hash = HashClusterCell(cell);
+        var ox = ((hash & 0xFFFF) / 65535f - 0.5f) * 2f * jitter;
+        var oy = (((hash >> 16) & 0xFFFF) / 65535f - 0.5f) * 2f * jitter;
+        return origin + new Vector2(ox, oy);
+    }
+
+    private static uint HashClusterCell(Vector2i cell)
+    {
+        unchecked
+        {
+            var h = (uint) (cell.X * 374761393 + cell.Y * 668265263 + 12345);
+            h = (h ^ (h >> 13)) * 1274126177u;
+            return h ^ (h >> 16);
+        }
+    }
+
+    private static bool CircleIntersects(Vector2 center, float radius, Box2 box)
+    {
+        var closest = new Vector2(
+            Math.Clamp(center.X, box.Left, box.Right),
+            Math.Clamp(center.Y, box.Bottom, box.Top));
+        return Vector2.DistanceSquared(center, closest) <= radius * radius;
     }
 
     private int PlaceDebrisPoints(
@@ -282,7 +470,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         MapId mapId,
         List<Vector2> points,
         int startIndex,
-        int budget)
+        int budget,
+        bool pregen)
     {
         var safetyBounds = Box2.UnitCentered.Enlarged(component.SafetyZoneRadius);
         var densityChannel = component.DensityNoiseChannel;
@@ -322,26 +511,22 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
             var debrisFeatureEv = new TryGetPlaceableDebrisFeatureEvent(coords, chunkUid);
             RaiseLocalEvent(uid, ref debrisFeatureEv);
 
-            if (debrisFeatureEv.DebrisProto == null)
-            {
-                if (uid != chunkUid)
-                    RaiseLocalEvent(chunkUid, ref debrisFeatureEv);
+            if (debrisFeatureEv.DebrisProto == null && uid != chunkUid)
+                RaiseLocalEvent(chunkUid, ref debrisFeatureEv);
 
-                if (debrisFeatureEv.DebrisProto == null)
-                {
-                    failures++;
-                    continue;
-                }
+            if (debrisFeatureEv.DebrisProto is not { } proto)
+            {
+                failures++;
+                continue;
             }
 
-            var ent = Spawn(debrisFeatureEv.DebrisProto, coords);
-            component.OwnedDebris.Add(point, ent);
+            if (pregen && !IsPregenShellPrototype(proto))
+            {
+                component.DeferredDebris[point] = proto;
+                continue;
+            }
 
-            var owned = EnsureComp<OwnedDebrisComponent>(ent);
-            owned.OwningController = uid;
-            owned.LastKey = point;
-            EnsureComp<SpaceDebrisComponent>(ent);
-
+            SpawnPlacedDebris(uid, component, chunkMap, point, proto, pregen);
             processed++;
         }
 
@@ -349,6 +534,88 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
             _sawmill.Error($"Failed to place {failures} debris at chunk {chunkUid}");
 
         return points.Count;
+    }
+
+    private void SpawnDeferredDebris(EntityUid uid, DebrisFeaturePlacerControllerComponent component, EntityUid chunkUid)
+    {
+        if (component.DeferredDebris.Count == 0)
+            return;
+
+        if (!TryComp<WorldChunkComponent>(chunkUid, out var chunk))
+            return;
+
+        var chunkMap = chunk.Map;
+        if (!HasComp<MapComponent>(chunkMap))
+            return;
+
+        foreach (var (point, proto) in component.DeferredDebris)
+        {
+            if (component.OwnedDebris.TryGetValue(point, out var existing) &&
+                existing is not null &&
+                !Deleted(existing.Value))
+                continue;
+
+            SpawnPlacedDebris(uid, component, chunkMap, point, proto, pregen: false);
+        }
+    }
+
+    private void SpawnPlacedDebris(
+        EntityUid uid,
+        DebrisFeaturePlacerControllerComponent component,
+        EntityUid chunkMap,
+        Vector2 point,
+        string proto,
+        bool pregen)
+    {
+        var ent = Spawn(proto, new EntityCoordinates(chunkMap, point));
+        component.OwnedDebris[point] = ent;
+
+        var owned = EnsureComp<OwnedDebrisComponent>(ent);
+        owned.OwningController = uid;
+        owned.LastKey = point;
+        EnsureComp<SpaceDebrisComponent>(ent);
+
+        if (!pregen)
+            return;
+
+        var pregenDebris = EnsureComp<PregenDebrisComponent>(ent);
+        pregenDebris.AwaitingLocality = true;
+        EnsureComp<CleanupImmuneComponent>(ent);
+        RemComp<LocalityLoaderComponent>(ent);
+    }
+
+    private void ArmPregenLocality(DebrisFeaturePlacerControllerComponent component)
+    {
+        foreach (var (_, debris) in component.OwnedDebris)
+        {
+            if (debris is null || Deleted(debris.Value))
+                continue;
+
+            if (!TryComp<PregenDebrisComponent>(debris.Value, out var pregen) || !pregen.AwaitingLocality)
+                continue;
+
+            EnsureComp<LocalityLoaderComponent>(debris.Value);
+        }
+    }
+
+    private void DisarmPregenLocality(EntityUid debris)
+    {
+        if (!TryComp<PregenDebrisComponent>(debris, out var pregen) || !pregen.AwaitingLocality)
+            return;
+
+        RemComp<LocalityLoaderComponent>(debris);
+    }
+
+    private bool IsPregenShellPrototype(string protoId)
+    {
+        return _protos.TryIndex(protoId, out EntityPrototype? proto) &&
+               proto.Components.ContainsKey(_mapGridCompName);
+    }
+
+    private bool IsInsidePregenRadius(Vector2i chunkCoords)
+    {
+        var radius = MathF.Max(0f, _debrisPregenRadius);
+        return WorldGen.ChunkToWorldCoordsCentered(chunkCoords).LengthSquared() <= radius * radius;
     }
 }
 

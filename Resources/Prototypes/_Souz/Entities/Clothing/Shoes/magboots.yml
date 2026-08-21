@@ -1,0 +1,53 @@
+# source: Entities/Clothing/Shoes/magboots.yml
+- type: entity
+  parent: BaseAction
+  id: USSPSFActionToggleMagboots
+  categories: [ USSP ]
+  suffix: USSP
+  name: Toggle Magboots
+  description: Toggles the magboots on and off.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+  - type: InstantAction
+    event: !type:ToggleActionEvent
+
+# source: _DeadSpace/Entities/Clothing/Shoes/magboots.yml
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: USSPSFClothingShoesBootsMagSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: магнитные ботинки милиции
+  description: Несколько лет в них пытались засунуть ещё одну светяшку.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Shoes/Boots/sec_mag_boots.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Souz/Clothing/Shoes/Boots/sec_mag_boots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: StaticPrice
+    price: 250
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: USSPSFClothingShoesBootsMagHos
+  categories: [ USSP ]
+  suffix: USSP
+  name: магнитные ботинки начальника милициии
+  description: Элитные магнитки для элиты. Золото не настоящее, кстати.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Shoes/Boots/hos-mag-boots.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Souz/Clothing/Shoes/Boots/hos-mag-boots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  - type: StaticPrice
+    price: 750

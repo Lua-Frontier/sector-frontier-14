@@ -8,18 +8,20 @@ public sealed partial class BankSystem : SharedBankSystem
 {
     public void CleanupLedger()
     {
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? ledger))
-            return;
-        ledger.AccountLedgerEntries.Clear();
+        foreach (var service in _sectorService.GetServiceEntities())
+        {
+            if (!TryComp(service, out SectorBankComponent? ledger))
+                continue;
+            ledger.AccountLedgerEntries.Clear();
+        }
     }
 
-    // Adds an entry to the ledger.
-    // Only positive amounts are added.
-    public void AddLedgerEntry(SectorBankAccount account, LedgerEntryType entryType, int amount)
+    public void AddLedgerEntry(SectorBankAccount account, LedgerEntryType entryType, int amount, SectorBankComponent? ledger = null)
     {
         if (amount <= 0)
             return;
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? ledger))
+
+        if (ledger == null && !TryResolveSectorBank(null, null, out ledger))
             return;
 
         var tuple = (account, entryType);
@@ -40,19 +42,32 @@ public sealed partial class BankSystem : SharedBankSystem
 
     public string GetLedgerPrintout()
     {
-        if (!TryComp(_sectorService.GetServiceEntity(), out SectorBankComponent? ledger))
-            return string.Empty;
+        var builder = new StringBuilder();
+        var any = false;
 
-        StringBuilder builder = new();
+        foreach (var service in _sectorService.GetServiceEntities())
+        {
+            if (!TryComp(service, out SectorBankComponent? ledger))
+                continue;
 
-        // Group ledger entries by account
-        Dictionary<SectorBankAccount, AccountInfo> accountDict = new();
+            any = true;
+            AppendLedger(builder, ledger);
+            builder.AppendLine();
+        }
+
+        return any ? builder.ToString() : string.Empty;
+    }
+
+    private void AppendLedger(StringBuilder builder, SectorBankComponent ledger)
+    {
+        var accountDict = new Dictionary<SectorBankAccount, AccountInfo>();
         foreach (var value in Enum.GetValues<SectorBankAccount>())
         {
             if (value == SectorBankAccount.Invalid)
                 continue;
             accountDict[value] = new AccountInfo();
         }
+
         foreach (var (ledgerEntry, value) in ledger.AccountLedgerEntries)
         {
             if (!accountDict.ContainsKey(ledgerEntry.Account))
@@ -69,7 +84,6 @@ public sealed partial class BankSystem : SharedBankSystem
             }
         }
 
-        // Build our printouts
         foreach (var (account, accountInfo) in accountDict)
         {
             builder.AppendLine(Loc.GetString("ledger-printout-account", ("account", Loc.GetString($"ledger-tab-{account}"))));
@@ -106,7 +120,6 @@ public sealed partial class BankSystem : SharedBankSystem
                 ));
             builder.AppendLine();
         }
-        return builder.ToString();
     }
 }
 

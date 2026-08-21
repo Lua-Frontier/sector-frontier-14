@@ -165,7 +165,8 @@ public sealed partial class NPCCombatSystem
             }
 
             var mapVelocity = targetBody.LinearVelocity;
-            var targetSpot = targetPos + mapVelocity * distance / ShootSpeed;
+            var projectileSpeed = MathF.Max(comp.ProjectileSpeedOverride ?? ShootSpeed, 0.01f);
+            var targetSpot = targetPos + mapVelocity * distance / projectileSpeed * comp.TargetLeadScale;
 
             // If we have a max rotation speed then do that.
             var goalRotation = (targetSpot - worldPos).ToWorldAngle();

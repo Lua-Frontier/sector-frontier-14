@@ -1,0 +1,52 @@
+- type: job
+  id: UsspCaptain
+  name: job-name-ussp-captain
+  description: job-description-ussp-captain
+  playTimeTracker: JobUsspCaptain
+  requiredCompany: Ussp
+  salary: 75000
+  weight: 20
+  displayWeight: 20
+  startingGear: UsspCaptainGear
+  icon: JobIconUsspCaptain
+  supervisors: job-supervisors-ussp-politruk
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 72000 # 20 hours
+  alternateRequirementSets:
+    sheriffUnlock:
+    - !type:RoleTimeRequirement
+      role: JobWarden
+      time: 36000
+  access:
+  - USSPCommand
+  - USSPCaptain
+  accessGroups:
+  - USSPAll
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+    - type: CommandStaff
+
+- type: startingGear
+  id: UsspCaptainGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspCaptainChameleonOutfit
+  job: UsspCaptain
+  hasMindShield: true

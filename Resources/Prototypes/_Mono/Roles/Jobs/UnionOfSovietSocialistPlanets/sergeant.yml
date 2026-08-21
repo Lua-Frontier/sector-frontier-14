@@ -1,0 +1,44 @@
+- type: job
+  id: USSPSergeant
+  name: job-name-ussp-sergeant
+  description: job-description-ussp-sergeant
+  playTimeTracker: JobUSSPSergeant
+  requiredCompany: Ussp
+  salary: 45000
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 72000 # 20 hrs
+  startingGear: USSPSergeantGear
+  alwaysUseSpawner: true
+  hideConsoleVisibility: true
+  icon: JobIconUSSPSergeant
+  supervisors: job-supervisors-ussp-commissar
+  canBeAntag: false
+  weight: 30
+  displayWeight: 30
+  setPreference: true
+  special:
+  - !type:AddImplantSpecial
+    implants: [ UsspTrackingImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: MailDisabled
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+  accessGroups:
+  - GeneralAccess
+  - USSPHigh
+
+- type: startingGear
+  id: USSPSergeantGear
+  equipment: {}
+
+- type: chameleonOutfit
+  id: USSPSergeantChameleonOutfit
+  job: USSPSergeant
+

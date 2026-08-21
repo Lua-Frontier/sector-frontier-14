@@ -27,12 +27,8 @@ public sealed class ShipyardDockRadarControl : ShuttleNavControl
     protected override bool AllowResize => true;
     protected override bool ScaleWithControlSize => true;
     protected override bool ShowRadarPositionMarker => false;
-    private EntityCoordinates? _baseCoords;
-    private Angle? _baseAngle;
-    private Vector2 _pan;
     private bool _panning;
     private bool _mouseDown;
-    private Vector2 _mouseDownPos;
     private float _dragAccumulatedPx;
     private const float PanClamp = 150f;
     private const float DragThresholdPx = 6f;
@@ -89,9 +85,6 @@ public sealed class ShipyardDockRadarControl : ShuttleNavControl
     {
         WorldMinRange = Math.Min(WorldMinRange, MinZoomRange);
         base.UpdateState(state);
-        _baseCoords = EntManager.GetCoordinates(state.Coordinates);
-        _baseAngle = state.Angle;
-        ApplyPan();
     }
 
     protected override void KeyBindDown(GUIBoundKeyEventArgs args)
@@ -99,7 +92,6 @@ public sealed class ShipyardDockRadarControl : ShuttleNavControl
         if (args.Function == EngineKeyFunctions.UIClick)
         {
             _mouseDown = true;
-            _mouseDownPos = args.PointerLocation.Position;
             _panning = false;
             _dragAccumulatedPx = 0f;
             return;
@@ -127,28 +119,20 @@ public sealed class ShipyardDockRadarControl : ShuttleNavControl
     protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
         base.MouseMove(args);
-        if (_baseCoords == null || _baseAngle == null) return;
         if (_mouseDown && !_panning)
         {
             _dragAccumulatedPx += new Vector2(args.Relative.X, args.Relative.Y).Length();
-            if (_dragAccumulatedPx >= DragThresholdPx) _panning = true;
+            if (_dragAccumulatedPx >= DragThresholdPx)
+                _panning = true;
         }
-        if (!_panning) return;
-        if (MidPoint <= 0) return;
-        var delta = new Vector2(args.Relative.X, -args.Relative.Y) / MidPoint * WorldRange;
-        delta = _baseAngle.Value.RotateVec(delta);
-        _pan -= delta;
-        _pan = new Vector2( Math.Clamp(_pan.X, -PanClamp, PanClamp), Math.Clamp(_pan.Y, -PanClamp, PanClamp));
-        ApplyPan();
-    }
 
-    private void ApplyPan()
-    {
-        if (_baseCoords == null) return;
-        Offset = Vector2.Zero;
-        TargetOffset = Vector2.Zero;
-        SetMatrix(_baseCoords.Value.Offset(_pan), _baseAngle);
+        if (!_panning || MidPoint <= 0)
+            return;
+
+        Offset -= new Vector2(args.Relative.X, -args.Relative.Y) / MidPoint * WorldRange;
+        Offset = new Vector2(
+            Math.Clamp(Offset.X, -PanClamp, PanClamp),
+            Math.Clamp(Offset.Y, -PanClamp, PanClamp));
+        TargetOffset = Offset;
     }
 }
-
-

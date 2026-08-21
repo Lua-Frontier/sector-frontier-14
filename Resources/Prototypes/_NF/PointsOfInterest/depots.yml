@@ -17,6 +17,7 @@
   spawnGroup: CargoDepot
   gridPath: /Maps/_NF/POI/cargodepot.yml
   addComponents: &cargoComponents
+  - type: GridGodMode
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/cargodepot.png
     scale: 1.2
@@ -55,6 +56,7 @@
     CargoDepot:
       stationProto: StandardFrontierOutpost
       components: &cargoStationComponents
+        - type: GridGodMode
         - type: FactionCapture
           captureWholeStation: true
         - type: StationNameSetup

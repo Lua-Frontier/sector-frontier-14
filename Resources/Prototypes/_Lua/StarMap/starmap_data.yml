@@ -1,130 +1,1247 @@
 - type: starmapData
   id: StarmapData
   stars:
-    - id: FrontierSector
-      name: Frontier Sector
-      position: "2.768243, 2.7743483"
-      starType: frontier
-      color: "#2595db"
-      worldgenConfigs:
-        - NebulaSpace
-        - CelestialBodySpace
-        - BackgroundPlanetSpace
-      visibleCompanies: [ Nanotrasen, Security, CentComm, LuaTech ]
-
-    - id: CentCom
-      name: Central Command
-      position: "22.957544, -22.474024"
-      starType: centcom
-      color: "#2595db"
-      worldgenConfigs:
-        - NebulaSpace
-        - CelestialBodySpace
-        - BackgroundPlanetSpace
-      visibleCompanies: [ CentComm, LuaTech ]
-      excludeFromGlobalUnlock: true
-
-    - id: AsteroidSectorDefault
-      name: "Поле Астероидов"
-      position: "3, 4.8"
-      starType: sector
-      color: "#c3cf18"
-      station: Beacon
-      worldgenConfigs:
-        - AsteroidSectorDefault
-        - NebulaSpace
-        - CelestialBodySpace
-        - BackgroundPlanetSpace
-      autoStart: true
-      defaultGamePreset: LuaAdventure
-      requiredGamePresets: [ LuaAdventure ]
-      parallaxPool: [ MercenaryPlanet, LuaDarkSpace, LuaSpace, AspidParallax, BagelStation, CoreStation, OriginStation, TrainStation, KettleStation, Sky, Asteroids, Default] #, Xmas ]
-      deadDropEnabled: true
-      deadDropCount: 8
-      visibleToAll: true
-      poiGroups:
-        - group: AsteroidRequired
-          count: 0
-        - group: CargoDepot
-          count: 4
-          ring: true
-        - group: AsteroidMarketStation
-          count: 2
-
-    - id: TypanSector
-      name: "Сектор Нордфолл"
-      position: "6.9, 6"
-      starType: sector
-      color: "#990816"
-      station: TypanLua
-      worldgenConfigs:
-        - NebulaSpace
-        - CelestialBodySpace
-        - BackgroundPlanetSpace
-      autoStart: true
-      defaultGamePreset: LuaAdventure
-      requiredGamePresets: [ LuaAdventure ]
-      parallaxPool: [ OriginStation, NordFoll ]
-      bluespaceEventsEnabled: false
-      crewMonitoringIsolated: true
-      visibleCompanies: [ Syndicate, LuaTech ]
-      poiGroups:
-        - group: TypanCargoDepot
-          count: 1
-
-    # - id: LuaTechSector
-    #   name: "Сектор LuaTech"
-    #   position: "-47.868465, 23.180416"
-    #   starType: sector
-    #   color: "#2595db"
-    #   station: LuaTech
-    #   autoStart: true
-    #   defaultGamePreset: LuaAdventure
-    #   requiredGamePresets: [ LuaAdventure ]
-    #   parallaxPool: [ LuaDarkSpace ]
-    #   bluespaceEventsEnabled: false
-    #   crewMonitoringIsolated: true
-
-    - id: PirateSector
-      name: "Сектор Пиратов"
-      position: "-0.80699396, 4.2081265"
-      starType: sector
-      color: "#8A6642"
-      station: Murena #Lua Cove<Murena
-      worldgenConfigs:
-        - NebulaSpace
-        - CelestialBodySpace
-        - BackgroundPlanetSpace
-      autoStart: true
-      defaultGamePreset: LuaAdventure
-      requiredGamePresets: [ LuaAdventure ]
-      parallaxPool: [ CoreStation, Tortuga ]
-      bluespaceEventsEnabled: false
-      crewMonitoringIsolated: true
-      visibleCompanies: [ Pirates, StormCreed, LuaTech ]
-      poiGroups:
-        - group: PirateCove
-          count: 1
-
-    # - id: MercenarySector # Наёмники теперь спавнятся на ЧР в Поле Астероидов
-    #   name: "Сектор Наёмников"
-    #   position: "22.862686, -20.10457"
-    #   starType: sector
-    #   color: "#182faf"
-    #   station: MercMap
-    #   autoStart: true
-    #   defaultGamePreset: LuaAdventure
-    #   requiredGamePresets: [ LuaAdventure ]
-    #   parallaxPool: [ MercenaryPlanet, Sky ]
-    #   deadDropEnabled: true
-    #   deadDropCount: 1
-    #   bluespaceEventsEnabled: false
-    #   crewMonitoringIsolated: true
-
+  - id: FrontierSector
+    name: Frontier Sector
+    position: 1.75, 1.86
+    starType: sector
+    color: "#2595db"
+    station: Frontier
+    isHub: true
+    autoStart: true
+    defaultGamePreset: LuaAdventure
+    requiredGamePresets:
+    - LuaAdventure
+    worldgenConfigs:
+    - NebulaSpace
+    - CelestialBodySpace
+    - BackgroundPlanetSpace
+    visibleCompanies:
+    - Nanotrasen
+    - Security
+    - CentComm
+    - LuaTech
+    description: starmap-lore-star-frontier-short
+    descriptionFull: starmap-lore-star-frontier
+    poiGroups:
+    - group: MarketStation
+      count: 1
+    - group: Required
+      count: 0
+    parallaxPool:
+    - FrontierStation
+  - id: CentCom
+    name: Alioth
+    position: 13.97, 17.15
+    starType: sector
+    color: "#2595db"
+    station: CentComm
+    autoStart: true
+    defaultGamePreset: LuaAdventure
+    requiredGamePresets:
+    - LuaAdventure
+    ftlWhitelist:
+    - AllowFtlToCentCom
+    visibleCompanies:
+    - CentComm
+    - LuaTech
+    excludeFromGlobalUnlock: true
+    description: starmap-lore-star-alioth-short
+    descriptionFull: starmap-lore-star-alioth
+    parallaxPool:
+    - Asteroids
+  - id: AsteroidSectorDefault
+    name: Procyon
+    position: 0.89, 0.5
+    starType: sector
+    color: "#c3cf18"
+    station: AsteroidTradeOutpost
+    worldgenConfigs:
+    - AsteroidSectorDefault
+    - NebulaSpace
+    - CelestialBodySpace
+    - BackgroundPlanetSpace
+    autoStart: true
+    defaultGamePreset: LuaAdventure
+    requiredGamePresets:
+    - LuaAdventure
+    parallaxPool:
+    - MercenaryPlanet
+    - LuaDarkSpace
+    - LuaSpace
+    - AspidParallax
+    - BagelStation
+    - CoreStation
+    - OriginStation
+    - TrainStation
+    - KettleStation
+    - Sky
+    - Asteroids
+    - Default
+    deadDropEnabled: true
+    deadDropCount: 8
+    visibleToAll: true
+    description: starmap-lore-star-procyon-short
+    descriptionFull: starmap-lore-star-procyon
+    poiGroups:
+    - group: AsteroidRequired
+      count: 0
+    - group: CargoDepot
+      count: 4
+      ring: true
+  - id: TypanSector
+    name: Epsilon Eridani
+    position: 4.02, -0.56
+    starType: sector
+    color: "#990816"
+    station: TypanLua
+    worldgenConfigs:
+    - NebulaSpace
+    - CelestialBodySpace
+    - BackgroundPlanetSpace
+    autoStart: true
+    defaultGamePreset: LuaAdventure
+    requiredGamePresets:
+    - LuaAdventure
+    parallaxPool:
+    - OriginStation
+    - NordFoll
+    bluespaceEventsEnabled: false
+    crewMonitoringIsolated: true
+    visibleCompanies:
+    - Syndicate
+    - LuaTech
+    description: starmap-lore-star-typan-short
+    descriptionFull: starmap-lore-star-typan
+    poiGroups:
+    - group: TypanCargoDepot
+      count: 1
+  - id: KrasnayaZarya
+    name: Krasnaya Zarya
+    position: -0.96, 1.37
+    starType: sector
+    color: "#c41e3a"
+    station: UsspStation
+    worldgenConfigs:
+    - NebulaSpace
+    - CelestialBodySpace
+    - BackgroundPlanetSpace
+    - UsspSectorDefault
+    autoStart: true
+    defaultGamePreset: LuaAdventure
+    requiredGamePresets:
+    - LuaAdventure
+    parallaxPool:
+    - CoreStation
+    - OriginStation
+    bluespaceEventsEnabled: false
+    crewMonitoringIsolated: true
+    visibleCompanies:
+    - Ussp
+    - LuaTech
+    description: starmap-lore-star-krasnaya-short
+    descriptionFull: starmap-lore-star-krasnaya
+  - id: PirateSector
+    name: Luyten's Star
+    position: -2.91, -0.17
+    starType: sector
+    color: "#8A6642"
+    station: CoveLua
+    autoStart: true
+    defaultGamePreset: LuaAdventure
+    requiredGamePresets:
+    - LuaAdventure
+    parallaxPool:
+    - CoreStation
+    - Tortuga
+    bluespaceEventsEnabled: false
+    crewMonitoringIsolated: true
+    visibleCompanies:
+    - Pirates
+    - StormCreed
+    - LuaTech
+    description: starmap-lore-star-luyten-short
+    descriptionFull: starmap-lore-star-luyten
+  - id: AshenWick
+    name: Ashen Wick
+    position: -0.55, 0.64
+    starType: decorative
+    color: "#c3cf18"
+    visibleToAll: true
+  - id: CinderGate
+    name: Cinder Gate
+    position: 2.43, 0.11
+    starType: decorative
+    color: "#c3cf18"
+    visibleToAll: true
+  - id: DriftNail
+    name: Drift Nail
+    position: 0.31, -0.94
+    starType: decorative
+    color: "#c3cf18"
+    visibleToAll: true
+  - id: HelionReach
+    name: Helion Reach
+    position: 0.45, 3.94
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: SinclairsStar
+    name: Sinclair's Star
+    position: 3.15, 4.56
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: Alexander
+    name: Alexander
+    position: 6.41, 4.34
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: GraciesStar
+    name: Gracie's Star
+    position: 3.53, 1.6
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: InnesStar
+    name: Innes' Star
+    position: 5.09, 2.07
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: HeliosOutpost
+    name: Helios Outpost
+    position: -0.34, 2.67
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: NewHarbor
+    name: New Harbor
+    position: 3.74, 3.76
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: Kharybdis
+    name: Kharybdis
+    position: -3.13, 1
+    starType: decorative
+    color: "#8A6642"
+    visibleToAll: true
+  - id: BlackShoal
+    name: Black Shoal
+    position: -2.75, 1.93
+    starType: decorative
+    color: "#8A6642"
+    visibleToAll: true
+  - id: Cutlass
+    name: Cutlass
+    position: -3.21, 1.55
+    starType: decorative
+    color: "#8A6642"
+    visibleToAll: true
+  - id: GallowsDeep
+    name: Gallows Deep
+    position: -4.02, 1.78
+    starType: decorative
+    color: "#8A6642"
+    visibleToAll: true
+  - id: Mirania
+    name: Mirania
+    position: -3.8, 0.3
+    starType: decorative
+    color: "#8A6642"
+    visibleToAll: true
+  - id: NyxRift
+    name: Nyx Rift
+    position: -2.85, 0.4
+    starType: decorative
+    color: "#8A6642"
+    visibleToAll: true
+  - id: OktyabrReach
+    name: Oktyabr Reach
+    position: -2.96, 3.34
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: BaikonurSpur
+    name: Baikonur Spur
+    position: -1.8, 3.94
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: RodinaAnchor
+    name: Rodina Anchor
+    position: -0.81, 3.91
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: VolgaGate
+    name: Volga Gate
+    position: -2.22, 2
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: SputnikShoal
+    name: Sputnik Shoal
+    position: -0.99, 2.63
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Gilgamesh
+    name: Gilgamesh
+    position: 5.48, 1.09
+    starType: decorative
+    color: "#990816"
+    visibleToAll: true
+  - id: Gagarin
+    name: Gagarin Spur
+    position: 7.28, 0.85
+    starType: decorative
+    color: "#990816"
+    visibleToAll: true
+  - id: AntarOva
+    name: Antar Ova
+    position: 4.49, -2.04
+    starType: decorative
+    color: "#990816"
+    visibleToAll: true
+  - id: RedLathe
+    name: Red Lathe
+    position: 5.79, -0.23
+    starType: decorative
+    color: "#990816"
+    visibleToAll: true
+  - id: UmbraKeel
+    name: Umbra Keel
+    position: 7.2, 3.27
+    starType: decorative
+    color: "#990816"
+    visibleToAll: true
+  - id: NordfallRim
+    name: Nordfall Rim
+    position: 3.9, 0.12
+    starType: decorative
+    color: "#990816"
+    visibleToAll: true
+    description: starmap-lore-star-nordfall-short
+    descriptionFull: starmap-lore-star-nordfall
+  - id: Aegis
+    name: Stein 2051
+    position: 13.06, 18.38
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: Palladium
+    name: George Pantazis
+    position: 10.48, 17.89
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: Crownwatch
+    name: WISE J0005+17
+    position: 6.39, 17.97
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: HighAnchor
+    name: WISE J004945
+    position: 8.88, 19.89
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: VetraPrime
+    name: Eta Cassiopeiae
+    position: 8.46, 18.98
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+  - id: MirAnchor
+    name: Mir Anchor
+    position: 2.48, 11.43
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Bosk
+    name: Bosk
+    position: 6.55, 12.35
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+    description: starmap-lore-star-bosk-short
+    descriptionFull: starmap-lore-star-bosk
+  - id: Kepler
+    name: Kepler
+    position: 4.45, 11.55
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+    description: starmap-lore-star-kepler-short
+    descriptionFull: starmap-lore-star-kepler
+  - id: Stahlstadt
+    name: Stahlstadt
+    position: 9.35, 13.25
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+    description: starmap-lore-star-stahlstadt-short
+    descriptionFull: starmap-lore-star-stahlstadt
+  - id: ProximaUssp
+    name: Proxima
+    position: 7.55, 10.45
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+    description: starmap-lore-star-proxima-short
+    descriptionFull: starmap-lore-star-proxima
+  - id: Eridans7
+    name: Eridans-7
+    position: 11.35, 11.05
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+    description: starmap-lore-star-eridans-short
+    descriptionFull: starmap-lore-star-eridans
+  - id: MorteDespirato
+    name: Morte-Despirato
+    position: 1.65, 10.25
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+    description: starmap-lore-star-morte-short
+    descriptionFull: starmap-lore-star-morte
+  - id: SalyutReach
+    name: Salyut Reach
+    position: 4.16, 10.8
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Kosmograd
+    name: Kosmograd
+    position: 3.78, 13.83
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: RedBanner
+    name: Red Banner
+    position: 8.57, 11.43
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Polyarnaya
+    name: Polyarnaya
+    position: 8.32, 14
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Tsiolkovsky
+    name: Tsiolkovsky's Spur
+    position: 10.55, 12.53
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: VostokGate
+    name: Vostok Gate
+    position: 14.34, 12.96
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: ZvezdaKeep
+    name: Zvezda Keep
+    position: 5.63, 15.55
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: SoyuzShoal
+    name: Soyuz Shoal
+    position: 10.34, 14.63
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: OrlovReach
+    name: Orlov Reach
+    position: 1.18, 13.11
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: KalugaDeep
+    name: Kaluga Deep
+    position: 1.39, 9.08
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: NovayaZarya
+    name: Novaya Zarya
+    position: 6.39, 10
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: ProletarGate
+    name: Proletar Gate
+    position: 12.19, 12.15
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Oktyabrina
+    name: Oktyabrina
+    position: 13.16, 15.68
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: MolniyaReef
+    name: Molniya Reef
+    position: 5.09, 12.43
+    starType: decorative
+    color: "#c41e3a"
+    visibleToAll: true
+  - id: Lhs450
+    name: LHS 450
+    position: 8.37, 22.84
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: JastrebSector
+    name: Jastreb Sector GR-W C1-27
+    position: 1.47, 16.75
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Lhs3461
+    name: LHS 3461
+    position: 3.35, 17.69
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Teegarden
+    name: Teegarden's Star
+    position: 2.44, 20.51
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Lhs4003
+    name: LHS 4003
+    position: 5.11, 18.83
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Ross671
+    name: Ross 671
+    position: 5.9, 22.8
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: BarnardsStar
+    name: Barnard's Star
+    position: 8.11, 25.11
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Wise1405
+    name: WISE 1405+5534
+    position: 10.85, 22.35
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Sol
+    name: Sol
+    position: 13.4, 23.11
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-sol-short
+    descriptionFull: starmap-lore-star-sol
+  - id: Acadia
+    name: Acadia
+    position: 12.35, 22.55
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-acadia-short
+    descriptionFull: starmap-lore-star-acadia
+  - id: Armstrong
+    name: Armstrong
+    position: 14.05, 24.15
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-armstrong-short
+    descriptionFull: starmap-lore-star-armstrong
+  - id: OpzGagarin
+    name: Gagarin
+    position: 13.95, 21.95
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-gagarin-short
+    descriptionFull: starmap-lore-star-gagarin
+  - id: Pioneer
+    name: Pioneer
+    position: 15.15, 22.55
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-pioneer-short
+    descriptionFull: starmap-lore-star-pioneer
+  - id: Mir
+    name: Mir
+    position: 11.55, 23.45
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-mir-short
+    descriptionFull: starmap-lore-star-mir
+  - id: Solkrum
+    name: Solkrum
+    position: 12.55, 19.65
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+    description: starmap-lore-star-solkrum-short
+    descriptionFull: starmap-lore-star-solkrum
+  - id: Caldera
+    name: Caldera
+    position: 11.05, 18.25
+    starType: decorative
+    color: "#2595db"
+    visibleToAll: true
+    description: starmap-lore-star-caldera-short
+    descriptionFull: starmap-lore-star-caldera
+  - id: Wolf359
+    name: Wolf 359
+    position: 16.47, 21.89
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Wolf424
+    name: Wolf 424
+    position: 15.15, 24.25
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: YzCeti
+    name: YZ Ceti
+    position: 13.37, 21.39
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: TauCeti
+    name: Tau Ceti
+    position: 14.61, 20.45
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Sirius
+    name: Sirius
+    position: 18.19, 19
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Kokary
+    name: Kokary
+    position: 16.35, 17.67
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: AdLeonis
+    name: AD Leonis
+    position: 17.76, 18.1
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Lung
+    name: Lung
+    position: 15.97, 15.08
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Kruger60
+    name: Kruger 60
+    position: 8.66, 21.47
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: ChiDraconis
+    name: 44 Chi Draconis
+    position: 5.57, 19.99
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Ross248
+    name: Ross 248
+    position: 10.31, 21.5
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: AlphaCentauri
+    name: Alpha Centauri
+    position: 13.24, 24.86
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: SigmaDraconis
+    name: Sigma Draconis
+    position: 7.17, 21.27
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+  - id: Celestora
+    name: Celestora
+    position: 1.85, 22.15
+    starType: decorative
+    color: "#1B9671"
+    visibleToAll: true
+    description: starmap-lore-star-celestora-short
+    descriptionFull: starmap-lore-star-celestora
+  - id: KvandanPrime
+    name: Kvandan-Prime
+    position: 16.75, 15.94
+    starType: decorative
+    color: "#3ec6c8"
+    visibleToAll: true
+    description: starmap-lore-star-kvandan-short
+    descriptionFull: starmap-lore-star-kvandan
+  - id: VerdantKeel
+    name: Verdant Keel
+    position: 6.08, 24.98
+    starType: decorative
+    color: "#1B9671"
+    visibleToAll: true
+  - id: JadeMeridian
+    name: Jade Meridian
+    position: 1.3, 23.33
+    starType: decorative
+    color: "#1B9671"
+    visibleToAll: true
+  - id: EmeraldGate
+    name: Emerald Gate
+    position: 2.66, 22.38
+    starType: decorative
+    color: "#1B9671"
+    visibleToAll: true
+  - id: CypressReach
+    name: Cypress Reach
+    position: 0.94, 19.49
+    starType: decorative
+    color: "#1B9671"
+    visibleToAll: true
+  - id: MossAnchor
+    name: Moss Anchor
+    position: -0.18, 16.12
+    starType: decorative
+    color: "#1B9671"
+    visibleToAll: true
+  - id: Crownforge
+    name: Zigmarag
+    position: 13.74, 11.1
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+    description: starmap-lore-star-zigmarag-short
+    descriptionFull: starmap-lore-star-zigmarag
+  - id: Goldspire
+    name: Goldspire
+    position: 14.46, 9.04
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Throneward
+    name: Throneward
+    position: 18.04, 16.35
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Imperatrix
+    name: Imperatrix
+    position: 16.77, 11.42
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: AureliaReach
+    name: Aurelia Reach
+    position: 19.67, 10.05
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: DominionGate
+    name: Dominion Gate
+    position: 21.6, 15.12
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: ScepterShoal
+    name: Scepter Shoal
+    position: 21.1, 22.57
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: RegaliaDeep
+    name: Regalia Deep
+    position: 25.64, 18.12
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Coronet
+    name: Coronet
+    position: 22.02, 18.75
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: EmpressWake
+    name: Empress Wake
+    position: 26.73, 14.8
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: SovereignReef
+    name: Sovereign Reef
+    position: 23.24, 12.09
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: BasilicaSpur
+    name: Basilica Spur
+    position: 28.96, 19.71
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: GildedMeridian
+    name: Gilded Meridian
+    position: 28.62, 16.73
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: PalaceAnchor
+    name: Palace Anchor
+    position: 29.13, 27.57
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: HeraldKeep
+    name: Herald Keep
+    position: 21.14, 25.77
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: VanguardPrime
+    name: Vanguard Prime
+    position: 24.08, 24.08
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: PrestigeRim
+    name: Prestige Rim
+    position: 17.32, 27.11
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: DynastShoal
+    name: Dynast Shoal
+    position: 10.05, 26.69
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: LegateGate
+    name: Legate Gate
+    position: 9.51, 30.12
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Mandate
+    name: Mandate
+    position: 13.52, 27.73
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: ImperialCore
+    name: Imperial Core
+    position: 13.58, 31.24
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: VassalReach
+    name: Vassal Reach
+    position: 11.63, 31.45
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Courtward
+    name: Courtward
+    position: 16.98, 30.41
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Bannerfall
+    name: Bannerfall
+    position: 20.85, 28.46
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: AurelianSpur
+    name: Aurelian Spur
+    position: 24.39, 29.35
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: SceptreDeep
+    name: Sceptre Deep
+    position: 25.6, 26.66
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Heirloom
+    name: Heirloom
+    position: 15.35, 34.6
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Concordat
+    name: Concordat
+    position: 11.16, 33.54
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Throneveil
+    name: Throneveil
+    position: 22.32, 36.76
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Crownfall
+    name: Crownfall
+    position: 16.3, 37.44
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: DominionRim
+    name: Dominion Rim
+    position: 17.3, 33.6
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Goldwake
+    name: Goldwake
+    position: 19.84, 36.08
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Sovereign
+    name: Sovereign
+    position: 13.52, 36.05
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: ImperiumGate
+    name: Imperium Gate
+    position: 14.94, 33.36
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: LegateSpur
+    name: Legate Spur
+    position: 19.49, 30.35
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: RegentAnchor
+    name: Regent Anchor
+    position: 14.76, 28.4
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Palaceward
+    name: Palaceward
+    position: 11.16, 27.75
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Aureate
+    name: Aureate
+    position: 17.32, 20.34
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Viceregal
+    name: Viceregal
+    position: 18.01, 25.1
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Heraldry
+    name: Heraldry
+    position: 24.8, 21.73
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: ScepterReach
+    name: Scepter Reach
+    position: 25.75, 29.29
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Empery
+    name: Empery
+    position: 21.97, 31.36
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: MagnateShoal
+    name: Magnate Shoal
+    position: 24.62, 15.94
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: Coronation
+    name: Coronation
+    position: 23.27, 27.34
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: GildedReach
+    name: Gilded Reach
+    position: 26.87, 24.09
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  - id: EmpireWatch
+    name: Empire Watch
+    position: 8.44, 31.83
+    starType: decorative
+    color: "#FFD200"
+    visibleToAll: true
+  chartMarkers:
+  - id: LabelElysianShore
+    name: starmap-region-elysian-shore
+    kind: regionLabel
+    position: 16.55, -0.39
+    color: "#3ec6c8"
+    size: 0
+    showLabel: true
+  - id: LabelInnerOrionSpur
+    name: starmap-region-inner-orion-spur
+    kind: regionLabel
+    position: -11.39, 15.21
+    color: "#3ec6c8"
+    size: 0
+    showLabel: true
+  - id: RegionDividerBluespace
+    name: ""
+    kind: regionDivider
+    position: -17, 7
+    endPosition: 34, 7
+    color: "#3ec6c8"
+    size: 0
+    showLabel: false
+  - id: BluespaceRiftElysian
+    name: starmap-bluespace-rift
+    kind: bluespaceRift
+    position: 1.28, -0.55
+    linkTo: BluespaceRiftInnerOrion
+    linkLabel: starmap-bluespace-rift-distance
+    color: "#3ec6c8"
+    size: 10
+    showLabel: true
+  - id: BluespaceRiftInnerOrion
+    name: starmap-bluespace-rift
+    kind: bluespaceRift
+    position: 14.86, 17.06
+    color: "#3ec6c8"
+    size: 10
+    showLabel: true
   hyperlanes:
-    - [ FrontierSector, AsteroidSectorDefault ]
-    - [ AsteroidSectorDefault, TypanSector ]
-    # - [ AsteroidSectorDefault, LuaTechSector ]
-    - [ AsteroidSectorDefault, PirateSector ]
-    # - [ AsteroidSectorDefault, MercenarySector ] # Наёмники теперь спавнятся на ЧР в Поле Астероидов
-    - [ CentCom, FrontierSector ]
+  - - FrontierSector
+    - AsteroidSectorDefault
+  - - AsteroidSectorDefault
+    - TypanSector
+  - - AsteroidSectorDefault
+    - PirateSector
+  - - AsteroidSectorDefault
+    - KrasnayaZarya
+  - - CentCom
+    - FrontierSector
+  factionZones:
+  - id: Pirates
+    name: starmap-zone-pirates
+    iconCompany: Pirates
+    color: "#8A6642"
+    description: starmap-lore-zone-pirates-short
+    descriptionFull: starmap-lore-zone-pirates
+    points:
+    - -5.13, 2.2
+    - -3.51, 3.37
+    - -2.48, 2.06
+    - -2.6, -0.7
+    - -4.54, 0.48
+  - id: Ussp
+    name: starmap-zone-ussp
+    iconCompany: Ussp
+    color: "#c41e3a"
+    description: starmap-lore-zone-ussp-short
+    descriptionFull: starmap-lore-zone-ussp
+    points:
+    - -2.48, 2.06
+    - -2.6, -0.7
+    - -1, 0.8
+    - 0.5, 1.4
+    - -0.8, 2.6
+    - 0.37, 5
+    - -2.06, 5.02
+    - -3.51, 3.37
+  - id: Nanotrasen
+    name: starmap-zone-nanotrasen
+    iconCompany: Nanotrasen
+    color: "#2595db"
+    description: starmap-lore-zone-nanotrasen-short
+    descriptionFull: starmap-lore-zone-nanotrasen
+    points:
+    - 0.5, 1.4
+    - -0.8, 2.6
+    - 0.37, 5
+    - 8.02, 5.01
+    - 5.3, 1.5
+    - 2.6, 0.85
+  - id: Syndicate
+    name: starmap-zone-syndicate
+    iconCompany: Syndicate
+    color: "#990816"
+    description: starmap-lore-zone-syndicate-short
+    descriptionFull: starmap-lore-zone-syndicate
+    points:
+    - 2.6, 0.85
+    - 5.3, 1.5
+    - 8.02, 5.01
+    - 8.65, -0.14
+    - 3.6, -3.7
+    - 3.4, 0.15
+  - id: NanotrasenInnerOrion
+    name: starmap-zone-nanotrasen-inner
+    iconCompany: Nanotrasen
+    color: "#2595db"
+    description: starmap-lore-zone-nanotrasen-inner-short
+    descriptionFull: starmap-lore-zone-nanotrasen-inner
+    points:
+    - 10.63, 16.77
+    - 14.82, 16.75
+    - 15.08, 18.87
+    - 13.31, 19.96
+    - 11.21, 20.14
+    - 8.72, 20.71
+    - 6.96, 19.59
+    - 5.75, 17.59
+    - 8.14, 16.64
+  - id: UsspInner
+    name: starmap-zone-ussp-inner
+    iconCompany: Ussp
+    color: "#c41e3a"
+    description: starmap-lore-zone-ussp-inner-short
+    descriptionFull: starmap-lore-zone-ussp-inner
+    points:
+    - 0.5, 14.83
+    - 3.14, 15.05
+    - 4.14, 16.79
+    - 5.75, 17.59
+    - 8.14, 16.64
+    - 10.63, 16.77
+    - 14.82, 16.75
+    - 14.94, 14.45
+    - 16.88, 13.07
+    - 14.78, 11.14
+    - 13.68, 12.14
+    - 11.99, 10.59
+    - 11.21, 11.04
+    - 9.31, 8.73
+    - 7.14, 9.49
+    - 5.33, 8.98
+    - 4.77, 9.13
+    - 3.61, 7.6
+    - 0.58, 7.97
+    - 0.18, 11.15
+    - 0.79, 11.63
+    - -1.18, 12.7
+  - id: OpzInner
+    name: starmap-zone-opz-inner
+    iconPath: /Textures/_Souz/Structures/Decoration/banner2.rsi/opz.png
+    color: "#3ec6c8"
+    description: starmap-lore-zone-opz-inner-short
+    descriptionFull: starmap-lore-zone-opz-inner
+    points:
+    - 9.54, 24.57
+    - 14.55, 25.71
+    - 17.64, 22.97
+    - 16.48, 20.02
+    - 19.25, 19.07
+    - 17.3, 16.64
+    - 16.88, 13.07
+    - 14.94, 14.45
+    - 14.82, 16.75
+    - 15.08, 18.87
+    - 13.31, 19.96
+    - 11.21, 20.14
+    - 8.72, 20.71
+    - 6.96, 19.59
+    - 5.75, 17.59
+    - 4.14, 16.79
+    - 3.14, 15.05
+    - 0.5, 14.83
+    - 1.21, 18.38
+    - 2.42, 19.1
+    - 1.62, 20.8
+    - 2.75, 21.14
+    - 3.78, 22.47
+    - 5.28, 23.25
+    - 6.83, 24.56
+    - 7.34, 26.9
+  - id: SnkInner
+    name: starmap-zone-snk-inner
+    iconPath: /Textures/_Souz/Structures/Decoration/banner2.rsi/snk.png
+    color: "#1B9671"
+    description: starmap-lore-zone-snk-inner-short
+    descriptionFull: starmap-lore-zone-snk-inner
+    points:
+    - -1.04, 17.34
+    - -0.62, 20.74
+    - 0.77, 22.59
+    - -0.36, 23.27
+    - 1.41, 24.63
+    - 4.35, 24.81
+    - 7.34, 26.9
+    - 6.83, 24.56
+    - 5.28, 23.25
+    - 3.78, 22.47
+    - 2.75, 21.14
+    - 1.62, 20.8
+    - 2.42, 19.1
+    - 1.21, 18.38
+    - 0.5, 14.83
+    - -1.18, 12.7
+  - id: ImperialInner
+    name: starmap-zone-imperial-inner
+    iconPath: /Textures/_Souz/Structures/Decoration/banner2.rsi/empire.png
+    color: "#FFD200"
+    description: starmap-lore-zone-imperial-inner-short
+    descriptionFull: starmap-lore-zone-imperial-inner
+    points:
+    - 11.99, 10.59
+    - 13.68, 12.14
+    - 14.78, 11.14
+    - 16.88, 13.07
+    - 17.3, 16.64
+    - 19.25, 19.07
+    - 16.48, 20.02
+    - 17.64, 22.97
+    - 14.55, 25.71
+    - 9.54, 24.57
+    - 7.34, 26.9
+    - 7.21, 32.63
+    - 14.9, 40.79
+    - 24.53, 37.01
+    - 19.98, 32.33
+    - 26.05, 32.26
+    - 30.84, 27.97
+    - 27.28, 21.44
+    - 31.63, 21.47
+    - 31.29, 16.93
+    - 27.42, 10.96
+    - 22.13, 8.87
+    - 18.15, 8.91
+    - 18.29, 10.7
+    - 14.37, 8.09

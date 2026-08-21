@@ -1,5 +1,5 @@
+using Content.Server._Lua.Sectors;
 using Content.Server.Administration;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Prototypes;
@@ -19,7 +19,7 @@ namespace Content.Server.Worldgen.Systems;
 /// </summary>
 public sealed class WorldgenConfigSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IConsoleHost _conHost = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
@@ -73,8 +73,11 @@ public sealed class WorldgenConfigSystem : EntitySystem
         if (_enabled == false)
             return;
 
-        var target = _map.GetMapOrInvalid(_gameTicker.DefaultMap);
-        Log.Debug($"Trying to configure {_gameTicker.DefaultMap}, aka {ToPrettyString(target)} aka {target}");
+        if (!_sectors.TryGetHubMapId(out var hubMap) || hubMap == MapId.Nullspace)
+            return;
+
+        var target = _map.GetMapOrInvalid(hubMap);
+        Log.Debug($"Trying to configure hub map {hubMap}, aka {ToPrettyString(target)} aka {target}");
         var cfg = _proto.Index<WorldgenConfigPrototype>(_worldgenConfig);
 
         cfg.Apply(target, _ser, EntityManager); // Apply the config to the map.

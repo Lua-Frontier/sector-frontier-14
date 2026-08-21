@@ -1,0 +1,13 @@
+- type: entity
+  parent: ClothingEarringBase
+  id: ClothingEarringBasicSilver
+  name: silver earring
+  description: A simple silver earring.
+  components:
+  - type: Sprite
+    sprite: Clothing/Ears/Earrings/basic.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Ears/Earrings/basic.rsi
+  - type: StaticPrice
+    price: 50

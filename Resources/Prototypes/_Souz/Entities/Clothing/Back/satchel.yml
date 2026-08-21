@@ -1,0 +1,53 @@
+# source: Entities/Clothing/Back/satchel.yml
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBackpackSatchelSecurity
+  categories: [ USSP ]
+  suffix: USSP
+  name: security satchel
+  description: A robust satchel for security related needs.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Satchels/security.rsi
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingBackpackSatchelBrigmedic
+  categories: [ USSP ]
+  suffix: USSP
+  name: brigmedic satchel
+  description: A sterile satchel for medical related needs.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Satchels/brigmedic.rsi
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: USSPSFClothingBackpackSatchelCaptain
+  categories: [ USSP ]
+  suffix: USSP
+  name: captain's satchel
+  description: An exclusive satchel for Nanotrasen officers.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Satchels/captain.rsi
+
+# source: _DeadSpace/Entities/Clothing/Back/satchel.yml
+- type: entity
+  parent: USSPSFClothingBackpackSatchelCaptain
+  id: USSPSFClothingBackpackSatchelCaptainWhite
+  categories: [ USSP ]
+  suffix: USSP
+  name: белая сумка капитана
+  description: Это особая белая сумка, изготовленная исключительно для офицеров NanoTrasen. В ней же не будет оружия в зелёный код?..
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Satchels/captain_white.rsi
+- type: entity
+  parent: USSPSFClothingBackpackSatchelCaptain
+  id: USSPSFClothingBackpackSatchelCaptainBlack
+  categories: [ USSP ]
+  suffix: USSP
+  name: чёрная сумка капитана
+  description: Это особая чёрная сумка, изготовленная исключительно для офицеров NanoTrasen. Странно, если в зелёный код в ней не будет антикварного пистолета.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Back/Satchels/captain_black.rsi

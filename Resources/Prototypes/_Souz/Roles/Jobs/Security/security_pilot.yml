@@ -1,0 +1,49 @@
+- type: job
+  id: UsspSecurityPilot
+  name: job-name-ussp-security-pilot
+  description: job-description-ussp-security-pilot
+  playTimeTracker: JobUsspSecurityPilot
+  requiredCompany: Ussp
+  salary: 42000
+  startingGear: UsspSecurityPilotGear
+  icon: JobIconUsspSecurityPilot
+  supervisors: job-supervisors-ussp-hos
+  canBeAntag: false
+  hideConsoleVisibility: true
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: OutpostUssp
+    time: 36000
+  - !type:RoleTimeRequirement
+    role: JobUsspSecurityOfficer
+    time: 7200
+  access:
+  - USSPSecurity
+  - USSPBrig
+  - USSPMaintenance
+  - USSPService
+  - USSPExternal
+  accessGroups:
+  - USSPGeneral
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+    - type: Company
+      companyName: Ussp
+    - type: SpecialSectorStationRecord
+      recordGeneration: FalseRecord
+    - type: MailDisabled
+    - type: NpcFactionMember
+      factions:
+      - Ussp
+
+- type: startingGear
+  id: UsspSecurityPilotGear
+  equipment: {}
+
+
+- type: chameleonOutfit
+  id: UsspSecurityPilotChameleonOutfit
+  job: UsspSecurityPilot

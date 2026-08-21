@@ -6,5 +6,7 @@ station-event-bluespace-BluespaceBarkhan-8Tranzit-end-announcement = Станц�
 
 station-event-bluespace-name-Barkhan-8 = NTHH-Бархан-8
 
+station-event-fsf-bravo-start-announcement = Центральное Командование приняло решение. Начата подготовка отряда Браво для отправки в сектор.
+station-event-fsf-charlie-start-announcement = Центральное Командование приняло решение. Начата подготовка отряда Чарли для отправки в сектор.
 
 narsie-has-defeated = НарСи побеждена!

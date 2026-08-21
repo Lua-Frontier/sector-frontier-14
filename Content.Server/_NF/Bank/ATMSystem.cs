@@ -158,7 +158,7 @@ public sealed partial class BankSystem
             if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
                 continue;
             var tax = (int)Math.Floor(originalDeposit * taxCoeff);
-            TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketAtmTax);
+            TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketAtmTax, uid);
             deposit -= tax; // Charge the user whether or not the deposit went through.
         }
         deposit = int.Max(0, deposit);

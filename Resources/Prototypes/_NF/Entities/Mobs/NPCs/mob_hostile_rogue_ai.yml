@@ -217,6 +217,11 @@
     prototypes:
     - MobRogueSiliconLootT1
   - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:
@@ -434,6 +439,11 @@
     color: orange
     energy: 0.5
   - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:
@@ -1308,6 +1318,11 @@
     color: orange
     energy: 0.5
   - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: NoSlip
+  - type: Physics
+    bodyType: KinematicController
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:

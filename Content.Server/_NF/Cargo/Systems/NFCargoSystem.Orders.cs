@@ -140,7 +140,7 @@ public sealed partial class NFCargoSystem
             if (!float.IsFinite(taxCoeff) || taxCoeff <= 0.0f)
                 continue;
             var tax = (int)Math.Floor(cost * taxCoeff);
-            _bank.TrySectorDeposit(account, tax, LedgerEntryType.CargoTax);
+            _bank.TrySectorDeposit(account, tax, LedgerEntryType.CargoTax, ent);
         }
 
         AddOrder(dbUid.Value, data, orderDatabase);

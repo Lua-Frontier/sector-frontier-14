@@ -1,5 +1,6 @@
 # Base entries
 guide-entry-nf14 = Руководство Фронтира
+guide-entry-sector-topology = Топология сектора
 guide-entry-bank = NT Галактический банк
 guide-entry-piloting = Пилотирование
 guide-entry-hiring = Наём экипажа

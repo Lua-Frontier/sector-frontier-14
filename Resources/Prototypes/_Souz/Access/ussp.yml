@@ -1,0 +1,219 @@
+# USSP faction access — station (OutpostUssp) + military tiers
+
+- type: accessLevel
+  id: USSP
+  name: id-card-access-level-ussp
+
+- type: accessLevel
+  id: USSPHigh
+  name: id-card-access-level-ussp-high
+
+- type: accessLevel
+  id: USSPCommand
+  name: id-card-access-level-ussp-command
+
+- type: accessLevel
+  id: USSPCaptain
+  name: id-card-access-level-ussp-captain
+
+- type: accessLevel
+  id: USSPHeadOfPersonnel
+  name: id-card-access-level-ussp-hop
+
+- type: accessLevel
+  id: USSPHeadOfSecurity
+  name: id-card-access-level-ussp-hos
+
+- type: accessLevel
+  id: USSPSecurity
+  name: id-card-access-level-ussp-security
+
+- type: accessLevel
+  id: USSPBrig
+  name: id-card-access-level-ussp-brig
+
+- type: accessLevel
+  id: USSPArmory
+  name: id-card-access-level-ussp-armory
+
+- type: accessLevel
+  id: USSPBrigmedic
+  name: id-card-access-level-ussp-brigmedic
+
+- type: accessLevel
+  id: USSPMaintenance
+  name: id-card-access-level-ussp-maintenance
+
+- type: accessLevel
+  id: USSPExternal
+  name: id-card-access-level-ussp-external
+
+- type: accessLevel
+  id: USSPService
+  name: id-card-access-level-ussp-service
+
+- type: accessLevel
+  id: USSPEngineering
+  name: id-card-access-level-ussp-engineering
+
+- type: accessLevel
+  id: USSPAtmospherics
+  name: id-card-access-level-ussp-atmospherics
+
+- type: accessLevel
+  id: USSPChiefEngineer
+  name: id-card-access-level-ussp-ce
+
+- type: accessLevel
+  id: USSPMedical
+  name: id-card-access-level-ussp-medical
+
+- type: accessLevel
+  id: USSPChemistry
+  name: id-card-access-level-ussp-chemistry
+
+- type: accessLevel
+  id: USSPChiefMedicalOfficer
+  name: id-card-access-level-ussp-cmo
+
+- type: accessLevel
+  id: USSPResearch
+  name: id-card-access-level-ussp-research
+
+- type: accessLevel
+  id: USSPResearchDirector
+  name: id-card-access-level-ussp-rd
+
+- type: accessLevel
+  id: USSPCargo
+  name: id-card-access-level-ussp-cargo
+
+- type: accessLevel
+  id: USSPQuartermaster
+  name: id-card-access-level-ussp-qm
+
+- type: accessLevel
+  id: USSPSalvage
+  name: id-card-access-level-ussp-salvage
+
+- type: accessLevel
+  id: USSPBar
+  name: id-card-access-level-ussp-bar
+
+- type: accessLevel
+  id: USSPKitchen
+  name: id-card-access-level-ussp-kitchen
+
+- type: accessLevel
+  id: USSPHydroponics
+  name: id-card-access-level-ussp-hydroponics
+
+- type: accessLevel
+  id: USSPChapel
+  name: id-card-access-level-ussp-chapel
+
+- type: accessLevel
+  id: USSPTheatre
+  name: id-card-access-level-ussp-theatre
+
+- type: accessLevel
+  id: USSPJanitor
+  name: id-card-access-level-ussp-janitor
+
+- type: accessLevel
+  id: USSPLawyer
+  name: id-card-access-level-ussp-lawyer
+
+- type: accessLevel
+  id: USSPDetective
+  name: id-card-access-level-ussp-detective
+
+- type: accessLevel
+  id: USSPSOD
+  name: id-card-access-level-ussp-sod
+
+- type: accessGroup
+  id: USSPGeneral
+  tags:
+  - USSP
+  - USSPMaintenance
+  - USSPExternal
+
+- type: accessGroup
+  id: USSPAll
+  tags:
+  - USSP
+  - USSPHigh
+  - USSPCommand
+  - USSPCaptain
+  - USSPHeadOfPersonnel
+  - USSPHeadOfSecurity
+  - USSPSecurity
+  - USSPBrig
+  - USSPArmory
+  - USSPBrigmedic
+  - USSPMaintenance
+  - USSPExternal
+  - USSPService
+  - USSPEngineering
+  - USSPAtmospherics
+  - USSPChiefEngineer
+  - USSPMedical
+  - USSPChemistry
+  - USSPChiefMedicalOfficer
+  - USSPResearch
+  - USSPResearchDirector
+  - USSPCargo
+  - USSPQuartermaster
+  - USSPSalvage
+  - USSPBar
+  - USSPKitchen
+  - USSPHydroponics
+  - USSPChapel
+  - USSPTheatre
+  - USSPJanitor
+  - USSPLawyer
+  - USSPDetective
+  - USSPSOD
+
+- type: accessGroup
+  id: USSPSecurityAccess
+  tags:
+  - USSPSecurity
+  - USSPBrig
+  - USSPArmory
+  - USSPHeadOfSecurity
+
+- type: accessGroup
+  id: USSPServiceAccess
+  tags:
+  - USSPService
+
+- type: accessGroup
+  id: USSPAA
+  tags:
+  - USSP
+  - USSPHigh
+  - USSPCommand
+  - Mercenary
+  - Cryogenics
+
+- type: accessGroup
+  id: USSP
+  tags:
+  - USSP
+  - USSPHigh
+  - USSPCommand
+
+- type: accessGroup
+  id: USSPHigh
+  tags:
+  - USSP
+  - USSPHigh
+  - Mercenary
+
+- type: accessGroup
+  id: USSPLow
+  tags:
+  - USSP
+  - Mercenary

@@ -8,6 +8,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
 using Content.Shared.Physics;
+using Robust.Shared.IoC;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -105,8 +106,7 @@ public sealed partial class NPCSteeringSystem
         // TODO: Need something uhh better not sure on the interaction between these.
         if (!steering.ForceMove && steering.ArriveOnLineOfSight)
         {
-            // TODO: use vision range
-            inLos = _interaction.InRangeUnobstructed(uid, steering.Coordinates, 10f);
+            inLos = _interaction.InRangeUnobstructed(uid, steering.Coordinates, steering.LineOfSightRange);
 
             if (inLos)
             {
@@ -215,6 +215,12 @@ public sealed partial class NPCSteeringSystem
                     // We're still coming to a stop so wait for the do_after.
                     if (body.LinearVelocity.LengthSquared() > 0.01f)
                     {
+                        return true;
+                    }
+
+                    if (IoCManager.Instance == null)
+                    {
+                        _deferredObstacles.Enqueue((uid, steering));
                         return true;
                     }
 

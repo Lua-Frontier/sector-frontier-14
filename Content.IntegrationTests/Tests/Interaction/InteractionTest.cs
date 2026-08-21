@@ -260,7 +260,12 @@ public abstract partial class InteractionTest
     [TearDown]
     public async Task TearDownInternal()
     {
-        await Server.WaitPost(() => MapSystem.DeleteMap(MapId));
+        if (Pair == null)
+            return;
+
+        if (MapSystem != null && MapData != null)
+            await Server.WaitPost(() => MapSystem.DeleteMap(MapId));
+
         await Pair.CleanReturnAsync();
         await TearDown();
     }

@@ -5,6 +5,7 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Screens.Components;
+using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
@@ -56,6 +57,19 @@ namespace Content.Server.Communications
 
             // On console init, set cooldown
             SubscribeLocalEvent<CommunicationsConsoleComponent, MapInitEvent>(OnCommunicationsConsoleMapInit);
+            SubscribeLocalEvent<FTLCompletedEvent>(OnFTLCompleted);
+        }
+
+        private void OnFTLCompleted(ref FTLCompletedEvent args)
+        {
+            var query = EntityQueryEnumerator<CommunicationsConsoleComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var comp, out var xform))
+            {
+                if (xform.GridUid != args.Entity)
+                    continue;
+
+                UpdateCommsConsoleInterface(uid, comp);
+            }
         }
 
         public override void Update(float frameTime)
@@ -107,11 +121,11 @@ namespace Content.Server.Communications
         /// <param name="args">Alert level changed event arguments</param>
         private void OnAlertLevelChanged(AlertLevelChangedEvent args)
         {
-            var query = EntityQueryEnumerator<CommunicationsConsoleComponent>();
-            while (query.MoveNext(out var uid, out var comp))
+            var query = EntityQueryEnumerator<CommunicationsConsoleComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var comp, out var xform))
             {
-                // var entStation = _stationSystem.GetOwningStation(uid); // Frontier: sector-wide alerts
-                // if (args.Station == entStation) // Frontier: sector-wide alerts
+                if (xform.MapID != args.MapId)
+                    continue;
                 UpdateCommsConsoleInterface(uid, comp);
             }
         }
@@ -133,15 +147,13 @@ namespace Content.Server.Communications
         /// </summary>
         public void UpdateCommsConsoleInterface(EntityUid uid, CommunicationsConsoleComponent comp)
         {
-            //var stationUid = _stationSystem.GetOwningStation(uid); // Frontier: sector-wide alerts
-            var stationUid = _sectorService.GetServiceEntity(); // Frontier: sector-wide alerts
             List<string>? levels = null;
             string currentLevel = default!;
             float currentDelay = 0;
 
-            if (stationUid.Valid) // Frontier: != null < .Valid
+            if (_sectorService.TryGetServiceEntity(uid, out var stationUid) && stationUid.Valid)
             {
-                if (TryComp(stationUid, out AlertLevelComponent? alertComp) && // Frontier: stationUid.Value<stationUid
+                if (TryComp(stationUid, out AlertLevelComponent? alertComp) &&
                     alertComp.AlertLevels != null)
                 {
                     if (alertComp.IsSelectable)
@@ -157,7 +169,7 @@ namespace Content.Server.Communications
                     }
 
                     currentLevel = alertComp.CurrentLevel;
-                    currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid, alertComp); // Frontier: stationUid.Value<stationUid
+                    currentDelay = _alertLevelSystem.GetAlertLevelDelay(stationUid, alertComp);
                 }
             }
 

@@ -29,7 +29,7 @@ public sealed class BluespaceCargoRule : StationEventSystem<BluespaceCargoRuleCo
     {
         base.Started(uid, component, gameRule, args);
 
-        if (!TryGetRandomStation(out var chosenStation, HasComp<StationJobsComponent>))
+        if (!TryGetRandomStationForEvent(uid, out var chosenStation, HasComp<StationJobsComponent>))
             return;
 
         if (!TryComp<StationDataComponent>(chosenStation, out var stationData))

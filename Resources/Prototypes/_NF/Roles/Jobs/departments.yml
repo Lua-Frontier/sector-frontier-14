@@ -24,6 +24,18 @@
   - Pilot
   - Borg
 
+- type: department
+  id: Antag
+  name: department-Antag
+  description: department-Antag-description
+  color: "#DE3A3A"
+  weight: 115
+  primary: false # secondary; primary for pirates is Pirates
+  roles:
+  - NFPirateCaptain
+  - NFPirateFirstMate
+  - NFPirate
+
 # - type: department
 #   id: NFSD
 #   name: department-security

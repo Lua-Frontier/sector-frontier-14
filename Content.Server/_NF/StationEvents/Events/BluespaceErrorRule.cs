@@ -7,12 +7,10 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Server.Station.Systems;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
 using Content.Server._NF.Bank;
 using Content.Shared._NF.Bank.BUI;
-using Content.Server.GameTicking;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
 using Content.Shared.Salvage;
@@ -23,7 +21,6 @@ using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Systems;
-using Content.Server._Mono.GridClaimer;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -45,10 +42,9 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
-    [Dependency] private readonly StationSystem _station = default!; // Lua
-    [Dependency] private readonly SectorSystem _sectors = default!; // Lua
-    [Dependency] private readonly StarmapSystem _starmap = default!; // Lua
-    private readonly Dictionary<EntityUid, MapId> _eventMap = new(); // Lua
+    [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly StarmapSystem _starmap = default!;
+    private readonly Dictionary<EntityUid, MapId> _eventMap = new();
 
     private MapId _relevantMapId = MapId.Nullspace;
 
@@ -59,40 +55,41 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
     protected override void Added(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        MapId targetMapId;
-        if (TryComp<MetaDataComponent>(uid, out var meta) && meta.EntityPrototype?.ID == "BluespaceShipyardLuaTech")
-        { targetMapId = GameTicker.DefaultMap; }
-        else
-        { targetMapId = TryGetRandomGeneratedSectorMapId(includeAsteroid: component.Asteroid) ?? (component.Asteroid && _sectors.TryGetMapId("AsteroidSectorDefault", out var ast) ? ast : GameTicker.DefaultMap); }
+        if (!TryResolveTargetMap(uid, component, out var targetMapId))
+        {
+            _eventMap[uid] = MapId.Nullspace;
+            _relevantMapId = MapId.Nullspace;
+            Log.Error($"BluespaceErrorRule: no target map for {ToPrettyString(uid)}; event will not spawn");
+            return;
+        }
+
         _eventMap[uid] = targetMapId;
         _relevantMapId = targetMapId;
         base.Added(uid, component, gameRule, args);
     }
 
     protected override MapId GetRelevantMapId()
-    { return _relevantMapId; }
+    {
+        return _relevantMapId;
+    }
 
     protected override void Started(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        if (!_eventMap.TryGetValue(uid, out var targetMapId))
-        { targetMapId = GameTicker.DefaultMap; }
-        EntityUid mapUid;
-        if (!_map.MapExists(targetMapId))
-        {
-            if (!_map.TryGetMap(GameTicker.DefaultMap, out var defaultMapUid)) return;
-            targetMapId = GameTicker.DefaultMap;
-            _eventMap[uid] = targetMapId;
-            mapUid = defaultMapUid.Value;
-        }
-        else
-        { mapUid = _mapManager.GetMapEntityId(targetMapId); }
 
+        if (!_eventMap.TryGetValue(uid, out var targetMapId) ||
+            targetMapId == MapId.Nullspace ||
+            !_map.MapExists(targetMapId))
+        {
+            Log.Error($"BluespaceErrorRule: aborting {ToPrettyString(uid)} — target map missing");
+            return;
+        }
+
+        var mapUid = _mapManager.GetMapEntityId(targetMapId);
         _relevantMapId = targetMapId;
 
         var spawnCoords = new EntityCoordinates(mapUid, Vector2.Zero);
 
-        // Spawn on a dummy map and try to FTL if possible, otherwise dump it.
         _map.CreateMap(out var mapId);
 
         foreach (var group in component.Groups.Values)
@@ -138,7 +135,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                             gridName = _salvage.GetFTLName(dataset, _random.Next());
                             break;
                         case BluespaceDatasetNameType.Nanotrasen:
-                            gridName = _nameGenerator.FormatName(Loc.GetString(_random.Pick(dataset.Values)) + " {1}"); // We need the prefix.
+                            gridName = _nameGenerator.FormatName(Loc.GetString(_random.Pick(dataset.Values)) + " {1}");
                             break;
                         case BluespaceDatasetNameType.Verbatim:
                         default:
@@ -164,42 +161,81 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
         _map.DeleteMap(mapId);
     }
 
-    private MapId? TryGetRandomGeneratedSectorMapId(bool includeAsteroid = false)
+    private bool TryResolveTargetMap(EntityUid uid, BluespaceErrorRuleComponent component, out MapId targetMapId)
     {
+        if (!string.IsNullOrEmpty(component.SectorStarmap))
+        {
+            if (_sectors.TryGetMapId(component.SectorStarmap, out targetMapId) &&
+                targetMapId != MapId.Nullspace &&
+                _map.MapExists(targetMapId))
+                return true;
+
+            Log.Error($"BluespaceErrorRule: sectorStarmap '{component.SectorStarmap}' is not loaded; aborting {ToPrettyString(uid)}");
+            targetMapId = MapId.Nullspace;
+            return false;
+        }
+
+        if (TryGetRandomGeneratedSectorMapId(out targetMapId))
+            return true;
+
+        Log.Error($"BluespaceErrorRule: no bluespace-enabled sector map for {ToPrettyString(uid)}");
+        targetMapId = MapId.Nullspace;
+        return false;
+    }
+
+    private bool TryGetRandomGeneratedSectorMapId(out MapId mapId)
+    {
+        mapId = MapId.Nullspace;
         try
         {
             var stars = _starmap.CollectStars();
-            if (stars.Count == 0) return null;
-            var exclude = new HashSet<MapId> { GameTicker.DefaultMap };
-            if (!includeAsteroid && _sectors.TryGetMapId("AsteroidSectorDefault", out var asteroid)) exclude.Add(asteroid);
+            if (stars.Count == 0)
+                return false;
+
+            var exclude = new HashSet<MapId>();
+            if (_sectors.TryGetHubMapId(out var hub) && hub != MapId.Nullspace)
+                exclude.Add(hub);
+            if (_sectors.TryGetMapId("AsteroidSectorDefault", out var asteroid))
+                exclude.Add(asteroid);
+
             var candidates = new List<MapId>();
             foreach (var s in stars)
             {
-                if (s.Map == MapId.Nullspace) continue;
-                if (exclude.Contains(s.Map)) continue;
-                if (!_map.MapExists(s.Map)) continue;
-                if (_sectors.TryGetSectorConfig(s.Map, out var cfg) && !cfg.BluespaceEventsEnabled) continue;
+                if (!s.CanWarp)
+                    continue;
+                if (s.Map == MapId.Nullspace)
+                    continue;
+                if (exclude.Contains(s.Map))
+                    continue;
+                if (!_map.MapExists(s.Map))
+                    continue;
+                if (!_sectors.TryGetSectorConfig(s.Map, out var cfg) || !cfg.BluespaceEventsEnabled)
+                    continue;
                 candidates.Add(s.Map);
             }
-            if (candidates.Count == 0) return null;
-            return candidates[_random.Next(candidates.Count)];
+
+            if (candidates.Count == 0)
+                return false;
+
+            mapId = candidates[_random.Next(candidates.Count)];
+            return true;
         }
-        catch { return null; }
+        catch
+        {
+            return false;
+        }
     }
 
     private bool TryDungeonSpawn(EntityCoordinates spawnCoords, BluespaceErrorRuleComponent component, ref BluespaceDungeonSpawnGroup group, int i, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
 
-        // handle empty prototype list, _random.Pick throws
         if (group.Protos.Count <= 0)
             return false;
 
-        // Enforce randomness with some round-robin-ish behaviour
         int maxIndex = group.Protos.Count - (i % group.Protos.Count);
         int index = _random.Next(maxIndex);
         var dungeonProtoId = group.Protos[index];
-        // Move selected item to the end of the list
         group.Protos.RemoveAt(index);
         group.Protos.Add(dungeonProtoId);
 
@@ -230,15 +266,12 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             return false;
         }
 
-        // Enforce randomness with some round-robin-ish behaviour
         int maxIndex = group.Paths.Count - (i % group.Paths.Count);
         int index = _random.Next(maxIndex);
         var path = group.Paths[index];
-        // Move selected item to the end of the list
         group.Paths.RemoveAt(index);
         group.Paths.Add(path);
 
-        // Do we support maps with multiple grids?
         if (_loader.TryLoadGrid(mapId, path, out var ent))
         {
             if (HasComp<ShuttleComponent>(ent.Value))
@@ -262,8 +295,12 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
     protected override void Ended(EntityUid uid, BluespaceErrorRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
+        if (_eventMap.TryGetValue(uid, out var eventMap))
+            _relevantMapId = eventMap;
+
         base.Ended(uid, component, gameRule, args);
         _eventMap.Remove(uid);
+        _relevantMapId = MapId.Nullspace;
 
         if (component.GridsUid == null)
             return;
@@ -282,13 +319,8 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 return;
             }
 
-            // don't delete it if claimed
-            if (TryComp<ClaimableGridComponent>(componentGridUid, out var claimable) && claimable.Claimed)
-                return;
-
             if (component.DeleteGridsOnEnd)
             {
-                // Handle mobrestrictions getting deleted
                 var query = AllEntityQuery<NFSalvageMobRestrictionsComponent>();
 
                 while (query.MoveNext(out var salvUid, out var salvMob))
@@ -317,7 +349,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
                 var gridValue = _pricing.AppraiseGrid(gridUid, null);
 
-                // Deletion has to happen before grid traversal re-parents players.
+                var bankContext = gridTransform.MapUid;
                 Del(gridUid);
 
                 foreach (var mob in playerMobs)
@@ -328,7 +360,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
                 foreach (var (account, rewardCoeff) in component.RewardAccounts)
                 {
                     var reward = (int)(gridValue * rewardCoeff);
-                    _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward);
+                    _bank.TrySectorDeposit(account, reward, LedgerEntryType.BluespaceReward, bankContext);
                 }
             }
         }
@@ -338,7 +370,5 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             if (_map.MapExists(mapId))
                 _map.DeleteMap(mapId);
         }
-
-        _relevantMapId = GameTicker.DefaultMap;
     }
 }

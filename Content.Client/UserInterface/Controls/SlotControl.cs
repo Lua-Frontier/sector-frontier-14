@@ -195,6 +195,26 @@ namespace Content.Client.UserInterface.Controls
             BlockedTexturePath = "blocked";
         }
 
+        public void ApplyUiScale(float scale)
+        {
+            scale = Math.Clamp(scale, 0.25f, 1f);
+            var size = DefaultButtonSize * scale;
+            var texScale = 2f * scale;
+            var sizeVec = new Vector2(size, size);
+            var texVec = new Vector2(texScale, texScale);
+
+            MinSize = sizeVec;
+            SetSize = sizeVec;
+            ButtonRect.TextureScale = texVec;
+            HighlightRect.TextureScale = texVec;
+            BlockedRect.TextureScale = texVec;
+            SpriteView.Scale = texVec;
+            SpriteView.SetSize = sizeVec;
+            HoverSpriteView.Scale = texVec;
+            HoverSpriteView.SetSize = sizeVec;
+            StorageButton.Scale = new Vector2(0.75f * scale, 0.75f * scale);
+        }
+
         public void ClearHover()
         {
             if (!EntityHover)

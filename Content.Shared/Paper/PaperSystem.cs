@@ -245,7 +245,15 @@ public sealed class PaperSystem : EntitySystem
         {
             Reapply = stamp.Reapply, // Frontier
             StampedName = stamp.StampedName,
-            StampedColor = stamp.StampedColor
+            StampedColor = stamp.StampedColor,
+            StampTexture = stamp.StampTexture,
+            StampPatternTexture = stamp.StampPatternTexture,
+            StampScale = stamp.StampScale,
+            StampMainText = stamp.StampMainText,
+            StampTextMaxScale = stamp.StampTextMaxScale,
+            StampHeaderText = stamp.StampHeaderText,
+            StampBackgroundText = stamp.StampBackgroundText,
+            StampCanRotate = stamp.StampCanRotate,
         };
     }
 
@@ -273,6 +281,12 @@ public sealed class PaperSystem : EntitySystem
                 $"{ToPrettyString(args.Actor):player} has written on {ToPrettyString(entity):entity} the following text: {args.Text}");
 
             _audio.PlayPvs(entity.Comp.Sound, entity);
+
+            if (!string.IsNullOrWhiteSpace(args.Text))
+            {
+                var saved = new PaperTextSavedEvent(args.Actor, entity);
+                RaiseLocalEvent(ref saved);
+            }
         }
 
         entity.Comp.Mode = PaperAction.Read;
@@ -487,6 +501,9 @@ public sealed class PaperSystem : EntitySystem
         _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.StampedBy, entity.Comp.Mode));
     }
 }
+
+[ByRefEvent]
+public readonly record struct PaperTextSavedEvent(EntityUid User, EntityUid Paper);
 
 /// <summary>
 /// Event fired when using a pen on paper, opening the UI.

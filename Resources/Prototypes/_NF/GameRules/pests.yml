@@ -17,6 +17,7 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-nf-start-announcement # Frontier: add nf-
+    announcementScope: Station
     startAudio:
       path: /Audio/_Lua/Announcements/attention.ogg # Lua
     earliestStart: 15
@@ -39,6 +40,7 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-nf-start-announcement # Frontier: add nf-
+    announcementScope: Station
     startAudio:
       path: /Audio/_Lua/Announcements/attention.ogg # Lua
     weight: 6
@@ -58,6 +60,7 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-nf-start-announcement # Frontier: add nf-
+    announcementScope: Station
     startAudio:
       path: /Audio/_Lua/Announcements/attention.ogg # Lua
     weight: 6

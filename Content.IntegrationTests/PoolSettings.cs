@@ -95,7 +95,7 @@ public sealed class PoolSettings
     /// Set to secret for upstream tests to mimic upstream behaviour.
     /// If you need to check adventure game rule things, set this to nfadventure or nfpirate.
     /// </summary>
-    public string GameLobbyDefaultPreset { get; set; } = "secret";
+    public string GameLobbyDefaultPreset { get; set; } = "LuaTest";
 
     #region Inferred Properties
 

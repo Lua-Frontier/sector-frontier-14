@@ -1,0 +1,319 @@
+# source: Entities/Structures/Doors/Airlocks/assembly.yml
+# Base
+- type: entity
+  parent: AirlockAssembly
+  id: USSPSFAirlockAssembly
+  categories: [ USSP ]
+  suffix: USSP
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/basic.rsi
+    state: "assembly"
+  - type: Construction
+    graph: USSPSFAirlock
+    node: assembly
+
+#Atmospherics
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyAtmospherics
+  suffix: USSP, Atmospherics
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/atmospherics.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyAtmosphericsGlass
+  suffix: USSP, Atmospherics, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/atmospherics.rsi
+    state: "assembly"
+
+#Cargo
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyCargo
+  suffix: USSP, Cargo
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/cargo.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyCargoGlass
+  suffix: USSP, Cargo, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/cargo.rsi
+    state: "assembly"
+
+#Command
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyCommand
+  suffix: USSP, Command
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/command.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyCommandGlass
+  suffix: USSP, Command, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/command.rsi
+    state: "assembly"
+
+#Chemistry
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyChemistry
+  suffix: USSP, Chemistry
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/chemistry.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyChemistryGlass
+  suffix: USSP, Chemistry, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/chemistry.rsi
+    state: "assembly"
+
+#Engineering
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyEngineering
+  suffix: USSP, Engineering
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/engineering.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyEngineeringGlass
+  suffix: USSP, Engineering, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/engineering.rsi
+    state: "assembly"
+
+#Public (Glass Airlock)
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyGlass
+  suffix: USSP, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/glass.rsi
+    state: "assembly"
+
+#Freezer
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyFreezer
+  suffix: USSP, Freezer
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/freezer.rsi
+    state: "assembly"
+
+#Hydroponics
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyHydroponics
+  suffix: USSP, Hydroponics
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/hydroponics.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyHydroponicsGlass
+  suffix: USSP, Hydroponics, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/hydroponics.rsi
+    state: "assembly"
+
+#Lawyer
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyLawyer
+  suffix: USSP, Lawyer
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/lawyer.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyLawyerGlass
+  suffix: USSP, Lawyer, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/lawyer.rsi
+    state: "assembly"
+
+#Maintenance
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyMaintenance
+  suffix: USSP, Maintenance
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/maint.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyMaintenanceGlass
+  suffix: USSP, Maintenance, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/maint.rsi
+    state: "assembly"
+
+#Medical
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyMedical
+  suffix: USSP, Medical
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/medical.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyMedicalGlass
+  suffix: USSP, Medical, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/medical.rsi
+    state: "assembly"
+
+#Salvage
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblySalvage
+  suffix: USSP, Salvage
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/salvage.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblySalvageGlass
+  suffix: USSP, Salvage, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/salvage.rsi
+    state: "assembly"
+
+#Science
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyScience
+  suffix: USSP, Science
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/science.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyScienceGlass
+  suffix: USSP, Science, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/science.rsi
+    state: "assembly"
+
+#Security
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblySecurity
+  suffix: USSP, Security
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/security.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblySecurityGlass
+  suffix: USSP, Security, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/security.rsi
+    state: "assembly"
+
+#Virology
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyVirology
+  suffix: USSP, Virology
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/virology.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyVirologyGlass
+  suffix: USSP, Virology, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/virology.rsi
+    state: "assembly"
+
+#CentralCommand
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyCentralCommand
+  suffix: USSP, CentralCommand
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/centcomm.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblyCentralCommandGlass
+  suffix: USSP, CentralCommand, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/centcomm.rsi
+    state: "assembly"
+
+#Syndicate
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblySyndicate
+  suffix: USSP, Syndicate
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Standard/syndicate.rsi
+    state: "assembly"
+
+- type: entity
+  parent: USSPSFAirlockAssembly
+  id: USSPSFAirlockAssemblySyndicateGlass
+  suffix: USSP, Syndicate, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Glass/syndicate.rsi
+    state: "assembly"

@@ -28,8 +28,8 @@ public sealed partial class AiShuttleSpawnRuleComponent : Component
     public bool DeleteGridsOnEnd = true;
     public double StartingValue = 0;
 
-    [DataField]
-    public bool Asteroid = false;
+   [DataField]
+    public string? SectorStarmap;
 }
 
 public interface IAiShuttleSpawnGroup

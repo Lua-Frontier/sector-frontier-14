@@ -1,7 +1,7 @@
 - type: entity
   id: ShipMissileBase
   parent: BaseBulletTrigger
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   abstract: true
   components:
   - type: ShipWeaponProjectile
@@ -63,7 +63,7 @@
   id: MissileProjectile50mmHE
   name: ASM-50 50mm Mini Missile
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -122,7 +122,7 @@
   id: ShipMissileASM150
   name: ASM-150 150mm missile
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -167,7 +167,7 @@
   id: ShipMissileASM150Unguided
   name: ASM-150 150mm missile
   parent: ShipMissileASM150
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: TargetSeeking
     acceleration: 150
@@ -187,7 +187,7 @@
   id: ShipMissileASM250HEAT
   name: 250mm HEAT missile
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -232,7 +232,7 @@
   id: ShipMissileASM250HV
   name: 250mm HV missile
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -278,7 +278,7 @@
   id: ShipMissileASM250
   name: ASM-250 Hybrid EMP Missile
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -329,7 +329,7 @@
   id: ShipMissileSerpent
   name: serpent torpedo
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:
@@ -390,7 +390,7 @@
   id: ShipMissileEntropy
   name: electron torpedo
   parent: ShipMissileBase
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   components:
   - type: Projectile
     damage:

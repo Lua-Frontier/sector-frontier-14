@@ -37,7 +37,7 @@ public sealed partial class BankSystem
 
         GetInsertedCashAmount(component, out var deposit);
 
-        if (!TryGetBalance(component.Account, out var stationBank))
+        if (!TryGetBalance(component.Account, out var stationBank, uid))
         {
             _log.Info($"entity {uid} cannot read account {component.Account}. Is the bank service running?");
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-no-bank"));
@@ -78,7 +78,7 @@ public sealed partial class BankSystem
         }
 
         var enumVal = ParseLedgerType($"StationWithdrawal{args.Reason}", false);
-        if (!TrySectorWithdraw(component.Account, args.Amount, enumVal))
+        if (!TrySectorWithdraw(component.Account, args.Amount, enumVal, uid))
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
             PlayDenySound(uid, component);
@@ -111,7 +111,7 @@ public sealed partial class BankSystem
         // Dynamically knows what kind of cash to look for according to BankATMComponent
         GetInsertedCashAmount(component, out var deposit);
 
-        if (!TryGetBalance(component.Account, out var stationBank))
+        if (!TryGetBalance(component.Account, out var stationBank, uid))
         {
             _log.Info($"entity {uid} cannot read account {component.Account}. Is the bank service running?");
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-no-bank"));
@@ -193,7 +193,7 @@ public sealed partial class BankSystem
         }
 
         var enumVal = ParseLedgerType($"StationDeposit{args.Reason}", true);
-        if (!TrySectorDeposit(component.Account, args.Amount, enumVal))
+        if (!TrySectorDeposit(component.Account, args.Amount, enumVal, uid))
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-withdraw-failed"));
             PlayDenySound(uid, component);
@@ -231,7 +231,7 @@ public sealed partial class BankSystem
     {
         GetInsertedCashAmount(component, out var deposit);
 
-        if (!TryGetBalance(component.Account, out var stationBank))
+        if (!TryGetBalance(component.Account, out var stationBank, uid))
         {
             _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
                 new StationBankATMMenuInterfaceState(stationBank, false, deposit));
@@ -263,7 +263,7 @@ public sealed partial class BankSystem
 
         GetInsertedCashAmount(component, out var deposit);
 
-        if (!TryGetBalance(component.Account, out var stationBank))
+        if (!TryGetBalance(component.Account, out var stationBank, uid))
         {
             _uiSystem.SetUiState(uid, BankATMMenuUiKey.Key, // Lua
                 new StationBankATMMenuInterfaceState(stationBank, false, deposit));

@@ -13,5 +13,5 @@ public sealed partial class AutoTraitorComponent : Component
     /// The traitor profile to use
     /// </summary>
     [DataField]
-    public EntProtoId Profile = "Traitor";
+    public EntProtoId Profile = "TraitorReinforcement";
 }

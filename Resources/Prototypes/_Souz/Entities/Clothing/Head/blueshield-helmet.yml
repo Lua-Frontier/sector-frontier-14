@@ -1,0 +1,33 @@
+# source: _DeadSpace/Entities/Clothing/Head/blueshield-helmet.yml
+- type: entity
+  parent: USSPSFClothingHeadHelmetHardsuitSecurityRed
+  id: USSPSFClothingHeadHelmetHardsuitBlueShield
+  suffix: USSP
+  categories: [ HideSpawnMenu, DoNotMap, USSP ]
+  name: шлем скафандра офицера "Синий Щит"
+  description: Предназначен для защитника командования.
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: PointLight
+    color: '#c70000'
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+- type: entity
+  parent: ClothingHeadHelmetSwat
+  id: USSPSFClothingHeadHelmetBlueShield
+  categories: [ USSP ]
+  suffix: USSP
+  name: шлем Офицера "Синий Щит"
+  description: Очень прочный шлем, широко используемый военизированными организациями. На его верхней части выгравирован логотип Корпуса "Синий Щит".
+  components:
+  - type: Sprite
+    sprite: _Souz/Clothing/Head/Helmets/blueshieldhelmet.rsi
+  - type: Clothing
+    sprite: _Souz/Clothing/Head/Helmets/blueshieldhelmet.rsi

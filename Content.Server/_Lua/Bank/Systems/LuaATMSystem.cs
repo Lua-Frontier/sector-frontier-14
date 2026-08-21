@@ -154,7 +154,7 @@ public sealed class LuaATMSystem : EntitySystem
 
             var tax = (int)Math.Floor(originalDeposit * taxCoeff);
             deposit -= tax;
-            _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketAtmTax);
+            _bank.TrySectorDeposit(account, tax, LedgerEntryType.BlackMarketAtmTax, atm);
         }
 
         deposit = Math.Max(0, deposit);

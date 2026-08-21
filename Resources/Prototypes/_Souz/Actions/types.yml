@@ -1,0 +1,50 @@
+# source: Actions/types.yml
+- type: entity
+  parent: BaseToggleAction
+  id: USSPSFActionToggleLight
+  categories: [ USSP ]
+  suffix: USSP
+  name: Toggle Light
+  description: Turn the light on and off.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
+    iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
+- type: entity
+  parent: BaseAction
+  id: USSPSFActionToggleSuitPiece
+  categories: [ USSP ]
+  suffix: USSP
+  name: Toggle Suit Piece
+  description: Remember to equip the important pieces of your suit before going into action.
+  components:
+  - type: Action
+    itemIconStyle: BigItem
+    useDelay: 1 # equip noise spam.
+  - type: InstantAction
+    event: !type:ToggleClothingEvent
+- type: entity
+  parent: BaseAction
+  id: USSPSFActionVendingThrow
+  categories: [ USSP ]
+  suffix: USSP
+  name: Dispense Item
+  description: Randomly dispense an item from your stock.
+  components:
+  - type: Action
+    useDelay: 30
+  - type: InstantAction
+    event: !type:VendingMachineSelfDispenseEvent
+- type: entity
+  parent: BaseToggleAction
+  id: USSPSFActionToggleBlock
+  categories: [ USSP ]
+  suffix: USSP
+  name: Block
+  description: Raise or lower your shield.
+  components:
+  - type: Action
+    useDelay: 1
+    icon: { sprite: _Souz/Objects/Weapons/Melee/shields.rsi, state: teleriot-icon }
+    iconOn: { sprite: _Souz/Objects/Weapons/Melee/shields.rsi, state: teleriot-on }

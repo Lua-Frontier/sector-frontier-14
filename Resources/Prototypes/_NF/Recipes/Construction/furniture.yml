@@ -849,3 +849,13 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
+
+- type: construction
+  id: USSPFlag
+  graph: NF_Flags
+  startNode: start
+  targetNode: USSPFlag
+  category: construction-category-flags
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true

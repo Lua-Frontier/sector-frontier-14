@@ -3,6 +3,7 @@ using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Follower.Components;
 using Content.Shared.Input;
+using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Robust.Shared.GameStates;
@@ -358,6 +359,14 @@ namespace Content.Shared.Movement.Systems
             }
 
             if (moverComp == null) return;
+
+            if (HasComp<MechComponent>(uid))
+            {
+                if (moverComp.IsSprinting)
+                    SetSprintActive((uid, moverComp), subTick, false);
+                return;
+            }
+
             SetSprintActive((uid, moverComp), subTick, active);
         }
         private void HandleWalkToggle(EntityUid uid, ushort subTick)
