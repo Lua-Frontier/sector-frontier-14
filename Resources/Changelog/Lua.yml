@@ -4929,3 +4929,93 @@ Entries:
   id: 329
   time: '2026-08-14T18:38:56.0000000+00:00'
   url: https://github.com/Lua-Frontier/sector-frontier-14/pull/636
+- author: HacksLua
+  changes:
+    - type: Add
+      message: Добавлена работенка датамайнерам, я слишком долго делал обнову...
+    - type: Add
+      message: Добавлена система достижений
+    - type: Add
+      message: Добавлена дорожная карта в лобби
+    - type: Add
+      message: Добавлены бронепластины (PORT Monolith)
+    - type: Add
+      message: Добавлена фракция СССП (роли, лоадауты, снаряжение) (PORT DS-Soyuz)
+    - type: Add
+      message: >-
+        Добавлены вложения для шлема / балаклавы / нарукавные повязки (PORT
+        Monolith)
+    - type: Add
+      message: Добавлен корабельный майнинг-бур
+    - type: Add
+      message: Добавлен компьютер ID карт фракции синдикат и ussp
+    - type: Add
+      message: >-
+        Добавлена предгенерация обломков (Debris Pregen) но отключена в релизе
+        на данный момент
+    - type: Add
+      message: Добавлен админ UI уровней тревоги setalertlevel
+    - type: Add
+      message: Добавлены слоты катомизации (серьги, ожерелье, кольцо, заколка)
+    - type: Add
+      message: Добавлены фракционные анонсы announceui
+    - type: Add
+      message: Добавлена команда playlocalsound
+    - type: Add
+      message: Добавлено расширенное описание персонажа при осмотре
+    - type: Add
+      message: Добавлено кольцо астероидов T2 в секторе СССП начиная с 11000 до 14000
+    - type: Tweak
+      message: Обновлён UI терминалов, в терминал можно теперь вносить валюту фракции
+    - type: Tweak
+      message: >-
+        Оповещения и коды угроз разделены теперь и независимы в каждом секторе,
+        некоторые оповещения видны только на ваших шаттлах (по типу проблем с
+        питанием)
+    - type: Tweak
+      message: 'Консоль вооружения: магниты стыковки отцепляются через ЛКМ'
+    - type: Tweak
+      message: Обновлены турели NPC (софт таргет на персонажей)
+    - type: Tweak
+      message: Обновлена генерация астероидов/обломков
+    - type: Tweak
+      message: Обновлён спавн ИИ дронов/шаттлов по секторам
+    - type: Tweak
+      message: Рефактор загрузки секторов
+    - type: Tweak
+      message: Обновлены двигатели
+    - type: Tweak
+      message: Обновлён брифинг при входе
+    - type: Tweak
+      message: Обновлён лобби / инвентарь UI
+    - type: Tweak
+      message: Техническая оптимизация кода сервера
+    - type: Tweak
+      message: Добавлены категории в Панель спавна предметов
+    - type: Tweak
+      message: Манифест теперь отображает только участников фракции
+    - type: Fix
+      message: Исправлена ошибка дублировавшая роли при уходе в крио
+    - type: Fix
+      message: Исправлен корабельный гарпун
+    - type: Fix
+      message: >-
+        Исправлены тупиковые конструкции
+        https://github.com/Lua-Frontier/sector-frontier-14/issues/638
+    - type: Fix
+      message: >-
+        Исправлен стакинг щитов
+        https://github.com/Lua-Frontier/sector-frontier-14/issues/637
+    - type: Fix
+      message: >-
+        NPC синдиката вновь враждебны для синдиката
+        https://github.com/Lua-Frontier/sector-frontier-14/issues/633
+    - type: Remove
+      message: Удалён режим ShipVsShip и связанные карты/роли
+    - type: Remove
+      message: Удалены карты Anarchy (outpost / cargo depot)
+    - type: Remove
+      message: Удалены неиспользуемые upstream map pools
+  id: 330
+  time: '2026-08-21T16:36:01.0000000+00:00'
+  url: https://github.com/Lua-Frontier/sector-frontier-14/pull/641
