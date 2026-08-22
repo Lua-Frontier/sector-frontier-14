@@ -284,32 +284,6 @@
 
 # Uniforms
 - type: loadout
-  id: UsspLoadoutJumpsuitPassenger
-  equipment:
-    jumpsuit: USSPSFClothingUniformUSSPJumpsuit
-
-- type: loadout
-  id: UsspLoadoutJumpskirtPassengerGrey
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtColorGrey
-
-- type: loadout
-  id: UsspLoadoutJumpsuitPassengerGrey
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorGrey
-
-- type: loadoutGroup
-  id: UsspPassengerJumpsuit
-  name: loadout-group-contractor-jumpsuit
-  minLimit: 1
-  loadouts:
-  - UsspLoadoutJumpsuitPassenger
-  - UsspLoadoutJumpsuitPassengerGrey
-  - UsspLoadoutJumpskirtPassengerGrey
-  fallbacks:
-  - UsspLoadoutJumpsuitPassenger
-
-- type: loadout
   id: UsspLoadoutJumpskirtBrigmedic
   equipment:
     jumpsuit: USSPSFClothingUniformJumpskirtBrigmedic
