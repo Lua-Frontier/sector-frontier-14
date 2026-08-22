@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using Content.Client.Stealth;
 using Content.Shared._White.Overlays;
 using Content.Shared.Body.Components;
 using Content.Shared.Stealth.Components;
@@ -20,7 +19,6 @@ public sealed class ThermalVisionOverlay : Overlay
     [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly TransformSystem _transform;
-    private readonly StealthSystem _stealth;
     private readonly ContainerSystem _container;
     private readonly SharedPointLightSystem _light;
 
@@ -41,7 +39,6 @@ public sealed class ThermalVisionOverlay : Overlay
 
         _container = _entity.System<ContainerSystem>();
         _transform = _entity.System<TransformSystem>();
-        _stealth = _entity.System<StealthSystem>();
         _light = _entity.System<SharedPointLightSystem>();
 
         ZIndex = -1;
@@ -140,8 +137,13 @@ public sealed class ThermalVisionOverlay : Overlay
 
     private bool CanSee(EntityUid uid, SpriteComponent sprite)
     {
-        return sprite.Visible && (!_entity.TryGetComponent(uid, out StealthComponent? stealth) ||
-                                  _stealth.GetVisibility(uid, stealth) > 0.5f);
+        if (!sprite.Visible)
+            return false;
+
+        if (_entity.TryGetComponent(uid, out StealthComponent? stealth) && stealth.Enabled)
+            return false;
+
+        return true;
     }
 
     public void ResetLight(bool checkFirstTimePredicted = true)

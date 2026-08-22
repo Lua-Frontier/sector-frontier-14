@@ -2,6 +2,8 @@
   id: Dragon
   hostile:
     - NanoTrasen
+    - Ussp
+    - TSFMC
     - Neutral
     - Syndicate
     - Xeno
@@ -32,6 +34,8 @@
   hostile:
   - SimpleHostile
   - Syndicate
+  - Ussp
+  - TSFMC
   - Xeno
   - Zombie
   - Revolutionary
@@ -111,6 +115,8 @@
   id: SimpleHostile
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - Syndicate
   - Passive
@@ -150,6 +156,8 @@
   - HostileSyndicate # Lua expedition syndies
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - SimpleHostile
   - Xeno
@@ -179,6 +187,8 @@
   id: Xeno
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - Syndicate
   - Passive
@@ -211,6 +221,8 @@
   id: Zombie
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - SimpleNeutral
   - SimpleHostile
@@ -244,6 +256,8 @@
   id: Revolutionary
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - Zombie
   - SimpleHostile
@@ -271,6 +285,8 @@
   id: AllHostile # Frontier: use HostileUniversally
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - Dragon
   - Mouse
@@ -291,6 +307,8 @@
   id: Wizard
   hostile:
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - Dragon
   - Mouse
@@ -327,6 +345,8 @@
   hostile:
   # they have brains
   - NanoTrasen
+  - Ussp
+  - TSFMC
   - Neutral
   - Syndicate
   - Zombie

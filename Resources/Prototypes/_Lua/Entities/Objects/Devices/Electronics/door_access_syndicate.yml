@@ -1,0 +1,143 @@
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateCargo
+  suffix: Syndicate Cargo, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateCargo"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateEngineering
+  suffix: Syndicate Engineering, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateEngineering"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateAtmospherics
+  suffix: Syndicate Atmospherics, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateAtmospherics"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateMedical
+  suffix: Syndicate Medical, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateMedical"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateChemistry
+  suffix: Syndicate Chemistry, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateChemistry"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateResearch
+  suffix: Syndicate Research, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateResearch"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateService
+  suffix: Syndicate Service, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateService"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateKitchen
+  suffix: Syndicate Kitchen, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateKitchen"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateHydroponics
+  suffix: Syndicate Hydroponics, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateHydroponics"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateSecurity
+  suffix: Syndicate Security, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateSecurity"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateBrig
+  suffix: Syndicate Brig, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateBrig"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateArmory
+  suffix: Syndicate Armory, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateArmory"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateCommand
+  suffix: Syndicate Command, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateCommand"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateTelecom
+  suffix: Syndicate Telecom, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateTelecomOfficer"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateRD
+  suffix: Syndicate RD, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateResearchDirector"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateMaintenance
+  suffix: Syndicate Maintenance, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateMaintenance"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateExternal
+  suffix: Syndicate External, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateExternal"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSyndicateHigh
+  suffix: Syndicate High, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateHigh"]]

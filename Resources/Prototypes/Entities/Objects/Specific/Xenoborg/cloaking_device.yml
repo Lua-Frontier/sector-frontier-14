@@ -12,8 +12,8 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: 0.1
-      lastVisibility: 0.1
+      minVisibility: -1
+      lastVisibility: -1
   - type: PowerCellDraw
     drawRate: 3.6 # 100 seconds
   - type: ToggleCellDraw

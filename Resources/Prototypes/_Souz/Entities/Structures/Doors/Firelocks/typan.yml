@@ -1,0 +1,33 @@
+- type: entity
+  parent: Firelock
+  id: FirelockTypanSF
+  categories: [ Syndicate ]
+  suffix: Typan
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/firelock.rsi
+  - type: AccessReader
+    access: [ [ "SyndicateEngineering" ] ]
+
+- type: entity
+  parent: FirelockGlass
+  id: FirelockTypanSFGlass
+  categories: [ Syndicate ]
+  suffix: Typan, Glass
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/firelock.rsi
+  - type: AccessReader
+    access: [ [ "SyndicateEngineering" ] ]
+
+- type: entity
+  parent: FirelockEdge
+  id: FirelockTypanSFEdge
+  categories: [ Syndicate ]
+  suffix: Typan, Edge
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Typan/edge_door_hazard.rsi
+    snapCardinals: false
+  - type: AccessReader
+    access: [ [ "SyndicateEngineering" ] ]

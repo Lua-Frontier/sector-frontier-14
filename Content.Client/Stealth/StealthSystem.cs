@@ -1,5 +1,4 @@
 using Content.Client.Interactable.Components;
-using Content.Client.StatusIcon;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Client.GameObjects;
@@ -35,46 +34,31 @@ public sealed class StealthSystem : SharedStealthSystem
             return;
 
         base.SetEnabled(uid, value, component);
-        SetShader(uid, value, component);
-    }
-
-    private void SetShader(EntityUid uid, bool enabled, StealthComponent? component = null, SpriteComponent? sprite = null)
-    {
-        if (!Resolve(uid, ref component, ref sprite, false))
-            return;
-
-        _sprite.SetColor((uid, sprite), Color.White);
-        sprite.PostShader = enabled ? _shader : null;
-        sprite.GetScreenTexture = enabled;
-        sprite.RaiseShaderEvent = enabled;
-
-        if (!enabled)
-        {
-            if (component.HadOutline && !TerminatingOrDeleted(uid))
-                EnsureComp<InteractionOutlineComponent>(uid);
-            return;
-        }
-
-        if (TryComp(uid, out InteractionOutlineComponent? outline))
-        {
-            RemCompDeferred(uid, outline);
-            component.HadOutline = true;
-        }
+        UpdateStealthVisuals(uid, component);
     }
 
     private void OnStartup(EntityUid uid, StealthComponent component, ComponentStartup args)
     {
-        SetShader(uid, component.Enabled, component);
+        UpdateStealthVisuals(uid, component);
     }
 
     private void OnShutdown(EntityUid uid, StealthComponent component, ComponentShutdown args)
     {
         if (!Terminating(uid))
-            SetShader(uid, false, component);
+            DisableStealthVisuals(uid, component);
     }
 
     private void OnShaderRender(EntityUid uid, StealthComponent component, BeforePostShaderRenderEvent args)
     {
+        if (IsFullyHidden(uid, component))
+        {
+            ApplyFullHide(uid, component, args.Sprite);
+            return;
+        }
+
+        RestoreSpriteVisibility(uid, component, args.Sprite);
+        ApplyStealthShader(uid, component, args.Sprite);
+
         // Distortion effect uses screen coordinates. If a player moves, the entities appear to move on screen. this
         // makes the distortion very noticeable.
 
@@ -97,5 +81,89 @@ public sealed class StealthSystem : SharedStealthSystem
 
         visibility = MathF.Max(0, visibility);
         _sprite.SetColor((uid, args.Sprite), new Color(visibility, visibility, 1, 1));
+    }
+
+    private bool IsFullyHidden(EntityUid uid, StealthComponent component)
+    {
+        return component.Enabled && GetVisibility(uid, component) <= -1f;
+    }
+
+    private void UpdateStealthVisuals(EntityUid uid, StealthComponent? component = null, SpriteComponent? sprite = null)
+    {
+        if (!Resolve(uid, ref component, ref sprite, false) || sprite == null)
+            return;
+
+        if (IsFullyHidden(uid, component))
+        {
+            ApplyFullHide(uid, component, sprite);
+            return;
+        }
+
+        if (!component.Enabled)
+        {
+            DisableStealthVisuals(uid, component, sprite);
+            return;
+        }
+
+        RestoreSpriteVisibility(uid, component, sprite);
+        ApplyStealthShader(uid, component, sprite);
+    }
+
+    private void ApplyFullHide(EntityUid uid, StealthComponent component, SpriteComponent sprite)
+    {
+        if (sprite.Visible)
+        {
+            component.HadSpriteVisible = true;
+            _sprite.SetVisible((uid, sprite), false);
+        }
+
+        sprite.PostShader = null;
+        sprite.GetScreenTexture = false;
+        sprite.RaiseShaderEvent = false;
+
+        if (TryComp(uid, out InteractionOutlineComponent? outline))
+        {
+            RemCompDeferred(uid, outline);
+            component.HadOutline = true;
+        }
+    }
+
+    private void ApplyStealthShader(EntityUid uid, StealthComponent component, SpriteComponent sprite)
+    {
+        _sprite.SetColor((uid, sprite), Color.White);
+        sprite.PostShader = _shader;
+        sprite.GetScreenTexture = true;
+        sprite.RaiseShaderEvent = true;
+
+        if (TryComp(uid, out InteractionOutlineComponent? outline))
+        {
+            RemCompDeferred(uid, outline);
+            component.HadOutline = true;
+        }
+    }
+
+    private void RestoreSpriteVisibility(EntityUid uid, StealthComponent component, SpriteComponent sprite)
+    {
+        if (!sprite.Visible && component.HadSpriteVisible)
+        {
+            _sprite.SetVisible((uid, sprite), true);
+            component.HadSpriteVisible = false;
+        }
+    }
+
+    private void DisableStealthVisuals(EntityUid uid, StealthComponent? component = null, SpriteComponent? sprite = null)
+    {
+        if (!Resolve(uid, ref component, ref sprite, false) || sprite == null)
+            return;
+
+        RestoreSpriteVisibility(uid, component, sprite);
+
+        _sprite.SetColor((uid, sprite), Color.White);
+        sprite.PostShader = null;
+        sprite.GetScreenTexture = false;
+        sprite.RaiseShaderEvent = false;
+
+        if (component.HadOutline && !TerminatingOrDeleted(uid))
+            EnsureComp<InteractionOutlineComponent>(uid);
     }
 }

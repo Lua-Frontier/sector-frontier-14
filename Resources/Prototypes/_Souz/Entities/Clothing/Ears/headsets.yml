@@ -1,5 +1,25 @@
 # source: Entities/Clothing/Ears/headsets.yml
 - type: entity
+  parent: [ClothingHeadset, BaseC2ContrabandUnredeemable]
+  id: USSPSFClothingHeadset
+  categories: [ USSP ]
+  suffix: USSP
+  name: USSP headset
+  description: A standard-issue headset with the USSP tactical channel.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - USSPSFEncryptionKeyUssp
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/base.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/base.rsi
+  - type: Headset
+    color: "#b2224b"
+
+- type: entity
   parent: [ClothingHeadset, BaseCommandContraband]
   id: USSPSFClothingHeadsetCommand
   categories: [ USSP ]

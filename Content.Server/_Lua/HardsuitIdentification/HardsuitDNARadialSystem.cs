@@ -8,6 +8,8 @@
 using Content.Shared._Lua.HardsuitIdentification;
 using Content.Shared.Actions;
 using Content.Shared.Forensics.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Player;
 
@@ -16,6 +18,15 @@ namespace Content.Server._Lua.HardsuitIdentification;
 public sealed class HardsuitDNARadialSystem : EntitySystem
 {
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+
+    private static readonly HashSet<string> AllowedDnaActions = new()
+    {
+        "ActionHardsuitSaveDNA",
+        "ActionHardsuitClearDNA",
+        "ActionHardsuitLockDNA",
+    };
 
     public override void Initialize()
     {
@@ -105,12 +116,26 @@ public sealed class HardsuitDNARadialSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnSelectDNAAction(SelectDNAActionEvent msg)
+    private void OnSelectDNAAction(SelectDNAActionEvent msg, EntitySessionEventArgs args)
     {
-        var target = GetEntity(msg.Target);
-        var performer = GetEntity(msg.Performer);
+        if (args.SenderSession.AttachedEntity is not { Valid: true } performer)
+            return;
+
+        if (!AllowedDnaActions.Contains(msg.ActionType))
+            return;
+
+        if (!TryGetEntity(msg.Target, out var targetNullable) || targetNullable is not { } target)
+            return;
+
         if (!TryComp<HardsuitIdentificationComponent>(target, out var identification))
             return;
+
+        if (!HasComp<HardsuitDNARadialComponent>(target))
+            return;
+
+        if (!CanManipulateHardsuitDna(performer, target))
+            return;
+
         var identificationSystem = EntityManager.System<HardsuitIdentificationSystem>();
         switch (msg.ActionType)
         {
@@ -127,5 +152,16 @@ public sealed class HardsuitDNARadialSystem : EntitySystem
                 identificationSystem.OnDNALock(target, identification, lockEvent);
                 break;
         }
+    }
+
+    private bool CanManipulateHardsuitDna(EntityUid user, EntityUid suit)
+    {
+        if (_inventory.TryGetSlotEntity(user, "outerClothing", out var worn) && worn == suit)
+            return true;
+
+        if (_interaction.CanAccessEquipment(user, suit))
+            return true;
+
+        return _interaction.InRangeAndAccessible(user, suit);
     }
 }

@@ -1,0 +1,309 @@
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockService
+  categories: [ Syndicate ]
+  suffix: Typan, Service
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/service.rsi
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockFreezer
+  categories: [ Syndicate ]
+  suffix: Typan, Freezer
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/freezer.rsi
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockEngineering
+  categories: [ Syndicate ]
+  suffix: Typan, Engineering
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/engineering.rsi
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: TypanSFAirlockEngineering
+  id: TypanSFAirlockAtmospherics
+  categories: [ Syndicate ]
+  suffix: Typan, Atmospherics
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/atmospherics.rsi
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockCargo
+  categories: [ Syndicate ]
+  suffix: Typan, Cargo
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/cargo.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockMaint
+  categories: [ Syndicate ]
+  suffix: Typan, Maintenance
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/maint.rsi
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockMedical
+  categories: [ Syndicate ]
+  suffix: Typan, Medical
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/medical.rsi
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: TypanSFAirlockMedical
+  id: TypanSFAirlockVirology
+  categories: [ Syndicate ]
+  suffix: Typan, Virology
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/virology.rsi
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockScience
+  categories: [ Syndicate ]
+  suffix: Typan, Science
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/science.rsi
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockCommand
+  categories: [ Syndicate ]
+  suffix: Typan, Command
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/command.rsi
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: TypanSFAirlockCommand
+  id: TypanSFAirlockLawyer
+  categories: [ Syndicate ]
+  suffix: Typan, Lawyer
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/lawyer.rsi
+  - type: Wires
+    layoutId: AirlockSecurity
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecDoorTypanSF
+  categories: [ Syndicate ]
+  suffix: Typan
+  name: high security door
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/highsec.rsi
+    layers:
+    - state: closed
+      map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchTypanSF
+  categories: [ Syndicate ]
+  suffix: Typan, External
+  name: airtight hatch
+  components:
+  - type: Door
+    crushDamage:
+      types:
+        Blunt: 15
+    openSound:
+      path: /Audio/Machines/airlock_ext_open.ogg
+    closeSound:
+      path: /Audio/Machines/airlock_ext_close.ogg
+    denySound:
+      path: /Audio/Machines/airlock_deny.ogg
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Standard/hatch.rsi
+  - type: Wires
+    layoutId: AirlockExternal
+
+- type: entity
+  parent: AirlockHatchTypanSF
+  id: AirlockHatchGlassTypanSF
+  categories: [ Syndicate ]
+  suffix: Typan, External, Glass
+  components:
+  - type: Door
+    occludes: false
+  - type: Occluder
+    enabled: false
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/hatch.rsi
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        density: 100
+        mask:
+        - FullTileMask
+        layer:
+        - GlassAirlockLayer
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassService
+  categories: [ Syndicate ]
+  suffix: Typan, Service
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/service.rsi
+  - type: Wires
+    layoutId: AirlockService
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassEngineering
+  categories: [ Syndicate ]
+  suffix: Typan, Engineering
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/engineering.rsi
+  - type: Wires
+    layoutId: AirlockEngineering
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassMaint
+  categories: [ Syndicate ]
+  suffix: Typan, Maintenance
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/maint.rsi
+
+- type: entity
+  parent: TypanSFAirlockGlassEngineering
+  id: TypanSFAirlockGlassAtmospherics
+  categories: [ Syndicate ]
+  suffix: Typan, Atmospherics
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/atmospherics.rsi
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassCargo
+  categories: [ Syndicate ]
+  suffix: Typan, Cargo
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/cargo.rsi
+  - type: Wires
+    layoutId: AirlockCargo
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassMedical
+  categories: [ Syndicate ]
+  suffix: Typan, Medical
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/medical.rsi
+  - type: Wires
+    layoutId: AirlockMedical
+
+- type: entity
+  parent: TypanSFAirlockGlassMedical
+  id: TypanSFAirlockGlassVirology
+  categories: [ Syndicate ]
+  suffix: Typan, Virology
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/virology.rsi
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassScience
+  categories: [ Syndicate ]
+  suffix: Typan, Science
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/science.rsi
+  - type: Wires
+    layoutId: AirlockScience
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassCommand
+  categories: [ Syndicate ]
+  suffix: Typan, Command
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/command.rsi
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+  - type: Wires
+    layoutId: AirlockCommand
+
+- type: entity
+  parent: TypanSFAirlockGlassCommand
+  id: TypanSFAirlockLawyerGlass
+  categories: [ Syndicate ]
+  suffix: Typan, Lawyer
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Doors/Airlocks/Typan/Glass/lawyer.rsi
+  - type: Wires
+    layoutId: AirlockSecurity

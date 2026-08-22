@@ -47,8 +47,13 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/fsa_voidsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSA
-    slot: head
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSA
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -61,8 +66,13 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/fsb_voidsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSB
-    slot: head
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSB
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 - type: entity
   parent: NFClothingOuterEVASuitBase
@@ -75,5 +85,10 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/fsc_voidsuit.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitFSC
-    slot: head
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitFSC
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock

@@ -14,7 +14,8 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
-      - EncryptionKeyUssp
+      - EncryptionKeyCommand
+      - USSPSFEncryptionKeyUssp
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -32,4 +33,4 @@
     containers:
       key_slots:
       - EncryptionKeyCommon
-      - EncryptionKeyUssp
+      - USSPSFEncryptionKeyUssp

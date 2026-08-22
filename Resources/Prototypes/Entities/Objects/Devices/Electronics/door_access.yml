@@ -284,7 +284,27 @@
   suffix: SyndicateAgent, Locked
   components:
   - type: AccessReader
-    access: [["SyndicateAgent"]]
+    access:
+    - ["SyndicateAgent"]
+    - ["SyndicateCargo"]
+    - ["SyndicateEngineering"]
+    - ["SyndicateAtmospherics"]
+    - ["SyndicateMedical"]
+    - ["SyndicateChemistry"]
+    - ["SyndicateResearch"]
+    - ["SyndicateService"]
+    - ["SyndicateKitchen"]
+    - ["SyndicateHydroponics"]
+    - ["SyndicateSecurity"]
+    - ["SyndicateBrig"]
+    - ["SyndicateArmory"]
+    - ["SyndicateMaintenance"]
+    - ["SyndicateExternal"]
+    - ["SyndicateCommand"]
+    - ["SyndicateTelecomOfficer"]
+    - ["SyndicateResearchDirector"]
+    - ["SyndicateHigh"]
+    - ["NuclearOperative"]
 
 # Misc
 - type: entity

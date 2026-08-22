@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Roles;
@@ -11,7 +10,6 @@ namespace Content.Server.Spawners.EntitySystems;
 
 public sealed class SpawnPointSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -29,7 +27,8 @@ public sealed class SpawnPointSystem : EntitySystem
 
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var companyPositions = new List<EntityCoordinates>();
-        var possiblePositions = new List<EntityCoordinates>();
+        var jobPositions = new List<EntityCoordinates>();
+        var genericLateJoinPositions = new List<EntityCoordinates>();
         var playerCompany = ResolvePlayerCompany(args);
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
@@ -47,55 +46,38 @@ public sealed class SpawnPointSystem : EntitySystem
                 continue;
             }
 
-            // Delta-V: Allow setting a desired SpawnPointType
-            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
-            {
-                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
-                    (args.Job == null || spawnPoint.Job == args.Job);
+            if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
+                continue;
 
-                switch (args.DesiredSpawnPointType)
-                {
-                    case SpawnPointType.Job when isMatchingJob:
-                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
-                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
-                        possiblePositions.Add(xform.Coordinates);
-                        break;
-                    default:
-                        continue;
-                }
+            if (args.DesiredSpawnPointType != SpawnPointType.Unset
+                && args.DesiredSpawnPointType != SpawnPointType.LateJoin)
+            {
+                continue;
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            if (spawnPoint.Job != null)
             {
-                possiblePositions.Add(xform.Coordinates);
-            }
-
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
-                spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
-            {
-                possiblePositions.Add(xform.Coordinates);
-            }
-        }
-
-        if (companyPositions.Count > 0)
-            possiblePositions = companyPositions;
-
-        if (possiblePositions.Count == 0)
-        {
-            // Ok we've still not returned, but we need to put them /somewhere/.
-            // TODO: Refactor gameticker spawning code so we don't have to do this!
-            var points2 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-
-            if (points2.MoveNext(out var spawnPoint, out var xform))
-            {
-                possiblePositions.Add(xform.Coordinates);
+                if (args.Job != null && spawnPoint.Job == args.Job)
+                    jobPositions.Add(xform.Coordinates);
             }
             else
             {
-                Log.Error("No spawn points were available!");
-                return;
+                genericLateJoinPositions.Add(xform.Coordinates);
             }
+        }
+
+        List<EntityCoordinates> possiblePositions;
+        if (companyPositions.Count > 0)
+            possiblePositions = companyPositions;
+        else if (jobPositions.Count > 0)
+            possiblePositions = jobPositions;
+        else
+            possiblePositions = genericLateJoinPositions;
+
+        if (possiblePositions.Count == 0)
+        {
+            Log.Warning("No spawn points on station {Station} for job {Job}", args.Station, args.Job);
+            return;
         }
 
         var spawnLoc = _random.Pick(possiblePositions);

@@ -325,6 +325,10 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
             var purchaseDisabled = !canPurchase || prototype.LimitActive != 0 && limitRemain <= 0;
             // Lua end
 
+            var massText = prototype.Mass is { } mass
+                ? Loc.GetString("shipyard-console-mass", ("mass", $"{mass:0.#}"))
+                : Loc.GetString("shipyard-console-mass-unknown");
+
             var vesselEntry = new VesselRow
             {
                 Vessel = prototype,
@@ -335,6 +339,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
                 EngineIcon = { Texture = _sprite.Frame0(_protoManager.Index(engineProtoId)) },
                 LimitedCount = { Visible = prototype.LimitActive != 0, Text = $"{limitRemain}/{prototype.LimitActive}" },
                 Purchase = { Disabled = purchaseDisabled },
+                Mass = { Text = massText },
                 // Lua end
                 Guidebook = { Disabled = prototype.GuidebookPage is null, TooltipDelay = 0.2f, ToolTip = prototype.Description },
                 Price = { Text = priceText },

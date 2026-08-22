@@ -157,6 +157,11 @@
                                Text="0.0"
                                HorizontalExpand="True"
                                Align="Right"/>
+                        <controls:Label Text="{controls:Loc 'shuttle-console-ship-mass'}"/>
+                        <controls:Label Name="GridMass"
+                               Text="0"
+                               HorizontalExpand="True"
+                               Align="Right"/>
                     </controls:GridContainer>
                     <controls1:StripeBack
                         MinSize="48 48">

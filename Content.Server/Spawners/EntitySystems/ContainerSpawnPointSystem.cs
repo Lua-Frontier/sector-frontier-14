@@ -1,4 +1,3 @@
-using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Preferences;
@@ -13,7 +12,6 @@ namespace Content.Server.Spawners.EntitySystems;
 public sealed class ContainerSpawnPointSystem : EntitySystem
 {
     [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _station = default!;
@@ -58,14 +56,8 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
                 continue;
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
-            {
-                possibleContainers.Add((uid, spawnPoint, container, xform));
-            }
-
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
-                spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job == args.Job))
+            if (spawnPoint.SpawnType == SpawnPointType.LateJoin &&
+                (spawnPoint.Job == null || spawnPoint.Job == args.Job))
             {
                 possibleContainers.Add((uid, spawnPoint, container, xform));
             }

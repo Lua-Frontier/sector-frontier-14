@@ -1,0 +1,359 @@
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockProtectionLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateSecurity ]
+
+- type: entity
+  parent: TypanSFAirlockService
+  id: TypanSFAirlockServiceLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Service, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateService ]
+
+- type: entity
+  parent: TypanSFAirlockAtmospherics
+  id: TypanSFAirlockAtmosphericsLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAtmospherics ]
+
+- type: entity
+  parent: TypanSFAirlockCargo
+  id: TypanSFAirlockCargoLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateCargo ]
+
+- type: entity
+  parent: TypanSFAirlockCommand
+  id: TypanSFAirlockCommandLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateCommand ]
+
+- type: entity
+  parent: TypanSFAirlockEngineering
+  id: TypanSFAirlockEngineeringLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateEngineering ]
+
+- type: entity
+  parent: TypanSFAirlockMaint
+  id: TypanSFAirlockMaintLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Maintenance, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateMaintenance ]
+
+- type: entity
+  parent: TypanSFAirlockMedical
+  id: TypanSFAirlockMedicalLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateMedical ]
+
+- type: entity
+  parent: TypanSFAirlockScience
+  id: TypanSFAirlockScienceLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateResearch ]
+
+- type: entity
+  parent: TypanSFAirlockVirology
+  id: TypanSFAirlockVirologyLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateMedical ]
+
+- type: entity
+  parent: TypanSFAirlockCommand
+  id: TypanSFAirlockTechnicalOperationsSupervisorLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Technical Operations Supervisor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateCommand ]
+
+- type: entity
+  parent: TypanSFAirlockCommand
+  id: TypanSFAirlockResearchDirectorLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Research Director, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateRD ]
+
+- type: entity
+  parent: TypanSFAirlockCommand
+  id: TypanSFAirlockCommunicationsOfficerLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Telecom Officer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateTelecom ]
+
+- type: entity
+  parent: TypanSFAirlockLawyer
+  id: TypanSFAirlockLawyerLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateBrig ]
+
+- type: entity
+  parent: TypanSFAirlockFreezer
+  id: TypanSFAirlockFreezerLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Kitchen, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateKitchen ]
+
+- type: entity
+  parent: HighSecDoorTypanSF
+  id: HighSecDoorTypanSFLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Vault, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateHigh ]
+
+- type: entity
+  parent: AirlockHatchTypanSF
+  id: AirlockHatchTypanSFLocked
+  categories: [ Syndicate ]
+  suffix: Typan, External, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateExternal ]
+
+- type: entity
+  parent: AirlockHatchGlassTypanSF
+  id: AirlockHatchGlassTypanSFLocked
+  categories: [ Syndicate ]
+  suffix: Typan, External, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateExternal ]
+
+- type: entity
+  parent: TypanSFAirlockGlass
+  id: TypanSFAirlockGlassProtectionLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateSecurity ]
+
+- type: entity
+  parent: TypanSFAirlockGlassService
+  id: TypanSFAirlockGlassServiceLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Service, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateService ]
+
+- type: entity
+  parent: TypanSFAirlockGlassAtmospherics
+  id: TypanSFAirlockGlassAtmosphericsLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAtmospherics ]
+
+- type: entity
+  parent: TypanSFAirlockGlassCargo
+  id: TypanSFAirlockGlassCargoLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateCargo ]
+
+- type: entity
+  parent: TypanSFAirlockGlassCommand
+  id: TypanSFAirlockGlassCommandLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateCommand ]
+
+- type: entity
+  parent: TypanSFAirlockGlassEngineering
+  id: TypanSFAirlockGlassEngineeringLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateEngineering ]
+
+- type: entity
+  parent: TypanSFAirlockGlassMaint
+  id: TypanSFAirlockGlassMaintLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Maintenance, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateMaintenance ]
+
+- type: entity
+  parent: TypanSFAirlockGlassMedical
+  id: TypanSFAirlockGlassMedicalLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateMedical ]
+
+- type: entity
+  parent: TypanSFAirlockGlassVirology
+  id: TypanSFAirlockGlassVirologyLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateMedical ]
+
+- type: entity
+  parent: TypanSFAirlockGlassScience
+  id: TypanSFAirlockGlassScienceLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateResearch ]
+
+- type: entity
+  parent: TypanSFAirlockGlassCommand
+  id: TypanSFAirlockGlassTechnicalOperationsSupervisorLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Technical Operations Supervisor, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateCommand ]
+
+- type: entity
+  parent: TypanSFAirlockGlassCommand
+  id: TypanSFAirlockGlassResearchDirectorLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Research Director, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateRD ]
+
+- type: entity
+  parent: TypanSFAirlockGlassCommand
+  id: TypanSFAirlockGlassCommunicationsOfficerLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Telecom Officer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateTelecom ]
+
+- type: entity
+  parent: TypanSFAirlockLawyerGlass
+  id: TypanSFAirlockLawyerGlassLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Lawyer, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateBrig ]
+
+- type: entity
+  parent: AirlockShuttleSyndicate
+  id: AirlockExternalShuttleTypanSFLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateExternal ]
+
+- type: entity
+  parent: AirlockGlassShuttleSyndicate
+  id: AirlockExternalGlassShuttleTypanSFLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Glass, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateExternal ]
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockSyndicateAgentLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Syndicate Agent, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSyndicateAgent ]
+
+- type: entity
+  parent: TypanSFAirlock
+  id: TypanSFAirlockNukeopLocked
+  categories: [ Syndicate ]
+  suffix: Typan, Nukeop, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNukeop ]

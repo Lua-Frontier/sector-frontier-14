@@ -41,6 +41,9 @@ public sealed partial class VesselPrototype : IPrototype, IInheritingPrototype
     [DataField(required: true)]
     public int Price;
 
+    [DataField]
+    public float? Mass;
+
     /// <summary>
     ///     Whether the ship should be crewed or not
     ///     This is automatically set to true when the ship is a Capital-class ship.

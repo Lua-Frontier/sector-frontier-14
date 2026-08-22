@@ -39,6 +39,8 @@ shipyard-console-fallback-prevent-sale = Обнаружены ошибки кл�
 shipyard-console-menu-size-label = Размер:{" "}
 shipyard-console-menu-class-label = Тип:{" "}
 shipyard-console-menu-engine-label = Питание:{" "}
+shipyard-console-mass = {$mass} т.
+shipyard-console-mass-unknown = -
 
 shipyard-console-purchase-available = Приобрести
 shipyard-console-park = Парковать

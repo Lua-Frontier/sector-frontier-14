@@ -5,9 +5,10 @@
   parent: MarkerBase
   abstract: true
   suffix: Job Spawn
+  categories: [ HideSpawnMenu ]
   components:
   - type: SpawnPoint
-    spawn_type: Job
+    spawn_type: LateJoin
   - type: Sprite
     sprite: Markers/jobs.rsi
 
@@ -30,6 +31,7 @@
   name: latejoin spawn point
   id: SpawnPointLatejoin
   parent: SpawnPointJobBase
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     state: green

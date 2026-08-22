@@ -258,16 +258,16 @@
   seed: 6
   scrollSpeed: 0.0018, 0.0005
   starDensity: 1.15
-  baseColor: "#140202"
-  nebulaColor: "#FF3D00"
-  accentColor: "#FFAB00"
-  horizonColor: "#6A1B9A"
-  nebulaIntensity: 1.85
+  baseColor: "#040812"
+  nebulaColor: "#2962FF"
+  accentColor: "#82B1FF"
+  horizonColor: "#1A237E"
+  nebulaIntensity: 1.55
   imageLayers:
-  - path: /Textures/_Corvax/Parallax/LavaParallax.png
-    slowness: 0.996
-    scale: 1.1, 1.1
-    scrolling: 0.002, 0.0
+  - path: /Textures/_Lua/Effects/parallax_noise_opacity.png
+    slowness: 0.992
+    scale: 1.2, 1.2
+    scrolling: 0.003, 0.001
   - path: /Textures/Parallaxes/core_planet.png
     slowness: 0.998046875
     scale: 1, 1

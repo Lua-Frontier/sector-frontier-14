@@ -171,6 +171,10 @@
     interfaces:
       enum.ShipyardConsoleUiKey.Typan:
         type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Syndicate
+    # Base ComputerShipyard grants NT Captain — replace with SyndicateAgent for Typan doors/consoles.
+    newAccessLevels: [SyndicateAgent]
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:

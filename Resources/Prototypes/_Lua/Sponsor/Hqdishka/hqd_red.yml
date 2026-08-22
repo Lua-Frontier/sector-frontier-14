@@ -47,4 +47,10 @@
   - type: Clothing
     sprite: _Lua/Sponsor/Iris/Iris_Red/Clothing/OuterClothing/Hardsuits/iris_hardsuit_red.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetIrisRed
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetIrisRed
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock

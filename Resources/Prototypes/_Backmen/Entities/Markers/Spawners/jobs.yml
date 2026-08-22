@@ -1,87 +1,8 @@
 - type: entity
-  id: SpawnPointBKCCSpecialOperationsOfficer
-  parent: SpawnPointBKCCAssistant
-  name: ЦК Офицер Специальных Операций
-  components:
-    - type: SpawnPoint
-      job_id: CentralCommandSpecialOperationsOfficer
-    - type: Sprite
-      layers:
-        - state: green
-        - state: centcom_operator
-        - state: jobicon
-
-- type: entity
-  id: SpawnPointBKCCAssistant
-  parent: SpawnPointJobBase
-  name: ЦК Ассистент
-  components:
-    - type: SpawnPoint
-      job_id: CentralCommandAssistant
-    - type: Sprite
-      sprite: Backmen/Markers/jobs.rsi
-      layers:
-        - state: green
-        - state: centcom_intern
-        - state: jobicon
-
-- type: entity
-  id: SpawnPointBKCCCargo
-  parent: SpawnPointJobBase
-  name: ЦК Грузчик
-  components:
-    - type: SpawnPoint
-      job_id: CentralCommandCargo
-    - type: Sprite
-      layers:
-        - state: green
-        - state: qm
-        - state: jobicon
-          sprite: Backmen/Markers/jobs.rsi
-
-- type: entity
-  id: SpawnPointBKCCOfficial
-  parent: SpawnPointBKCCAssistant
-  name: ЦК Представитель
-  components:
-    - type: SpawnPoint
-      job_id: CentralCommandOfficial
-    - type: Sprite
-      layers:
-        - state: green
-        - state: centcom_official
-        - state: jobicon
-
-- type: entity
-  id: SpawnPointBKCCOperator
-  parent: SpawnPointBKCCAssistant
-  name: ЦК Оператор
-  components:
-    - type: SpawnPoint
-      job_id: CentralCommandOperator
-    - type: Sprite
-      layers:
-        - state: green
-        - state: centcom_operator
-        - state: jobicon
-
-- type: entity
-  id: SpawnPointBKCCSecBlueShield
-  parent: SpawnPointBKCCAssistant
-  name: Офицер Синий Щит
-  components:
-    - type: SpawnPoint
-      job_id: BlueShieldOfficer
-    - type: Sprite
-      layers:
-        - state: green
-        - state: centcom_head_of_securiry
-        - state: jobicon
-
-- type: entity
   id: SpawnPointBKCCSecOfficer
   parent: SpawnPointJobBase
   name: Офицер ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: CentralCommandSecOfficer
@@ -94,25 +15,11 @@
           sprite: Backmen/Markers/jobs.rsi
 
 - type: entity
-  id: SpawnPointBKCCSpecialOperationsOfficerLJ
-  parent: SpawnPointBKCCAssistant
-  name: ЦК Офицер Специальных Операций
-  suffix: LateJoin, ЦК
-  components:
-    - type: SpawnPoint
-      job_id: CentralCommandSpecialOperationsOfficer
-      spawn_type: LateJoin
-    - type: Sprite
-      layers:
-        - state: green
-        - state: centcom_operator
-        - state: jobicon
-
-- type: entity
   id: SpawnPointBKCCAssistantLJ
   parent: SpawnPointJobBase
   name: ЦК Ассистент
   suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: CentralCommandAssistant
@@ -129,6 +36,7 @@
   parent: SpawnPointJobBase
   name: ЦК Грузчик
   suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: CentralCommandCargo
@@ -142,9 +50,10 @@
 
 - type: entity
   id: SpawnPointBKCCOfficialLJ
-  parent: SpawnPointBKCCAssistant
+  parent: SpawnPointBKCCAssistantLJ
   name: ЦК Представитель
   suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: CentralCommandOfficial
@@ -157,9 +66,10 @@
 
 - type: entity
   id: SpawnPointBKCCOperatorLJ
-  parent: SpawnPointBKCCAssistant
+  parent: SpawnPointBKCCAssistantLJ
   name: ЦК Оператор
   suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: CentralCommandOperator
@@ -172,9 +82,10 @@
 
 - type: entity
   id: SpawnPointBKCCSecBlueShieldLJ
-  parent: SpawnPointBKCCAssistant
+  parent: SpawnPointBKCCAssistantLJ
   name: Офицер Синий Щит
   suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: BlueShieldOfficer
@@ -186,10 +97,27 @@
         - state: jobicon
 
 - type: entity
+  id: SpawnPointBKCCSpecialOperationsOfficerLJ
+  parent: SpawnPointBKCCAssistantLJ
+  name: ЦК Офицер Специальных Операций
+  suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SpawnPoint
+      job_id: CentralCommandSpecialOperationsOfficer
+      spawn_type: LateJoin
+    - type: Sprite
+      layers:
+        - state: green
+        - state: centcom_operator
+        - state: jobicon
+
+- type: entity
   id: SpawnPointBKCCSecOfficerLJ
   parent: SpawnPointJobBase
   name: Офицер ЦК
   suffix: LateJoin, ЦК
+  categories: [ HideSpawnMenu ]
   components:
     - type: SpawnPoint
       job_id: CentralCommandSecOfficer
@@ -200,4 +128,3 @@
         - state: security_officer
         - state: jobicon
           sprite: Backmen/Markers/jobs.rsi
-

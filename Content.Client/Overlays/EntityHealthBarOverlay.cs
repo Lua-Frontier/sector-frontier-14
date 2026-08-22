@@ -8,8 +8,10 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
+using Content.Shared.Stealth.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using static Robust.Shared.Maths.Color;
@@ -68,6 +70,13 @@ public sealed class EntityHealthBarOverlay : Overlay
         {
             if (statusIcon != null && !_statusIconSystem.IsVisible((uid, _entManager.GetComponent<MetaDataComponent>(uid)), statusIcon))
                 continue;
+
+            if (_entManager.TryGetComponent(uid, out StealthComponent? stealth) && stealth.Enabled)
+            {
+                var localEntity = IoCManager.Resolve<IPlayerManager>().LocalEntity;
+                if (localEntity != uid)
+                    continue;
+            }
 
             // We want the stealth user to still be able to see his health bar himself
             if (!xformQuery.TryGetComponent(uid, out var xform) ||

@@ -22,8 +22,8 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: 0.1
-      lastVisibility: 0.1
+      minVisibility: -1
+      lastVisibility: -1
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -51,7 +51,13 @@
     walkModifier: 1
     sprintModifier: 1
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetAriralExosuit
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetAriralExosuit
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Tag
     tags:
     - Hardsuit

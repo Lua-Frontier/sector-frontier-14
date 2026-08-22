@@ -53,7 +53,7 @@
     - state: medical_lathe
 
 - type: entity
-  parent: BaseAutosurgeon
+  parent: [BaseAutosurgeon, ConstructibleMachine]
   id: AutosurgeonDermalArmorPDV
   name: nanotrasen autosurgeon (E-SAPI dermal armor)
   description: Implants an array of E-SAPI armor plates into the body. Makes you more vulnerable to heat and shock, but more resistant to bullets.
@@ -71,20 +71,8 @@
             Piercing: 0.85
             Blunt: 0.9
             Slash: 0.9
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonDermalArmorPDVFlatpack
-  name: nanotrasen autosurgeon (E-SAPI dermal armor) flatpack
-  description: A flatpack used for constructing a nanotrasen autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonDermalArmorPDV
-  - type: StaticPrice
-    price: 2500
-  - type: Sprite
-    layers:
-    - state: medical_lathe
+  - type: Machine
+    board: AutosurgeonDermalArmorPDVCircuitboard
 
 - type: entity
   parent: BaseAutosurgeon
@@ -137,7 +125,7 @@
     - state: medical_lathe
 
 - type: entity
-  parent: BaseAutosurgeon
+  parent: [BaseAutosurgeon, ConstructibleMachine]
   id: AutosurgeonIASPDV
   name: nanotrasen autosurgeon (LS-210 IAS)
   description: Replaces the lungs with an advanced internal-air-system.
@@ -146,23 +134,11 @@
     targetBodyPart: Torso
     targetOrgan: Lungs
     newPartProto: OrganInternalAirSystem
+  - type: Machine
+    board: AutosurgeonIASPDVCircuitboard
 
 - type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonIASPDVFlatpack
-  name: nanotrasen autosurgeon (LS-210 IAS) flatpack
-  description: A flatpack used for constructing a nanotrasen autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonIASPDV
-  - type: StaticPrice
-    price: 4000
-  - type: Sprite
-    layers:
-    - state: medical_lathe
-
-- type: entity
-  parent: BaseAutosurgeon
+  parent: [BaseAutosurgeon, ConstructibleMachine]
   id: AutosurgeonAdvHeartPDV
   name: nanotrasen autosurgeon (VV/KE prosthetic heart)
   description: Replaces the heart with a more powerful one.
@@ -171,20 +147,8 @@
     targetBodyPart: Torso
     targetOrgan: Heart
     newPartProto: OrganPDVAdvancedHeart
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonAdvHeartPDVFlatpack
-  name: nanotrasen autosurgeon (VV/KE prosthetic heart) flatpack
-  description: A flatpack used for constructing a nanotrasen autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonAdvHeartPDV
-  - type: StaticPrice
-    price: 3000
-  - type: Sprite
-    layers:
-    - state: medical_lathe
+  - type: Machine
+    board: AutosurgeonAdvHeartPDVCircuitboard
 
 - type: entity
   parent: BaseAutosurgeon

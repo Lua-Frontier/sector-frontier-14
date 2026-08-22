@@ -1,0 +1,42 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AutosurgeonIASPDVCircuitboard
+  name: nanotrasen autosurgeon (LS-210 IAS) machine board
+  description: A machine printed circuit board for a nanotrasen IAS autosurgeon.
+  components:
+  - type: MachineBoard
+    prototype: AutosurgeonIASPDV
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Cable: 5
+      Steel: 10
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AutosurgeonDermalArmorPDVCircuitboard
+  name: nanotrasen autosurgeon (E-SAPI dermal armor) machine board
+  description: A machine printed circuit board for a nanotrasen dermal armor autosurgeon.
+  components:
+  - type: MachineBoard
+    prototype: AutosurgeonDermalArmorPDV
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Cable: 5
+      Steel: 10
+      Plasteel: 10
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AutosurgeonAdvHeartPDVCircuitboard
+  name: nanotrasen autosurgeon (VV/KE prosthetic heart) machine board
+  description: A machine printed circuit board for a nanotrasen prosthetic heart autosurgeon.
+  components:
+  - type: MachineBoard
+    prototype: AutosurgeonAdvHeartPDV
+    requirements:
+      Manipulator: 2
+    stackRequirements:
+      Cable: 5
+      Steel: 10
