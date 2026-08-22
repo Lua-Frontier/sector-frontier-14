@@ -452,7 +452,7 @@ namespace Content.IntegrationTests.Tests
 
                     jobs.RemoveWhere(jobId =>
                     {
-                        if (!protoManager.TryIndex(jobId, out JobPrototype? job)
+                        if (!protoManager.TryIndex(jobId, out JobPrototype job)
                             || string.IsNullOrWhiteSpace(job.RequiredCompany))
                         {
                             return false;
