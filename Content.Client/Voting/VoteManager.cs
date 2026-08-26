@@ -46,7 +46,12 @@ namespace Content.Client.Voting
         private readonly Dictionary<int, UI.VotePopup> _votePopups = new();
         private Control? _popupContainer;
 
-        private IAudioSource? _voteSource;
+        private const string VoteStartSound = "/Audio/Effects/vote_start.ogg";
+        private const string VoteEndSound = "/Audio/Effects/vote_end.ogg";
+        private const float VoteSoundVolume = -4f;
+
+        private IAudioSource? _voteStartSource;
+        private IAudioSource? _voteEndSource;
 
         public bool CanCallVote { get; private set; }
 
@@ -56,18 +61,30 @@ namespace Content.Client.Voting
 
         public void Initialize()
         {
-            const string sound = "/Audio/Effects/voteding.ogg";
-            _voteSource = _audio.CreateAudioSource(_res.GetResource<AudioResource>(sound));
-
-            if (_voteSource != null)
-            {
-                _voteSource.Global = true;
-            }
+            _voteStartSource = CreateVoteSoundSource(VoteStartSound);
+            _voteEndSource = CreateVoteSoundSource(VoteEndSound);
 
             _netManager.RegisterNetMessage<MsgVoteData>(ReceiveVoteData);
             _netManager.RegisterNetMessage<MsgVoteCanCall>(ReceiveVoteCanCall);
 
             _client.RunLevelChanged += ClientOnRunLevelChanged;
+        }
+
+        private IAudioSource? CreateVoteSoundSource(string path)
+        {
+            var source = _audio.CreateAudioSource(_res.GetResource<AudioResource>(path));
+            if (source == null)
+                return null;
+
+            source.Global = true;
+            source.Looping = false;
+            source.Volume = VoteSoundVolume;
+            return source;
+        }
+
+        private static void PlayOnce(IAudioSource? source)
+        {
+            source?.Restart();
         }
 
         private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
@@ -140,7 +157,7 @@ namespace Content.Client.Voting
                     return;
                 }
 
-                _voteSource?.Restart();
+                PlayOnce(_voteStartSource);
                 @new = true;
 
                 // Refresh
@@ -172,6 +189,7 @@ namespace Content.Client.Voting
                     _votePopups.Remove(voteId);
                 }
 
+                PlayOnce(_voteEndSource);
                 return;
             }
 
