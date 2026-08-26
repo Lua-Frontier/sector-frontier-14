@@ -1,4 +1,5 @@
-using Robust.Shared.Serialization.Manager;
+using Content.Shared.Speech;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -7,6 +8,8 @@ namespace Content.Shared.Traits.Assorted;
 /// </summary>
 public sealed class AccentlessSystem : EntitySystem
 {
+    private static readonly ProtoId<SpeechVerbPrototype> DefaultSpeechVerb = "Default";
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -19,8 +22,13 @@ public sealed class AccentlessSystem : EntitySystem
     {
         foreach (var accent in component.RemovedAccents.Values)
         {
-            var accentComponent = accent.Component;
-            RemComp(uid, accentComponent.GetType());
+            RemCompDeferred(uid, accent.Component.GetType());
         }
+
+        if (!TryComp(uid, out SpeechComponent? speech) || speech.SpeechVerb == DefaultSpeechVerb)
+            return;
+
+        speech.SpeechVerb = DefaultSpeechVerb;
+        Dirty(uid, speech);
     }
 }
