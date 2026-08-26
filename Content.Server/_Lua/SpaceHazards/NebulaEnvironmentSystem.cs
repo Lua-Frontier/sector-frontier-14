@@ -2,6 +2,9 @@
 // Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
+using System.Collections.Generic;
+using System.Linq;
+using System.Numerics;
 using Content.Server.Radio;
 using Content.Server.Shuttles.Events;
 using Content.Shared._Lua.AmbientSpaceEffects;
@@ -10,7 +13,6 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using System.Linq;
 
 namespace Content.Server._Lua.SpaceHazards;
 
@@ -20,7 +22,6 @@ public sealed class NebulaEnvironmentSystem : EntitySystem
 
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SpaceHazardActivitySystem _activity = default!;
     private readonly Dictionary<EntityUid, float> _thrustResistance = new();
 
     public override void Initialize()
@@ -68,23 +69,56 @@ public sealed class NebulaEnvironmentSystem : EntitySystem
         args.Reason = Loc.GetString("nebula-ftl-blocked");
     }
 
-    private bool IsFtlBlockedAt(EntityCoordinates destination)
+    public bool IsFtlBlockedAt(EntityCoordinates destination)
     {
         var mapCoordinates = _transform.ToMapCoordinates(destination);
-        foreach (var uid in _activity.ActiveHazards)
+        return IsFtlBlockedAt(mapCoordinates.MapId, mapCoordinates.Position);
+    }
+
+    public bool IsFtlBlockedAt(MapId mapId, Vector2 worldPosition)
+    {
+        var query = EntityQueryEnumerator<AmbientSpaceFieldComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var field, out var xform))
         {
-            if (!TryComp(uid, out AmbientSpaceFieldComponent? field) ||
-                !TryComp(uid, out TransformComponent? xform) ||
-                xform.MapID != mapCoordinates.MapId)
-            {
+            if (xform.MapID != mapId || !FieldBlocksFtl(field))
                 continue;
-            }
 
             var fieldPosition = _transform.GetWorldPosition(xform);
-            if (!NebulaVeilHelpers.IsInMidZone(field, fieldPosition, mapCoordinates.Position, field.Radius))
+            var radius = MathF.Max(field.Radius, 1f);
+            if ((worldPosition - fieldPosition).LengthSquared() > radius * radius)
                 continue;
 
-            if (FieldBlocksFtl(field))
+            if (NebulaVeilHelpers.IsInMidZone(field, fieldPosition, worldPosition, radius))
+                return true;
+        }
+
+        return false;
+    }
+
+    public void CollectFtlBlockingFields(MapId mapId, List<(AmbientSpaceFieldComponent Field, Vector2 Position)> output)
+    {
+        output.Clear();
+        var query = EntityQueryEnumerator<AmbientSpaceFieldComponent, TransformComponent>();
+        while (query.MoveNext(out _, out var field, out var xform))
+        {
+            if (xform.MapID != mapId || !FieldBlocksFtl(field))
+                continue;
+
+            output.Add((field, _transform.GetWorldPosition(xform)));
+        }
+    }
+
+    public static bool IsFtlBlockedByFields(
+        Vector2 worldPosition,
+        List<(AmbientSpaceFieldComponent Field, Vector2 Position)> fields)
+    {
+        foreach (var (field, fieldPosition) in fields)
+        {
+            var radius = MathF.Max(field.Radius, 1f);
+            if ((worldPosition - fieldPosition).LengthSquared() > radius * radius)
+                continue;
+
+            if (NebulaVeilHelpers.IsInMidZone(field, fieldPosition, worldPosition, radius))
                 return true;
         }
 
