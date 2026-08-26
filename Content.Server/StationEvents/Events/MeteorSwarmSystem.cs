@@ -28,13 +28,14 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.WaveCounter = component.Waves.Next(RobustRandom);
 
-        // we don't want to send to players who aren't in game (i.e. in the lobby)
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
+        if (!TryGetTargetMap(component, out var mapId))
+            return;
+        var filter = Filter.Empty().AddInMap(mapId, EntityManager);
 
         if (component.Announcement is { } locId)
-            _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playSound: false, colorOverride: Color.Gold);
+            _chat.DispatchFilteredAnnouncement(filter, Loc.GetString(locId), playSound: false, colorOverride: Color.Gold);
 
-        _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
+        _audio.PlayGlobal(component.AnnouncementSound, filter, true);
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)
@@ -44,12 +45,7 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
-
-        if (_station.GetStations().Count == 0)
-            return;
-
-        var station = RobustRandom.Pick(_station.GetStations());
-        if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid)
+        if (!TryGetTargetStationGrid(component, out _, out var grid))
             return;
 
         var mapId = Transform(grid).MapID;
@@ -89,5 +85,43 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         {
             ForceEndSelf(uid, gameRule);
         }
+    }
+
+    private bool TryGetTargetMap(MeteorSwarmComponent component, out MapId mapId)
+    {
+        mapId = MapId.Nullspace;
+        if (!TryGetTargetStationGrid(component, out _, out var grid))
+            return false;
+
+        mapId = Transform(grid).MapID;
+        return mapId != MapId.Nullspace;
+    }
+
+    private bool TryGetTargetStationGrid(MeteorSwarmComponent component, out EntityUid station, out EntityUid grid)
+    {
+        station = default;
+        grid = default;
+
+        if (component.TargetStation is { } existing &&
+            !TerminatingOrDeleted(existing) &&
+            TryComp(existing, out StationDataComponent? existingData) &&
+            _station.GetLargestGrid(existingData) is { } existingGrid)
+        {
+            station = existing;
+            grid = existingGrid;
+            return true;
+        }
+
+        var stations = _station.GetStations();
+        if (stations.Count == 0)
+            return false;
+
+        station = RobustRandom.Pick(stations);
+        if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } pickedGrid)
+            return false;
+
+        component.TargetStation = station;
+        grid = pickedGrid;
+        return true;
     }
 }
