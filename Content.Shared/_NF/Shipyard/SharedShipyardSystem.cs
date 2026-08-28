@@ -28,7 +28,8 @@ public enum ShipyardConsoleUiKey : byte
     ASBlackMarket,
     Parking,
     // Add ships to this key if they are only available from mothership consoles. Shipyards using it are inherently empty and are populated using the ShipyardListingComponent.
-    Custom
+    Custom,
+    Ussp
 }
 
 public abstract class SharedShipyardSystem : EntitySystem

@@ -17,14 +17,19 @@
 
 - type: entity
   id: ComputerShipyardUssp
-  parent: BaseMothershipComputer
-  name: ussp shipyard console
-  description: Used to purchase and sell USSP vessels.
+  parent: [BaseStructureDisableToolUse, BaseStructureIndestructible, ComputerShipyard]
+  name: консоль верфи СССП
+  description: Консоль покупки кораблей СССП
   categories: [ USSP ]
   components:
-  - type: ShipyardListing
-    shuttles:
-    - Gadyuka
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Ussp
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Ussp:
+        type: ShipyardConsoleBoundUserInterface
+  - type: ShipyardConsole
+    shipyardChannel: Ussp
 
 - type: entity
   id: ComputerShipyardBASBlackMarket
@@ -173,8 +178,6 @@
         type: ShipyardConsoleBoundUserInterface
   - type: ShipyardConsole
     shipyardChannel: Syndicate
-    # Base ComputerShipyard grants NT Captain — replace with SyndicateAgent for Typan doors/consoles.
-    newAccessLevels: [SyndicateAgent]
   - type: Sprite
     sprite: _NF/Structures/Machines/computers.rsi
     layers:
