@@ -27,6 +27,7 @@ game-ticker-get-info-preround-text =
     >[color=yellow]{ $desc }[/color]
 game-ticker-no-map-selected = [color=red]Карта ещё не выбрана![/color]
 game-ticker-player-no-jobs-available-when-joining = При попытке присоединиться к игре ни одной роли не было доступно.
+game-ticker-player-no-spawn-available = Не удалось найти точку спавна на станции. Вы остались в лобби - сообщите мапперам добавить точку спавна фракции.
 game-ticker-latejoin-station-company-denied = Вы не можете присоединиться к станции { $stationName }, потому что она недоступна для текущей фракции вашего персонажа.
 game-ticker-latejoin-station-unavailable = Вы не можете присоединиться к станции { $stationName }, потому что сектор или станция больше недоступны.
 game-ticker-job-company-denied = Вы не можете присоединиться к роли { $job }, потому что она недоступна для текущей фракции вашего персонажа.

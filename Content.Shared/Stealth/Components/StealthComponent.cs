@@ -31,6 +31,9 @@ public sealed partial class StealthComponent : Component
     [DataField("hadOutline")]
     public bool HadOutline;
 
+    [ViewVariables]
+    public bool HadSpriteVisible;
+
     /// <summary>
     /// Minimum visibility before the entity becomes unexaminable (and thus no longer appears on context menus).
     /// </summary>

@@ -37,7 +37,13 @@
     walkModifier: 0.9
     sprintModifier: 0.9
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetShareholderSyn
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetShareholderSyn
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: Speech

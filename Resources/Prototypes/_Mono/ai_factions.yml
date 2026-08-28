@@ -21,9 +21,8 @@
   defaultHostile: true
 
 - type: npcFaction
-  id: USSP
+  id: Ussp
   neutral:
-  - NanoTrasen
   - Neutral
   - SimpleNeutral
   defaultHostile: true
@@ -31,13 +30,12 @@
 - type: npcFaction
   id: USSPTurret
   friendly:
-  - USSP
+  - Ussp
   neutral:
-  - NanoTrasen
   - Neutral
+  - SimpleNeutral
   - Cat
   - PetsNT
-  - SimpleNeutral
   - MD
   defaultHostile: true
 
@@ -51,6 +49,8 @@
   - PetsNT
   - TSFMC
   - TSFMCTurret
+  - Ussp
+  - USSPTurret
   defaultHostile: true
 
 - type: npcFaction

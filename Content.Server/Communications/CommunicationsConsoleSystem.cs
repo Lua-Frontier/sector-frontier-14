@@ -20,6 +20,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map;
 using Content.Server._NF.SectorServices; // Frontier
 
 namespace Content.Server.Communications
@@ -285,9 +286,17 @@ namespace Content.Server.Communications
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
+            var mapId = Transform(uid).MapID;
+            if (mapId == MapId.Nullspace)
+            {
+                _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
+                _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
+                return;
+            }
 
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
+            _chatSystem.DispatchMapAnnouncement(mapId, msg, title, playSound: true, announcementSound: comp.Sound, colorOverride: comp.Color);
+
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following map announcement on {mapId}: {msg}");
 
         }
 

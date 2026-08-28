@@ -4,11 +4,13 @@
 
 using Content.Server._Lua.Company;
 using Content.Server._Lua.Sectors;
+using Content.Server._Lua.SpaceHazards;
 using Content.Server._Lua.Starmap.Components;
 using Content.Server.Popups;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Lua.AmbientSpaceEffects;
 using Content.Shared._Lua.Starmap;
 using Content.Shared._Lua.Starmap.Components;
 using Content.Shared._Mono.Company;
@@ -42,6 +44,10 @@ namespace Content.Server._Lua.Starmap.Systems
         [Dependency] private readonly SectorSystem _sectors = default!;
         [Dependency] private readonly SharedContainerSystem _containers = default!;
         [Dependency] private readonly FactionWarSystem _factionWar = default!;
+        [Dependency] private readonly NebulaEnvironmentSystem _nebulaEnvironment = default!;
+
+        private const int SectorArrivalAttempts = 48;
+        private readonly List<(AmbientSpaceFieldComponent Field, Vector2 Position)> _ftlBlockingFields = new();
 
         public override void Initialize()
         {
@@ -88,13 +94,33 @@ namespace Content.Server._Lua.Starmap.Systems
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-no-warpdrive"), consoleUid); return; }
             void PlayDenySound(EntityUid uid)
             { _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg"), uid); }
-            var angle = (float)(_random.NextDouble() * 2 * Math.PI);
-            var radius = _random.Next(1000, 5001);
-            var offset = new Vector2((float)Math.Cos(angle) * radius, (float)Math.Sin(angle) * radius);
-            var targetPos = star.Position + offset;
-            var targetCoordinates = new EntityCoordinates(mapUid, targetPos);
-            if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason, targetCoordinates))
+            if (!_shuttleSystem.CanFTL(shuttleUid.Value, out var reason))
             { PlayDenySound(consoleUid); if (!string.IsNullOrEmpty(reason)) _popup.PopupEntity(reason!, consoleUid); return; }
+            _nebulaEnvironment.CollectFtlBlockingFields(star.Map, _ftlBlockingFields);
+            Vector2 targetPos = default;
+            EntityCoordinates targetCoordinates = default;
+            var foundSafeSpot = false;
+            for (var attempt = 0; attempt < SectorArrivalAttempts; attempt++)
+            {
+                var angle = (float)(_random.NextDouble() * 2 * Math.PI);
+                var radius = _random.Next(1000, 5001);
+                var offset = new Vector2(MathF.Cos(angle) * radius, MathF.Sin(angle) * radius);
+                var candidate = star.Position + offset;
+                if (NebulaEnvironmentSystem.IsFtlBlockedByFields(candidate, _ftlBlockingFields))
+                    continue;
+                targetPos = candidate;
+                targetCoordinates = new EntityCoordinates(mapUid, candidate);
+                foundSafeSpot = true;
+                break;
+            }
+
+            if (!foundSafeSpot)
+            {
+                PlayDenySound(consoleUid);
+                _popup.PopupEntity(Loc.GetString("nebula-ftl-blocked"), consoleUid);
+                return;
+            }
+
             _shuttleSystem.FTLToCoordinates(shuttleUid.Value, shuttleComponent, targetCoordinates, Angle.Zero);
             if (!HasComp<FTLComponent>(shuttleUid.Value))
             { PlayDenySound(consoleUid); return; }
@@ -189,6 +215,30 @@ namespace Content.Server._Lua.Starmap.Systems
             var mapUid = _mapManager.GetMapEntityId(transit.TargetMap);
             var targetCoords = new EntityCoordinates(mapUid, transit.TargetPosition);
             _shuttleSystem.TryFTLProximity((shuttle, Transform(shuttle)), targetCoords);
+            var xform = Transform(shuttle);
+            var arrived = xform.WorldPosition;
+            _nebulaEnvironment.CollectFtlBlockingFields(transit.TargetMap, _ftlBlockingFields);
+            if (NebulaEnvironmentSystem.IsFtlBlockedByFields(arrived, _ftlBlockingFields))
+            {
+                if (!NebulaEnvironmentSystem.IsFtlBlockedByFields(transit.TargetPosition, _ftlBlockingFields))
+                {
+                    _shuttleSystem.TryFTLProximity((shuttle, xform), new EntityCoordinates(mapUid, transit.TargetPosition));
+                }
+                else
+                {
+                    for (var attempt = 0; attempt < SectorArrivalAttempts; attempt++)
+                    {
+                        var angle = (float)(_random.NextDouble() * 2 * Math.PI);
+                        var radius = _random.Next(250, 2001);
+                        var candidate = arrived + new Vector2(MathF.Cos(angle) * radius, MathF.Sin(angle) * radius);
+                        if (NebulaEnvironmentSystem.IsFtlBlockedByFields(candidate, _ftlBlockingFields))
+                            continue;
+                        _shuttleSystem.TryFTLProximity((shuttle, xform), new EntityCoordinates(mapUid, candidate));
+                        break;
+                    }
+                }
+            }
+
             if (TryComp<WarpTransitComponent>(shuttle, out var arriving))
             {
                 Dirty(shuttle, arriving);

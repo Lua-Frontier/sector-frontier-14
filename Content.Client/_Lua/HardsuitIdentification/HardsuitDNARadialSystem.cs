@@ -8,7 +8,6 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Lua.HardsuitIdentification;
 using Content.Shared.Actions.Components;
-using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -16,7 +15,6 @@ namespace Content.Client._Lua.HardsuitIdentification;
 
 public sealed class HardsuitDNARadialSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private SimpleRadialMenu? _openedMenu;
@@ -76,8 +74,7 @@ public sealed class HardsuitDNARadialSystem : EntitySystem
     {
         if (_openedMenu == null)
             return;
-        var performer = _playerMan.LocalEntity ?? EntityUid.Invalid;
-        var ev = new SelectDNAActionEvent(_currentTarget, GetNetEntity(performer), actionPrototypeId);
+        var ev = new SelectDNAActionEvent(_currentTarget, actionPrototypeId);
         RaiseNetworkEvent(ev);
         _openedMenu.Dispose();
     }

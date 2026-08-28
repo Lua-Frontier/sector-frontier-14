@@ -1,0 +1,17 @@
+- type: entity
+  id: USSPSS13Memorial
+  parent: BaseStructure
+  categories: [ USSP ]
+  name: tomb of the unknown employee
+  description: |
+    Here rests an unknown employee
+    Unknown by name or rank
+    Whose acts will not be forgotten
+  components:
+  - type: Sprite
+    sprite: _Souz/Structures/Furniture/Memorials/ss13_memorial.rsi
+    state: memorial
+    drawdepth: Mobs
+    noRot: true
+    offset: "0.0,0.8"
+  - type: Prayable

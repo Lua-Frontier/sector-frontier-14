@@ -50,4 +50,10 @@
   - type: Clothing
     sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/OuterClothing/Hardsuits/lua_hardsuit_black.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetLuaB
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetLuaB
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock

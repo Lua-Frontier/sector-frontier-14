@@ -31,8 +31,13 @@
   - type: Clothing
     sprite: _NF/Clothing/OuterClothing/Suits/goblin_eva_robes.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadEVAHelmetGoblin
-    slot: head
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadEVAHelmetGoblin
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container

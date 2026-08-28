@@ -26,6 +26,7 @@
         </BoxContainer>
         <BoxContainer Orientation="Horizontal" HorizontalAlignment="Right" HorizontalExpand="True" Margin="6 0 5 0">
             <Label Name="LimitedCount" Access="Public" Visible="False"/>
+            <Label Name="Mass" Access="Public" MinWidth="70" Align="Right"/>
             <Label Name="Price" Access="Public" MinWidth="80" Align="Right"/>
         </BoxContainer>
         <!-- Lua end -->

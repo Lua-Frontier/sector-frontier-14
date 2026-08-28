@@ -4,8 +4,8 @@
 
 - type: gameMap
   id: UsspStation
-  mapName: 'Экспедиционный Шаттл СССП'
-  mapPath: /Maps/_Lua/Maps/tunguska.yml
+  mapName: 'Солнечный-26'
+  mapPath: /Maps/_Lua/Maps/silly_space.yml
   isGrid: true
   minPlayers: 0
   stations:
@@ -24,7 +24,7 @@
       - type: FactionOwnedStation
         mainBase: true
       - type: StationNameSetup
-        mapNameTemplate: 'Экспедиционный Шаттл СССП'
+        mapNameTemplate: 'Солнечный-26'
       - type: ExtraStationInformation
         iconPath: /Textures/_Souz/Structures/Wallmounts/flags.rsi/USSPCompany.png
         stationSubtext: 'ussp-lobby-outpost-subtext'

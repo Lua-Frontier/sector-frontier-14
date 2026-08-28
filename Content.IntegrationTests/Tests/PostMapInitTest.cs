@@ -425,16 +425,43 @@ namespace Content.IntegrationTests.Tests
                     var jobs = new HashSet<ProtoId<JobPrototype>>(comp.SetupAvailableJobs.Keys);
 
                     var spawnPoints = entManager.EntityQuery<SpawnPointComponent>()
-                        .Where(x => x.SpawnType == SpawnPointType.Job && x.Job != null)
+                        .Where(x => x.Job != null && x.SpawnType == SpawnPointType.LateJoin)
                         .Select(x => x.Job.Value);
 
                     jobs.ExceptWith(spawnPoints);
 
                     spawnPoints = entManager.EntityQuery<ContainerSpawnPointComponent>()
-                        .Where(x => x.SpawnType is SpawnPointType.Job or SpawnPointType.Unset && x.Job != null)
+                        .Where(x => x.Job != null && x.SpawnType is SpawnPointType.LateJoin or SpawnPointType.Unset)
                         .Select(x => x.Job.Value);
 
                     jobs.ExceptWith(spawnPoints);
+
+                    var companySpawnsOnMap = new HashSet<string>();
+                    var companySpawnQuery = entManager.AllEntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+                    while (companySpawnQuery.MoveNext(out var spawn, out var xform))
+                    {
+                        if (spawn.Company == null
+                            || xform.GridUid == null
+                            || !gridUids.Contains(xform.GridUid.Value))
+                        {
+                            continue;
+                        }
+
+                        companySpawnsOnMap.Add(spawn.Company.Value);
+                    }
+
+                    jobs.RemoveWhere(jobId =>
+                    {
+                        if (!protoManager.TryIndex(jobId, out JobPrototype job)
+                            || string.IsNullOrWhiteSpace(job.RequiredCompany))
+                        {
+                            return false;
+                        }
+
+                        return job.RequiredCompany
+                            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+                            .Any(companySpawnsOnMap.Contains);
+                    });
 
                     Assert.That(jobs, Is.Empty, $"There is no spawnpoints for {string.Join(", ", jobs)} on {mapProto}.");
                 }

@@ -13,13 +13,11 @@ namespace Content.Shared._Lua.HardsuitIdentification;
 public sealed partial class SelectDNAActionEvent : EntityEventArgs
 {
     public NetEntity Target;
-    public NetEntity Performer;
     public string ActionType;
 
-    public SelectDNAActionEvent(NetEntity target, NetEntity performer, string actionType)
+    public SelectDNAActionEvent(NetEntity target, string actionType)
     {
         Target = target;
-        Performer = performer;
         ActionType = actionType;
     }
 }

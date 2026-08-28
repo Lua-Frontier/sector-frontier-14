@@ -906,7 +906,7 @@
     access: [["HeadOfPersonnel"], ["HeadOfSecurity"]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-station
-    global: true #SR WILL NOT BE IGNORED
+    global: false
   - type: DeviceNetwork
     deviceNetId: Wireless
     transmitFrequencyId: ShuttleTimer

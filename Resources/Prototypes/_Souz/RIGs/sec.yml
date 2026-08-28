@@ -63,7 +63,13 @@
   - type: StaminaResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
-    clothingPrototype: USSPSFClothingHeadHelmetRIGSecurity
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: USSPSFClothingHeadHelmetRIGSecurity
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 - type: entity
   parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase]
   id: USSPSFClothingHeadHelmetRIGSecurity
@@ -129,7 +135,13 @@
   - type: StaminaResistance
     damageCoefficient: 0.4
   - type: ToggleableClothing
-    clothingPrototype: USSPSFClothingHeadHelmetRIGSecurityAdvanced
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: USSPSFClothingHeadHelmetRIGSecurityAdvanced
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 - type: entity
   parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase]
   id: USSPSFClothingHeadHelmetRIGSecurityAdvanced

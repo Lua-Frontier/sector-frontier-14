@@ -25,7 +25,13 @@
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
-    clothingPrototype: ADTVeteranSecHardsuitHelm
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ADTVeteranSecHardsuitHelm
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
 
 
 - type: entity

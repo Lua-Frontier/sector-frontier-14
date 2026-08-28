@@ -36,7 +36,13 @@
   - type: Clothing
     sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/OuterClothing/Hardsuits/lua_battlehardsuit_black.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetLuaD
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetLuaD
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor

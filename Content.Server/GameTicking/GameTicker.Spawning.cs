@@ -311,17 +311,18 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            // Delta-V: Add AlwaysUseSpawner.
             var spawnPointType = SpawnPointType.Unset;
             if (jobPrototype.AlwaysUseSpawner)
+                spawnPointType = SpawnPointType.LateJoin;
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character, spawnPointType: spawnPointType, session: player);
+            if (mobMaybe == null)
             {
-                lateJoin = false;
-                spawnPointType = SpawnPointType.Job;
+                HandleSpawnFailure(player, lateJoin, newMind);
+                return;
             }
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character, spawnPointType: spawnPointType, session: player); // Frontier: add session
-            DebugTools.AssertNotNull(mobMaybe);
-            var mob = mobMaybe!.Value;
+            var mob = mobMaybe.Value;
 
             _mind.TransferTo(newMind, mob);
 
@@ -492,6 +493,27 @@ namespace Content.Server.GameTicking
             return string.Equals(trimmed, "None", StringComparison.OrdinalIgnoreCase)
                 ? null
                 : trimmed;
+        }
+
+        private void HandleSpawnFailure(ICommonSession player, bool lateJoin, EntityUid? mindId = null)
+        {
+            if (mindId != null)
+                _mind.WipeMind(mindId);
+
+            if (lateJoin)
+            {
+                _chatManager.DispatchServerMessage(player, Loc.GetString("game-ticker-player-no-spawn-available"));
+                return;
+            }
+
+            if (LobbyEnabled)
+            {
+                _playerGameStatuses[player.UserId] = PlayerGameStatus.NotReadyToPlay;
+                RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
+            }
+
+            RaiseLocalEvent(new NoJobsAvailableSpawningEvent(player));
+            _chatManager.DispatchServerMessage(player, Loc.GetString("game-ticker-player-no-spawn-available"));
         }
 
         public void Respawn(ICommonSession player)

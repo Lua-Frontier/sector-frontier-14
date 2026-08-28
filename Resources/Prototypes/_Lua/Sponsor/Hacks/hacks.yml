@@ -171,10 +171,16 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: 0.1
-      lastVisibility: 0.1
+      minVisibility: -1
+      lastVisibility: -1
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetLua
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetLua
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
   - type: Item
     size: Huge
   - type: HardsuitReanimation

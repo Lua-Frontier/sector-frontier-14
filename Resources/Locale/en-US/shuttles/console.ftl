@@ -17,6 +17,8 @@ shuttle-console-linear-velocity = Linear velocity:
 shuttle-console-linear-velocity-value = {$X}, {$Y}
 shuttle-console-angular-velocity = Angular velocity:
 shuttle-console-angular-velocity-value = {$angularVelocity}
+shuttle-console-ship-mass = Mass:
+shuttle-console-ship-mass-value = {$mass} t
 
 shuttle-console-unknown = Unknown
 shuttle-console-iff-label = {$name} ({$distance}m)
