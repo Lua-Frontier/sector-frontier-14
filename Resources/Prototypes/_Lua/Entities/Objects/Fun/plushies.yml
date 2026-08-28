@@ -343,8 +343,8 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieMaksimvini
-  name: плюшевый Джеймс Санте
+  id: PlushieMaksimvini22T
+  name: плюшевый Джейс Санте
   description: "Виски снова кончилось, несите добавки! - именно это можно прочесть на небольшой этикетке, прикреплённой к кимоно данной игрушки. Видимо, он очень обожает виски."
   components:
   - type: Sprite
@@ -494,3 +494,66 @@
   values:
     prefix: AnemonePlushie-
     count: 9
+
+# Next Plushies below made by Maksimvini (Discord)
+- type: entity
+  parent: BasePlushie
+  id: PlushieAziDragon22T
+  name: плюшевый Кай Кросс
+  description: "При взгляде на эту плюшку, хочется мяукать. Так-же на одной из сторон одежды набито - Просто фелигнида."
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_AziDragon
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMeowonty22T
+  name: плюшевая Шимико Сеццен
+  description: "Довольно мягкая и нежная плюшка, вам хочется её потискать... Но почему от неё пахнет пластитаном и плассталью?.."
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Meowonty
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieBomidor22T
+  name: плюшевый Вольфрам
+  description: "Пахнет лесом и духом коммунизма. И ещё каким-то зловонием. Союз нерушимый..."
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Bomidor
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKard22T
+  name: плюшевый Док
+  description: "Смотря на него у вас возникает ощущение что перед Вами какой-то преступник, но ведь они все пойманы.."
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_Kard
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieHeadWalker22T
+  name: Плюшевый Ужасный Головоход
+  description: "Оно придёт за тобой. Или прикатится. Или приползёт. В любом случае, эта древняя миниатюрная машина для убийств - сделает Вам не до смеха, в момент, когда Вы окажетесь с ней наедине в переулке"
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_HeadWalker
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePurpleGhost22T
+  name: Плюшевый Призрак Кайл
+  description: "Вы точно его где-то видели, но не знаете где именно. Присмотревшись к этикетке вы видите надпись о пожелании к Удаче, больше сил и нервов.."
+  components:
+  - type: Sprite
+    sprite: _Lua/Plushie/toys.rsi
+    state: plushie_PurpleGhost
+# Next Plushies above made by Maksimvini (Discord)
+

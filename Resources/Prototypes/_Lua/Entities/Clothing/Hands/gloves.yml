@@ -1,0 +1,130 @@
+# LuaCorp - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatWhite
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Hands/Gloves/white_combat.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Hands/Gloves/white_combat.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Hands/Gloves/white_combat.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGloves22TCombatGreyish
+  name: combat gloves colored in Grey
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Greyish_BattleGloves.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Greyish_BattleGloves.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Greyish_BattleGloves.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGloves22TCombatBlueish
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Blueish_BattleGloves.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Blueish_BattleGloves.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Blueish_BattleGloves.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGloves22TCombatGreenish
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Greenish_BattleGloves.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Greenish_BattleGloves.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Greenish_BattleGloves.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGloves22TCombatBattlecolored
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Legionish_BattleGloves.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Legionish_BattleGloves.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Legionish_BattleGloves.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGloves22TCombatPinkish
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Pinkish_BattleGloves.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Pinkish_BattleGloves.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Pinkish_BattleGloves.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGloves22TCombatDesertyellow
+  name: white combat gloves
+  description: Blood looks neater on them.
+  components:
+  - type: Sprite
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Yellowish_BattleGloves.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Yellowish_BattleGloves.rsi
+  - type: Item
+    sprite: _Lua/Clothing/Maksimvini/Hands/Gloves/Yellowish_BattleGloves.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+      
