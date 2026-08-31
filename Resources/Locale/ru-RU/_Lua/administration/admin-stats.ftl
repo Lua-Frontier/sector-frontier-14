@@ -10,6 +10,10 @@ admin-stats-shuttles-active = Активные:
 admin-stats-shuttles-paused = На паузе:
 admin-stats-shuttles-total = Всего:
 
+admin-stats-section-ai-shuttles = Шаттлы ИИ
+admin-stats-ai-shuttles-active = Активные:
+admin-stats-ai-shuttles-total = Всего:
+
 admin-stats-section-debris = Объекты
 admin-stats-debris-asteroids = Астероиды:
 admin-stats-debris-wrecks = Обломки:

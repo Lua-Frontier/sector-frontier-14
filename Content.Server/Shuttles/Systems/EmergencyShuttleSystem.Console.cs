@@ -16,6 +16,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server._Lua.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -164,7 +165,8 @@ public sealed partial class EmergencyShuttleSystem
 
             while (dataQuery.MoveNext(out var stationUid, out var comp))
             {
-                if (!TryComp<ShuttleComponent>(comp.EmergencyShuttle, out var shuttle) ||
+                if (comp.EmergencyShuttle is not { } emergencyShuttle ||
+                    !_gridAccess.TryGetShuttleGrid(emergencyShuttle, out var shuttle) ||
                     !TryComp<StationCentcommComponent>(stationUid, out var centcomm))
                 {
                     continue;
@@ -195,10 +197,12 @@ public sealed partial class EmergencyShuttleSystem
             }
         }
 
-        var podLaunchQuery = EntityQueryEnumerator<EscapePodComponent, ShuttleComponent>();
+        var podLaunchQuery = EntityQueryEnumerator<EscapePodComponent, ShuttleGridComponent>();
 
-        while (podLaunchQuery.MoveNext(out var uid, out var pod, out var shuttle))
+        while (podLaunchQuery.MoveNext(out var uid, out var pod, out _))
         {
+            if (!_gridAccess.TryGetShuttleGrid(uid, out var shuttle))
+                continue;
             var stationUid = _station.GetOwningStation(uid);
 
             if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||

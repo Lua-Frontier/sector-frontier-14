@@ -23,6 +23,7 @@ public readonly record struct ChunkMonitorChunkInfo(
     int EntityCount,
     int PlayerCount,
     int ShuttleCount,
+    int AiShuttleCount,
     int StationCount,
     int DebrisCount,
     int GridCount);

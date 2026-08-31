@@ -169,6 +169,7 @@ public sealed partial class ChunkMonitorWindow : DefaultWindow
         EntitiesLabel.Text = Loc.GetString("chunk-monitor-details-entities", ("count", chunk.EntityCount));
         PlayersLabel.Text = Loc.GetString("chunk-monitor-details-players", ("count", chunk.PlayerCount));
         ShuttlesLabel.Text = Loc.GetString("chunk-monitor-details-shuttles", ("count", chunk.ShuttleCount));
+        AiShuttlesLabel.Text = Loc.GetString("chunk-monitor-details-ai-shuttles", ("count", chunk.AiShuttleCount));
         StationsLabel.Text = Loc.GetString("chunk-monitor-details-stations", ("count", chunk.StationCount));
         DebrisLabel.Text = Loc.GetString("chunk-monitor-details-debris", ("count", chunk.DebrisCount));
         GridsLabel.Text = Loc.GetString("chunk-monitor-details-grids", ("count", chunk.GridCount));
@@ -184,6 +185,7 @@ public sealed partial class ChunkMonitorWindow : DefaultWindow
         EntitiesLabel.Text = string.Empty;
         PlayersLabel.Text = string.Empty;
         ShuttlesLabel.Text = string.Empty;
+        AiShuttlesLabel.Text = string.Empty;
         StationsLabel.Text = string.Empty;
         DebrisLabel.Text = string.Empty;
         GridsLabel.Text = string.Empty;

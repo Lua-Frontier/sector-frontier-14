@@ -17,6 +17,9 @@ public sealed class AdminStatsEuiState : EuiStateBase
     public int ShuttlesPaused;
     public int ShuttlesTotal;
 
+    public int AiShuttlesActive;
+    public int AiShuttlesTotal;
+
     public int DebrisCount;
     public int WrecksCount;
     public int DebrisTotalCount;

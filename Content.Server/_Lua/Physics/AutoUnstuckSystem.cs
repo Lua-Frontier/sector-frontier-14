@@ -2,7 +2,7 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using Content.Server.Shuttles.Components;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
@@ -59,6 +59,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
     private const float MaxCandidateSpeedSquared = 0.01f;
 
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -128,7 +129,7 @@ public sealed class AutoUnstuckSystem : EntitySystem
             if (body.BodyType == BodyType.Static || !body.CanCollide)
                 continue;
 
-            if (HasComp<MapGridComponent>(uid) || HasComp<MapComponent>(uid) || HasComp<ShuttleComponent>(uid))
+            if (HasComp<MapGridComponent>(uid) || HasComp<MapComponent>(uid))
                 continue;
 
             if (IsPaused(uid))
@@ -139,6 +140,9 @@ public sealed class AutoUnstuckSystem : EntitySystem
                 _toClear.Add(uid);
                 continue;
             }
+
+            if (xform.GridUid is not { } gridUid || !_gridAccess.IsMobileShuttle(gridUid))
+                continue;
 
             if (!_stuckTime.ContainsKey(uid) && body.LinearVelocity.LengthSquared() > MaxCandidateSpeedSquared)
                 continue;

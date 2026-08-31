@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Server._Mono.Radar;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared._Lua.Shuttles.Components;
@@ -25,6 +26,7 @@ namespace Content.Server._Lua.Shuttles.Systems;
 public sealed class ShuttleGrappleTurretSystem : EntitySystem
 {
     [Dependency] private readonly SharedJointSystem _joints = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
@@ -38,7 +40,7 @@ public sealed class ShuttleGrappleTurretSystem : EntitySystem
         SubscribeLocalEvent<ShuttleGrapplingHookProjectileComponent, ProjectileEmbedEvent>(OnHookEmbedded);
         SubscribeLocalEvent<ShuttleGrapplingHookProjectileComponent, EntityTerminatingEvent>(OnHookTerminating);
 
-        // Directed FTLComponent/ShuttleComponent FTL slots are already owned elsewhere.
+        // Directed FTLComponent/IShuttleGrid FTL slots are already owned elsewhere.
         SubscribeLocalEvent<FTLComponentStartupEvent>(OnFtlComponentStartup);
         SubscribeLocalEvent<FTLStartedEvent>(OnFtlStarted);
     }
@@ -213,7 +215,7 @@ public sealed class ShuttleGrappleTurretSystem : EntitySystem
         if (ownerGrid == targetGrid)
             return;
 
-        if (!HasComp<ShuttleComponent>(ownerGrid) || !HasComp<ShuttleComponent>(targetGrid))
+        if (!_gridAccess.HasAnyGridType(ownerGrid) || !_gridAccess.HasAnyGridType(targetGrid))
             return;
 
         var ownerGridXform = Transform(ownerGrid);

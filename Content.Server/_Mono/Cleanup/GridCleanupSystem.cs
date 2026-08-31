@@ -1,4 +1,5 @@
 using Content.Server.Cargo.Systems;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Worldgen;
 using Content.Server.Power.Components;
 using Content.Shared._Mono.CCVar;
@@ -21,6 +22,7 @@ public sealed partial class GridCleanupSystem : BaseCleanupSystem<MapGridCompone
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private PricingSystem _pricing = default!;
     [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private ShuttleGridAccessSystem _gridAccess = default!;
 
     private float _maxDistance;
     private float _maxValue;
@@ -54,20 +56,22 @@ public sealed partial class GridCleanupSystem : BaseCleanupSystem<MapGridCompone
             return false;
 
         var parent = xform.ParentUid;
+        var tiles = body.FixturesMass / ShuttleSystem.TileDensityMultiplier;
+
+        if (HasComp<MapComponent>(uid)
+            || HasComp<MapGridComponent>(parent)
+            || _immuneQuery.HasComp(uid)
+            || _gridAccess.HasFtlGrid(uid) && tiles >= _aggressiveTiles)
+            return false;
 
         var state = EnsureComp<GridCleanupGridComponent>(uid);
-
-        var tiles = body.FixturesMass / ShuttleSystem.TileDensityMultiplier;
         var scale = Math.Clamp(tiles / _aggressiveTiles, 0.1f, 1f);
 
-        if (HasComp<MapComponent>(uid) // if we're a planetmap ignore
-            || HasComp<MapGridComponent>(parent) // do not delete anything on planetmaps either
-            || _immuneQuery.HasComp(uid)
-            || TryComp<SafeMiningComponent>(uid, out var safeMining) && safeMining.RefCount > 0
-            || !state.IgnoreIFF && TryComp<IFFComponent>(uid, out var iff) && (iff.Flags & IFFFlags.HideLabel) == 0 // delete only if IFF off
-            || _cleanup.HasNearbyPlayers(xform.Coordinates, state.DistanceOverride ?? _maxDistance * scale * scale) // square it
-            || !state.IgnorePowered && HasPoweredAPC((uid, xform)) // don't delete if it has powered APCs
-            || !state.IgnorePrice && _pricing.AppraiseGrid(uid) > _maxValue) // expensive to run, put last
+        if (TryComp<SafeMiningComponent>(uid, out var safeMining) && safeMining.RefCount > 0
+            || !state.IgnoreIFF && TryComp<IFFComponent>(uid, out var iff) && (iff.Flags & IFFFlags.HideLabel) == 0
+            || _cleanup.HasNearbyPlayers(xform.Coordinates, state.DistanceOverride ?? _maxDistance * scale * scale)
+            || !state.IgnorePowered && HasPoweredAPC((uid, xform))
+            || !state.IgnorePrice && _pricing.AppraiseGrid(uid) > _maxValue)
         {
             state.CleanupAccumulator = TimeSpan.FromSeconds(0);
             return false;

@@ -33,7 +33,7 @@ public sealed partial class ShipyardSystem
                 var targetGridUid = dockXform.GridUid;
                 if (targetGridUid != null)
                 {
-                    if (TryAddShuttle(shuttlePath, out var shuttleGrid) && TryComp<ShuttleComponent>(shuttleGrid.Value, out var shuttleComponent))
+                    if (TryAddShuttle(shuttlePath, out var shuttleGrid) && _gridAccess.TryGetShuttleGrid(shuttleGrid.Value, out var shuttleComponent))
                     {
                         var config = _docking.GetDockingConfigForGridDock( shuttleGrid.Value, targetGridUid.Value, selectedDockEntity, priorityTag: null, dockType: dockComp.DockType);
                         if (config != null)

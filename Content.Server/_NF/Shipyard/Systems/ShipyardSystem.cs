@@ -20,6 +20,7 @@ using Content.Server._NF.Station.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 using Content.Server._Lua.StationRecords.Systems;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -28,6 +29,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
@@ -130,7 +132,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     {
         if (!TryComp<StationDataComponent>(stationUid, out var stationData)
             || !TryAddShuttle(shuttlePath, out var shuttleGrid)
-            || !TryComp<ShuttleComponent>(shuttleGrid, out var shuttleComponent))
+            || !_gridAccess.TryGetShuttleGrid(shuttleGrid.Value, out var shuttleComponent))
         {
             shuttleEntityUid = null;
             return false;
@@ -156,7 +158,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     public bool TryPurchaseShuttleToGrid(EntityUid targetGrid, ResPath shuttlePath, [NotNullWhen(true)] out EntityUid? shuttleEntityUid)
     {
         shuttleEntityUid = null;
-        if (!TryAddShuttle(shuttlePath, out var shuttleGrid) || !TryComp<ShuttleComponent>(shuttleGrid, out var shuttleComponent))
+        if (!TryAddShuttle(shuttlePath, out var shuttleGrid) || !_gridAccess.TryGetShuttleGrid(shuttleGrid.Value, out var shuttleComponent))
         { return false; }
         var price = _pricing.AppraiseGrid(shuttleGrid.Value, null);
         _sawmill.Info($"Shuttle {shuttlePath} was purchased at grid {ToPrettyString(targetGrid)} for {price:f2}");
@@ -201,7 +203,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         bill = 0;
 
         if (!TryComp<StationDataComponent>(stationUid, out var stationGrid)
-            || !HasComp<ShuttleComponent>(shuttleUid)
+            || _gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle
+            || !HasComp<ShuttleDeedComponent>(shuttleUid)
             || !TryComp(shuttleUid, out TransformComponent? xform)
             || ShipyardMap == null)
         {
@@ -280,7 +283,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     public ShipyardSaleResult TrySellShuttleToGrid(EntityUid targetGridUid, EntityUid shuttleUid, EntityUid consoleUid, out int bill)
     {
         ShipyardSaleResult result = new ShipyardSaleResult(); bill = 0;
-        if (!HasComp<ShuttleComponent>(shuttleUid) || !TryComp(shuttleUid, out TransformComponent? xform))
+        if (_gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle || !HasComp<ShuttleDeedComponent>(shuttleUid) || !TryComp(shuttleUid, out TransformComponent? xform))
         { result.Error = ShipyardSaleError.InvalidShip; return result; }
         if (!TryComp(targetGridUid, out TransformComponent? _))
         { result.Error = ShipyardSaleError.InvalidShip; return result; }

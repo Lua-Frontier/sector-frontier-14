@@ -6,8 +6,8 @@ using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Bank;
@@ -38,6 +38,7 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
     [Dependency] private readonly BankSystem _bank = default!;
     [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     public override void Initialize()
     {
@@ -153,10 +154,9 @@ public sealed class AiShuttleSpawnRule : StationEventSystem<AiShuttleSpawnRuleCo
         group.Paths.Add(path);
         if (_loader.TryLoadGrid(mapId, path, out var ent))
         {
-            if (!HasComp<ShuttleComponent>(ent.Value))
-            { EnsureComp<ShuttleComponent>(ent.Value); }
-            if (HasComp<ShuttleComponent>(ent.Value))
-            { _shuttle.TryFTLProximity(ent.Value.Owner, spawnCoords); }
+            _gridAccess.EnsureGridType(ent.Value.Owner, ShuttleGridKind.ShuttleAi);
+            if (_gridAccess.TryGetShuttleGrid(ent.Value.Owner, out _))
+                _shuttle.TryFTLProximity(ent.Value.Owner, spawnCoords);
             if (group.NameGrid)
             {
                 string name;

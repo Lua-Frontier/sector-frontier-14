@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Backmen.Arrivals.CentComm;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -87,12 +88,12 @@ public sealed partial class SectorSystem
         if (ev.MapUid != mapUid)
             return;
 
-        if (!TryComp<ShuttleComponent>(ev.Entity, out var shuttleComponent))
+        if (!_gridAccess.TryGetShuttleGrid(ev.Entity, out _))
             return;
 
         QueueLocalEvent(new FtlCentComAnnounce
         {
-            Source = (ev.Entity, shuttleComponent)
+            Source = ev.Entity
         });
     }
 
@@ -105,7 +106,7 @@ public sealed partial class SectorSystem
             return;
 
         var shuttle = Transform(ent).GridUid;
-        if (!HasComp<ShuttleComponent>(shuttle))
+        if (shuttle == null || _gridAccess.GetKind(shuttle.Value) != ShuttleGridKind.Shuttle)
             return;
 
         if (!HasComp<CargoShuttleComponent>(shuttle))
@@ -153,10 +154,10 @@ public sealed partial class SectorSystem
             shuttle = grid;
         }
 
-        if (!TryComp<ShuttleComponent>(shuttle.GridUid, out var comp) || HasComp<FTLComponent>(shuttle.GridUid) || (
-                HasComp<BecomesStationComponent>(shuttle.GridUid) &&
-                !HasComp<CargoShuttleComponent>(shuttle.GridUid)
-            ))
+        if (shuttle.GridUid is not { } gridUid
+            || !_gridAccess.TryGetShuttleGrid(gridUid, out var comp)
+            || HasComp<FTLComponent>(shuttle.GridUid)
+            || _gridAccess.GetKind(shuttle.GridUid.Value) == ShuttleGridKind.Station)
         {
             return;
         }
@@ -173,6 +174,6 @@ public sealed partial class SectorSystem
             return;
         }
 
-        _shuttle.FTLToDock(shuttle.GridUid.Value, comp, centComGrid);
+        _shuttle.FTLToDock(gridUid, comp, centComGrid);
     }
 }

@@ -1,4 +1,4 @@
-﻿using Content.Server.Popups;
+using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Construction.Components;
@@ -8,6 +8,8 @@ using Content.Server.Power.Components; // Frontier
 using Content.Shared.DeviceNetwork; // Frontier
 using Content.Shared.DeviceLinking.Events; // Frontier
 using Content.Shared.DeviceNetwork.Events; // Frontier
+using Content.Server._Lua.Shuttles.Systems;
+using Content.Server._Lua.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -17,6 +19,7 @@ public sealed class StationAnchorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!; // Frontier
     [Dependency] private readonly PowerChargeSystem _chargeSystem = default!; // Frontier
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     public override void Initialize()
     {
@@ -115,11 +118,14 @@ public sealed class StationAnchorSystem : EntitySystem
     }
     // End Frontier: anchor device linking
 
-    private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, ShuttleComponent? shuttleComponent = default)
+    private void SetStatus(Entity<StationAnchorComponent> ent, bool enabled, IShuttleGrid? shuttleComponent = default)
     {
         var transform = Transform(ent);
         var grid = transform.GridUid;
-        if (!grid.HasValue || !transform.Anchored && enabled || !Resolve(grid.Value, ref shuttleComponent))
+        if (!grid.HasValue || !transform.Anchored && enabled)
+            return;
+
+        if (shuttleComponent == null && !_gridAccess.TryGetShuttleGrid(grid.Value, out shuttleComponent))
             return;
 
         if (enabled)

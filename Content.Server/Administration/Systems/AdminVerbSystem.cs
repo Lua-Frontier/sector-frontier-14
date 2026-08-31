@@ -1,4 +1,5 @@
 using Content.Server.Administration.Logs;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
 using Content.Server._Lua.Reputation;
@@ -37,6 +38,7 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Server.Shuttles.Components;
 using static Content.Shared.Configurable.ConfigurationComponent;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Administration.Systems
 {
@@ -46,6 +48,7 @@ namespace Content.Server.Administration.Systems
     public sealed partial class AdminVerbSystem : EntitySystem
     {
         [Dependency] private readonly IConGroupController _groupController = default!;
+        [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
         [Dependency] private readonly IConsoleHost _console = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -329,7 +332,7 @@ namespace Content.Server.Administration.Systems
                 });
 
                 // TeleportHere (disabled for grids/maps/shuttles)
-                if (!HasComp<MapGridComponent>(args.Target) && !HasComp<MapComponent>(args.Target) && !HasComp<ShuttleComponent>(args.Target))
+                if (!HasComp<MapGridComponent>(args.Target) && !HasComp<MapComponent>(args.Target) && !_gridAccess.HasAnyGridType(args.Target))
                 {
                     args.Verbs.Add(new Verb
                     {

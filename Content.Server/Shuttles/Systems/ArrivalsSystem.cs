@@ -37,6 +37,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -62,6 +63,7 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     private EntityQuery<PendingClockInComponent> _pendingQuery;
     private EntityQuery<ArrivalsBlacklistComponent> _blacklistQuery;
@@ -463,15 +465,18 @@ public sealed class ArrivalsSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<ArrivalsShuttleComponent, ShuttleComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<ArrivalsShuttleComponent, TransformComponent>();
         var curTime = _timing.CurTime;
         TryGetArrivals(out var arrivals);
 
         if (TryComp(arrivals, out TransformComponent? arrivalsXform))
         {
-            while (query.MoveNext(out var uid, out var comp, out var shuttle, out var xform))
+            while (query.MoveNext(out var uid, out var comp, out var xform))
             {
                 if (comp.NextTransfer > curTime || !TryComp<StationDataComponent>(comp.Station, out var data))
+                    continue;
+
+                if (!_gridAccess.TryGetShuttleGrid(uid, out var shuttle))
                     continue;
 
                 var tripTime = _shuttles.DefaultTravelTime + _shuttles.DefaultStartupTime;
@@ -603,7 +608,8 @@ public sealed class ArrivalsSystem : EntitySystem
             _loader.TryLoadGrid(dummyMapId, component.ShuttlePath, out var shuttle))
         {
             component.Shuttle = shuttle.Value;
-            var shuttleComp = Comp<ShuttleComponent>(component.Shuttle);
+            if (!_gridAccess.TryGetShuttleGrid(component.Shuttle, out var shuttleComp))
+                return;
             var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(component.Shuttle);
             arrivalsComp.Station = uid;
             EnsureComp<ProtectedGridComponent>(uid);

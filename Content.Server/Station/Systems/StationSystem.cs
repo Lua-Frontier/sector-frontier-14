@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
+using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Shared.CCVar;
@@ -18,6 +19,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Station.Systems;
 
@@ -36,6 +38,7 @@ public sealed partial class StationSystem : SharedStationSystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -215,6 +218,7 @@ public sealed partial class StationSystem : SharedStationSystem
         {
             var becomes = EnsureComp<BecomesStationComponent>(grid);
             becomes.Id = stationId;
+            _gridAccess.EnsureGridType(grid, ShuttleGridKind.Station);
             dict.GetOrNew(stationId).Add(grid);
         }
     }
