@@ -15,7 +15,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.Shuttles.Components;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Worldgen.Systems.Debris;
 
@@ -33,6 +35,7 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _protos = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     private ISawmill _sawmill = default!;
     private const int StargateInitialDebrisBudget = 18;
@@ -574,6 +577,8 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         owned.OwningController = uid;
         owned.LastKey = point;
         EnsureComp<SpaceDebrisComponent>(ent);
+        if (HasComp<MapGridComponent>(ent) && !_gridAccess.HasAnyGridType(ent))
+            _gridAccess.EnsureGridType(ent, _gridAccess.ResolveGridType(ent));
 
         if (!pregen)
             return;

@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
+using Content.Server._Lua.Shuttles.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared._Lua.Shuttles.Components;
@@ -13,10 +14,9 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
-    partial void HandleMagneticLatchFtlCompleted(Entity<ShuttleComponent> ent, ref FTLCompletedEvent args)
+    partial void HandleMagneticLatchFtlCompleted(EntityUid uid, IShuttleGrid grid, ref FTLCompletedEvent args)
     {
-        var gridUid = ent.Owner;
-        Timer.Spawn(TimeSpan.FromMilliseconds(250), () => TryRestoreMagneticLatches(gridUid, attempt: 0));
+        Timer.Spawn(TimeSpan.FromMilliseconds(250), () => TryRestoreMagneticLatches(uid, attempt: 0));
     }
 
     private void TryRestoreMagneticLatches(EntityUid gridUid, int attempt)
@@ -37,7 +37,7 @@ public sealed partial class ShuttleSystem
             if (latch.JointId == null || latch.OwnerGrid != gridUid || latch.TargetGrid == null || latch.LocalAnchorOwner == null || latch.LocalAnchorTarget == null) { continue; }
             if (xform.GridUid != gridUid) continue;
             var targetGrid = latch.TargetGrid.Value;
-            if (TerminatingOrDeleted(targetGrid) || !HasComp<ShuttleComponent>(targetGrid)) continue;
+            if (TerminatingOrDeleted(targetGrid) || !_gridAccess.HasFtlGrid(targetGrid)) continue;
             var targetXform = Transform(targetGrid);
             if (targetXform.MapID == MapId.Nullspace || targetXform.MapID != gridXform.MapID)
             {

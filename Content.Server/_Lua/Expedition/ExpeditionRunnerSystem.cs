@@ -3,11 +3,11 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Sectors;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
 using Content.Server.Mind;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
@@ -49,6 +49,7 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     private float _travelTime;
 
     public override void Initialize()
@@ -189,9 +190,10 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
 
         ClearExpeditionCrewMarkers(fromMap, ev.Entity);
 
-        var shuttleQuery = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
+        var shuttleQuery = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
         while (shuttleQuery.MoveNext(out var shuttleUid, out _, out var otherShuttleXform))
         {
+            if (_gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle) continue;
             if (otherShuttleXform.MapUid == fromMap &&
                 _station.GetOwningStation(shuttleUid, otherShuttleXform) == expedition.Station)
             {
@@ -268,9 +270,11 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     private bool AutoFtlShuttlesHome(EntityUid mapUid, ExpeditionMapComponent comp, float ftlTime)
     {
         var started = false;
-        var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
-        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
+        var shuttleQuery = AllEntityQuery<MapGridComponent, TransformComponent>();
+        while (shuttleQuery.MoveNext(out var shuttleUid, out _, out var shuttleXform))
         {
+            if (_gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle) continue;
+            if (!_gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttle)) continue;
             if (shuttleXform.MapUid != mapUid || HasComp<FTLComponent>(shuttleUid)) continue;
             if (_station.GetOwningStation(shuttleUid, shuttleXform) != comp.Station) continue;
             EntityCoordinates destination;

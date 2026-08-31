@@ -9,6 +9,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Timing;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -17,6 +18,7 @@ public sealed class ShuttleFTLSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     public override void Update(float frameTime)
     {
@@ -49,7 +51,7 @@ public sealed class ShuttleFTLSystem : EntitySystem
     private void OnWeaponShot(EntityUid uid, FireControllableComponent component, ref AmmoShotEvent args)
     {
         var gridUid = Transform(uid).GridUid;
-        if (gridUid == null || !HasComp<ShuttleComponent>(gridUid.Value))
+        if (gridUid == null || !_gridAccess.IsMobileShuttle(gridUid.Value))
             return;
 
         MarkShuttleGroupInCombat(gridUid.Value);
@@ -67,7 +69,7 @@ public sealed class ShuttleFTLSystem : EntitySystem
     private void OnProjectileHit(EntityUid uid, ProjectileGridPhaseComponent phase, ref ProjectileHitEvent args)
     {
         var targetGridUid = Transform(args.Target).GridUid;
-        if (targetGridUid == null || !HasComp<ShuttleComponent>(targetGridUid.Value))
+        if (targetGridUid == null || !_gridAccess.IsMobileShuttle(targetGridUid.Value))
             return;
 
         if (phase.SourceGrid == null || phase.SourceGrid == targetGridUid)
@@ -92,7 +94,7 @@ public sealed class ShuttleFTLSystem : EntitySystem
 
         foreach (var dockedUid in dockedShuttles)
         {
-            if (!HasComp<ShuttleComponent>(dockedUid))
+            if (!_gridAccess.IsMobileShuttle(dockedUid))
                 continue;
 
             var ftl = EnsureComp<ShuttleFTLComponent>(dockedUid);

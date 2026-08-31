@@ -7,6 +7,7 @@ using System.Numerics;
 using System.Threading.Tasks;
 using Content.Server._Lua.Achievements;
 using Content.Server._Lua.Sectors;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Stargate.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -68,6 +69,7 @@ public sealed class ExpeditionSystem : EntitySystem
     [Dependency] private readonly ExpeditionRunnerSystem _runner = default!;
     [Dependency] private readonly ISharedPlayerManager _players = default!;
     [Dependency] private readonly AchievementSystem _achievements = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     private readonly Queue<QueuedExpeditionRequest> _expeditionQueue = new();
     private readonly HashSet<EntityUid> _queuedStations = new();
     private PendingExpeditionRequest? _pendingExpedition;
@@ -574,7 +576,7 @@ public sealed class ExpeditionSystem : EntitySystem
             if (currentData.ActiveMission != missionParams.Index)
                 return;
 
-            if (Deleted(shuttleGrid) || !TryComp<ShuttleComponent>(shuttleGrid, out var shuttle))
+            if (Deleted(shuttleGrid) || !_gridAccess.TryGetShuttleGrid(shuttleGrid, out var shuttle))
             {
                 currentData.ActiveMission = 0;
                 currentData.Cooldown = false;

@@ -4,6 +4,7 @@
 
 using Content.Shared._NF.Bank;
 using Content.Server._NF.Bank;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.Fax;
@@ -72,6 +73,7 @@ public sealed class FrontierParkingSystem : EntitySystem
     [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     private bool _enabled;
     private TimeSpan _nextScan;
     private static readonly TimeSpan ScanInterval = TimeSpan.FromSeconds(1);
@@ -192,9 +194,10 @@ public sealed class FrontierParkingSystem : EntitySystem
         GetFrontierExclusions(frontierStation.Value, _exclusionsBuffer);
         if (_exclusionsBuffer.Count == 0) return;
         _inZoneBuffer.Clear();
-        var shuttleQuery = EntityQueryEnumerator<ShuttleDeedComponent, ShuttleComponent, TransformComponent>();
-        while (shuttleQuery.MoveNext(out var shuttleUid, out var deed, out _, out var shuttleXform))
+        var shuttleQuery = EntityQueryEnumerator<ShuttleDeedComponent, TransformComponent>();
+        while (shuttleQuery.MoveNext(out var shuttleUid, out var deed, out var shuttleXform))
         {
+            if (!_gridAccess.IsPilotableGrid(shuttleUid)) continue;
             if (shuttleXform.MapID == MapId.Nullspace) continue;
             if (!IsInsideAnyExclusion(shuttleXform, _exclusionsBuffer)) continue;
             _inZoneBuffer.Add(shuttleUid);

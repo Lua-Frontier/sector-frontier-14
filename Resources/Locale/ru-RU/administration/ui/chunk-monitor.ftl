@@ -18,6 +18,7 @@ chunk-monitor-details-status = Статус: {$status}
 chunk-monitor-details-entities = Сущности: {$count}
 chunk-monitor-details-players = Игроки: {$count}
 chunk-monitor-details-shuttles = Шаттлы: {$count}
+chunk-monitor-details-ai-shuttles = Шаттлы ИИ: {$count}
 chunk-monitor-details-stations = Станции: {$count}
 chunk-monitor-details-debris = Обломки: {$count}
 chunk-monitor-details-grids = Гриды: {$count}

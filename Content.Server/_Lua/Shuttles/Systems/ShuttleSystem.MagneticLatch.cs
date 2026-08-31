@@ -20,7 +20,7 @@ public sealed partial class ShuttleSystem
     private const float MagneticLatchFrequencyHz = 12f;
     private const float MagneticLatchDampingRatio = 1.0f;
 
-    partial void HandleShuttleCollision(ref bool handled, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args, MapGridComponent ourGrid, MapGridComponent otherGrid)
+    partial void HandleShuttleCollision(ref bool handled, EntityUid uid, IShuttleGrid component, ref StartCollideEvent args, MapGridComponent ourGrid, MapGridComponent otherGrid)
     {
         if (handled) return;
         if (args.OurEntity != uid) return;

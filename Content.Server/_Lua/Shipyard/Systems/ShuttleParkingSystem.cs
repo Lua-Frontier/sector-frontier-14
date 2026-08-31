@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Shipyard.Components;
 using Content.Server.Mind;
 using Content.Server.Shuttles.Components;
@@ -47,12 +48,13 @@ public sealed class ShuttleParkingSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     public bool IsParked(EntityUid shuttleUid)
     { return HasComp<ParkedShuttleComponent>(shuttleUid); }
     public ShuttleParkingResult TryParkShuttle(EntityUid consoleUid, EntityUid shuttleUid)
     {
-        if (!HasComp<ShuttleComponent>(shuttleUid) || !TryComp<MapGridComponent>(shuttleUid, out var shuttleGrid))
+        if (!_gridAccess.IsPilotableGrid(shuttleUid) || !TryComp<MapGridComponent>(shuttleUid, out var shuttleGrid))
             return new ShuttleParkingResult(ShuttleParkingError.InvalidShuttle);
         if (HasComp<ParkedShuttleComponent>(shuttleUid))
             return new ShuttleParkingResult(ShuttleParkingError.AlreadyParked);
@@ -81,7 +83,7 @@ public sealed class ShuttleParkingSystem : EntitySystem
     {
         if (!HasComp<ParkedShuttleComponent>(shuttleUid))
             return new ShuttleParkingResult(ShuttleParkingError.ShuttleNotParked);
-        if (!TryComp<ShuttleComponent>(shuttleUid, out var shuttle))
+        if (!_gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttle))
             return new ShuttleParkingResult(ShuttleParkingError.InvalidShuttle);
         if (!TryComp<DockingComponent>(targetDockUid, out _) || !TryComp<TransformComponent>(targetDockUid, out var dockXform) || dockXform.GridUid is not { Valid: true } targetGrid)
         { return new ShuttleParkingResult(ShuttleParkingError.InvalidDock); }

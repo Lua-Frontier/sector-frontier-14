@@ -248,7 +248,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         }
 
         var shuttleUid = shuttleUidOut.Value;
-        if (!_entityManager.TryGetComponent<ShuttleComponent>(shuttleUid, out var shuttle))
+        if (!_gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttle))
         {
             ConsolePopup(player, Loc.GetString("cargo-console-insufficient-funds", ("cost", vessel.Price)));
             PlayDenySound(player, shipyardConsoleUid, component);
@@ -1051,7 +1051,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         if (xform.GridUid == null)
             return;
 
-        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !TryComp<ShuttleComponent>(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null || ShipyardMap == null)
+        if (!TryComp<ShuttleDeedComponent>(xform.GridUid.Value, out var shuttleDeed) || !_gridAccess.TryGetShuttleGrid(xform.GridUid.Value, out var shuttle) || !HasComp<TransformComponent>(xform.GridUid.Value) || shuttle == null || ShipyardMap == null)
             return;
 
         var output = DeedRegex.Replace($"{shuttleDeed.ShuttleOwner}", ""); // Removes content inside parentheses along with parentheses and a preceding space

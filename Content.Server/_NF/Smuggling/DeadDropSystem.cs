@@ -28,12 +28,14 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server._NF.Smuggling;
 
 public sealed class DeadDropSystem : EntitySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -512,7 +514,7 @@ public sealed class DeadDropSystem : EntitySystem
         }
 
         //this will spawn in the latest ship, and delete the oldest one available if the amount of ships exceeds 5.
-        if (TryComp<ShuttleComponent>(grid, out var shuttle))
+        if (_gridAccess.TryGetShuttleGrid(grid, out var shuttle))
         {
             _shuttle.FTLToCoordinates(grid, shuttle, new EntityCoordinates(mapUid.Value, dropLocation), 0f, 0f, 35f);
             _drops.Enqueue(grid);

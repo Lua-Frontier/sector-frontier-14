@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
+using Content.Server._Lua.Shuttles.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Lua.Shuttles.Components;
 using Robust.Shared.Map;
@@ -11,7 +12,7 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleSystem
 {
-    partial void SuppressImpactDamage(ref bool suppress, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args)
+    partial void SuppressImpactDamage(ref bool suppress, EntityUid uid, IShuttleGrid component, ref StartCollideEvent args)
     {
         if (suppress) return;
         if (!_gridQuery.TryComp(args.OurEntity, out var ourGrid) || !_gridQuery.TryComp(args.OtherEntity, out var otherGrid)) { return; }

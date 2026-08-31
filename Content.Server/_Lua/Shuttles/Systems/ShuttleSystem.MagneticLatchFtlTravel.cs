@@ -16,7 +16,7 @@ public sealed partial class ShuttleSystem
         var latchSet = new HashSet<Entity<MagneticLatchComponent, TransformComponent>>();
         foreach (var gridUid in dockedShuttles)
         {
-            if (TerminatingOrDeleted(gridUid) || !HasComp<ShuttleComponent>(gridUid)) continue;
+            if (TerminatingOrDeleted(gridUid) || !_gridAccess.HasFtlGrid(gridUid)) continue;
             var gridXform = Transform(gridUid);
             if (gridXform.MapID == MapId.Nullspace) continue;
             latchSet.Clear();
@@ -29,7 +29,7 @@ public sealed partial class ShuttleSystem
                 if (magnetXform.GridUid != gridUid) continue;
                 var targetGrid = latch.TargetGrid.Value;
                 if (!dockedShuttles.Contains(targetGrid)) continue;
-                if (TerminatingOrDeleted(targetGrid) || !HasComp<ShuttleComponent>(targetGrid)) continue;
+                if (TerminatingOrDeleted(targetGrid) || !_gridAccess.HasFtlGrid(targetGrid)) continue;
                 var targetXform = Transform(targetGrid);
                 if (targetXform.MapID == MapId.Nullspace || targetXform.MapID != gridXform.MapID) continue;
                 if (!_physicsQuery.TryGetComponent(gridUid, out var ourPhys) || !_physicsQuery.TryGetComponent(targetGrid, out var otherPhys))

@@ -36,6 +36,7 @@ public sealed partial class AdminStatsWindow : DefaultWindow
         RobustXamlLoader.Load(this);
         NpcPanel.PanelOverride = CardStyle;
         ShuttlesPanel.PanelOverride = CardStyle;
+        AiShuttlesPanel.PanelOverride = CardStyle;
         DebrisPanel.PanelOverride = CardStyle;
         PlayersPanel.PanelOverride = CardStyle;
         StargatePanel.PanelOverride = CardStyle;
@@ -51,6 +52,9 @@ public sealed partial class AdminStatsWindow : DefaultWindow
         ShuttlesActiveLabel.Text = state.ShuttlesActive.ToString();
         ShuttlesPausedLabel.Text = state.ShuttlesPaused.ToString();
         ShuttlesTotalLabel.Text = state.ShuttlesTotal.ToString();
+
+        AiShuttlesActiveLabel.Text = state.AiShuttlesActive.ToString();
+        AiShuttlesTotalLabel.Text = state.AiShuttlesTotal.ToString();
 
         DebrisCountLabel.Text = state.DebrisCount.ToString();
         WrecksCountLabel.Text = state.WrecksCount.ToString();

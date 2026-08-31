@@ -1,8 +1,8 @@
 // LuaCorp - This file is licensed under AGPLv3
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Stargate.Components;
-using Content.Server.Shuttles.Components;
 using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Stargate;
 using Content.Shared._Lua.Stargate.Components;
@@ -32,6 +32,7 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     private EntityQuery<OccluderComponent> _occluderQuery;
     private TimeSpan _nextUpdate;
     private static readonly TimeSpan UpdateInterval = TimeSpan.FromSeconds(0.5);
@@ -273,9 +274,10 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
 
     private Vector2? GetExpeditionShuttlePosition(EntityUid mapUid)
     {
-        var shuttleQuery = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
-        while (shuttleQuery.MoveNext(out _, out _, out var shuttleXform))
+        var gridQuery = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
+        while (gridQuery.MoveNext(out var shuttleUid, out _, out var shuttleXform))
         {
+            if (_gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle) continue;
             if (shuttleXform.MapUid != mapUid)
                 continue;
 

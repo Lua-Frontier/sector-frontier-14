@@ -1,6 +1,6 @@
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Shipyard.Components;
 using Content.Server._Lua.Stargate.Components;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Expedition;
@@ -40,6 +40,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
     [Dependency] private readonly SharedIdCardSystem _idCards = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
@@ -87,7 +88,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
                 else
                 {
                     comp.AutoReturnAt ??= now + AutoReturnDelay;
-                    if (now >= comp.AutoReturnAt.Value && comp.ReturnMapUid != null && TryComp<ShuttleComponent>(shuttleUid, out var shuttleComp) && _shuttle.CanFTL(shuttleUid, out _) && !HasComp<FTLComponent>(shuttleUid))
+                    if (now >= comp.AutoReturnAt.Value && comp.ReturnMapUid != null && _gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttleComp) && _shuttle.CanFTL(shuttleUid, out _) && !HasComp<FTLComponent>(shuttleUid))
                     {
                         var destination = new EntityCoordinates(comp.ReturnMapUid.Value, comp.ReturnWorldPosition);
                         _shuttle.FTLToCoordinates(shuttleUid, shuttleComp, destination, comp.ReturnAngle);
@@ -106,7 +107,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
             {
                 var remaining = comp.RecallAt.Value - now;
                 var launchThreshold = TimeSpan.FromSeconds(_shuttle.DefaultStartupTime) + TimeSpan.FromSeconds(0.5f);
-                if (remaining <= launchThreshold && TryComp<ShuttleComponent>(shuttleUid, out var shuttleComp) && comp.ReturnMapUid != null && _shuttle.CanFTL(shuttleUid, out _))
+                if (remaining <= launchThreshold && _gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttleComp) && comp.ReturnMapUid != null && _shuttle.CanFTL(shuttleUid, out _))
                 {
                     var startupTime = (float) remaining.TotalSeconds;
                     if (remaining < TimeSpan.FromSeconds(_shuttle.DefaultStartupTime)) startupTime = MathF.Max(0f, startupTime - 0.5f);
@@ -180,7 +181,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-no-bound-shuttle"), ent, user);
             return;
         }
-        if (!_gridQuery.HasComp(shuttleUid) || !TryComp<ShuttleComponent>(shuttleUid, out var shuttleComp))
+        if (!_gridQuery.HasComp(shuttleUid) || !_gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttleComp))
         {
             _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-no-bound-shuttle"), ent, user);
             return;
@@ -248,7 +249,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-no-bound-shuttle"), ent, user);
             return;
         }
-        if (!_gridQuery.HasComp(shuttleUid) || !TryComp<ShuttleComponent>(shuttleUid, out var shuttleComp))
+        if (!_gridQuery.HasComp(shuttleUid) || !_gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttleComp))
         {
             _popup.PopupEntity(Loc.GetString("stargate-shuttle-beacon-no-bound-shuttle"), ent, user);
             return;
@@ -408,7 +409,7 @@ public sealed class StarGateShuttleLandingSystem : EntitySystem
         {
             var otherUid = otherGrid.Owner;
             if (otherUid == landingShuttleUid) continue;
-            if (!HasComp<ShuttleComponent>(otherUid)) continue;
+            if (!_gridAccess.IsMobileShuttle(otherUid)) continue;
             if (HasComp<FTLComponent>(otherUid)) continue;
             if (!_xformQuery.TryComp(otherUid, out var otherXform)) continue;
             if (otherXform.MapID != mapId) continue;
