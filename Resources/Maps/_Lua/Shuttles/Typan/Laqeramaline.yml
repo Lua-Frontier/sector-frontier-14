@@ -8693,7 +8693,7 @@ entities:
     - type: Transform
       pos: 9.5,10.5
       parent: 1
-- proto: NFWeaponShotgunEnforcer
+- proto: WeaponShotgunEnforcer
   entities:
   - uid: 1201
     components:
@@ -8701,7 +8701,7 @@ entities:
       parent: 1200
     - type: Physics
       canCollide: False
-- proto: NFWeaponSubMachineGunAtreides
+- proto: WeaponSubMachineGunAtreides
   entities:
   - uid: 1202
     components:

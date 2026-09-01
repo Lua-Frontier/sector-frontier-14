@@ -131,6 +131,15 @@
     id: ClothingOuterHardsuitScaf
 
 - type: pirateBounty
+  id: PirateBountyTacsuit
+  reward: 30
+  description: pirate-bounty-description-faction-tacsuit
+  entries:
+  - name: pirate-bounty-item-faction-tacsuit
+    amount: 1
+    id: ClothingOuterHardsuitTacsuit
+
+- type: pirateBounty
   id: PirateBountyRTG
   reward: 4
   description: pirate-bounty-description-generic
@@ -165,7 +174,7 @@
   entries:
   - name: pirate-bounty-item-mk58
     amount: 2
-    id: NFWeaponPistolMk58
+    id: WeaponPistolMk58
 
 - type: pirateBounty
   id: PirateBountyArtifactAnalyzer

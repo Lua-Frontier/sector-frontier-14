@@ -12,25 +12,21 @@
   - type: Clothing
     sprite: _Mono/Clothing/OuterClothing/Hardsuits/merc_warlordsuit.rsi
   - type: PressureProtection
-    highPressureMultiplier: 0.05
+    highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical 45/45/30//45/45//30/30//30/5
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.7
-        #Physical
-        Heat: 0.55
-        Radiation: 0.55
-        #Special
-        Shock: 0.7
-        Caustic: 0.7
-  - type: StaminaResistance
-    damageCoefficient: 0.7
+        Blunt: 0.65
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.65
+        Radiation: 0.6
+        Caustic: 0.8
+  - type: StaminaDamageResistance
+    coefficient: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
@@ -64,25 +60,21 @@
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.65
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical 30/30/45//45/45//30/30//70/25
-        Blunt: 0.7
+        Blunt: 0.6
         Slash: 0.7
-        Piercing: 0.55
-        #Physical
-        Heat: 0.55
-        Radiation: 0.55
-        #Special
-        Shock: 0.7
-        Caustic: 0.7
-  - type: StaminaResistance
-    damageCoefficient: 0.3
+        Piercing: 0.45
+        Heat: 0.65
+        Radiation: 0.8
+        Caustic: 0.6
+  - type: StaminaDamageResistance
+    coefficient: 0.3
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.85
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
     requiredSlot: outerclothing
@@ -113,25 +105,21 @@
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.8
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical 45/45/45//30/30//30/30//50/15
-        Blunt: 0.55
-        Slash: 0.55
-        Piercing: 0.55
-        #Physical
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
         Heat: 0.7
         Radiation: 0.7
-        #Special
-        Shock: 0.7
         Caustic: 0.7
-  - type: StaminaResistance
-    damageCoefficient: 0.5
+  - type: StaminaDamageResistance
+    coefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
     requiredSlot: outerclothing
@@ -162,27 +150,22 @@
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.8
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical 30/30/30//45/45//45/45//50/15
-        Blunt: 0.7
-        Slash: 0.7
+        Blunt: 0.8
+        Slash: 0.8
         Piercing: 0.7
-        #Physical
-        Heat: 0.55
-        Radiation: 0.55
-        #Special
-        Shock: 0.55
-        Caustic: 0.55
-  - type: StaminaResistance
-    damageCoefficient: 0.5
+        Heat: 0.7
+        Radiation: 0.7
+        Caustic: 0.7
+  - type: StaminaDamageResistance
+    coefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing # Goobstation - Modsuits change - Mono - block helmet cover/attachment on hardsuits
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ToggleableClothing
     requiredSlot: outerclothing
     blockUnequipWhenAttached: false
     replaceCurrentClothing: true
@@ -201,8 +184,6 @@
   description: warlord hardsuit helmet
   categories: [ HideSpawnMenu ]
   components:
-  - type: PointLight
-    color: "#b8b873"
   - type: Sprite
     sprite: _Mono/Clothing/Head/Hardsuits/merc_warlordsuit.rsi
   - type: Clothing
@@ -217,22 +198,41 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: FlashImmunity
+  - type: PointLight
+    radius: 8
+    energy: 3
+    color: "#e24242"
+  - type: RadarConsole
+    followEntity: true
+    noRotate: true
+  - type: DetectionRangeMultiplier
+    infraredMultiplier: 0.5
+    visualMultiplier: 0.75
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
   - type: HideLayerClothing
     slots:
     - Hair
     - Snout
     - HeadTop
     - HeadSide
+    - Head
 
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowMedicalIcons, BaseC3SyndicateContraband]
   id: ClothingHeadHelmetHardsuitUSSPCombat
   name: ussp combat hardsuit helmet
   description: ussp combat harsuit helmet
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
-    color: "#b8b873"
+    color: "#4e88a6"
   - type: Sprite
     sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat.rsi
   - type: Clothing
@@ -253,16 +253,17 @@
     - Snout
     - HeadTop
     - HeadSide
+    - Head
 
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowMedicalIcons, BaseC3SyndicateContraband]
   id: ClothingHeadHelmetHardsuitUSSPLightOfficer
   name: ussp light officer hardsuit helmet
   description: ussp light officer helmet
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
-    color: "#b8b873"
+    color: "#4e88a6"
   - type: Sprite
     sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat_light_officer.rsi
   - type: Clothing
@@ -283,6 +284,7 @@
     - Snout
     - HeadTop
     - HeadSide
+    - Head
 
 - type: entity
   parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3SyndicateContraband]
@@ -292,7 +294,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight
-    color: "#b8b873"
+    color: "#4ea64e"
   - type: Sprite
     sprite: _Mono/Clothing/Head/Hardsuits/ussp_combat_lightmk2.rsi
   - type: Clothing
@@ -300,16 +302,27 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: RadarConsole
+    followEntity: true
+    noRotate: true
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+    singleUser: true
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
-        Heat: 0.95
+        Blunt: 0.90
+        Slash: 0.90
+        Piercing: 0.90
+        Heat: 0.90
   - type: HideLayerClothing
     slots:
     - Hair
     - Snout
     - HeadTop
     - HeadSide
+    - Head

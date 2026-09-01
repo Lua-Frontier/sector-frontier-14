@@ -38,7 +38,7 @@
     gloves: ClothingHandsGlovesColorBlack
   storage:
     back:
-    - NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
+    - WeaponPistolViper # Frontier: WeaponPistolViper<WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
@@ -54,7 +54,7 @@
   id: SyndicateReinforcementMedic
   parent: SyndicateOperativeClothing
   equipment:
-    pocket1: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
+    pocket1: WeaponPistolViper # Frontier: WeaponPistolViper<WeaponPistolViper
   inhand:
     - MedkitCombatFilled
 
@@ -64,13 +64,13 @@
   equipment:
     id: AgentIDCard
     mask: ClothingMaskGasVoiceChameleon
-    pocket1: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
+    pocket1: WeaponPistolViper # Frontier: WeaponPistolViper<WeaponPistolViper
 
 - type: startingGear
   id: SyndicateReinforcementThief
   parent: SyndicateOperativeClothing
   equipment:
-    pocket1: NFWeaponPistolViper # Frontier: WeaponPistolViper<NFWeaponPistolViper
+    pocket1: WeaponPistolViper # Frontier: WeaponPistolViper<WeaponPistolViper
   inhand:
     - ToolboxSyndicateFilled
   storage:

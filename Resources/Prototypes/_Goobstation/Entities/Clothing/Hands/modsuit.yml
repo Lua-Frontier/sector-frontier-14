@@ -77,9 +77,9 @@
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-      - ShellShotgun
+      - ShellShotgun12_gaugeBuckshot
     capacity: 6
-    proto: NFShellShotgunBuckshot
+    proto: ShellShotgun12_gaugeBuckshot
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

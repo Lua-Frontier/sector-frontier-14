@@ -340,9 +340,9 @@
     - type: RevolverAmmoProvider
       whitelist:
         tags:
-        - NFCartridgePistol45 # Frontier: CartridgeMagnum<NFCartridgePistol45
-        - NFSpeedLoaderPistol45 # Frontier: SpeedLoaderMagnum<NFSpeedLoaderPistol45
-      proto: NFCartridgePistol45 # Frontier: CartridgeMagnum<NFCartridgePistol45
+        - Cartridge357_magnumFMJ
+        - SpeedLoader357_magnumFMJ
+      proto: Cartridge357_magnumFMJ
       capacity: 7
       chambers: [ True, True, True, True, True, True, True ]
       ammoSlots: [ null, null, null, null, null, null, null ]

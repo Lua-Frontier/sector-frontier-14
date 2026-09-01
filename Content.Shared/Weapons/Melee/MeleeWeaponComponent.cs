@@ -151,6 +151,9 @@ public sealed partial class MeleeWeaponComponent : Component
     [DataField, AutoNetworkedField]
     public bool MustBeEquippedToUse = false;
 
+    [DataField, AutoNetworkedField]
+    public float ArmorPenetration;
+
     /// <summary>
     ///     Shitmed Change: Part damage is multiplied by this amount for single-target attacks
     /// </summary>

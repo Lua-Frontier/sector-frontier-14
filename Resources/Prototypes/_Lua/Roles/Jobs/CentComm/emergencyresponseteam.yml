@@ -266,12 +266,12 @@
     belt: ClothingBeltERTFilled
   storage:
     back:
-    - NFWeaponEnergyRifleSniperCannon
-    - NFWeaponSubMachineGunWt550
+    - WeaponLaserCannon
+    - WeaponSubMachineGunWt550
     - Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
     - BoxMRE
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - CrowbarRed
     - FlashlightSeclite
     - ADTtelescopicBaton
@@ -319,8 +319,8 @@
     belt: ClothingBeltERTFilled
   storage:
     back:
-    - NFWeaponEnergyRifleSniperXrayCannon
-    - NFWeaponSubMachineGunDrozd
+    - WeaponXrayCannon
+    - WeaponSubMachineGunDrozd
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
@@ -332,7 +332,7 @@
     - EmergencyMedipen
     - ADTtelescopicBaton
     - Flash
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - Truncheon
 
 ## Gamma
@@ -371,11 +371,11 @@
     shoes: ADTClothingShoesBootsMagERT
     id: ERTLeaderGammaPDA
     belt: ClothingBeltERTFilled
-    pocket1: NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler
     pocket2: DoorRemoteAll
   storage:
     back:
-    - NFWeaponEnergyRifleAssaultPulseCarbine
+    - WeaponPulseCarbine
     - WeaponSubMachineGunVector9x19mm #Lua 35 -> 9x19
     - PinpointerNuclear
     - CrowbarRed
@@ -428,12 +428,12 @@
     back:
     - TelescopicShield
     - FlashlightSeclite
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - CrowbarRed
     - EmergencyMedipen
     - BoxMRE
-    - NFWeaponEnergyRifleSniperCannon
-    - NFWeaponSubMachineGunWt550
+    - WeaponLaserCannon
+    - WeaponSubMachineGunWt550
     - Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
     - Flare
@@ -477,11 +477,11 @@
   storage:
     back:
     - TelescopicShield
-    - NFWeaponEnergyPistolDisabler
-    - NFWeaponEnergyRifleSniperXrayCannon
+    - WeaponDisabler
+    - WeaponXrayCannon
     - EmergencyMedipen
     - BoxMRE
-    - NFWeaponSubMachineGunDrozd
+    - WeaponSubMachineGunDrozd
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
@@ -528,9 +528,9 @@
   storage:
     back:
     - TelescopicShield
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - CrowbarRed
-    - NFWeaponEnergyRifleAssaultPulseCarbine
+    - WeaponPulseCarbine
     - WeaponSubMachineGunVector9x19mm #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
     - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
@@ -583,12 +583,12 @@
     back:
     - Defibrillator
     - BoxMRE
-    - NFWeaponPistolMk58
+    - WeaponPistolMk58
     - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
     - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
-    - NFWeaponEnergyRifleCarbine
+    - WeaponLaserCarbine
     - Flare
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - HandheldHealthAnalyzer
     - ChemistryBottleOmnizine
     - ChemistryBottleEpinephrine
@@ -643,7 +643,7 @@
     - CrowbarRed
     - Flare
     - ADTCombatHypo
-    - NFWeaponEnergyPistolLaser
+    - WeaponLaserGun
     - EmergencyMedipen
     - BoxMRE
     - WeaponRevolverUnica
@@ -651,7 +651,7 @@
     - SpeedLoader357
     - SpeedLoader357
     - Defibrillator
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - HandheldHealthAnalyzer
 
 ## Gamma
@@ -700,16 +700,16 @@
     - Cautery
     - CrowbarRed
     - ADTCombatHypo
-    - NFWeaponEnergyPistolPulse
+    - WeaponPulsePistol
     - EmergencyMedipen
     - BoxMRE
     - Defibrillator
-    - NFWeaponPistolN1984
+    - WeaponPistolN1984
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - HandheldHealthAnalyzer
     - PinpointerNuclear
 
@@ -753,13 +753,13 @@
   storage:
     back:
     - FlashlightLantern
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - EmergencyMedipen
     - BoxMRE
-    - NFWeaponPistolMk58
+    - WeaponPistolMk58
     - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
     - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
-    - NFWeaponEnergyRifleCarbine
+    - WeaponLaserCarbine
     - Flare
 
 ## Red
@@ -802,7 +802,7 @@
     - RCD
     - RCDAmmo
     - RCDAmmo
-    - NFWeaponEnergyPistolLaser
+    - WeaponLaserGun
     - EmergencyMedipen
     - BoxMRE
     - WeaponRevolverUnica
@@ -811,7 +811,7 @@
     - SpeedLoader357
     - RemoteSignaller
     - Flare
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
 
 ## Gamma
 - type: job
@@ -850,7 +850,7 @@
     belt: ClothingBeltChiefEngineerFilled
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - RCDRecharging
     - RCDAmmo
     - RCDAmmo
@@ -859,10 +859,10 @@
     - C4
     - C4
     - RemoteSignallerAdvanced
-    - NFWeaponEnergyPistolPulse
+    - WeaponPulsePistol
     - EmergencyMedipen
     - BoxMRE
-    - NFWeaponPistolN1984
+    - WeaponPistolN1984
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
@@ -909,7 +909,7 @@
     belt: ClothingBeltJanitorFilled
   storage:
     back:
-    - NFWeaponEnergyRifleCarbine
+    - WeaponLaserCarbine
     - SoapNT
     - MopItem
     - LightReplacer
@@ -917,11 +917,11 @@
     - CrowbarRed
     - EmergencyMedipen
     - BoxMRE
-    - NFWeaponPistolMk58
+    - WeaponPistolMk58
     - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
     - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
     - Flare
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
 
 ## Red
 - type: job
@@ -965,7 +965,7 @@
     - LightReplacer
     - Holoprojector
     - CrowbarRed
-    - NFWeaponEnergyPistolLaser
+    - WeaponLaserGun
     - EmergencyMedipen
     - BoxMRE
     - WeaponRevolverUnica
@@ -974,7 +974,7 @@
     - SpeedLoader357
     - TrashBagBlue
     - Flare
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
 
 ## Gamma
 - type: job
@@ -1018,15 +1018,15 @@
     - LightReplacer
     - Holoprojector
     - Zipties
-    - NFWeaponEnergyPistolPulse
+    - WeaponPulsePistol
     - EmergencyMedipen
     - BoxMRE
-    - NFWeaponPistolN1984
+    - WeaponPistolN1984
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - Magazine45_ACPPistolFMJ #Lua 45 -> ACP
     - CrowbarRed
-    - NFWeaponEnergyPistolDisabler
+    - WeaponDisabler
     - TrashBagBlue
     - PinpointerNuclear

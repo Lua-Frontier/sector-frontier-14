@@ -1,46 +1,6 @@
 #region WizDen
 - type: entity
-  id: NFWeaponRevolverInspector
-  parent: [ BaseC1Contraband, NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverNanotrasen ] #Lua 45 -> magnum
-  name: inspector
-  description: |-
-    A detective's best friend. On the handle is a label that says 'for authorized use only.'
-  suffix: Need balance test
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
-  - type: Gun #Lua
-    minAngle: 1 #Lua
-    maxAngle: 3.5 #Lua
-    angleIncrease: 0.2 #Lua
-    angleDecay: 1 #Lua
-    fireRate: 1.9 #Lua
-
-- type: entity
-  id: NFWeaponRevolverWard45
-  parent: [ BaseC1Contraband, NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverNanotrasen ] #Lua 45 -> magnum
-  name: ward-45
-  description: |-
-    The iconic sidearm of the dreaded death squads. On the handle is a label that says 'for authorized use only.'
-  suffix: Need balance test
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/mateba.rsi
-  - type: Gun
-    minAngle: 1 #Lua
-    maxAngle: 3.5 #Lua
-    angleIncrease: 0.2 #Lua
-    angleDecay: 1 #Lua
-    fireRate: 1.9 #Lua
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
-
-- type: entity
-  id: NFWeaponRevolverDeckard
+  id: WeaponRevolverDeckard
   parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: deckard
   description: |-
@@ -68,26 +28,7 @@
     fireRate: 1.6 #Lua
 
 - type: entity
-  id: NFWeaponRevolverRitland45
-  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverGorlex ] #Lua 45 -> magnum
-  name: ritland-45
-  description: |-
-    An illegal revolver favoured by Syndicate agents.
-  suffix: Need balance test
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Revolvers/python.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Revolvers/python.rsi
-  - type: Gun #Lua
-    fireRate: 1.6 #Lua
-    minAngle: 1 #Lua
-    maxAngle: 3.5 #Lua
-    angleIncrease: 0.2 #Lua
-    angleDecay: 1 #Lua
-
-- type: entity
-  id: NFWeaponRevolverPirate
+  id: WeaponRevolverPirate
   parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverSteelbolt ] #Lua 45 -> magnum
   name: pirate revolver
   description: |-
@@ -98,30 +39,16 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
 
-- type: entity
-  id: NFWeaponPistolFlintlock
-  parent: [ NFBaseWeaponRevolverChamber50, NFBaseWeaponFrameRevolverSteelbolt ]
-  name: flintlock pistol
-  description: |-
-    A pirate's companion. Yarrr! An illegal weapon often used by pirates.
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/Revolvers/flintlock.rsi
-  - type: UseDelay
-    delay: 5
-
 # WizDen: Rubber
 - type: entity
-  id: NFWeaponRevolverDeckardExpeditionGrifty
-  parent: NFWeaponRevolverDeckardExpedition
+  id: WeaponRevolverDeckardExpeditionGrifty
+  parent: WeaponRevolverDeckardExpedition
   categories: [ HideSpawnMenu ]
   name: Customer Service Resolver
 
 #region DeltaV
 - type: entity
-  id: NFWeaponRevolverFitz
+  id: WeaponRevolverFitz
   parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: fitz special
   description: |-
@@ -140,7 +67,7 @@
     sprite: _DV/Objects/Weapons/Guns/Revolvers/fitz.rsi
 
 - type: entity
-  id: NFWeaponRevolverFaith
+  id: WeaponRevolverFaith
   parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: faith
   description: |-
@@ -163,7 +90,7 @@
     ammoSlots: [ null, null, null, null ]
 
 - type: entity
-  id: NFWeaponRevolverLucky
+  id: WeaponRevolverLucky
   parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua 45 -> magnum
   name: lucky
   description: |-
@@ -188,45 +115,40 @@
 #        - SpeedLoader357_magnumFMJ comment from _Lua
     proto: Cartridge45_ACPFMJ #Lua Cartridge357_magnumFMJ<Cartridge45_ACPFMJ
 
-#region Frontier
+#region Frontier / Mono leftover Argenti
 - type: entity
-  id: NFWeaponRevolverArgenti
-  parent: [ NFBaseWeaponRevolverChamber45Magnum, NFBaseWeaponFrameRevolverFrontierGunsmith ] #Lua BaseWeaponRevolver<NFBaseWeaponRevolverChamber45Magnum
-  name: argenti
-  description: |-
-    The civilian grade Argenti Type 35 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well.
-  suffix: Need balance test
+  name: Argenti (5.56x45mm)
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverArgenti
+  description: The civilian grade Argenti Type 20 revolver. Manufactured by Silver Industries. While the design with expanded cylinder is quite ancient, the right gunslinger will know how to utilise it well. Uses 5.56x45mm ammo.
   components:
   - type: Sprite
-    scale: 0.75, 0.75
+    scale: 0.75 , 0.75
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Gun
-    examineCaliber: gun-examine-caliber-45acp #Lua
-    minAngle: 3.1 #Lua
-    maxAngle: 15.5 #Lua
-    angleIncrease: 0.7 #Lua
-    angleDecay: 5 #Lua
-    fireRate: 3 #Lua 2.5<3
+    fireRate: 2.5
     resetOnHandSelected: false
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
-#        - SpeedLoader9x19mmFMJ # comment from _Lua
-    proto: Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
+        - Cartridge556x45mmFMJ
+        - SpeedLoader556x45mmFMJ
     capacity: 8
+    proto: Cartridge556x45mmFMJ
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
 
-# Frontier: Rubber
 - type: entity
-  id: NFWeaponRevolverArgentiLessLethal
-  parent: NFWeaponRevolverArgenti
-  suffix: Frontier, Less-lethal
+  parent: WeaponRevolverArgenti
+  id: WeaponRevolverArgentiNonlethal
+  suffix: Non-lethal
   components:
   - type: RevolverAmmoProvider
-    proto: Cartridge9x19mmRubber #Lua 35 -> 9x19
+    capacity: 8
+    proto: Cartridge556x45mmRubber
+    chambers: [ True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null ]

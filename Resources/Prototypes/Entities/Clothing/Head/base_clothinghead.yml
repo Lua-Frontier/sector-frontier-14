@@ -195,6 +195,16 @@
     - HeadTop
     - HeadSide
     - Head
+  # Mono - basic NVDs for everyone!
+  - type: NightVision # Gen 2 monotube
+    relayOverlay: true
+    goggleEffect: true
+    action: ActionToggleNightVision
+    viewCircleRadius: 400
+    viewCircleCount: 1
+    viewCircleSpacing: 280
+    phosphorColor: "#00FF00"
+    lightingColor: "#FFFFFF32"
 
 - type: entity
   abstract: true
@@ -220,8 +230,8 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 6 # Lua: 6<9
-    energy: 4 # Lua: 4<6
+    radius: 4 # 3->4 Mono
+    energy: 3 # 2->3 Mono
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     netsync: false
@@ -236,8 +246,8 @@
         id: radiating
         interpolate: Linear
         maxDuration: 2.0
-        startValue: 6.0 # Lua: 6.0<9.0
-        endValue: 4.0 # Lua: 4.0<6.0
+        startValue: 3.0
+        endValue: 2.0
         isLooped: true
         reverseWhenFinished: true
       - !type:PulseBehaviour

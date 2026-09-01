@@ -40,10 +40,10 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponShotgunBulldog # Frontier: WeaponShotgunBulldog<NFWeaponShotgunBulldog
-      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+      - id: WeaponShotgunBulldog # Frontier: WeaponShotgunBulldog<NFWeaponShotgunBulldog
+      - id: Magazine12_gaugeBuckshot # Frontier: MagazineShotgun<NFMagazineShotgunDrum
         amount: 3
-      - id: NFMagazineShotgunDrumSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
+      - id: Magazine12_gaugeSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
 #     - id: ThermalImagingGoggles
 
 - type: entity
@@ -54,7 +54,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r<NFWeaponSubMachineGunC20r
+      - id: WeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r
       - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
         amount: 2
 #     - id: SMGSuppressor
@@ -80,7 +80,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
+      - id: WeaponRevolverPython # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
       - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
         amount: 2
 
@@ -92,7 +92,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponLightMachineGunL6 # Frontier: WeaponLightMachineGunL6<NFWeaponLightMachineGunL6
+      - id: WeaponLightMachineGunL6 # Frontier: WeaponLightMachineGunL6<NFWeaponLightMachineGunL6
       - id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
 
 # - type: entity
@@ -137,11 +137,11 @@
     contents:
       - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
         amount: 4
-      - id: NFMagazineShotgunDrum # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+      - id: Magazine12_gaugeBuckshot # Frontier: MagazineShotgun<NFMagazineShotgunDrum
         amount: 4
-      - id: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
+      - id: Magazine556x45mmFMJ # Frontier: MagazineRifle<NFMagazineRifle20
         amount: 3
-      - id: NFMagazineShotgunDrumSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
+      - id: Magazine12_gaugeSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
         amount: 1
       - id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
         amount: 2
@@ -295,7 +295,7 @@
   - type: StorageFill
     contents:
       - id: SyringeRomerol
-      - id: NFWeaponRevolverRitland45 # Frontier: WeaponRevolverPython<NFWeaponRevolverRitland45
+      - id: WeaponRevolverPython # Frontier: WeaponRevolverPython<NFWeaponRevolverRitland45
       - id: AmmoBox357_magnumFMJ # Lua 45 -> Magnum
         amount: 2
       - id: PillAmbuzolPlus
@@ -364,7 +364,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r<NFWeaponSubMachineGunC20r
+      - id: WeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r
       - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
         amount: 2 # Frontier: 3<2
       - id: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19

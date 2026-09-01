@@ -1,18 +1,15 @@
-## M73
-uplink-security-hardsuitM73-name = Скафандир М73 Легкий Стандартный
-uplink-security-hardsuitM73-desc = 75/75/50//75/75//50/50 Высокая мобильность, низкий стаминорезист
-## M73C
-uplink-security-hardsuitM73C-name = Скафандр М73С Легкий Специальный
-uplink-security-hardsuitM73C-desc = 75/75/50//50/50//75/75 Высокая мобильность, низкий стаминорезист
-## M93
-uplink-security-hardsuitM93-name = Скафандр М93 Средний Стандартный
-uplink-security-hardsuitM93-desc = 75/75/75//50/50//50/50 Средняя мобильность, средний стаминорезист
-## M93C
-uplink-security-hardsuitM93C-name = Скафандр М93С Средний Специальный
-uplink-security-hardsuitM93C-desc = 50/50/50//75/75//50/50 Средняя мобильность, средний стаминорезист
+## M82c (бывший M73)
+uplink-security-hardsuitM73-name = Скафандр M82c лёгкий стандартный
+uplink-security-hardsuitM73-desc = 65/65/60//70/65//80 Высокая мобильность, стамина 0.25
+## M82b (бывший M73-C)
+uplink-security-hardsuitM73C-name = Скафандр M82b лёгкий специальный
+uplink-security-hardsuitM73C-desc = 60/50/70//60/20//50 Высокая мобильность, NBC-защита
+## M86 (бывший M93)
+uplink-security-hardsuitM93-name = Скафандр M86 Mk.3(R) средний
+uplink-security-hardsuitM93-desc = 40/40/40//50/50//60 Средняя мобильность, стамина 0.20
 ## M92
-uplink-security-hardsuitM92-name = Скафандр М92 Тяжелый Стандартный
-uplink-security-hardsuitM92-desc = 50/50/75//75/75//50/50 Низкая мобильность, высокий стаминорезист
-## M92X
-uplink-security-hardsuitM92X-name = Скафандр М92Х Тяжелый Специальный
-uplink-security-hardsuitM92X-desc = 50/50/75//50/50//75/75 Низкая мобильность, высокий стаминорезист
+uplink-security-hardsuitM92-name = Скафандр TSFMC M92 полковника
+uplink-security-hardsuitM92-desc = 40/40/40//45/40//50 Скорость 0.9/1.0, стамина 0.35
+## M92-X
+uplink-security-hardsuitM92X-name = Скафандр TSFMC M92-X экспериментальный
+uplink-security-hardsuitM92X-desc = 70/70/70//50/50//80 Встроенный щит, низкая мобильность

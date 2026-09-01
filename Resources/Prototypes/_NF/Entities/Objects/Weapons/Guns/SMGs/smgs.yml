@@ -1,6 +1,6 @@
 #region WizDen
 - type: entity
-  id: NFWeaponSubMachineGunAtreides
+  id: WeaponSubMachineGunAtreides
   parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunGorlex ] #Lua 35 -> 9x19 base
   name: Atreides
   description: |-
@@ -16,7 +16,7 @@
     sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
 
 - type: entity
-  id: NFWeaponSubMachineGunC20r
+  id: WeaponSubMachineGunC20r
   parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunCybersun ] #Lua 35 -> 9x19 base
   name: C-20r
   description: |-
@@ -66,7 +66,7 @@
             - Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
 
 - type: entity
-  id: NFWeaponSubMachineGunDrozd
+  id: WeaponSubMachineGunDrozd
   parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunNanotrasen ] #Lua 35 -> 9x19 base
   name: Drozd
   description: A fully automatic SMG.
@@ -88,69 +88,67 @@
     sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/drozd.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine9x19mmSubMachineGunFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine9x19mmSubMachineGunFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge9x19mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge9x19mmFMJ
+      attachment_barrel:
+        insertSound: /Audio/Items/screwdriver.ogg
+        ejectSound: /Audio/Items/screwdriver.ogg
+        priority: 0
+        whitelist:
+          tags:
+          - MonoSuppressorMulticalPistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      attachment_barrel: !type:ContainerSlot
 
 - type: entity
-  id: NFWeaponSubMachineGunDrozdLessLethal # Frontier-specific rubber variant
-  parent: [ NFBaseWeaponSubMachineGunChamber9x19Rubber, NFBaseWeaponFrameSubMachineGunNanotrasen ] #Lua 35 -> 9x19 base
-  name: Drozd
-  description: A fully automatic SMG.
-  suffix: Frontier, Less-Lethal
-  components: *drozdComponents
-
-- type: entity
-  id: NFWeaponSubMachineGunWt550
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponSubMachineGunChamber35TopMounted, NFBaseWeaponFrameSubMachineGunNanotrasen ]
-  name: WT-550
-  description: |-
-    An excellent SMG. On the receiver is a label that says 'for authorized use only.'
-  suffix: Need balance test
+  id: WeaponSubMachineGunDrozdRubber
+  parent: WeaponSubMachineGunDrozd
+  suffix: Non-Lethal
   components:
-  - type: Item #Lua
-    shape:
-    - 0,0,2,1
-  - type: Gun
-    examineCaliber: gun-examine-caliber-919 #Lua
-    minAngle: 3.1 #Lua
-    maxAngle: 15.5 #Lua
-    angleIncrease: 0.7 #Lua
-    angleDecay: 5 #Lua
-    fireRate: 6 #Lua
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
-  - type: Sprite
-    sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: base-unshaded
-        map: ["enum.GunVisualLayers.BaseUnshaded"]
-        shader: unshaded
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: mag-unshaded-0
-        map: ["enum.GunVisualLayers.MagUnshaded"]
-        shader: unshaded
-  - type: Clothing
-    sprite: _NF/Objects/Weapons/Guns/SMGs/wt550.rsi
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: true
-  - type: ChamberMagazineAmmoProvider
-    boltClosed: null
-
-#region DeltaV
-- type: entity
-  id: NFWeaponSubMachineGunTypewriter
-  parent: [ NFBaseWeaponSubMachineGunChamber9x19, NFBaseWeaponFrameSubMachineGunFrontierGunsmith ] #Lua 35 -> 9x19 base
-  name: Typewriter
-  description: |-
-    A modern take on the classic design used by mobsters throughout space and time.
-  components:
-  - type: Gun
-    soundGunshot:
-      path: /Audio/_DV/Weapons/Guns/Gunshots/typewriter.ogg
-  - type: Sprite
-    sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
-  - type: Clothing
-    sprite: _DV/Objects/Weapons/Guns/SMGs/typewriter.rsi
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          name: Magazine
+          startingItem: Magazine45_ACPSubMachineGunRubber
+          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+          priority: 2
+          whitelist:
+            tags:
+              - Magazine45_ACPSubMachineGunFMJ
+          whitelistFailPopup: gun-magazine-whitelist-fail
+        gun_chamber:
+          name: Chamber
+          startingItem: Cartridge45_ACPRubber
+          priority: 1
+          whitelist:
+            tags:
+              - Cartridge45_ACPFMJ
+        # Mono
+        attachment_barrel:
+          insertSound: /Audio/Items/screwdriver.ogg
+          ejectSound: /Audio/Items/screwdriver.ogg
+          priority: 0
+          whitelist:
+            tags:
+            - MonoSuppressorMulticalPistol

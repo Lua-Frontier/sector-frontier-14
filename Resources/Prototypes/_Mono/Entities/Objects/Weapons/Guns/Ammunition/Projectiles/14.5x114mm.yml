@@ -1,0 +1,20 @@
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: Bullet145x114mm
+  name: bullet (14.5x114mm)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 80
+        Structural: 500
+    ignoreResistances: true
+    penetrationThreshold: 500
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 60
+  - type: Tracer
+    color: "#FFFFFFFF"
+    length: 3
