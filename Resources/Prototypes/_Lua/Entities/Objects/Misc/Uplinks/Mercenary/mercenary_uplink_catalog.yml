@@ -253,7 +253,7 @@
   id: UplinkMercenaryGunMk58
   name:  uplink-merc-mk58-name
   description: uplink-merc-mk58-desc
-  productEntity: NFWeaponPistolMk58
+  productEntity: WeaponPistolMk58
   icon: { sprite: Objects/Weapons/Guns/Pistols/mk58.rsi, state: icon }
   cost:
     Speso: 1900
@@ -272,7 +272,7 @@
   id: UplinkMercenaryGunEnergyGun
   name:  uplink-merc-energygun-name
   description: uplink-merc-energygun-desc
-  productEntity: NFWeaponEnergySubMachineGunDeltaV
+  productEntity: WeaponEnergyGun
   icon: { sprite: _DV/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
   cost:
     Speso: 2300
@@ -291,7 +291,7 @@
   id: UplinkMercenaryGunRifleAk
   name:  uplink-merc-rifleak-name
   description: uplink-merc-rifleak-desc
-  productEntity: NFWeaponRifleAssaultSm
+  productEntity: WeaponRifleAk
   icon: { sprite: Objects/Weapons/Guns/Rifles/ak.rsi, state: icon }
   cost:
     Speso: 16800
@@ -465,7 +465,7 @@
   id: UplinkMercenaryWeaponSubMachineGunC20r
   name:  C-20r
   description: Нелегальное оружие используемое агентами синдиката. Оружие, часто используемое печально известными ядерными оперативниками. Использует патроны калибра .35 авто.
-  productEntity: NFWeaponSubMachineGunC20r
+  productEntity: WeaponSubMachineGunC20r
   cost:
     Speso: 100000 #Lua 25k<100k
   categories:
@@ -502,7 +502,7 @@
   id: UplinkMercenaryWeaponRifleJackdaw
   name: CAWS-25 "Галка"
   description: Начало конца возвещается песней галки. Использует безгильзовые патроны .25.
-  productEntity: NFWeaponRifleAssaultJackdaw
+  productEntity: WeaponRifleJackdaw
   cost:
     Speso: 13000
   categories:
@@ -539,7 +539,7 @@
   id: UplinkMercenaryWeaponLightMachineGunL6
   name: L6 SAW
   description: Нелегальное оружие используемое агентами синдиката. Весьма традиционный лёгкий пулемёт с удобной лакированной деревянной пистолетной рукоятью. Использует патроны калибра .30 винтовочный.
-  productEntity: NFWeaponLightMachineGunL6
+  productEntity: WeaponLightMachineGunL6
   cost:
     Speso: 175000 #Lua 45k<175k
   categories:
@@ -576,7 +576,7 @@
   id: UplinkMercenaryWeaponSubMachineGunWt550
   name: WT550
   description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра 9x19mm. Запрещено к использованию гражданскими.
-  productEntity: NFWeaponSubMachineGunWt550
+  productEntity: WeaponSubMachineGunWt550
   cost:
     Speso: 150000 #Lua 7k<150k
   categories:
@@ -613,7 +613,7 @@
   id: UplinkMercenaryWeaponShotgunBulldog
   name: Бульдог
   description: Нелегальное оружие используемое агентами синдиката. Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра .50 ружейный.
-  productEntity: NFWeaponShotgunBulldog
+  productEntity: WeaponShotgunBulldog
   cost:
     Speso: 100000 #Lua 30k<100k
   categories:
@@ -631,7 +631,7 @@
   id: UplinkMercenaryMagazineShotgun
   name: барабан (.50 дробь)
   description: барабан (.50 дробь)
-  productEntity: NFMagazineShotgunDrum
+  productEntity: Magazine12_gaugeBuckshot
   cost:
     Speso: 2500
   categories:

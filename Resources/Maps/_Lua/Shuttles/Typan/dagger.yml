@@ -4178,7 +4178,7 @@ entities:
     - type: Transform
       pos: 2.3781886,-3.3908846
       parent: 1
-- proto: NFWeaponShotgunEnforcer
+- proto: WeaponShotgunEnforcer
   entities:
   - uid: 599
     components:
@@ -4192,7 +4192,7 @@ entities:
       parent: 598
     - type: Physics
       canCollide: False
-- proto: NFWeaponShotgunKammerer
+- proto: WeaponShotgunKammerer
   entities:
   - uid: 601
     components:

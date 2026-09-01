@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazine635x40mmCaseless
   name: "magazine (6.35x40mm Caseless)"
-  parent: [ BaseItem, RecyclableItemSteelTiny ] #Lua-changes: changed parent to baseitem to avoid magazine destruction on explosion.
+  parent: [ BaseCartridge, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: Tag

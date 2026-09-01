@@ -6930,14 +6930,14 @@ entities:
     - type: Transform
       pos: -3.5,10.5
       parent: 179
-- proto: NFWeaponEnergyLightMachineGunTurbo
+- proto: WeaponLaserTurboNF
   entities:
   - uid: 1494
     components:
     - type: Transform
       pos: -3.471971,0.6138556
       parent: 179
-- proto: NFWeaponEnergyPistolLaser
+- proto: WeaponLaserGun
   entities:
   - uid: 1202
     components:
@@ -6949,28 +6949,28 @@ entities:
     - type: Transform
       pos: -20.3205,0.34193015
       parent: 179
-- proto: NFWeaponEnergyRifleAssaultPulseCarbine
+- proto: WeaponPulseCarbine
   entities:
   - uid: 1675
     components:
     - type: Transform
       pos: -20.48886,2.1544302
       parent: 179
-- proto: NFWeaponEnergyRifleCarbine
+- proto: WeaponLaserCarbine
   entities:
   - uid: 1801
     components:
     - type: Transform
       pos: -20.473234,3.1700552
       parent: 179
-- proto: NFWeaponEnergyRifleSniperCannon
+- proto: WeaponLaserCannon
   entities:
   - uid: 1802
     components:
     - type: Transform
       pos: -20.535734,4.3263054
       parent: 179
-- proto: NFWeaponEnergySubMachineGunDeltaV
+- proto: WeaponEnergyGun
   entities:
   - uid: 1592
     components:
@@ -6982,7 +6982,7 @@ entities:
     - type: Transform
       pos: -20.498066,1.2169302
       parent: 179
-- proto: NFWeaponEnergySubMachineGunDisabler
+- proto: WeaponDisablerSMG
   entities:
   - uid: 487
     components:
@@ -6996,28 +6996,28 @@ entities:
     - type: Transform
       pos: -2.578125,-1.40625
       parent: 179
-- proto: NFWeaponLauncherMail
+- proto: WeaponMailLake
   entities:
   - uid: 268
     components:
     - type: Transform
       pos: -2.2345388,-3.19907
       parent: 179
-- proto: NFWeaponLauncherMultipleRocket
+- proto: WeaponLauncherMultipleRocket
   entities:
   - uid: 1572
     components:
     - type: Transform
       pos: -12.3683405,9.67213
       parent: 179
-- proto: NFWeaponLauncherRocket
+- proto: WeaponLauncherRocket
   entities:
   - uid: 1573
     components:
     - type: Transform
       pos: -3.4306555,-1.0607564
       parent: 179
-- proto: NFWeaponPistolViper
+- proto: WeaponPistolViper
   entities:
   - uid: 1584
     components:
@@ -7029,14 +7029,14 @@ entities:
     - type: Transform
       pos: -20.5,0.5
       parent: 179
-- proto: NFWeaponPkaSawn
+- proto: WeaponProtoKineticAcceleratorSawn
   entities:
   - uid: 1204
     components:
     - type: Transform
       pos: -6.5111876,-2.5449483
       parent: 179
-- proto: NFWeaponRifleAssaultSm
+- proto: WeaponRifleAk
   entities:
   - uid: 949
     components:
@@ -7048,14 +7048,14 @@ entities:
     - type: Transform
       pos: -20.5,2.5
       parent: 179
-- proto: NFWeaponRifleRepeater
+- proto: WeaponSniperRepeater
   entities:
   - uid: 1670
     components:
     - type: Transform
       pos: -20.5,3.5
       parent: 179
-- proto: NFWeaponRifleSniperHristov
+- proto: WeaponSniperHristov
   entities:
   - uid: 1669
     components:
@@ -7076,7 +7076,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: NFWeaponSubMachineGunDrozd
+- proto: WeaponSubMachineGunDrozd
   entities:
   - uid: 1217
     components:

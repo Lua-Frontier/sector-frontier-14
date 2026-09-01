@@ -152,7 +152,7 @@
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
   - type: ClothingSpeedModifier
-    walkModifier: 0.6
+    walkModifier: 0.4
     sprintModifier: 0.6
   - type: HeldSpeedModifier
   - type: Item
@@ -166,7 +166,6 @@
         Heat: 0.90
         Radiation: 0.25
   - type: ToggleableClothing
-    slot: head
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:Container {}
@@ -216,7 +215,7 @@
   - type: HarpyHideWings # Frontier, needed for Harpies
   - type: StaticPrice # Frontier
     price: 20 # Frontier
-    vendPrice: 1500 # Frontier
+    vendPrice: 4000 # Frontier
 
 - type: entity
   abstract: true

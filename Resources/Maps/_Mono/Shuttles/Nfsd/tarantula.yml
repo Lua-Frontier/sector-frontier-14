@@ -4031,7 +4031,7 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
-- proto: NFWeaponShotgunEnforcer
+- proto: WeaponShotgunEnforcer
   entities:
   - uid: 714
     components:
@@ -4039,7 +4039,7 @@ entities:
       parent: 713
     - type: Physics
       canCollide: False
-- proto: NFWeaponSubMachineGunDrozd
+- proto: WeaponSubMachineGunDrozd
   entities:
   - uid: 715
     components:

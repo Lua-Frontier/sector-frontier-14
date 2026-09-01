@@ -1,88 +1,29 @@
-#region WizDen
 - type: entity
-  id: NFWeaponLauncherChinaLake
-  parent: [ NFBaseWeaponLauncherChamber40mmGrenades, NFBaseWeaponFrameLauncherGorlex ]
-  name: GP-40 grenade launcher
-  description: PLOOP.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
-    layers:
-      - state: icon
-        map: ["enum.GunVisualLayers.Base"]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/china_lake.rsi
-    slots:
-    - Back
-    - suitStorage
-  - type: BallisticAmmoProvider
-    proto: NFGrenadeFrag
-  - type: NFWeaponDetails
-    manufacturer: weapon-details-manufacturer-gorlex-steel-works
-
-- type: entity
-  id: NFWeaponLauncherRocket
-  parent: [ NFBaseWeaponLauncherChamberRockets, NFBaseWeaponFrameLauncherGorlex ]
-  name: GSW rocket launcher mk4
-  description: A modified ancient rocket-propelled grenade launcher.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
-
-- type: entity
-  id: NFWeaponLauncherMultipleRocket
-  parent: [ NFWeaponLauncherRocket ]
-  name: GSW multiple rocket launcher mk2
-  description: A modified ancient rocket-propelled grenade launcher.
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRocketSlow
-
-- type: entity
-  id: NFWeaponLauncherPirateCannon
-  parent: [ NFBaseWeaponLauncherChamberCannonBalls, NFBaseWeaponFrameLauncherSteelbolt ]
-  name: pirate cannon
-  description: Kaboom!
-  components:
-    - type: Sprite
-      sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
-      layers:
-        - state: icon
-          map: ["enum.GunVisualLayers.Base"]
-    - type: Clothing
-      sprite: Objects/Weapons/Guns/Launchers/pirate_cannon.rsi
-    - type: BallisticAmmoProvider
-      proto: NFCannonBall
-
-#region Frontier
-- type: entity
-  parent: NFWeaponLauncherChinaLake
+  parent: WeaponLauncherChinaLake
   suffix: EMP
-  id: NFWeaponLauncherChinaLakeEmp
+  id: WeaponLauncherChinaLakeEmp
   components:
   - type: BallisticAmmoProvider
-    proto: NFGrenadeEMP
+    proto: 40mmGrenadeEMP
 
 - type: entity
   suffix: EMP
-  parent: [ BaseC2ContrabandUnredeemable, NFWeaponLauncherRocket ]
-  id: NFWeaponLauncherRocketEmp
+  parent: WeaponLauncherRocket
+  id: WeaponLauncherRocketEmp
   components:
+  - type: Gun
+    projectileSpeed: 25 # Mono: EMP RPGs should not be nerfed
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRocketEmp
+    proto: CartridgeRocketEmp
+    whitelist:
+      tags:
+        - CartridgeRocketEmp # Mono: projectile speed is higher on the EMP RPG, so obviously we make sure ONLY EMPs work with it.
 
 - type: entity
-  parent: [ BaseC1Contraband, NFWeaponLauncherChinaLake ]
-  id: NFWeaponLauncherMail
-  name: RPDS
-  description: The Rapid Parcel Delivery System, a mail carrier's right hand. Launches mail capsules.
+  name: mail RPDS
+  parent: WeaponLauncherChinaLake
+  id: WeaponMailLake
+  description: Rap(b?)id Parcel Delivery System
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/mail.rsi
@@ -96,26 +37,25 @@
     proto: null
     whitelist:
       tags:
-      - MailCapsule
+        - MailCapsule
   - type: StaticPrice
     price: 50
-  - type: NFWeaponDetails
-    manufacturer: weapon-details-manufacturer-nanotrasen-munitions
 
 - type: entity
-  parent: [ BaseC2ContrabandUnredeemable, NFBaseWeaponLauncherChamber40mmGrenadesNfsdSingleShot, NFBaseWeaponFrameLauncherNanotrasen ]
-  id: NFWeaponLauncherGrenadeNfsd
-  name: NGP-40 projector
-  description: Single shot grenade launcher able to lob both grenades and darts!
+  name: TSFMC grenade launcher
+  parent: WeaponLauncherChinaLake
+  id: WeaponLauncherNfsdLake
+  description: Able to lob both grenades and darts!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
+  - type: BallisticAmmoProvider
+    proto: null
+    whitelist:
+      tags:
+        - NFTrackingDart
+        - LessLethalGrenade # Mono
   - type: StaticPrice
     price: 50
-  - type: NFWeaponDetails
-    manufacturer: weapon-details-manufacturer-nanotrasen-munitions

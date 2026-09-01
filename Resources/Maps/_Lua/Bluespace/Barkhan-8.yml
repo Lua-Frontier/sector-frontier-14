@@ -29753,7 +29753,7 @@ entities:
     - type: Transform
       pos: 2.5,27.5
       parent: 1
-- proto: NFWeaponEnergyPistolLaserAntique
+- proto: WeaponAntiqueLaser
   entities:
   - uid: 2439
     components:
@@ -29772,7 +29772,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponEnergyRifleCarbine
+- proto: WeaponLaserCarbine
   entities:
   - uid: 4022
     components:
@@ -29784,14 +29784,14 @@ entities:
     - type: Transform
       pos: 1.597964,28.572643
       parent: 1
-- proto: NFWeaponPistolCHIMP
+- proto: WeaponPistolCHIMP
   entities:
   - uid: 4024
     components:
     - type: Transform
       pos: -12.453592,-5.4292946
       parent: 1
-- proto: NFWeaponPistolMk58
+- proto: WeaponPistolMk58
   entities:
   - uid: 2452
     components:
@@ -29800,7 +29800,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponPka
+- proto: WeaponProtoKineticAccelerator
   entities:
   - uid: 3995
     components:
@@ -29809,14 +29809,14 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponRifleAssaultLecter
+- proto: WeaponRifleLecter
   entities:
   - uid: 4025
     components:
     - type: Transform
       pos: 1.7151515,28.549206
       parent: 1
-- proto: NFWeaponShotgunDoubleBarreled
+- proto: WeaponShotgunDoubleBarreled
   entities:
   - uid: 4026
     components:
@@ -29824,7 +29824,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -17.398119,8.52799
       parent: 1
-- proto: NFWeaponShotgunEnforcer
+- proto: WeaponShotgunEnforcer
   entities:
   - uid: 4027
     components:
@@ -29836,7 +29836,7 @@ entities:
     - type: Transform
       pos: 1.410464,28.666393
       parent: 1
-- proto: NFWeaponShotgunImprovised
+- proto: WeaponShotgunImprovised
   entities:
   - uid: 759
     components:
@@ -29845,7 +29845,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponShotgunSawn
+- proto: WeaponShotgunSawn
   entities:
   - uid: 72
     components:

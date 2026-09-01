@@ -1,4 +1,4 @@
-# WizDen
+# Lua-only leftover cartridges (mapped NFCartridgePistol35/45 live IDs restored as metric)
 #region base
 - type: entity
   id: NFBaseCartridgePistol35
@@ -9,9 +9,9 @@
   - type: Tag
     tags:
       - Cartridge
-      - NFCartridgePistol35
+      - Cartridge9x19mmFMJ
   - type: CartridgeAmmo
-    proto: NFBulletPistol35
+    proto: Bullet9x19mmFMJ
   - type: Sprite
     layers:
       - state: base
@@ -29,9 +29,9 @@
   - type: Tag
     tags:
       - Cartridge
-      - NFCartridgePistol45
+      - Cartridge357_magnumFMJ
   - type: CartridgeAmmo
-    proto: NFBulletPistol45
+    proto: Bullet357_magnumFMJ
   - type: Sprite
     layers:
       - state: base
@@ -41,11 +41,6 @@
         color: "#666666"
 
 #region .35 pistol
-- type: entity
-  id: NFCartridgePistol35
-  name: cartridge (.35 pistol)
-  parent: NFBaseCartridgePistol35
-
 - type: entity
   id: NFCartridgePistol35Overpressure
   name: cartridge (.35 pistol, overpressure)
@@ -61,53 +56,6 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#ff8d00"
 
-- type: entity
-  id: NFCartridgePistol35Incendiary
-  name: cartridge (.35 pistol, incendiary)
-  parent: NFBaseCartridgePistol35
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol35Incendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff0000"
-
-- type: entity
-  id: NFCartridgePistol35Uranium
-  name: cartridge (.35 pistol, uranium)
-  parent: NFBaseCartridgePistol35
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol35Uranium
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#00ff00"
-
-- type: entity
-  id: NFCartridgePistol35Practice
-  name: cartridge (.35 pistol, practice)
-  parent: NFBaseCartridgePistol35
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol35Practice
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#dddddd"
-
-# Frontier
-# .35 pistol
 - type: entity
   id: NFCartridgePistol35Emp
   name: cartridge (.35 pistol, EMP)
@@ -127,38 +75,7 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#00ffff"
 
-- type: entity
-  id: NFCartridgePistol35Rubber
-  name: cartridge (.35 pistol, rubber)
-  parent: NFBaseCartridgePistol35
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol35Rubber
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#00b0ff"
-
-# WizDen
 #region .45 pistol
-- type: entity
-  id: NFCartridgePistol45
-  name: cartridge (.45 pistol)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#666666"
-
 - type: entity
   id: NFCartridgePistol45Overpressure
   name: cartridge (.45 pistol, overpressure)
@@ -174,53 +91,6 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#ff8d00"
 
-- type: entity
-  id: NFCartridgePistol45Incendiary
-  name: cartridge (.45 pistol, incendiary)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45Incendiary
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff0000"
-
-- type: entity
-  id: NFCartridgePistol45Uranium
-  name: cartridge (.45 pistol, uranium)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45Uranium
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#00ff00"
-
-- type: entity
-  id: NFCartridgePistol45Practice
-  name: cartridge (.45 pistol, practice)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45Practice
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#dddddd"
-
-# Frontier
-# .45 pistol
 - type: entity
   id: NFCartridgePistol45Emp
   name: cartridge (.45 pistol, EMP)
@@ -239,18 +109,3 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#00ffff"
-
-- type: entity
-  id: NFCartridgePistol45Rubber
-  name: cartridge (.45 pistol, rubber)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45Rubber
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#00b0ff"

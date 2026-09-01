@@ -37,17 +37,6 @@
 
 #region .20 rifle
 - type: entity
-  id: NFBulletRifle20
-  name: bullet (.20 rifle)
-  parent: NFBaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 27 #Lua 13<27
-
-- type: entity
   id: NFBulletRifle20Overpressure
   name: bullet (.20 rifle, overpressure)
   parent: NFBaseBulletOverpressure
@@ -57,54 +46,6 @@
     damage:
       types:
         Piercing: 29 #Lua 14<29
-
-- type: entity
-  id: NFBulletRifle20Incendiary
-  name: bullet (.20 rifle, incendiary)
-  parent: NFBaseBulletIncendiary
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 11 # 0.6 * base total dmg #Lua 7.8<11
-        Heat: 16 # 0.4 * base total dmg #Lua 5.2<16
-
-- type: entity
-  id: NFBulletRifle20Uranium
-  name: bullet (.20 rifle, uranium)
-  parent: NFBaseBulletUranium
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 11 # 0.6 * (1.4 * base total dmg) #Lua 10.8<11
-        Radiation: 16 # 0.4 * (1.4 * base total dmg) #Lua 7.2<16
-
-- type: entity
-  id: NFBulletRifle20Practice
-  name: bullet (.20 rifle, practice)
-  parent: NFBaseBulletPractice
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 2
-
-- type: entity
-  id: NFBulletRifle20Rubber
-  name: bullet (.20 rifle, rubber)
-  parent: NFBaseBulletRubber
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 2
-  - type: StaminaDamageOnCollide
-    damage: 12 # ~9 hits to stun sounds reasonable, less effective than pistol because rifle round is smaller in size
 
 #region .25 rifle
 - type: entity
@@ -180,17 +121,6 @@
 
 #region .30 rifle
 - type: entity
-  id: NFBulletRifle30
-  name: bullet (.30 rifle)
-  parent: NFBaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 25 #Lua 15<25
-
-- type: entity
   id: NFBulletRifle30Overpressure
   name: bullet (.30 rifle, overpressure)
   parent: NFBaseBulletOverpressure
@@ -201,71 +131,7 @@
       types:
         Piercing: 27 #Lua 17<27
 
-- type: entity
-  id: NFBulletRifle30Incendiary
-  name: bullet (.30 rifle, incendiary)
-  parent: NFBaseBulletIncendiary
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 11 #Lua 9<11
-        Heat: 14 #Lua 6<14
-
-- type: entity
-  id: NFBulletRifle30Uranium
-  name: bullet (.30 rifle, uranium)
-  parent: NFBaseBulletUranium
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 11 #Lua 12.6<11
-        Radiation: 14 #Lua 8.4<14
-
-- type: entity
-  id: NFBulletRifle30Practice
-  name: bullet (.30 rifle, practice)
-  parent: NFBaseBulletPractice
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 2
-
-- type: entity
-  id: NFBulletRifle30Rubber
-  name: bullet (.30 rifle, rubber)
-  parent: NFBaseBulletRubber
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 2
-  - type: StaminaDamageOnCollide
-    damage: 13 # ~8 hits to stun sounds reasonable
-
 #region .60 rifle
-- type: entity
-  id: NFBulletRifle60
-  name: bullet (.60 rifle)
-  parent: NFBaseBulletAntiMateriel
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 75
-        Blunt: 15
-        Structural: 150
-    penetrationThreshold: 360
-    penetrationDamageTypeRequirement:
-    - Structural
-
 - type: entity
   id: NFBulletRifle60Rubber
   name: bullet (.60 rifle, rubber)

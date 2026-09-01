@@ -1,336 +1,301 @@
-# Security
 - type: entity
-  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] # Lua-changes: added BaseC2ContrabandUnredeemable
-  id: ClothingOuterHardsuitTSFMCM73
-  name: TSFMC M73 tacsuit
-  description: The standard-issue TSFMC tacsuit for patrol duty. This bronze variant has private rank markings.
-  suffix: TSF, Light, Standart #Lua
+  parent: [ ClothingOuterHardsuitBase, BaseFactionGearTSFT2]
+  id: ClothingOuterHardsuitM82c
+  name: M82c hardsuit
+  description: A hardsuit issued to marines operating in low-pressure and high-risk environments. Specialized in bullet protection.
   components:
   - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73-outer.rsi #Lua
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m82c.rsi
+  - type: Item
+    size: Huge
   - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73-outer.rsi #Lua
-  - type: ToggleableClothing
-    requiredSlot: outerclothing
-    blockUnequipWhenAttached: false
-    replaceCurrentClothing: true
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM73
-      helmetcover: ClothingHeadHelmetCoverBlock
-      helmetattachment: ClothingHeadHelmetAttachmentBlock
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m82c.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.65
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical  75/75/50//75/75//50/50//30/5
-        Blunt: 0.25 #Lua 0.5<25
-        Slash: 0.25 #Lua 0.55<0.25
-        Piercing: 0.5 #Lua 0.55<0.5
-        #Physical
-        Heat: 0.25 #Lua 0.6<0.25
-        Radiation: 0.25 #Lua 0.55<0.25
-        #Special
-        Shock: 0.5 #Lua
-        Caustic: 0.5 #Lua 0.75<0.5
-  - type: StaminaResistance #Lua
-    damageCoefficient: 0.7
-  - type: ClothingSpeedModifier
-    walkModifier: 0.95 #Lua 0.9<0.95
-    sprintModifier: 0.95 #Lua 0.9<0.95
-
-- type: entity
-  parent: ClothingOuterHardsuitTSFMCM73
-  id: ClothingOuterHardsuitTSFMCM74
-  name: TSFMC M74 tacsuit
-  description: The standard-issue TSFMC tacsuit for patrol duty. This silver variant has corporal rank markings.
-  suffix: Out of balance
-  components:
-  - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M74-outer.rsi #Lua
-  - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M74-outer.rsi #Lua
-  - type: ToggleableClothing
-    requiredSlot: outerclothing
-    blockUnequipWhenAttached: false
-    replaceCurrentClothing: true
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM74
-      helmetcover: ClothingHeadHelmetCoverBlock
-      helmetattachment: ClothingHeadHelmetAttachmentBlock
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.55
+        Blunt: 0.65
         Slash: 0.65
         Piercing: 0.6
         Heat: 0.7
-        Radiation: 0.55
-        Caustic: 0.75
-  - type: StaminaDamageResistance #Lua
-    coefficient: 0.4
+        Radiation: 0.65
+        Caustic: 0.8
+  - type: StaminaDamageResistance
+    coefficient: 0.25
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1
-
-- type: entity
-  parent: ClothingOuterHardsuitTSFMCM73
-  id: ClothingOuterHardsuitTSFMCM75
-  name: TSFMC M75 tacsuit
-  description: The standard-issue TSFMC tacsuit for patrol duty. This gold variant has senior rank markings.
-  suffix: Out of balance
-  components:
-  - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M75-outer.rsi #Lua
-  - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M75-outer.rsi #Lua
-  - type: ToggleableClothing 
-    requiredSlot: outerclothing
-    blockUnequipWhenAttached: false
-    replaceCurrentClothing: true
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM75
-      helmetcover: ClothingHeadHelmetCoverBlock
-      helmetattachment: ClothingHeadHelmetAttachmentBlock
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.4
-        Piercing: 0.5
-        Heat: 0.6
-        Radiation: 0.55
-        Caustic: 0.75
-  - type: StaminaDamageResistance #Lua
-    coefficient: 0.4
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.85
-
-- type: entity
-  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitBase, HardsuitIdentify, BaseNanotrasenContrabandT1] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
-  id: ClothingOuterHardsuitTSFMCM92
-  name: TSFMC M92 tacsuit
-  description: A heavy tacsuit, capable of taking a lot of physical damage.
-  suffix: TSF, Heavy, Standart #Lua
-  components:
-  - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92-outer.rsi #Lua
-  - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92-outer.rsi #Lua
-  - type: ToggleableClothing 
-    requiredSlot: outerclothing
-    blockUnequipWhenAttached: false
-    replaceCurrentClothing: true
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM92
-      helmetcover: ClothingHeadHelmetCoverBlock
-      helmetattachment: ClothingHeadHelmetAttachmentBlock
-  - type: ExplosionResistance
-    damageCoefficient: 0.3
-  - type: PressureProtection
-    highPressureMultiplier: 0.2
-    lowPressureMultiplier: 1000
-  - type: Armor
-    modifiers:
-      coefficients:
-        #Mechanical 50/50/75//75/75//50/50//70/25
-        Blunt: 0.5 #Lua 0.4<0.5
-        Slash: 0.5 #Lua 0.25<0.5
-        Piercing: 0.25 #Lua 0.4<0.25
-        #Physical
-        Heat: 0.25 #Lua 0.55<0.25
-        Radiation: 0.25 #Lua 0.55<0.25
-        #Special
-        Shock: 0.5 #Lua
-        Caustic: 0.5 #Lua 0.75<0.5
-  - type: StaminaResistance #Lua
-    damageCoefficient: 0.3
-  - type: ClothingSpeedModifier
-    walkModifier: 0.75 #Lua 0.9<0.75
-    sprintModifier: 0.75 #Lua 0.9<0.75
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: HeldSpeedModifier
-  - type: Tag
-    tags:
-    - Hardsuit # _Lua
-    - MonkeyWearable
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
-
-
-- type: entity
-  parent: [ClothingOuterHardsuitNfsdBronze, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] # Lua-changes: added BaseC2ContrabandUnredeemable, ClothingOuterHardsuitNfsdBronze > ClothingOuterHardsuitBaseNFNfsd
-  id: ClothingOuterHardsuitTSFMCM73-C
-  name: TSFMC M73-C tacsuit
-  description: A variant of the M73 tacsuit for combat medical and NBC use. Provides greater caustic and radiation protection.
-  suffix: TSF, Light, Special #Lua
-  components:
-  - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73c-outer.rsi #Lua
-  - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M73c-outer.rsi #Lua
-  - type: ToggleableClothing 
+  - type: ToggleableClothing
     requiredSlot: outerclothing
     blockUnequipWhenAttached: false
     replaceCurrentClothing: true
     clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM73-C
+      head: ClothingHeadHelmetHardsuitM82
       helmetcover: ClothingHeadHelmetCoverBlock
       helmetattachment: ClothingHeadHelmetAttachmentBlock
+  - type: StaticPrice
+    price: 5000
+    vendPrice: 7500
+
+- type: entity
+  parent: [ ClothingOuterHardsuitM82c, BaseFactionGearTSFT2 ]
+  id: ClothingOuterHardsuitM82b
+  name: M82b hardsuit
+  description: Corpsman variant of the M82c outfitted with caustic and radiological shielding. Some of the blunt-absorbent gel layer is sacrificed for the NBC protection.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m82b.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m82b.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.65
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical 75/75/50//50/50//75/75//30/5
-        Blunt: 0.25 #Lua 0.7<0.25
-        Slash: 0.25 #Lua 0.7<0.25
-        Piercing: 0.5
-        #Physical
-        Heat: 0.5
-        Radiation: 0.5
-        #Special
-        Shock: 0.25 #Lua
-        Caustic: 0.25
-  - type: StaminaResistance #Lua
-    damageCoefficient: 0.7
-  - type: ClothingSpeedModifier #Lua
+        Blunt: 0.6
+        Slash: 0.5
+        Piercing: 0.7
+        Heat: 0.6
+        Radiation: 0.2
+        Caustic: 0.5
+        Poison: 0.9
+  - type: ClothingSpeedModifier
     walkModifier: 0.95
     sprintModifier: 0.95
 
 - type: entity
-  parent: [BaseC2ContrabandUnredeemable, ClothingOuterHardsuitBase, HardsuitIdentify, BaseNanotrasenContrabandT1]  #Lua-changes: BaseC2ContrabandUnredeemable > BaseC3CentCommContraband,added EnergyShieldClothing
-  id: ClothingOuterHardsuitTSFMCM92-X
-  name: TSFMC M92-X tacsuit
-  description: A experimental modification of the M92 tacsuit for spec-ops units of the TSFMC. Externally the same, internally its higher-quality alloys and fabric.
-  suffix: TSF, Heavy, Special #Lua
+  parent: [ClothingOuterHardsuitBase, BaseFactionGearTSFT3]
+  id: ClothingOuterHardsuitM86
+  name: M86 Mk.3(R) hardsuit
+  description: An armored hardsuit, designed to be an upgrade for the M82 series. The extra general armor gives it significant weight to move around.
   components:
   - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi #Lua
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m86.rsi
+  - type: Item
+    size: Huge
   - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M92x-outer.rsi #Lua
-  - type: ToggleableClothing 
-    requiredSlot: outerclothing
-    blockUnequipWhenAttached: false
-    replaceCurrentClothing: true
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM92-X
-      helmetcover: ClothingHeadHelmetCoverBlock
-      helmetattachment: ClothingHeadHelmetAttachmentBlock
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m86.rsi
   - type: PressureProtection
-    highPressureMultiplier: 0.2
+    highPressureMultiplier: 0.03
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: Armor
     modifiers:
       coefficients:
-        #Mechanical 50/50/75//50/50//75/75//70/25
-        Blunt: 0.5 #Lua 0.3<0.5
-        Slash: 0.5 #Lua 0.35<0.5
-        Piercing: 0.25
-        #Physical
-        Heat: 0.5 #Lua 0.3<0.5
-        Radiation: 0.5 #Lua 0.25<0.5
-        #Special
-        Shock: 0.25 #Lua
-        Caustic: 0.25
-  - type: StaminaResistance #Lua
-    damageCoefficient: 0.3
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Shock: 0.8
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.6
+  - type: StaminaDamageResistance
+    coefficient: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.75 #Lua 0.85<0.75
-    sprintModifier: 0.75
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitM86
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
+  - type: StaticPrice
+    price: 7500
+    vendPrice: 1000
+
+- type: entity
+  parent: ClothingOuterHardsuitBaseNFNfsd
+  id: ClothingOuterHardsuitNfsdSheriff
+  name: TSFMC M92 colonel tacsuit
+  description: A heavy, gilded tacsuit, stripped of its shield but now capable of taking a lot of physical damage. Usually assigned to commanding officers of TSF flagships.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/tsfmc_colonel.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/tsfmc_colonel.rsi
+  - type: ToggleableClothing
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdSheriff
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
+  - type: FireProtection
+    reduction: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.45
+        Radiation: 0.4
+        Caustic: 0.5
+        Poison: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 1
+  - type: StaminaDamageResistance
+    coefficient: 0.35
+
+- type: entity
+  parent: [ClothingOuterHardsuitJuggernaut, MonoEnergyShieldClothing, BaseFactionGearTSFT3 ]
+  id: ClothingOuterHardsuitNfsdExperimental
+  name: TSFMC M92-X tacsuit
+  description: An experimental modification of the M92 tacsuit for spec-ops units of the TSFMC. Durable, and comes with an integrated hard-shield along with numerous gadgets at the cost of insulation and solid armor.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/tsfmc_experimental.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/tsfmc_experimental.rsi
+  - type: ToggleableClothing
+    requiredSlot: outerclothing
+    blockUnequipWhenAttached: false
+    replaceCurrentClothing: true
+    clothingPrototypes:
+      head: ClothingHeadHelmetHardsuitNfsdExperimental
+      helmetcover: ClothingHeadHelmetCoverBlock
+      helmetattachment: ClothingHeadHelmetAttachmentBlock
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.8
+        Poison: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.6
   - type: FactionClothing
     faction: NanoTrasen
-  - type: Tag
-    tags:
-    - Hardsuit # _Lua
-    - MonkeyWearable
-    - CorgiWearable
-    - Hardsuit
-    - WhitelistChameleon
+  - type: StaminaDamageResistance
+    coefficient: 0.25
+  - type: PersonalShield
+    fillLevel: 0.2
+    hexDensity: 6
+    pixelGrid: 192
+    color: "#E0FFFF"
+    scale: 2.3
+    shield:
+      maxCharge: 400
+      regenRate: 5
+      spinupTime: 2.5
+      breakCooldown: 20
+      powerDraw: 0.5
+      blockModifier:
+        coefficients:
+          Piercing: 0.5
+          Heat: 1.5
+          Radiation: 2.5
+          Shock: 2.5
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
+    autoRechargePauseTime: 5
+  - type: UseDelay
+    delay: 10
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: ExtendDescription
+    descriptionList:
+    - description: Alt-click or otherwise interact to toggle additional shielding.
+      color: "#4f94ad"
+      requireDetailRange: true
+    - description: The M92-x shield is designed to inhibit the velocity of incoming conventional firearms. However, it struggles against anything involving high-energy particles, such as lasers.
+      color: "#94768c"
+      requireDetailRange: true
 
-
-
-#Security Combat Hardsuit
 - type: entity
-  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
-  id: ClothingOuterHardsuitTSFMCM93
-  name: TSFMC M93 tacsuit
-  description: A heavily armored TSFMC suit. Space proof, with thick armor plating at the expense of mobility.
-  suffix: TSF, Medium, Standart #Lua
+  parent: [MonoEnergyShieldClothing, ClothingOuterHardsuitM86, BaseFactionGearTSFT3]
+  id: ClothingOuterHardsuitM86Mk4
+  name: M86 Mk.4(B) hardsuit
+  description: A limited-production redesign proposal for the M86 Mk.3(R), outfitted with an inbuilt personal shield generator.
   components:
   - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93-outer.rsi #Lua
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m86_mk4.rsi
   - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93-outer.rsi #Lua
-  - type: ToggleableClothing 
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/m86_mk4.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.45
+        Piercing: 0.45
+        Shock: 0.95
+        Heat: 0.7
+        Poison: 0.825
+        Radiation: 0.5
+        Caustic: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.875
+  - type: ToggleableClothing
     requiredSlot: outerclothing
     blockUnequipWhenAttached: false
     replaceCurrentClothing: true
     clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM93
+      head: ClothingHeadHelmetHardsuitM86Mk4
       helmetcover: ClothingHeadHelmetCoverBlock
       helmetattachment: ClothingHeadHelmetAttachmentBlock
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        #Mechanical 75/75/75//50/50//50/50//50/15
-        Blunt: 0.25
-        Slash: 0.25 #Lua 0.35<0.25
-        Piercing: 0.25 #Lua 0.35<0.25
-        #Physical
-        Heat: 0.5 #Lua 0.25<0.5
-        Radiation: 0.5 #Lua 0.2<0.5
-        #Special
-        Shock: 0.5 #Lua
-        Caustic: 0.5 #Lua 0.35<0.5
-  - type: StaminaResistance #Lua
-    damageCoefficient: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85 #Lua 0.825<0.85
-    sprintModifier: 0.85 #Lua 0.825<0.85
-
-#Security Command Hardsuit
-- type: entity
-  parent: [ClothingOuterHardsuitBaseNFNfsd, BaseC2ContrabandUnredeemable, BaseNanotrasenContrabandT1] #Lua-changes: added EnergyShieldClothing and BaseC3CentCommContraband
-  id: ClothingOuterHardsuitTSFMCM93-C
-  name: TSFMC M93-C tacsuit
-  description: A variant of the M93 tacsuit with slightly better plating. It isn't much extra.
-  suffix: TSF, Medium, Special #Lua
-  components:
-  - type: Sprite
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93c-outer.rsi #Lua
-  - type: Clothing
-    sprite: _Lua/Clothing/OuterClothing/SDHardsuits/M93c-outer.rsi #Lua
-  - type: ToggleableClothing 
-    requiredSlot: outerclothing
-    blockUnequipWhenAttached: false
-    replaceCurrentClothing: true
-    clothingPrototypes:
-      head: ClothingHeadHelmetHardsuitTSFMCM93-C
-      helmetcover: ClothingHeadHelmetCoverBlock
-      helmetattachment: ClothingHeadHelmetAttachmentBlock
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: Armor
-    modifiers:
-      coefficients:
-        #Mechanical 50/50/50//75/75//75/75//50/15
-        Blunt: 0.5 #Lua 0.225<0.5
-        Slash: 0.5 #Lua 0.325<0.5
-        Piercing: 0.5 #Lua 0.325<0.5
-        #Physical
-        Heat: 0.25
-        Radiation: 0.25 #Lua 0.15<0.25
-        #Special
-        Shock: 0.25 #Lua
-        Caustic: 0.25
-  - type: StaminaResistance #Lua
-    damageCoefficient: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85 #Lua 0.8<0.85
-    sprintModifier: 0.85 #Lua 0.8<0.85
+  - type: PersonalShield
+    fillLevel: 0.15
+    hexDensity: 3
+    pixelGrid: 96
+    color: "#7F00FF"
+    scale: 2.0
+    shield:
+      maxCharge: 250
+      regenRate: 5
+      spinupTime: 0.75
+      breakCooldown: 20
+      powerDraw: 0.5
+      blockModifier:
+        coefficients:
+          Heat: 1.25
+          Radiation: 1.5
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 5
+    autoRechargePauseTime: 5
+  - type: EmpResistance
+    coefficient: 0.0001
+  - type: ExtendDescription
+    descriptionList:
+    - description: Alt-click or otherwise interact to toggle additional shielding.
+      color: "#4f94ad"
+      requireDetailRange: true

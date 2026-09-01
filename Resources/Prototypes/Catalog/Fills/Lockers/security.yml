@@ -30,7 +30,7 @@
     children:
     - id: FlashlightSeclite
 #     - id: WeaponDisabler # Frontier
-    - id: NFWeaponEnergyPistolDisabler # Frontier
+    - id: WeaponDisabler # Frontier
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
@@ -77,7 +77,7 @@
     - id: FlashlightSeclite
       prob: 0.8
     # - id: WeaponDisabler # Frontier
-    - id: NFWeaponEnergyPistolDisabler # Frontier
+    - id: WeaponDisabler # Frontier
     - id: ClothingUniformJumpsuitSecGrey
       prob: 0.3
     - id: ClothingHeadHelmetBasic
@@ -113,7 +113,7 @@
     children:
     - id: ClothingEyesGlassesSecurity
     # - id: WeaponDisabler # Frontier
-    - id: NFWeaponEnergyPistolDisabler
+    - id: WeaponDisabler
     - id: TrackingImplanter
       amount: 2
     - id: ClothingOuterHardsuitBrigmedic
@@ -213,7 +213,7 @@
   id: FillGunSafeDisabler
   table: !type:AllSelector
     children:
-    - id: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - id: WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
       amount: 5
 
 - type: entity
@@ -231,7 +231,7 @@
   id: FillGunSafePistolMk58
   table: !type:AllSelector
     children:
-    - id: NFWeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
+    - id: WeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
       amount: 4
     - id: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
       amount: 8
@@ -251,7 +251,7 @@
   id: FillGunSafeRifleLecter
   table: !type:AllSelector
     children:
-    - id: NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
+    - id: WeaponRifleLecter # Frontier: WeaponRifleLecter
       amount: 2
     - id: Magazine556x45mmFMJ #Lua 20 -> 556x45
       amount: 4
@@ -271,7 +271,7 @@
   id: FillGunSafeSubMachineGunDrozd
   table: !type:AllSelector
     children:
-    - id: NFWeaponSubMachineGunDrozd # Frontier: WeaponSubMachineGunDrozd<NFWeaponSubMachineGunDrozd
+    - id: WeaponSubMachineGunDrozd # Frontier: WeaponSubMachineGunDrozd
       amount: 2
     - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
       amount: 4
@@ -291,7 +291,7 @@
   id: FillGunSafeShotgunEnforcer
   table: !type:AllSelector
     children:
-    - id: NFWeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
+    - id: WeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
       amount: 2
     - id: AmmoBox23x75mmBuckshot #Lua 4 gauges
       amount: 4
@@ -311,7 +311,7 @@
   id: FillGunSafeShotgunKammerer
   table: !type:AllSelector
     children:
-    - id: NFWeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<NFWeaponShotgunKammerer
+    - id: WeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<NFWeaponShotgunKammerer
       amount: 2
     - id: AmmoBox23x75mmBuckshot #Lua 4 gauges
       amount: 4
@@ -332,7 +332,7 @@
   id: FillGunSafeSubMachineGunWt550
   table: !type:AllSelector
     children:
-    - id: NFWeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
+    - id: WeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
       amount: 2
     - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
       amount: 4
@@ -352,5 +352,5 @@
   id: FillGunSafeLaserCarbine
   table: !type:AllSelector
     children:
-    - id: NFWeaponEnergyRifleCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
+    - id: WeaponLaserCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
       amount: 3

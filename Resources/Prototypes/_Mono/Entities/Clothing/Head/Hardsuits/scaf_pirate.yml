@@ -1,15 +1,22 @@
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3PirateContraband] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContraband
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowSecurityIcons, BaseC3PirateContraband]
   id: ClothingHeadHelmetHardsuitPirateScaf
   name: pirate SCAF hardsuit helmet
-  description: A (probably stolen) SCAF suit painted red with white stripes. The lighting systems have been replaced with a thermal pulse.
+  description: A (probably stolen) SCAF suit painted red with white stripes. Has been outfitted with a thermal pulse scanner.
+  categories: [ HideSpawnMenu ]
   components:
-  - type: PointLight
-    color: "#faa70f"
   - type: Sprite
     sprite: _Lua/Clothing/Head/SCHardsuits/heavy_standart.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Head/SCHardsuits/heavy_standart.rsi
+  - type: ThermalVision
+    flashDurationMultiplier: 2
+    pulseTime: 3
+    isEquipment: true
+    toggleAction: PulseThermalVision
+  - type: PointLight
+    radius: 5
+    color: green
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -26,3 +33,4 @@
     - Snout
     - HeadTop
     - HeadSide
+    - Head

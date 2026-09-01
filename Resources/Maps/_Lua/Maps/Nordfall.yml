@@ -92885,7 +92885,7 @@ entities:
       rot: 12.566370614359172 rad
       pos: -11.3759575,22.334444
       parent: 1
-- proto: NFAmmunitionBoxShellShotgunBuckshot
+- proto: AmmoBox12_gaugeBuckshot
   entities:
   - uid: 13979
     components:
@@ -92907,7 +92907,7 @@ entities:
     - type: Transform
       pos: -12.5,-0.5
       parent: 1
-- proto: NFAmmunitionBoxShellShotgunIncendiary
+- proto: AmmoBox12_gaugeIncendiary
   entities:
   - uid: 13983
     components:
@@ -93364,7 +93364,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -60.5,0.5
       parent: 1
-- proto: NFWeaponRifleAssaultGestio
+- proto: WeaponRifleGestio
   entities:
   - uid: 13888
     components:
@@ -93441,7 +93441,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: NFWeaponShotgunKammerer
+- proto: WeaponShotgunKammerer
   entities:
   - uid: 14014
     components:

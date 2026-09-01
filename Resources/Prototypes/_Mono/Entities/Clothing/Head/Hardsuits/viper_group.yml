@@ -1,15 +1,25 @@
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3PirateContraband] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContraband
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowSecurityIcons, BaseC3PirateContraband]
   id: ClothingHeadHelmetHardsuitViperGroupStandard
   name: JACKAL mk.II viper hardsuit helmet
-  description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in nightvision system.
+  description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in night-vision system complemented by flash resistant viewports.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Clothing/Head/SCHardsuits/medium_special.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Head/SCHardsuits/medium_special.rsi
   - type: PointLight
-    color: "#faa70f"
+    color: "#eb772a"
+  - type: NightVision
+    relayOverlay: true
+    goggleEffect: true
+    action: ActionToggleNightVision
+    viewCircleRadius: 400
+    viewCircleCount: 2
+    viewCircleSpacing: 260
+    phosphorColor: "#41D7D9"
+    lightingColor: "#FFFFFF32"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -20,25 +30,34 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: FlashImmunity
   - type: HideLayerClothing
     slots:
     - Hair
     - Snout
     - HeadTop
     - HeadSide
+    - Head
 
 - type: entity
-  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseC3PirateContraband] # Lua-changes: BaseC3SyndicateContraband > BaseC3PirateContraband
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ShowMedicalIcons, ShowSecurityIcons, BaseC3PirateContraband]
   id: ClothingHeadHelmetHardsuitViperGroupMedic
-  name: IMP mk.III viper hardsuit helmet
+  name: RIPPER mk.III viper hardsuit helmet
   description: A hardsuit helmet with signature markings of the Viper Group. Has a built-in medical HUD complemented by thermal pulse systems.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Lua/Clothing/Head/SCHardsuits/medium_standart.rsi
   - type: Clothing
     sprite: _Lua/Clothing/Head/SCHardsuits/medium_standart.rsi
   - type: PointLight
-    color: "#faa70f"
+    color: "#eb772a"
+  - type: ThermalVision
+    flashDurationMultiplier: 2
+    pulseTime: 4
+    isEquipment: true
+    toggleAction: PulseThermalVision
+  - type: ShowHealthBars
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -55,3 +74,4 @@
     - Snout
     - HeadTop
     - HeadSide
+    - Head
