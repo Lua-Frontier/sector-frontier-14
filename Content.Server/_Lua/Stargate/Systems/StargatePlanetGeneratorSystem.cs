@@ -430,6 +430,11 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         }
 
         var bossCount = Math.Max(0, questProto.BossCount);
+
+        structureCount *= 2;
+        if (bossCount > 0)
+            bossCount *= 2;
+
         _planetQuest.SetupQuest(mapUid, structureCount, bossCount, questProto.RewardMin, questProto.RewardMax, questProto.RewardMultiplier, questProto.Name, questProto.Description, random);
         if (structureCount > 0 && questProto.StructurePrototypes.Count > 0)
         {
@@ -488,6 +493,8 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
         const int MaxOffset = 256;
         var origin = new Vector2i(random.Next(-MaxOffset, MaxOffset), random.Next(-MaxOffset, MaxOffset));
         var worldRadius = preset.WorldRadiusMin + (float)(random.NextDouble() * (preset.WorldRadiusMax - preset.WorldRadiusMin));
+        if (preset.RestrictedRange > 0f)
+            worldRadius = preset.RestrictedRange;
         AddComp(mapUid, new RestrictedRangeComponent
         {
             Range = worldRadius,
@@ -550,6 +557,10 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
             structureCount = random.Next(min, max + 1);
         }
         var bossCount = Math.Max(0, questProto.BossCount);
+
+        structureCount *= 2;
+        if (bossCount > 0)
+            bossCount *= 2;
 
         _planetQuest.SetupQuest(
             mapUid,
@@ -759,6 +770,8 @@ public sealed class StargatePlanetGeneratorSystem : EntitySystem
 
         var worldRadius = preset.WorldRadiusMin
             + (float)(random.NextDouble() * (preset.WorldRadiusMax - preset.WorldRadiusMin));
+        if (preset.RestrictedRange > 0f)
+            worldRadius = preset.RestrictedRange;
 
         var restricted = new RestrictedRangeComponent
         {

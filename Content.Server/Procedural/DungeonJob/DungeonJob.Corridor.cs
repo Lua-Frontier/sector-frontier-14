@@ -14,15 +14,20 @@ public sealed partial class DungeonJob
     /// </summary>
     private async Task PostGen(CorridorDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
     {
-        var entrances = new List<Vector2i>(dungeon.Rooms.Count);
+        var entrances = new List<Vector2i>();
+        var seenEntrances = new HashSet<Vector2i>();
 
-        // Grab entrances
         foreach (var room in dungeon.Rooms)
         {
-            entrances.AddRange(room.Entrances);
+            foreach (var entrance in room.Entrances)
+            {
+                if (seenEntrances.Add(entrance))
+                    entrances.Add(entrance);
+            }
         }
 
         if (entrances.Count == 0) return;
+        if (entrances.Count == 1) return;
         var edges = _dungeon.MinimumSpanningTree(entrances, random);
         await SuspendDungeon();
 

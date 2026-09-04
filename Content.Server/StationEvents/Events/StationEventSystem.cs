@@ -7,6 +7,8 @@ using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
+using Content.Shared._Lua.Announce;
+using Content.Shared._RMC14.Announce;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Robust.Server.GameObjects;
@@ -242,7 +244,19 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
 
         var filter = GetAnnouncementFilter(stationEvent);
         if (message != null)
-            ChatSystem.DispatchFilteredAnnouncement(filter, message, uid, sender, playSound: false, colorOverride: color);
+        {
+            var preset = string.IsNullOrWhiteSpace(stationEvent.AnnouncementSender)
+                ? AnnouncementOverlayParams.PresetOnboardComputer
+                : (AnnouncementPreset?) null;
+            ChatSystem.DispatchFilteredAnnouncement(
+                filter,
+                message,
+                uid,
+                sender,
+                playSound: false,
+                colorOverride: color,
+                announcementPreset: preset);
+        }
 
         if (audio != null)
             Audio.PlayGlobal(audio, filter, true);

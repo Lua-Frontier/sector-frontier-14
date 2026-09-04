@@ -356,13 +356,10 @@ namespace Content.Server.GameTicking
                 }
                 else
                 {
-                    _chatSystem.DispatchStationAnnouncement(station,
-                        Loc.GetString("latejoin-arrival-announcement",
-                            ("character", MetaData(mob).EntityName),
-                            ("entity", mob),
-                            ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
-                        Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false);
+                    _chatManager.SendAdminAnnouncement(Loc.GetString("latejoin-arrival-announcement",
+                        ("character", MetaData(mob).EntityName),
+                        ("entity", mob),
+                        ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))));
                 }
 
                 // Frontier: send new player message if the player is new.

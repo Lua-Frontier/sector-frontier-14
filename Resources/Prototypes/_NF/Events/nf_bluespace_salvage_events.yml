@@ -6,12 +6,9 @@
   components:
   - type: StationEvent
     # TODO: add path to  start warning and end Voiceover
-    startRadioAnnouncement: station-event-bluespace-scrap-start-announcement
-    startRadioAnnouncementChannel: Engineering
-    warningRadioAnnouncement: station-event-bluespace-scrap-warning-announcement
-    warningRadioAnnouncementChannel: Engineering
-    endRadioAnnouncement: station-event-bluespace-scrap-end-announcement
-    endRadioAnnouncementChannel: Engineering
+    startAnnouncement: station-event-bluespace-scrap-start-announcement
+    warningAnnouncement: station-event-bluespace-scrap-warning-announcement
+    endAnnouncement: station-event-bluespace-scrap-end-announcement
     weight: 5
     duration: 1800 # 30 minutes
     maxDuration: 1800 # 30 minutes

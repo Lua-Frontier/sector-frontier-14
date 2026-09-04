@@ -670,7 +670,8 @@ namespace Content.Server.Ghost
             {
                 color = sponsor.Role switch
                 {
-                    var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase)
+                    var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) ||
+                               string.Equals(r, DonorGroups.ShareholderLua, StringComparison.OrdinalIgnoreCase)
                         => Color.FromHex("#F05C29"),
                     var r when string.Equals(r, DonorGroups.God, StringComparison.OrdinalIgnoreCase)
                         => Color.FromHex("#00FF4A"),

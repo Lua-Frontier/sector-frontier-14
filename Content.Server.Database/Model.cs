@@ -865,7 +865,8 @@ namespace Content.Server.Database
         /// Results from rejected connections with external API checking tools
         IPChecks = 6, // Frontier: 5<6
         /// Results from rejected connections who are authenticated but have no modern hwid associated with them.
-        NoHwid = 7 // Frontier: 6<7
+        NoHwid = 7, // Frontier: 6<7
+        DevMode = 8
     }
 
     public class ServerBanHit

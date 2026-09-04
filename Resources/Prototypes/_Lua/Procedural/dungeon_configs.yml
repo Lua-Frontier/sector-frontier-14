@@ -25,10 +25,39 @@
     tile: FloorCaveDrought
     contents: NFMiningAirlock
 
+  - !type:EntranceFlankDunGen
+    tile: FloorCaveDrought
+    contents: NFMiningWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorCaveDrought
+    contents: NFMiningWindow
+
+  - !type:WallMountDunGen
+    contents: NFMineshaftWalls
+    tile: FloorCaveDrought
+
   - !type:BoundaryWallDunGen
     wall: WallRock
     cornerWall: WallRock
     tile: FloorCaveDrought
+
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorCaveDrought
+    contents: NFBaseWoodSupport
+
+  - !type:JunctionDunGen
+    width: 3
+    tile: FloorCaveDrought
+    contents: NFBaseWoodSupport
+
+  - !type:AutoCablingDunGen
+    entity: Catwalk
+
+  - !type:CornerClutterDunGen
+    chance: 0.75
+    contents: NFMineshaftClutter
 
 - type: dungeonConfig
   id: LuaOutpost
@@ -81,7 +110,16 @@
     tile: FloorDark
     contents: NFBaseAirlock
 
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter
 
 - type: dungeonConfig
@@ -113,6 +151,14 @@
     tile: FloorTechMaint
     contents: NFBaseAirlock
 
+  - !type:EntranceFlankDunGen
+    tile: FloorTechMaint
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorTechMaint
+    contents: NFBaseWindow
+
   - !type:WallMountDunGen
     contents: NFCaveFactoryWallMounts
     tile: FloorTechMaint
@@ -123,11 +169,20 @@
     tile: FloorTechMaint
 
   - !type:JunctionDunGen
+    width: 1
+    tile: FloorTechMaint
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
     width: 3
     tile: FloorTechMaint
     contents: NFBaseAirlock
 
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter
 
 - type: dungeonConfig
@@ -180,7 +235,16 @@
     tile: FloorWhite
     contents: NFBaseAirlock
 
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorWhite
+    contents: NFBaseAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter
 
 - type: dungeonConfig
@@ -211,17 +275,38 @@
     tile: FloorDark
     contents: NFBaseAirlock
 
+  - !type:EntranceFlankDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorDark
+    contents: NFBaseWindow
+
+  - !type:WallMountDunGen
+    contents: NFNanoTrasenFacilityWallmounts
+    tile: FloorDark
+
   - !type:BoundaryWallDunGen
     wall: WallReinforced
     cornerWall: WallReinforced
     tile: FloorDark
 
   - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
     width: 3
     tile: FloorDark
     contents: NFBaseAirlock
 
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter
 
 - type: dungeonConfig
@@ -244,6 +329,7 @@
     tile: FloorCaveDrought
 
   - !type:CorridorClutterDunGen
+    chance: 0.35
     contents: HauntedClutter
 
   - !type:BoundaryWallDunGen
@@ -278,6 +364,14 @@
     tile: FloorWhite
     contents: NFBaseAirlock
 
+  - !type:EntranceFlankDunGen
+    tile: FloorWhite
+    contents: NFBaseWindow
+
+  - !type:ExternalWindowDunGen
+    tile: FloorWhite
+    contents: NFBaseWindow
+
   - !type:WallMountDunGen
     contents: NFSnowyLabsWalls
     tile: FloorWhite
@@ -288,11 +382,20 @@
     tile: FloorWhite
 
   - !type:JunctionDunGen
+    width: 1
+    tile: FloorWhite
+    contents: NFBaseAirlock
+
+  - !type:JunctionDunGen
     width: 3
     tile: FloorWhite
     contents: NFBaseAirlock
 
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter
 
 - type: dungeonConfig
@@ -344,7 +447,16 @@
     tile: FloorDark
     contents: NFMercenaryAirlock
 
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorDark
+    contents: NFMercenaryAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter
 
 - type: dungeonConfig
@@ -396,5 +508,14 @@
     tile: FloorSteel
     contents: NFVirologyAirlock
 
+  - !type:JunctionDunGen
+    width: 1
+    tile: FloorSteel
+    contents: NFVirologyAirlock
+
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
   - !type:CornerClutterDunGen
+    chance: 0.75
     contents: NFBaseClutter

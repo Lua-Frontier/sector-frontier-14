@@ -27,7 +27,11 @@ public sealed partial class DonateShopWindow : BaseWindow
     private const string TierCategoryPrefix = "UplinkVipTier";
     private static readonly Color ShareholderColor = Color.FromHex("#F05C29");
     private static readonly Color GodColor = Color.FromHex("#00FF4A");
-    private static readonly Color RankColor = Color.FromHex("#FF0000");
+    private static readonly Color Rank1To3Color = Color.FromHex("#F80000");
+    private static readonly Color Rank4Color = Color.FromHex("#E84848");
+    private static readonly Color Rank5To6Color = Color.FromHex("#D028E0");
+    private static readonly Color Rank7To8Color = Color.FromHex("#8840F8");
+    private static readonly Color Rank9To10Color = Color.FromHex("#3E7BD9");
     private static readonly StyleBoxFlat ButtonStyle = new()
     {
         BackgroundColor = Color.FromHex("#6E5127"),
@@ -53,7 +57,7 @@ public sealed partial class DonateShopWindow : BaseWindow
     private string _currentCategory = string.Empty;
     private int _bankBalance;
     private bool _hasBankBalance;
-    private HashSet<string> _activeTierNames = [];
+    private HashSet<string> _rawTierNames = [];
     public DonateShopWindow()
     {
         RobustXamlLoader.Load(this);
@@ -111,13 +115,14 @@ public sealed partial class DonateShopWindow : BaseWindow
     public void UpdateState(DonateShopStateMessage state)
     {
         string roleMarkup;
-        if (state.ActiveTierNames.Count > 0)
+        var headerTokens = DonorGroups.GetShopHeaderTokens(state.ActiveTierNames);
+        if (headerTokens.Count > 0)
         {
             var parts = new List<string>();
-            foreach (var tierName in state.ActiveTierNames)
+            foreach (var token in headerTokens)
             {
-                var color = GetTierColor(tierName);
-                parts.Add($"[color={color.ToHex()}]{tierName}[/color]");
+                var color = GetHeaderTokenColor(token);
+                parts.Add($"[color={color.ToHex()}]{GetTierDisplayName(token)}[/color]");
             }
             roleMarkup = string.Join(", ", parts);
         }
@@ -125,7 +130,7 @@ public sealed partial class DonateShopWindow : BaseWindow
         {
             var fallback = state.TierName;
             var fallbackColor = GetTierColor(fallback);
-            roleMarkup = $"[color={fallbackColor.ToHex()}]{fallback}[/color]";
+            roleMarkup = $"[color={fallbackColor.ToHex()}]{GetTierDisplayName(fallback)}[/color]";
         }
         RoleLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-role-label", ("role", roleMarkup))));
         StatusLabel.SetMessage(FormattedMessage.FromMarkupPermissive(Loc.GetString("donate-shop-status-label", ("status", state.SubscriptionStatus))));
@@ -157,7 +162,7 @@ public sealed partial class DonateShopWindow : BaseWindow
         _balance = state.Balance;
         _bankBalance = state.BankBalance;
         _hasBankBalance = state.HasBankBalance;
-        _activeTierNames = state.ActiveTierNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        _rawTierNames = state.ActiveTierNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
         _listings = state.Listings
             .OrderBy(listing => listing.Priority)
             .ThenBy(listing => listing.Cost.Values.Sum())
@@ -170,45 +175,115 @@ public sealed partial class DonateShopWindow : BaseWindow
 
     private void UpdateOverlayVisibility()
     {
-        var ownsTier = false;
-        foreach (var roleName in _activeTierNames)
-        {
-            if (TierNameToCategoryId.TryGetValue(roleName, out var catId) && catId == _currentTierTab)
-            {
-                ownsTier = true;
-                break;
-            }
-        }
-        _noSubOverlay.Visible = !ownsTier;
+        _noSubOverlay.Visible = !OwnsCurrentTab();
     }
+
+    private bool OwnsCurrentTab()
+    {
+        if (_currentTierTab == "UplinkVipTierShareholder")
+            return OwnsRaw(DonorGroups.Shareholder) || OwnsRaw(DonorGroups.ShareholderLua);
+        if (TryGetTierNameForCategory(_currentTierTab, out var tabTier))
+            return OwnsRaw(tabTier);
+        return false;
+    }
+
+    private bool OwnsRaw(string canonical)
+    {
+        foreach (var roleName in _rawTierNames)
+        {
+            if (DonorGroups.TryResolveTier(roleName, out var tier) &&
+                string.Equals(tier, canonical, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+
     private bool IsTierCategory(string categoryId) => categoryId.StartsWith(TierCategoryPrefix, StringComparison.Ordinal);
-    private static readonly (string Id, string Label)[] TierTabOrder =
-    [
-        ("UplinkVipTierShareholder", DonorGroups.Shareholder),
-        ("UplinkVipTierGod",         DonorGroups.God),
-        ("UplinkVipTierRank1",       DonorGroups.Rank1),
-        ("UplinkVipTierRank2",       DonorGroups.Rank2),
-        ("UplinkVipTierRank3",       DonorGroups.Rank3),
-    ];
+
+    private static bool IsRankShopTab(string tabId) =>
+        TryGetTierNameForCategory(tabId, out var tier) &&
+        DonorGroups.RankShopCategoryOrder.Contains(tier);
     private static readonly Dictionary<string, string> TierNameToCategoryId = new(StringComparer.OrdinalIgnoreCase)
     {
         [DonorGroups.Shareholder] = "UplinkVipTierShareholder",
-        [DonorGroups.God]         = "UplinkVipTierGod",
-        [DonorGroups.Rank1]       = "UplinkVipTierRank1",
-        [DonorGroups.Rank2]       = "UplinkVipTierRank2",
-        [DonorGroups.Rank3]       = "UplinkVipTierRank3",
+        [DonorGroups.ShareholderLua] = "UplinkVipTierShareholderLua",
+        [DonorGroups.God] = "UplinkVipTierGod",
+        [DonorGroups.Rank1] = "UplinkVipTierRank1",
+        [DonorGroups.Rank2] = "UplinkVipTierRank2",
+        [DonorGroups.Rank3] = "UplinkVipTierRank3",
+        [DonorGroups.Rank4] = "UplinkVipTierRank4",
+        [DonorGroups.Rank5] = "UplinkVipTierRank5",
+        [DonorGroups.Rank6] = "UplinkVipTierRank6",
+        [DonorGroups.Rank7] = "UplinkVipTierRank7",
+        [DonorGroups.Rank8] = "UplinkVipTierRank8",
+        [DonorGroups.Rank9] = "UplinkVipTierRank9",
+        [DonorGroups.Rank10] = "UplinkVipTierRank10",
     };
+
+    private static bool TryGetTierNameForCategory(string categoryId, out string tierName)
+    {
+        foreach (var (tier, category) in TierNameToCategoryId)
+        {
+            if (!string.Equals(category, categoryId, StringComparison.Ordinal))
+                continue;
+            tierName = tier;
+            return true;
+        }
+
+        tierName = string.Empty;
+        return false;
+    }
+    private HashSet<string> GetVisibleTierCategories()
+    {
+        if (string.IsNullOrEmpty(_currentTierTab))
+            return [];
+
+        var visible = new HashSet<string>(StringComparer.Ordinal);
+        if (_currentTierTab == "UplinkVipTierShareholder")
+        {
+            if (OwnsRaw(DonorGroups.Shareholder) || !OwnsRaw(DonorGroups.ShareholderLua))
+                visible.Add("UplinkVipTierShareholder");
+            if (OwnsRaw(DonorGroups.ShareholderLua))
+                visible.Add("UplinkVipTierShareholderLua");
+            return visible;
+        }
+
+        if (!TryGetTierNameForCategory(_currentTierTab, out var tabTier))
+            return new HashSet<string>(StringComparer.Ordinal) { _currentTierTab };
+
+        foreach (var tier in DonorGroups.GetEffectiveTiers([tabTier]))
+        {
+            if (TierNameToCategoryId.TryGetValue(tier, out var categoryId))
+                visible.Add(categoryId);
+        }
+
+        if (visible.Count == 0)
+            visible.Add(_currentTierTab);
+        return visible;
+    }
+
     private void PopulateTierTabs()
     {
         TierTabContainer.RemoveAllChildren();
-        var presentTierIds = new HashSet<string>();
-        foreach (var roleName in _activeTierNames)
-        { if (TierNameToCategoryId.TryGetValue(roleName, out var catId)) presentTierIds.Add(catId); }
-        presentTierIds.Add("UplinkVipTierShareholder");
-        var tabs = TierTabOrder.Where(t => presentTierIds.Contains(t.Id)).ToList();
-        if (tabs.All(t => t.Id != _currentTierTab)) _currentTierTab = tabs.FirstOrDefault().Id ?? string.Empty;
+        var tabs = new List<(string Id, string LocKey)>
+        {
+            ("UplinkVipTierShareholder", "store-vip-tier-shareholder"),
+        };
+        if (OwnsRaw(DonorGroups.God))
+            tabs.Add(("UplinkVipTierGod", "store-vip-tier-god"));
+        foreach (var rank in DonorGroups.RankShopCategoryOrder)
+        {
+            if (!OwnsRaw(rank) || !TierNameToCategoryId.TryGetValue(rank, out var tabId))
+                continue;
+            tabs.Add((tabId, $"store-vip-tier-{rank.ToLowerInvariant()}"));
+        }
+
+        if (tabs.All(t => t.Id != _currentTierTab))
+            _currentTierTab = tabs[0].Id;
         var group = new ButtonGroup();
-        foreach (var (id, label) in tabs) AddTierTabButton(group, id, label);
+        foreach (var (id, locKey) in tabs)
+            AddTierTabButton(group, id, Loc.GetString(locKey));
     }
 
     private void AddTierTabButton(ButtonGroup group, string tierId, string text)
@@ -223,6 +298,7 @@ public sealed partial class DonateShopWindow : BaseWindow
             StyleClasses = { "OpenBoth" },
             MinWidth = 80,
         };
+        button.Label.FontColorOverride = GetTabColor(tierId);
         button.OnPressed += _ =>
         {
             _currentTierTab = button.CategoryId;
@@ -247,28 +323,57 @@ public sealed partial class DonateShopWindow : BaseWindow
     private void PopulateItemCategories()
     {
         CategoryListContainer.RemoveAllChildren();
+        var visibleTierCategories = GetVisibleTierCategories();
         var tierListings = _listings
-            .Where(l => l.Categories.Any(c => c.ToString() == _currentTierTab))
+            .Where(l => l.Categories.Any(c => visibleTierCategories.Contains(c.ToString())))
             .ToList();
-        var itemCategories = new List<StoreCategoryPrototype>();
-        foreach (var listing in tierListings)
+        var itemCategories = new List<(string Id, string Name, Color? Color)>();
+        if (IsRankShopTab(_currentTierTab))
         {
-            foreach (var cat in listing.Categories)
+            foreach (var rank in DonorGroups.RankShopCategoryOrder)
             {
-                var id = cat.ToString();
-                if (IsTierCategory(id)) continue;
-                if (!_prototype.TryIndex(cat, out StoreCategoryPrototype? proto)) continue;
-                if (itemCategories.All(x => x.ID != proto.ID)) itemCategories.Add(proto);
+                if (!TierNameToCategoryId.TryGetValue(rank, out var categoryId))
+                    continue;
+                if (!visibleTierCategories.Contains(categoryId))
+                    continue;
+                if (!tierListings.Any(l => l.Categories.Any(c => c.ToString() == categoryId)))
+                    continue;
+                if (!_prototype.TryIndex<StoreCategoryPrototype>(categoryId, out var proto))
+                    continue;
+                itemCategories.Add((proto.ID, Loc.GetString(proto.Name), GetTierColor(rank)));
             }
         }
-        itemCategories = itemCategories.OrderBy(c => c.Priority).ToList();
+        else
+        {
+            foreach (var listing in tierListings)
+            {
+                foreach (var cat in listing.Categories)
+                {
+                    var id = cat.ToString();
+                    if (IsTierCategory(id))
+                        continue;
+                    if (!_prototype.TryIndex(cat, out StoreCategoryPrototype? proto))
+                        continue;
+                    if (itemCategories.Any(x => x.Id == proto.ID))
+                        continue;
+                    itemCategories.Add((proto.ID, Loc.GetString(proto.Name), null));
+                }
+            }
+
+            itemCategories = itemCategories
+                .OrderBy(c => _prototype.TryIndex<StoreCategoryPrototype>(c.Id, out var proto) ? proto.Priority : 0)
+                .ToList();
+        }
+
         CategoryPanel.Visible = itemCategories.Count > 0;
-        if (itemCategories.All(c => c.ID != _currentCategory)) _currentCategory = itemCategories.FirstOrDefault()?.ID ?? string.Empty;
+        if (itemCategories.Count == 0 || itemCategories.All(c => c.Id != _currentCategory))
+            _currentCategory = itemCategories.Count > 0 ? itemCategories[0].Id : string.Empty;
         var group = new ButtonGroup();
-        foreach (var cat in itemCategories) AddCategoryButton(group, cat.ID, Loc.GetString(cat.Name));
+        foreach (var cat in itemCategories)
+            AddCategoryButton(group, cat.Id, cat.Name, cat.Color);
     }
 
-    private void AddCategoryButton(ButtonGroup group, string categoryId, string text)
+    private void AddCategoryButton(ButtonGroup group, string categoryId, string text, Color? textColor = null)
     {
         var button = new DonateCategoryButton
         {
@@ -279,6 +384,8 @@ public sealed partial class DonateShopWindow : BaseWindow
             Pressed = categoryId == _currentCategory,
             StyleClasses = { "OpenBoth" },
         };
+        if (textColor is { } color)
+            button.Label.FontColorOverride = color;
         button.OnPressed += _ =>
         {
             _currentCategory = button.CategoryId;
@@ -314,7 +421,10 @@ public sealed partial class DonateShopWindow : BaseWindow
 
     private bool ShouldShow(ListingDataWithCostModifiers listing)
     {
-        if (!string.IsNullOrEmpty(_currentTierTab) && !listing.Categories.Any(c => c.ToString() == _currentTierTab)) return false;
+        var visibleTierCategories = GetVisibleTierCategories();
+        if (visibleTierCategories.Count > 0 &&
+            !listing.Categories.Any(c => visibleTierCategories.Contains(c.ToString())))
+            return false;
         if (!string.IsNullOrEmpty(_currentCategory)) return listing.Categories.Any(c => c.ToString() == _currentCategory);
         return true;
     }
@@ -452,13 +562,59 @@ public sealed partial class DonateShopWindow : BaseWindow
         return BankSystemExtensions.ToIndependentString(clamped);
     }
 
-    private static Color GetTierColor(string tierName) =>
-        tierName.ToLowerInvariant() switch
+    private static Color GetHeaderTokenColor(string token) => GetTierColor(token);
+
+    private static Color GetTabColor(string tabId)
+    {
+        if (tabId == "UplinkVipTierShareholder")
+            return ShareholderColor;
+        if (TryGetTierNameForCategory(tabId, out var tier))
+            return GetTierColor(tier);
+        return Color.White;
+    }
+
+    private static Color GetTierColor(string tierName)
+    {
+        if (!DonorGroups.TryResolveTier(tierName, out var tier))
+            return Rank1To3Color;
+
+        return tier switch
         {
-            "акционер" or "shareholder" => ShareholderColor,
-            "божество" or "god"         => GodColor,
-            _                           => RankColor,
+            DonorGroups.Shareholder or DonorGroups.ShareholderLua => ShareholderColor,
+            DonorGroups.God => GodColor,
+            DonorGroups.Rank1 or DonorGroups.Rank2 or DonorGroups.Rank3 => Rank1To3Color,
+            DonorGroups.Rank4 => Rank4Color,
+            DonorGroups.Rank5 or DonorGroups.Rank6 => Rank5To6Color,
+            DonorGroups.Rank7 or DonorGroups.Rank8 => Rank7To8Color,
+            DonorGroups.Rank9 or DonorGroups.Rank10 => Rank9To10Color,
+            _ => Rank1To3Color,
         };
+    }
+
+    private string GetTierDisplayName(string tierName)
+    {
+        if (!DonorGroups.TryResolveTier(tierName, out var tier))
+            return tierName;
+
+        var locKey = tier switch
+        {
+            DonorGroups.Shareholder => "store-vip-tier-shareholder",
+            DonorGroups.ShareholderLua => "store-vip-tier-shareholderlua",
+            DonorGroups.God => "store-vip-tier-god",
+            DonorGroups.Rank1 => "store-vip-tier-rank1",
+            DonorGroups.Rank2 => "store-vip-tier-rank2",
+            DonorGroups.Rank3 => "store-vip-tier-rank3",
+            DonorGroups.Rank4 => "store-vip-tier-rank4",
+            DonorGroups.Rank5 => "store-vip-tier-rank5",
+            DonorGroups.Rank6 => "store-vip-tier-rank6",
+            DonorGroups.Rank7 => "store-vip-tier-rank7",
+            DonorGroups.Rank8 => "store-vip-tier-rank8",
+            DonorGroups.Rank9 => "store-vip-tier-rank9",
+            DonorGroups.Rank10 => "store-vip-tier-rank10",
+            _ => null,
+        };
+        return locKey is null ? tierName : Loc.GetString(locKey);
+    }
 
     protected override DragMode GetDragModeFor(Vector2 relativeMousePos) => relativeMousePos.Y <= DragHeaderHeight ? DragMode.Move : DragMode.None;
 

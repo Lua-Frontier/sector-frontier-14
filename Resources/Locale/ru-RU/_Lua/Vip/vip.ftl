@@ -27,10 +27,18 @@ ent-EnergySwordDoubleLegal = легальный двухклинковый эн�
     .desc = NanoTrasen разобрала склад контрабанды и легализовала некоторые мечи для вип. Его можно хранить в кармане.
 
 store-vip-tier-shareholder = Акционер
+store-vip-tier-shareholderlua = Акционер
 store-vip-tier-god = Божество
 store-vip-tier-rank1 = Ранг I
 store-vip-tier-rank2 = Ранг II
 store-vip-tier-rank3 = Ранг III
+store-vip-tier-rank4 = Ранг IV
+store-vip-tier-rank5 = Ранг V
+store-vip-tier-rank6 = Ранг VI
+store-vip-tier-rank7 = Ранг VII
+store-vip-tier-rank8 = Ранг VIII
+store-vip-tier-rank9 = Ранг IX
+store-vip-tier-rank10 = Ранг X
 
 store-vip-category-flatpack = упаковки
 store-vip-category-crates = ящики

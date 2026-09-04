@@ -281,5 +281,8 @@ namespace Content.Shared.Lua.CLVar
 
         public static readonly CVarDef<int> StationPayoutPerStation =
             CVarDef.Create("lua.station_payout.per_station", 1, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+
+        public static readonly CVarDef<bool> DevMode =
+            CVarDef.Create("lua.devmode", false, CVar.SERVERONLY | CVar.ARCHIVE);
     }
 }

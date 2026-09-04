@@ -10,6 +10,7 @@ using Content.Server._Mono.Company;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Lua.Announce;
 using Content.Shared._Lua.Company;
 using Content.Shared.Lua.CLVar;
 using Content.Shared._Mono;
@@ -227,7 +228,7 @@ public sealed class FactionWarSystem : EntitySystem
         _adminLogger.Add(LogType.Action, LogImpact.High,
             $"{session.Name} declared faction war #{war.Id}: {GetCompanyDisplayName(war.AggressorCompanyId)} vs {GetCompanyDisplayName(war.DefenderCompanyId)}. Announcement: {war.AnnouncementText}");
 
-        AnnounceWarStart(war);
+        AnnounceWarStart(war, session.AttachedEntity);
         SendWarBriefing(war, Loc.GetString(
             "company-war-briefing-start",
             ("aggressor", GetCompanyDisplayName(war.AggressorCompanyId)),
@@ -302,7 +303,7 @@ public sealed class FactionWarSystem : EntitySystem
         _adminLogger.Add(LogType.Action, LogImpact.High,
             $"{declaredBy} force-declared faction war #{war.Id}: {GetCompanyDisplayName(war.AggressorCompanyId)} vs {GetCompanyDisplayName(war.DefenderCompanyId)}. Announcement: {war.AnnouncementText}");
 
-        AnnounceWarStart(war);
+        AnnounceWarStart(war, null);
         SendWarBriefing(war, Loc.GetString(
             "company-war-briefing-start",
             ("aggressor", GetCompanyDisplayName(war.AggressorCompanyId)),
@@ -476,15 +477,21 @@ public sealed class FactionWarSystem : EntitySystem
         InvalidateCompany(war.DefenderCompanyId);
     }
 
-    private void AnnounceWarStart(ActiveFactionWar war)
+    private void AnnounceWarStart(ActiveFactionWar war, EntityUid? declarer)
     {
-        var message = Loc.GetString(
-            "company-war-global-start",
+        var title = Loc.GetString(
+            "company-war-overlay-title",
             ("aggressor", GetCompanyDisplayName(war.AggressorCompanyId)),
-            ("defender", GetCompanyDisplayName(war.DefenderCompanyId)),
-            ("message", war.AnnouncementText));
+            ("defender", GetCompanyDisplayName(war.DefenderCompanyId)));
 
-        _chat.DispatchGlobalAnnouncement(message, Loc.GetString("company-war-announcement-title"), true, new SoundPathSpecifier("/Audio/_Lua/Alarm/warmessage.ogg"), colorOverride: Color.Red);
+        _chat.DispatchGlobalAnnouncement(
+            war.AnnouncementText,
+            title,
+            true,
+            new SoundPathSpecifier("/Audio/_Lua/Alarm/warmessage.ogg"),
+            colorOverride: Color.Red,
+            speaker: declarer,
+            announcementPreset: AnnouncementOverlayParams.PresetComms);
     }
 
     private void SendWarBriefing(ActiveFactionWar war, string briefing)

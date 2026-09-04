@@ -1,0 +1,59 @@
+- type: listing
+  id: UplinkVipRank8BoxHug
+  name: uplink-vip-BoxHug-name
+  description: uplink-vip-BoxHug-desc
+  productEntity: BoxHug
+  cost:
+    Speso: 1600
+  categories:
+  - UplinkVipTierRank8
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank8
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank8BoxHugNitrogen
+  name: uplink-vip-BoxHugNitrogen-name
+  description: uplink-vip-BoxHugNitrogen-desc
+  productEntity: BoxHugNitrogen
+  cost:
+    Speso: 1600
+  categories:
+  - UplinkVipTierRank8
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank8
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank8ContrabandAppraisalTool
+  name: uplink-vip-ContrabandAppraisalTool-name
+  description: uplink-vip-ContrabandAppraisalTool-desc
+  productEntity: ContrabandAppraisalTool
+  cost:
+    Speso: 2000
+  categories:
+  - UplinkVipTierRank8
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank8
+  - !type:ListingLimitedStockCondition
+    stock: 1

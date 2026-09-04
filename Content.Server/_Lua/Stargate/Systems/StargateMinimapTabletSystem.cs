@@ -160,7 +160,7 @@ public sealed class StargateMinimapTabletSystem : EntitySystem
                 while (anchored.MoveNext(out var ent))
                 {
                     var protoId = MetaData(ent.Value).EntityPrototype?.ID;
-                    if (protoId == "FloorWaterEntity") { color = StargateMinimapConstants.PackColor(Color.FromHex("#66B2FF")); hasLiquid = true; break; }
+                    if (protoId is "FloorWaterEntity") { color = StargateMinimapConstants.PackColor(Color.FromHex("#66B2FF")); hasLiquid = true; break; }
                     if (protoId == "FloorLavaEntity") { color = StargateMinimapConstants.PackColor(Color.FromHex("#f56d05")); hasLiquid = true; break; }
                     if (protoId == "FloorLiquidPlasmaEntity") { color = StargateMinimapConstants.PackColor(Color.FromHex("#af68ba")); hasLiquid = true; break; }
                 }

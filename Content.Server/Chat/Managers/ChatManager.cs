@@ -291,7 +291,8 @@ internal sealed partial class ChatManager : IChatManager
         {
             string? donorHex = sponsor.Role switch
             {
-                var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) => "#F05C29",
+                var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) ||
+                           string.Equals(r, DonorGroups.ShareholderLua, StringComparison.OrdinalIgnoreCase) => "#F05C29",
                 var r when string.Equals(r, DonorGroups.God, StringComparison.OrdinalIgnoreCase) => "#00FF4A",
                 _ => null
             };

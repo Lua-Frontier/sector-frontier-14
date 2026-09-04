@@ -69,7 +69,7 @@ public sealed partial class CCVars
     ///     Whether a server ban will ban the player's ip by default.
     /// </summary>
     public static readonly CVarDef<bool> ServerBanIpBanDefault =
-        CVarDef.Create("admin.server_ban_ip_ban_default", true, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("admin.server_ban_ip_ban_default", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     ///     Whether a server ban will ban the player's hardware id by default.

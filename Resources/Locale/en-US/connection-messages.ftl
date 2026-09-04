@@ -63,3 +63,5 @@ ipintel-unknown = This server uses a security system with external verification,
 ipintel-suspicious = You seem to be connecting through a datacenter or VPN. For administrative reasons we do not allow VPN connections to play. Please contact the administration team of the server for assistance if you believe this is false.
 
 hwid-required = Your client has refused to send a hardware id. Please contact the administration team for further assistance.
+
+lua-devmode-denied = This server is in development mode.
