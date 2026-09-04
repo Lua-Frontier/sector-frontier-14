@@ -44,7 +44,7 @@
         frequency: 2
         noiseType: OpenSimplex2
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - FloraRockSolid
     # Large rock areas
@@ -60,7 +60,7 @@
         cellularDistanceFunction: Euclidean
         cellularReturnType: Distance2
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - WallRockSand
     - !type:BiomeDummyLayer
@@ -68,7 +68,7 @@
     # Fill layer
     - !type:BiomeTileLayer
       threshold: -1
-      tile: FloorAsteroidSand
+      tile: FloorAsteroidSandPlanet
 
 # Grass
 - type: biomeTemplate
@@ -168,7 +168,7 @@
         fractalType: Ridged
         octaves: 1
       entities:
-        - FloorWaterBiomeEntity
+        - FloorWaterEntity
     # Fill remainder with dirt.
     - !type:BiomeTileLayer
       threshold: -1.0
@@ -508,7 +508,7 @@
         noiseType: OpenSimplex2
         fractalType: PingPong
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - CrystalGreen
         - CrystalPink
@@ -524,7 +524,7 @@
         noiseType: OpenSimplex2
         frequency: 1
       allowedTiles:
-      - FloorAsteroidSand
+      - FloorAsteroidSandPlanet
       entities:
       - FloraStalagmite
     - !type:BiomeEntityLayer
@@ -538,14 +538,14 @@
         frequency: 0.1
         gain: 0.5
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - WallRock
     - !type:BiomeDummyLayer
       id: Loot
     - !type:BiomeTileLayer
       threshold: -1.0
-      tile: FloorAsteroidSand
+      tile: FloorAsteroidSandPlanet
 
 # Asteroid
 - type: biomeTemplate
@@ -558,7 +558,7 @@
         noiseType: OpenSimplex2
         fractalType: PingPong
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - CrystalGreen
         - CrystalPink
@@ -574,7 +574,7 @@
         noiseType: OpenSimplex2
         frequency: 1
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - FloraStalagmite
     - !type:BiomeEntityLayer
@@ -588,12 +588,12 @@
         frequency: 0.1
         gain: 0.5
       allowedTiles:
-        - FloorAsteroidSand
+        - FloorAsteroidSandPlanet
       entities:
         - AsteroidRock
     - !type:BiomeTileLayer
       threshold: -1.0
-      tile: FloorAsteroidSand
+      tile: FloorAsteroidSandPlanet
 
 # Alias: Grassland -> reuse Grasslands template
 - type: biomeTemplate

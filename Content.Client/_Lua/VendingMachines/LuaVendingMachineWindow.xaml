@@ -1,0 +1,42 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:styles="clr-namespace:Content.Client._Lua.Styles"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   MinSize="420 500"
+                   SetSize="500 700">
+    <PanelContainer Name="Shell" Margin="4 2 4 4">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="10 8 10 10">
+            <GridContainer Columns="2" HorizontalExpand="True">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Left">
+                    <Label Name="BalanceCaption" Text="{Loc 'bank-atm-menu-balance-label'}" />
+                    <Label Name="BalanceLabel" Text="{Loc 'bank-atm-menu-no-bank'}" />
+                </BoxContainer>
+                <BoxContainer Name="CashSlotControls" Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Right">
+                    <Label Name="CashSlotCaption" Text="{Loc 'vending-machine-menu-cash-slot-label'}" />
+                    <Label Name="CashSlotLabel" Text="$0" />
+                </BoxContainer>
+            </GridContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Name="SearchLabel" Text="{Loc 'lua-vending-search-label'}" Align="Left" VerticalAlignment="Center" />
+                <LineEdit Name="Search" Access="Public" HorizontalExpand="True" Margin="10 0 0 0"
+                          PlaceHolder="{Loc 'vending-machine-component-search-filter'}" />
+            </BoxContainer>
+            <PanelContainer Name="HeaderDivider" MinHeight="1" MaxHeight="1" HorizontalExpand="True" />
+            <Label Name="EmptyLabel" Visible="False" HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Text="{Loc 'vending-machine-component-try-eject-out-of-stock'}" />
+            <ScrollContainer Name="CatalogScroll" HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+                <BoxContainer Name="Sections" Access="Public" Orientation="Vertical" />
+            </ScrollContainer>
+            <PanelContainer Name="FooterDivider" MinHeight="1" MaxHeight="1" HorizontalExpand="True" />
+            <BoxContainer Orientation="Horizontal">
+                <Label Name="FlavorLeft" Text="{Loc 'vending-machine-flavor-left'}" />
+                <Label Name="FlavorRight" Text="{Loc 'vending-machine-flavor-right'}"
+                       HorizontalAlignment="Right" HorizontalExpand="True" />
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</styles:LunaWindow>

@@ -27,12 +27,12 @@
     - Zipties
     - Handcuffs
     - ComputerIFFCircuitboard
-    chance: 0.55
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootHardsuitsMercenary
     - SpawnDungeonLootGunT2
-    rareChance: 0.025
+    rareChance: 0.05
 
 - type: entity
   name: random clutter
@@ -71,7 +71,7 @@
     - RiotShield
     - RiotLaserShield
     - ComputerIFFCircuitboard
-    chance: 0.5
+    chance: 0.8
     offset: 0.0
     rarePrototypes:
     - ClothingOuterArmorReflective
@@ -108,13 +108,13 @@
     - SpawnDungeonLootAmmoRubber
     - SpawnDungeonLootAmmoRubber
     - SpawnDungeonLootAmmoPractice
-    chance: 0.4
+    chance: 0.75
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT2
     - SpawnDungeonLootGunT2
     - SpawnDungeonLootExplosivesT1
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -139,13 +139,13 @@
     - SpawnDungeonLootMeleeT2
     - SpawnDungeonLootMeleeT3L # Lua
     - SpawnDungeonLootAmmoLethal
-    chance: 0.4
+    chance: 0.8
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
     - SpawnDungeonLootGunT3
     - SpawnDungeonLootExplosivesT2
-    rareChance: 0.1 #Lua 0.1<0.2
+    rareChance: 0.2 #Lua 0.1<0.2
 
 - type: entity
   name: random weapon
@@ -166,12 +166,12 @@
     prototypes:
     - SpawnDungeonLootMeleeT1
     - SpawnDungeonLootMeleeT2
-    chance: 0.4
+    chance: 0.8
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT3
     - SpawnDungeonLootMeleeT3L # Lua
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -194,13 +194,13 @@
     - SpawnDungeonLootGunT3L # Lua
     - SpawnDungeonLootMeleeT3
     - SpawnDungeonLootMeleeT3L # Lua
-    chance: 0.4
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootMeleeT4
     - SpawnDungeonLootGunT4
     - SpawnDungeonLootExplosivesT3
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random weapon
@@ -221,14 +221,14 @@
     prototypes:
     - SpawnDungeonLootExplosivesT1
     - SpawnDungeonLootExplosivesT2
-    chance: 0.4
+    chance: 0.8
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootExplosivesT3
     - SpawnDungeonLootExplosivesT3
     - SpawnDungeonLootExplosivesT3
     - SpawnDungeonLootExplosivesT4
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random shields
@@ -250,7 +250,7 @@
     - RiotShield
     - RiotBulletShield
     - RiotLaserShield
-    chance: 0.4
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - TelescopicShield
@@ -288,12 +288,12 @@
     - ClothingOuterVestWebMercenary
     - ClothingOuterVestWebMercenaryBlack
     - SpawnDungeonLootArmorMercenary
-    chance: 0.4
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootHardsuitsMercenary
     - ClothingShoesBootsMagMercenary
-    rareChance: 0.01
+    rareChance: 0.02
 
 - type: entity
   name: random armor
@@ -316,13 +316,13 @@
     - ClothingOuterArmorBasicSlim
     - ClothingOuterArmorBulletproof
     - ClothingOuterArmorRiot
-    chance: 0.4
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - ClothingOuterArmorHeavy
     - ClothingOuterArmorReflective
     - ClothingOuterVestWeb
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entityTable
   id: TableHardsuitMerc
@@ -383,11 +383,11 @@
     - LockerMercenaryFilled
     - ClosetBomb
     - NFClosetBombFilled
-    chance: 0.55
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootSuitStorageUnitsMercenary
-    rareChance: 0.025
+    rareChance: 0.05
 
 - type: entity
   name: random suit storage unit
@@ -412,12 +412,12 @@
     - SuitStorageEVAMercenary
     - SuitStorageEVAPrivateSec
     - SuitStorageSurplus
-    chance: 0.4
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - SuitStorageScaf
     - SuitStorageNoble
-    rareChance: 0.05
+    rareChance: 0.1
 
 - type: entity
   name: random crate
@@ -467,7 +467,7 @@
     - CrateAmmoBoxRubber35
     - CrateAmmoBoxRubber45
     - CrateAmmoBoxRubberShotgun
-    chance: 0.4
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - CrateArmorySMGExpedition
@@ -501,7 +501,7 @@
     - CrateAmmoBoxPractice35
     - CrateAmmoBoxPractice45
     - CrateAmmoBoxPracticeShotgun
-    rareChance: 0.025
+    rareChance: 0.05
 
 - type: entity
   name: random crate
@@ -521,12 +521,12 @@
     prototypes:
     - CrateSecurityArmor
     - CrateSecurityHelmet
-    chance: 0.4
+    chance: 0.85
     offset: 0.0
     rarePrototypes:
     - CrateSecurityRiot
     - CrateSecurityBiosuit
-    rareChance: 0.025
+    rareChance: 0.05
 
 - type: entity
   name: random crate (restock)
@@ -547,7 +547,7 @@
     - CrateVendingMachineRestockAmmoFilled
     - CrateVendingMachineRestockLessLethalVendFilled
     - CrateVendingMachineRestockNonLethalVendFilled
-    chance: 0.4
+    chance: 1.0
     offset: 0.0
 
 #region Machines
@@ -570,7 +570,7 @@
     - VendingMachineBountyVend
     - VendingMachineAmmo
     - LessLethalVendingMachine
-    chance: 0.55
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - VendingMachineArcadia
@@ -602,7 +602,7 @@
     - MercenaryTechFabFlatpack
     - MercenaryTechFabCircuitboardNF
 #    - AmmoTechFabFlatpack # comment from _Lua
-    chance: 0.4
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - MercenaryTechFab

@@ -123,14 +123,14 @@ public sealed class FactionAnnouncementSystem : EntitySystem
 
         if (string.IsNullOrWhiteSpace(sectorId) || sectorId == AllSectorsId)
         {
-            _chat.DispatchGlobalAnnouncement(message, title, true, finalSound, finalColor);
+            _chat.DispatchGlobalAnnouncement(message, title, true, finalSound, finalColor, factionId: factionId);
             return true;
         }
 
         if (!_sectors.TryGetMapId(sectorId, out var mapId) || mapId == MapId.Nullspace)
             return false;
 
-        _chat.DispatchMapAnnouncement(mapId, message, title, true, finalSound, finalColor);
+        _chat.DispatchMapAnnouncement(mapId, message, title, true, finalSound, finalColor, factionId: factionId);
         return true;
     }
 }

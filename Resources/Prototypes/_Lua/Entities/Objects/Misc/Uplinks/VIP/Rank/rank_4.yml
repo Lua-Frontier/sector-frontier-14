@@ -1,0 +1,59 @@
+- type: listing
+  id: UplinkVipRank4BluespaceBeaker
+  name: uplink-vip-BluespaceBeaker-name
+  description: uplink-vip-BluespaceBeaker-desc
+  productEntity: BluespaceBeaker
+  cost:
+    Speso: 4500
+  categories:
+  - UplinkVipTierRank4
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank4
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank4JugBluespace
+  name: uplink-vip-JugBluespace-name
+  description: uplink-vip-JugBluespace-desc
+  productEntity: JugBluespace
+  cost:
+    Speso: 5200
+  categories:
+  - UplinkVipTierRank4
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank4
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank4MiningDrillDiamond
+  name: uplink-vip-MiningDrillDiamond-name
+  description: uplink-vip-MiningDrillDiamond-desc
+  productEntity: MiningDrillDiamond
+  cost:
+    Speso: 6000
+  categories:
+  - UplinkVipTierRank4
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank4
+  - !type:ListingLimitedStockCondition
+    stock: 1

@@ -39,10 +39,10 @@ public sealed partial class StargatePlanetPresetPrototype : IPrototype
     public int DungeonCountMax = 1;
 
     [DataField]
-    public int DungeonDistanceMin = 50;
+    public int DungeonDistanceMin = 80;
 
     [DataField]
-    public int DungeonDistanceMax = 120;
+    public int DungeonDistanceMax = 90;
 
     [DataField]
     public float WorldRadiusMin = 200f;
@@ -54,16 +54,16 @@ public sealed partial class StargatePlanetPresetPrototype : IPrototype
     public float GateSafeRadius = 8f;
 
     [DataField]
-    public int DungeonMobCap = 128;
+    public int DungeonMobCap = 64;
 
     [DataField]
-    public int DungeonMobDensity = 8;
+    public int DungeonMobDensity = 16;
 
     [DataField]
     public int DungeonMobsPerRoomMin = 1;
 
     [DataField]
-    public int DungeonMobsPerRoomMax = 6;
+    public int DungeonMobsPerRoomMax = 3;
 
     [DataField]
     public ProtoId<EntityTablePrototype> DungeonMobTable = "LuaGateDungeonMobTable";

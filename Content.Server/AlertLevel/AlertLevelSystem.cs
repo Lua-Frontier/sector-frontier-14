@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Lua.Announce;
 using Content.Server._Lua.Sectors;
 using Content.Server._NF.SectorServices;
 using Content.Server.Chat.Systems;
@@ -259,7 +260,7 @@ public sealed class AlertLevelSystem : EntitySystem
                 sender = meta.EntityName;
 
             _chatSystem.DispatchFilteredAnnouncement(filter, announcementFull, station, sender,
-                playSound: playDefault, colorOverride: detail.Color);
+                playSound: playDefault, colorOverride: detail.Color, announcementPreset: AnnouncementOverlayParams.PresetAlert);
         }
 
         RaiseLocalEvent(new AlertLevelChangedEvent(service, mapId, level));

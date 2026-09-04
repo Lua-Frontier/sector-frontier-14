@@ -1,0 +1,377 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#NOCATEGORY
+
+- type: listing
+  id: UplinkVipNocatMedkit
+  name:  uplink-vip-medkit-name
+  description: uplink-vip-medkit-desc
+  productEntity: MedkitAdvancedFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: advkit }
+  cost:
+    Speso: 2800
+  categories:
+    - UplinkVipNocat
+    - UplinkVipTierShareholder
+    - UplinkVipTierShareholderLua
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerSponsorTierCondition
+      whitelist:
+      - shareholder
+      - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatCardBoxSyndicate
+  name: uplink-vip-CardBoxSyndicate-name
+  description: uplink-vip-CardBoxSyndicate-desc
+  productEntity: CardBoxSyndicate
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatCardBoxNanotrasen
+  name: uplink-vip-CardBoxNanotrasen-name
+  description: uplink-vip-CardBoxNanotrasen-desc
+  productEntity: CardBoxNanotrasen
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatCardBoxBlack
+  name: uplink-vip-CardBoxBlack-name
+  description: uplink-vip-CardBoxBlack-desc
+  productEntity: CardBoxBlack
+  cost:
+    Speso: 2100
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatMpplayerDefault
+  name: uplink-vip-MpplayerDefault-name
+  description: uplink-vip-MpplayerDefault-desc
+  productEntity: MpplayerDefault
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatSponsorMusicPlayer
+  name: uplink-vip-SponsorMusicPlayer-name
+  description: uplink-vip-SponsorMusicPlayer-desc
+  productEntity: SponsorMusicPlayer
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatCrateCargoGambling
+  name: uplink-vip-CrateCargoGambling-name
+  description: uplink-vip-CrateCargoGambling-desc
+  productEntity: VipBundleCargoGambling
+  icon: { sprite: _Lua/Objects/Tools/vipbundles.rsi, state: share-base }
+  cost:
+    Speso: 15000
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+  - !type:ListingLimitedStockCondition
+    stock: 20
+
+- type: listing
+  id: UplinkVipNocatLauncherCreamPie
+  name: uplink-vip-LauncherCreamPie-name
+  description: uplink-vip-LauncherCreamPie-desc
+  productEntity: LauncherCreamPie
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatAnomalyScanner
+  name: uplink-vip-AnomalyScanner-name
+  description: uplink-vip-AnomalyScanner-desc
+  productEntity: AnomalyScanner
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatAdvancedMineralScanner
+  name: uplink-vip-AdvancedMineralScanner-name
+  description: uplink-vip-AdvancedMineralScanner-desc
+  productEntity: AdvancedMineralScanner
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatMedicalAppraisalTool
+  name: uplink-vip-MedicalAppraisalTool-name
+  description: uplink-vip-MedicalAppraisalTool-desc
+  productEntity: MedicalAppraisalTool
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatHandHeldMassScanner
+  name: uplink-vip-HandHeldMassScanner-name
+  description: uplink-vip-HandHeldMassScanner-desc
+  productEntity: HandHeldMassScanner
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatContrabandAppraisalTool
+  name: uplink-vip-ContrabandAppraisalTool-name
+  description: uplink-vip-ContrabandAppraisalTool-desc
+  productEntity: ContrabandAppraisalTool
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+- type: listing
+  id: UplinkVipNocatAppraisalTool
+  name: uplink-vip-AppraisalTool-name
+  description: uplink-vip-AppraisalTool-desc
+  productEntity: AppraisalTool
+  cost:
+    Speso: 300
+  categories:
+  - UplinkVipNocat
+  - UplinkVipTierShareholder
+  - UplinkVipTierShareholderLua
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - shareholder
+    - shareholderlua
+
+
+
+- type: listing
+  id: UplinkVipNocatHypospray
+  name: uplink-vip-VipJetInjector-name
+  description: uplink-vip-VipJetInjector-desc
+  productEntity: VipJetInjector
+  icon: { sprite: Objects/Specific/Medical/advanced_jetinjector.rsi, state: jetinjector_base }
+  cost:
+    Speso: 17000
+  categories:
+    - UplinkVipNocat
+    - UplinkVipTierShareholder
+    - UplinkVipTierShareholderLua
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerSponsorTierCondition
+      whitelist:
+      - shareholder
+      - shareholderlua
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: UplinkVipNocatPrizeBall
+  name:  uplink-vip-PrizeBall-name
+  description: uplink-vip-PrizeBall-desc
+  productEntity: PrizeBall
+  icon: { sprite: _NF/Objects/Fun/prizeticket.rsi, state: prizeball }
+  cost:
+    Speso: 360
+  categories:
+    - UplinkVipNocat
+    - UplinkVipTierShareholder
+    - UplinkVipTierShareholderLua
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerSponsorTierCondition
+      whitelist:
+      - shareholder
+      - shareholderlua
+    - !type:ListingLimitedStockCondition
+      stock: 30
+
+- type: listing
+  id: UplinkVipNocatEncryption
+  name:  uplink-vip-Encryption-name
+  description: uplink-vip-Encryption-desc
+  productEntity: EncryptionKeyVip
+  icon: { sprite: _Lua/encryption_keys.rsi, state: crypt_black_uplink }
+  cost:
+    Speso: 360
+  categories:
+    - UplinkVipNocat
+    - UplinkVipTierShareholder
+    - UplinkVipTierShareholderLua
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - VipUplink
+    - !type:BuyerSponsorTierCondition
+      whitelist:
+      - shareholder
+      - shareholderlua
+
+

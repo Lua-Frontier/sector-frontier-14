@@ -1,0 +1,60 @@
+- type: listing
+  id: UplinkVipRank6AdvancedMineralScanner
+  name: uplink-vip-AdvancedMineralScanner-name
+  description: uplink-vip-AdvancedMineralScanner-desc
+  productEntity: AdvancedMineralScanner
+  cost:
+    Speso: 2800
+  categories:
+  - UplinkVipTierRank6
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank6
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank6HandHeldMassScanner
+  name: uplink-vip-HandHeldMassScanner-name
+  description: uplink-vip-HandHeldMassScanner-desc
+  productEntity: HandHeldMassScanner
+  cost:
+    Speso: 3000
+  categories:
+  - UplinkVipTierRank6
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank6
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank6BackpackClippy
+  name: uplink-vip-Clippy-name
+  description: uplink-vip-Clippy-desc
+  productEntity: ClothingBackpackClippy
+  icon: { sprite: _NF/Clothing/Back/Backpacks/clippy.rsi, state: icon }
+  cost:
+    Speso: 1500
+  categories:
+  - UplinkVipTierRank6
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank6
+  - !type:ListingLimitedStockCondition
+    stock: 1

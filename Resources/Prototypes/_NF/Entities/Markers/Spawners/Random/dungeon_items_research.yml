@@ -28,12 +28,12 @@
     - SpawnDungeonLootClothesScience
     - SpawnDungeonLootRnDDisk
     - SpawnDungeonLootVendingRestocks
-    chance: 0.55
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootCircuitBoardScience
     - SpawnDungeonLootFlatpacksScience
-    rareChance: 0.025
+    rareChance: 0.05
 
 # Clothes
 - type: entity
@@ -58,7 +58,7 @@
     - ClothingNeckTieSci
     - ClothingBackpackDuffelScience
     - ClothingBackpackMessengerScience
-    chance: 0.4
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ClothingNeckMantleRD
@@ -92,7 +92,7 @@
     - MachineAnomalyVessel
     - CrateArtifactContainer
     - SpawnDungeonMachineFrame
-    chance: 0.55
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - LockerResearchDirectorFilled
@@ -178,7 +178,7 @@
     - CrateMedicalSecureMedicine
     - CrateMedicalSecureMedicinePierce
     - CrateEvaKitParamedic
-    chance: 0.4
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     # Mats
@@ -216,12 +216,12 @@
     - ResearchDisk
     - ResearchDisk
     - ResearchDisk5000
-    chance: 0.4
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ResearchDisk10000
     - WeaponCaseShortDocumentsFilled
-    rareChance: 0.025
+    rareChance: 0.05
 
 - type: entity
   name: random machine board
@@ -256,13 +256,13 @@
     - ArtifactCrusherMachineCircuitboard
     - AnomalyVesselCircuitboard
     - AnomalyVesselExperimentalCircuitboard
-    chance: 0.4
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - AutolatheHyperConvectionMachineCircuitboard
     - ProtolatheHyperConvectionMachineCircuitboard
     - ComputerIFFCircuitboard
-    rareChance: 0.025
+    rareChance: 0.05
 
 - type: entity
   name: random flatpack
@@ -291,12 +291,12 @@
     - ResearchAndDevelopmentServerFlatpack
     - MachineAnomalyVesselExperimentalFlatpack
     - MachineAnomalyVesselFlatpack
-    chance: 0.4
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - MachineAnomalyGeneratorFlatpack
     - StargateAddressDisk
-    rareChance: 0.04
+    rareChance: 0.08
 
 - type: entity
   name: random law board
@@ -327,10 +327,10 @@
     - NTDefaultCircuitBoard
     - CorporateCircuitBoard
     - AsimovCircuitBoard
-    chance: 0.4
+    chance: 0.9
     offset: 0.0
     rarePrototypes:
     - AntimovCircuitBoard
     - FreemanCircuitBoard
     - OverlordCircuitBoard
-    rareChance: 0.025
+    rareChance: 0.05

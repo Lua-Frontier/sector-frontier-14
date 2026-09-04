@@ -1,3 +1,4 @@
+using Content.Client._RMC14.Explosion;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
 using Robust.Client.Graphics;
@@ -20,6 +21,7 @@ public sealed class ExplosionOverlaySystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly RMCExplosionShockWaveSystem _shockWave = default!;
 
     public override void Initialize()
     {
@@ -49,6 +51,7 @@ public sealed class ExplosionOverlaySystem : EntitySystem
         component.ExplosionType = state.ExplosionType;
         component.SpaceMatrix = state.SpaceMatrix;
         component.SpaceTileSize = state.SpaceTileSize;
+        _shockWave.TrySpawn(uid, component.Epicenter, component.ExplosionType);
     }
 
     private void OnCompRemove(EntityUid uid, ExplosionVisualsComponent component, ComponentRemove args)
@@ -78,6 +81,7 @@ public sealed class ExplosionOverlaySystem : EntitySystem
             _lights.SetEnergy(lightEntity, component.Intensity.Count, light);
             _lights.SetColor(lightEntity, type.LightColor, light);
             textures.LightEntity = lightEntity;
+            _shockWave.TrySpawn(uid, component.Epicenter, component.ExplosionType);
         }
 
 

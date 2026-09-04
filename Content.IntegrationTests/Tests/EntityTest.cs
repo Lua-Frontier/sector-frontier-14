@@ -264,6 +264,8 @@ namespace Content.IntegrationTests.Tests
 
                 // makes an announcement on mapInit.
                 "AnnounceOnSpawn",
+
+                "TriggerOnSpawn", // Lua : for RMCExplosionEffectGrenadeShockWave
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);

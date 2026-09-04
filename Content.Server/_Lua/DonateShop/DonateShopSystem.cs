@@ -81,10 +81,18 @@ public sealed class DonateShopSystem : EntitySystem
         "UplinkVipFlatpack",
         "UplinkVipCrates",
         "UplinkVipTierShareholder",
+        "UplinkVipTierShareholderLua",
         "UplinkVipTierGod",
         "UplinkVipTierRank1",
         "UplinkVipTierRank2",
         "UplinkVipTierRank3",
+        "UplinkVipTierRank4",
+        "UplinkVipTierRank5",
+        "UplinkVipTierRank6",
+        "UplinkVipTierRank7",
+        "UplinkVipTierRank8",
+        "UplinkVipTierRank9",
+        "UplinkVipTierRank10",
     ];
 
     private static readonly ProtoId<CurrencyPrototype>[] CurrencyWhitelist =
@@ -244,7 +252,10 @@ public sealed class DonateShopSystem : EntitySystem
     {
         var catalog = _store.GetAllListings();
         foreach (var listing in catalog)
-        { if (HasLimitedStock(listing) && _roundPurchases.Contains((_gameTicker.RoundId, actorUserId, listing.ID)))listing.PurchaseAmount = 1; }
+        {
+            if (HasLimitedStock(listing) && _roundPurchases.Contains((_gameTicker.RoundId, actorUserId, listing.ID)))
+                listing.PurchaseAmount = 1;
+        }
         AppendPersonalListings(catalog, player, actorUserId);
         return catalog;
     }
@@ -391,7 +402,16 @@ public sealed class DonateShopSystem : EntitySystem
         {
             if (!string.Equals(loadout.OwnerLogin, playerName, StringComparison.OrdinalIgnoreCase)) continue;
             if (string.IsNullOrWhiteSpace(loadout.Tier)) continue;
-            var tierCategory = LoadoutTierToCategoryId(loadout.Tier);
+            if (!TryLoadoutTierToCategoryId(loadout.Tier, out var tierCategory))
+            {
+                _sawmill.Error($"Skipping sponsor loadout '{loadout.ID}': unknown tier '{loadout.Tier}'.");
+                continue;
+            }
+            if (!DonorGroups.TryResolveTier(loadout.Tier, out var requiredTier))
+            {
+                _sawmill.Error($"Skipping sponsor loadout '{loadout.ID}': unresolved tier '{loadout.Tier}'.");
+                continue;
+            }
             foreach (var entityId in loadout.Entities)
             {
                 var listingId = $"SponsorPersonal_{loadout.ID}_{entityId}";
@@ -404,6 +424,7 @@ public sealed class DonateShopSystem : EntitySystem
                     conditions: new List<ListingCondition>
                     {
                         new BuyerSponsorOwnerCondition { OwnerLogin = loadout.OwnerLogin },
+                        new BuyerSponsorTierCondition { Whitelist = [requiredTier] },
                         new ListingLimitedStockCondition { Stock = 1 }
                     },
                     icon: null,
@@ -426,14 +447,37 @@ public sealed class DonateShopSystem : EntitySystem
         }
     }
 
-    private static string LoadoutTierToCategoryId(string tier) => tier.ToLowerInvariant() switch
+    private static bool TryLoadoutTierToCategoryId(
+        string tier,
+        out ProtoId<StoreCategoryPrototype> categoryId)
     {
-        "god"   => "UplinkVipTierGod",
-        "rank1" => "UplinkVipTierRank1",
-        "rank2" => "UplinkVipTierRank2",
-        "rank3" => "UplinkVipTierRank3",
-        _       => "UplinkVipTierRank3",
-    };
+        var id = tier.Trim().ToLowerInvariant() switch
+        {
+            "shareholder" => "UplinkVipTierShareholder",
+            "shareholderlua" => "UplinkVipTierShareholderLua",
+            "god" => "UplinkVipTierGod",
+            "rank1" => "UplinkVipTierRank1",
+            "rank2" => "UplinkVipTierRank2",
+            "rank3" => "UplinkVipTierRank3",
+            "rank4" => "UplinkVipTierRank4",
+            "rank5" => "UplinkVipTierRank5",
+            "rank6" => "UplinkVipTierRank6",
+            "rank7" => "UplinkVipTierRank7",
+            "rank8" => "UplinkVipTierRank8",
+            "rank9" => "UplinkVipTierRank9",
+            "rank10" => "UplinkVipTierRank10",
+            _ => null,
+        };
+
+        if (id == null)
+        {
+            categoryId = default;
+            return false;
+        }
+
+        categoryId = id;
+        return true;
+    }
     private async Task<List<Content.Server.Database.Sponsor>> GetAllShopDonorsAsync(ICommonSession session)
     {
         if (!_playerManager.TryGetSessionById(session.UserId, out _)) return [];

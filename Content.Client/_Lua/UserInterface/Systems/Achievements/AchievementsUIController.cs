@@ -17,7 +17,7 @@ using Robust.Shared.Timing;
 namespace Content.Client._Lua.UserInterface.Systems.Achievements;
 
 [UsedImplicitly]
-public sealed class AchievementsUIController : UIController, IOnStateExited<GameplayState>
+public sealed class AchievementsUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     private static readonly TimeSpan ToastDuration = TimeSpan.FromSeconds(4.5);
     private static readonly TimeSpan ToastSlide = TimeSpan.FromSeconds(0.35);
@@ -39,6 +39,8 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
     private TimeSpan _toastStarted;
     private TimeSpan _toastEnds;
     private SpriteSystem? _sprite;
+    private bool _inGameplay;
+    private bool _toastAnchorsReady;
 
     private SpriteSystem Sprite => _sprite ??= _entitySystems.GetEntitySystem<SpriteSystem>();
 
@@ -61,8 +63,14 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
         UpdateToastAnimation();
     }
 
+    public void OnStateEntered(GameplayState state)
+    {
+        _inGameplay = true;
+    }
+
     public void OnStateExited(GameplayState state)
     {
+        _inGameplay = false;
         ClearToasts();
 
         if (_window == null)
@@ -135,6 +143,9 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
 
     private void EnqueueToast(string achievementId)
     {
+        if (!_inGameplay)
+            return;
+
         if (!_prototypes.HasIndex<AchievementPrototype>(achievementId))
             return;
 
@@ -145,6 +156,12 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
 
     private void ShowNextToast()
     {
+        if (!_inGameplay)
+        {
+            ClearToasts();
+            return;
+        }
+
         while (_toastQueue.Count > 0)
         {
             var id = _toastQueue.Dequeue();
@@ -152,10 +169,16 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
                 continue;
 
             EnsureToastHost();
+            if (_toastHost is not { Disposed: false })
+            {
+                ClearToasts();
+                return;
+            }
+
             var toast = new AchievementToast();
             toast.Setup(proto, Sprite);
             toast.Modulate = Color.White.WithAlpha(0f);
-            _toastHost!.AddChild(toast);
+            _toastHost.AddChild(toast);
             _activeToast = toast;
             _toastStarted = _timing.RealTime;
             _toastEnds = _toastStarted + ToastDuration;
@@ -182,24 +205,42 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
         UIManager.PopupRoot.AddChild(_toastHost);
         LayoutContainer.SetGrowHorizontal(_toastHost, LayoutContainer.GrowDirection.Begin);
         LayoutContainer.SetGrowVertical(_toastHost, LayoutContainer.GrowDirection.Begin);
-        ApplyToastPosition(0f);
+        LayoutContainer.SetAnchorAndMarginPreset(
+            _toastHost,
+            LayoutContainer.LayoutPreset.BottomRight,
+            margin: (int) ToastMarginBottom);
+        LayoutContainer.SetMarginRight(_toastHost, -ToastMarginRight);
+        _toastAnchorsReady = true;
     }
 
     private void ApplyToastPosition(float slideProgress)
     {
-        if (_toastHost == null)
+        if (_toastHost is not { Disposed: false } || !_toastAnchorsReady)
             return;
-        var bottomMargin = (int) (ToastMarginBottom - slideProgress * ToastSlideVertical);
+
+        var bottomMargin = ToastMarginBottom - slideProgress * ToastSlideVertical;
         var rightMargin = -ToastMarginRight + slideProgress * ToastSlideHorizontal;
 
-        LayoutContainer.SetAnchorAndMarginPreset(_toastHost, LayoutContainer.LayoutPreset.BottomRight, margin: bottomMargin);
+        LayoutContainer.SetMarginBottom(_toastHost, -bottomMargin);
         LayoutContainer.SetMarginRight(_toastHost, rightMargin);
     }
 
     private void UpdateToastAnimation()
     {
-        if (_activeToast == null)
+        if (!_inGameplay)
+        {
+            if (_activeToast != null || _toastHost != null || _toastQueue.Count > 0)
+                ClearToasts();
             return;
+        }
+
+        if (_activeToast is not { Disposed: false })
+        {
+            _activeToast = null;
+            if (_toastQueue.Count > 0)
+                ShowNextToast();
+            return;
+        }
 
         var now = _timing.RealTime;
         if (now >= _toastEnds)
@@ -233,5 +274,6 @@ public sealed class AchievementsUIController : UIController, IOnStateExited<Game
         _activeToast = null;
         _toastHost?.Orphan();
         _toastHost = null;
+        _toastAnchorsReady = false;
     }
 }

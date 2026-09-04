@@ -1,0 +1,16 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<controls:LuaVendingEntry
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Lua.VendingMachines.UI"
+    HorizontalExpand="True">
+    <BoxContainer Orientation="Horizontal" MinHeight="64">
+        <LayeredTextureRect Name="Texture" Access="Public"
+                            MinSize="64 64" SetSize="64 64"
+                            Stretch="KeepAspectCentered" CanShrink="True"
+                            VerticalAlignment="Center" />
+        <Label Name="Price" Access="Public" MinWidth="64" Align="Right" Margin="6 0 0 0" VerticalAlignment="Center" />
+        <Label Name="Amount" Access="Public" MinWidth="36" Align="Right" Margin="6 0 0 0" VerticalAlignment="Center" />
+        <Control MinWidth="6" />
+        <controls:LuaVendingPanel Name="Panel" Access="Public" />
+    </BoxContainer>
+</controls:LuaVendingEntry>

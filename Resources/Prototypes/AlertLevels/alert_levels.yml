@@ -5,34 +5,34 @@
     green:
       announcement: alert-level-green-announcement
       sound: /Audio/_Lua/Announcements/Alert/greenalert.ogg # Lua
-      color: Green
+      color: "#008000"
       emergencyLightColor: LawnGreen
       shuttleTime: 600
     blue:
       announcement: alert-level-blue-announcement
       sound: /Audio/_Lua/Announcements/Alert/bluealert.ogg # Lua
-      color: DodgerBlue
+      color: "#1E90FF"
       forceEnableEmergencyLights: true
       emergencyLightColor: DodgerBlue
       shuttleTime: 600
     violet:
       announcement: alert-level-violet-announcement
       sound: /Audio/_Lua/Announcements/Alert/violetalert.ogg # Lua
-      color: Violet
+      color: "#EE82EE"
       emergencyLightColor: Violet
       forceEnableEmergencyLights: true
       shuttleTime: 600
     yellow:
       announcement: alert-level-yellow-announcement
       sound: /Audio/_Lua/Announcements/Alert/yellowalert.ogg # Lua
-      color: Yellow
+      color: "#FFFF00"
       emergencyLightColor: Goldenrod
       forceEnableEmergencyLights: true
       shuttleTime: 600
     red:
       announcement: alert-level-red-announcement
       sound: /Audio/_Lua/Announcements/Alert/redalert.ogg # Lua
-      color: Red
+      color: "#FF0000"
       emergencyLightColor: Red
       forceEnableEmergencyLights: true
       shuttleTime: 600 #No reduction in time as we don't have swiping for red alert like in /tg/. Shuttle times are intended to create friction, so having a way to brainlessly bypass that would be dumb.
@@ -44,7 +44,7 @@
         params:
           volume: -2
       disableSelection: true
-      color: PaleVioletRed
+      color: "#DB7093"
       emergencyLightColor: PaleVioletRed
       forceEnableEmergencyLights: true
     delta:
@@ -55,7 +55,7 @@
         params:
           volume: -3
       disableSelection: true
-      color: DarkRed
+      color: "#8B0000"
       emergencyLightColor: Orange
       forceEnableEmergencyLights: true
       shuttleTime: 1200
@@ -67,7 +67,7 @@
         params:
           volume: -2
       disableSelection: true
-      color: DarkViolet
+      color: "#9400D3"
       emergencyLightColor: DarkViolet
       forceEnableEmergencyLights: true
       shuttleTime: 1200

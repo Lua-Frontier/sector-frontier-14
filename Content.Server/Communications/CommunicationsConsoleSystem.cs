@@ -22,6 +22,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Content.Server._NF.SectorServices; // Frontier
+using Content.Shared._Lua.Announce;
 
 namespace Content.Server.Communications
 {
@@ -246,7 +247,6 @@ namespace Content.Server.Communications
         {
             var maxLength = _cfg.GetCVar(CCVars.ChatMaxAnnouncementLength);
             var msg = SharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);
-            var author = Loc.GetString("comms-console-announcement-unknown-sender");
             if (message.Actor is { Valid: true } mob)
             {
                 if (!CanAnnounce(comp))
@@ -259,10 +259,6 @@ namespace Content.Server.Communications
                     _popupSystem.PopupEntity(Loc.GetString("comms-console-permission-denied"), uid, message.Actor);
                     return;
                 }
-
-                var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
-                RaiseLocalEvent(tryGetIdentityShortInfoEvent);
-                author = tryGetIdentityShortInfoEvent.Title;
             }
 
             comp.AnnouncementCooldownRemaining = comp.Delay;
@@ -274,13 +270,13 @@ namespace Content.Server.Communications
             // allow admemes with vv
             Loc.TryGetString(comp.Title, out var title);
             title ??= comp.Title;
+            var overlayTitle = ResolveCommsOverlayTitle(uid);
 
-            if (comp.AnnounceSentBy)
-                msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
+            EntityUid? speaker = message.Actor is { Valid: true } ? message.Actor : null;
 
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
+                _chatSystem.DispatchGlobalAnnouncement(msg, overlayTitle, announcementSound: comp.Sound, colorOverride: comp.Color, speaker: speaker, announcementPreset: AnnouncementOverlayParams.PresetComms);
 
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
@@ -289,12 +285,12 @@ namespace Content.Server.Communications
             var mapId = Transform(uid).MapID;
             if (mapId == MapId.Nullspace)
             {
-                _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
+                _chatSystem.DispatchStationAnnouncement(uid, msg, overlayTitle, colorOverride: comp.Color, speaker: speaker, announcementPreset: AnnouncementOverlayParams.PresetComms);
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchMapAnnouncement(mapId, msg, title, playSound: true, announcementSound: comp.Sound, colorOverride: comp.Color);
+            _chatSystem.DispatchMapAnnouncement(mapId, msg, overlayTitle, playSound: true, announcementSound: comp.Sound, colorOverride: comp.Color, speaker: speaker, announcementPreset: AnnouncementOverlayParams.PresetComms);
 
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following map announcement on {mapId}: {msg}");
 
@@ -364,6 +360,27 @@ namespace Content.Server.Communications
 
             _roundEndSystem.CancelRoundEndCountdown(uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
+        }
+
+        private string ResolveCommsOverlayTitle(EntityUid consoleUid)
+        {
+            var stationUid = _stationSystem.GetOwningStation(consoleUid);
+            if (stationUid != null)
+            {
+                var stationName = MetaData(stationUid.Value).EntityName;
+                if (!string.IsNullOrWhiteSpace(stationName))
+                    return Loc.GetString("lua-announcement-title-comms-station", ("station", stationName.ToUpperInvariant()));
+            }
+
+            var gridUid = Transform(consoleUid).GridUid;
+            if (gridUid != null)
+            {
+                var gridName = MetaData(gridUid.Value).EntityName;
+                if (!string.IsNullOrWhiteSpace(gridName))
+                    return Loc.GetString("lua-announcement-title-comms-station", ("station", gridName.ToUpperInvariant()));
+            }
+
+            return Loc.GetString("lua-announcement-title-comms-fallback");
         }
     }
 

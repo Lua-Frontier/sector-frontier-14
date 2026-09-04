@@ -140,6 +140,9 @@ namespace Content.Shared.Maps
         /// </summary>
         [DataField("indestructible")] public bool Indestructible = false;
 
+        [DataField]
+        public ResPath? IconSmoothSprite { get; private set; }
+
         public void AssignTileId(ushort id)
         {
             TileId = id;

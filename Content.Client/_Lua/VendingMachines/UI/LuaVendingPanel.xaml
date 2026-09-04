@@ -1,0 +1,18 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<controls:LuaVendingPanel
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client._Lua.VendingMachines.UI"
+    xmlns:ammo="clr-namespace:Content.Client._Lua.AmmoLoader.UI"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    HorizontalExpand="True">
+    <PanelContainer Name="Panel" VerticalExpand="True" HorizontalExpand="True" Margin="0">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1" />
+        </PanelContainer.PanelOverride>
+        <ammo:MarqueeLabel Name="Title" Access="Public"
+                           HorizontalExpand="True" VerticalExpand="True"
+                           VerticalAlignment="Center" Margin="8 0" />
+        <controls:LuaVendingButton Name="Button" Access="Public"
+                                   ModulateSelfOverride="#00000000" HorizontalExpand="True" VerticalExpand="True" />
+    </PanelContainer>
+</controls:LuaVendingPanel>

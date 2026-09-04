@@ -11,16 +11,19 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
+  barestepSounds:
+    collection: FootstepAsteroid
   heatCapacity: 10000
   weather: true
   indestructible: true
+  iconSmoothSprite: /Textures/_CE/Tiles/Edges/dirt.rsi
 
 # Desert
 - type: tile
   id: FloorDesert
   name: tiles-desert-floor
-  sprite: /Textures/Tiles/Planet/Desert/desert.png
-  variants: 6
+  sprite: /Textures/_Mono/Tiles/planet/auto_sand/sand_1_var.png
+  variants: 16
   placementVariants:
   - 1.0
   - 1.0
@@ -28,8 +31,73 @@
   - 1.0
   - 1.0
   - 1.0
+  - 1.0
+  - 1.0
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  edgeSpritePriority: 3
+  edgeSprites:
+    SouthEast: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    NorthEast: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    NorthWest: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    SouthWest: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    South: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+    East: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+    North: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+    West: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
   isSubfloor: true
   footstepSounds:
+    collection: FootstepAsteroid
+  barestepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorDesertPlanet
+  name: tiles-desert-floor
+  sprite: /Textures/_Mono/Tiles/planet/auto_sand/sand_1_var.png
+  variants: 16
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  edgeSpritePriority: 3
+  edgeSprites:
+    SouthEast: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    NorthEast: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    NorthWest: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    SouthWest: /Textures/_Mono/Tiles/planet/auto_sand/sand_single_edge.png
+    South: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+    East: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+    North: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+    West: /Textures/_Mono/Tiles/planet/auto_sand/sand_double_edge.png
+  isSubfloor: true
+  deconstructTools: [ Digging ]
+  baseTurf: FloorAsteroidSandUnvariantizedPlanet
+  footstepSounds:
+    collection: FootstepAsteroid
+  barestepSounds:
     collection: FootstepAsteroid
   heatCapacity: 10000
   weather: true
@@ -50,6 +118,73 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
+  barestepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorAsteroidSandUnvariantizedPlanet
+  name: tiles-asteroid-sand
+  sprite: /Textures/Tiles/Asteroid/asteroid0.png
+  isSubfloor: true
+  baseTurf: Space
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    NorthEast: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    NorthWest: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    SouthWest: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    South: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    East: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    North: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    West: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+  deconstructTools: [ Digging ]
+  footstepSounds:
+    collection: FootstepAsteroid
+  barestepSounds:
+    collection: FootstepAsteroid
+  heatCapacity: 10000
+  weather: true
+  indestructible: true
+
+- type: tile
+  id: FloorAsteroidSandPlanet
+  name: tiles-asteroid-sand
+  sprite: /Textures/Tiles/Asteroid/asteroid.png
+  variants: 13
+  placementVariants:
+  - 0.8
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0166
+  - 0.0116
+  - 0.0116
+  isSubfloor: true
+  baseTurf: Space
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    NorthEast: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    NorthWest: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    SouthWest: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    South: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    East: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    North: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    West: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+  deconstructTools: [ Digging ]
+  footstepSounds:
+    collection: FootstepAsteroid
+  barestepSounds:
+    collection: FootstepAsteroid
   heatCapacity: 10000
   weather: true
   indestructible: true
@@ -58,31 +193,36 @@
 - type: tile
   id: FloorPlanetGrass
   name: tiles-grass-planet-floor
-  sprite: /Textures/Tiles/Planet/Grass/grass.png
-  variants: 4
+  sprite: /Textures/_CE/Tiles/Grass/grass.png
+  variants: 6
   placementVariants:
+  - 1.0
+  - 1.0
   - 1.0
   - 1.0
   - 1.0
   - 1.0
   edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-    South: /Textures/Tiles/Planet/Grass/double_edge.png
-    East: /Textures/Tiles/Planet/Grass/double_edge.png
-    North: /Textures/Tiles/Planet/Grass/double_edge.png
-    West: /Textures/Tiles/Planet/Grass/double_edge.png
+    SouthEast: /Textures/_CE/Tiles/Grass/single_edge_SE.png
+    NorthEast: /Textures/_CE/Tiles/Grass/single_edge_NE.png
+    NorthWest: /Textures/_CE/Tiles/Grass/single_edge_NW.png
+    SouthWest: /Textures/_CE/Tiles/Grass/single_edge_SW.png
+    South: /Textures/_CE/Tiles/Grass/double_edge_S.png
+    East: /Textures/_CE/Tiles/Grass/double_edge_E.png
+    North: /Textures/_CE/Tiles/Grass/double_edge_N.png
+    West: /Textures/_CE/Tiles/Grass/double_edge_W.png
   baseTurf: FloorPlanetDirt
   isSubfloor: true
   footstepSounds:
+    collection: FootstepGrass
+  barestepSounds:
     collection: FootstepGrass
   itemDrop: FloorTileItemGrass
   heatCapacity: 10000
   weather: true
   indestructible: true
+  iconSmoothSprite: /Textures/_CE/Tiles/Edges/grass.rsi
 
 # Lava
 - type: tile
