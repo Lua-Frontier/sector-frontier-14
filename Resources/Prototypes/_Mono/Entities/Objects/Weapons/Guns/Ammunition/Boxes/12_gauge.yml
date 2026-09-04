@@ -1,0 +1,158 @@
+- type: entity
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeBeanbag
+  name: shotgun shell box (12 gauge beanbag)
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeBeanbag
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: beanbag
+
+- type: entity
+  name: shotgun shell box (12 gauge buckshot)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeBuckshot
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeBuckshot
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: lethal
+
+- type: entity
+  name: shotgun shell box (12 gauge slug)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeSlug
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeSlug
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slug
+
+- type: entity
+  name: flare shell box (12 gauge flare)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeFlare
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeFlare
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: flare
+
+- type: entity
+  name: shotgun shell box (12 gauge incendiary)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeIncendiary
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeIncendiary
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: incendiary
+
+- type: entity
+  name: shotgun shell box (12 gauge uranium)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeUranium
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeUranium
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: uranium
+
+- type: entity
+  name: shotgun shell box (12 gauge practice)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugePractice
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugePractice
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: practice
+
+- type: entity
+  name: shotgun shell box (12 gauge tranquilizer)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeTranquilizer
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeTranquilizer
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: tranquilizer
+
+# Mono AP syst
+#anti-flesh:
+- type: entity
+  name: shotgun shell box (12 gauge OO magnum buckshot)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeOOBuckshot
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeOOBuckshot
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: magnum-buckshot
+
+- type: entity
+  name: shotgun shell box (12 gauge RIP)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeSlugRIP
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeSlugRIP
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slugRIP
+
+#armor-piercing:
+- type: entity
+  name: shotgun shell box (12 gauge armor-piercing slug)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeSlugAP
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeSlugAP
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: slugAP
+
+- type: entity
+  name: shotgun shell box (12 gauge flechette)
+  parent: AmmoProvider12_gaugeShotgunShell
+  id: AmmoBox12_gaugeFlechette
+  components:
+    - type: BallisticAmmoProvider
+      proto: ShellShotgun12_gaugeFlechette
+    - type: Sprite
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: flechette

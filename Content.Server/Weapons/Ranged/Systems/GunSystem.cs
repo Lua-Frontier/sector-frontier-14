@@ -161,6 +161,9 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (ent == null)
                         break;
 
+                    if (TryComp<HitscanBasicDamageComponent>(ent.Value, out var hitscanDamageComp))
+                        hitscanDamageComp.Damage *= gun.DamageModifier;
+
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,

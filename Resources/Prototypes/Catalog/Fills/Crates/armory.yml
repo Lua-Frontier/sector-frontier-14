@@ -6,7 +6,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
+      - id: WeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
         amount: 2
       - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
         amount: 4
@@ -19,7 +19,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
+      - id: WeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
         amount: 2
       - id: AmmoBox23x75mmBuckshot # Lua 20 gauge
         amount: 4
@@ -54,7 +54,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponEnergyRifleCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
+      - id: WeaponLaserCarbine # Frontier: WeaponLaserCarbine<NFWeaponEnergyRifleCarbine
         amount: 3
 
 - type: entity
@@ -65,7 +65,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
+    - id: WeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
       amount: 2
     - id: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
       amount: 4
@@ -82,7 +82,7 @@
       amount: 2
     - id: ClothingHeadHelmetRiot
       amount: 2
-    - id: NFWeaponShotgunEnforcerLessLethal # Frontier: WeaponEnforcerRubber<NFWeaponShotgunEnforcerLessLethal
+    - id: WeaponShotgunEnforcerRubber # Frontier: WeaponEnforcerRubber
       amount: 2
     - id: AmmoBox23x75mmBeanbag # Lua 20 gauge
       amount: 2
@@ -97,7 +97,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponSubMachineGunDrozd #Lua NFWeaponRifleAssaultLecter<NFWeaponSubMachineGunDrozd
+    - id: WeaponSubMachineGunDrozd #Lua
       amount: 1 #Lua 2<1
     - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
       amount: 4

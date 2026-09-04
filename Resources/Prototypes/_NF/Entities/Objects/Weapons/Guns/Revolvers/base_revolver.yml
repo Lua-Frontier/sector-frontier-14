@@ -154,7 +154,7 @@
         - Cartridge9x19mmFMJ #Lua 35 -> 9x19
         - SpeedLoader9x19mmFMJ #Lua 35 -> 9x19
     capacity: 8
-    proto: NFCartridgePistol35
+    proto: Cartridge9x19mmFMJ
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
 
@@ -170,9 +170,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - NFCartridgeRifle60
+        - Cartridge127x99mm
     capacity: 1
-    proto: NFCartridgeRifle60
+    proto: Cartridge127x99mm
     chambers: [ True ]
     ammoSlots: [ null ]
 

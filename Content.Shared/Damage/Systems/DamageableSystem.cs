@@ -230,7 +230,8 @@ namespace Content.Shared.Damage
                     _prototypeManager.Resolve(damageable.DamageModifierSetId, out var modifierSet))
                 {
                     // TODO: We need to add a check to see if the given armor covers the targeted part (if any) to modify or not.
-                    damage = DamageSpecifier.ApplyModifierSet(damage, modifierSet);
+                    damage = DamageSpecifier.ApplyModifierSet(damage,
+                        DamageSpecifier.PenetrateArmor(modifierSet, armorPenetration));
                 }
 
                 var ev = new DamageModifyEvent(damage, origin, armorPenetration, targetPart, tool); // Shitmed Change

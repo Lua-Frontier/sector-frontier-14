@@ -4,7 +4,7 @@
   name: Импульсный карабин
   description: Высокотехнологичный энергетический карабин, излюбленный бойцами ОБР NanoTrasen. На рукоятке имеется наклейка с надписью «Только для авторизованного использования».
   icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: icon }
-  productEntity: NFWeaponEnergyRifleAssaultPulseCarbine
+  productEntity: WeaponPulseCarbine
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -15,7 +15,7 @@
   name: импульсная винтовка
   description: Оружие, почти столь же печально известное, как и его пользователи.
   icon: { sprite: Objects/Weapons/Guns/Battery/pulse_rifle.rsi, state: icon }
-  productEntity: NFWeaponEnergyRiflePulse
+  productEntity: WeaponPulseRifle
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -26,7 +26,7 @@
   name: импульсный пистолет
   description: Новейший энергетический пистолет, предпочитаемый Рейнджерами NanoTrasen в качестве запасного оружия.
   icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: icon }
-  productEntity: NFWeaponEnergyPistolPulse
+  productEntity: WeaponPulsePistol
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -59,7 +59,7 @@
   name: Бульдог 
   description: Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра 4 gauge.
   icon: { sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi, state: icon }
-  productEntity: NFWeaponShotgunBulldog
+  productEntity: WeaponShotgunBulldog
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -80,7 +80,7 @@
   name: М-90gl
   description: Карабин старой модели, выполненный по схеме булл-пап, с подствольным гранатомётом. Использует патроны калибра 5.56x45mm.
   icon: { sprite: Objects/Weapons/Guns/Rifles/carbine.rsi, state: icon }
-  productEntity: NFWeaponRifleAssaultM90GrenadeLauncher
+  productEntity: WeaponRifleM90GrenadeLauncher
   cost:
     FrontierUplinkCoin: 5
   categories:

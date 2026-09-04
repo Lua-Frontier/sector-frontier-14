@@ -16,7 +16,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolMk58
+    - id: WeaponPistolMk58
       amount: 1
     - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
       amount: 2
@@ -29,7 +29,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyRifleTemperature
+    - id: WeaponTemperatureGun
       amount: 1
 
 - type: entity
@@ -40,7 +40,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolViperExpedition
+    - id: WeaponPistolViperExpedition
       amount: 1
     - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
       amount: 2
@@ -53,7 +53,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolCobraExpedition
+    - id: WeaponPistolCobraExpedition
       amount: 1
     - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
       amount: 2
@@ -66,7 +66,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolPollock
+    - id: WeaponPistolPollock
       amount: 1
     - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
       amount: 2
@@ -80,9 +80,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverArgenti
+    - id: WeaponRevolverArgenti
       amount: 1
-    - id: NFSpeedLoaderPistol35
+    - id: AmmoBox45_ACPFMJ
       amount: 2
 
 - type: entity
@@ -93,7 +93,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverRitland45
+    - id: WeaponRevolverPython
       amount: 1
     - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
       amount: 2
@@ -106,7 +106,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverWard45
+    - id: WeaponRevolverMateba
       amount: 1
     - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
       amount: 2
@@ -119,7 +119,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverFitz
+    - id: WeaponRevolverFitz
       amount: 1
     - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
       amount: 2
@@ -132,7 +132,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverFaith
+    - id: WeaponRevolverFaith
       amount: 1
     - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
       amount: 2
@@ -145,7 +145,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverLucky
+    - id: WeaponRevolverLucky
       amount: 1
     - id: AmmoBox45_ACPFMJ #Lua 45 -> Magnum
       amount: 2
@@ -159,7 +159,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponShotgunKammerer
+    - id: WeaponShotgunKammerer
       amount: 1
     - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
       amount: 2
@@ -172,7 +172,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponShotgunEnforcer
+    - id: WeaponShotgunEnforcer
       amount: 1
     - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
       amount: 2
@@ -186,7 +186,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponSubMachineGunWt550
+    - id: WeaponSubMachineGunWt550
       amount: 1
     - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
       amount: 3
@@ -199,7 +199,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponSubMachineGunDrozd
+    - id: WeaponSubMachineGunDrozd
       amount: 1
     - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
       amount: 3
@@ -212,7 +212,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponSubMachineGunC20r
+    - id: WeaponSubMachineGunC20r
       amount: 1
     - id: Magazine45_ACPSubMachineGunFMJ #Lua 35 -> 9x19
       amount: 3
@@ -226,7 +226,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleAssaultGestio
+    - id: WeaponRifleGestio
       amount: 1
     - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
       amount: 3
@@ -239,7 +239,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleAssaultNovaliteC1
+    - id: WeaponRifleNovaliteC1
       amount: 1
     - id: MagazineNovaliteC1 #Lua 20 -> 556x45
       amount: 2
@@ -252,7 +252,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleAssaultSm
+    - id: WeaponRifleAk
       amount: 1
     - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
       amount: 2
@@ -265,7 +265,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleAssaultVulcan
+    - id: WeaponRifleVulcan
       amount: 1
     - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
       amount: 2
@@ -292,7 +292,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyLightMachineGunTurbo
+    - id: WeaponLaserTurboNF
       amount: 1
 
 - type: entity
@@ -303,7 +303,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyPistolLaser
+    - id: WeaponLaserGun
       amount: 2
 
 - type: entity
@@ -314,7 +314,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyRifleCarbine
+    - id: WeaponLaserCarbine
       amount: 1
 
 - type: entity
@@ -325,7 +325,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergySubMachineGunDeltaV
+    - id: WeaponEnergyGun
       amount: 1
 
 - type: entity
@@ -336,7 +336,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyPistolLaserAdvanced
+    - id: WeaponAdvancedLaser
       amount: 1
 
 - type: entity
@@ -358,7 +358,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyRifleSniperCannon
+    - id: WeaponLaserCannon
       amount: 1
 
 - type: entity
@@ -369,7 +369,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyRifleSniperXrayCannon
+    - id: WeaponXrayCannon
       amount: 1
 
 - type: entity
@@ -380,7 +380,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleRepeater
+    - id: WeaponSniperRepeater
       amount: 1
     - id: AmmoBox357_magnumFMJ #Lua 20 -> 45
       amount: 2
@@ -393,7 +393,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleCeremonial
+    - id: WeaponSniperCeremonial
       amount: 1
     - id: AmmoBox762x54mmRFMJ #Lua 20 -> 556x45
       amount: 2

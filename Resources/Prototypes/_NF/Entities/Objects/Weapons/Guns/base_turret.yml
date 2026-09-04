@@ -138,13 +138,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGun35
+        startingItem: Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 1
         whitelist:
           tags:
-          - NFMagazineSubMachineGunPistol35
+          - Magazine9x19mmSubMachineGunFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

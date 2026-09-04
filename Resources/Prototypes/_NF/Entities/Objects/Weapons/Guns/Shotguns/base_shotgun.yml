@@ -99,11 +99,11 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineShotgunDrum
+        startingItem: Magazine12_gaugeBuckshot
         priority: 2
         whitelist:
           tags:
-          - MagazineShotgun
+          - Magazine12_gaugeBuckshot
         whitelistFailPopup: gun-magazine-whitelist-fail
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg

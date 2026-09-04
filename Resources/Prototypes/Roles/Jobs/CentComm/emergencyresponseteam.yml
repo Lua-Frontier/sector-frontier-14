@@ -31,11 +31,11 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: NFWeaponPistolN1984 # Frontier
+    pocket1: WeaponPistolN1984 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
@@ -55,11 +55,11 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: NFWeaponPistolN1984 # Frontier
+    pocket1: WeaponPistolN1984 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
@@ -82,10 +82,10 @@
     pocket1: Magazine556x45mmFMJ #Lua 20 -> 556x45
     pocket2: Magazine556x45mmFMJ #Lua 20 -> 556x45
   inhand:
-  - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
+  - WeaponRifleLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
@@ -312,11 +312,11 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: NFWeaponPistolMk58 # Frontier
+    pocket1: WeaponPistolMk58 # Frontier
     pocket2: FlashlightSeclite
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
@@ -336,11 +336,11 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: NFWeaponPistolMk58 # Frontier: use NF variant
+    pocket1: WeaponPistolMk58 # Frontier: use NF variant
     pocket2: FlashlightSeclite
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie
@@ -363,10 +363,10 @@
     pocket1: Magazine556x45mmFMJ #Lua 20 -> 556x45
     pocket2: Magazine556x45mmFMJ #Lua 20 -> 556x45
   inhand:
-    - NFWeaponRifleAssaultLecter # Frontier: WeaponRifleLecter<NFWeaponRifleAssaultLecter
+    - WeaponRifleLecter # Frontier: WeaponRifleLecter
   storage:
     back:
-    - NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    - WeaponDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
     - MedicatedSuture
     - RegenerativeMesh
     - BoxZiptie

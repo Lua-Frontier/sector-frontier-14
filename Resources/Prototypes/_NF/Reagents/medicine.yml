@@ -19,6 +19,17 @@
             Blunt: -2
             Piercing: -2
             Slash: -2
+      - !type:HealthScaleEffect
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        - !type:TotalDamage
+          min: 200
+        healthScale:
+          types:
+            Blunt: 0.98
+            Slash: 0.98
+            Piercing: 0.98
   pricePerUnit: 0
 
 - type: reagent
@@ -43,6 +54,16 @@
             Radiation: -3
           groups:
             Brute: 3
+      - !type:HealthScaleEffect
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        - !type:TotalDamage
+          min: 200
+        healthScale:
+          types:
+            Poison: 0.98
+            Radiation: 0.98
   pricePerUnit: 0
 
 #impstation

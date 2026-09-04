@@ -7,8 +7,8 @@
       contents:
         - id: BoxSurvival
         - id: MedkitAdvancedFilled
-        - id: NFWeaponShotgunEnforcer
-        - id: NFWeaponEnergyPistolPulse
+        - id: WeaponShotgunEnforcer
+        - id: WeaponPulsePistol
         - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
         - id: AmmoBox23x75mmSlug #Lua 4 gauge
 
@@ -29,7 +29,7 @@
         - id: CombatMedipen
         - id: CombatMedipen
         - id: CombatMedipen
-        - id: NFWeaponEnergyPistolPulse
+        - id: WeaponPulsePistol
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -39,10 +39,10 @@
     - type: StorageFill
       contents:
         - id: BoxSurvival
-        - id: NFWeaponEnergyRifleAssaultPulseCarbine
+        - id: WeaponPulseCarbine
         - id: Handcuffs
         - id: Handcuffs
-        - id: NFWeaponSubMachineGunAtreides
+        - id: WeaponSubMachineGunAtreides
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -52,6 +52,6 @@
     - type: StorageFill
       contents:
         - id: BoxSurvival
-        - id: NFWeaponEnergyPistolPulse
-        - id: NFWeaponPistolMk58
+        - id: WeaponPulsePistol
+        - id: WeaponPistolMk58
         - id: EmergencyMedipen

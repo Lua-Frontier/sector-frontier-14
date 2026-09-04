@@ -75313,7 +75313,7 @@ entities:
     - type: Transform
       pos: -4.5,13.5
       parent: 1
-- proto: NFShellShotgunImprovised
+- proto: ShellShotgun12_gaugeImprovised
   entities:
   - uid: 6586
     components:
@@ -75495,7 +75495,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: NFWeaponEnergyRifleCarbine
+- proto: WeaponLaserCarbine
   entities:
   - uid: 14462
     components:
@@ -75521,7 +75521,7 @@ entities:
           endTime: 21727.4715985
           startTime: 21735.0449316
           length: 0.75
-- proto: NFWeaponEnergyRifleSniperCannon
+- proto: WeaponLaserCannon
   entities:
   - uid: 14456
     components:
@@ -75547,7 +75547,7 @@ entities:
           endTime: 21734.4535845
           startTime: 21736.5782634
           length: 0.75
-- proto: NFWeaponPistolCHIMP
+- proto: WeaponPistolCHIMP
   entities:
   - uid: 12414
     components:
@@ -75556,7 +75556,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponRifleAssaultLecter
+- proto: WeaponRifleLecter
   entities:
   - uid: 14452
     components:
@@ -75622,7 +75622,7 @@ entities:
           endTime: 21624.3215483
           startTime: 21695.5783044
           length: 0.75
-- proto: NFWeaponShotgunEnforcer
+- proto: WeaponShotgunEnforcer
   entities:
   - uid: 14460
     components:
@@ -75688,7 +75688,7 @@ entities:
           endTime: 21637.0555512
           startTime: 21701.4449652
           length: 0.75
-- proto: NFWeaponShotgunImprovised
+- proto: WeaponShotgunImprovised
   entities:
   - uid: 6592
     components:
@@ -75697,7 +75697,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponSubMachineGunWt550
+- proto: WeaponSubMachineGunWt550
   entities:
   - uid: 14458
     components:

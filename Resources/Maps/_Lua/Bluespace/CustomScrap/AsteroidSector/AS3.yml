@@ -1639,21 +1639,21 @@ entities:
     - type: Transform
       pos: 2.5,6.5
       parent: 9072
-- proto: NFAmmunitionBoxShellShotgunBuckshot
+- proto: AmmoBox12_gaugeBuckshot
   entities:
   - uid: 9098
     components:
     - type: Transform
       pos: -7.616497,0.59637165
       parent: 9072
-- proto: NFAmmunitionBoxShellShotgunFlare
+- proto: AmmoBox12_gaugeFlare
   entities:
   - uid: 9099
     components:
     - type: Transform
       pos: -7.4596386,0.7333698
       parent: 9072
-- proto: NFShellShotgunBuckshot
+- proto: ShellShotgun12_gaugeBuckshot
   entities:
   - uid: 9424
     components:
@@ -1678,7 +1678,7 @@ entities:
     - type: Transform
       pos: -8.272747,-6.2869277
       parent: 9072
-- proto: NFShellShotgunImprovised
+- proto: ShellShotgun12_gaugeImprovised
   entities:
   - uid: 9428
     components:
@@ -1691,7 +1691,7 @@ entities:
     - type: Transform
       pos: -9.270496,-3.3819056
       parent: 9072
-- proto: NFWeaponShotgunKammerer
+- proto: WeaponShotgunKammerer
   entities:
   - uid: 9521
     components:
@@ -1699,7 +1699,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -8.4283495,0.56899834
       parent: 9072
-- proto: NFWeaponShotgunSawn
+- proto: WeaponShotgunSawn
   entities:
   - uid: 9522
     components:

@@ -6,7 +6,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponSubMachineGunWt550
+      - id: WeaponSubMachineGunWt550
         amount: 2
       - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
         amount: 4
@@ -19,7 +19,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponShotgunEnforcer
+      - id: WeaponShotgunEnforcer
         amount: 2
       - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
         amount: 3
@@ -54,7 +54,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFWeaponEnergyRifleCarbine
+      - id: WeaponLaserCarbine
         amount: 3
 
 - type: entity
@@ -65,7 +65,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolMk58
+    - id: WeaponPistolMk58
       amount: 2
     - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
       amount: 4
@@ -78,19 +78,19 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRifleAssaultLecter
+    - id: WeaponRifleLecter
       amount: 2
-    - id: NFWeaponRifleAssaultVulcan
+    - id: WeaponRifleVulcan
       amount: 2
-    - id: NFWeaponSubMachineGunWt550
+    - id: WeaponSubMachineGunWt550
       amount: 2
-    - id: NFWeaponShotgunEnforcer
+    - id: WeaponShotgunEnforcer
       amount: 2
-    - id: NFWeaponEnergyRifleCarbine
+    - id: WeaponLaserCarbine
       amount: 2
-    - id: NFWeaponEnergySubMachineGunDeltaV
+    - id: WeaponEnergyGun
       amount: 2
-    - id: NFWeaponPistolMk58
+    - id: WeaponPistolMk58
       amount: 2
 
 - type: entity
@@ -101,11 +101,11 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyPistolDisabler
+    - id: WeaponDisabler
       amount: 2
   #  - id: NFWeaponPistolUniversalNfsdLessLethal
   #    amount: 2
-    - id: NFWeaponEnergySubMachineGunDisabler
+    - id: WeaponDisablerSMG
       amount: 2
     # - id: NFWeaponRifleAssaultLecterLessLethal
     #   amount: 2
@@ -113,5 +113,5 @@
     #   amount: 2
     # - id: NFWeaponShotgunEnforcerLessLethal
     #   amount: 2
-    - id: NFWeaponEnergySubMachineGunDeltaV
+    - id: WeaponEnergyGun
       amount: 2

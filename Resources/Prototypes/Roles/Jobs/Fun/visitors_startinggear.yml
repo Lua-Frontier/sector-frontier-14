@@ -12,11 +12,11 @@
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
     id: VisitorPDA
-    belt: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    belt: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     back: ClothingBackpackCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorCaptainAlt
@@ -28,11 +28,11 @@
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
     id: VisitorPDA
-    belt: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    belt: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     back: ClothingBackpackSatchelCaptain
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorCE
@@ -46,7 +46,7 @@
     back: ClothingBackpackDuffelEngineering
     ears: ClothingHeadsetCE
     outerClothing: ClothingOuterVestHazard
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorCEAlt
@@ -60,7 +60,7 @@
     back: ClothingBackpackSatchelEngineering
     ears: ClothingHeadsetCE
     outerClothing: ClothingOuterWinterCE
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorCMO
@@ -75,7 +75,7 @@
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
     outerClothing: ClothingOuterCoatLabCmo
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorCMOAlt
@@ -90,7 +90,7 @@
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
     outerClothing: ClothingOuterCoatLabCmo
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorHOP
@@ -100,11 +100,11 @@
     head: ClothingHeadHatHopcap
     neck: ClothingNeckCloakHop
     id: VisitorPDA
-    belt: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    belt: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     back: ClothingBackpackDebug
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterWinterHoP
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorHOPAlt
@@ -114,11 +114,11 @@
     head: ClothingHeadHatHopcap
     neck: ClothingNeckMantleHOP
     id: VisitorPDA
-    belt: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    belt: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterWinterHoP
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorHOS
@@ -134,10 +134,10 @@
     ears: ClothingHeadsetAltSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterCoatHoSTrench
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     pocket2: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
   inhand:
-  - NFWeaponSubMachineGunWt550 # Frontier: use NF prefix
+  - WeaponSubMachineGunWt550 # Frontier: use NF prefix
 
 - type: startingGear
   id: VisitorHOSAlt
@@ -152,10 +152,10 @@
     back: ClothingBackpackSatchelLeather
     ears: ClothingHeadsetAltSecurity
     eyes: ClothingEyesGlassesSecurity
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     pocket2: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
   inhand:
-  - NFWeaponSubMachineGunWt550 # Frontier: use NF prefix
+  - WeaponSubMachineGunWt550 # Frontier: use NF prefix
 
 - type: startingGear
   id: VisitorRD
@@ -169,7 +169,7 @@
     back: ClothingBackpackScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorRDAlt
@@ -183,7 +183,7 @@
     back: ClothingBackpackSatchelScience
     ears: ClothingHeadsetRD
     outerClothing: ClothingOuterCoatRD
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: VisitorQM
@@ -196,7 +196,7 @@
     back: ClothingBackpackCargo
     ears: ClothingHeadsetQM
     outerClothing: ClothingOuterWinterQM
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     pocket2: AppraisalTool
 
 - type: startingGear
@@ -210,7 +210,7 @@
     back: ClothingBackpackSatchelCargo
     ears: ClothingHeadsetQM
     outerClothing: ClothingOuterWinterQM
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     pocket2: AppraisalTool
 
 # Security
@@ -227,7 +227,7 @@
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
-    pocket1: NFWeaponPistolMk58 # Frontier: use NF prefix
+    pocket1: WeaponPistolMk58 # Frontier: use NF prefix
     pocket2: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
   inhand:
   - FlashlightSeclite
@@ -245,7 +245,7 @@
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasicSlim
-    pocket1: NFWeaponPistolMk58 # Frontier: use NF prefix
+    pocket1: WeaponPistolMk58 # Frontier: use NF prefix
     pocket2: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
   inhand:
   - FlashlightSeclite
@@ -262,7 +262,7 @@
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasic
-    pocket1: NFWeaponPistolMk58 # Frontier: use NF prefix
+    pocket1: WeaponPistolMk58 # Frontier: use NF prefix
     pocket2: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
   inhand:
   - FlashlightSeclite
@@ -280,7 +280,7 @@
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterArmorBasicSlim
-    pocket1: NFWeaponPistolMk58 # Frontier: use NF prefix
+    pocket1: WeaponPistolMk58 # Frontier: use NF prefix
     pocket2: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
   inhand:
   - FlashlightSeclite
@@ -335,11 +335,11 @@
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterCoatWarden
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     pocket2: Zipties
   inhand:
   - FlashlightSeclite
-  - NFWeaponShotgunKammerer # Frontier: use NF prefix
+  - WeaponShotgunKammerer # Frontier: use NF prefix
 
 - type: startingGear
   id: VisitorWardenAlt
@@ -354,11 +354,11 @@
     ears: ClothingHeadsetSecurity
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterWinterWarden
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     pocket2: Zipties
   inhand:
   - FlashlightSeclite
-  - NFWeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<NFWeaponShotgunKammerer
+  - WeaponShotgunKammerer # Frontier: WeaponShotgunKammerer<WeaponShotgunKammerer
 
 # Cargo
 
@@ -932,7 +932,7 @@
     head: ClothingHeadHatTophat
     id: VisitorPDA
     back: ClothingBackpack
-    suitstorage: NFWeaponShotgunDoubleBarreled # Frontier: WeaponShotgunDoubleBarreledRubber<NFWeaponShotgunDoubleBarreled
+    suitstorage: WeaponShotgunDoubleBarreled # Frontier: WeaponShotgunDoubleBarreledRubber<WeaponShotgunDoubleBarreled
     ears: ClothingHeadsetService
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: ClothingOuterArmorBasicSlim
@@ -951,7 +951,7 @@
     ears: ClothingHeadsetService
     eyes: ClothingEyesHudBeer
     outerClothing: ClothingOuterWinterBar
-    pocket1: NFWeaponShotgunSawn # Frontier: use NF prefix
+    pocket1: WeaponShotgunSawn # Frontier: use NF prefix
     pocket2: DrinkTequilaBottleFull
 
 - type: startingGear
@@ -1568,7 +1568,7 @@
     head: ClothingHeadSafari
     id: VisitorPDA
     belt: ClothingBeltStorageWaistbag
-    back: NFWeaponShotgunDoubleBarreled # Frontier: WeaponShotgunDoubleBarreledRubber<NFWeaponShotgunDoubleBarreled
+    back: WeaponShotgunDoubleBarreled # Frontier: WeaponShotgunDoubleBarreledRubber<WeaponShotgunDoubleBarreled
     ears: ClothingHeadsetService
     pocket1: WeaponFlareGun
     pocket2: PillCanisterDylovene
@@ -1679,7 +1679,7 @@
     back: ClothingBackpackDuffelEngineering
     #ears: # No headsets.
     outerClothing: ClothingOuterVestHazard
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 - type: startingGear
   id: ChallengeVictimCEAlt
@@ -1693,7 +1693,7 @@
     back: ClothingBackpackSatchelEngineering
     #ears: # No headsets.
     outerClothing: ClothingOuterWinterCE
-    pocket1: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    pocket1: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
 
 # CHALLENGE
 # carefully consider everything you add to these. These are meant for roles that are placed in survival situations where every item will be a resource.
@@ -1706,7 +1706,7 @@
     head: ClothingHeadHatHopcap
     neck: ClothingNeckCloakHop
     id: VisitorPDA
-    belt: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    belt: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     back: ClothingBackpackDebug
     #ears: #No headsets.
     outerClothing: ClothingOuterWinterHoP
@@ -1719,7 +1719,7 @@
     head: ClothingHeadHatHopcap
     neck: ClothingNeckMantleHOP
     id: VisitorPDA
-    belt: NFWeaponEnergyPistolDisabler # Frontier: WeaponDisabler<NFWeaponEnergyPistolDisabler
+    belt: WeaponDisabler # Frontier: WeaponDisabler<WeaponDisabler
     back: ClothingBackpackSatchelLeather
     #ears: #No headsets.
     outerClothing: ClothingOuterWinterHoP
@@ -1840,7 +1840,7 @@
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltUtility
     ears: ClothingHeadsetFreelance
-    pocket1: NFWeaponPistolFlintlock # Frontier: WeaponPistolFlintlock<NFWeaponPistolFlintlock
+    pocket1: WeaponPistolFlintlock # Frontier: WeaponPistolFlintlock<NFWeaponPistolFlintlock
     pocket2: HandheldGPSBasic
   inhand:
     - Cutlass
@@ -1858,14 +1858,14 @@
   equipment:
     head: ClothingHeadBandBlack
   inhand:
-    - NFWeaponShotgunBlunderbuss # Frontier: use NF prefix
+    - WeaponShotgunBlunderbuss # Frontier: use NF prefix
 
 - type: startingGear
   id: PirateScoonerAltD
   parent: PirateScoonerAltA
   equipment:
     head: ClothingHeadHatPirateTricord
-    pocket1: NFWeaponRevolverPirate # Frontier: WeaponRevolverPirate<NFWeaponRevolverPirate
+    pocket1: WeaponRevolverPirate # Frontier: WeaponRevolverPirate
 
 - type: startingGear
   id: PirateCaptainScooner
@@ -1875,7 +1875,7 @@
     ears: ClothingHeadsetAltFreelancer
     neck: ClothingNeckCloakPirateCap
     outerClothing: ClothingOuterVestWeb
-    pocket1: NFWeaponRevolverPirate # Frontier: WeaponRevolverPirate<NFWeaponRevolverPirate
+    pocket1: WeaponRevolverPirate # Frontier: WeaponRevolverPirate
 
 ### Other
 
@@ -1890,7 +1890,7 @@
     belt: ClothingBeltMercenaryWebbing # Frontier: Merc<Mercenary
     ears: ClothingHeadsetGrey
     outerClothing: ClothingOuterVestWebMercenary # Frontier: Merc<Mercenary
-    pocket1: NFWeaponEnergyPistolLaserSvalinn # Frontier: WeaponLaserSvalinn<NFWeaponEnergyPistolLaserSvalinn
+    pocket1: WeaponLaserSvalinn # Frontier: WeaponLaserSvalinn<WeaponLaserSvalinn
     pocket2: RadioHandheld
 
 - type: startingGear

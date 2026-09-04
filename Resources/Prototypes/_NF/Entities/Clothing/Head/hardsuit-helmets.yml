@@ -90,8 +90,8 @@
   - type: Clothing
     sprite: _NF/Clothing/Head/Hardsuits/maxim_prototype.rsi
   - type: PointLight # Luxury Hardsuit Light
-    radius: 7
-    energy: 3
+    radius: 8
+    energy: 4
 
 #Security patrol suit
 - type: entity
@@ -144,38 +144,6 @@
     sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
   - type: Clothing
     sprite: _NF/Clothing/Head/Hardsuits/nfsd.rsi
-
-- type: entity
-  parent: ClothingHeadHelmetHardsuitNfsdBronze
-  id: ClothingHeadHelmetHardsuitNfsdSheriff
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi
-
-- type: entity
-  parent: NFClothingHeadHardsuitWithLightBaseNfsd
-  id: ClothingHeadHelmetHardsuitNfsdExperimental
-  categories: [ HideSpawnMenu ]
-  name: NFSD experimental combat suit helmet
-  description: Heavily armored hardsuit helmet for NFSD raids.
-  components:
-  - type: Sprite
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi
-  - type: Clothing
-    sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
 
 #Security Combat Hardsuit
 - type: entity
@@ -255,9 +223,9 @@
   - type: ItemTogglePointLight
   - type: PointLight
     enabled: false
-    radius: 7
-    energy: 2
-    #color: "#d6adff"
+    radius: 8
+    energy: 3
+    color: "#FF0040"
   - type: Appearance
 
 #Tactical hardsuit Helmet

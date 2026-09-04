@@ -9,7 +9,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,3
+    - 0,0,4,2 # Mono
   - type: Clothing
     sprite: Objects/Weapons/Guns/LMGs/l6.rsi
     quickEquip: false
@@ -18,16 +18,16 @@
     - suitStorage
   - type: Wieldable
     unwieldOnUse: false
-  - type: GunWieldBonus
-    minAngle: -20
+  - type: GunWieldBonus # Mono
+    minAngle: -24
     maxAngle: -20
-  - type: Gun
+  - type: Gun # L6 LMG stats adjusted
     minAngle: 24
     maxAngle: 45
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 8
-    projectileSpeed: 55 # Mono
+    angleIncrease: 2 # Mono
+    angleDecay: 20
+    fireRate: 8.5 # Mono
+    projectileSpeed: 60 # Mono
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -43,20 +43,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifleBox
+        startingItem: Magazine762x39mmBox
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineLightRifleBox
+            - Magazine762x39mmBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle
+        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle
+            - Cartridge762x39mmFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -65,6 +65,21 @@
     price: 500
   - type: UseDelay
     delay: 1
+  - type: ItemTax # Mono
+    taxAccounts:
+      nfsd: 0.2
+  - type: SpeedModifiedOnWield # Mono
+    walkModifier: 0.9
+    sprintModifier: 0.75
+  - type: GunRequiresWield # Mono
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/lmg_mouse.rsi
+      state: all
+  - type: WieldDelay # Mono
+    baseDelay: 1
+    modifiedDelay: 1
+    preventFiring: true
   # Goobstation edit start
   - type: EmitSoundOnPickup
     sound:
@@ -76,6 +91,21 @@
     sound:
       collection: RiflesDrop
   # Goobstation edit end
+  # Mono - Gun stock attack
+  - type: MeleeRequiresWield
+  - type: MeleeWeapon
+    attackRate: 0.7
+    damage:
+      types:
+        Blunt: 15
+    angle: 0
+    wideAnimationRotation: 135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+    attackType: Light
+  # Mono end
 #Lua added durability and repairing
   - type: Repairable
     fuelCost: 3
@@ -103,17 +133,11 @@
 #Lua end
 
 - type: entity
-  abstract: true # Frontier: use NF variant
-  name: L6 SAW
+  name: PA L6B SAW (7.62x39mm)
   id: WeaponLightMachineGunL6
-  parent: [BaseWeaponLightMachineGun, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband
-  description: Developed by Waffle Corp, the L6 Squad Automatic Weapon is a deadly light machine gun often used by the Gorlex Marauders. Although bulky and cumbersome, its heavy barrel and high ammo capacity make it perfect for suppressing combatants with a hail of bullets. Feeds from .30 ammo belts.
+  parent: [BaseWeaponLightMachineGun, BaseFactionGearPDVT3]
+  description: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. Uses 7.62x39mm ammo. it serves as a remnant of humanity's greed and ambition during The Fracture.
   components:
-  - type: Item #Lua
-    shape:
-    - 0,0,7,4
-  - type: Gun #Lua
-    examineCaliber: gun-examine-caliber-6852
   - type: Sprite
     sprite: Objects/Weapons/Guns/LMGs/l6.rsi
     layers:
@@ -126,22 +150,23 @@
     steps: 4
     zeroVisible: true
   - type: Appearance
-  - type: StaticPrice
-    price: 10000
+  - type: Gun # Mono change - Sound for L6 saw
+    soundGunshot:
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/l6_fire.ogg
 
 - type: entity
-  abstract: true # Frontier: use NF variant
-  name: L6C ROW
+  name: PA L6C ROW (7.62x39mm)
   id: WeaponLightMachineGunL6C
-  parent: [BaseItem, BaseC3SyndicateContraband] # Frontier: added BaseC3SyndicateContraband
-  description: A L6 SAW for use by cyborgs. Creates .30 rifle ammo on the fly from an internal ammo fabricator, which slowly self-charges. An illegal firearm often used by Syndicate agents.
+  parent: BaseItem
+  description: A L6 SAW for use by cyborgs. Creates 762x39mm ammo on the fly from an internal ammo fabricator, which slowly self-charges.
   components:
-    - type: Gun
+    - type: Gun # Gun stats adjusted to be similar to LMG
       minAngle: 4
-      maxAngle: 25
-      angleIncrease: 4
-      angleDecay: 16
+      maxAngle: 20
+      angleIncrease: 3
+      angleDecay: 20
       fireRate: 8
+      projectileSpeed: 55 # Mono
       selectedMode: FullAuto
       availableModes:
         - FullAuto
@@ -162,7 +187,7 @@
       containers:
         ballistic-ammo: !type:Container
     - type: ProjectileBatteryAmmoProvider
-      proto: CartridgeLightRifle
+      proto: Cartridge762x39mmFMJ
       fireCost: 100
     - type: Battery
       maxCharge: 10000
