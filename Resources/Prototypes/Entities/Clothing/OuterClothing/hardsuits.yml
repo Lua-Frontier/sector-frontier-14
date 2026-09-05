@@ -201,21 +201,22 @@
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
-    damageCoefficient: 0.3
+    damageCoefficient: 0.5
   - type: Reflect #Lua
     reflectProb: 0.1
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
+        Blunt: 0.55
+        Slash: 0.45
         Piercing: 0.5
         Heat: 0.7 #Goliath hide gets grilled instead of you
-        Radiation: 0.3
-        Caustic: 0.8
+        Radiation: 0.15
+        Caustic: 0.35
+        Poison: 0.3
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: HeldSpeedModifier
   - type: StaminaDamageResistance
     coefficient: 0.45
