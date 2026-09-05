@@ -110,23 +110,22 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine8x65mmSKRBox #Lua
+        startingItem: Magazine8x65mmSKR
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x39mmFMJ #Lua
-          - MagazineBox8x65mmSKR #Lua
+          - Magazine8x65mmSKR
+          - MagazineBox8x65mmSKR
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge8x65mmSKR #Lua
+        startingItem: Cartridge8x65mmSKR
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x39mmFMJ #Lua
-          - Cartridge8x65mmSKR #Lua
+          - Cartridge8x65mmSKR
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -152,7 +151,7 @@
     id: ExperimentalFactionWeapon
 
 - type: entity
-  name: NCI AK-150 HAMMER (6.8x52mm)
+  name: NCI AK-150 HAMMER (7.62x39mm)
   parent: [BaseWeaponLightMachineGun, BaseGunWieldable, BaseC2ContrabandUnredeemable]
   id: WeaponLMGHammer
   description: A modified old style AK from earth which has been improved with USSP engineering and new design philosophies. At a base level? It's been turned into an LMG with a box magazine attached alongside various recoil lessening upgrades and a stylized chassis. Hail The Commissariat.
@@ -173,7 +172,7 @@
 #    minAngle: -23
 #    maxAngle: -28
   - type: Gun
-    examineCaliber: gun-examine-caliber-6852 #Lua
+    examineCaliber: gun-examine-caliber-76239 #Lua
 #    minAngle: 24
 #    maxAngle: 36
 #    angleIncrease: 3
@@ -196,24 +195,22 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine68x52mmCaselessBig #Lua Magazine762x39mmBox<Magazine68x52mmCaselessBig
+        startingItem: Magazine762x39mmBox
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-#          - Magazine762x39mmFMJ
-          - Magazine556x45mmFMJ #Lua
-          - Magazine556x45mmBox #Lua
-          - Magazine68x52mmCaseless #Lua Magazine762x39mmBox<Magazine68x52mmCaseless
+          - Magazine762x39mmFMJ
+          - Magazine762x39mmBox
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge68x52mmCaseless #Lua Cartridge762x39mmFMJ<Cartridge68x52mmCaseless
+        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
-          - Cartridge68x52mmCaseless #Lua Cartridge762x39mmFMJ<Cartridge68x52mmCaseless
+          - Cartridge762x39mmFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -242,7 +239,7 @@
   name: TCA MMG-68 "Grizzly" (6.8x52mm Caseless)
   parent: [BaseWeaponLightMachineGun, BaseC2ContrabandUnredeemable]
   id: WeaponLMGGrizzly
-  description: A medium machine gun chambered in 6.8x52mm Caseless, accepts both box and standard magazines. A label on the side reads "FOR MILITARY USE ONLY". The weight of the machine gun make it hard to wield easily. To assist with standardization, it also accepts 5.56x45mm and 7.62x39mm.
+  description: A medium machine gun chambered in 6.8x52mm Caseless, accepts both box and standard magazines. A label on the side reads "FOR MILITARY USE ONLY". The weight of the machine gun make it hard to wield easily.
   suffix: Need balance test #Lua
   components:
   - type: Sprite
@@ -298,11 +295,6 @@
           - Magazine68x52mmCaselessBoxSmall
           - Magazine68x52mmCaselessBoxBig
           - Magazine68x52mmCaseless
-          - Magazine556x45mmFMJ
-          - Magazine556x45mmBox
-#          - Magazine762x39mmFMJ # comment (270-272) from _Lua
-#          - Magazine762x39mmLowCapacityFMJ
-#          - Magazine762x39mmBox
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -311,8 +303,6 @@
         whitelist:
           tags:
           - Cartridge68x52mmCaseless
-          - Cartridge556x45mmFMJ
-#          - Cartridge762x39mmFMJ # comment from _lua
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -339,7 +329,7 @@
     sprintModifier: 0.7 #Lua 0.35<0.7
 
 - type: entity
-  name: VFD PSW "Ratel" (8x65 SKR)
+  name: VFD PSW "Ratel" (7.62x51mm)
   parent: BaseWeaponLightMachineGun
   id: WeaponLMGRatel
   description: The precision support weapon chambered in 7.62x51mm and fits simple ammo box and all kind of magazines. Based on the Vulcan and made with higher quality materials as well as a mounted precision scope. A label on the side that seems to have been tampered with reads "FOR MILI-CENARY USE ONLY".
@@ -365,7 +355,7 @@
 #    minAngle: -20
 #    maxAngle: -30
   - type: Gun
-    examineCaliber: gun-examine-caliber-865 #Lua
+    examineCaliber: gun-examine-caliber-76251 #Lua
 #    minAngle: 25
 #    maxAngle: 40
 #    angleIncrease: 5
@@ -388,27 +378,23 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine8x65mmSKRBox #Lua AmmoBox762x51mmFMJ<Magazine8x65mmSKRBox
+        startingItem: AmmoBox762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x39mmFMJ #Lua
-          - MagazineBox8x65mmSKR #Lua
-#          - Magazine762x51mmBoxSmall #comment (359-361) from _Lua
-#          - Magazine762x51mmFMJ
-#          - Magazine762x51mmLowCapacityFMJ
+          - Magazine762x51mmBoxSmall
+          - Magazine762x51mmFMJ
+          - Magazine762x51mmLowCapacityFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge8x65mmSKR #Lua Cartridge762x51mmFMJ<Cartridge8x65mmSKR
+        startingItem: Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x39mmFMJ #Lua
-          - Cartridge8x65mmSKR #Lua
-#          - Cartridge762x51mmFMJ #comment from _Lua
+          - Cartridge762x51mmFMJ
       attachment_optic:
         startingItem: GunAttachmentOpticErebus8x
         insertSound: /Audio/Items/screwdriver2.ogg

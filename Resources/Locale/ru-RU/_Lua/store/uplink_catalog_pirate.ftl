@@ -1,7 +1,7 @@
 uplink-pirate-AK220Bundle-name = набор "NCI AK-220 (9x19mm)"
 uplink-pirate-AK220Bundle-desc = Содержит в себе ПП NCI AK-220, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
 
-uplink-pirate-BulldogBundle-name = набор "Бульдог (4 gauge)"
+uplink-pirate-BulldogBundle-name = набор "Бульдог (12 gauge)"
 uplink-pirate-BulldogBundle-desc = Содержит в себе дробовик Бульдог, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
 
 uplink-pirate-RitlandBundle-name = набор "Ритланд (.45 Magnum)"

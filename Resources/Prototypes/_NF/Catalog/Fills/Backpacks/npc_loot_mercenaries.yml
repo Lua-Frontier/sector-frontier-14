@@ -121,9 +121,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
+    - id: Magazine45_ACPPistolHP
       prob: 0.59
-    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
+    - id: Magazine45_ACPPistolEmpty
       prob: 0.59
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -224,7 +224,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: AmmoBox23x75mmDozd #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       prob: 0.4
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -275,9 +275,9 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: SpeedLoader9x19mmEmpty
+    - id: SpeedLoader556x45mmFMJ
       prob: 0.59
-    - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
+    - id: AmmoBox556x45mmFMJ
       prob: 0.59
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg

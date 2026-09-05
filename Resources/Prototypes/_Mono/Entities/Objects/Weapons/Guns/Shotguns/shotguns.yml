@@ -68,10 +68,11 @@
     tags:
     - WeaponShotgunBigLeady
   - type: BallisticAmmoProvider # Goobstation
+    autoCycle: true
     whitelist:
       tags:
       - ShellShotgun23x75mmBuckshot
-    capacity: 6 #Lua 3<6
+    capacity: 3
     proto: ShellShotgun23x75mmBuckshot
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg

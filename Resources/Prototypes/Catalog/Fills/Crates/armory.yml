@@ -8,7 +8,7 @@
     contents:
       - id: WeaponSubMachineGunWt550 # Frontier: WeaponSubMachineGunWt550<NFWeaponSubMachineGunWt550
         amount: 2
-      - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
+      - id: Magazine46x30mmSubMachineGunTopMountedFMJ
         amount: 4
 
 - type: entity
@@ -21,7 +21,7 @@
     contents:
       - id: WeaponShotgunEnforcer # Frontier: WeaponShotgunEnforcer<NFWeaponShotgunEnforcer
         amount: 2
-      - id: AmmoBox23x75mmBuckshot # Lua 20 gauge
+      - id: AmmoBox12_gaugeBuckshot
         amount: 4
 
 - type: entity
@@ -67,7 +67,7 @@
     contents:
     - id: WeaponPistolMk58 # Frontier: WeaponPistolMk58<NFWeaponPistolMk58
       amount: 2
-    - id: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
+    - id: Magazine45_ACPPistolFMJ
       amount: 4
 
 - type: entity
@@ -84,7 +84,7 @@
       amount: 2
     - id: WeaponShotgunEnforcerRubber # Frontier: WeaponEnforcerRubber
       amount: 2
-    - id: AmmoBox23x75mmBeanbag # Lua 20 gauge
+    - id: AmmoBox12_gaugeBeanbag
       amount: 2
     - id: RiotShield
       amount: 2
@@ -99,5 +99,5 @@
     contents:
     - id: WeaponSubMachineGunDrozd #Lua
       amount: 1 #Lua 2<1
-    - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
+    - id: Magazine45_ACPSubMachineGunFMJ
       amount: 4

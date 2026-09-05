@@ -18,7 +18,7 @@
     contents:
     - id: WeaponPistolMk58
       amount: 1
-    - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    - id: Magazine45_ACPPistolFMJ
       amount: 2
 
 - type: entity
@@ -55,8 +55,10 @@
     contents:
     - id: WeaponPistolCobraExpedition
       amount: 1
-    - id: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
-      amount: 2
+    - id: Magazine635x40mmCaselessPistol
+      amount: 1
+    - id: AmmoBox635x40mmCaseless
+      amount: 1
 
 - type: entity
   parent: [WeaponCaseShort] #Lua
@@ -82,7 +84,7 @@
     contents:
     - id: WeaponRevolverArgenti
       amount: 1
-    - id: AmmoBox45_ACPFMJ
+    - id: SpeedLoader556x45mmFMJ
       amount: 2
 
 - type: entity
@@ -147,7 +149,7 @@
     contents:
     - id: WeaponRevolverLucky
       amount: 1
-    - id: AmmoBox45_ACPFMJ #Lua 45 -> Magnum
+    - id: AmmoBox45_ACPFMJ # Lucky chamber is .45 ACP, not magnum
       amount: 2
 
 #region Shotguns
@@ -161,7 +163,7 @@
     contents:
     - id: WeaponShotgunKammerer
       amount: 1
-    - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       amount: 2
 
 - type: entity
@@ -174,7 +176,7 @@
     contents:
     - id: WeaponShotgunEnforcer
       amount: 1
-    - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       amount: 2
 
 #region SMGs
@@ -188,7 +190,7 @@
     contents:
     - id: WeaponSubMachineGunWt550
       amount: 1
-    - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
+    - id: Magazine46x30mmSubMachineGunTopMountedFMJ
       amount: 3
 
 - type: entity
@@ -201,7 +203,7 @@
     contents:
     - id: WeaponSubMachineGunDrozd
       amount: 1
-    - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
+    - id: Magazine45_ACPSubMachineGunFMJ
       amount: 3
 
 - type: entity
@@ -214,7 +216,7 @@
     contents:
     - id: WeaponSubMachineGunC20r
       amount: 1
-    - id: Magazine45_ACPSubMachineGunFMJ #Lua 35 -> 9x19
+    - id: Magazine9x19mmSubMachineGunFMJ
       amount: 3
 
 #region Rifles
@@ -267,7 +269,7 @@
     contents:
     - id: WeaponRifleVulcan
       amount: 1
-    - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
+    - id: Magazine762x51mmFMJ
       amount: 2
 
 - type: entity
@@ -280,7 +282,7 @@
     contents:
     - id: WeaponRifleJackdaw
       amount: 1
-    - id: Magazine762x51mmFMJ #Lua 20 -> 556x45
+    - id: Magazine635x40mmCaseless
       amount: 2
 
 #region Energy
@@ -395,5 +397,5 @@
     contents:
     - id: WeaponSniperCeremonial
       amount: 1
-    - id: AmmoBox762x54mmRFMJ #Lua 20 -> 556x45
+    - id: AmmoBox762x51mmFMJ
       amount: 2

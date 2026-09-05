@@ -14,6 +14,25 @@
     sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/SMGs/atreides.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine57x28mmSubMachineGunFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine57x28mmSubMachineGunFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge57x28mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge57x28mmFMJ
 
 - type: entity
   id: WeaponSubMachineGunC20r
@@ -27,7 +46,7 @@
     shape:
     - 0,0,2,1
   - type: Gun
-    examineCaliber: gun-examine-caliber-45acp #Lua
+    examineCaliber: gun-examine-caliber-919 #Lua
     minAngle: 3.1 #Lua
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
@@ -49,21 +68,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine45_ACPSubMachineGunFMJ #Lua Magazine9x19mmSubMachineGunFMJ<Magazine45_ACPSubMachineGunFMJ
+        startingItem: Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist: &mag35Whitelist
           tags:
-            - Magazine45_ACPSubMachineGunFMJ #Lua Magazine9x19mmSubMachineGunFMJ<Magazine45_ACPSubMachineGunFMJ
+            - Magazine9x19mmSubMachineGunFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Standard
         name: Chamber
-        startingItem: Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
+        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
-            - Cartridge45_ACPFMJ #Lua Cartridge9x19mmFMJ<Cartridge45_ACPFMJ
+            - Cartridge9x19mmFMJ
 
 - type: entity
   id: WeaponSubMachineGunDrozd
@@ -76,7 +95,7 @@
     shape:
     - 0,0,2,1
   - type: Gun
-    examineCaliber: gun-examine-caliber-919 #Lua
+    examineCaliber: gun-examine-caliber-45acp #Lua
     minAngle: 3.1 #Lua
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
@@ -92,21 +111,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmSubMachineGunFMJ
+        startingItem: Magazine45_ACPSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine9x19mmSubMachineGunFMJ
+            - Magazine45_ACPSubMachineGunFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
+        startingItem: Cartridge45_ACPFMJ
         priority: 1
         whitelist:
           tags:
-            - Cartridge9x19mmFMJ
+            - Cartridge45_ACPFMJ
       attachment_barrel:
         insertSound: /Audio/Items/screwdriver.ogg
         ejectSound: /Audio/Items/screwdriver.ogg

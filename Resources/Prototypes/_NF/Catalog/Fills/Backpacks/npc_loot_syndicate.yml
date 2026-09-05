@@ -448,7 +448,7 @@
     items:
       - id: WeaponSubMachineGunWt550Expedition
         prob: 0.65
-      - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
+      - id: Magazine46x30mmSubMachineGunTopMountedFMJ
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -549,7 +549,7 @@
     items:
       - id: WeaponPistolMk58Expedition
         prob: 0.65
-      - id: Magazine9x19mmPistolIncendiary #Lua 35 -> 9x19
+      - id: Magazine45_ACPPistolIncendiary
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -718,7 +718,7 @@
       - id: WeaponShotgunKammererExpedition
         prob: 0.65
       - id: SyndicateJawsOfLife
-      - id: AmmoBox23x75mmUranium #Lua 4 gauge
+      - id: AmmoBox12_gaugeUranium
       - id: SpaceCash1000
         prob: 0.4
       # Bonus Loot T2
@@ -741,7 +741,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: AmmoBox23x75mmIncendiary #Lua 4 gauges
+      - id: AmmoBox12_gaugeIncendiary
       - id: JawsOfLife
       - id: SpaceCash1000
         prob: 0.4

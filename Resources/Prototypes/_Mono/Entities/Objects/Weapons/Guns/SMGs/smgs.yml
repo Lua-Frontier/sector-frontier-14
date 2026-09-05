@@ -41,6 +41,7 @@
         whitelist:
           tags:
           - Magazine635x40mmCaseless
+          - Magazine9x19mmSubMachineGunFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -239,10 +240,10 @@
 
 #Pre-corpowar 45 magnum rare vector
 - type: entity
-  name: NTSF-HCLM-45 (.45 magnum)
-  parent: [BaseWeaponSubMachineGun, BaseC2ContrabandUnredeemable] #Lua: deleted BaseGunWieldable
+  name: NTSF-HCLM-45 (.357 magnum)
+  parent: [BaseWeaponRevolver, BaseC2ContrabandUnredeemable] #Lua: SMG parent had 9x19 ItemSlots; Mono ammo is revolver .357
   id: WeaponSubMachineGunVectorNtsfHclm
-  description: The NTSF Heavy Caliber Light Machinegun. A very high-quality heavy SMG chambered in .45 magnum for use for the Nano Trasen Security Force and NT spec-ops.
+  description: The NTSF Heavy Caliber Light Machinegun. A very high-quality heavy SMG chambered in .357 magnum for use for the Nano Trasen Security Force and NT spec-ops.
   suffix: Need balance test #Lua
   components:
   - type: Sprite
@@ -254,12 +255,17 @@
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/NTSF-HCLM-45rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: Item
+    size: Large
     shape: #Lua
     - 0,0,2,1
     sprite: _Mono/Objects/Weapons/Guns/SMGs/NTSF-HCLM-45rsi
   - type: Gun
-    examineCaliber: gun-examine-caliber-45acp #Lua
+    examineCaliber: gun-examine-caliber-45mgn #Lua
     minAngle: 3.1 #Lua
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
@@ -271,27 +277,23 @@
     availableModes:
     - SemiAuto
     - FullAuto
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: Magazine45_ACPSubMachineGunFMJ #Lua Magazine45_magnumPistolFMJ<Magazine45_ACPSubMachineGunFMJ
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - Magazine45_ACPSubMachineGunFMJ #Lua
-#            - Magazine45_magnumPistolFMJ # comment from _Lua
-#            - Magazine45_magnumPistolHighCapacityFMJ
-#            - Magazine45_magnumSubMachineGunFMJ
-      gun_chamber:
-        name: Chamber
-        startingItem: Cartridge357_magnumFMJ
-        priority: 1
-        whitelist:
-          tags:
-            - Cartridge357_magnumFMJ
+  - type: ContainerContainer
+    containers:
+      revolver-ammo: !type:Container
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Cartridge357_magnumFMJ
+      - SpeedLoader357_magnumFMJ
+    mayTransfer: true
+    proto: Cartridge357_magnumFMJ
+    capacity: 18
+    chambers: [ True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null ]
+    soundEject:
+      path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -342,14 +344,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine45_ACPSubMachineGunFMJ #Lua Magazine45_ACPPistolFMJ<Magazine45_ACPSubMachineGunFMJ
+        startingItem: Magazine45_ACPPistolFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine45_ACPSubMachineGunFMJ #Lua Magazine45_ACPPistolFMJ<Magazine45_ACPSubMachineGunFMJ
-#          - Magazine9x19mmPistolFMJ # comment from _Lua
+          - Magazine45_ACPPistolFMJ
+          - Magazine9x19mmPistolFMJ
       gun_chamber:
         name: Chamber
         startingItem: Cartridge45_ACPFMJ
@@ -357,7 +359,7 @@
         whitelist:
           tags:
           - Cartridge45_ACPFMJ
-#          - Cartridge9x19mmFMJ # comment from _Lua
+          - Cartridge9x19mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 6

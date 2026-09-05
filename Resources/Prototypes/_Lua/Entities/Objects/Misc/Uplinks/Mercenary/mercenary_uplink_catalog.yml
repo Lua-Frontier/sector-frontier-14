@@ -555,9 +555,9 @@
 
 - type: listing
   id: UplinkMercenaryMagazineLightRifleBox
-  name:  короб патронов L6 SAW (5.56x45mm) #Lua 20 -> 556x45
-  description: короб патронов L6 SAW (5.56x45mm) #Lua 20 -> 556x45
-  productEntity: NFBaseMagazineBoxRifle556x45 #Lua 20 -> 556x45
+  name:  короб патронов L6 SAW (7.62x39mm)
+  description: короб патронов L6 SAW (7.62x39mm)
+  productEntity: Magazine762x39mmBox
   cost:
     Speso: 20000 #Lua 3k<20k
   categories:
@@ -575,7 +575,7 @@
 - type: listing
   id: UplinkMercenaryWeaponSubMachineGunWt550
   name: WT550
-  description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра 9x19mm. Запрещено к использованию гражданскими.
+  description: Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра 4.6x30mm. Запрещено к использованию гражданскими.
   productEntity: WeaponSubMachineGunWt550
   cost:
     Speso: 150000 #Lua 7k<150k
@@ -592,9 +592,9 @@
 
 - type: listing
   id: UplinkMercenaryMagazinePistolSubMachineGunTopMounted
-  name: магазин WT550 (9x19mm, надствольный)
-  description: магазин WT550 (9x19mm, надствольный)
-  productEntity: Magazine9x19mmSubMachineGunTopMountedFMJ
+  name: магазин WT550 (4.6x30mm, надствольный)
+  description: магазин WT550 (4.6x30mm, надствольный)
+  productEntity: Magazine46x30mmSubMachineGunTopMountedFMJ
   cost:
     Speso: 5000 #Lua 0.6k<5k
   categories:
@@ -612,7 +612,7 @@
 - type: listing
   id: UplinkMercenaryWeaponShotgunBulldog
   name: Бульдог
-  description: Нелегальное оружие используемое агентами синдиката. Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра .50 ружейный.
+  description: Нелегальное оружие используемое агентами синдиката. Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны 12 калибра.
   productEntity: WeaponShotgunBulldog
   cost:
     Speso: 100000 #Lua 30k<100k
@@ -629,8 +629,8 @@
 
 - type: listing
   id: UplinkMercenaryMagazineShotgun
-  name: барабан (.50 дробь)
-  description: барабан (.50 дробь)
+  name: барабан (12 gauge дробь)
+  description: барабан (12 gauge дробь)
   productEntity: Magazine12_gaugeBuckshot
   cost:
     Speso: 2500
