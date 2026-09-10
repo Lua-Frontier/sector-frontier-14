@@ -1,3 +1,4 @@
+using Content.Shared._NF.Bank;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -15,12 +16,18 @@ namespace Content.Shared.Preferences
     {
         private Dictionary<int, ICharacterProfile> _characters;
 
-        public PlayerPreferences(IEnumerable<KeyValuePair<int, ICharacterProfile>> characters, int selectedCharacterIndex, Color adminOOCColor, List<ProtoId<ConstructionPrototype>> constructionFavorites)
+        public PlayerPreferences(
+            IEnumerable<KeyValuePair<int, ICharacterProfile>> characters,
+            int selectedCharacterIndex,
+            Color adminOOCColor,
+            List<ProtoId<ConstructionPrototype>> constructionFavorites,
+            int bankBalance = 0)
         {
             _characters = new Dictionary<int, ICharacterProfile>(characters);
             SelectedCharacterIndex = selectedCharacterIndex;
             AdminOOCColor = adminOOCColor;
             ConstructionFavorites = constructionFavorites;
+            BankBalance = bankBalance;
         }
 
         /// <summary>
@@ -49,6 +56,15 @@ namespace Content.Shared.Preferences
         ///    List of favorite items in the construction menu.
         /// </summary>
         public List<ProtoId<ConstructionPrototype>> ConstructionFavorites { get; set; } = [];
+
+        public int BankBalance { get; }
+
+        public string BankBalanceText => BankSystemExtensions.ToSpesoString(BankBalance);
+
+        public PlayerPreferences WithBankBalance(int bankBalance)
+        {
+            return new PlayerPreferences(_characters, SelectedCharacterIndex, AdminOOCColor, ConstructionFavorites, bankBalance);
+        }
 
         public int IndexOfCharacter(ICharacterProfile profile)
         {

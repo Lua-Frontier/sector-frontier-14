@@ -4,12 +4,12 @@
  * See AGPLv3.txt for details.
  */
 using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared._NF.Bank.BUI;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Bank.Events;
 using Content.Shared.Coordinates;
 using Content.Shared.Database;
@@ -20,7 +20,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._NF.Bank;
+namespace Content.Server._Lua.Bank;
 
 public sealed partial class BankSystem
 {
@@ -54,7 +54,7 @@ public sealed partial class BankSystem
         GetInsertedCashAmount(component, out var deposit);
 
         // check for a bank account
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        if (!TryGetBalance(player, out var balance))
         {
             _log.Info($"{player} has no bank account");
             ConsolePopup(player, Loc.GetString("bank-atm-menu-no-bank"));
@@ -65,12 +65,12 @@ public sealed partial class BankSystem
         }
 
         // check for sufficient funds
-        if (bank.Balance < args.Amount)
+        if (balance < args.Amount)
         {
             ConsolePopup(args.Actor, Loc.GetString("bank-insufficient-funds"));
             PlayDenySound(uid, component);
             _uiSystem.SetUiState(uid, args.UiKey,
-                new BankATMMenuInterfaceState(bank.Balance, true, deposit));
+                new BankATMMenuInterfaceState(balance, true, deposit));
             return;
         }
 
@@ -80,7 +80,7 @@ public sealed partial class BankSystem
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
             _uiSystem.SetUiState(uid, args.UiKey,
-                new BankATMMenuInterfaceState(bank.Balance, true, deposit));
+                new BankATMMenuInterfaceState(balance, true, deposit));
             return;
         }
 
@@ -94,8 +94,9 @@ public sealed partial class BankSystem
         if (!_hands.TryPickupAnyHand(player, cashStack))
             _transform.SetLocalRotation(cashStack, Angle.Zero); // Orient these to grid north instead of map north
 
+        TryGetBalance(player, out balance);
         _uiSystem.SetUiState(uid, args.UiKey,
-            new BankATMMenuInterfaceState(bank.Balance, true, deposit));
+            new BankATMMenuInterfaceState(balance, true, deposit));
     }
 
     private void OnDeposit(EntityUid uid, BankATMComponent component, BankDepositMessage args)
@@ -108,7 +109,7 @@ public sealed partial class BankSystem
         GetInsertedCashAmount(component, out var deposit);
 
         // make sure the user actually has a bank
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        if (!TryGetBalance(player, out var balance))
         {
             _log.Info($"{player} has no bank account");
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-no-bank"));
@@ -169,7 +170,7 @@ public sealed partial class BankSystem
             ConsolePopup(args.Actor, Loc.GetString("bank-atm-menu-transaction-denied"));
             PlayDenySound(uid, component);
             _uiSystem.SetUiState(uid, args.UiKey,
-                new BankATMMenuInterfaceState(bank.Balance, true, deposit));
+                new BankATMMenuInterfaceState(balance, true, deposit));
             return;
         }
 
@@ -179,8 +180,9 @@ public sealed partial class BankSystem
 
         // yeet and delete the stack in the cash slot after success
         _containerSystem.CleanContainer(cashSlot);
+        TryGetBalance(player, out balance);
         _uiSystem.SetUiState(uid, args.UiKey,
-            new BankATMMenuInterfaceState(bank.Balance, true, 0));
+            new BankATMMenuInterfaceState(balance, true, 0));
         return;
     }
 
@@ -197,14 +199,14 @@ public sealed partial class BankSystem
             if (user is not { Valid: true } player)
                 continue;
 
-            if (!TryComp<BankAccountComponent>(player, out var bank))
+            if (!TryGetBalance(player, out var balance))
                 continue;
 
             BankATMMenuInterfaceState newState;
             if (component.CashSlot.ContainerSlot?.ContainedEntity is not { Valid: true } cash)
-                newState = new BankATMMenuInterfaceState(bank.Balance, true, 0);
+                newState = new BankATMMenuInterfaceState(balance, true, 0);
             else
-                newState = new BankATMMenuInterfaceState(bank.Balance, true, deposit);
+                newState = new BankATMMenuInterfaceState(balance, true, deposit);
 
             _uiSystem.SetUiState(uid, uiComp.Key, newState);
         }
@@ -216,7 +218,7 @@ public sealed partial class BankSystem
 
         GetInsertedCashAmount(component, out var deposit);
 
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        if (!TryGetBalance(player, out var balance))
         {
             _log.Info($"{player} has no bank account");
             _uiSystem.SetUiState(uid, args.UiKey,
@@ -224,14 +226,12 @@ public sealed partial class BankSystem
             return;
         }
 
-        // Show YUPI account code as popup
-        //Lua: obtain code from BankAccountComponent; ensure synchronously
-        var ensured = EnsureYupiForEntity(player);
+        var ensured = EnsureGalBankForEntity(player);
         var code = string.IsNullOrWhiteSpace(ensured) ? "N/A" : ensured.ToUpperInvariant();
-        ConsolePopup(player, Loc.GetString("bank-atm-yupi-code", ("code", code)));
+        ConsolePopup(player, Loc.GetString("bank-atm-galbank-code", ("code", code)));
 
         _uiSystem.SetUiState(uid, args.UiKey,
-            new BankATMMenuInterfaceState(bank.Balance, true, deposit));
+            new BankATMMenuInterfaceState(balance, true, deposit));
     }
 
     private void GetInsertedCashAmount(BankATMComponent component, out int amount)

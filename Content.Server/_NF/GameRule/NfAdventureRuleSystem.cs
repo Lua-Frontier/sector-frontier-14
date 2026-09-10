@@ -4,7 +4,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server._NF.GameRule.Components;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server.Cargo.Components;
@@ -13,7 +13,6 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
 using Content.Server._NF.ShuttleRecords;
 using Content.Shared._NF.Bank;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -160,9 +159,9 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
 
             // Store player info with the bank balance - we have it directly, and BankSystem won't have a cache yet.
             if (!_players.ContainsKey(mobUid)
-                && HasComp<BankAccountComponent>(mobUid))
+                && _bank.TryGetBalance(ev.Player, out var startBalance))
             {
-                _players[mobUid] = new PlayerRoundBankInformation(ev.Profile.BankBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
+                _players[mobUid] = new PlayerRoundBankInformation(startBalance, MetaData(mobUid).EntityName, ev.Player.UserId);
             }
         }
     }

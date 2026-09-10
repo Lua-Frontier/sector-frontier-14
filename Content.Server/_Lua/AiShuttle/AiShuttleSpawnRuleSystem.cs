@@ -10,7 +10,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server._Lua.Shuttles.Systems;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Shared._NF.Bank.BUI;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;

@@ -3,7 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Shared._NF.Bank;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
@@ -350,8 +350,8 @@ public sealed class FrontierParkingSystem : EntitySystem
         {
             PlayerPreferences? prefs = null;
             if (!_prefsManager.TryGetCachedPreferences(ownerUserId, out prefs)) prefs = await _db.GetPlayerPreferencesAsync(ownerUserId, CancellationToken.None);
-            if (prefs == null || prefs.SelectedCharacter is not HumanoidCharacterProfile profile) return;
-            var withdrew = await _bank.TryBankWithdrawOffline(ownerUserId, prefs, profile, FineAmount);
+            if (prefs == null) return;
+            var withdrew = await _bank.TryBankWithdrawOffline(ownerUserId, FineAmount);
             if (!withdrew)
             {
                 if (_tracked.TryGetValue(shuttleUid, out var st))

@@ -9,7 +9,7 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Shared._NF.Bank.BUI;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;

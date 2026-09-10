@@ -53,7 +53,7 @@ public sealed partial class MarketSystem
         if (args.Actor is not { Valid: true } player)
             return;
 
-        if (!HasComp<BankAccountComponent>(player))
+        if (!_bankSystem.HasAccountBank(player))
             return;
 
         TrySpawnCrate(crateMachineUid, player, consoleUid, component, consoleComponent, marketMod);

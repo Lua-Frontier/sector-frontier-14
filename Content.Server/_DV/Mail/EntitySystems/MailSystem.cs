@@ -41,7 +41,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server._NF.Bank; // Frontier
+using Content.Server._Lua.Bank; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server.Station.Components; // Frontier
 using Robust.Shared.Enums; // Frontier

@@ -1,18 +1,19 @@
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
+// See AGPLv3.txt for details.
+
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Database;
 using Content.Server.Preferences.Managers;
+using Content.Server._Lua.Bank;
 using Content.Shared.Administration;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 
-namespace Content.Server._NF.Bank.Commands;
+namespace Content.Server._Lua.Bank.Commands;
 
-/// <summary>
-/// Command that allows administrators to check a player's bank balance using their username.
-/// Ported from Monolith.
-/// </summary>
 [AdminCommand(AdminFlags.Admin)]
 public sealed class CheckBankBalance : IConsoleCommand
 {
@@ -41,7 +42,6 @@ public sealed class CheckBankBalance : IConsoleCommand
 
         if (onlinePlayer != null)
         {
-            // Get the server-side BankSystem for online players
             var bankSystem = _entitySystemManager.GetEntitySystem<BankSystem>();
             if (bankSystem.TryGetBalance(onlinePlayer, out var balance))
             {
@@ -61,17 +61,11 @@ public sealed class CheckBankBalance : IConsoleCommand
         var record = await _dbManager.GetPlayerRecordByUserName(username);
         if (record != null)
         {
-            var userId = record.UserId;
-            var prefs = await _dbManager.GetPlayerPreferencesAsync(userId, default);
-            if (prefs != null &&
-                prefs.SelectedCharacterIndex >= 0 &&
-                prefs.Characters.TryGetValue(prefs.SelectedCharacterIndex, out var profile))
+            var prefs = await _dbManager.GetPlayerPreferencesAsync(record.UserId, default);
+            if (prefs != null)
             {
-                if (profile is HumanoidCharacterProfile humanoid)
-                {
-                    shell.WriteLine($"Player {username} has a bank balance of {humanoid.BankBalance} credits.");
-                    return;
-                }
+                shell.WriteLine($"Player {username} has a bank balance of {prefs.BankBalance} credits.");
+                return;
             }
         }
 
@@ -82,19 +76,18 @@ public sealed class CheckBankBalance : IConsoleCommand
     {
         balance = 0;
 
-        // Check all users in the preferences cache
         foreach (var playerData in _playerManager.GetAllPlayerData())
         {
-            if (_prefsManager.TryGetCachedPreferences(playerData.UserId, out var prefs))
+            if (!_prefsManager.TryGetCachedPreferences(playerData.UserId, out var prefs))
+                continue;
+
+            foreach (var (_, profile) in prefs.Characters)
             {
-                foreach (var (_, profile) in prefs.Characters)
+                if (profile is HumanoidCharacterProfile humanoid &&
+                    humanoid.Name.Equals(username, StringComparison.OrdinalIgnoreCase))
                 {
-                    if (profile is HumanoidCharacterProfile humanoid &&
-                        humanoid.Name.Equals(username, StringComparison.OrdinalIgnoreCase))
-                    {
-                        balance = humanoid.BankBalance;
-                        return true;
-                    }
+                    balance = prefs.BankBalance;
+                    return true;
                 }
             }
         }
@@ -108,10 +101,8 @@ public sealed class CheckBankBalance : IConsoleCommand
         {
             var options = new List<string>();
 
-            // Add online players
             options.AddRange(_playerManager.Sessions.Select(s => s.Name));
 
-            // Add players from cached preferences
             foreach (var playerData in _playerManager.GetAllPlayerData())
             {
                 if (_prefsManager.TryGetCachedPreferences(playerData.UserId, out var prefs))

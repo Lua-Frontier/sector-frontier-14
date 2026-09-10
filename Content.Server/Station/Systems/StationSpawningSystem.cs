@@ -24,8 +24,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
-using Content.Shared._NF.Bank.Components; // DeltaV
-using Content.Server._NF.Bank; // Frontier
+using Content.Server._Lua.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
 using System.Linq; // Frontier
 using Content.Server.CartridgeLoader; // Frontier
@@ -196,18 +195,21 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         {
             /// Frontier: overwriting EquipRoleLoadout
             //EquipRoleLoadout(entity.Value, loadout, roleProto!);
-            var initialBankBalance = profile!.BankBalance; //Frontier
-            var bankBalance = profile!.BankBalance; //Frontier
+            var bankBalance = 0; //Frontier
+            var initialBankBalance = 0; //Frontier
             bool hasBalance = false; // Frontier
 
             // Note: since this is stored per character, we don't have a cached
             //       reference for randomly generated characters.
             PlayerPreferences? prefs = null;
             if (session != null &&
+                profile != null &&
                 _preferences.TryGetCachedPreferences(session.UserId, out prefs) &&
                 prefs.IndexOfCharacter(profile) != -1)
             {
                 hasBalance = true;
+                bankBalance = prefs.BankBalance;
+                initialBankBalance = prefs.BankBalance;
             }
 
             // Frontier: A final loadout applied at the end of everything else.
@@ -286,11 +288,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Frontier: Attempt auto-equip for implants, encryption keys, and PDA cartridges
             TryAutoEquipMisc(entity.Value, loadoutLast);
 
-            var bankComp = EnsureComp<BankAccountComponent>(entity.Value);
-
             if (hasBalance)
             {
-                _bank.TryBankWithdraw(session!, prefs!, profile!, initialBankBalance - bankBalance, out var newBalance);
+                var loadoutCost = initialBankBalance - bankBalance;
+                if (loadoutCost > 0)
+                    _bank.TryBankWithdraw(session!, loadoutCost, out _);
             }
 
             EquipRoleName(entity.Value, loadout, roleProto!);

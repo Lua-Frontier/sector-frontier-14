@@ -38,7 +38,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared._NF.Bank.Events; // Frontier
-using Content.Server._NF.Bank; // Frontier
+using Content.Server._Lua.Bank; // Frontier
 
 namespace Content.Server.Administration.Systems;
 

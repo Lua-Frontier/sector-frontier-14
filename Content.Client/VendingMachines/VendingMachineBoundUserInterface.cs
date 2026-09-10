@@ -37,6 +37,7 @@ public sealed class VendingMachineBoundUserInterface : BoundUserInterface
             _menu.Title = Loc.GetString("vending-machine-nf-fallback-title");
         _menu.OnItemSelected += OnItemSelected;
         Refresh();
+        SendMessage(new VendingMachineRequestBalanceMessage());
     }
 
     public void Refresh()
@@ -44,10 +45,6 @@ public sealed class VendingMachineBoundUserInterface : BoundUserInterface
         var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
         var system = EntMan.System<VendingMachineSystem>();
         _cachedInventory = system.GetAllInventory(Owner);
-        if (EntMan.TryGetComponent<BankAccountComponent>(PlayerManager.LocalEntity, out var bank))
-            _balance = bank.Balance;
-        else
-            _balance = 0;
         int? cashSlotValue = null;
         if (TryUpdateCashSlotBalance())
             cashSlotValue = _cashSlotBalance;
@@ -57,16 +54,21 @@ public sealed class VendingMachineBoundUserInterface : BoundUserInterface
     public void UpdateAmounts()
     {
         var enabled = EntMan.TryGetComponent(Owner, out VendingMachineComponent? bendy) && !bendy.Ejecting;
-        if (EntMan.TryGetComponent<BankAccountComponent>(PlayerManager.LocalEntity, out var bank))
-            _balance = bank.Balance;
-        else
-            _balance = 0;
         _menu?.UpdateBalance(_balance);
         if (TryUpdateCashSlotBalance())
             _menu?.UpdateCashSlotBalance(_cashSlotBalance);
         var system = EntMan.System<VendingMachineSystem>();
         _cachedInventory = system.GetAllInventory(Owner);
         _menu?.UpdateAmounts(_cachedInventory, _mod, enabled);
+    }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (message is not VendingMachineBalanceMessage msg)
+            return;
+
+        _balance = msg.Balance;
+        _menu?.UpdateBalance(_balance);
     }
 
     private void OnItemSelected(InventoryType type, string id)

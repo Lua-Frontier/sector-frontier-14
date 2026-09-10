@@ -79,7 +79,7 @@ namespace Content.Server.Database
             foreach (var favorite in prefs.ConstructionFavorites)
                 constructionFavorites.Add(new ProtoId<ConstructionPrototype>(favorite));
 
-            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites);
+            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites, prefs.BankBalance);
         }
 
         public async Task SaveSelectedCharacterIndexAsync(NetUserId userId, int index)
@@ -89,6 +89,39 @@ namespace Content.Server.Database
             await SetSelectedCharacterSlotAsync(userId, index, db.DbContext);
 
             await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task<(bool Success, int NewBalance)> TryAdjustBankBalanceAsync(NetUserId userId, int delta)
+        {
+            if (delta == 0)
+                return (false, 0);
+
+            await using var db = await GetDb();
+
+            int rows;
+            if (delta > 0)
+            {
+                rows = await db.DbContext.Preference
+                    .Where(p => p.UserId == userId.UserId && p.BankBalance <= int.MaxValue - delta)
+                    .ExecuteUpdateAsync(s => s.SetProperty(p => p.BankBalance, p => p.BankBalance + delta));
+            }
+            else
+            {
+                var amount = -delta;
+                rows = await db.DbContext.Preference
+                    .Where(p => p.UserId == userId.UserId && p.BankBalance >= amount)
+                    .ExecuteUpdateAsync(s => s.SetProperty(p => p.BankBalance, p => p.BankBalance + delta));
+            }
+
+            if (rows == 0)
+                return (false, 0);
+
+            var newBalance = await db.DbContext.Preference
+                .Where(p => p.UserId == userId.UserId)
+                .Select(p => p.BankBalance)
+                .SingleAsync();
+
+            return (true, newBalance);
         }
 
         public async Task SaveCharacterSlotAsync(NetUserId userId, ICharacterProfile? profile, int slot)
@@ -153,12 +186,14 @@ namespace Content.Server.Database
             await using var db = await GetDb();
 
             var profile = ConvertProfiles((HumanoidCharacterProfile) defaultProfile, 0);
+            profile.BankBalance = 0;
             var prefs = new Preference
             {
                 UserId = userId.UserId,
                 SelectedCharacterSlot = 0,
                 AdminOOCColor = Color.Red.ToHex(),
                 ConstructionFavorites = [],
+                BankBalance = HumanoidCharacterProfile.DefaultBalance,
             };
 
             prefs.Profiles.Add(profile);
@@ -167,7 +202,12 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
 
-            return new PlayerPreferences(new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) }, 0, Color.FromHex(prefs.AdminOOCColor), []);
+            return new PlayerPreferences(
+                new[] { new KeyValuePair<int, ICharacterProfile>(0, ((HumanoidCharacterProfile) defaultProfile).WithBankBalance(0)) },
+                0,
+                Color.FromHex(prefs.AdminOOCColor),
+                [],
+                prefs.BankBalance);
         }
 
         public async Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot)
@@ -228,7 +268,7 @@ namespace Content.Server.Database
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
-            var balance = profile.BankBalance;
+            var balance = 0;
 
             // Corvax-TTS-Start
             var voice = profile.Voice;
@@ -354,7 +394,7 @@ namespace Content.Server.Database
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
-            profile.BankBalance = humanoid.BankBalance;
+            profile.BankBalance = 0;
             profile.HairName = appearance.HairStyleId;
             profile.HairColor = appearance.HairColor.ToHex();
             profile.FacialHairName = appearance.FacialHairStyleId;

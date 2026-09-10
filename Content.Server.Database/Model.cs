@@ -348,6 +348,10 @@ namespace Content.Server.Database
         public int SelectedCharacterSlot { get; set; }
         public string AdminOOCColor { get; set; } = null!;
         public List<string> ConstructionFavorites { get; set; } = new();
+        /// <summary>
+        /// Account-level bank balance shared by all character slots for this user.
+        /// </summary>
+        public int BankBalance { get; set; }
         public List<Profile> Profiles { get; } = new();
     }
 

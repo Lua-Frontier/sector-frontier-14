@@ -43,6 +43,12 @@ namespace Content.Server.Preferences.Managers
             new();
         private readonly Dictionary<(NetUserId UserId, int CharacterSlot), CompanyChangeCounter> _companyChangesThisRound = new();
 
+        private readonly Dictionary<NetUserId, int> _pendingBankDelta = new();
+        private readonly HashSet<NetUserId> _bankDeltaFlushInProgress = new();
+        private readonly Dictionary<NetUserId, Task> _bankFlushTasks = new();
+        private readonly Dictionary<NetUserId, SemaphoreSlim> _bankDbGates = new();
+        private readonly object _bankBalanceFlushLock = new();
+
         private ISawmill _sawmill = default!;
 
         private int MaxCharacterSlots => _cfg.GetCVar(CCVars.GameMaxCharacterSlots);
@@ -81,7 +87,7 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, index, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.BankBalance);
             RefreshLateJoinAvailability();
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
@@ -125,15 +131,11 @@ namespace Content.Server.Preferences.Managers
             // Frontier: check for profile modifications (based on Monolith's impl)
             if (validateFields && profile is HumanoidCharacterProfile humanProfile)
             {
+                humanProfile = humanProfile.WithBankBalance(0);
+
                 if (curPrefs.Characters.TryGetValue(slot, out var existingProfile) &&
                     existingProfile is HumanoidCharacterProfile humanoidEditingTarget)
                 {
-                    if (humanProfile.BankBalance != humanoidEditingTarget.BankBalance)
-                    {
-                        _sawmill.Info($"{session.Name} has tried to modify a character's money (expected: {humanoidEditingTarget.BankBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
-                        humanProfile = humanProfile.WithBankBalance(humanoidEditingTarget.BankBalance);
-                    }
-
                     if (IsLockedCompanyChange(humanoidEditingTarget.Company, humanProfile.Company))
                     {
                         _sawmill.Info($"{session.Name} has tried to change a locked company from {humanoidEditingTarget.Company} to {humanProfile.Company}. Restoring the saved company.");
@@ -166,12 +168,6 @@ namespace Content.Server.Preferences.Managers
                 }
                 else
                 {
-                    if (humanProfile.BankBalance != HumanoidCharacterProfile.DefaultBalance)
-                    {
-                        _sawmill.Info($"{session.Name} tried to create a character with a non-default balance (expected: {HumanoidCharacterProfile.DefaultBalance} requested: {humanProfile.BankBalance}). They may be using a modified client!");
-                        humanProfile = humanProfile.WithBankBalance(HumanoidCharacterProfile.DefaultBalance);
-                    }
-
                     var sanitizedCompany = SanitizeRequestedCompany(session, humanProfile.Company);
                     if (!string.Equals(humanProfile.Company, sanitizedCompany, StringComparison.OrdinalIgnoreCase))
                     {
@@ -182,6 +178,10 @@ namespace Content.Server.Preferences.Managers
 
                 profile = humanProfile;
             }
+            else if (profile is HumanoidCharacterProfile humanProfileNoValidate)
+            {
+                profile = humanProfileNoValidate.WithBankBalance(0);
+            }
             // End Frontier: check for profile modifications (based on Monolith's impl)
 
             var profiles = new Dictionary<int, ICharacterProfile>(curPrefs.Characters)
@@ -189,13 +189,251 @@ namespace Content.Server.Preferences.Managers
                 [slot] = profile
             };
 
-            prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites); // # Lua add curPrefs.SelectedCharacterIndex
+            prefsData.Prefs = new PlayerPreferences(profiles, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.BankBalance); // # Lua add curPrefs.SelectedCharacterIndex
 
             if (slot == curPrefs.SelectedCharacterIndex)
                 RefreshLateJoinAvailability();
 
             if (ShouldStorePrefs(session.Channel.AuthType))
                 await _db.SaveCharacterSlotAsync(userId, profile, slot);
+        }
+
+        public bool TryApplyBankDelta(NetUserId userId, int delta, out int newBalance)
+        {
+            newBalance = 0;
+            if (delta == 0)
+                return false;
+
+            if (!_cachedPlayerPrefs.TryGetValue(userId, out var prefsData) || !prefsData.PrefsLoaded || prefsData.Prefs is null)
+            {
+                _sawmill.Error($"Tried to adjust bank balance for user {userId} before preferences loaded.");
+                return false;
+            }
+
+            var current = prefsData.Prefs.BankBalance;
+            if (delta > 0)
+            {
+                if (current > int.MaxValue - delta)
+                    return false;
+            }
+            else if (current < -delta)
+            {
+                return false;
+            }
+
+            newBalance = current + delta;
+            MirrorBankBalance(userId, newBalance);
+
+            if (ShouldPersistBank(userId))
+            {
+                lock (_bankBalanceFlushLock)
+                {
+                    _pendingBankDelta[userId] = _pendingBankDelta.GetValueOrDefault(userId) + delta;
+                }
+                _ = FlushBankDeltasAsync(userId);
+            }
+
+            return true;
+        }
+
+        public async Task<(bool Success, int NewBalance)> ApplyBankDeltaAsync(NetUserId userId, int delta)
+        {
+            if (delta == 0)
+                return (false, 0);
+
+            await EnsureBankFlushedAsync(userId);
+
+            var gate = GetBankDbGate(userId);
+            await gate.WaitAsync();
+            try
+            {
+                if (!await PersistClaimedDeltaAsync(userId))
+                    return (false, 0);
+
+                var (ok, newBalance) = await _db.TryAdjustBankBalanceAsync(userId, delta);
+                if (!ok)
+                    return (false, 0);
+
+                MirrorBankBalance(userId, newBalance);
+                return (true, newBalance);
+            }
+            finally
+            {
+                gate.Release();
+            }
+        }
+
+        private void MirrorBankBalance(NetUserId userId, int balance)
+        {
+            if (!_cachedPlayerPrefs.TryGetValue(userId, out var data))
+                return;
+
+            data.BankOverride = balance;
+            if (data.Prefs != null)
+                data.Prefs = data.Prefs.WithBankBalance(balance);
+        }
+
+        private static PlayerPreferences WithLiveBank(PlayerPrefData data, PlayerPreferences prefs)
+        {
+            if (data.BankOverride is int bank)
+                return prefs.WithBankBalance(bank);
+            if (data.Prefs != null)
+                return prefs.WithBankBalance(data.Prefs.BankBalance);
+            return prefs;
+        }
+
+        private bool ShouldPersistBank(NetUserId userId)
+        {
+            if (_playerManager.TryGetSessionById(userId, out var session))
+                return ShouldStorePrefs(session.Channel.AuthType);
+            return true;
+        }
+
+        private SemaphoreSlim GetBankDbGate(NetUserId userId)
+        {
+            lock (_bankBalanceFlushLock)
+            {
+                if (!_bankDbGates.TryGetValue(userId, out var gate))
+                {
+                    gate = new SemaphoreSlim(1, 1);
+                    _bankDbGates[userId] = gate;
+                }
+
+                return gate;
+            }
+        }
+
+        private int ClaimPendingDelta(NetUserId userId)
+        {
+            lock (_bankBalanceFlushLock)
+            {
+                if (!_pendingBankDelta.Remove(userId, out var delta) || delta == 0)
+                    return 0;
+                return delta;
+            }
+        }
+
+        private void RestorePendingDelta(NetUserId userId, int delta)
+        {
+            if (delta == 0)
+                return;
+
+            lock (_bankBalanceFlushLock)
+            {
+                _pendingBankDelta[userId] = _pendingBankDelta.GetValueOrDefault(userId) + delta;
+            }
+        }
+
+        private async Task<bool> PersistClaimedDeltaAsync(NetUserId userId)
+        {
+            var delta = ClaimPendingDelta(userId);
+            if (delta == 0)
+                return true;
+
+            try
+            {
+                var (ok, _) = await _db.TryAdjustBankBalanceAsync(userId, delta);
+                if (ok)
+                    return true;
+
+                RestorePendingDelta(userId, delta);
+                _sawmill.Error($"Failed to persist bank delta {delta} for {userId}");
+                return false;
+            }
+            catch (Exception e)
+            {
+                RestorePendingDelta(userId, delta);
+                _sawmill.Error($"Failed to persist bank delta {delta} for {userId}: {e}");
+                return false;
+            }
+        }
+
+        private async Task FlushBankDeltasAsync(NetUserId userId)
+        {
+            TaskCompletionSource? completion = null;
+            lock (_bankBalanceFlushLock)
+            {
+                if (!_bankDeltaFlushInProgress.Add(userId))
+                    return;
+
+                completion = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+                _bankFlushTasks[userId] = completion.Task;
+            }
+
+            try
+            {
+                while (true)
+                {
+                    bool hasPending;
+                    lock (_bankBalanceFlushLock)
+                    {
+                        hasPending = _pendingBankDelta.GetValueOrDefault(userId) != 0;
+                    }
+
+                    if (!hasPending)
+                        break;
+
+                    var gate = GetBankDbGate(userId);
+                    await gate.WaitAsync();
+                    try
+                    {
+                        if (!await PersistClaimedDeltaAsync(userId))
+                            return;
+                    }
+                    finally
+                    {
+                        gate.Release();
+                    }
+                }
+            }
+            finally
+            {
+                var restart = false;
+                lock (_bankBalanceFlushLock)
+                {
+                    _bankDeltaFlushInProgress.Remove(userId);
+                    if (_bankFlushTasks.TryGetValue(userId, out var task) && ReferenceEquals(task, completion?.Task))
+                        _bankFlushTasks.Remove(userId);
+
+                    restart = _pendingBankDelta.GetValueOrDefault(userId) != 0;
+                }
+
+                completion?.TrySetResult();
+
+                if (restart)
+                    _ = FlushBankDeltasAsync(userId);
+            }
+        }
+
+        private async Task EnsureBankFlushedAsync(NetUserId userId)
+        {
+            for (var attempt = 0; attempt < 200; attempt++)
+            {
+                Task? inFlight;
+                var hasPending = false;
+                lock (_bankBalanceFlushLock)
+                {
+                    hasPending = _pendingBankDelta.GetValueOrDefault(userId) != 0;
+                    _bankFlushTasks.TryGetValue(userId, out inFlight);
+                }
+
+                if (!hasPending && inFlight == null)
+                    return;
+
+                if (hasPending)
+                    _ = FlushBankDeltasAsync(userId);
+
+                if (inFlight != null)
+                    await inFlight;
+                else
+                    await Task.Delay(25);
+            }
+
+            lock (_bankBalanceFlushLock)
+            {
+                if (_pendingBankDelta.GetValueOrDefault(userId) != 0 || _bankFlushTasks.ContainsKey(userId))
+                    _sawmill.Error($"Bank delta flush did not finish in time for {userId}");
+            }
         }
 
         public async Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites)
@@ -207,7 +445,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, favorites);
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, favorites, curPrefs.BankBalance);
 
             var session = _playerManager.GetSessionById(userId);
             if (ShouldStorePrefs(session.Channel.AuthType))
@@ -383,7 +621,7 @@ namespace Content.Server.Preferences.Managers
             var arr = new Dictionary<int, ICharacterProfile>(curPrefs.Characters);
             arr.Remove(slot);
 
-            prefsData.Prefs = new PlayerPreferences(arr, nextSlot ?? curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites);
+            prefsData.Prefs = new PlayerPreferences(arr, nextSlot ?? curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, curPrefs.ConstructionFavorites, curPrefs.BankBalance);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -424,7 +662,7 @@ namespace Content.Server.Preferences.Managers
             }
 
             var curPrefs = prefsData.Prefs!;
-            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, validatedList);
+            prefsData.Prefs = new PlayerPreferences(curPrefs.Characters, curPrefs.SelectedCharacterIndex, curPrefs.AdminOOCColor, validatedList, curPrefs.BankBalance);
 
             if (ShouldStorePrefs(message.MsgChannel.AuthType))
             {
@@ -442,8 +680,8 @@ namespace Content.Server.Preferences.Managers
                 {
                     PrefsLoaded = true,
                     Prefs = new PlayerPreferences(
-                        new[] { new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random()) },
-                        0, Color.Transparent, [])
+                        new[] { new KeyValuePair<int, ICharacterProfile>(0, HumanoidCharacterProfile.Random().WithBankBalance(0)) },
+                        0, Color.Transparent, [], HumanoidCharacterProfile.DefaultBalance)
                 };
 
                 _cachedPlayerPrefs[session.UserId] = prefsData;
@@ -459,7 +697,7 @@ namespace Content.Server.Preferences.Managers
                 async Task LoadPrefs()
                 {
                     var prefs = await GetOrCreatePreferencesAsync(session.UserId, cancel);
-                    prefsData.Prefs = prefs;
+                    prefsData.Prefs = WithLiveBank(prefsData, prefs);
                 }
             }
         }
@@ -471,7 +709,7 @@ namespace Content.Server.Preferences.Managers
             // And play time info is loaded concurrently from the DB with preferences.
             var prefsData = _cachedPlayerPrefs[session.UserId];
             DebugTools.Assert(prefsData.Prefs != null);
-            prefsData.Prefs = SanitizePreferences(session, prefsData.Prefs, _dependencies);
+            prefsData.Prefs = WithLiveBank(prefsData, SanitizePreferences(session, prefsData.Prefs, _dependencies));
 
             prefsData.PrefsLoaded = true;
 
@@ -490,7 +728,24 @@ namespace Content.Server.Preferences.Managers
 
         public void OnClientDisconnected(ICommonSession session)
         {
-            _cachedPlayerPrefs.Remove(session.UserId);
+            var userId = session.UserId;
+            _ = UnloadPreferencesAfterFlushAsync(userId);
+        }
+
+        private async Task UnloadPreferencesAfterFlushAsync(NetUserId userId)
+        {
+            try
+            {
+                await EnsureBankFlushedAsync(userId);
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error($"Failed to flush bank balance on disconnect for {userId}: {e}");
+            }
+            finally
+            {
+                _cachedPlayerPrefs.Remove(userId);
+            }
         }
 
         public bool HavePreferencesLoaded(ICommonSession session)
@@ -578,12 +833,12 @@ namespace Content.Server.Preferences.Managers
 
                 if (prefs != null)
                 {
-                    prefsData.Prefs = prefs;
+                    prefsData.Prefs = WithLiveBank(prefsData, prefs);
                     prefsData.PrefsLoaded = true;
 
                     var msg = new MsgPreferencesAndSettings
                     {
-                        Preferences = prefs,
+                        Preferences = prefsData.Prefs,
                         Settings = new GameSettings
                         {
                             MaxCharacterSlots = MaxCharacterSlots
@@ -604,7 +859,7 @@ namespace Content.Server.Preferences.Managers
             return new PlayerPreferences(prefs.Characters.Select(p =>
             {
                 return new KeyValuePair<int, ICharacterProfile>(p.Key, p.Value.Validated(session, collection));
-            }), prefs.SelectedCharacterIndex, prefs.AdminOOCColor, prefs.ConstructionFavorites);
+            }), prefs.SelectedCharacterIndex, prefs.AdminOOCColor, prefs.ConstructionFavorites, prefs.BankBalance);
         }
 
         public IEnumerable<KeyValuePair<NetUserId, ICharacterProfile>> GetSelectedProfilesForPlayers(
@@ -625,6 +880,7 @@ namespace Content.Server.Preferences.Managers
         {
             public bool PrefsLoaded;
             public PlayerPreferences? Prefs;
+            public int? BankOverride;
         }
 
         void IPostInjectInit.PostInject()

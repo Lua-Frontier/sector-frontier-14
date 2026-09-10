@@ -2,7 +2,7 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server.Popups;
 using Content.Shared._Lua.Stargate.PlanetQuest;
 using Content.Shared.Ghost;

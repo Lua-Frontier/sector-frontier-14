@@ -1,7 +1,7 @@
 
 using Content.Shared._NF.Bank;
 using System.Linq;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server._NF.Medical.Components;
 using Content.Server.Administration.Logs;
 using Content.Shared.Body.Components;

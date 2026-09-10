@@ -1,11 +1,11 @@
-<cartridges:YupiTransferUiFragment
-    xmlns:cartridges="clr-namespace:Content.Client._Lua.Yupi.CartridgeLoader.Cartridges;assembly=Content.Client"
+<cartridges:GalBankTransferUiFragment
+    xmlns:cartridges="clr-namespace:Content.Client._Lua.GalBank.CartridgeLoader.Cartridges;assembly=Content.Client"
     xmlns="https://spacestation14.io"
     Orientation="Vertical"
     Margin="5"
     VerticalExpand="True">
   <BoxContainer Orientation="Horizontal">
-    <Label Name="LblOwnCodeTitle" Text="Ваш ЮПИ:"/>
+    <Label Name="LblOwnCodeTitle" Text="Ваш GalBank:"/>
     <Button Name="CopyCodeButton" Text="------"/>
   </BoxContainer>
   <BoxContainer Orientation="Horizontal">
@@ -13,8 +13,8 @@
     <Label Name="Balance" Text="0"/>
   </BoxContainer>
   <BoxContainer Orientation="Horizontal">
-    <Label Name="LblTargetCodeTitle" Text="Код получателя:"/>
-    <LineEdit Name="CodeInput" PlaceHolder="H2U2D8" HorizontalExpand="True"/>
+    <Label Name="LblTargetCodeTitle" Text="Счёт получателя:"/>
+    <LineEdit Name="CodeInput" PlaceHolder="AA1111" HorizontalExpand="True"/>
   </BoxContainer>
   <BoxContainer Orientation="Horizontal">
     <Label Name="LblAmountTitle" Text="Сумма:"/>
@@ -30,4 +30,4 @@
                  Stretch="KeepAspectCentered"
                  SetSize="256 128"/>
   </BoxContainer>
-</cartridges:YupiTransferUiFragment>
+</cartridges:GalBankTransferUiFragment>

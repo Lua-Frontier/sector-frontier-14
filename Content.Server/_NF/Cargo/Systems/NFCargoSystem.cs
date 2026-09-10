@@ -1,5 +1,5 @@
 using Content.Server._Lua.DynamicMarket.Systems; // Lua
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server._NF.SectorServices;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;

@@ -18,6 +18,7 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<int> BankFlushCacheInterval = CVarDef.Create("bank.flushcache.interval", 300, CVar.SERVER | CVar.REPLICATED);
 
         public static readonly CVarDef<string> TransferApiSecret = CVarDef.Create("transfer.api.secret", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+        public static readonly CVarDef<string> TransferApiUrl = CVarDef.Create("transfer.api.url", "", CVar.SERVERONLY | CVar.ARCHIVE);
 
         public static readonly CVarDef<bool> NetDynamicTick =
             CVarDef.Create("net.dynamic_tick.enabled", false, CVar.ARCHIVE | CVar.SERVER | CVar.REPLICATED);
@@ -46,8 +47,6 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<float> NetDynamicTickIncreaseDelay =
             CVarDef.Create("net.dynamic_tick.increase_delay", 10f, CVar.SERVERONLY | CVar.ARCHIVE);
 
-        public static readonly CVarDef<int> TransferMaxAmountPerOperation =
-            CVarDef.Create("yupi.transfer.max_amount_per_operation", 50_000, CVar.SERVER | CVar.ARCHIVE);
         /// <summary>
         /// Whether to automatically spawn escape shuttles.
         /// </summary>

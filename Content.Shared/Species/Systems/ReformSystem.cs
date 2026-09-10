@@ -1,6 +1,5 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
-using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -96,12 +95,6 @@ public sealed partial class ReformSystem : EntitySystem
         // This transfers the mind to the new entity
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             _mindSystem.TransferTo(mindId, child, mind: mind);
-
-        // Frontier: bank account transfer
-        if (HasComp<BankAccountComponent>(uid))
-        {
-            EnsureComp<BankAccountComponent>(child);
-        }
 
         // Frontier
         RaiseLocalEvent(child, new SetDionaCargoBlacklistEvent(child), true);

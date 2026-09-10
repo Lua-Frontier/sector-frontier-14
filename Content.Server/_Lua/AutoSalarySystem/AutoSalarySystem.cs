@@ -2,10 +2,9 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
 using Content.Shared.Lua.CLVar;
@@ -55,8 +54,8 @@ public sealed class AutoSalarySystem : EntitySystem
 
     private void ProcessSalary()
     {
-        var query = EntityQueryEnumerator<BankAccountComponent, ActorComponent, SalaryTrackingComponent>();
-        while (query.MoveNext(out var uid, out var bank, out var actor, out var salary))
+        var query = EntityQueryEnumerator<ActorComponent, SalaryTrackingComponent>();
+        while (query.MoveNext(out var uid, out var actor, out var salary))
         {
             if (string.IsNullOrEmpty(salary.JobId))
                 continue;
@@ -64,21 +63,24 @@ public sealed class AutoSalarySystem : EntitySystem
             if (!_prototypeManager.TryIndex(new ProtoId<JobPrototype>(salary.JobId), out var job))
                 continue;
 
+            if (!_bank.HasAccountBank(uid))
+                continue;
+
             Logger.Info($"DEBUG: {ToPrettyString(uid)} jobID: {salary.JobId}");
             var amount = job.Salary;
-            if (_bank.TryBankDeposit(uid, amount))
+            if (_bank.TryBankDeposit(uid, amount) && _bank.TryGetBalance(uid, out var balance))
             {
-                NotifySalaryReceived(uid, bank, actor, amount);
+                NotifySalaryReceived(uid, balance, actor, amount);
             }
         }
     }
 
-    private void NotifySalaryReceived(EntityUid uid, BankAccountComponent bank, ActorComponent actor, int salary)
+    private void NotifySalaryReceived(EntityUid uid, int balance, ActorComponent actor, int salary)
     {
         var changeAmount = $"+{salary}";
         var message = Loc.GetString(
             "bank-program-change-balance-notification",
-            ("balance", bank.Balance),
+            ("balance", balance),
             ("change", changeAmount),
             ("currencySymbol", "$")
         );
