@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 using System.Diagnostics.CodeAnalysis;
 using Content.Server._Lua.Shuttles.Components;
+using Content.Server._Mono.Cleanup;
 using Content.Server._NF.Worldgen.Components.Debris;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
@@ -197,12 +198,28 @@ public sealed class ShuttleGridAccessSystem : EntitySystem
         var parentKind = GetKind(ev.Grid);
         if (parentKind == null)
             return;
+
+        var childKind = parentKind is ShuttleGridKind.Shuttle or ShuttleGridKind.ShuttleAi
+            ? ShuttleGridKind.Debris
+            : parentKind.Value;
+
         foreach (var child in ev.NewGrids)
         {
             if (child == ev.Grid)
                 continue;
-            EnsureGridType(child, parentKind.Value, parentGrid);
+            EnsureGridType(child, childKind, parentGrid);
+            if (childKind == ShuttleGridKind.Debris)
+                EnsureSplitDebrisCleanup(child);
         }
+    }
+
+    private void EnsureSplitDebrisCleanup(EntityUid uid)
+    {
+        var cleanup = EnsureComp<GridCleanupGridComponent>(uid);
+        cleanup.CleanupAcceleration = 3f;
+        cleanup.IgnorePowered = true;
+        cleanup.IgnoreIFF = true;
+        cleanup.IgnorePrice = true;
     }
 
     private IShuttleGrid EnsureGridComponent(EntityUid uid, ShuttleGridKind kind)

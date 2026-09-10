@@ -9,6 +9,12 @@ namespace Content.Server._Lua.Shuttles.Components;
 public sealed partial class ShuttleAiGridComponent : Component, IShuttleGrid
 {
     [ViewVariables]
+    public TimeSpan SpawnTime;
+
+    [DataField]
+    public TimeSpan MaxLifetime = TimeSpan.FromMinutes(15);
+
+    [ViewVariables]
     public bool Enabled = true;
 
     [ViewVariables]
