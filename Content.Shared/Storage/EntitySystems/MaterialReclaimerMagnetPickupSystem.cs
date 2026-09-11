@@ -118,7 +118,7 @@ public sealed class MaterialReclaimerMagnetPickupSystem : EntitySystem
                 if (near == parentUid)
                     continue;
 
-                if (!_storage.TryStartProcessItem(uid, near))
+                if (!_storage.TryStartProcessItem(uid, near, predictSound: false))
                     continue;
             }
         }

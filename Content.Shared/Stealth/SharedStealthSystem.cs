@@ -109,6 +109,7 @@ public abstract class SharedStealthSystem : EntitySystem
         SetEnabled(uid, cast.Enabled, component);
         component.LastVisibility = cast.Visibility;
         component.LastUpdated = cast.LastUpdated;
+        OnVisibilityChanged(uid, component);
     }
 
     private void OnMove(EntityUid uid, StealthOnMoveComponent component, ref MoveEvent args)
@@ -146,6 +147,7 @@ public abstract class SharedStealthSystem : EntitySystem
 
         component.LastVisibility = Math.Clamp(component.LastVisibility + delta, component.MinVisibility, component.MaxVisibility);
         Dirty(uid, component);
+        OnVisibilityChanged(uid, component);
     }
 
     /// <summary>
@@ -162,6 +164,11 @@ public abstract class SharedStealthSystem : EntitySystem
             component.LastUpdated = _timing.CurTime;
 
         Dirty(uid, component);
+        OnVisibilityChanged(uid, component);
+    }
+
+    protected virtual void OnVisibilityChanged(EntityUid uid, StealthComponent component)
+    {
     }
 
     /// <summary>

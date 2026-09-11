@@ -81,6 +81,8 @@ public sealed class MaterialReclaimerSystem : SharedMaterialReclaimerSystem
     {
         AmbientSound.SetAmbience(entity.Owner, entity.Comp.Enabled && args.Powered);
         entity.Comp.Powered = args.Powered;
+        if (!args.Powered)
+            StopSound(entity.Comp);
         Dirty(entity);
     }
 
