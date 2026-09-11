@@ -10,7 +10,7 @@
               doAfter: 2
 
     - node: shotgunsawn
-      entity: NFWeaponShotgunSawnEmpty
+      entity: WeaponShotgunSawnEmpty
       edges:
         - to: handmadepistol
           steps:
@@ -18,8 +18,8 @@
               doAfter: 2.5
           completed:
           - !type:SpawnPrototype
-            prototype: NFWeaponShotgunHandmadeEmpty
+            prototype: WeaponShotgunHandmadeEmpty
             amount: 1
 
     - node: handmadepistol
-      entity: NFWeaponShotgunHandmadeEmpty
+      entity: WeaponShotgunHandmadeEmpty

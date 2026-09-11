@@ -33,19 +33,19 @@
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 250 #Lua 1800<1000
-    startingCharge: 250 #Lua 1800<1000
+    maxCharge: 1800
+    startingCharge: 1800
   - type: ProjectileBatteryAmmoProvider
-    proto: NFBulletDisabler
-    fireCost: 25
+    proto: BulletDisabler
+    fireCost: 100
   - type: EnergyGun
     fireModes:
-    - proto: NFBulletDisabler
-      fireCost: 25
+    - proto: BulletDisabler
+      fireCost: 100
       name: disable
       state: disabler
-    - proto: BulletEnergyGunMagnum
-      fireCost: 25 # Mono - 150 < 225
+    - proto: BulletEnergyGun357_magnum
+      fireCost: 150
       name: lethal
       state: lethal
   - type: MagazineVisuals
@@ -64,4 +64,4 @@
     - Sidearm
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 10 #Lua 10<35
+    autoRechargeRate: 75

@@ -4,6 +4,7 @@
 
 using System;
 using System.Numerics;
+using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
@@ -35,6 +36,12 @@ public sealed class MarqueeLabel : Control
     {
         get => _label.FontColorOverride;
         set => _label.FontColorOverride = value;
+    }
+
+    public Font? FontOverride
+    {
+        get => _label.FontOverride;
+        set => _label.FontOverride = value;
     }
 
     public MarqueeLabel()

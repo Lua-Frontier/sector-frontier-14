@@ -7,10 +7,10 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Lua.Bank.Events;
 
 [Serializable, NetSerializable]
-public sealed class LuaATMPersonalInfoMessage(bool enabled, int balance, string yupiCode, List<BankAccountOperation> history) : BoundUserInterfaceMessage
+public sealed class LuaATMPersonalInfoMessage(bool enabled, int balance, string galBankCode, List<BankAccountOperation> history) : BoundUserInterfaceMessage
 {
     public bool Enabled = enabled;
     public int Balance = balance;
-    public string YUPICode = yupiCode;
+    public string GalBankCode = galBankCode;
     public List<BankAccountOperation> History = history;
 }

@@ -1,0 +1,59 @@
+- type: listing
+  id: UplinkVipRank10CardBoxBlack
+  name: uplink-vip-CardBoxBlack-name
+  description: uplink-vip-CardBoxBlack-desc
+  productEntity: CardBoxBlack
+  cost:
+    Speso: 900
+  categories:
+  - UplinkVipTierRank10
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank10
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank10MpplayerDefault
+  name: uplink-vip-MpplayerDefault-name
+  description: uplink-vip-MpplayerDefault-desc
+  productEntity: MpplayerDefault
+  cost:
+    Speso: 700
+  categories:
+  - UplinkVipTierRank10
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank10
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank10PrizeBall
+  name: uplink-vip-PrizeBall-name
+  description: uplink-vip-PrizeBall-desc
+  productEntity: PrizeBall
+  cost:
+    Speso: 500
+  categories:
+  - UplinkVipTierRank10
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank10
+  - !type:ListingLimitedStockCondition
+    stock: 1

@@ -14,3 +14,15 @@ player-tab-is-antag-no = NO
 player-tab-character-name-antag-symbol = {$symbol} {$name}
 
 player-tab-antag-prefix = 🗡
+
+player-tab-balance = Balance
+player-tab-balance-none = -
+player-tab-reputation = Reputation
+player-tab-company = Company
+player-tab-company-none = -
+player-tab-donat = Donat
+player-tab-donat-none = -
+admin-overlay-balance = Balance: {$balance}
+admin-overlay-reputation = Reputation: {$reputation}
+admin-overlay-company = Company: {$company}
+admin-overlay-donat = Donat: {$donat}

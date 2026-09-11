@@ -59,6 +59,12 @@ public sealed partial class BallisticAmmoProviderComponent : Component
     public TimeSpan FillDelay = TimeSpan.FromSeconds(0.5);
 
     /// <summary>
+    /// Goobstation - is ammo automatically ejected after each shot
+    /// </summary>
+    [DataField]
+    public bool AutoCycle = true;
+
+    /// <summary>
     /// Mono - ignore UnspawnedCount and keep firing the prototype ammo indefinitely.
     /// Entity ammo in the container is still preferred and consumed first.
     /// </summary>

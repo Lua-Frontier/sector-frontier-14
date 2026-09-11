@@ -6,7 +6,6 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
-using Content.Shared._NF.Bank.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -78,11 +77,6 @@ public sealed partial class DiseaseEffectSystem
             }
 
             _appearanceSystem.LoadProfile(polyUid.Value, pref);
-        }
-
-        if (polyUid != null && HasComp<BankAccountComponent>(ent.Owner))
-        {
-            EnsureComp<BankAccountComponent>(polyUid.Value);
         }
 
         if (args.DiseaseEffect.CureAfter)

@@ -1,5 +1,7 @@
 using Content.Server.Cargo.Components;
 using Content.Server._NF.Cargo.Components;
+using Content.Shared._Mono.ItemTax.Components;
+using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Cargo.BUI;
 using Content.Shared.Cargo;
@@ -47,7 +49,7 @@ public sealed partial class NFCargoSystem
         }
 
         // Modify prices based on modifier.
-        GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount, out Dictionary<string, double> additionalCurrency);
+        GetPalletGoods(ent, gridUid, out var toSell, out var amount, out var noModAmount, out Dictionary<string, double> additionalCurrency, out _, out _, out _);
         double taxMultiplier = 1.0; // Lua
         if (TryComp<MarketModifierComponent>(ent, out var priceMod))
         {
@@ -211,9 +213,9 @@ public sealed partial class NFCargoSystem
 
     #region Station
 
-    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount
+    private bool SellPallets(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency, out double frontierTaxAmount, out double nfsdTaxAmount, out double medicalTaxAmount)
     {
-        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount, out additionalCurrency);
+        GetPalletGoods(consoleUid, gridUid, out var toSell, out amount, out noMultiplierAmount, out additionalCurrency, out frontierTaxAmount, out nfsdTaxAmount, out medicalTaxAmount);
 
         Log.Debug($"Cargo sold {toSell.Count} entities for {amount} (plus {noMultiplierAmount} without mods)");
 
@@ -229,10 +231,13 @@ public sealed partial class NFCargoSystem
         return true;
     }
 
-    private void GetPalletGoods(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency) // Frontier: first arg to Entity, add noMultiplierAmount
+    private void GetPalletGoods(Entity<NFCargoPalletConsoleComponent> consoleUid, EntityUid gridUid, out HashSet<EntityUid> toSell, out double amount, out double noMultiplierAmount, out Dictionary<string, double> additionalCurrency, out double frontierTaxAmount, out double nfsdTaxAmount, out double medicalTaxAmount)
     {
         amount = 0;
         noMultiplierAmount = 0;
+        frontierTaxAmount = 0;
+        nfsdTaxAmount = 0;
+        medicalTaxAmount = 0;
         toSell = new HashSet<EntityUid>();
         additionalCurrency = new();
 
@@ -267,6 +272,24 @@ public sealed partial class NFCargoSystem
                 if (price == 0)
                     continue;
                 toSell.Add(ent);
+                if (TryComp<ItemTaxComponent>(ent, out var itemTax))
+                {
+                    foreach (var (account, taxCoeff) in itemTax.TaxAccounts)
+                    {
+                        switch (account)
+                        {
+                            case SectorBankAccount.Frontier:
+                                frontierTaxAmount += price * taxCoeff;
+                                break;
+                            case SectorBankAccount.Nfsd:
+                                nfsdTaxAmount += price * taxCoeff;
+                                break;
+                            case SectorBankAccount.Medical:
+                                medicalTaxAmount += price * taxCoeff;
+                                break;
+                        }
+                    }
+                }
                 if (toSell.Count >= MaxPalletSaleEntities) return;
 
                 // Check for items that are immune to market modifiers
@@ -332,7 +355,7 @@ public sealed partial class NFCargoSystem
         }
 
         //if (!SellPallets(ent, gridUid, out var price, out var noMultiplierPrice)) // Lua
-        GetPalletGoods(ent, gridUid, out var toSellNow, out _, out _, out Dictionary<string, double> additionalCurrency); // Lua
+        GetPalletGoods(ent, gridUid, out var toSellNow, out _, out _, out Dictionary<string, double> additionalCurrency, out _, out _, out _);
         if (toSellNow.Count == 0) // Lua
             return;
 
@@ -364,7 +387,19 @@ public sealed partial class NFCargoSystem
             finalPrice += basePrice * taxMultiplier * dyn;
         }
         var bulkByProto = previewBatchByProto;
-        if (!SellPallets(ent, gridUid, out _, out _, out _)) return;
+        if (!SellPallets(ent, gridUid, out _, out _, out _, out var frontierTaxAmount, out var nfsdTaxAmount, out var medicalTaxAmount)) return;
+        if (frontierTaxAmount > 0)
+            _bank.TrySectorDeposit(SectorBankAccount.Frontier, (int)frontierTaxAmount, LedgerEntryType.ColonialOutpostSales, ent);
+        if (nfsdTaxAmount > 0)
+            _bank.TrySectorDeposit(SectorBankAccount.Nfsd, (int)nfsdTaxAmount, LedgerEntryType.TSFMCSales, ent);
+        if (medicalTaxAmount > 0)
+            _bank.TrySectorDeposit(SectorBankAccount.Medical, (int)medicalTaxAmount, LedgerEntryType.MedicalSales, ent);
+        if (frontierTaxAmount < 0)
+            _bank.TrySectorWithdraw(SectorBankAccount.Frontier, (int)(-frontierTaxAmount), LedgerEntryType.ColonialOutpostPenalties, ent);
+        if (nfsdTaxAmount < 0)
+            _bank.TrySectorWithdraw(SectorBankAccount.Nfsd, (int)(-nfsdTaxAmount), LedgerEntryType.TSFMCPenalties, ent);
+        if (medicalTaxAmount < 0)
+            _bank.TrySectorWithdraw(SectorBankAccount.Medical, (int)(-medicalTaxAmount), LedgerEntryType.MedicalPenalties, ent);
         var price = finalPrice;
         // Lua end
 

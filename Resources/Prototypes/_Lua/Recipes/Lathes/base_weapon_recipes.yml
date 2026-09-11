@@ -213,28 +213,28 @@
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineRifleEmpty
-  result: NFMagazineRifle20Empty
+  result: Magazine556x45mmEmpty
   materials:
     Steel: 25
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineRifle
-  result: NFMagazineRifle20
+  result: Magazine556x45mmFMJ
   materials:
     Steel: 475
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
   id: MagazineLightRifleEmpty
-  result: NFMagazineRifle30Empty
+  result: Magazine762x39mmEmpty
   materials:
     Steel: 25
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineShotgunBeanbag
-  result: NFMagazineShotgunDrumBeanbag
+  result: Magazine12_gaugeBeanbag
   materials:
     Steel: 150
     Plastic: 140
@@ -242,7 +242,7 @@
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineShotgunSlug
-  result: NFMagazineShotgunDrumSlug
+  result: Magazine12_gaugeSlug
   materials:
     Steel: 190
     Plastic: 100

@@ -53,7 +53,7 @@ namespace Content.Client.Lobby
 
         public void SelectCharacter(int slot)
         {
-            Preferences = new PlayerPreferences(Preferences.Characters, slot, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
+            Preferences = new PlayerPreferences(Preferences.Characters, slot, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.BankBalance);
             OnSelectedCharacterChanged?.Invoke();
 
             var msg = new MsgSelectCharacter
@@ -103,7 +103,7 @@ namespace Content.Client.Lobby
 
             var l = lowest.Value;
             characters.Add(l, profile);
-            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
+            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.BankBalance);
 
             UpdateCharacter(profile, l);
         }
@@ -116,7 +116,7 @@ namespace Content.Client.Lobby
         public void DeleteCharacter(int slot)
         {
             var characters = Preferences.Characters.Where(p => p.Key != slot);
-            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
+            Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.BankBalance);
             var msg = new MsgDeleteCharacter
             {
                 Slot = slot
@@ -126,7 +126,7 @@ namespace Content.Client.Lobby
 
         public void UpdateConstructionFavorites(List<ProtoId<ConstructionPrototype>> favorites)
         {
-            Preferences = new PlayerPreferences(Preferences.Characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, favorites);
+            Preferences = new PlayerPreferences(Preferences.Characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, favorites, Preferences.BankBalance);
             var msg = new MsgUpdateConstructionFavorites
             {
                 Favorites = favorites
@@ -167,7 +167,7 @@ namespace Content.Client.Lobby
 
                 if (needsUpdate)
                 {
-                    Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
+                    Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites, Preferences.BankBalance);
 
                     // Update the selected character on the server if needed
                     var selectedIndex = Preferences.SelectedCharacterIndex;

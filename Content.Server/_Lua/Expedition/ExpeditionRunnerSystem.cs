@@ -3,18 +3,17 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Sectors;
-using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
 using Content.Server.Mind;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Lua.Expedition;
 using Content.Shared._Lua.Stargate.PlanetQuest;
 using Content.Shared._NF.CCVar;
-using Content.Shared.Chat;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
@@ -45,10 +44,11 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly ShuttleConsoleSystem _shuttleConsoles = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     private float _travelTime;
 
     public override void Initialize()
@@ -113,7 +113,7 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     public void Announce(EntityUid mapUid, string text)
     {
         var mapId = Comp<MapComponent>(mapUid).MapId;
-        _chat.ChatMessageToManyFiltered(Filter.BroadcastMap(mapId), ChatChannel.Radio, text, text, _mapSystem.GetMapOrInvalid(mapId), false, true, null);
+        _chat.DispatchMapAnnouncement(mapId, text);
     }
 
     private void OnExpeditionMapInit(EntityUid uid, ExpeditionMapComponent component, MapInitEvent args)
@@ -189,9 +189,10 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
 
         ClearExpeditionCrewMarkers(fromMap, ev.Entity);
 
-        var shuttleQuery = EntityQueryEnumerator<ShuttleComponent, TransformComponent>();
+        var shuttleQuery = EntityQueryEnumerator<MapGridComponent, TransformComponent>();
         while (shuttleQuery.MoveNext(out var shuttleUid, out _, out var otherShuttleXform))
         {
+            if (_gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle) continue;
             if (otherShuttleXform.MapUid == fromMap &&
                 _station.GetOwningStation(shuttleUid, otherShuttleXform) == expedition.Station)
             {
@@ -268,9 +269,11 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
     private bool AutoFtlShuttlesHome(EntityUid mapUid, ExpeditionMapComponent comp, float ftlTime)
     {
         var started = false;
-        var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
-        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
+        var shuttleQuery = AllEntityQuery<MapGridComponent, TransformComponent>();
+        while (shuttleQuery.MoveNext(out var shuttleUid, out _, out var shuttleXform))
         {
+            if (_gridAccess.GetKind(shuttleUid) != ShuttleGridKind.Shuttle) continue;
+            if (!_gridAccess.TryGetShuttleGrid(shuttleUid, out var shuttle)) continue;
             if (shuttleXform.MapUid != mapUid || HasComp<FTLComponent>(shuttleUid)) continue;
             if (_station.GetOwningStation(shuttleUid, shuttleXform) != comp.Station) continue;
             EntityCoordinates destination;

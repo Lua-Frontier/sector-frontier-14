@@ -1,5 +1,5 @@
 - type: entity
-  name: VFD MR-8C DMR (7.62x54)
+  name: VFD MR-8C DMR (8x65mm SKR)
   parent: [BaseWeaponRifle, BaseC3CentCommContraband] #Lua BaseGunWieldable
   id: WeaponRifleMR8C
   description: The DMR variant of the MR-8 series, firing with incredible accuracy. Chambered in 8x65mm SKR. A label on the side reads "FOR MILITARY USE ONLY".
@@ -22,7 +22,7 @@
 #    minAngle: -21
 #    maxAngle: -47
   - type: Gun
-    examineCaliber: gun-examine-caliber-76254 #Lua
+    examineCaliber: gun-examine-caliber-865 #Lua
 #    minAngle: 21 # comment from _Lua
 #    maxAngle: 48
 #    angleIncrease: 27
@@ -44,21 +44,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x54mmRFMJ #Lua Magazine8x65mmSKR<Magazine762x54mmRFMJ
+        startingItem: Magazine8x65mmSKR
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine762x54mmRFMJ #Lua Magazine8x65mmSKR<Magazine762x54mmRFMJ
+            - Magazine8x65mmSKR
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x54mmRFMJ #Lua Cartridge8x65mmSKR<Cartridge762x54mmRFMJ
+        startingItem: Cartridge8x65mmSKR
         priority: 1
         whitelist:
           tags:
-            - Cartridge762x54mmRFMJ #Lua Cartridge8x65mmSKR<Cartridge762x54mmRFMJ
+            - Cartridge8x65mmSKR
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -101,7 +101,7 @@
       pvsIncrease: 1
 
 - type: entity
-  name: NCI AK-502 (7.62x51mm)
+  name: NCI AK-502 (7.62x39mm)
   parent: [BaseWeaponRifleUnwieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband #Lua BaseWeaponRifle<BaseWeaponRifleUnwieldable
   id: WeaponRifleAK502
   description: A standard-issue USSP combat rifle. Uses 7.62x39mm ammo.
@@ -127,7 +127,7 @@
 #    minAngle: -0 #Lua -21 -> -0
 #    maxAngle: -0 #Lua -47 -> -0
   - type: Gun
-    examineCaliber: gun-examine-caliber-76251 #Lua
+    examineCaliber: gun-examine-caliber-76239 #Lua
 #    minAngle: 21 # comment from _Lua
 #    maxAngle: 52
 #    angleIncrease: 6
@@ -148,21 +148,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x51mmFMJ #Lua Magazine762x39mmFMJ<Magazine762x51mmFMJ
+        startingItem: Magazine762x39mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x51mmFMJ #Lua Magazine762x39mmFMJ<Magazine762x51mmFMJ
+          - Magazine762x39mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ #Lua Cartridge762x39mmFMJ<Cartridge762x51mmFMJ
+        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x51mmFMJ #Lua Cartridge762x39mmFMJ<Cartridge762x51mmFMJ
+          - Cartridge762x39mmFMJ
 #          - Magazine762x39mmLowCapacityFMJ # comment from _Lua
   - type: ContainerContainer
     containers:
@@ -179,7 +179,7 @@
     id: StandardFactionLongarm
 
 - type: entity
-  name: VFD XLR-556 ICWS (7.62x51mm)
+  name: VFD XLR-556 ICWS (5.56x45mm)
   parent: [BaseWeaponRifleUnwieldable, BaseC2ContrabandUnredeemable] #Lua BaseGunWieldable; BaseWeaponRifle<BaseWeaponRifleUnwieldable
   id: WeaponRifleXlr556
   description: A proposed next-gen "rifle" for TSF standard infantry. Chambered in 5.56x45mm rifle rounds, its RPM is incredible - but with great fireRate comes great fire control...
@@ -199,7 +199,7 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: Gun
-    examineCaliber: gun-examine-caliber-76251 #Lua
+    examineCaliber: gun-examine-caliber-55645 #Lua
 #    minAngle: 20 # comment from _Lua
 #    maxAngle: 35
 #    angleIncrease: 4
@@ -229,21 +229,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x51mmFMJ #Lua Magazine556x45mmFMJ<Magazine762x51mmFMJ
+        startingItem: Magazine556x45mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x51mmFMJ #Lua Magazine556x45mmFMJ<Magazine762x51mmFMJ
+          - Magazine556x45mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ #Lua Cartridge556x45mmFMJ<Cartridge762x51mmFMJ
+        startingItem: Cartridge556x45mmFMJ
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x51mmFMJ #Lua Cartridge556x45mmFMJ<Cartridge762x51mmFMJ
+          - Cartridge556x45mmFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -399,7 +399,7 @@
 #Pre-fracture NT lecter/prometheus
 
 - type: entity
-  name: NTSF-LTR-556 (5.56x45mm)
+  name: NTSF-LTR-556 (5.56x45mm, 6.8x52mm Caseless)
   parent: [BaseWeaponRifle, BaseC2ContrabandUnredeemable]
   id: WeaponRifleNtsfLtr
   description: An old pre-fracture gun. The Nano Trasen Security Forces and Special Forces's Light Tactical Rifle chambered in 5.56x45mm, also accepts 6.8x52mm due to it being a brand new caliber of its time and being a prototype. This rifle is of high-quality with plastitanium internal and plasteel furnitures.
@@ -453,7 +453,7 @@
         priority: 2
         whitelist:
           tags:
-#            - Magazine68x52mmCaseless #comment from _Lua
+            - Magazine68x52mmCaseless
             - Magazine556x45mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
@@ -462,7 +462,7 @@
         priority: 1
         whitelist:
           tags:
-#            - Cartridge68x52mmCaseless #comment from _Lua
+            - Cartridge68x52mmCaseless
             - Cartridge556x45mmFMJ
   - type: ContainerContainer
     containers:

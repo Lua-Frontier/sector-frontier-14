@@ -22,7 +22,7 @@ using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Server.Stack; // Frontier
 using Content.Shared._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
-using Content.Server._NF.Bank; // Frontier
+using Content.Server._Lua.Bank; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Containers.ItemSlots; // Frontier

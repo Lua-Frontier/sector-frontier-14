@@ -1,0 +1,14 @@
+store-vip-tier-shareholder = Shareholder
+store-vip-tier-shareholderlua = Shareholder
+store-vip-tier-god = God
+store-vip-tier-boost = Boost
+store-vip-tier-rank1 = Rank I
+store-vip-tier-rank2 = Rank II
+store-vip-tier-rank3 = Rank III
+store-vip-tier-rank4 = Rank IV
+store-vip-tier-rank5 = Rank V
+store-vip-tier-rank6 = Rank VI
+store-vip-tier-rank7 = Rank VII
+store-vip-tier-rank8 = Rank VIII
+store-vip-tier-rank9 = Rank IX
+store-vip-tier-rank10 = Rank X

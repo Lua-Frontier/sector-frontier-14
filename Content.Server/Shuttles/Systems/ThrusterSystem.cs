@@ -25,6 +25,8 @@ using Content.Shared.Localizations;
 using Content.Shared.Power;
 using Content.Shared.DeviceLinking.Events; // Frontier
 using Content.Shared.Shuttles.Events;
+using Content.Server._Lua.Shuttles.Systems;
+using Content.Server._Lua.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -41,6 +43,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     private const string GrillePrototypeId = "Grille";
     private static readonly HashSet<string> CablePrototypeIds = new() { "CableApcExtension", "CableHV", "CableMV" };
@@ -67,10 +70,22 @@ public sealed class ThrusterSystem : EntitySystem
 
         SubscribeLocalEvent<ThrusterComponent, ExaminedEvent>(OnThrusterExamine);
 
-        SubscribeLocalEvent<ShuttleComponent, TileChangedEvent>(OnShuttleTileChange);
+        SubscribeLocalEvent<ShuttleGridComponent, TileChangedEvent>(OnShuttleGridTileChange);
+        SubscribeLocalEvent<StationGridComponent, TileChangedEvent>(OnStationGridTileChange);
+        SubscribeLocalEvent<EventGridComponent, TileChangedEvent>(OnEventGridTileChange);
+        SubscribeLocalEvent<ShuttleAiGridComponent, TileChangedEvent>(OnShuttleAiGridTileChange);
+        SubscribeLocalEvent<DebrisGridComponent, TileChangedEvent>(OnDebrisGridTileChange);
+        SubscribeLocalEvent<WrecksGridComponent, TileChangedEvent>(OnWrecksGridTileChange);
 
         SubscribeLocalEvent<ThrusterComponent, SignalReceivedEvent>(OnSignalReceived); // Frontier
     }
+
+    private void OnShuttleGridTileChange(EntityUid uid, ShuttleGridComponent grid, TileChangedEvent args) => OnGridTileChange(uid, grid, args);
+    private void OnStationGridTileChange(EntityUid uid, StationGridComponent grid, TileChangedEvent args) => OnGridTileChange(uid, grid, args);
+    private void OnEventGridTileChange(EntityUid uid, EventGridComponent grid, TileChangedEvent args) => OnGridTileChange(uid, grid, args);
+    private void OnShuttleAiGridTileChange(EntityUid uid, ShuttleAiGridComponent grid, TileChangedEvent args) => OnGridTileChange(uid, grid, args);
+    private void OnDebrisGridTileChange(EntityUid uid, DebrisGridComponent grid, TileChangedEvent args) => OnGridTileChange(uid, grid, args);
+    private void OnWrecksGridTileChange(EntityUid uid, WrecksGridComponent grid, TileChangedEvent args) => OnGridTileChange(uid, grid, args);
 
     // Frontier: signal handler
     private void OnSignalReceived(EntityUid uid, ThrusterComponent component, ref SignalReceivedEvent args)
@@ -133,7 +148,7 @@ public sealed class ThrusterSystem : EntitySystem
         args.IsHot = component.Type != ThrusterType.Angular && component.IsOn;
     }
 
-    private void OnShuttleTileChange(EntityUid uid, ShuttleComponent component, ref TileChangedEvent args)
+    private void OnGridTileChange(EntityUid uid, IShuttleGrid grid, TileChangedEvent args)
     {
         foreach (var change in args.Changes)
         {
@@ -142,7 +157,7 @@ public sealed class ThrusterSystem : EntitySystem
                 continue;
 
             var tilePos = change.GridIndices;
-            var grid = Comp<MapGridComponent>(uid);
+            var mapGrid = Comp<MapGridComponent>(uid);
             var xformQuery = GetEntityQuery<TransformComponent>();
             var thrusterQuery = GetEntityQuery<ThrusterComponent>();
 
@@ -154,7 +169,7 @@ public sealed class ThrusterSystem : EntitySystem
                         continue;
 
                     var checkPos = tilePos + new Vector2i(x, y);
-                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, grid, checkPos);
+                    var enumerator = _mapSystem.GetAnchoredEntitiesEnumerator(uid, mapGrid, checkPos);
 
                     while (enumerator.MoveNext(out var ent))
                     {
@@ -210,7 +225,8 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (!component.Enabled ||
             !TryComp(uid, out TransformComponent? xform) ||
-            !TryComp(xform.GridUid, out ShuttleComponent? shuttleComponent))
+            xform.GridUid == null ||
+            !_gridAccess.TryGetShuttleGrid(xform.GridUid.Value, out var shuttleComponent))
         {
             return;
         }
@@ -237,18 +253,19 @@ public sealed class ThrusterSystem : EntitySystem
 
         var oldDirection = (int)args.OldRotation.GetCardinalDir() / 2;
         var direction = (int)args.NewRotation.GetCardinalDir() / 2;
-        var oldShuttleComponent = shuttleComponent;
+        var oldShuttleGrid = shuttleComponent;
 
         if (args.ParentChanged)
         {
-            oldShuttleComponent = Comp<ShuttleComponent>(args.OldPosition.EntityId);
+            if (!_gridAccess.TryGetShuttleGrid(args.OldPosition.EntityId, out oldShuttleGrid))
+                return;
 
             // If no parent change doesn't matter for angular.
             if (component.Type == ThrusterType.Angular)
             {
-                oldShuttleComponent.AngularThrust -= component.Thrust;
-                DebugTools.Assert(oldShuttleComponent.AngularThrusters.Contains(uid));
-                oldShuttleComponent.AngularThrusters.Remove(uid);
+                oldShuttleGrid.AngularThrust -= component.Thrust;
+                DebugTools.Assert(oldShuttleGrid.AngularThrusters.Contains(uid));
+                oldShuttleGrid.AngularThrusters.Remove(uid);
 
                 shuttleComponent.AngularThrust += component.Thrust;
                 DebugTools.Assert(!shuttleComponent.AngularThrusters.Contains(uid));
@@ -259,10 +276,10 @@ public sealed class ThrusterSystem : EntitySystem
 
         if (component.Type == ThrusterType.Linear)
         {
-            oldShuttleComponent.LinearThrust[oldDirection] -= component.Thrust;
-            oldShuttleComponent.BaseLinearThrust[oldDirection] -= component.BaseThrust;
-            DebugTools.Assert(oldShuttleComponent.LinearThrusters[oldDirection].Contains(uid));
-            oldShuttleComponent.LinearThrusters[oldDirection].Remove(uid);
+            oldShuttleGrid.LinearThrust[oldDirection] -= component.Thrust;
+            oldShuttleGrid.BaseLinearThrust[oldDirection] -= component.BaseThrust;
+            DebugTools.Assert(oldShuttleGrid.LinearThrusters[oldDirection].Contains(uid));
+            oldShuttleGrid.LinearThrusters[oldDirection].Remove(uid);
 
             shuttleComponent.LinearThrust[direction] += component.Thrust;
             shuttleComponent.BaseLinearThrust[direction] += component.BaseThrust;
@@ -275,10 +292,10 @@ public sealed class ThrusterSystem : EntitySystem
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    oldShuttleComponent.LinearThrust[i] -= component.Thrust;
-                    oldShuttleComponent.BaseLinearThrust[i] -= component.BaseThrust;
-                    DebugTools.Assert(oldShuttleComponent.LinearThrusters[i].Contains(uid));
-                    oldShuttleComponent.LinearThrusters[i].Remove(uid);
+                    oldShuttleGrid.LinearThrust[i] -= component.Thrust;
+                    oldShuttleGrid.BaseLinearThrust[i] -= component.BaseThrust;
+                    DebugTools.Assert(oldShuttleGrid.LinearThrusters[i].Contains(uid));
+                    oldShuttleGrid.LinearThrusters[i].Remove(uid);
 
                     shuttleComponent.LinearThrust[i] += component.Thrust;
                     shuttleComponent.BaseLinearThrust[i] += component.BaseThrust;
@@ -358,7 +375,7 @@ public sealed class ThrusterSystem : EntitySystem
 
         component.IsOn = true;
 
-        if (!TryComp(xform.GridUid, out ShuttleComponent? shuttleComponent))
+        if (xform.GridUid is not { } gridUid || !_gridAccess.TryGetShuttleGrid(gridUid, out var shuttleComponent))
             return;
 
         // Logger.DebugS("thruster", $"Enabled thruster {uid}");
@@ -437,7 +454,7 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Refreshes the center of thrust for movement calculations.
     /// </summary>
-    private void RefreshCenter(EntityUid uid, ShuttleComponent shuttle)
+    private void RefreshCenter(EntityUid uid, IShuttleGrid shuttle)
     {
         // TODO: Only refresh relevant directions.
         var center = Vector2.Zero;
@@ -485,7 +502,7 @@ public sealed class ThrusterSystem : EntitySystem
         component.IsOn = false;
         component.Firing = false;
 
-        if (!TryComp(gridId, out ShuttleComponent? shuttleComponent))
+        if (gridId == null || !_gridAccess.TryGetShuttleGrid(gridId.Value, out var shuttleComponent))
             return;
 
         // Logger.DebugS("thruster", $"Disabled thruster {uid}");
@@ -660,7 +677,7 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Considers a thrust direction as being active.
     /// </summary>
-    public void EnableLinearThrustDirection(ShuttleComponent component, DirectionFlag direction)
+    public void EnableLinearThrustDirection(IShuttleGrid component, DirectionFlag direction)
     {
         if ((component.ThrustDirections & direction) != 0x0)
             return;
@@ -685,7 +702,7 @@ public sealed class ThrusterSystem : EntitySystem
     /// <summary>
     /// Disables a thrust direction.
     /// </summary>
-    public void DisableLinearThrustDirection(ShuttleComponent component, DirectionFlag direction)
+    public void DisableLinearThrustDirection(IShuttleGrid component, DirectionFlag direction)
     {
         if ((component.ThrustDirections & direction) == 0x0)
             return;
@@ -707,7 +724,7 @@ public sealed class ThrusterSystem : EntitySystem
         }
     }
 
-    public void DisableLinearThrusters(ShuttleComponent component)
+    public void DisableLinearThrusters(IShuttleGrid component)
     {
         foreach (DirectionFlag dir in Enum.GetValues(typeof(DirectionFlag)))
         {
@@ -717,7 +734,7 @@ public sealed class ThrusterSystem : EntitySystem
         DebugTools.Assert(component.ThrustDirections == DirectionFlag.None);
     }
 
-    public void SetAngularThrust(ShuttleComponent component, bool on)
+    public void SetAngularThrust(IShuttleGrid component, bool on)
     {
         var appearanceQuery = GetEntityQuery<AppearanceComponent>();
         var thrusterQuery = GetEntityQuery<ThrusterComponent>();

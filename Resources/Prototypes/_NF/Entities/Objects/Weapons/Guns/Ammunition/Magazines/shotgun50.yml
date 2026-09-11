@@ -2,18 +2,18 @@
 - type: entity
   id: NFBaseMagazineShotgunDrum
   name: ammo drum (.50 shells)
-  parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ] # Frontier: BaseSecurityContraband<BaseC1Contraband, added RecyclableItemSteelTiny
+  parent: [ BaseItem, BaseC1Contraband, RecyclableItemSteelTiny ]
   abstract: true
   components:
   - type: Tag
     tags:
-    - MagazineShotgun
+    - Magazine12_gaugeBuckshot
   - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
+    proto: ShellShotgun12_gaugeBuckshot
     mayTransfer: true
     whitelist:
       tags:
-        - ShellShotgun23x75mmBuckshot #Lua 4 gauge
+        - ShellShotgun12_gaugeBuckshot
     capacity: 8
     soundRack:
       path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
@@ -44,7 +44,6 @@
     zeroVisible: false
   - type: Appearance
 
-#region fills
 - type: entity
   id: NFMagazineShotgunDrumEmpty
   name: ammo drum (.50 shells, any)
@@ -52,107 +51,3 @@
   components:
   - type: BallisticAmmoProvider
     proto: null
-
-- type: entity
-  id: NFMagazineShotgunDrum
-  name: ammo drum (.50 shells, buckshot)
-  parent: NFBaseMagazineShotgunDrum
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#333333"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#333333"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#333333"
-
-- type: entity
-  id: NFMagazineShotgunDrumBeanbag
-  name: ammo drum (.50 shells, beanbags)
-  parent: NFBaseMagazineShotgunDrum
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmBeanbag #Lua 4 gauge
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00b0ff"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#00b0ff"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#00b0ff"
-
-- type: entity
-  id: NFMagazineShotgunDrumSlug
-  name: ammo drum (.50 shells, slugs)
-  parent: NFBaseMagazineShotgunDrum
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmSlug #Lua 4 gauge
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#333333"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#333333"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#333333"
-
-- type: entity
-  id: NFMagazineShotgunDrumIncendiary
-  name: ammo drum (.50 shells, incendiary)
-  parent: NFBaseMagazineShotgunDrum
-  components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmIncendiary #Lua 4 gauge
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff0000"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-      - state: inhand-left-stripe
-        color: "#ff0000"
-      right:
-      - state: inhand-right-mag
-      - state: inhand-right-stripe
-        color: "#ff0000"

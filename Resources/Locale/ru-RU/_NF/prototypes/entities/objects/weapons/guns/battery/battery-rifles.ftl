@@ -1,4 +1,4 @@
-ent-NFWeaponEnergyRifleTemperature = Температурная винтовка
+ent-WeaponTemperatureGun = Температурная винтовка
    .desc = Продвинутая винтовка, стреляющая лучами, способными нагревать или охлаждать цель.
 
 ent-NFWeaponParticleDecelerator = Переносной замедлитель частиц

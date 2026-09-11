@@ -86,7 +86,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: ShuttleGrid
       dampingModifier: 0.45
     - type: ImplicitRoof
     - type: GridPathfinding
@@ -4020,7 +4020,7 @@ entities:
     - type: Transform
       pos: 3.5,-3.5
       parent: 1
-- proto: NFWeaponSubMachineGunDrozd
+- proto: WeaponSubMachineGunDrozd
   entities:
   - uid: 492
     components:

@@ -3,8 +3,7 @@ using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
-using Content.Server._NF.Bank;
-using Content.Shared._NF.Bank.Components;
+using Content.Server._Lua.Bank;
 using Content.Shared.Actions;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
@@ -106,10 +105,10 @@ public sealed partial class StoreSystem
         }
 
         Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> allCurrency = new();
-        EntityUid? bankOwner = null;
-        if (component.UseBankAccount && user is { } buyerUid) bankOwner = buyerUid;
-        BankAccountComponent? bankComp = null;
-        if (bankOwner != null) TryComp(bankOwner.Value, out bankComp);
+        var hasBank = false;
+        var bankBalance = 0;
+        if (component.UseBankAccount && user is { } buyerUid)
+            hasBank = _bank.TryGetBalance(buyerUid, out bankBalance);
         var maxDisplayAmount = (int) FixedPoint2.MaxValue;
 
         foreach (var supported in component.CurrencyWhitelist)
@@ -117,10 +116,10 @@ public sealed partial class StoreSystem
             allCurrency.Add(supported, FixedPoint2.Zero);
 
             if (component.UseBankAccount &&
-                bankComp != null &&
+                hasBank &&
                 supported == "Speso")
             {
-                var speso = bankComp.Balance;
+                var speso = bankBalance;
                 if (speso > maxDisplayAmount)
                     allCurrency[supported] = FixedPoint2.MaxValue;
                 else
@@ -141,7 +140,7 @@ public sealed partial class StoreSystem
 
         var allowWithdraw = !component.UseBankAccount || component.CurrencyWhitelist.Any(x => x != "Speso");
 
-        var state = new StoreUpdateState( component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, allowWithdraw, bankComp?.Balance ?? 0, component.UseBankAccount && bankComp != null);
+        var state = new StoreUpdateState( component.LastAvailableListings, allCurrency, showFooter, component.RefundAllowed, allowWithdraw, bankBalance, component.UseBankAccount && hasBank);
         _ui.SetUiState(store, StoreUiKey.Key, state);
     }
 

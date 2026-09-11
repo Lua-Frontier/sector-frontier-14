@@ -31,19 +31,19 @@ uplink-erc-gestio-desc = Гражданская автоматическая в�
 uplink-erc-fitz-name = Fitz (.45 magnum)
 uplink-erc-fitz-desc = Компактный гражданский револьвер, который удобно использовать как дополнительное или запасное оружие.
 
-uplink-erc-argenti-name = Argenti (.45 ACP)
+uplink-erc-argenti-name = Argenti (5.56x45mm)
 uplink-erc-argenti-desc = Револьвер, отличающийся небольшим весом, расширенным барабаном и более легким патроном.
 
-uplink-erc-drozd-name = Дрозд (9x19mm)
-uplink-erc-drozd-desc = Средний пистолет-пулемет под стандартный пистолетный патрон 9x19мм. Компактность и эргономика делают это оружие отличным для самообороны.
+uplink-erc-drozd-name = Дрозд (.45 ACP)
+uplink-erc-drozd-desc = Средний пистолет-пулемет под патрон .45 ACP. Компактность и эргономика делают это оружие отличным для самообороны.
 
-uplink-erc-mk58-name = MK58 (9x19mm)
+uplink-erc-mk58-name = MK58 (.45 ACP)
 uplink-erc-mk58-desc = Дешевый пистолет широкого производства, одинаково подходящий для самообороны, охоты на фауну и забивания гвоздей.
 
 uplink-erc-pollock-name = Pollock (6.35x40mm)
 uplink-erc-pollock-desc = Облегченный вариант МК58, использующий более легкий калибр.
 
-uplink-erc-kammerer-name = Каммерер (4 gauge)
+uplink-erc-kammerer-name = Каммерер (12 gauge)
 uplink-erc-cammerer-desc = Полуавтоматический дробовик с магазином на 4 ружейных патрона. Классический вариант для охоты на космических медведей.
 
 

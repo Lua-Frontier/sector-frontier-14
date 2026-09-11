@@ -1462,13 +1462,25 @@
 - type: tile
   id: FloorGrass
   name: tiles-planet-grass-floor
-  sprite: /Textures/Tiles/grass.png
-  variants: 4 #Corvax
+  sprite: /Textures/_CE/Tiles/Grass/grass.png
+  variants: 6
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
   - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/_CE/Tiles/Grass/single_edge_SE.png
+    NorthEast: /Textures/_CE/Tiles/Grass/single_edge_NE.png
+    NorthWest: /Textures/_CE/Tiles/Grass/single_edge_NW.png
+    SouthWest: /Textures/_CE/Tiles/Grass/single_edge_SW.png
+    South: /Textures/_CE/Tiles/Grass/double_edge_S.png
+    East: /Textures/_CE/Tiles/Grass/double_edge_E.png
+    North: /Textures/_CE/Tiles/Grass/double_edge_N.png
+    West: /Textures/_CE/Tiles/Grass/double_edge_W.png
   baseTurf: FloorDirt
   #canCrowbar: false # Come back
   deconstructTools: [ Digging ] # Frontier
@@ -1478,6 +1490,7 @@
   itemDrop: FloorTileItemGrass
   heatCapacity: 10000
   weather: true
+  iconSmoothSprite: /Textures/_CE/Tiles/Edges/grass.rsi
 
 - type: tile
   id: FloorGrassJungle
@@ -1522,13 +1535,25 @@
 - type: tile
   id: FloorGrassLight
   name: tiles-light-grass-floor
-  sprite: /Textures/Tiles/grasslight.png
-  variants: 4
+  sprite: /Textures/_CE/Tiles/GrassLight/grass.png
+  variants: 6
   placementVariants:
   - 1.0
   - 1.0
   - 1.0
   - 1.0
+  - 1.0
+  - 1.0
+  edgeSpritePriority: 2
+  edgeSprites:
+    SouthEast: /Textures/_CE/Tiles/GrassLight/single_edge_SE.png
+    NorthEast: /Textures/_CE/Tiles/GrassLight/single_edge_NE.png
+    NorthWest: /Textures/_CE/Tiles/GrassLight/single_edge_NW.png
+    SouthWest: /Textures/_CE/Tiles/GrassLight/single_edge_SW.png
+    South: /Textures/_CE/Tiles/GrassLight/double_edge_S.png
+    East: /Textures/_CE/Tiles/GrassLight/double_edge_E.png
+    North: /Textures/_CE/Tiles/GrassLight/double_edge_N.png
+    West: /Textures/_CE/Tiles/GrassLight/double_edge_W.png
   baseTurf: FloorDirt
   #canCrowbar: false # Come back
   deconstructTools: [ Digging ] # Frontier
@@ -1538,6 +1563,7 @@
   itemDrop: FloorTileItemGrassLight
   heatCapacity: 10000
   weather: true
+  iconSmoothSprite: /Textures/_CE/Tiles/Edges/grass_light.rsi
 
 - type: tile
   id: FloorDirt
@@ -1557,6 +1583,7 @@
   itemDrop: FloorTileItemDirt # Delta V
   heatCapacity: 10000
   weather: true
+  iconSmoothSprite: /Textures/_CE/Tiles/Edges/dirt.rsi
 
 # Asteroid
 
@@ -1740,14 +1767,14 @@
   name: tiles-asteroid-sand
   edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    SouthEast: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    NorthEast: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    NorthWest: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    SouthWest: /Textures/_Mono/Tiles/planet/Asteroid/sand_single_edge.png
+    South: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    East: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    North: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
+    West: /Textures/_Mono/Tiles/planet/Asteroid/sand_double_edge.png
 
 - type: tile
   id: FloorAsteroidIronsandUnvariantizedBorderless
@@ -1980,23 +2007,25 @@
 - type: tile
   id: FloorAstroGrass
   name: tiles-astro-grass
-  sprite: /Textures/Tiles/Planet/Grass/grass.png
-  variants: 4
+  sprite: /Textures/_CE/Tiles/Grass/grass.png
+  variants: 6
   placementVariants:
+  - 1.0
+  - 1.0
   - 1.0
   - 1.0
   - 1.0
   - 1.0
   edgeSpritePriority: 1
   edgeSprites:
-    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-    South: /Textures/Tiles/Planet/Grass/double_edge.png
-    East: /Textures/Tiles/Planet/Grass/double_edge.png
-    North: /Textures/Tiles/Planet/Grass/double_edge.png
-    West: /Textures/Tiles/Planet/Grass/double_edge.png
+    SouthEast: /Textures/_CE/Tiles/Grass/single_edge_SE.png
+    NorthEast: /Textures/_CE/Tiles/Grass/single_edge_NE.png
+    NorthWest: /Textures/_CE/Tiles/Grass/single_edge_NW.png
+    SouthWest: /Textures/_CE/Tiles/Grass/single_edge_SW.png
+    South: /Textures/_CE/Tiles/Grass/double_edge_S.png
+    East: /Textures/_CE/Tiles/Grass/double_edge_E.png
+    North: /Textures/_CE/Tiles/Grass/double_edge_N.png
+    West: /Textures/_CE/Tiles/Grass/double_edge_W.png
   baseTurf: Plating
   isSubfloor: false
   deconstructTools: [ Cutting ]

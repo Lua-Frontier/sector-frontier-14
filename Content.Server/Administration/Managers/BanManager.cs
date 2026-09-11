@@ -75,7 +75,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
         var modernHwids = netChannel.UserData.ModernHWIds;
         var roleBans = await _db.GetBansAsync(
-            netChannel.RemoteEndPoint.Address,
+            null,
             player.UserId,
             hwId,
             modernHwids,
@@ -219,7 +219,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var playerInfo = new BanMatcher.PlayerInfo
         {
             UserId = player.UserId,
-            Address = player.Channel.RemoteEndPoint.Address,
+            Address = null,
             HWId = player.Channel.UserData.HWId,
             ModernHWIds = player.Channel.UserData.ModernHWIds,
             // It's possible for the player to not have cached data loading yet due to coincidental timing.

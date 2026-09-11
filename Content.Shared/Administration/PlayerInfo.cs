@@ -23,7 +23,9 @@ public sealed record PlayerInfo(
     int Balance,
     int ReputationScore, // Frontier
     int ReputationPositive, // Frontier
-    int ReputationNegative) // Frontier
+    int ReputationNegative,
+    string Company,
+    string Donat)
 {
     private string? _playtimeString;
 

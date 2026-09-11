@@ -32,12 +32,12 @@
   equipment:
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetSecurity
-    pocket1: NFWeaponPistolMk58 # Frontier: use NF variant
+    pocket1: WeaponPistolMk58 # Frontier: use NF variant
   storage:
     back:
     - Flash
-    - Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
-    - Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
+    - Magazine45_ACPPistolFMJ
+    - Magazine45_ACPPistolFMJ
 
 - type: chameleonOutfit
   id: SecurityOfficerChameleonOutfit

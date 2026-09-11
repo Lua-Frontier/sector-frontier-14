@@ -1,0 +1,59 @@
+- type: listing
+  id: UplinkVipRank5SyringeBluespace
+  name: uplink-vip-SyringeBluespace-name
+  description: uplink-vip-SyringeBluespace-desc
+  productEntity: SyringeBluespace
+  cost:
+    Speso: 3800
+  categories:
+  - UplinkVipTierRank5
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank5
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank5VialBluespace
+  name: uplink-vip-VialBluespace-name
+  description: uplink-vip-VialBluespace-desc
+  productEntity: VialBluespace
+  cost:
+    Speso: 3600
+  categories:
+  - UplinkVipTierRank5
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank5
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank5AnomalyScanner
+  name: uplink-vip-AnomalyScanner-name
+  description: uplink-vip-AnomalyScanner-desc
+  productEntity: AnomalyScanner
+  cost:
+    Speso: 3200
+  categories:
+  - UplinkVipTierRank5
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank5
+  - !type:ListingLimitedStockCondition
+    stock: 1

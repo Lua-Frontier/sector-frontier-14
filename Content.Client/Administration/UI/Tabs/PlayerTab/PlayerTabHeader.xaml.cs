@@ -21,6 +21,9 @@ public sealed partial class PlayerTabHeader : Control
         RoleTypeLabel.OnKeyBindDown += RoleTypeClicked;
         PlaytimeLabel.OnKeyBindDown += PlaytimeClicked;
         BalanceLabel.OnKeyBindDown += BalanceClicked; // Frontier
+        ReputationLabel.OnKeyBindDown += ReputationClicked;
+        CompanyLabel.OnKeyBindDown += CompanyClicked;
+        DonatLabel.OnKeyBindDown += DonatClicked;
     }
 
     public Label GetHeader(Header header)
@@ -33,6 +36,9 @@ public sealed partial class PlayerTabHeader : Control
             Header.RoleType => RoleTypeLabel,
             Header.Playtime => PlaytimeLabel,
             Header.Balance => BalanceLabel, // Frontier
+            Header.Reputation => ReputationLabel,
+            Header.Company => CompanyLabel,
+            Header.Donat => DonatLabel,
             _ => throw new ArgumentOutOfRangeException(nameof(header), header, null)
         };
     }
@@ -45,6 +51,9 @@ public sealed partial class PlayerTabHeader : Control
         RoleTypeLabel.Text = Loc.GetString("player-tab-roletype");
         PlaytimeLabel.Text = Loc.GetString("player-tab-playtime");
         BalanceLabel.Text = Loc.GetString("player-tab-balance"); // Frontier
+        ReputationLabel.Text = Loc.GetString("player-tab-reputation");
+        CompanyLabel.Text = Loc.GetString("player-tab-company");
+        DonatLabel.Text = Loc.GetString("player-tab-donat");
     }
 
     private void HeaderClicked(GUIBoundKeyEventArgs args, Header header)
@@ -88,6 +97,21 @@ public sealed partial class PlayerTabHeader : Control
         HeaderClicked(args, Header.Balance);
     }
 
+    private void ReputationClicked(GUIBoundKeyEventArgs args)
+    {
+        HeaderClicked(args, Header.Reputation);
+    }
+
+    private void CompanyClicked(GUIBoundKeyEventArgs args)
+    {
+        HeaderClicked(args, Header.Company);
+    }
+
+    private void DonatClicked(GUIBoundKeyEventArgs args)
+    {
+        HeaderClicked(args, Header.Donat);
+    }
+
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
@@ -100,6 +124,9 @@ public sealed partial class PlayerTabHeader : Control
             RoleTypeLabel.OnKeyBindDown -= RoleTypeClicked;
             PlaytimeLabel.OnKeyBindDown -= PlaytimeClicked;
             BalanceLabel.OnKeyBindDown -= BalanceClicked; // Frontier
+            ReputationLabel.OnKeyBindDown -= ReputationClicked;
+            CompanyLabel.OnKeyBindDown -= CompanyClicked;
+            DonatLabel.OnKeyBindDown -= DonatClicked;
         }
     }
 
@@ -110,6 +137,9 @@ public sealed partial class PlayerTabHeader : Control
         Job,
         RoleType,
         Playtime,
-        Balance // Frontier
+        Balance,
+        Reputation,
+        Company,
+        Donat
     }
 }

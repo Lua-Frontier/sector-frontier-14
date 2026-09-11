@@ -60,7 +60,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: ShuttleGrid
       dampingModifier: 0.45
     - type: GridPathfinding
     - type: Gravity
@@ -2480,7 +2480,7 @@ entities:
     - type: Transform
       pos: -0.5,11.5
       parent: 1
-- proto: NFWeaponPka
+- proto: WeaponProtoKineticAccelerator
   entities:
   - uid: 40
     components:

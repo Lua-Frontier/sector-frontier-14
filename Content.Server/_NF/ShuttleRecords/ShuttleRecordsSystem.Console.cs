@@ -1,6 +1,6 @@
 using Content.Shared._NF.Bank;
 using System.Linq;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;

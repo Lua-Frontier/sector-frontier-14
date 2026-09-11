@@ -1,0 +1,173 @@
+- type: entity
+  name: BaseWeaponSniper
+  parent: BaseItem
+  id: BaseWeaponSniper
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.75
+    damageModifier: 1.5 # Mono
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+    projectileSpeed: 65 # Mono
+  - type: BallisticAmmoProvider
+    capacity: 10
+    proto: Cartridge762x39mmFMJ
+    whitelist:
+      tags:
+      - Cartridge762x39mmFMJ
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 500
+  - type: ItemTax # Mono
+    taxAccounts:
+      nfsd: 0.2
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/sniper_mouse.rsi
+      state: all
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
+  # Goobstation edit end
+  # Mono - Gun stock attack
+  - type: MeleeRequiresWield
+  - type: MeleeWeapon
+    attackRate: 0.6
+    damage:
+      types:
+        Blunt: 24 # snipers are HEAVY!
+    angle: 0
+    wideAnimationRotation: 45
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+    attackType: Light
+  # Mono end
+  # Lua start
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 13500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: GunJam
+  # Lua end
+
+# Mono - moved Hristov & Mosin to _Mono
+
+- type: entity
+  name: musket
+  parent: [ BaseGunMelee, BaseWeaponSniper, BaseGunWieldable ] # add BaseGunMelee
+  id: Musket
+  description: This should've been in a museum long before you were born. Uses 145x114mm ammo.
+  components:
+  - type: Sharp
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/musket.rsi
+    state: base
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/musket.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    projectileSpeed: 25 # Mono
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 8 #it's a musket
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Cartridge145x114mm
+    capacity: 1
+    proto: Cartridge145x114mm
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 15 #you fucking stab em
+        Bloodloss: 2 #no way to apply bleed, triangular bayonet wounds are hard to fix(source:that one copypasta)
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: AltFireMelee # Frontier
+    attackType: Light # Frontier
+
+- type: entity
+  name: flintlock pistol
+  parent: BaseWeaponSniper
+  id: WeaponPistolFlintlock
+  description: A pirate's companion. Yarrr! Uses 145x114mm ammo. An illegal weapon often used by pirates.
+  components:
+  - type: Gun
+    minAngle: 0
+    maxAngle: 30 #miss him entirely because the barrel is smoothbore
+    projectileSpeed: 25 # Mono
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/flintlock.rsi
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 8 #it's a flintlock
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - Cartridge145x114mm
+    capacity: 1
+    proto: Cartridge145x114mm
+  - type: StaticPrice
+    price: 0
+

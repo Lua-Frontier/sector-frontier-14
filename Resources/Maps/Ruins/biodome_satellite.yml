@@ -67,7 +67,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: WrecksGrid
     - type: GridPathfinding
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -2805,7 +2805,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
       parent: 2
-- proto: MagazineShotgunBeanbag
+- proto: Magazine12_gaugeBeanbag
   entities:
   - uid: 539
     components:

@@ -53,7 +53,7 @@ namespace Content.IntegrationTests.Tests.Preferences
                     Color.Azure,
                     Color.Beige,
                     new ())
-            }.WithBankBalance(27000); // Frontier - accessor issue
+            }.WithBankBalance(0);
         }
 
         private static ServerDbSqlite GetDb(RobustIntegrationTest.ServerIntegrationInstance server)
@@ -89,6 +89,7 @@ namespace Content.IntegrationTests.Tests.Preferences
             await db.InitPrefsAsync(username, originalProfile);
             var prefs = await db.GetPlayerPreferencesAsync(username);
             Assert.That(prefs.Characters.Single(p => p.Key == slot).Value.MemberwiseEquals(originalProfile));
+            Assert.That(prefs.BankBalance, Is.EqualTo(HumanoidCharacterProfile.DefaultBalance));
             await pair.CleanReturnAsync();
         }
 

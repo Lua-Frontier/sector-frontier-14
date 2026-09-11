@@ -7,18 +7,19 @@ using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Audio;
 using Content.Shared._NF.Bank;
+using Content.Shared._NF.Bank.Components;
 using Content.Shared._NF.Bank.Events;
 using Content.Shared._Lua.Bank.Events;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared._Lua.Bank.UI;
 using Content.Shared._Lua.Bank;
 using Content.Shared.Database;
 using Content.Shared.Stacks;
 using Content.Server.Stack;
 using Content.Server.Popups;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server.Hands.Systems;
 using Content.Server.Administration.Logs;
+using Robust.Shared.Player;
 
 namespace Content.Server._Lua.Bank.Systems;
 
@@ -32,6 +33,7 @@ public sealed class LuaATMSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _admin = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     public override void Initialize()
     {
@@ -209,10 +211,10 @@ public sealed class LuaATMSystem : EntitySystem
         {
             var enabled = _bank.TryGetBalance(actor, out var bankBalance);
             var balance = enabled ? bankBalance : 0;
-            var yupiCode = _bank.EnsureYupiForEntity(actor);
+            var galBankCode = _bank.EnsureGalBankForEntity(actor);
             var history = GetOperationHistory(actor);
 
-            var personalMessage = new LuaATMPersonalInfoMessage(enabled, balance, yupiCode, history);
+            var personalMessage = new LuaATMPersonalInfoMessage(enabled, balance, galBankCode, history);
             _userInterface.ServerSendUiMessage(atm, BankATMMenuUiKey.Key, personalMessage, actor);
         }
     }
@@ -237,11 +239,12 @@ public sealed class LuaATMSystem : EntitySystem
 
     private List<BankAccountOperation> GetOperationHistory(EntityUid mobUid)
     {
-        if (!TryComp<BankAccountComponent>(mobUid, out var bank))
+        if (!_player.TryGetSessionByEntity(mobUid, out var session) ||
+            !_bank.TryGetOperationHistory(session.UserId, out var history))
         {
             return [];
         }
 
-        return bank.OperationHistory.Count > 10 ? [.. bank.OperationHistory.TakeLast(10)] : bank.OperationHistory;
+        return history.Count > 10 ? [.. history.TakeLast(10)] : [.. history];
     }
 }

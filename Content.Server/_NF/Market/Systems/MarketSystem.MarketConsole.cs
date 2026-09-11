@@ -255,7 +255,7 @@ public sealed partial class MarketSystem
         if (args.Actor is not { Valid: true } player)
             return;
 
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        if (!_bankSystem.TryGetBalance(player, out var balance))
             return;
 
         // Try to get the EntityPrototype that matches marketData.Prototype
@@ -314,7 +314,7 @@ public sealed partial class MarketSystem
         // FIXME: this should update the state of other other console UI in the same station.
         RefreshState(
             consoleUid,
-            bank.Balance,
+            balance,
             marketMultiplier,
             consoleComponent
         );
@@ -340,7 +340,7 @@ public sealed partial class MarketSystem
     {
         if (args.Actor is not { Valid: true } player)
             return;
-        if (!TryComp<BankAccountComponent>(player, out var bank))
+        if (!_bankSystem.TryGetBalance(player, out var balance))
             return;
 
         var marketMultiplier = 1.0f;
@@ -348,7 +348,7 @@ public sealed partial class MarketSystem
             marketMultiplier = priceMod.Mod;
 
         RefreshState(uid,
-            bank.Balance,
+            balance,
             marketMultiplier,
             component);
     }

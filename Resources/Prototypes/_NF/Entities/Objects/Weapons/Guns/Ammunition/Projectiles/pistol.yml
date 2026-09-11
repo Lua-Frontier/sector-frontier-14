@@ -1,19 +1,4 @@
-# WizDen
-#region .35 pistol
-- type: entity
-  id: NFBulletPistol35
-  name: bullet (.35 pistol)
-  parent: NFBaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 14 #Lua 10<14
-        Blunt: 7 #Lua 4<7
-  - type: StaminaDamageOnCollide
-    damage: 4 # 15 hits to slowdown
-
+# Lua leftover pistol bullets used by Overpressure/EMP cartridges.
 - type: entity
   id: NFBulletPistol35Overpressure
   name: bullet (.35 pistol, overpressure)
@@ -29,47 +14,6 @@
     damage: 5 # 12 hits to slowdown
 
 - type: entity
-  id: NFBulletPistol35Incendiary
-  name: bullet (.35 pistol, incendiary)
-  parent: NFBaseBulletIncendiary
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 8 #Lua 4.8<8
-        Heat: 14 #Lua 3.2<14
-  - type: StaminaDamageOnCollide
-    damage: 4 # 15 hits to slowdown
-
-- type: entity
-  id: NFBulletPistol35Uranium
-  parent: NFBaseBulletUranium
-  name: bullet (.35 pistol, uranium)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 8 # 0.6 * (1.4 * base total dmg) #Lua 6.6<8
-        Radiation: 14 # 0.4 * (1.4 * base total dmg) #Lua 4.4<14
-  - type: StaminaDamageOnCollide
-    damage: 4 # 15 hits to slowdown
-
-- type: entity
-  id: NFBulletPistol35Practice
-  name: bullet (.35 pistol, practice)
-  parent: NFBaseBulletPractice
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 0.5
-
-# Frontier
-# .35 pistol
-- type: entity
   id: NFBulletPistol35Emp
   name: bullet (.35 pistol, EMP)
   parent: NFBaseBulletEmp
@@ -82,34 +26,6 @@
         Blunt: 4
   - type: StaminaDamageOnCollide
     damage: 4 # 15 hits to slowdown
-
-- type: entity
-  id: NFBulletPistol35Rubber
-  name: bullet (.35 pistol, rubber)
-  parent: NFBaseBulletRubber
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 1
-  - type: StaminaDamageOnCollide
-    damage: 13 # ~8 hits to stun sounds reasonable
-
-#region .45 pistol
-- type: entity
-  id: NFBulletPistol45
-  name: bullet (.45 pistol)
-  parent: NFBaseBullet
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Piercing: 20 #Lua 6<20
-        Blunt: 15 #Lua 6<15
-  - type: StaminaDamageOnCollide
-    damage: 6 # 10 hits to slowdown
 
 - type: entity
   id: NFBulletPistol45Overpressure
@@ -126,47 +42,6 @@
     damage: 7 # ~9 hits to slowdown
 
 - type: entity
-  id: NFBulletPistol45Incendiary
-  name: bullet (.45 pistol, incendiary)
-  parent: NFBaseBulletIncendiary
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 15 # 0.6 * base total dmg #Lua 7.2<15
-        Heat: 20 # 0.4 * base total dmg #Lua 4.8<20
-  - type: StaminaDamageOnCollide
-    damage: 6 # 10 hits to slowdown
-
-- type: entity
-  id: NFBulletPistol45Uranium
-  parent: NFBaseBulletUranium
-  name: bullet (.45 pistol, uranium)
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 15 # 0.6 * (1.4 * base total dmg) #Lua 9.6<15
-        Radiation: 20 # 0.6 * (1.4 * base total dmg) #Lua 6.4<20
-  - type: StaminaDamageOnCollide
-    damage: 6 # 10 hits to slowdown
-
-- type: entity
-  id: NFBulletPistol45Practice
-  name: bullet (.45 pistol, practice)
-  parent: NFBaseBulletPractice
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 1
-
-# Frontier
-# .45 pistol
-- type: entity
   id: NFBulletPistol45Emp
   name: bullet (.45 pistol, EMP)
   parent: NFBaseBulletEmp
@@ -179,16 +54,3 @@
         Blunt: 6
   - type: StaminaDamageOnCollide
     damage: 6 # 10 hits to slowdown
-
-- type: entity
-  id: NFBulletPistol45Rubber
-  name: bullet (.45 pistol, rubber)
-  parent: NFBaseBulletRubber
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Projectile
-    damage:
-      types:
-        Blunt: 2
-  - type: StaminaDamageOnCollide
-    damage: 18 # ~6 hits to stun sounds reasonable

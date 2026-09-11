@@ -142,7 +142,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: EventGrid
       dampingModifier: 0.45
     - type: GridPathfinding
     - type: Gravity
@@ -2594,7 +2594,7 @@ entities:
     - type: Transform
       pos: 15.5,-0.5
       parent: 17250
-- proto: NFWeaponEnergyPistolLaserMakeshift
+- proto: WeaponMakeshiftLaser
   entities:
   - uid: 17796
     components:

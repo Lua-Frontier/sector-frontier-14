@@ -12,6 +12,14 @@
 #   kind: source
 #   path: "/Textures/_Lua/Shaders/saphaphrem.swsl"
 
+# LuaCorp - announcement portrait tint
+- type: shader
+  id: LuaAnnouncementTint
+  kind: source
+  path: "/Textures/_Lua/Shaders/announcement_tint.swsl"
+  params:
+    tint_color: "#FFFFFF"
+
 # Hair/fur linear gradient used in customization
 - type: shader
   id: HairGradient

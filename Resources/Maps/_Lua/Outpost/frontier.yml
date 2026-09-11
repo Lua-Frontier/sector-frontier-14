@@ -167,7 +167,7 @@ entities:
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
-    - type: Shuttle
+    - type: StationGrid
       dampingModifier: 0.45
     - type: GridPathfinding
     - type: Gravity
@@ -32846,7 +32846,7 @@ entities:
     - type: Transform
       pos: -56.5,9.5
       parent: 2
-- proto: NFWeaponLauncherMail
+- proto: WeaponMailLake
   entities:
   - uid: 5009
     components:

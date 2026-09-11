@@ -10,7 +10,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Holopad;
 
-public sealed class HolopadSystem : SharedHolopadSystem
+public sealed partial class HolopadSystem : SharedHolopadSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;

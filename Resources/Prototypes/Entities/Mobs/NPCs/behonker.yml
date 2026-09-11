@@ -78,7 +78,7 @@
     - type: MobState
     - type: InnateTool
       tools:
-        - id: NFWeaponBehonkerLaser # Frontier: add NF prefix
+        - id: WeaponBehonkerLaser # Frontier: add NF prefix
         - id: BikeHorn
     - type: UserInterface
       interfaces:
@@ -100,7 +100,7 @@
       spawned:
         - id: MaterialBananium1
           amount: 2
-        - id: NFWeaponBehonkerLaser # Frontier: add NF prefix
+        - id: WeaponBehonkerLaser # Frontier: add NF prefix
           amount: 1
     - type: MeleeWeapon
       soundHit:

@@ -4,6 +4,21 @@
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Margin="8">
+                <Label Text="{Loc 'lua-ui-options-announcements-header'}"
+                       StyleClasses="LabelKeyText"/>
+                <ui:OptionDropDown Name="AnnouncementStyleDropDown" Title="{Loc 'lua-ui-options-announcements-style'}" />
+                <ui:OptionSlider Name="AnnouncementMaxVisibleSlider" Title="{Loc 'rmc-ui-options-announcements-max-visible'}" />
+                <CheckBox Name="AnnouncementMirrorChatCheckBox" Text="{Loc 'lua-ui-options-announcements-mirror-chat'}" />
+                <Label Name="AnnouncementPresetOverridesLabel" Text="{Loc 'rmc-ui-options-announcements-style-per-announcement'}"
+                       StyleClasses="LabelKeyText"/>
+                <BoxContainer Name="AnnouncementPresetOverridesContainer" Orientation="Vertical" />
+                <Label Text="{Loc 'rmc-ui-options-announcements-layout'}"
+                       StyleClasses="LabelKeyText"/>
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <Button Name="AnnouncementLayoutEditorButton" Text="{Loc 'rmc-ui-options-announcements-layout-open-editor'}" />
+                    <Button Name="AnnouncementLayoutResetButton" Text="{Loc 'rmc-ui-options-announcements-layout-reset-all'}" />
+                </BoxContainer>
+                <RichTextLabel Name="AnnouncementLayoutSummaryLabel" />
                 <Label Text="{Loc 'ui-options-accessability-header-visuals'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="ReducedMotionCheckBox" Text="{Loc 'ui-options-reduced-motion'}" />

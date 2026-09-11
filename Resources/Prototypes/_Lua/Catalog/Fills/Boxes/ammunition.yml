@@ -110,14 +110,14 @@
 # topmount
 
 - type: entity
-  id: LuaBoxMagazine9x19mmSubMachineGunTopMountedFMJ # FMJ
+  id: LuaBoxMagazine9x19mmSubMachineGunTopMountedFMJ # FMJ / WT550 4.6x30
   parent: BoxMagazine
-  name: box of SMG 9x19mm FMJ top mount magazines
-  description: A box full of SMG 9x19mm FMJ top mount magazines.
+  name: box of SMG 4.6x30mm FMJ top mount magazines
+  description: A box full of SMG 4.6x30mm FMJ top mount magazines.
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmSubMachineGunTopMountedFMJ
+      - id: Magazine46x30mmSubMachineGunTopMountedFMJ
         amount: 4
 
 #region .45_ACP

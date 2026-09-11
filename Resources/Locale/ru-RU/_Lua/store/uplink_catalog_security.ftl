@@ -25,8 +25,8 @@ uplink-security-Magazine9x19mmPistolHighCapacityFMJ-desc = полная коро
 uplink-security-Magazine9x19mmPistolHighCapacityRubber-name = коробка магазинов для пистолета (9x19mm Rubber)
 uplink-security-Magazine9x19mmPistolHighCapacityRubber-desc = полная коробка с магазинами для пистолета калибра 9x19mm, тип пуль: Rubber.
 
-uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-name = коробка надствольных магазинов для ПП (9x19mm FMJ)
-uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-desc = полная коробка с надствольными магазинами для ПП калибра 9x19mm, тип пуль: FMJ.
+uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-name = коробка надствольных магазинов для ПП (4.6x30mm FMJ)
+uplink-security-Magazine9x19mmSubMachineGunTopMountedFMJ-desc = полная коробка с надствольными магазинами для ПП калибра 4.6x30mm, тип пуль: FMJ.
 
 uplink-security-Magazine45_ACPSubMachineGunFMJ-name = коробка магазинов для ПП (.45 ACP FMJ)
 uplink-security-Magazine45_ACPSubMachineGunFMJ-desc = полная коробка с магазинами для ПП калибра .45 ACP, тип пуль: FMJ.
@@ -66,19 +66,19 @@ uplink-security-AnnieBundle-desc = Содержит в себе штурмову
 uplink-security-MR8CBundle-name = набор "VFD MR-8C DMR (8x65mm SKR)"
 uplink-security-MR8CBundle-desc = Содержит в себе пехотную снайперскую винтовку VFD MR-8C DMR, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
 
-uplink-security-MR8BBundle-name = набор "VFD MR-8B LWMMG (7.62x51mm)"
+uplink-security-MR8BBundle-name = набор "VFD MR-8B LWMMG (8x65mm SKR)"
 uplink-security-MR8BBundle-desc = Содержит в себе пулемёт VFD MR-8B LWMMG, 2 запасных магазина и 1 большую коробку пуль. Тип пуль: FMJ.
 
 uplink-security-NtsfLtrBundle-name = набор "NTSF-LTR-556 (5.56x45mm,6.8x52mm Caseless)"
 uplink-security-NtsfLtrBundle-desc = Содержит в себе штурмовую винтовку NTSF-LTR-556, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
 
-uplink-security-LecterBundle-name = набор "Lecter (5.56x45mm)"
+uplink-security-LecterBundle-name = набор "Lecter (6.8x52mm | 5.56x45mm)"
 uplink-security-LecterBundle-desc = Содержит в себе штурмовую винтовку Lecter, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
 
 uplink-security-LRC21PPLBundle-name = набор "NT-WS LRC-21 PPL"
 uplink-security-LRC21PPLBundle-desc = Содержит в себе плазменную винтовку NT-WS LRC-21 PPL, и 2 запасных батареи.
 
-uplink-security-Wt550Bundle-name = набор "WT-550 (9x19mm)"
+uplink-security-Wt550Bundle-name = набор "WT-550 (4.6x30mm)"
 uplink-security-Wt550Bundle-desc = Содержит в себе ПП WT-550, 3 запасных магазина и 1 коробку пуль. Тип пуль: FMJ.
 
 uplink-security-N1984Bundle-name = набор "N1984 (.45_ACP)"
@@ -87,5 +87,5 @@ uplink-security-N1984Bundle-desc = Содержит в себе пистолет
 uplink-security-InspectorBundle-name = набор "Inspector (.45 Magnum)"
 uplink-security-InspectorBundle-desc = Содержит в себе револьвер Inspector, и 2 запасных спидлоадера.
 
-uplink-security-enforcerBundle-name = набор "Enforcer (4 gauge)"
+uplink-security-enforcerBundle-name = набор "Enforcer (12 gauge)"
 uplink-security-enforcerBundle-desc = содержит в себе дробовик Enforcer, и 3 пачки патронов.

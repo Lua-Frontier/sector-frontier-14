@@ -85,7 +85,7 @@
     shape:
     - 0,0,3,2
   - type: Gun
-    examineCaliber: gun-examine-caliber-76254 #Lua
+    examineCaliber: gun-examine-caliber-76251 #Lua
     minAngle: 1.4 #Lua
     maxAngle: 7 #Lua
     angleIncrease: 5.6 #Lua
@@ -98,10 +98,10 @@
       path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: BallisticAmmoProvider
     capacity: 5
-    proto: Cartridge762x54mmRFMJ #Lua Cartridge762x51mmFMJ<Cartridge762x54mmRFMJ
+    proto: Cartridge762x51mmFMJ
     whitelist:
       tags:
-      - Cartridge762x54mmRFMJ #Lua Cartridge762x51mmFMJ<Cartridge762x54mmRFMJ
+      - Cartridge762x51mmFMJ
   - type: CursorOffsetRequiresWield # Frontier
   - type: EyeCursorOffset # Frontier
     maxOffset: 1.5 # Frontier
@@ -134,7 +134,7 @@
       pvsIncrease: 1
 
 - type: entity
-  name: CS CAWS-25 Jackdaw (635x40mm)
+  name: CS CAWS-25 Jackdaw (6.35x40mm)
   parent: [BaseWeaponRifleUnwieldable, BaseC3Contraband] # Frontier: add BaseC3Contraband #Lua BaseGunWieldable #Lua BaseWeaponRifle<BaseWeaponRifleUnwieldable
   id: WeaponRifleJackdaw
   description: The beginning of the end is heralded by the song of a Jackdaw. Uses 6.35x40mm Caseless ammo.
@@ -152,7 +152,7 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: Gun
-    examineCaliber: gun-examine-caliber-76251 #Lua
+    examineCaliber: gun-examine-caliber-63540 #Lua
     minAngle: 1 #Lua
     maxAngle: 3.5 #Lua
     angleIncrease: 0.2 #Lua 2<0.2
@@ -172,21 +172,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x51mmFMJ #Lua Magazine635x40mmCaseless<Magazine762x51mmFMJ
+        startingItem: Magazine635x40mmCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine762x51mmFMJ #Lua Magazine635x40mmCaseless<Magazine762x51mmFMJ
+            - Magazine635x40mmCaseless
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ #Lua Cartridge635x40mmCaseless<Cartridge762x51mmFMJ
+        startingItem: Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
-            - Cartridge762x51mmFMJ #Lua Cartridge635x40mmCaseless<Cartridge762x51mmFMJ
+            - Cartridge635x40mmCaseless
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

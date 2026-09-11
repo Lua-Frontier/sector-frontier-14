@@ -144,7 +144,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: StationGrid
       dampingModifier: 0.45
     - type: GridPathfinding
     - type: Gravity
@@ -9832,7 +9832,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -34.5,14.5
       parent: 1
-- proto: NFWeaponEnergyPistolDisablerPractice
+- proto: WeaponDisablerPractice
   entities:
   - uid: 2876
     components:

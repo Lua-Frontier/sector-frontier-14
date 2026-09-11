@@ -34,11 +34,11 @@ uplink-security-8x65mm-box-desc = Коробка патрон для магаз�
 uplink-security-mr8c-name = VFD MR-8C DMR
 uplink-security-mr8c-desc = Полуавтоматическая винтовка, стреляющая патронами 8x65mm, специально созданная для использования MARSOC. Ты счастливчик, сотрудник.
 
-uplink-security-mr8b-name = VFD MR-8B LWMMG (7.62x51mm)
-uplink-security-mr8b-desc = Вариант LWMMG серии MR-8. Калибр 7.62x51mm, подходит как для коробчатых, так и для обычных магазинов. На боковой стороне имеется надпись «ТОЛЬКО ДЛЯ ВОЕННОГО ИСПОЛЬЗОВАНИЯ».
+uplink-security-mr8b-name = VFD MR-8B LWMMG (8x65mm SKR)
+uplink-security-mr8b-desc = Вариант LWMMG серии MR-8. Калибр 8x65mm SKR, подходит как для коробчатых, так и для обычных магазинов. На боковой стороне имеется надпись «ТОЛЬКО ДЛЯ ВОЕННОГО ИСПОЛЬЗОВАНИЯ».
 
 uplink-security-762x51-boxmag-name = ammunition box (7.62x51mm FMJ)
-uplink-security-762x51-boxmag-desc = Коробка патрон с патронами калибра 7.62x51mm, можно использовать как ленту для VFD MR-8B LWMMG (7.62x51mm)
+uplink-security-762x51-boxmag-desc = Коробка патрон с патронами калибра 7.62x51mm, можно использовать как ленту для VFD PSW "Ratel" (7.62x51mm)
 
 uplink-security-vector45acp-name = Набор "LWC Vector SBR (.45 ACP)"
 uplink-security-vector45acp-desc = Отличный полностью автоматический пистолет-пулемет, военной модификаций SBR. Использует патроны калибра .45 ACP. Набор содержит в себе 3 дополнительных магазина и 1 коробку патронов.

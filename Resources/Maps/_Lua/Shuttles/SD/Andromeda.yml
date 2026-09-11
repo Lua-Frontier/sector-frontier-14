@@ -119,7 +119,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: ShuttleGrid
       dampingModifier: 0.45
     - type: ImplicitRoof
     - type: GridPathfinding
@@ -5850,7 +5850,7 @@ entities:
     - type: Transform
       pos: 1.5,-12.5
       parent: 1
-- proto: NFWeaponRifleAssaultLecter
+- proto: WeaponRifleLecter
   entities:
   - uid: 740
     components:

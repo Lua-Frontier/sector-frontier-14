@@ -1,5 +1,5 @@
-# WizDen
-#region base mags .45
+# Lua leftover .45 SMG mags. Mapped pistol .45 mag IDs restored as .45 ACP / leftover Overpressure uses kept cartridge.
+#region base
 - type: entity
   id: NFBaseMagazinePistol45
   name: pistol magazine (.45 pistol)
@@ -8,12 +8,12 @@
   components:
   - type: Tag
     tags:
-      - NFMagazinePistol45
+      - Magazine45_ACPPistolFMJ
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - NFCartridgePistol45
+        - Cartridge357_magnumFMJ
     capacity: 8
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol35/pistol_mag.rsi
@@ -46,7 +46,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - NFCartridgePistol45
+        - Cartridge357_magnumFMJ
     capacity: 25
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Magazine/Pistol45/smg_mag.rsi
@@ -67,167 +67,6 @@
       right:
       - state: inhand-right-mag
 
-#region standard mags .45
-- type: entity
-  id: NFMagazinePistol45Empty
-  name: pistol magazine (.45 pistol, any)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: null
-
-- type: entity
-  id: NFMagazinePistol45
-  name: pistol magazine (.45 pistol)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45
-
-- type: entity
-  id: NFMagazinePistol45Overpressure
-  name: pistol magazine (.45 pistol, overpressure)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Overpressure
-  - type: Sprite
-    layers:
-    - state: base
-      color: "#666666"
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff8d00"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-        color: "#666666"
-      - state: inhand-left-stripe
-        color: "#ff8d00"
-      right:
-      - state: inhand-right-mag
-        color: "#666666"
-      - state: inhand-right-stripe
-        color: "#ff8d00"
-
-- type: entity
-  id: NFMagazinePistol45Incendiary
-  name: pistol magazine (.45 pistol, incendiary)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Incendiary
-  - type: Sprite
-    layers:
-    - state: base
-      color: "#666666"
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff0000"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-        color: "#666666"
-      - state: inhand-left-stripe
-        color: "#ff0000"
-      right:
-      - state: inhand-right-mag
-        color: "#666666"
-      - state: inhand-right-stripe
-        color: "#ff0000"
-
-- type: entity
-  id: NFMagazinePistol45Uranium
-  name: pistol magazine (.45 pistol, uranium)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Uranium
-  - type: Sprite
-    layers:
-    - state: base
-      color: "#666666"
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00ff00"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-        color: "#666666"
-      - state: inhand-left-stripe
-        color: "#00ff00"
-      right:
-      - state: inhand-right-mag
-        color: "#666666"
-      - state: inhand-right-stripe
-        color: "#00ff00"
-
-- type: entity
-  id: NFMagazinePistol45Practice
-  name: pistol magazine (.45 pistol, practice)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Practice
-  - type: Sprite
-    layers:
-    - state: base
-      color: "#666666"
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-        color: "#666666"
-      - state: inhand-left-stripe
-      right:
-      - state: inhand-right-mag
-        color: "#666666"
-      - state: inhand-right-stripe
-
-- type: entity
-  id: NFMagazinePistol45Rubber
-  name: pistol magazine (.45 pistol, rubber)
-  parent: NFBaseMagazinePistol45
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Rubber
-  - type: Sprite
-    layers:
-    - state: base
-      color: "#666666"
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#00b0ff"
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left-mag
-        color: "#666666"
-      - state: inhand-left-stripe
-        color: "#00b0ff"
-      right:
-      - state: inhand-right-mag
-        color: "#666666"
-      - state: inhand-right-stripe
-        color: "#00b0ff"
-
-# Frontier
-#region smg mags .45
 - type: entity
   id: NFMagazineSubMachineGun45Empty
   name: SMG magazine (.45 pistol, any)
@@ -242,7 +81,7 @@
   parent: NFBaseMagazinePistolSubMachineGun45
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45
+    proto: Cartridge357_magnumFMJ
 
 - type: entity
   id: NFMagazineSubMachineGun45Overpressure
@@ -276,7 +115,7 @@
   parent: NFBaseMagazinePistolSubMachineGun45
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Rubber
+    proto: Cartridge357_magnumRubber
   - type: Sprite
     layers:
     - state: base

@@ -38,7 +38,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared._NF.Bank.Events; // Frontier
-using Content.Server._NF.Bank; // Frontier
+using Content.Server._Lua.Bank; // Frontier
+using Content.Server.Sponsors; // Lua
+using Content.Server._Mono.Company; // Lua
+using Content.Shared._Mono.Company; // Lua
+using Content.Shared._Lua.SponsorLoadout; // Lua
 
 namespace Content.Server.Administration.Systems;
 
@@ -64,6 +68,7 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly BankSystem _bank = default!; // Frontier
     [Dependency] private readonly IAfkManager _afkManager = default!; // Lua
     [Dependency] private readonly ReputationSystem _reputation = default!;
+    [Dependency] private readonly SponsorManager _sponsorManager = default!;
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 
@@ -102,6 +107,7 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, IdentityChangedEvent>(OnIdentityChanged);
         SubscribeLocalEvent<BalanceChangedEvent>(OnBalanceChanged); // Frontier
         SubscribeLocalEvent<PlayerReputationChangedEvent>(OnPlayerReputationChanged);
+        SubscribeLocalEvent<CompanySetEvent>(OnCompanySet);
 
         SubscribeLocalEvent<AFKEvent>(OnAFKEvent); // Lua
         SubscribeLocalEvent<UnAFKEvent>(OnUnAFKEvent); // Lua
@@ -308,6 +314,29 @@ public sealed class AdminSystem : EntitySystem
         }
 
         var repCached = _reputation.GetCachedReputation(ReputationTargetKind.Player, data.UserId);
+
+        var company = string.Empty;
+        if (session?.AttachedEntity is { } attached
+            && TryComp<CompanyComponent>(attached, out var companyComp)
+            && !string.IsNullOrWhiteSpace(companyComp.CompanyName))
+        {
+            company = _proto.TryIndex<CompanyPrototype>(companyComp.CompanyName, out var companyProto)
+                ? companyProto.Name
+                : companyComp.CompanyName;
+        }
+
+        var donat = string.Empty;
+        if (_sponsorManager.TryGetAllActiveSponsors(data.UserId, out var sponsors) && sponsors.Count > 0)
+        {
+            var tokens = DonorGroups.GetShopHeaderTokens(sponsors.Select(s => s.Role));
+            donat = string.Join(",", tokens);
+        }
+        else if (_sponsorManager.TryGetActiveSponsor(data.UserId, out var sponsor)
+                 && DonorGroups.TryResolveTier(sponsor.Role, out var tier))
+        {
+            donat = tier;
+        }
+
         return new PlayerInfo(
             name,
             entityName,
@@ -325,7 +354,17 @@ public sealed class AdminSystem : EntitySystem
             balance,
             repCached.Score,
             repCached.Positive,
-            repCached.Negative); // Frontier
+            repCached.Negative,
+            company,
+            donat);
+    }
+
+    private void OnCompanySet(CompanySetEvent args)
+    {
+        if (!args.Changed || !TryComp<ActorComponent>(args.Entity, out var actor))
+            return;
+
+        UpdatePlayerList(actor.PlayerSession);
     }
 
     private void OnPanicBunkerChanged(bool enabled)

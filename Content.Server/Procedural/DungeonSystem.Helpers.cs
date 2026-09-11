@@ -8,6 +8,18 @@ public sealed partial class DungeonSystem
 {
     public List<(Vector2i Start, Vector2i End)> MinimumSpanningTree(List<Vector2i> tiles, System.Random random)
     {
+        var uniqueTiles = new List<Vector2i>(tiles.Count);
+        var seen = new HashSet<Vector2i>();
+        foreach (var tile in tiles)
+        {
+            if (seen.Add(tile))
+                uniqueTiles.Add(tile);
+        }
+
+        tiles = uniqueTiles;
+        if (tiles.Count < 2)
+            return new List<(Vector2i Start, Vector2i End)>();
+
         // Generate connections between all rooms.
         var connections = new Dictionary<Vector2i, List<(Vector2i Tile, float Distance)>>(tiles.Count);
 
@@ -25,7 +37,7 @@ public sealed partial class DungeonSystem
 
             // Sort these as they will be iterated many times.
             edgeConns.Sort((x, y) => x.Distance.CompareTo(y.Distance));
-            connections.Add(entrance, edgeConns);
+            connections[entrance] = edgeConns;
         }
 
         var seedIndex = random.Next(tiles.Count);

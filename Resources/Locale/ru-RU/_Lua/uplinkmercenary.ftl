@@ -74,7 +74,7 @@ uplink-merc-duffel-desc = Вещмешок, побывавший во многи
 store-merc-category-gun = оружие
 
 uplink-merc-mk58-name = МК 58
-uplink-merc-mk58-desc = Дешевый и распространённый пистолет, производимый дочерней компанией Nanotrasen. Использует патроны калибра .35 авто.
+uplink-merc-mk58-desc = Дешевый и распространённый пистолет, производимый дочерней компанией Nanotrasen. Использует патроны калибра .45 ACP.
 uplink-merc-energygun-name = лазерная импульсная винтовка
 uplink-merc-energygun-desc = Базовая лазерная импульсная винтовка с двумя настройками: обезвредить и убить.
 uplink-merc-rifleak-name = АКМС

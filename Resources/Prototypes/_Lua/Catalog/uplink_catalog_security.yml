@@ -28,8 +28,8 @@
   id: UplinkSecurityHardsuitM73
   name:  uplink-security-hardsuitM73-name
   description: uplink-security-hardsuitM73-desc
-  productEntity: ClothingOuterHardsuitTSFMCM73
-  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M73-helmet.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitM82c
+  icon: { sprite: _Mono/Clothing/Head/Hardsuits/m82.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -53,8 +53,8 @@
   id: UplinkSecurityHardsuitM73C
   name:  uplink-security-hardsuitM73C-name
   description: uplink-security-hardsuitM73C-desc
-  productEntity: ClothingOuterHardsuitTSFMCM73-C
-  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M73c-helmet.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitM82b
+  icon: { sprite: _Mono/Clothing/Head/Hardsuits/m82.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -78,33 +78,8 @@
   id: UplinkSecurityHardsuitM93
   name:  uplink-security-hardsuitM93-name
   description: uplink-security-hardsuitM93-desc
-  productEntity: ClothingOuterHardsuitTSFMCM93
-  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M93-helmet.rsi, state: icon }
-  cost:
-    FrontierUplinkCoin: 5
-  categories:
-    - UplinkSecurityHardsuits
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - SecurityUplink
-    - !type:BuyerJobCondition
-      whitelist:
-      - Sheriff
-      - Bailiff
-      - SeniorOfficer
-      - Brigmedic
-      - SDEngineer
-      - Deputy
-      - Cadet
-
-- type: listing
-  id: UplinkSecurityCommandM93-C
-  name: uplink-security-hardsuitM93C-name
-  description: uplink-security-hardsuitM93C-desc
-  productEntity: ClothingOuterHardsuitTSFMCM93-C
-  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M93c-helmet.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitM86
+  icon: { sprite: _Mono/Clothing/Head/Hardsuits/m86.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -128,8 +103,8 @@
   id: UplinkSecurityHardsuitJuggernaut
   name:  uplink-security-hardsuitM92X-name
   description: uplink-security-hardsuitM92X-desc
-  productEntity: ClothingOuterHardsuitTSFMCM92-X
-  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M92x-helmet.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitNfsdExperimental
+  icon: { sprite: _NF/Clothing/Head/Hardsuits/nfsd_experimental.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 5
   categories:
@@ -153,8 +128,8 @@
   id: UplinkSecurityHardsuitM92
   name:  uplink-security-hardsuitM92-name
   description: uplink-security-hardsuitM92-desc
-  productEntity: ClothingOuterHardsuitTSFMCM92
-  icon: { sprite: _Lua/Clothing/Head/SDHardsuits/M92-helmet.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitNfsdSheriff
+  icon: { sprite: _NF/Clothing/Head/Hardsuits/nfsd_sheriff.rsi, state: icon }
   cost:
     FrontierUplinkCoin: 5
   categories:

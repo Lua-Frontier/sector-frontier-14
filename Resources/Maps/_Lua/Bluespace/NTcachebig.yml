@@ -113,7 +113,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: EventGrid
       dampingModifier: 0.45
     - type: ImplicitRoof
     - type: GridPathfinding
@@ -7378,7 +7378,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 25.5,14.5
       parent: 1
-- proto: NFWeaponEnergyPistolLaser
+- proto: WeaponLaserGun
   entities:
   - uid: 970
     components:

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Mono.Weapons.Hitscan.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
@@ -18,7 +19,7 @@ public sealed partial class HitscanDiffractSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<HitscanDiffractComponent, HitscanTraceEvent>(OnHitscanTrace, before: [typeof(HitscanBasicRaycastSystem)]);
+        SubscribeLocalEvent<HitscanDiffractComponent, HitscanTraceEvent>(OnHitscanTrace, before: [typeof(HitscanBasicRaycastSystem), typeof(HitscanMultiRaycastSystem)]);
     }
 
     private void OnHitscanTrace(Entity<HitscanDiffractComponent> hitscan, ref HitscanTraceEvent args)

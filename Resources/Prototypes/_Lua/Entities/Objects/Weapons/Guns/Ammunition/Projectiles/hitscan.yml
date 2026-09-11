@@ -1,23 +1,4 @@
-# Mono BasicHitscan
-- type: entity
-  id: BasicHitscan
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HitscanAmmo
-  - type: HitscanBasicRaycast
-  - type: HitscanBasicVisuals
-    muzzleFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: muzzle_laser
-    travelFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: beam
-    impactFlash:
-      sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-      state: impact_laser
-  - type: HitscanReflect
-  - type: HitscanBasicEffects
-
+# Lua-only hitscans (BasicHitscan lives in vanilla Projectiles/hitscan.yml)
 # Pistols / SMGs
 - type: entity
   parent: BasicHitscan

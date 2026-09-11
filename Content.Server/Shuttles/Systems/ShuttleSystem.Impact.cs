@@ -25,6 +25,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System;
 using System.Numerics;
+using Content.Server._Lua.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -32,6 +33,7 @@ namespace Content.Server.Shuttles.Systems;
 public sealed partial class ShuttleSystem
 {
     [Dependency] private readonly SpaceCleanupSystem _sweep = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
 
     private bool _enabled;
     private float _minimumImpactInertia;
@@ -72,7 +74,12 @@ public sealed partial class ShuttleSystem
 
     private void InitializeImpact()
     {
-        SubscribeLocalEvent<ShuttleComponent, StartCollideEvent>(OnShuttleCollide);
+        SubscribeLocalEvent<ShuttleGridComponent, StartCollideEvent>(OnShuttleGridCollide);
+        SubscribeLocalEvent<StationGridComponent, StartCollideEvent>(OnStationGridCollide);
+        SubscribeLocalEvent<EventGridComponent, StartCollideEvent>(OnEventGridCollide);
+        SubscribeLocalEvent<ShuttleAiGridComponent, StartCollideEvent>(OnShuttleAiGridCollide);
+        SubscribeLocalEvent<DebrisGridComponent, StartCollideEvent>(OnDebrisGridCollide);
+        SubscribeLocalEvent<WrecksGridComponent, StartCollideEvent>(OnWrecksGridCollide);
 
         _dmgQuery = GetEntityQuery<DamageableComponent>();
         _projQuery = GetEntityQuery<ProjectileComponent>();
@@ -97,10 +104,17 @@ public sealed partial class ShuttleSystem
         _platingMass = _protoManager.Index(_platingId).Mass;
     }
 
+    private void OnShuttleGridCollide(EntityUid uid, ShuttleGridComponent comp, ref StartCollideEvent args) => OnShuttleCollide(uid, comp, ref args);
+    private void OnStationGridCollide(EntityUid uid, StationGridComponent comp, ref StartCollideEvent args) => OnShuttleCollide(uid, comp, ref args);
+    private void OnEventGridCollide(EntityUid uid, EventGridComponent comp, ref StartCollideEvent args) => OnShuttleCollide(uid, comp, ref args);
+    private void OnShuttleAiGridCollide(EntityUid uid, ShuttleAiGridComponent comp, ref StartCollideEvent args) => OnShuttleCollide(uid, comp, ref args);
+    private void OnDebrisGridCollide(EntityUid uid, DebrisGridComponent comp, ref StartCollideEvent args) => OnShuttleCollide(uid, comp, ref args);
+    private void OnWrecksGridCollide(EntityUid uid, WrecksGridComponent comp, ref StartCollideEvent args) => OnShuttleCollide(uid, comp, ref args);
+
     /// <summary>
     /// Handles collision between two shuttles, applying impact damage and effects.
     /// </summary>
-    private void OnShuttleCollide(EntityUid uid, ShuttleComponent component, ref StartCollideEvent args)
+    private void OnShuttleCollide(EntityUid uid, IShuttleGrid component, ref StartCollideEvent args)
     {
         if (TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid)
             || TerminatingOrDeleted(args.OtherEntity) || EntityManager.IsQueuedForDeletion(args.OtherEntity)
@@ -240,8 +254,8 @@ public sealed partial class ShuttleSystem
         }
     }
 
-    partial void SuppressImpactDamage(ref bool suppress, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args);
-    partial void HandleShuttleCollision(ref bool handled, EntityUid uid, ShuttleComponent component, ref StartCollideEvent args, MapGridComponent ourGrid, MapGridComponent otherGrid);
+    partial void SuppressImpactDamage(ref bool suppress, EntityUid uid, IShuttleGrid component, ref StartCollideEvent args);
+    partial void HandleShuttleCollision(ref bool handled, EntityUid uid, IShuttleGrid component, ref StartCollideEvent args, MapGridComponent ourGrid, MapGridComponent otherGrid);
 
     private void DoGridImpact(Entity<MapGridComponent, TransformComponent, PhysicsComponent> ent,
                               Fixture fix,

@@ -46,7 +46,7 @@ public sealed partial class LuaATMMenu : FancyWindow
     {
         UpdateStatus(personalState.Enabled);
         UpdateBalance(personalState.Balance);
-        UpdateYUPICode(personalState.YUPICode);
+        UpdateGalBankCode(personalState.GalBankCode);
         UpdateHistory(personalState.History);
     }
 
@@ -81,11 +81,11 @@ public sealed partial class LuaATMMenu : FancyWindow
         BalanceLabel.Text = BankSystemExtensions.ToSpesoString(balance);
     }
 
-    private void UpdateYUPICode(string yupiCode)
+    private void UpdateGalBankCode(string galBankCode)
     {
-        YUPICode.Text = string.IsNullOrWhiteSpace(yupiCode)
-        ? Loc.GetString("bank-atm-yupi-code-default")
-        : yupiCode.ToUpperInvariant();
+        GalBankCode.Text = string.IsNullOrWhiteSpace(galBankCode)
+        ? Loc.GetString("bank-atm-galbank-code-default")
+        : galBankCode.ToUpperInvariant();
     }
 
     private void UpdateHistory(List<BankAccountOperation> history)

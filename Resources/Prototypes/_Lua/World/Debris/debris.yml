@@ -9,6 +9,7 @@
   name: asteroid debris
   abstract: true
   components:
+    - type: DebrisGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
       - FloorAsteroidSand

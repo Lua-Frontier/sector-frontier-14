@@ -98,7 +98,7 @@
     - id: SpaceCash500
       prob: 0.26
     # Weapons
-    - id: NFWeaponPistolMk58Expedition
+    - id: WeaponPistolMk58Expedition
       prob: 0.59
     # Armor
     - id: ClothingOuterVestWebMercenary
@@ -121,9 +121,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
+    - id: Magazine45_ACPPistolHP
       prob: 0.59
-    - id: Magazine9x19mmPistolEmpty #Lua 35 -> 9x19
+    - id: Magazine45_ACPPistolEmpty
       prob: 0.59
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -141,7 +141,7 @@
     - id: SpaceCash500
       prob: 0.26
     # Weapons
-    - id: NFWeaponRifleAssaultNovaliteC1Expedition
+    - id: WeaponRifleNovaliteC1Expedition
       prob: 0.59
     # Armor
     - id: ClothingOuterVestWebMercenary
@@ -194,7 +194,7 @@
     - id: SpaceCash500
       prob: 0.36
     # Weapons
-    - id: NFWeaponShotgunKammererExpedition
+    - id: WeaponShotgunKammererExpedition
       prob: 0.39
     # Armor
     - id: ClothingOuterArmorBasicSlim
@@ -224,7 +224,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: AmmoBox23x75mmDozd #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       prob: 0.4
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -240,7 +240,7 @@
     - id: SpaceCash500
       prob: 0.36
     # Weapons
-    - id: NFWeaponRevolverArgentiExpedition
+    - id: WeaponRevolverArgentiExpedition
       prob: 0.59
     # Armor
     - id: ClothingOuterCoatBHTrench
@@ -275,9 +275,9 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: NFSpeedLoaderPistol35Empty
+    - id: SpeedLoader556x45mmFMJ
       prob: 0.59
-    - id: AmmoBox9x19mmFMJ #Lua 35 -> 9x19
+    - id: AmmoBox556x45mmFMJ
       prob: 0.59
     sound:
       path: /Audio/Items/jumpsuit_equip.ogg
@@ -296,7 +296,7 @@
     - id: SpaceCash1000
       prob: 0.08
     # Weapons
-    - id: NFWeaponEnergyPistolLaserExpedition
+    - id: WeaponEnergyPistolLaserExpedition
       prob: 0.59
     - id: SawElectric
       prob: 0.45
@@ -356,7 +356,7 @@
     - id: SpaceCash1000
       prob: 0.08
     # Weapons
-    - id: NFWeaponRifleAssaultGestioExpedition
+    - id: WeaponRifleGestioExpedition
       prob: 0.59
     # Armor
     # Items
@@ -441,7 +441,7 @@
     - id: SpaceCash500
       prob: 0.26
     # Weapons
-    - id: NFWeaponRifleRepeaterExpedition
+    - id: WeaponSniperRepeaterExpedition
       prob: 0.59
     # Armor
     - id: ClothingOuterArmorBulletproof

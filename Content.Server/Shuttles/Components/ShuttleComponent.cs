@@ -1,78 +1,52 @@
 using System.Numerics;
+using Content.Server._Lua.Shuttles.Components;
 
-namespace Content.Server.Shuttles.Components
+namespace Content.Server.Shuttles.Components;
+
+[RegisterComponent]
+public sealed partial class ShuttleComponent : Component, IShuttleGrid
 {
-    [RegisterComponent]
-    public sealed partial class ShuttleComponent : Component
-    {
-        [ViewVariables]
-        public bool Enabled = true;
+    [ViewVariables]
+    public bool Enabled = true;
 
-        [ViewVariables]
-        public Vector2[] CenterOfThrust = new Vector2[4];
+    [ViewVariables]
+    public Vector2[] CenterOfThrust { get; } = new Vector2[4];
 
-        /// <summary>
-        /// Thrust gets multiplied by this value if it's for braking.
-        /// </summary>
-        public const float BrakeCoefficient = 1.5f;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float BaseMaxLinearVelocity = 50f;
 
-        /// <summary>
-        /// Maximum velocity.
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite)]
-        public float BaseMaxLinearVelocity = 50f;
+    [ViewVariables]
+    public float[] LinearThrust { get; } = new float[4];
 
-        public const float MaxAngularVelocity = 4f;
+    [ViewVariables]
+    public float[] BaseLinearThrust { get; } = new float[4];
 
-        /// <summary>
-        /// The cached thrust available for each cardinal direction
-        /// </summary>
-        [ViewVariables]
-        public readonly float[] LinearThrust = new float[4];
+    public List<EntityUid>[] LinearThrusters { get; } =
+    [
+        new(),
+        new(),
+        new(),
+        new(),
+    ];
 
-        /// <summary>
-        /// The cached thrust available for each cardinal direction, if all thrusters are T1
-        /// </summary>
-        [ViewVariables]
-        public readonly float[] BaseLinearThrust = new float[4];
+    public List<EntityUid> AngularThrusters { get; } = new();
 
-        /// <summary>
-        /// The thrusters contributing to each direction for impulse.
-        /// </summary>
-        // No touchy
-        public readonly List<EntityUid>[] LinearThrusters = new List<EntityUid>[]
-        {
-            new(),
-            new(),
-            new(),
-            new(),
-        };
+    [ViewVariables]
+    public float AngularThrust;
 
-        /// <summary>
-        /// The thrusters contributing to the angular impulse of the shuttle.
-        /// </summary>
-        public readonly List<EntityUid> AngularThrusters = new();
+    [ViewVariables]
+    public DirectionFlag ThrustDirections = DirectionFlag.None;
 
-        [ViewVariables]
-        public float AngularThrust = 0f;
+    [DataField]
+    public float BodyModifier = 0.45f;
 
-        /// <summary>
-        /// A bitmask of all the directions we are considered thrusting.
-        /// </summary>
-        [ViewVariables]
-        public DirectionFlag ThrustDirections = DirectionFlag.None;
+    [DataField]
+    public float DampingModifier;
 
-        /// <summary>
-        /// Base damping modifier applied to the shuttle's physics component when not in FTL.
-        /// </summary>
-        [DataField]
-        public float BodyModifier = 0.45f;
-
-        /// <summary>
-        /// Final Damping Modifier for a shuttle.
-        /// This value is set to 0 during FTL. And to BodyModifier when not in FTL.
-        /// </summary>
-        [DataField]
-        public float DampingModifier;
-    }
+    bool IShuttleGrid.Enabled { get => Enabled; set => Enabled = value; }
+    float IShuttleGrid.BaseMaxLinearVelocity { get => BaseMaxLinearVelocity; set => BaseMaxLinearVelocity = value; }
+    float IShuttleGrid.AngularThrust { get => AngularThrust; set => AngularThrust = value; }
+    DirectionFlag IShuttleGrid.ThrustDirections { get => ThrustDirections; set => ThrustDirections = value; }
+    float IShuttleGrid.BodyModifier { get => BodyModifier; set => BodyModifier = value; }
+    float IShuttleGrid.DampingModifier { get => DampingModifier; set => DampingModifier = value; }
 }

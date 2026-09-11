@@ -12,6 +12,7 @@ using Content.Server._NF.Trade;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
@@ -43,6 +44,7 @@ public sealed partial class SectorSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly IRobustRandom _rng = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;

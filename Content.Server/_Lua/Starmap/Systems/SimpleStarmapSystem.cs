@@ -6,8 +6,8 @@ using Content.Server._Lua.Company;
 using Content.Server._Lua.Sectors;
 using Content.Server._Lua.SpaceHazards;
 using Content.Server._Lua.Starmap.Components;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Popups;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Lua.AmbientSpaceEffects;
@@ -45,6 +45,7 @@ namespace Content.Server._Lua.Starmap.Systems
         [Dependency] private readonly SharedContainerSystem _containers = default!;
         [Dependency] private readonly FactionWarSystem _factionWar = default!;
         [Dependency] private readonly NebulaEnvironmentSystem _nebulaEnvironment = default!;
+        [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
         private const int SectorArrivalAttempts = 48;
         private readonly List<(AmbientSpaceFieldComponent Field, Vector2 Position)> _ftlBlockingFields = new();
@@ -60,7 +61,7 @@ namespace Content.Server._Lua.Starmap.Systems
             if (!TryComp<TransformComponent>(consoleUid, out var consoleTransform)) { return; }
             var shuttleUid = consoleTransform.GridUid;
             if (shuttleUid == null) { return; }
-            if (!TryComp<ShuttleComponent>(shuttleUid.Value, out var shuttleComponent)) { return; }
+            if (!_gridAccess.TryGetShuttleGrid(shuttleUid.Value, out var shuttleComponent)) { return; }
             if (!star.CanWarp)
             { PlayDenySound(consoleUid); _popup.PopupEntity(Loc.GetString("starmap-decorative-no-warp"), consoleUid); return; }
             if (HasComp<WarpTransitComponent>(shuttleUid.Value))

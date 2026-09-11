@@ -9,7 +9,7 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Shared._NF.Bank.BUI;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
@@ -21,6 +21,7 @@ using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Content.Server._Lua.Sectors;
 using Content.Server._Lua.Starmap.Systems;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server._NF.StationEvents.Events;
 
@@ -44,6 +45,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
     [Dependency] private readonly SectorSystem _sectors = default!;
     [Dependency] private readonly StarmapSystem _starmap = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     private readonly Dictionary<EntityUid, MapId> _eventMap = new();
 
     private MapId _relevantMapId = MapId.Nullspace;
@@ -274,7 +276,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         if (_loader.TryLoadGrid(mapId, path, out var ent))
         {
-            if (HasComp<ShuttleComponent>(ent.Value))
+            if (_gridAccess.HasFtlGrid(ent.Value))
             {
                 _shuttle.TryFTLProximity(ent.Value.Owner, spawnCoords);
             }

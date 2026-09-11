@@ -23,12 +23,12 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared._NF.Bank.Components; // Frontier
-using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Server._Lua.Sectors; // Lua
 using Content.Server._Lua.StationRecords.Systems; // Lua
+using Content.Server._Lua.Bank; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server._NF.Shipyard.Systems; // Frontier
+using Content.Shared._NF.Shipyard.Components; // Frontier
 using Robust.Shared.Map;
 
 namespace Content.Server.PDA
@@ -48,6 +48,7 @@ namespace Content.Server.PDA
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
         [Dependency] private readonly SectorSystem _sectorSystem = default!; // Lua
         [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!; // Lua
+        [Dependency] private readonly BankSystem _bank = default!; // Frontier
 
         public override void Initialize()
         {
@@ -238,8 +239,8 @@ namespace Content.Server.PDA
 
             // Frontier: balance & ship deeds
             var balance = 0;
-            if (actorUid != null && TryComp<BankAccountComponent>(actorUid, out var account))
-                balance = account.Balance;
+            if (actorUid != null)
+                _bank.TryGetBalance(actorUid.Value, out balance);
             var ownedShipName = "";
             if (TryComp<ShuttleDeedComponent>(pda.ContainedId, out var shuttleDeedComp))
                 ownedShipName = ShipyardSystem.GetFullName(shuttleDeedComp);

@@ -111,10 +111,10 @@
 
 # Syndicate Engineer, "armed" with shotgun
 - type: entity
-  name: syndicate engineer
+  name: wayward engineer
   parent: MobSyndicateNavalBase
   id: MobSyndicateNavalEngineerA
-  description: On a shuttle, the engineer has the annoying job of making sure absolutely everything is running correctly. Syndicate shuttles are no different.
+  description: Long gone from home, hollowed out from emissions. Expect a fight. Seems to be armed with a shotgun.
   categories: [ HideSpawnMenu ]
   components:
     - type: Loadout
@@ -125,16 +125,12 @@
       rechargeSound:
         path: /Audio/_NF/Effects/silence.ogg
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunUranium
+      proto: ShellShotgun12_gaugeSlug
       capacity: 1
       count: 1
     - type: Gun
       showExamineText: false
       fireRate: 2
-      minAngle: 10
-      maxAngle: 20
-      angleIncrease: 5
-      angleDecay: 3
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -149,7 +145,7 @@
       prototypes:
         - SyndicateNavalEngineerGearB
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunIncendiary
+      proto: ShellShotgun12_gaugeBuckshot
       capacity: 1
       count: 1
 
@@ -161,10 +157,6 @@
     - type: Loadout
       prototypes:
         - SyndicateNavalEngineerGearC
-    - type: BasicEntityAmmoProvider
-      proto: ShellShotgun23x75mmDozd #Lua 4 gauge
-      capacity: 1
-      count: 1
 
 - type: entity
   parent: MobSyndicateNavalEngineerB
@@ -175,7 +167,7 @@
       prototypes:
         - SyndicateNavalEngineerGearD
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunBeanbag
+      proto: Pellet12_gaugeBeanbag
       capacity: 1
       count: 1
 
@@ -819,7 +811,7 @@
       prototypes:
         - SyndicateNavalEngineerVoidGear
     - type: BasicEntityAmmoProvider
-      proto: NFShellShotgunUranium
+      proto: ShellShotgun12_gaugeBuckshot
       capacity: 1
       count: 1
 

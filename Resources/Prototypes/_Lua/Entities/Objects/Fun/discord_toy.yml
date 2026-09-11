@@ -1,0 +1,41 @@
+- type: entity
+  parent: BasePlushie
+  id: DiscordToy
+  name: плюшевый Клайд
+  description: На бирке красуется надпись "Слава Мёртвому Космосу!"
+  components:
+  - type: Sprite
+    sprite: _Lua/Items/Toys/discord.rsi
+    state: blue
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Lua/Items/Toys/DiscordToy/discord-notification1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Lua/Items/Toys/DiscordToy/user_join.ogg
+      params:
+        volume: -5
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Lua/Items/Toys/DiscordToy/call_ringing.ogg
+      params:
+        volume: -5
+  - type: Item
+    heldPrefix: blue
+    storedRotation: -90
+    size: Normal
+  - type: UseDelay
+    delay: 2.0
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Lua/Items/Toys/DiscordToy/user_join.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Lua/Items/Toys/DiscordToy/user_leave.ogg
+      params:
+        volume: -5

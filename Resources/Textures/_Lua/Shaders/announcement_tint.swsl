@@ -1,0 +1,13 @@
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp
+// See AGPLv3.txt for details.
+
+light_mode unshaded;
+
+uniform lowp vec4 tint_color;
+
+void fragment() {
+    lowp vec4 base = zTexture(UV);
+    lowp float brightness = max(base.r, max(base.g, base.b));
+    COLOR = vec4(tint_color.rgb * brightness, base.a * tint_color.a);
+}

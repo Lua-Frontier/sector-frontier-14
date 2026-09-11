@@ -74,7 +74,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponRevolverRitland45Expedition
+      - id: WeaponRevolverRitland45Expedition
         prob: 0.65
       - id: SpeedLoader357_magnumUranium #Lua 45 -> Magnum
         prob: 0.65
@@ -106,7 +106,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponRevolverRitland45Expedition
+      - id: WeaponRevolverRitland45Expedition
         prob: 0.65
       - id: SpeedLoader357_magnumIncendiary #Lua 45 -> Magnum
         prob: 0.65
@@ -193,7 +193,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponEnergyPistolLaserAdvancedExpedition
+      - id: WeaponEnergyPistolLaserAdvancedExpedition
         prob: 0.65
       - id: SpaceCash2500
         prob: 0.4
@@ -221,7 +221,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponEnergyPistolLaserExpedition
+      - id: WeaponEnergyPistolLaserExpedition
         prob: 0.65
       - id: SpaceCash2500
         prob: 0.4
@@ -301,7 +301,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponRifleAssaultSmExpedition
+      - id: WeaponRifleAssaultSmExpedition
         prob: 0.65
       - id: Magazine762x39mmUranium #Lua 30 -> 762x39
         prob: 0.65
@@ -418,7 +418,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponSubMachineGunC20rExpedition
+      - id: WeaponSubMachineGunC20rExpedition
         prob: 0.65
       - id: Magazine9x19mmSubMachineGunUranium #Lua 35 -> 9x19
         prob: 0.65
@@ -446,9 +446,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponSubMachineGunWt550Expedition
+      - id: WeaponSubMachineGunWt550Expedition
         prob: 0.65
-      - id: Magazine9x19mmSubMachineGunTopMountedFMJ #Lua 35 -> 9x19
+      - id: Magazine46x30mmSubMachineGunTopMountedFMJ
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -526,7 +526,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponPistolViperExpedition
+      - id: WeaponPistolViperExpedition
         prob: 0.65
       - id: Magazine9x19mmPistolUranium #Lua 35 -> 9x19
         prob: 0.65
@@ -547,9 +547,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponPistolMk58Expedition
+      - id: WeaponPistolMk58Expedition
         prob: 0.65
-      - id: Magazine9x19mmPistolIncendiary #Lua 35 -> 9x19
+      - id: Magazine45_ACPPistolIncendiary
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -715,10 +715,10 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-      - id: NFWeaponShotgunKammererExpedition
+      - id: WeaponShotgunKammererExpedition
         prob: 0.65
       - id: SyndicateJawsOfLife
-      - id: AmmoBox23x75mmUranium #Lua 4 gauge
+      - id: AmmoBox12_gaugeUranium
       - id: SpaceCash1000
         prob: 0.4
       # Bonus Loot T2
@@ -741,7 +741,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: AmmoBox23x75mmIncendiary #Lua 4 gauges
+      - id: AmmoBox12_gaugeIncendiary
       - id: JawsOfLife
       - id: SpaceCash1000
         prob: 0.4

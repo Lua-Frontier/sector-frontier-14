@@ -21,7 +21,8 @@ namespace Content.Server.Entry
             "HolidayRsiSwap",
             "OptionsVisualizer",
             "MultipartMachineGhost",
-            "BlueprintLatheClientState" // Frontier
+            "BlueprintLatheClientState", // Frontier
+            "CEIconSmooth"
         };
     }
 }

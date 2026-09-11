@@ -8,12 +8,14 @@ using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Content.Server.Shuttles.Components; // Frontier
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Frontier: add partial
 {
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!; // Frontier
 
@@ -82,7 +84,7 @@ public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Fro
     {
         // Try to get entity
         if (EntityManager.TryGetEntity(targetEntity, out var targetUid)
-            && HasComp<ShuttleComponent>(targetUid)
+            && _gridAccess.HasFtlGrid(targetUid.Value)
             && (!TryComp(targetUid, out IFFComponent? iff) || (iff.Flags & (IFFFlags.Hide | IFFFlags.HideLabel)) == 0)
             && TryComp(targetUid, out TransformComponent? xform))
         {

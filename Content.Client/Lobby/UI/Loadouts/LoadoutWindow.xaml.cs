@@ -13,6 +13,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared._NF.Bank; // Frontier
+using Content.Client.Lobby;
 
 namespace Content.Client.Lobby.UI.Loadouts;
 
@@ -96,7 +97,8 @@ public sealed partial class LoadoutWindow : FancyWindow
         CalculateLoadoutCost(loadout, collection);
         // Frontier - update bank balance label text - value should not change.
         Balance.Margin = new Thickness(5, 2, 5, 5);
-        Balance.Text = Loc.GetString("frontier-loadout-balance", ("balance", BankSystemExtensions.ToSpesoString(Profile.BankBalance)));
+        var accountBalance = IoCManager.Resolve<IClientPreferencesManager>().Preferences?.BankBalance ?? Profile.BankBalance;
+        Balance.Text = Loc.GetString("frontier-loadout-balance", ("balance", BankSystemExtensions.ToSpesoString(accountBalance)));
     }
 
     public void RefreshLoadouts(RoleLoadout loadout, ICommonSession session, IDependencyCollection collection)

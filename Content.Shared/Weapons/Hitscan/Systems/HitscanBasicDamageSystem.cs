@@ -17,22 +17,29 @@ public sealed class HitscanBasicDamageSystem : EntitySystem
 
     private void OnHitscanHit(Entity<HitscanBasicDamageComponent> ent, ref HitscanRaycastFiredEvent args)
     {
-        if (args.Canceled || args.HitEntity == null)
+        if (args.Canceled)
             return;
 
         var dmg = ent.Comp.Damage * _damage.UniversalHitscanDamageModifier;
 
-        var damageDealt = _damage.TryChangeDamage(args.HitEntity, dmg, origin: args.Gun);
-
-        if (damageDealt == null)
-            return;
-
-        var damageEvent = new HitscanDamageDealtEvent
+        foreach (var hitEntity in args.HitEntities)
         {
-            Target = args.HitEntity.Value,
-            DamageDealt = damageDealt,
-        };
+            var damageDealt = _damage.TryChangeDamage(hitEntity,
+                dmg,
+                origin: args.Gun,
+                armorPenetration: ent.Comp.ArmorPenetration,
+                ignoreResistances: ent.Comp.IgnoreResistances);
 
-        RaiseLocalEvent(ent, ref damageEvent);
+            if (damageDealt == null)
+                return;
+
+            var damageEvent = new HitscanDamageDealtEvent
+            {
+                Target = hitEntity,
+                DamageDealt = damageDealt,
+            };
+
+            RaiseLocalEvent(ent, ref damageEvent);
+        }
     }
 }

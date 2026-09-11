@@ -42,6 +42,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         SubscribeLocalEvent<MaterialReclaimerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<CollideMaterialReclaimerComponent, StartCollideEvent>(OnCollide);
         SubscribeLocalEvent<ActiveMaterialReclaimerComponent, ComponentStartup>(OnActiveStartup);
+        SubscribeLocalEvent<ActiveMaterialReclaimerComponent, ComponentShutdown>(OnActiveShutdown);
     }
 
     private void OnMapInit(EntityUid uid, MaterialReclaimerComponent component, MapInitEvent args)
@@ -51,7 +52,13 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, MaterialReclaimerComponent component, ComponentShutdown args)
     {
-        _audio.Stop(component.Stream);
+        StopSound(component);
+    }
+
+    private void OnActiveShutdown(EntityUid uid, ActiveMaterialReclaimerComponent component, ComponentShutdown args)
+    {
+        if (TryComp(uid, out MaterialReclaimerComponent? reclaimer) && reclaimer.CutOffSound)
+            StopSound(reclaimer);
     }
 
     private void OnExamined(EntityUid uid, MaterialReclaimerComponent component, ExaminedEvent args)
@@ -119,8 +126,7 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         if (Timing.CurTime > component.NextSound)
         {
             // Frontier: tear down previous stream just in case, allow non-predicted audio
-            if (component.Stream != null)
-                _audio.Stop(component.Stream);
+            StopSound(component);
 
             if (predictSound)
                 component.Stream = _audio.PlayPredicted(component.Sound, uid, user)?.Entity;
@@ -161,6 +167,9 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
         if (!Resolve(uid, ref component, ref active, false))
             return false;
 
+        if (component.CutOffSound)
+            StopSound(component);
+
         RemCompDeferred(uid, active);
         return true;
     }
@@ -179,11 +188,18 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
 
         component.ItemsProcessed++;
         if (component.CutOffSound)
-        {
-            _audio.Stop(component.Stream);
-        }
+            StopSound(component);
 
         Dirty(uid, component);
+    }
+
+    protected void StopSound(MaterialReclaimerComponent component)
+    {
+        if (component.Stream == null)
+            return;
+
+        _audio.Stop(component.Stream);
+        component.Stream = null;
     }
 
     /// <summary>
