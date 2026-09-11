@@ -287,20 +287,15 @@ internal sealed partial class ChatManager : IChatManager
 
         Color? colorOverride = null;
         var displayName = player.Name;
-        if (_sponsorManager.TryGetActiveSponsor(player.UserId, out var sponsor))
-        {
-            string? donorHex = sponsor.Role switch
-            {
-                var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) ||
-                           string.Equals(r, DonorGroups.ShareholderLua, StringComparison.OrdinalIgnoreCase) => "#F05C29",
-                var r when string.Equals(r, DonorGroups.God, StringComparison.OrdinalIgnoreCase) => "#00FF4A",
-                var r when string.Equals(r, DonorGroups.Boost, StringComparison.OrdinalIgnoreCase) => "#FF4CF1",
-                _ => null
-            };
+        IEnumerable<string> colorRoles = Array.Empty<string>();
+        if (_sponsorManager.TryGetAllActiveSponsors(player.UserId, out var allSponsors) && allSponsors.Count > 0)
+            colorRoles = allSponsors.Select(s => s.Role);
+        else if (_sponsorManager.TryGetActiveSponsor(player.UserId, out var sponsor))
+            colorRoles = new[] { sponsor.Role };
 
-            if (donorHex != null)
-                displayName = $"[color={donorHex}]{player.Name}[/color]";
-        }
+        var donorHex = DonorGroups.SelectHighestOocColorHex(colorRoles);
+        if (donorHex != null)
+            displayName = $"[color={donorHex}]{player.Name}[/color]";
 
         var wrappedMessage = Loc.GetString("chat-manager-send-ooc-wrap-message",
             ("playerName", displayName),

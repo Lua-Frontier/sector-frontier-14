@@ -666,19 +666,17 @@ namespace Content.Server.Ghost
             {
                 color = prefs.AdminOOCColor;
             }
-            else if (_sponsorManager.TryGetActiveSponsor(session.UserId, out var sponsor))
+            else
             {
-                color = sponsor.Role switch
-                {
-                    var r when string.Equals(r, DonorGroups.Shareholder, StringComparison.OrdinalIgnoreCase) ||
-                               string.Equals(r, DonorGroups.ShareholderLua, StringComparison.OrdinalIgnoreCase)
-                        => Color.FromHex("#F05C29"),
-                    var r when string.Equals(r, DonorGroups.God, StringComparison.OrdinalIgnoreCase)
-                        => Color.FromHex("#00FF4A"),
-                    var r when string.Equals(r, DonorGroups.Boost, StringComparison.OrdinalIgnoreCase)
-                        => Color.FromHex("#FF4CF1"),
-                    _ => (Color?) null
-                };
+                IEnumerable<string> colorRoles = Array.Empty<string>();
+                if (_sponsorManager.TryGetAllActiveSponsors(session.UserId, out var allSponsors) && allSponsors.Count > 0)
+                    colorRoles = allSponsors.Select(s => s.Role);
+                else if (_sponsorManager.TryGetActiveSponsor(session.UserId, out var sponsor))
+                    colorRoles = new[] { sponsor.Role };
+
+                var hex = DonorGroups.SelectHighestOocColorHex(colorRoles);
+                if (hex != null)
+                    color = Color.FromHex(hex);
             }
 
             if (color == null)
