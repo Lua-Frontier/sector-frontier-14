@@ -27,6 +27,7 @@ public sealed partial class DonateShopWindow : BaseWindow
     private const string TierCategoryPrefix = "UplinkVipTier";
     private static readonly Color ShareholderColor = Color.FromHex("#F05C29");
     private static readonly Color GodColor = Color.FromHex("#00FF4A");
+    private static readonly Color BoostColor = Color.FromHex("#FF4CF1");
     private static readonly Color Rank1To3Color = Color.FromHex("#F80000");
     private static readonly Color Rank4Color = Color.FromHex("#E84848");
     private static readonly Color Rank5To6Color = Color.FromHex("#D028E0");
@@ -209,6 +210,7 @@ public sealed partial class DonateShopWindow : BaseWindow
         [DonorGroups.Shareholder] = "UplinkVipTierShareholder",
         [DonorGroups.ShareholderLua] = "UplinkVipTierShareholderLua",
         [DonorGroups.God] = "UplinkVipTierGod",
+        [DonorGroups.Boost] = "UplinkVipTierBoost",
         [DonorGroups.Rank1] = "UplinkVipTierRank1",
         [DonorGroups.Rank2] = "UplinkVipTierRank2",
         [DonorGroups.Rank3] = "UplinkVipTierRank3",
@@ -278,6 +280,8 @@ public sealed partial class DonateShopWindow : BaseWindow
                 continue;
             tabs.Add((tabId, $"store-vip-tier-{rank.ToLowerInvariant()}"));
         }
+        if (OwnsRaw(DonorGroups.Boost))
+            tabs.Add(("UplinkVipTierBoost", "store-vip-tier-boost"));
 
         if (tabs.All(t => t.Id != _currentTierTab))
             _currentTierTab = tabs[0].Id;
@@ -582,6 +586,7 @@ public sealed partial class DonateShopWindow : BaseWindow
         {
             DonorGroups.Shareholder or DonorGroups.ShareholderLua => ShareholderColor,
             DonorGroups.God => GodColor,
+            DonorGroups.Boost => BoostColor,
             DonorGroups.Rank1 or DonorGroups.Rank2 or DonorGroups.Rank3 => Rank1To3Color,
             DonorGroups.Rank4 => Rank4Color,
             DonorGroups.Rank5 or DonorGroups.Rank6 => Rank5To6Color,
@@ -601,6 +606,7 @@ public sealed partial class DonateShopWindow : BaseWindow
             DonorGroups.Shareholder => "store-vip-tier-shareholder",
             DonorGroups.ShareholderLua => "store-vip-tier-shareholderlua",
             DonorGroups.God => "store-vip-tier-god",
+            DonorGroups.Boost => "store-vip-tier-boost",
             DonorGroups.Rank1 => "store-vip-tier-rank1",
             DonorGroups.Rank2 => "store-vip-tier-rank2",
             DonorGroups.Rank3 => "store-vip-tier-rank3",

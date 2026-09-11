@@ -675,6 +675,8 @@ namespace Content.Server.Ghost
                         => Color.FromHex("#F05C29"),
                     var r when string.Equals(r, DonorGroups.God, StringComparison.OrdinalIgnoreCase)
                         => Color.FromHex("#00FF4A"),
+                    var r when string.Equals(r, DonorGroups.Boost, StringComparison.OrdinalIgnoreCase)
+                        => Color.FromHex("#FF4CF1"),
                     _ => (Color?) null
                 };
             }

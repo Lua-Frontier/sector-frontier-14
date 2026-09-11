@@ -11,6 +11,7 @@ public static class DonorGroups
     public const string Shareholder = "Shareholder";
     public const string ShareholderLua = "ShareholderLua";
     public const string God = "God";
+    public const string Boost = "Boost";
     public const string Rank1 = "Rank1";
     public const string Rank2 = "Rank2";
     public const string Rank3 = "Rank3";
@@ -27,6 +28,7 @@ public static class DonorGroups
         Shareholder,
         ShareholderLua,
         God,
+        Boost,
         Rank1,
         Rank2,
         Rank3,
@@ -63,6 +65,7 @@ public static class DonorGroups
         {
             "акционер" => Shareholder,
             "божество" => God,
+            "boost" => Boost,
             "ранг i" => Rank1,
             "ранг ii" => Rank2,
             "ранг iii" => Rank3,
@@ -100,6 +103,9 @@ public static class DonorGroups
                     break;
                 case God:
                     effective.Add(God);
+                    break;
+                case Boost:
+                    effective.Add(Boost);
                     break;
                 case Rank1:
                     AddRanks(effective, Rank1, Rank4, Rank5, Rank6, Rank7, Rank8, Rank9, Rank10);
@@ -160,6 +166,8 @@ public static class DonorGroups
             if (owned.Contains(rank))
                 tokens.Add(rank);
         }
+        if (owned.Contains(Boost))
+            tokens.Add(Boost);
         return tokens;
     }
 

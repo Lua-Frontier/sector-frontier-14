@@ -213,6 +213,7 @@ public sealed partial class BankSystem
         {
             await RunOnMainThread(() => _galBankTransferInFlight.Remove(userId));
         }
+    }
 
     private static GalBankTransferError MapGalBankTransferError(string? body)
     {

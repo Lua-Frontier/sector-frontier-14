@@ -1,0 +1,23 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: listing
+  id: UplinkVipBoostDiscordToy
+  name: uplink-vip-DiscordToy-name
+  description: uplink-vip-DiscordToy-desc
+  productEntity: DiscordToy
+  cost:
+    Speso: 5000
+  categories:
+  - UplinkVipTierBoost
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - boost
+  - !type:ListingLimitedStockCondition
+    stock: 10

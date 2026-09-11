@@ -29,6 +29,7 @@ ent-EnergySwordDoubleLegal = легальный двухклинковый эн�
 store-vip-tier-shareholder = Акционер
 store-vip-tier-shareholderlua = Акционер
 store-vip-tier-god = Божество
+store-vip-tier-boost = Boost
 store-vip-tier-rank1 = Ранг I
 store-vip-tier-rank2 = Ранг II
 store-vip-tier-rank3 = Ранг III
@@ -569,3 +570,6 @@ uplink-vip-HardsuitShareholder-desc = { ent-HardsuitShareholder.desc }
 
 uplink-vip-HardsuitShareholderSyn-name = { ent-HardsuitShareholderSyn }
 uplink-vip-HardsuitShareholderSyn-desc = { ent-HardsuitShareholderSyn.desc }
+
+uplink-vip-DiscordToy-name = { ent-DiscordToy }
+uplink-vip-DiscordToy-desc = { ent-DiscordToy.desc }
