@@ -16,7 +16,7 @@
     - suitStorage
     - Belt
   - type: Gun
-    fireRate: 2
+    fireRate: 1.2   #Maksimvini 2>1.2 balance
     projectileSpeed: 25 #Lua 65 -> 25
     availableModes:
     - SemiAuto
@@ -24,10 +24,10 @@
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/hawk_fire.ogg
   - type: BasicEntityAmmoProvider
     proto: BulletHawk
-    capacity: 12
-    count: 12
+    capacity: 15
+    count: 15
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1.5
+    rechargeCooldown: 3.5  #Maksimvini 1.5>3.5 Balance
     rechargeSound:
       path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
   - type: AmmoCounter
@@ -45,5 +45,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20 #Lua -20
-        Blunt: 20 #Lua add
+        Piercing: 9 #Lua -20 #Maksimvini 20>9 balance
+        Blunt: 10 #Lua add #Maksimvini 20>10 Balance

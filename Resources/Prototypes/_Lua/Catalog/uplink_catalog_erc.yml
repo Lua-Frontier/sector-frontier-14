@@ -237,7 +237,7 @@
   description: uplink-erc-cammerer-desc
   productEntity: NFWeaponShotgunKammerer
   cost:
-    Speso: 5000
+    Speso: 10000
   categories:
     - UplinkERCWeapons
   conditions:
@@ -264,6 +264,25 @@
 # Region ammo
 
 # 6.8x52mm
+
+# 4 gauge
+
+- type: listing
+  id: ERCUplinkAmmoBox23x75mmBuckshot # AmmoBox
+  name: uplink-erc-AmmoBox23x75mmBuckshot-name
+  description: uplink-erc-AmmoBox23x75mmBuckshot-desc
+  productEntity: AmmoBox23x75mmBuckshot
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/4_gauge.rsi, state: base }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkERCAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - ERCUplink
+
 
 # FMJ
 

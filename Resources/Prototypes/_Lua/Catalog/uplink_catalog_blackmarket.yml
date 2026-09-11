@@ -146,7 +146,7 @@
   description: uplink-bm-plasmacutter-desc
   productEntity: WeaponPlasmaCutter
   cost:
-    Speso: 50000
+    Speso: 25000
   categories:
     - UplinkBMWeapons
   conditions:
@@ -161,6 +161,21 @@
   description: uplink-bm-autopulser-desc
   productEntity: WeaponRifleAsakimAutopulser
   cost:
+    Speso: 75000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMWeaponRifleJackdaw
+  name: uplink-bm-Jackdaw-name
+  description: uplink-bm-Jackdaw-desc
+  productEntity: WeaponRifleJackdaw
+  cost:
     Speso: 50000
   categories:
     - UplinkBMWeapons
@@ -170,7 +185,160 @@
         tags:
           - BMUplink
 
+- type: listing
+  id: UplinkBMNFWeaponPistolN1984
+  name: uplink-bm-Pistol1984-name
+  description: uplink-bm-Pistol1984-desc
+  productEntity: NFWeaponPistolN1984
+  cost:
+    Speso: 27500
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMNFWeaponRifleSVS
+  name: uplink-bm-RifleSVS-name
+  description: uplink-bm-RifleSVS-desc
+  productEntity: NFWeaponRifleSVS
+  cost:
+    Speso: 56000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMNFWeaponRifleAssaultGestio
+  name: uplink-bm-Gestio-name
+  description: uplink-bm-Gestio-desc
+  productEntity: NFWeaponRifleAssaultGestio
+  cost:
+    Speso: 32500
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMNFWeaponRifleMusket
+  name: uplink-bm-Musket-name
+  description: uplink-bm-Musket-desc
+  productEntity: NFWeaponRifleMusket
+  cost:
+    Speso: 20000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMNFWeaponShotgunKammerer
+  name: uplink-bm-Kammerer-name
+  description: uplink-bm-Kammerer-desc
+  productEntity: NFWeaponShotgunKammerer
+  cost:
+    Speso: 67500
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMNFWeaponEnergyLightMachineGunTurbo
+  name: uplink-bm-EnergyLightMachineGunTurbo-name
+  description: uplink-bm-EnergyLightMachineGunTurbo-desc
+  productEntity: NFWeaponEnergyLightMachineGunTurbo
+  cost:
+    Speso: 37500
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMNFWeaponPistolPollock
+  name: uplink-bm-Pollock-name
+  description: uplink-bm-Pollock-desc
+  productEntity: NFWeaponPistolPollock
+  cost:
+    Speso: 42500
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBWeaponPistolAnaconda
+  name: uplink-bm-Anaconda-name
+  description: uplink-bm-Anaconda-desc
+  productEntity: WeaponPistolAnaconda
+  cost:
+    Speso: 85000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
+- type: listing
+  id: UplinkBMWeaponPistolHawk4
+  name: uplink-bm-Hawk4-name
+  description: uplink-bm-Hawk4-desc
+  productEntity: WeaponPistolHawk4
+  cost:
+    Speso: 85000
+  categories:
+    - UplinkBMWeapons
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - BMUplink
+
 # Region ammo
+
+# Shotgun ammo
+
+- type: listing
+  id: BMUplinkAmmoBox23x75mmBuckshot # AmmoBox
+  name: uplink-bm-AmmoBox23x75mmBuckshot-name
+  description: uplink-bm-AmmoBox23x75mmBuckshot-desc
+  productEntity: AmmoBox23x75mmBuckshot
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/4_gauge.rsi, state: base }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
 
 # 6.8x52mm
 
@@ -563,7 +731,7 @@
   productEntity: BoxEMPGrenadesNfsd
   icon: { sprite: Objects/Weapons/Grenades/empgrenade.rsi, state: icon}
   cost:
-    Speso: 25000
+    Speso: 60000
   categories:
     - UplinkBMExplosives
   conditions:

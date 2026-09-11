@@ -24,7 +24,7 @@
     - suitStorage
     - Belt
   - type: Gun
-    fireRate: 3
+    fireRate: 1
     projectileSpeed: 40 # Mono
     availableModes:
       - SemiAuto
@@ -32,8 +32,8 @@
       path: /Audio/Weapons/Guns/Gunshots/hpistol.ogg
   - type: BasicEntityAmmoProvider
     proto: BulletAnaconda
-    capacity: 7
-    count: 7
+    capacity: 5  #Maksimvini 7>5 balance
+    count: 5     #Maksimvini 7>5 balance
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 4
     rechargeSound:

@@ -24,11 +24,11 @@
   - type: Gun
 #    minAngle: 18
 #    maxAngle: 26
-    minAngle: 3.1 #Lua
-    maxAngle: 15.5 #Lua
-    angleIncrease: 0.7 #Lua
+    minAngle: 8.1 #Lua  #Maksimvini 3.1>8.1  Rebalance
+    maxAngle: 18.5 #Lua  #Maksimvini 15.5>18.5 Rebalance
+    angleIncrease: 1.5 #Lua  #Maksimvini 0.7>1.5 Rebalance
     angleDecay: 5 #Lua
-    fireRate: 4 #Lua 6<4
+    fireRate: 3.5 #Lua 6<4  #Maksimvini 4>3.5 Rebalance
     burstFireRate: 10 #Lua 15 -> 10
     shotsPerBurst: 5
     selectedMode: FullAuto
@@ -44,13 +44,13 @@
     zeroVisible: false
   - type: ProjectileBatteryAmmoProvider
     proto: HandheldAutopulserProjectile
-    fireCost: 20
+    fireCost: 25 #Maksimvini 20>25 (25x13=325, 13 shots)
   - type: Appearance
   - type: StaticPrice
     price: 1750
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 50 #Maksimvini 25>50. Less ammo cap, faster reload rebalance.
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 325  #Maksimvini 500>325 (13 shots)
+    startingCharge: 325  #Maksimvini 500>325 (13 shots)

@@ -1,6 +1,6 @@
 
 uplink-bm-hardsuitwarlord-name = Скафандр "Варлорд"
-uplink-bm-hardsuitwarlord-desc = Недавно появившаяся в ассортименте новая модель боевого скафандра наёмников. Защита: 45/45/30//45/45//30/30
+uplink-bm-hardsuitwarlord-desc = Недавно появившаяся в ассортименте новая модель боевого скафандра наёмников. Защита: 45/45/30//45/30//30/30
 
 uplink-bm-mercenary-hardsuit-name = Скафандр наёмника
 uplink-bm-mercenary-hardsuit-desc = Старая, но надежная модель боевого скафандра наёмников. Защита: 45/45/30//30/30//45/45
@@ -37,10 +37,38 @@ uplink-bm-wattz2-desc = Высокотехнологичная лазерная 
 uplink-bm-plasmacutter-name = плазменный резак
 uplink-bm-plasmacutter-desc = Стреляющий энергетической волной пистолет, предназначенный для добычи руды на астероидах. Это не мешает ему так же эффективно отрывать и поджаривать куски мяса.
 
-uplink-bm-autopulser-name = kunisa-pattern plasma autopulser
+uplink-bm-autopulser-name = плазменный авто-импульсор "Куниса"
 uplink-bm-autopulser-desc = Усовершенствованная ручная плазменная винтовка. Конструкция имеет сходство с плазменным оружием, существовавшим до Великого Разлома.
 
+uplink-bm-Jackdaw-name = лёгкий автомат "Галка"
+uplink-bm-Jackdaw-desc = лёгкий полу-универсальный автомат на калибре 7.62x51мм "Галка"
 
+uplink-bm-Pistol1984-name = N1984
+uplink-bm-Pistol1984-desc = Запасное оружие любого уважающего себя человека. Большие обоймы и калибр .45 ACP решают многое.
+
+uplink-bm-RifleSVS-name = SVS-42
+uplink-bm-RifleSVS-desc = Изначально сконструированно Самоновым, это орудие старой эпохи пришло прямиком из СССП
+
+uplink-bm-Gestio-name = Гестио
+uplink-bm-Gestio-desc = Старый, добрый, и надёждый лёгкий автомат "Гестио".
+
+uplink-bm-Musket-name = Мушкет
+uplink-bm-Musket-desc = Некогда - орудие каждой войны, сейчас - более пережиток прошлого.
+
+uplink-bm-Kammerer-name = Каммерер
+uplink-bm-Kammerer-desc = Удобный, компактный и сильный дробовик "Каммерер" на калибре 4 gauge.
+
+uplink-bm-EnergyLightMachineGunTurbo-name = турбо-лазер MK3
+uplink-bm-EnergyLightMachineGunTurbo-desc = Турболазер, снятый с какого-то старого ИИ-конструкта, и переделанный под компактное оружие.
+
+uplink-bm-Pollock-name = Поллок
+uplink-bm-Pollock-desc = Компактный и лёгкий в создании боевой пистолет "Поллок". Использует патроны калибра 6.35x40мм
+
+uplink-bm-Anaconda-name = самозарядный пистолет "Анаконда"
+uplink-bm-Anaconda-desc = Некогда - крайне весомый аргумент в любом споре, теперь - реконструированное напоминание о былом величии.
+
+uplink-bm-Hawk4-name = самозарядный пистолет Hawk 4
+uplink-bm-Hawk4-desc = Ранее всеми излюбленный и крайне универсальный пистолет "Hawk4", был переделан под гражданскую вариацию и пущен в обиход.
 
 uplink-bm-autorifle-name = Легкий Ручной Пулемёт "Рокот"
 uplink-bm-autorifle-desc = Старый, но надежный пулемет, стреляющий безгильзовым патроном 6.8х52 STANAG. Легко уничтожает как живую силу врага, так и укрепления.
@@ -216,3 +244,6 @@ uplink-security-rechargerpistol-desc = Улучшенная версия вин�
 
 uplink-security-rifletemperature-name = температурная винтовка
 uplink-security-rifletemperature-desc = Легкий энергетический пистолет-пулемет, наносящий электрические и кислотные ожоги. Вопреки названию, нагревает только пятую точку стрелка.
+
+uplink-bm-AmmoBox23x75mmBuckshot-name = короб дробовых патрон (4 Gauge buckshot)
+uplink-bm-AmmoBox23x75mmBuckshot-desc = Короб на 32 патрона с дробью, для ружий калибра 4 gauge

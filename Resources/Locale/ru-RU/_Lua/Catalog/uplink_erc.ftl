@@ -49,3 +49,6 @@ uplink-erc-cammerer-desc = Полуавтоматический дробовик
 
 
 store-preset-name-erc-uplink = Аплинк ЭИК
+
+uplink-erc-AmmoBox23x75mmBuckshot-name = Короб дробовых патрон (4 Gauge buckshot)
+uplink-erc-AmmoBox23x75mmBuckshot-desc = Короб на 32 патрона с дробью, для ружий калибра 4 gauge

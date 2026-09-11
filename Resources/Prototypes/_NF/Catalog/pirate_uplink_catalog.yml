@@ -474,8 +474,8 @@
 
 - type: listing
   id: UplinkPirateRepairKit
-  name: uplink-pirate-repair-kit-name
-  description: uplink-pirate-repair-kit-desc
+  name: repair Kit tool
+  description: Small repair kit
   productEntity: PirateRepairKit
   icon: { sprite: _NF/Objects/Tools/Toolboxes/toolbox_pirate.rsi, state: icon }
   cost:
@@ -493,8 +493,8 @@
 
 - type: listing
   id: UplinkPirateIonizedBluespaceDustBag
-  name: uplink-pirate-ionized-dust-bag-name
-  description: uplink-pirate-ionized-dust-bag-desc
+  name: ionized dust bag
+  description: Claimed by ones, it clears magnetic fields of items, disrupting pinpointer link to it. Claimed by others to be blue dust.
   productEntity: IonizedBluespaceDustBag
   icon: { sprite: _NF/Objects/Specific/Pirate/bluespace_dust.rsi, state: icon }
   cost:
@@ -509,8 +509,8 @@
 
 - type: listing
   id: UplinkPiratePinpointerScanner
-  name: uplink-pirate-pinpointer-target-scanner-name
-  description: uplink-pirate-pinpointer-target-scanner-desc
+  name: pinpointer target scanner
+  description: it scans for pinpointer links to items. And it beeps. Beep-- oops, what`is in there?
   productEntity: PinpointerScanner
   icon: { sprite: _NF/Objects/Specific/Pirate/pinpointer_scanner.rsi, state: icon }
   cost:
@@ -525,8 +525,8 @@
 
 - type: listing
   id: UplinkPiratePirateStitcher
-  name: uplink-pirate-pirate-stitcher-name
-  description: uplink-pirate-pirate-stitcher-desc
+  name: pirated stitcher
+  description: This brand new uniform printer, totally legally "found" and repurposed to print only high quality items now.
   productEntity: PirateStitcherCircuitboard
   icon: { sprite: _NF/Objects/Misc/module.rsi, state: pirate_stitcher }
   cost:
@@ -568,8 +568,8 @@
 # Moved by path: Prototypes\_Lua\Catalog\uplink_catalog_pirate.yml
 # - type: listing
 #   id: UplinkNFPouchPirate
-#   name: uplink-pirate-pouch-name
-#   description: uplink-pirate-pouch-desc
+#   name: pirate pouch
+#   description: Small pirate pouch
 #   productEntity: NFPouchPirate
 #   icon: { sprite: _NF/Objects/Storage/Pouches/pouch.rsi, state: pirate-icon }
 #   cost:
