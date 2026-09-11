@@ -1,19 +1,30 @@
 - type: entity
-  parent: [ MonoEnergyShieldClothing, ClothingNeckBase ]
+  parent: ClothingNeckBase
   id: ClothingNeckCloakNanotrasenVip
   name: unnown ckoak
   description: Unnown
   components:
-  - type: PersonalShield
-    color: "#dba122"
-    shield:
-      maxCharge: 300
-      regenRate: 3
-      spinupTime: 1
-      breakCooldown: 15
-      powerDraw: 0.5
-      blockModifier:
-        coefficients:
-          Asphyxiation: 0
   - type: Sprite
     sprite: _Lua/Cloack/nanotrasenvip.rsi
+#  - type: PersonalShield
+#    color: "#dba122"
+#    shield:
+#      maxCharge: 300
+#      regenRate: 3
+#      spinupTime: 1
+#      breakCooldown: 15
+#      powerDraw: 0.5
+#      blockModifier:
+#        coefficients:
+#          Asphyxiation: 0- type: entity
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCapeLuaBlackDaltVip
+  categories: [ HideSpawnMenu ]
+  name: плащ Луа
+  description: Плащ сшитый на заказ в память о Дальтштанте.
+  components:
+  - type: Sprite
+    sprite: _Lua/Sponsor/Lua/Lua_Black/Clothing/Neck/Cloaks/lua_cape_black.rsi
+
