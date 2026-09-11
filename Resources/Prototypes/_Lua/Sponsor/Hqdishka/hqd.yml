@@ -37,7 +37,7 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,13,9
+    - 0,0,7,6
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 1
@@ -95,10 +95,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.2
-        Heat: 0.3
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
 
 - type: entity
   parent: ClothingOuterHardsuitAtmos
@@ -142,12 +142,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.5
-        Piercing: 0.4
-        Heat: 0.4
-        Radiation: 0.3
-        Caustic: 0.3
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.5
+        Heat: 0.3
+        Radiation: 0.1
+        Caustic: 0.45
+        Poison: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
