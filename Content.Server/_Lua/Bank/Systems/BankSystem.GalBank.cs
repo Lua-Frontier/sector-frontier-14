@@ -77,14 +77,19 @@ public sealed partial class BankSystem
         return string.Empty;
     }
 
-    private async Task FetchAndCacheGalBankCodeAsync(NetUserId userId)
+    public void InvalidateGalBankCode(NetUserId userId)
+    {
+        _galBankCodeByUser.Remove(userId);
+    }
+
+    private async Task FetchAndCacheGalBankCodeAsync(NetUserId userId, bool forceRefresh = false)
     {
         if (!_galBankCodeFetchInFlight.Add(userId))
             return;
 
         try
         {
-            var code = await FetchGalBankCodeAsync(userId);
+            var code = await FetchGalBankCodeAsync(userId, forceRefresh);
             if (!string.IsNullOrWhiteSpace(code))
                 await RunOnMainThread(() => _galBankCodeByUser[userId] = code);
         }
@@ -94,14 +99,16 @@ public sealed partial class BankSystem
         }
     }
 
-    public async Task<string?> FetchGalBankCodeAsync(NetUserId userId)
+    public async Task<string?> FetchGalBankCodeAsync(NetUserId userId, bool forceRefresh = false)
     {
         var url = _cfg.GetCVar(CLVars.TransferApiUrl)?.Trim().TrimEnd('/');
         var secret = _cfg.GetCVar(CLVars.TransferApiSecret);
         if (string.IsNullOrWhiteSpace(url) || string.IsNullOrWhiteSpace(secret))
             return null;
 
-        if (_galBankCodeByUser.TryGetValue(userId, out var cached) && !string.IsNullOrWhiteSpace(cached))
+        if (!forceRefresh &&
+            _galBankCodeByUser.TryGetValue(userId, out var cached) &&
+            !string.IsNullOrWhiteSpace(cached))
             return cached;
 
         try

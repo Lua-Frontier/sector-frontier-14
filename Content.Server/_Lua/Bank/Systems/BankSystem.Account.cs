@@ -252,5 +252,7 @@ public sealed partial class BankSystem : SharedBankSystem
     {
         var cts = new CancellationToken();
         _prefsManager.RefreshPreferencesAsync(args.PlayerSession, cts);
+        InvalidateGalBankCode(args.PlayerSession.UserId);
+        EnsureGalBankForUser(args.PlayerSession.UserId);
     }
 }
