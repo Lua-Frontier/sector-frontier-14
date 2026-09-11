@@ -1,13 +1,14 @@
 // LuaCorp - This file is licensed under AGPLv3
 // Copyright (c) 2025 LuaCorp
 // See AGPLv3.txt for details.
+using Content.Server._Lua.Shuttles.Components;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._Lua.Shipyard.Components;
 using Content.Server._Lua.Stargate.Components;
 using Content.Server._NF.CryoSleep;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Server.NPC.HTN;
-using Content.Server.Shuttles.Components;
 using Content.Shared._Lua.Administration.AdminStats;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Administration;
@@ -28,6 +29,7 @@ public sealed class AdminStatsEui : BaseEui
 {
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IEntityManager _entMan = default!;
+    private ShuttleGridAccessSystem _gridAccess = default!;
     private readonly bool _isLinux;
     private readonly bool _isWindows;
     private long _prevHostCpuIdle;
@@ -40,6 +42,7 @@ public sealed class AdminStatsEui : BaseEui
     public AdminStatsEui()
     {
         IoCManager.InjectDependencies(this);
+        _gridAccess = _entMan.System<ShuttleGridAccessSystem>();
         _isLinux = RuntimeInformation.IsOSPlatform(OSPlatform.Linux);
         _isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
         if (_isLinux) ReadLinuxCpuTotals(out _prevHostCpuIdle, out _prevHostCpuTotal);
@@ -81,6 +84,8 @@ public sealed class AdminStatsEui : BaseEui
             ShuttlesActive = _cachedState.ShuttlesActive,
             ShuttlesPaused = _cachedState.ShuttlesPaused,
             ShuttlesTotal = _cachedState.ShuttlesTotal,
+            AiShuttlesActive = _cachedState.AiShuttlesActive,
+            AiShuttlesTotal = _cachedState.AiShuttlesTotal,
             DebrisCount = _cachedState.DebrisCount,
             WrecksCount = _cachedState.WrecksCount,
             DebrisTotalCount = _cachedState.DebrisTotalCount,
@@ -102,6 +107,7 @@ public sealed class AdminStatsEui : BaseEui
     {
         CollectNpcStats();
         CollectShuttleStats();
+        CollectAiShuttleStats();
         CollectDebrisStats();
         CollectPlayerStats();
         CollectStargateStats();
@@ -127,12 +133,25 @@ public sealed class AdminStatsEui : BaseEui
         _cachedState.ShuttlesActive = 0;
         _cachedState.ShuttlesPaused = 0;
         _cachedState.ShuttlesTotal = 0;
-        var query = _entMan.AllEntityQueryEnumerator<ShuttleComponent, ShuttleDeedComponent, MapGridComponent>();
-        while (query.MoveNext(out var uid, out _, out _, out _))
+        var query = _entMan.AllEntityQueryEnumerator<ShuttleDeedComponent, MapGridComponent>();
+        while (query.MoveNext(out var uid, out _, out _))
         {
+            if (_gridAccess.GetKind(uid) != ShuttleGridKind.Shuttle) continue;
             _cachedState.ShuttlesTotal++;
             if (_entMan.HasComponent<ParkedShuttleComponent>(uid)) _cachedState.ShuttlesPaused++;
             else _cachedState.ShuttlesActive++;
+        }
+    }
+
+    private void CollectAiShuttleStats()
+    {
+        _cachedState.AiShuttlesActive = 0;
+        _cachedState.AiShuttlesTotal = 0;
+        var query = _entMan.AllEntityQueryEnumerator<ShuttleAiGridComponent, MapGridComponent>();
+        while (query.MoveNext(out _, out _, out _))
+        {
+            _cachedState.AiShuttlesTotal++;
+            _cachedState.AiShuttlesActive++;
         }
     }
 
@@ -140,12 +159,13 @@ public sealed class AdminStatsEui : BaseEui
     {
         _cachedState.DebrisCount = 0;
         _cachedState.WrecksCount = 0;
-        var query = _entMan.AllEntityQueryEnumerator<MapGridComponent, MetaDataComponent>();
-        while (query.MoveNext(out _, out _, out var meta))
+        var query = _entMan.AllEntityQueryEnumerator<MapGridComponent>();
+        while (query.MoveNext(out var uid, out _))
         {
-            var name = meta.EntityName;
-            if (name.Contains("[Астероид]")) _cachedState.DebrisCount++;
-            else if (name.Contains("[Обломок]")) _cachedState.WrecksCount++;
+            var kind = _gridAccess.GetKind(uid);
+            if (kind == null || !_gridAccess.IsDebrisKind(kind.Value)) continue;
+            if (kind == ShuttleGridKind.Debris) _cachedState.DebrisCount++;
+            else _cachedState.WrecksCount++;
         }
         _cachedState.DebrisTotalCount = _cachedState.DebrisCount + _cachedState.WrecksCount;
     }

@@ -3,6 +3,8 @@ using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Stealth;
@@ -11,7 +13,11 @@ public sealed class StealthSystem : SharedStealthSystem
 {
     private static readonly ProtoId<ShaderPrototype> Shader = "Stealth";
 
+    private const float LocalControllerRevealVisibility = 0.35f;
+
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
@@ -37,6 +43,11 @@ public sealed class StealthSystem : SharedStealthSystem
         UpdateStealthVisuals(uid, component);
     }
 
+    protected override void OnVisibilityChanged(EntityUid uid, StealthComponent component)
+    {
+        UpdateStealthVisuals(uid, component);
+    }
+
     private void OnStartup(EntityUid uid, StealthComponent component, ComponentStartup args)
     {
         UpdateStealthVisuals(uid, component);
@@ -50,7 +61,7 @@ public sealed class StealthSystem : SharedStealthSystem
 
     private void OnShaderRender(EntityUid uid, StealthComponent component, BeforePostShaderRenderEvent args)
     {
-        if (IsFullyHidden(uid, component))
+        if (IsFullyHidden(uid, component) && !IsRevealedToLocalPlayer(uid))
         {
             ApplyFullHide(uid, component, args.Sprite);
             return;
@@ -73,8 +84,10 @@ public sealed class StealthSystem : SharedStealthSystem
         reference.X = -reference.X;
         var visibility = GetVisibility(uid, component);
 
-        // actual visual visibility effect is limited to +/- 1.
-        visibility = Math.Clamp(visibility, -1f, 1f);
+        if (IsFullyHidden(uid, component) && IsRevealedToLocalPlayer(uid))
+            visibility = LocalControllerRevealVisibility;
+        else
+            visibility = Math.Clamp(visibility, -1f, 1f);
 
         _shader.SetParameter("reference", reference);
         _shader.SetParameter("visibility", visibility);
@@ -88,12 +101,19 @@ public sealed class StealthSystem : SharedStealthSystem
         return component.Enabled && GetVisibility(uid, component) <= -1f;
     }
 
+    private bool IsRevealedToLocalPlayer(EntityUid uid)
+    {
+        return _playerManager.LocalEntity is { } local
+               && _container.TryGetContainingContainer((local, null, null), out var container)
+               && container.Owner == uid;
+    }
+
     private void UpdateStealthVisuals(EntityUid uid, StealthComponent? component = null, SpriteComponent? sprite = null)
     {
         if (!Resolve(uid, ref component, ref sprite, false) || sprite == null)
             return;
 
-        if (IsFullyHidden(uid, component))
+        if (IsFullyHidden(uid, component) && !IsRevealedToLocalPlayer(uid))
         {
             ApplyFullHide(uid, component, sprite);
             return;

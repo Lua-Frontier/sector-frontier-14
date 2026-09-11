@@ -40,6 +40,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Server._Lua.Shuttles.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -72,6 +73,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 
@@ -180,7 +182,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         var station = _station.GetOwningStation(player.Value);
 
         if (!TryComp<StationEmergencyShuttleComponent>(station, out var stationShuttle) ||
-            !HasComp<ShuttleComponent>(stationShuttle.EmergencyShuttle))
+            _gridAccess.GetKind(stationShuttle.EmergencyShuttle!.Value) != ShuttleGridKind.Event)
         {
             return;
         }
@@ -270,7 +272,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return null;
 
         if (!TryComp(stationShuttle.EmergencyShuttle, out TransformComponent? xform) ||
-            !TryComp<ShuttleComponent>(stationShuttle.EmergencyShuttle, out var shuttle))
+            !_gridAccess.TryGetShuttleGrid(stationShuttle.EmergencyShuttle.Value, out var shuttle))
         {
             Log.Error($"Attempted to call an emergency shuttle for an uninitialized station? Station: {ToPrettyString(stationUid)}. Shuttle: {ToPrettyString(stationShuttle.EmergencyShuttle)}");
             return null;

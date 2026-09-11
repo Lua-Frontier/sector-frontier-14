@@ -1,3 +1,4 @@
+using Content.Server._Lua.Fax;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -57,6 +58,7 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!;
     [Dependency] private readonly TagSystem _tag = default!; // Frontier
     [Dependency] private readonly BlueprintLatheSystem _blueprint = default!; // Frontier
+    [Dependency] private readonly FaxMapWakeSystem _faxMapWake = default!; // Lua
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -435,6 +437,8 @@ public sealed class FaxSystem : EntitySystem
         component.DestinationFaxAddress = null;
         component.KnownFaxes.Clear();
 
+        SeedKnownFaxesIncludingPaused(uid, component);
+
         var payload = new NetworkPayload()
         {
             { DeviceNetworkConstants.Command, FaxConstants.FaxPingCommand }
@@ -444,6 +448,30 @@ public sealed class FaxSystem : EntitySystem
             payload.Add(FaxConstants.FaxSyndicateData, true);
 
         _deviceNetworkSystem.QueuePacket(uid, null, payload);
+
+        UpdateUserInterface(uid, component);
+    }
+
+    private void SeedKnownFaxesIncludingPaused(EntityUid uid, FaxMachineComponent component)
+    {
+        var senderIsEmagged = _emag.CheckFlag(uid, EmagType.Interaction);
+        var query = AllEntityQuery<FaxMachineComponent, DeviceNetworkComponent>();
+        while (query.MoveNext(out var otherUid, out var otherFax, out var device))
+        {
+            if (otherUid == uid)
+                continue;
+
+            if (string.IsNullOrEmpty(device.Address))
+                continue;
+
+            if (!otherFax.ResponsePings)
+            {
+                if (!senderIsEmagged || !_emag.CheckFlag(otherUid, EmagType.Interaction))
+                    continue;
+            }
+
+            component.KnownFaxes[device.Address] = otherFax.FaxName;
+        }
     }
 
     /// <summary>
@@ -595,6 +623,9 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
 
+        if (_faxMapWake.TryFindFaxByAddress(component.DestinationFaxAddress, out var destFax))
+            _faxMapWake.EnsureAwake(destFax);
+
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
         _adminLogger.Add(LogType.Action,
@@ -628,6 +659,8 @@ public sealed class FaxSystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
+
+        _faxMapWake.EnsureAwake(uid);
 
         var faxName = Loc.GetString("fax-machine-popup-source-unknown");
         if (fromAddress != null && component.KnownFaxes.TryGetValue(fromAddress, out var fax)) // If message received from unknown fax address

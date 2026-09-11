@@ -66,7 +66,7 @@ public sealed class ChunkMonitorMapControl : MapGridControl
             _chunks[chunk.Coordinates] = chunk;
             if (chunk.EntityCount > _maxEntities) _maxEntities = chunk.EntityCount;
             if (chunk.PlayerCount > _maxPlayers) _maxPlayers = chunk.PlayerCount;
-            if (chunk.ShuttleCount > _maxShuttles) _maxShuttles = chunk.ShuttleCount;
+            if (chunk.ShuttleCount + chunk.AiShuttleCount > _maxShuttles) _maxShuttles = chunk.ShuttleCount + chunk.AiShuttleCount;
             if (chunk.DebrisCount > _maxDebris) _maxDebris = chunk.DebrisCount;
             if (chunk.GridCount > _maxGrids) _maxGrids = chunk.GridCount;
         }
@@ -167,7 +167,7 @@ public sealed class ChunkMonitorMapControl : MapGridControl
         {
             ChunkMonitorHeatmapMode.Entities => chunk.EntityCount,
             ChunkMonitorHeatmapMode.Players => chunk.PlayerCount,
-            ChunkMonitorHeatmapMode.Shuttles => chunk.ShuttleCount,
+            ChunkMonitorHeatmapMode.Shuttles => chunk.ShuttleCount + chunk.AiShuttleCount,
             ChunkMonitorHeatmapMode.Debris => chunk.DebrisCount,
             ChunkMonitorHeatmapMode.Grids => chunk.GridCount,
             _ => 0

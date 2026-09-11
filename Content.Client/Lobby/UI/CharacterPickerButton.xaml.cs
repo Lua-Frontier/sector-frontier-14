@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Client.Lobby;
 using Content.Client.Humanoid;
 using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
@@ -74,8 +75,6 @@ public sealed partial class CharacterPickerButton : ContainerButton
                     description = $"{description}\n[color=yellow]{humanoid.Company}[/color]";
                 }
             }
-
-            description += $"\n{humanoid.BankBalanceText}"; // Frontier
         }
 
         Pressed = isSelected;

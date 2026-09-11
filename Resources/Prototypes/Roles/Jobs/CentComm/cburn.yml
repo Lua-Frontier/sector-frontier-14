@@ -29,12 +29,12 @@
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
     pocket1: RadioHandheldNF # Frontier: RadioHandheld<RadioHandheldNF
-    pocket2: NFWeaponEnergyPistolLaser # Frontier: WeaponLaserGun<NFWeaponEnergyPistolLaser
+    pocket2: WeaponLaserGun # Frontier: WeaponLaserGun<NFWeaponEnergyPistolLaser
     belt: ClothingBeltBandolier
   storage:
     back:
-    - NFWeaponShotgunDoubleBarreled # Frontier: WeaponShotgunDoubleBarreled<NFWeaponShotgunDoubleBarreled
-    - AmmoBox23x75mmIncendiary #Lua 4 gauges
+    - WeaponShotgunDoubleBarreled # Frontier: WeaponShotgunDoubleBarreled<NFWeaponShotgunDoubleBarreled
+    - AmmoBox12_gaugeIncendiary
     - GrenadeFlashBang
     - PillAmbuzolPlus
     - PillAmbuzol

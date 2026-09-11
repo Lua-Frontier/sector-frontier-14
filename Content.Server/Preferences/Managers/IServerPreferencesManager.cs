@@ -28,5 +28,7 @@ namespace Content.Server.Preferences.Managers
         Task RefreshPreferencesAsync(ICommonSession session, CancellationToken cancel); // Frontier
         Task SetProfile(NetUserId userId, int slot, ICharacterProfile profile, bool validateFields = true); // Frontier: add validateFields
         Task SetConstructionFavorites(NetUserId userId, List<ProtoId<ConstructionPrototype>> favorites);
+        bool TryApplyBankDelta(NetUserId userId, int delta, out int newBalance);
+        Task<(bool Success, int NewBalance)> ApplyBankDeltaAsync(NetUserId userId, int delta);
     }
 }

@@ -52,6 +52,8 @@ namespace Content.Server.Database
 
         Task SaveConstructionFavoritesAsync(NetUserId userId, List<ProtoId<ConstructionPrototype>> constructionFavorites);
 
+        Task<(bool Success, int NewBalance)> TryAdjustBankBalanceAsync(NetUserId userId, int delta);
+
         // Single method for two operations for transaction.
         Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot);
         Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel);
@@ -552,6 +554,12 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.SaveConstructionFavoritesAsync(userId, constructionFavorites));
+        }
+
+        public Task<(bool Success, int NewBalance)> TryAdjustBankBalanceAsync(NetUserId userId, int delta)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.TryAdjustBankBalanceAsync(userId, delta));
         }
 
         public Task<PlayerPreferences?> GetPlayerPreferencesAsync(NetUserId userId, CancellationToken cancel)

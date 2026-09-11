@@ -10,5 +10,5 @@ ent-NFWeaponRifleMusket = Мушкет
 ent-NFWeaponRifleRepeater = Ричард N2524 (.45 magnum)
    .desc = Гражданский рычажный карабин, любимый космическими ковбоями за надежность.
 
-ent-NFWeaponRifleCeremonial = Церемониальная винтовка (5.56x45mm)
+ent-NFWeaponRifleCeremonial = Церемониальная винтовка (7.62x51mm)
    .desc = Церемониальный вариант винтовки Mark 1 в благородных сине-белых цветах.

@@ -2,8 +2,8 @@
 // Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server._NF.Shuttles.Components;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Events;
 using Content.Server.Temperature.Systems;
@@ -40,6 +40,7 @@ public sealed class SectorBlackHoleSystem : EntitySystem
     [Dependency] private readonly TemperatureSystem _temperature = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycle = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
 
     private TimeSpan _nextTick;
     private readonly List<Entity<MapGridComponent>> _gridScratch = new();
@@ -158,7 +159,7 @@ public sealed class SectorBlackHoleSystem : EntitySystem
         {
             if (TryComp(gridUid, out PhysicsComponent? physics) &&
                 physics.BodyType == BodyType.Static &&
-                HasComp<ShuttleComponent>(gridUid))
+                _gridAccess.TryGetShuttleGrid(gridUid, out _))
             {
                 _shuttle.Enable(gridUid, component: physics);
             }
@@ -172,11 +173,10 @@ public sealed class SectorBlackHoleSystem : EntitySystem
 
         if (TryComp(gridUid, out PhysicsComponent? body))
         {
-            if (HasComp<ShuttleComponent>(gridUid))
+            if (_gridAccess.TryGetShuttleGrid(gridUid, out var shuttle))
             {
                 _shuttle.Enable(gridUid, component: body);
-                if (TryComp(gridUid, out ShuttleComponent? shuttle))
-                    shuttle.Enabled = true;
+                shuttle.Enabled = true;
             }
             else
             {

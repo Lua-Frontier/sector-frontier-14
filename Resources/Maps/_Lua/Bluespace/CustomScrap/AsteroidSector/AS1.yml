@@ -138,7 +138,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: EventGrid
       dampingModifier: 0.45
     - type: GridPathfinding
     - type: Gravity
@@ -7813,7 +7813,7 @@ entities:
     - type: Transform
       pos: -1.544035,-0.38320023
       parent: 9551
-- proto: NFWeaponEnergySubMachineGunDisabler
+- proto: WeaponDisablerSMG
   entities:
   - uid: 10402
     components:

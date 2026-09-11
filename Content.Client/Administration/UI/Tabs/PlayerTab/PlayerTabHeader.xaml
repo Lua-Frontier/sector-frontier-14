@@ -45,5 +45,26 @@
                ClipText="True"
                Text="{Loc player-tab-balance}"
                MouseFilter="Pass"/>
+        <cc:VSeparator/>
+        <Label Name="ReputationLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"
+               Text="{Loc player-tab-reputation}"
+               MouseFilter="Pass"/>
+        <cc:VSeparator/>
+        <Label Name="CompanyLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"
+               Text="{Loc player-tab-company}"
+               MouseFilter="Pass"/>
+        <cc:VSeparator/>
+        <Label Name="DonatLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"
+               Text="{Loc player-tab-donat}"
+               MouseFilter="Pass"/>
     </BoxContainer>
 </Control>

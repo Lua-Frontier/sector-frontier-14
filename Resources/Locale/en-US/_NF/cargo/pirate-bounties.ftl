@@ -14,6 +14,7 @@ pirate-bounty-item-cappy = Cappy
 pirate-bounty-item-cultistNeck = Cultist Amulet
 pirate-bounty-item-nfsdCampaign = NFSD Campaign Hat (any)
 pirate-bounty-item-scafsuit = SCAF Suit
+pirate-bounty-item-faction-tacsuit = Faction Tacsuit
 pirate-bounty-item-rtg = RTG
 pirate-bounty-item-mercgas = Mercenary Gas Mask
 pirate-bounty-item-rdhardsuit = Experimental Research Hardsuit
@@ -36,3 +37,4 @@ pirate-bounty-item-enforcer = Enforcer
 pirate-bounty-item-shield = Ship Shield System
 
 pirate-bounty-description-generic = Go now, ye goon! Plunder me this!
+pirate-bounty-description-faction-tacsuit = Any faction hardsuit except mercenary hardsuits counts towards this.

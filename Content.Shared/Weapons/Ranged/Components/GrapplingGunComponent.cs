@@ -14,6 +14,19 @@ public sealed partial class GrapplingGunComponent : Component
     [DataField, AutoNetworkedField]
     public float ReelRate = 2.5f;
 
+    /// <summary>
+    /// Amount of force to use while reeling. This is made extremely small when compensating for frametime
+    /// Don't be afraid to use large numbers, but do beware that this becomes fast as fuck in frictionless conditions such as space
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float ReelForce = 4000f;
+
+    /// <summary>
+    /// Amount of force, in newtons, needed to snap the rope
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float RopeBreakPoint = 50000f;
+
     [DataField("jointId"), AutoNetworkedField]
     public string Joint = string.Empty;
 

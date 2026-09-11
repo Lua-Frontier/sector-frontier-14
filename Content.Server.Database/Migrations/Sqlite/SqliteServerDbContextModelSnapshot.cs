@@ -1071,6 +1071,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("TEXT")
                         .HasColumnName("admin_ooc_color");
 
+                    b.Property<int>("BankBalance")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("bank_balance");
+
                     b.PrimitiveCollection<string>("ConstructionFavorites")
                         .IsRequired()
                         .HasColumnType("TEXT")

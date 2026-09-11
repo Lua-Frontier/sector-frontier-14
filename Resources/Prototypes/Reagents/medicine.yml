@@ -1365,6 +1365,18 @@
             Heat: -4.0
             Shock: -4.0
             Caustic: -1.5
+      - !type:HealthScaleEffect
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        - !type:TotalDamage
+          min: 200
+        healthScale:
+          types:
+            Heat: 0.98
+            Cold: 0.98
+            Shock: 0.98
+            Caustic: 0.98
   pricePerUnit: 0
 
 - type: reagent

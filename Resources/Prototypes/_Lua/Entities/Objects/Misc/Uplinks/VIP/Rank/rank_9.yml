@@ -1,0 +1,60 @@
+- type: listing
+  id: UplinkVipRank9FoodSnackNutribrick
+  name: uplink-vip-FoodSnackNutribrick-name
+  description: uplink-vip-FoodSnackNutribrick-desc
+  productEntity: FoodSnackNutribrick
+  cost:
+    Speso: 1200
+  categories:
+  - UplinkVipTierRank9
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank9
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank9DrinkWaterBottleFull
+  name: uplink-vip-DrinkWaterBottleFull-name
+  description: uplink-vip-DrinkWaterBottleFull-desc
+  productEntity: DrinkWaterBottleFull
+  cost:
+    Speso: 800
+  categories:
+  - UplinkVipTierRank9
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank9
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank9BackpackIan
+  name: uplink-vip-Ian-name
+  description: uplink-vip-Ian-desc
+  productEntity: ClothingBackpackIan
+  icon: { sprite: Clothing/Back/Backpacks/ian.rsi, state: icon }
+  cost:
+    Speso: 1000
+  categories:
+  - UplinkVipTierRank9
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank9
+  - !type:ListingLimitedStockCondition
+    stock: 1

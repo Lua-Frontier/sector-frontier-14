@@ -1,11 +1,12 @@
 using System.Runtime.InteropServices;
+using Content.Server._NF.Bank; // SectorBankComponent
 using Content.Server._NF.SectorServices;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.Components;
 using JetBrains.Annotations;
 
-namespace Content.Server._NF.Bank;
+namespace Content.Server._Lua.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {

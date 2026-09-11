@@ -19,11 +19,29 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/explosive_mouse.rsi
+      state: all
+  # Mono - Gun stock attack
+  - type: MeleeRequiresWield
+  - type: MeleeWeapon
+    attackRate: 0.8
+    damage:
+      types:
+        Blunt: 12
+    angle: 0
+    wideAnimationRotation: 135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+    attackType: Light
+  # Mono end
 
 - type: entity
-  abstract: true # Frontier: use NF variant
-  name: china lake
-  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseC3SyndicateContraband] # Frontier: BaseSyndicateContraband<BaseC3Contraband
+  name: PA china lake
+  parent: [BaseWeaponLauncher, BaseGunWieldable, BaseFactionGearOtherFactionT3]
   id: WeaponLauncherChinaLake
   description: PLOOP.
   components:
@@ -50,59 +68,13 @@
       tags:
         - Grenade
     capacity: 3
-    # proto: GrenadeFrag # Frontier
+    proto: 40mmGrenadeFragmentation
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: GunRequiresWield
-  - type: StaticPrice
-    price: 10000
 
 - type: entity
-  abstract: true # Frontier: create NF variant if we want this
-  parent: [ BaseWeaponLauncher, BaseGunWieldable, BaseC3Contraband ] # Frontier: BaseMajorContraband<BaseC3SyndicateContraband
-  id: WeaponLauncherHydra
-  name: hydra
-  description: PLOOP... FSSSSSS
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
-    layers:
-    - state: icon
-      map: [ "enum.GunVisualLayers.Base" ]
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Launchers/hydra_launcher.rsi
-    slots:
-    - Back
-    - suitStorage
-  - type: AmmoCounter
-  - type: Gun
-    fireRate: 1
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: GunRequiresWield
-  - type: ContainerContainer
-    containers:
-      revolver-ammo: !type:Container
-  - type: RevolverAmmoProvider
-    whitelist:
-      tags:
-      - Grenade
-    # proto: GrenadeCleanade # Frontier: create NF variant if we want this
-    capacity: 6
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
-    soundEject:
-      path: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
-
-- type: entity
-  abstract: true # Frontier: use NF variant
-  name: RPG-7
-  parent: [ BaseWeaponLauncher, BaseC3Contraband ] # Frontier: BaseMajorContraband<BaseC3Contraband
+  name: PA RPG-7
+  parent: BaseWeaponLauncher
   id: WeaponLauncherRocket
   description: A modified ancient rocket-propelled grenade launcher.
   components:
@@ -116,6 +88,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
   - type: Gun
+    projectileSpeed: 18
     fireRate: 0.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
@@ -123,7 +96,7 @@
     whitelist:
       tags:
         - CartridgeRocket
-    # proto: CartridgeRocket # Frontier
+    proto: CartridgeRocket
     capacity: 1
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -134,7 +107,6 @@
   - type: Appearance
 
 - type: entity
-  abstract: true # Frontier: use NF variant
   name: multiple rocket launcher
   parent: BaseWeaponLauncher
   id: WeaponLauncherMultipleRocket
@@ -160,7 +132,7 @@
     whitelist:
       tags:
         - CartridgeRocket
-    # proto: CartridgeRocketSlow # Frontier
+    proto: CartridgeRocketSlow
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: MagazineVisuals
@@ -170,9 +142,8 @@
   - type: Appearance
 
 - type: entity
-  abstract: true # Frontier: use NF variant
   name: pirate cannon
-  parent: [BaseWeaponLauncher]
+  parent: BaseWeaponLauncher
   id: WeaponLauncherPirateCannon
   description: Kaboom!
   components:
@@ -198,7 +169,7 @@
         tags:
           - CannonBall
       capacity: 1
-      # proto: CannonBall # Frontier
+      proto: CannonBall
       soundInsert:
         path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
 
@@ -299,12 +270,16 @@
   components:
     - type: AmmoCounter
     - type: GrapplingGun
+      ropeBreakPoint: 100000 # Mono
+      reelRate: 8 # Mono
+      reelForce: 12000 # Mono
     - type: Gun
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
-      fireRate: 0.5
+      fireRate: 2 # Mono - 0.5 -> 2
+      projectileSpeed: 60 # Mono
       clumsyProof: true
     - type: BasicEntityAmmoProvider
-      proto: NFGrapplingHook # Frontier: use NF variant
+      proto: GrapplingHook
       capacity: 1
     - type: Sprite
       sprite: Objects/Weapons/Guns/Launchers/grappling_gun.rsi
@@ -313,8 +288,9 @@
         - state: base-unshaded
           map: [ "unshaded" ]
           visible: true
-    - type: UseDelay
-      delay: 1.5
+    # Mono
+    #- type: UseDelay
+    #  delay: 0 # Mono
     - type: Appearance
     - type: GenericVisualizer
       visuals:

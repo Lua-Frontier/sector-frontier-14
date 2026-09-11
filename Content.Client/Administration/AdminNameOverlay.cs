@@ -16,6 +16,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Content.Shared._NF.Bank; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
+using Content.Shared._Lua.SponsorLoadout; // Lua
 
 namespace Content.Client.Administration;
 
@@ -221,14 +222,52 @@ internal sealed class AdminNameOverlay : Overlay
                 currentOffset += lineoffset;
             }
 
-            // Frontier: print balance
             if (_overlayBalance)
             {
-                var balance = playerInfo.Balance == int.MinValue ? "NO BALANCE" : BankSystemExtensions.ToCurrencyString(playerInfo.Balance);
-                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset, $"Balance: {balance}", uiScale, playerInfo.Connected ? Color.GreenYellow : Color.White);
+                var balance = playerInfo.Balance == int.MinValue
+                    ? Loc.GetString("player-tab-balance-none")
+                    : BankSystemExtensions.ToSpesoString(playerInfo.Balance);
+                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset,
+                    Loc.GetString("admin-overlay-balance", ("balance", balance)),
+                    uiScale,
+                    playerInfo.Connected ? Color.GreenYellow : Color.White);
                 currentOffset += lineoffset;
             }
             // End Frontier
+
+            {
+                color = Color.MediumPurple;
+                color.A = alpha;
+                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset,
+                    Loc.GetString("admin-overlay-reputation", ("reputation", playerInfo.ReputationString)),
+                    uiScale,
+                    playerInfo.Connected ? color : colorDisconnected);
+                currentOffset += lineoffset;
+            }
+
+            if (!string.IsNullOrWhiteSpace(playerInfo.Company))
+            {
+                color = Color.SkyBlue;
+                color.A = alpha;
+                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset,
+                    Loc.GetString("admin-overlay-company", ("company", playerInfo.Company)),
+                    uiScale,
+                    playerInfo.Connected ? color : colorDisconnected);
+                currentOffset += lineoffset;
+            }
+
+            if (!string.IsNullOrWhiteSpace(playerInfo.Donat))
+            {
+                var donatParts = playerInfo.Donat.Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+                var donatText = string.Join(", ", donatParts.Select(DonorGroups.GetTierDisplayName));
+                color = Color.Gold;
+                color.A = alpha;
+                args.ScreenHandle.DrawString(_font, screenCoordinates + currentOffset,
+                    Loc.GetString("admin-overlay-donat", ("donat", donatText)),
+                    uiScale,
+                    playerInfo.Connected ? color : colorDisconnected);
+                currentOffset += lineoffset;
+            }
 
             // Determine antag symbol
             string? symbol;

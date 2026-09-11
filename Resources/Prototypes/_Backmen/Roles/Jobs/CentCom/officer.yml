@@ -53,18 +53,18 @@
     gloves: ClothingHandsGlovesCombat
     head: ClothingHeadHelmetCentcom
     outerClothing: ClothingOuterArmorCentcom
-    suitstorage: NFWeaponRifleAssaultLecter
+    suitstorage: WeaponRifleLecter
     id: CentComPrivateOfficerPDA
     ears: ClothingHeadsetCentComCC
     belt: ClothingBeltSecuritySuper
-    pocket1: NFWeaponPistolMk58
-    pocket2: Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    pocket1: WeaponPistolMk58
+    pocket2: Magazine45_ACPPistolFMJ
   storage:
     back:
     - MedkitCombatFilled
     - BoxSurvivalSecurity
     - Magazine556x45mmFMJ #Lua 20 -> 556x45
-    - Magazine9x19mmPistolFMJ #Lua 35 -> 9x19
+    - Magazine45_ACPPistolFMJ
   #innerClothingSkirt: ClothingUniformJumpskirtSec
   #satchel: ClothingBackpackSatchelSecurityFilled
   #duffelbag: ClothingBackpackDuffelSecurityFilled

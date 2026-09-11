@@ -62,35 +62,6 @@
     price: 2
 
 - type: entity
-  id: BaseCartridgeCap
-  name: cartridge (cap)
-  parent: BaseCartridge
-  abstract: true
-  components:
-  - type: Tag
-    tags:
-      - Cartridge
-      - CartridgeCap
-  - type: CartridgeAmmo
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Casings/capgun_casing.rsi
-    layers:
-    - state: base
-      map: ["enum.AmmoVisualLayers.Base"]
-  - type: SpentAmmoVisuals
-  - type: Appearance
-  - type: StaticPrice
-    price: 5
-
-- type: entity
-  id: CartridgeCap
-  name: cap gun cartridge
-  parent: BaseCartridgeCap
-  abstract: true
-  components:
-  - type: CartridgeAmmo
-
-- type: entity
   id: BaseCartridgeHeavyRifle
   name: cartridge (.20 rifle)
   parent: [ BaseCartridge, BaseC1Contraband ]

@@ -76,7 +76,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: ShuttleGrid
       dampingModifier: 0.45
     - type: GridPathfinding
     - type: Gravity
@@ -3207,7 +3207,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponRevolverRitland45
+- proto: WeaponRevolverPython
   entities:
   - uid: 206
     components:
@@ -3216,7 +3216,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: NFWeaponShotgunSawn
+- proto: WeaponShotgunSawn
   entities:
   - uid: 344
     components:

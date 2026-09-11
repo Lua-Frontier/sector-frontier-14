@@ -11,7 +11,7 @@
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-        - NFCartridgeRifle20
+        - Cartridge556x45mmFMJ
     capacity: 8
   - type: Sprite
   - type: ContainerContainer
@@ -25,7 +25,7 @@
   parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20
+    proto: Cartridge556x45mmFMJ
   - type: Icon
     sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/HeavyRifle/argenti_speed_loader.rsi
     state: icon
@@ -73,7 +73,7 @@
   parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Incendiary
+    proto: Cartridge556x45mmIncendiary
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/HeavyRifle/argenti_speed_loader.rsi
     layers:
@@ -93,7 +93,7 @@
   parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Practice
+    proto: Cartridge556x45mmPractice
   - type: Icon
     sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/HeavyRifle/argenti_speed_loader.rsi
     state: practice-icon
@@ -116,7 +116,7 @@
   parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Uranium
+    proto: Cartridge556x45mmUranium
   - type: Icon
     sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/HeavyRifle/argenti_speed_loader.rsi
     state: uranium-icon
@@ -139,7 +139,7 @@
   parent: BaseSpeedLoaderHeavyRifle
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Rubber
+    proto: Cartridge556x45mmRubber
   - type: Icon
     sprite: _NF/Objects/Weapons/Guns/Ammunition/SpeedLoaders/HeavyRifle/argenti_speed_loader.rsi
     state: rubber-icon

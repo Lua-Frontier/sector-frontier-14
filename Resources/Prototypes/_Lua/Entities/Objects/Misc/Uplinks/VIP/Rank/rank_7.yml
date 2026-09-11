@@ -1,0 +1,60 @@
+- type: listing
+  id: UplinkVipRank7Medkit
+  name: uplink-vip-medkit-name
+  description: uplink-vip-medkit-desc
+  productEntity: MedkitAdvancedFilled
+  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: advkit }
+  cost:
+    Speso: 2500
+  categories:
+  - UplinkVipTierRank7
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank7
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank7MedicalAppraisalTool
+  name: uplink-vip-MedicalAppraisalTool-name
+  description: uplink-vip-MedicalAppraisalTool-desc
+  productEntity: MedicalAppraisalTool
+  cost:
+    Speso: 2200
+  categories:
+  - UplinkVipTierRank7
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank7
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkVipRank7AppraisalTool
+  name: uplink-vip-AppraisalTool-name
+  description: uplink-vip-AppraisalTool-desc
+  productEntity: AppraisalTool
+  cost:
+    Speso: 1800
+  categories:
+  - UplinkVipTierRank7
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - VipUplink
+  - !type:BuyerSponsorTierCondition
+    whitelist:
+    - rank7
+  - !type:ListingLimitedStockCondition
+    stock: 1

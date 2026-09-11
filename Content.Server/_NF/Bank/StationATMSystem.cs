@@ -14,7 +14,7 @@ using Content.Shared.Database;
 using Content.Shared.Stacks;
 using Robust.Shared.Containers;
 
-namespace Content.Server._NF.Bank;
+namespace Content.Server._Lua.Bank;
 
 public sealed partial class BankSystem
 {

@@ -1,4 +1,10 @@
 - type: Tag
+  id: AdvancedLaserPistol
+
+- type: Tag
+  id: CartridgeRocketEmp
+
+- type: Tag
   id: CassetteTape
 
 - type: Tag
@@ -6,6 +12,51 @@
 
 - type: Tag
   id: Kevlar # Mono - required by helmet cover prototypes
+
+# Weapon attachments
+
+- type: Tag
+  id: MonoSuppressor
+
+- type: Tag
+  id: MonoSuppressorMulticalPistol
+
+- type: Tag
+  id: MonoSuppressorMulticalRifle
+
+- type: Tag
+  id: MonoGrip
+
+- type: Tag
+  id: MonoGripErebusRailmount
+
+- type: Tag
+  id: MonoGripPistolMount
+
+- type: Tag
+  id: MonoGripLAM
+
+- type: Tag
+  id: MonoGripLight
+
+- type: Tag
+  id: MonoGripVFG
+
+- type: Tag
+  id: MonoOptic
+
+- type: Tag
+  id: MonoOpticErebusRailmount
+
+# These are for the different sprite states. Please don't add more zooms, or I'll kill you.
+- type: Tag
+  id: MonoOptic2x
+
+- type: Tag
+  id: MonoOptic4x
+
+- type: Tag
+  id: MonoOptic8x
 
 # Crafting for desert planet
 
@@ -104,6 +155,26 @@
 - type: Tag
   id: Cartridge762x39mmSubsonic
 
+#46x30mm tags
+
+- type: Tag
+  id: Cartridge46x30mmFMJ
+
+- type: Tag
+  id: Magazine46x30mmPistolFMJ
+
+- type: Tag
+  id: Magazine46x30mmPistolHighCapacityFMJ
+
+- type: Tag
+  id: Magazine46x30mmSubMachineGunFMJ
+
+- type: Tag
+  id: Magazine46x30mmSubMachineGunTopMountedFMJ
+
+- type: Tag
+  id: Magazine46x30mmFMJBox
+
 #45 ACP tags
 
 - type: Tag
@@ -164,6 +235,26 @@
 - type: Tag
   id: SpeedLoader9x19mmFMJ
 
+#57x28mm tags
+
+- type: Tag
+  id: Cartridge57x28mmFMJ
+
+- type: Tag
+  id: Magazine57x28mmPistolFMJ
+
+- type: Tag
+  id: Magazine57x28mmPistolHighCapacityFMJ
+
+- type: Tag
+  id: Magazine57x28mmSubMachineGunFMJ
+
+- type: Tag
+  id: Magazine57x28mmSubMachineGunTopMountedFMJ
+
+- type: Tag
+  id: Magazine57x28mmFMJBox
+
 # Misc ammo shit
 
 - type: Tag
@@ -180,6 +271,12 @@
 
 - type: Tag
   id: MagazineNovaliteC1
+
+- type: Tag
+  id: MagazineShenzhen
+
+- type: Tag
+  id: CartridgeShenzhen
 
 #8x65mm SKR tags
 
@@ -245,6 +342,47 @@
 
 - type: Tag
   id: Magazine40mm
+
+# 145x114mm tags
+
+- type: Tag
+  id: Cartridge145x114mm
+
+#700Thz tags
+
+- type: Tag
+  id: Cartridge700Thz
+
+- type: Tag
+  id: Magazine700Thz
+
+- type: Tag
+  id: MagazineBox700Thz
+
+#10Phz tags
+
+- type: Tag
+  id: Cartridge10Phz
+
+- type: Tag
+  id: Magazine10Phz
+
+- type: Tag
+  id: MagazineBox10Phz
+
+#35mm GL tags
+
+- type: Tag
+  id: Cartridge35mmGrenade
+
+- type: Tag
+  id: Magazine35mmGrenade
+
+- type: Tag
+  id: LessLethalGrenade
+
+- type: Tag
+  id: GrenadeLaunchable
 
 #AMMO END
 

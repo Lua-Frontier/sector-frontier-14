@@ -56,6 +56,96 @@
   parent: BaseC1Contraband
   abstract: true
 
+#region PDV
+
+- type: entity
+  parent: BaseFactionGearT0
+  id: BaseFactionGearPDVT0
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Antag ]
+
+- type: entity
+  parent: BaseFactionGearPDVT0
+  id: BaseFactionGearPDVT1
+  abstract: true
+  components:
+  - type: Contraband
+    severity: FactionGear1
+    turnInValues:
+      FrontierUplinkCoin: 10
+      Doubloon: 10
+
+- type: entity
+  parent: BaseFactionGearPDVT0
+  id: BaseFactionGearPDVT2
+  abstract: true
+  components:
+  - type: Contraband
+    severity: FactionGear2
+    turnInValues:
+      FrontierUplinkCoin: 30
+      Doubloon: 30
+
+- type: entity
+  parent: BaseFactionGearPDVT0
+  id: BaseFactionGearPDVT3
+  abstract: true
+  components:
+  - type: Contraband
+    severity: FactionGear3
+    turnInValues:
+      FrontierUplinkCoin: 45
+      Doubloon: 45
+
+#endregion
+
+#region TSF
+
+- type: entity
+  parent: BaseFactionGearT0
+  id: BaseFactionGearTSFT0
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Security ]
+
+- type: entity
+  parent: BaseFactionGearTSFT0
+  id: BaseFactionGearTSFT1
+  abstract: true
+  components:
+  - type: Contraband
+    severity: FactionGear1
+    turnInValues:
+      FrontierUplinkCoin: 10
+      Doubloon: 10
+
+- type: entity
+  parent: BaseFactionGearTSFT0
+  id: BaseFactionGearTSFT2
+  abstract: true
+  components:
+  - type: Contraband
+    severity: FactionGear2
+    turnInValues:
+      FrontierUplinkCoin: 30
+      Doubloon: 30
+
+- type: entity
+  parent: BaseFactionGearTSFT0
+  id: BaseFactionGearTSFT3
+  abstract: true
+  components:
+  - type: Contraband
+    severity: FactionGear3
+    turnInValues:
+      FrontierUplinkCoin: 45
+      Doubloon: 45
+
+#endregion
+
 #region non-faction
 
 - type: entity
@@ -65,6 +155,17 @@
   components:
   - type: Contraband
     severity: OtherFactionGear0
+
+- type: entity
+  parent: BaseFactionGearOtherFactionT0
+  id: BaseFactionGearOtherFactionT1
+  abstract: true
+  components:
+  - type: Contraband
+    severity: OtherFactionGear1
+    turnInValues:
+      FrontierUplinkCoin: 5
+      Doubloon: 5
 
 - type: entity
   parent: BaseFactionGearOtherFactionT0

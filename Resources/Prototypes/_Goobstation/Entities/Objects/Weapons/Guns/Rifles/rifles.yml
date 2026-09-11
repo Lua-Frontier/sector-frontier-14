@@ -121,21 +121,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmFMJ #Lua Subsonic<FMJ
+        startingItem: Magazine762x39mmSubsonic
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-            - Magazine762x39mmFMJ #Lua Subsonic<FMJ
+            - Magazine762x39mmFMJ
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ #Lua Subsonic<FMJ
+        startingItem: Cartridge762x39mmSubsonic
         priority: 1
         whitelist:
           tags:
-            - Cartridge762x39mmFMJ #Lua Subsonic<FMJ
+            - Cartridge762x39mmFMJ
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -195,7 +195,6 @@
         whitelist:
           tags:
           - Magazine762x51mmFMJ
-          - Magazine762x51mmLowCapacityFMJ # Lua add
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
@@ -215,7 +214,7 @@
   - type: Appearance
 
 - type: entity
-  name: CS Burner (7.62x54)
+  name: CS Burner (12.7x99mm)
   parent: [BaseWeaponRifle, BaseC3PirateContraband] # Mono - Changed to HighValue
   id: WeaponRifleBurner
   description: A high caliber syndicate gun chambered in 12.7x99mm, capable of firing anti-material and high explosive rounds.
@@ -231,7 +230,7 @@
     shape:
     - 0,0,3,2
   - type: Gun
-    examineCaliber: gun-examine-caliber-76254 #Lua
+    examineCaliber: gun-examine-caliber-127 #Lua
     minAngle: 1.4 #Lua
     maxAngle: 7 #Lua
     angleIncrease: 5.6 #Lua
@@ -247,21 +246,21 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x54mmRFMJ #Lua Magazine127x99mm<Magazine762x54mmRFMJ
+        startingItem: Magazine127x99mm
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
         whitelist:
           tags:
-          - Magazine762x54mmRFMJ #Lua Magazine127x99mm<Magazine762x54mmRFMJ
+          - Magazine127x99mm
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x54mmRFMJ #Lua Cartridge127x99mm<Cartridge762x54mmRFMJ
+        startingItem: Cartridge127x99mm
         priority: 1
         whitelist:
           tags:
-          - Cartridge762x54mmRFMJ #Lua Cartridge127x99mm<Cartridge762x54mmRFMJ
+          - Cartridge127x99mm
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

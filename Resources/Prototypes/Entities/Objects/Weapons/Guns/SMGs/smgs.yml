@@ -1,0 +1,188 @@
+- type: entity
+  name: BaseSMG
+  parent: BaseItem
+  id: BaseWeaponSubMachineGun
+  description: A rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+  - type: Item
+    size: Large
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/SMGs/atreides.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    minAngle: 2
+    maxAngle: 16
+    fireRate: 8
+    burstFireRate: 8
+    angleIncrease: 3
+    angleDecay: 16
+    selectedMode: FullAuto
+    projectileSpeed: 50 # Mono
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/smg.ogg
+    defaultDirection: 1, 0
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine9x19mmSubMachineGunFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine9x19mmSubMachineGunFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge9x19mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge9x19mmFMJ
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: StaticPrice
+    price: 500
+  - type: ItemTax # Mono
+    taxAccounts:
+      nfsd: 0.2
+  - type: WieldedCrosshair
+    rsi:
+      sprite: _RMC14/Interface/MousePointer/pistol_mouse.rsi
+      state: all
+  # Goobstation edit start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SMGPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SMGDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SMGDrop
+  # Goobstation edit end
+  # Mono - Gun stock attack
+  - type: MeleeRequiresWield
+  - type: MeleeWeapon
+    attackRate: 1.1
+    damage:
+      types:
+        Blunt: 9
+    angle: 0
+    wideAnimationRotation: 135
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+    attackType: Light
+  # Mono end
+#Lua added durability and repairing
+  - type: Repairable
+    fuelCost: 3
+    doAfterDelay: 3
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 1
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: GunJam
+#Lua end
+
+# Mono - moved Drozd, C-20, & Atreides to _Mono.
+
+- type: entity
+  name: UI WT550 (4.6x30mm)
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunWt550
+  description: An excellent SMG, produced by a Black Market Arms Company known as Ullman Industries. Uses 4.6x30mm ammo. On the receiver is a label that says 'for authorized use only.'
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: base-unshaded
+        map: ["enum.GunVisualLayers.BaseUnshaded"]
+        shader: unshaded
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+      - state: mag-unshaded-0
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: Gun
+    fireRate: 8 # Mono
+    minAngle: 1
+    maxAngle: 6
+    angleIncrease: 1.5
+    angleDecay: 6
+    selectedMode: FullAuto
+    shotsPerBurst: 5
+    burstCooldown: 0.2
+    burstFireRate: 12 # Mono
+    availableModes:
+    - Burst
+    - FullAuto
+    - SemiAuto
+    soundGunshot: # Mono change - Sound for WT
+      path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/wt_fire.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: Magazine46x30mmSubMachineGunTopMountedFMJ
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - Magazine46x30mmSubMachineGunTopMountedFMJ
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: Cartridge46x30mmFMJ
+        priority: 1
+        whitelist:
+          tags:
+            - Cartridge46x30mmFMJ
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice # Mono
+    price: 1000
+  - type: PirateBountyItem # Mono
+    id: StandardFactionLongarm

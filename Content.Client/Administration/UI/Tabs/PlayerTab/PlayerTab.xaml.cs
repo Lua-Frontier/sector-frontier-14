@@ -154,7 +154,7 @@ public sealed partial class PlayerTab : Control
         UpdateHeaderSymbols();
 
         SearchList.PopulateList(sortedPlayers.Select(info => new PlayerListData(info,
-                $"{info.Username} {info.CharacterName} {info.IdentityName} {info.StartingJob}"))
+                $"{info.Username} {info.CharacterName} {info.IdentityName} {info.StartingJob} {info.Company} {info.Donat}"))
             .ToList());
     }
 
@@ -240,6 +240,9 @@ public sealed partial class PlayerTab : Control
             Header.RoleType => y.SortWeight - x.SortWeight,
             Header.Playtime => TimeSpan.Compare(x.OverallPlaytime ?? default, y.OverallPlaytime ?? default),
             Header.Balance => x.Balance.CompareTo(y.Balance), // Frontier
+            Header.Reputation => x.ReputationScore.CompareTo(y.ReputationScore),
+            Header.Company => Compare(x.Company, y.Company),
+            Header.Donat => Compare(x.Donat, y.Donat),
             _ => 1
         };
     }

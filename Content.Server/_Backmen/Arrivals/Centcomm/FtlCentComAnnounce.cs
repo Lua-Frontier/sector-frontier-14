@@ -1,8 +1,8 @@
-using Content.Server.Shuttles.Components;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Backmen.Arrivals.CentComm;
 
 public sealed class FtlCentComAnnounce : EntityEventArgs
 {
-    public Entity<ShuttleComponent> Source { get; set; }
+    public EntityUid Source { get; set; }
 }

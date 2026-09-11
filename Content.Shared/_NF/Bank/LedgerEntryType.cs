@@ -28,6 +28,14 @@ public enum LedgerEntryType : byte
     StationWithdrawalSupplies,
     StationWithdrawalBounty,
     StationWithdrawalOther,
+    BlackMarketSales,
+    ColonialOutpostSales,
+    TSFMCSales,
+    MedicalSales,
+    BlackMarketPenalties,
+    ColonialOutpostPenalties,
+    TSFMCPenalties,
+    MedicalPenalties,
     // Utility values
     FirstExpense = MailPenalty,
 }

@@ -2,7 +2,7 @@
 // Copyright (c) 2026 LuaCorp
 // See AGPLv3.txt for details.
 
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
@@ -11,7 +11,6 @@ using Content.Server.Store.Conditions;
 using Content.Server.Store.Systems;
 using Content.Shared._Lua.DonateShop;
 using Content.Shared._Lua.SponsorLoadout;
-using Content.Shared._NF.Bank.Components;
 using Content.Shared.Actions;
 using Content.Shared.Audio;
 using Content.Shared.Database;
@@ -81,10 +80,19 @@ public sealed class DonateShopSystem : EntitySystem
         "UplinkVipFlatpack",
         "UplinkVipCrates",
         "UplinkVipTierShareholder",
+        "UplinkVipTierShareholderLua",
         "UplinkVipTierGod",
+        "UplinkVipTierBoost",
         "UplinkVipTierRank1",
         "UplinkVipTierRank2",
         "UplinkVipTierRank3",
+        "UplinkVipTierRank4",
+        "UplinkVipTierRank5",
+        "UplinkVipTierRank6",
+        "UplinkVipTierRank7",
+        "UplinkVipTierRank8",
+        "UplinkVipTierRank9",
+        "UplinkVipTierRank10",
     ];
 
     private static readonly ProtoId<CurrencyPrototype>[] CurrencyWhitelist =
@@ -215,8 +223,7 @@ public sealed class DonateShopSystem : EntitySystem
             {
                 var catalogNoSub = BuildCatalog(playerNoSub, session.UserId, lunaCoinBalance);
                 var listingsNoSub = catalogNoSub.Where(l => _store.ListingHasCategory(l, DonateShopCategories)).ToHashSet();
-                var bankBalanceNoSub = TryComp<BankAccountComponent>(playerNoSub, out var bankNoSub) ? bankNoSub.Balance : 0;
-                var hasBankNoSub = HasComp<BankAccountComponent>(playerNoSub);
+                var hasBankNoSub = _bank.TryGetBalance(playerNoSub, out var bankBalanceNoSub);
                 var balanceNoSub = BuildBalance(bankBalanceNoSub, hasBankNoSub, lunaCoinBalance);
                 RaiseNetworkEvent(new DonateShopStateMessage(false, false, string.Empty, string.Empty, listingsNoSub, balanceNoSub, bankBalanceNoSub, hasBankNoSub, lunaCoinBalance: lunaCoinBalance), session);
                 return;
@@ -233,8 +240,7 @@ public sealed class DonateShopSystem : EntitySystem
         }
         var catalog = BuildCatalog(player, session.UserId, lunaCoinBalance);
         var listings = GetDisplayListings(player, catalog);
-        var bankBalance = TryComp<BankAccountComponent>(player, out var bank) ? bank.Balance : 0;
-        var hasBankBalance = HasComp<BankAccountComponent>(player);
+        var hasBankBalance = _bank.TryGetBalance(player, out var bankBalance);
         var balance = BuildBalance(bankBalance, hasBankBalance, lunaCoinBalance);
         var status = primary.PlannedEndDate.HasValue ? $"{primary.PlannedEndDate.Value:dd.MM.yyyy}" : "∞";
         RaiseNetworkEvent(new DonateShopStateMessage(true, true, primary.Role, status, listings, balance, bankBalance, hasBankBalance, errorLocKey, activeTierNames, lunaCoinBalance), session);
@@ -244,7 +250,10 @@ public sealed class DonateShopSystem : EntitySystem
     {
         var catalog = _store.GetAllListings();
         foreach (var listing in catalog)
-        { if (HasLimitedStock(listing) && _roundPurchases.Contains((_gameTicker.RoundId, actorUserId, listing.ID)))listing.PurchaseAmount = 1; }
+        {
+            if (HasLimitedStock(listing) && _roundPurchases.Contains((_gameTicker.RoundId, actorUserId, listing.ID)))
+                listing.PurchaseAmount = 1;
+        }
         AppendPersonalListings(catalog, player, actorUserId);
         return catalog;
     }
@@ -391,7 +400,16 @@ public sealed class DonateShopSystem : EntitySystem
         {
             if (!string.Equals(loadout.OwnerLogin, playerName, StringComparison.OrdinalIgnoreCase)) continue;
             if (string.IsNullOrWhiteSpace(loadout.Tier)) continue;
-            var tierCategory = LoadoutTierToCategoryId(loadout.Tier);
+            if (!TryLoadoutTierToCategoryId(loadout.Tier, out var tierCategory))
+            {
+                _sawmill.Error($"Skipping sponsor loadout '{loadout.ID}': unknown tier '{loadout.Tier}'.");
+                continue;
+            }
+            if (!DonorGroups.TryResolveTier(loadout.Tier, out var requiredTier))
+            {
+                _sawmill.Error($"Skipping sponsor loadout '{loadout.ID}': unresolved tier '{loadout.Tier}'.");
+                continue;
+            }
             foreach (var entityId in loadout.Entities)
             {
                 var listingId = $"SponsorPersonal_{loadout.ID}_{entityId}";
@@ -404,6 +422,7 @@ public sealed class DonateShopSystem : EntitySystem
                     conditions: new List<ListingCondition>
                     {
                         new BuyerSponsorOwnerCondition { OwnerLogin = loadout.OwnerLogin },
+                        new BuyerSponsorTierCondition { Whitelist = [requiredTier] },
                         new ListingLimitedStockCondition { Stock = 1 }
                     },
                     icon: null,
@@ -426,14 +445,38 @@ public sealed class DonateShopSystem : EntitySystem
         }
     }
 
-    private static string LoadoutTierToCategoryId(string tier) => tier.ToLowerInvariant() switch
+    private static bool TryLoadoutTierToCategoryId(
+        string tier,
+        out ProtoId<StoreCategoryPrototype> categoryId)
     {
-        "god"   => "UplinkVipTierGod",
-        "rank1" => "UplinkVipTierRank1",
-        "rank2" => "UplinkVipTierRank2",
-        "rank3" => "UplinkVipTierRank3",
-        _       => "UplinkVipTierRank3",
-    };
+        var id = tier.Trim().ToLowerInvariant() switch
+        {
+            "shareholder" => "UplinkVipTierShareholder",
+            "shareholderlua" => "UplinkVipTierShareholderLua",
+            "god" => "UplinkVipTierGod",
+            "boost" => "UplinkVipTierBoost",
+            "rank1" => "UplinkVipTierRank1",
+            "rank2" => "UplinkVipTierRank2",
+            "rank3" => "UplinkVipTierRank3",
+            "rank4" => "UplinkVipTierRank4",
+            "rank5" => "UplinkVipTierRank5",
+            "rank6" => "UplinkVipTierRank6",
+            "rank7" => "UplinkVipTierRank7",
+            "rank8" => "UplinkVipTierRank8",
+            "rank9" => "UplinkVipTierRank9",
+            "rank10" => "UplinkVipTierRank10",
+            _ => null,
+        };
+
+        if (id == null)
+        {
+            categoryId = default;
+            return false;
+        }
+
+        categoryId = id;
+        return true;
+    }
     private async Task<List<Content.Server.Database.Sponsor>> GetAllShopDonorsAsync(ICommonSession session)
     {
         if (!_playerManager.TryGetSessionById(session.UserId, out _)) return [];

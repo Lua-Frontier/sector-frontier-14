@@ -100,19 +100,19 @@
     # - id: NFWeaponEnergyRifleAssaultPulseCarbine # Frontier: WeaponPulseCarbine<NFWeaponEnergyRifleAssaultPulseCarbine
     #   prob: 0.0001
     #   orGroup: Weapons
-    - id: NFWeaponRifleAssaultSm # Frontier: WeaponRifleAk<NFWeaponRifleAssaultSm
+    - id: WeaponRifleAk # Frontier: WeaponRifleAk<NFWeaponRifleAssaultSm
       prob: 0.0001
       orGroup: Weapons
     # - id: NFWeaponLauncherPirateCannon # Frontier: WeaponLauncherPirateCannon<NFWeaponLauncherPirateCannon
     #   prob: 0.001
     #   orGroup: Weapons
-    - id: NFWeaponPistolCHIMP # Frontier: FWeaponPistolCHIMP<NFWeaponPistolCHIMP
+    - id: WeaponPistolCHIMP # Frontier: FWeaponPistolCHIMP<NFWeaponPistolCHIMP
       prob: 0.001
       orGroup: Weapons
-    - id: NFWeaponRifleBarlowsBolt # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
+    - id: WeaponSniperMosin # Frontier: WeaponSniperMosin<NFWeaponRifleBarlowsBolt
       prob: 0.01
       orGroup: Weapons
-    - id: NFWeaponEnergyPistolLaserMakeshift # Frontier: WeaponMakeshiftLaser<NFWeaponEnergyPistolLaserMakeshift
+    - id: WeaponMakeshiftLaser # Frontier: WeaponMakeshiftLaser<NFWeaponEnergyPistolLaserMakeshift
       prob: 0.001
       orGroup: Weapons
     - id: Sledgehammer
@@ -124,10 +124,10 @@
     - id: ThrowingStar
       prob: 0.01
       orGroup: Weapons
-    - id: NFWeaponEnergyPistolLaser # Frontier: WeaponLaserGun<NFWeaponEnergyPistolLaser
+    - id: WeaponLaserGun # Frontier: WeaponLaserGun<NFWeaponEnergyPistolLaser
       prob: 0.001
       orGroup: Weapons
-    - id: NFWeaponShotgunHandmade # Frontier: WeaponShotgunHandmade<NFWeaponShotgunHandmade
+    - id: WeaponShotgunHandmade # Frontier: WeaponShotgunHandmade<NFWeaponShotgunHandmade
       prob: 0.01
       orGroup: Weapons
     - id: WeaponFlareGun
@@ -148,7 +148,7 @@
     - id: WeaponWaterBlaster
       prob: 0.01
       orGroup: Weapons
-    - id: NFWeaponRifleFoam # Frontier: WeaponRifleFoam<NFWeaponRifleFoam
+    - id: WeaponRifleFoam # Frontier: WeaponRifleFoam<NFWeaponRifleFoam
       prob: 0.03
       orGroup: Weapons
     #clothing

@@ -21,12 +21,12 @@
     - SpawnDungeonLootSeed
     - SpawnDungeonLootToolsHydroponics
     - SpawnDungeonLootChemsHydroponics
-    chance: 0.55
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - SpawnDungeonLootClothesHydroponics
     - SpawnDungeonLootVendingRestocks
-    rareChance: 0.05
+    rareChance: 0.1
 
 # Tools
 - type: entity
@@ -55,7 +55,7 @@
     - HydroponicsToolHatchet
     - PlantBag
     - Shovel
-    chance: 0.55
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - ClothingOuterEVASuitHydro
@@ -99,7 +99,7 @@
     - CrateHydroponicsSeeds
     - CrateHydroponicsSeedsExotic
     - CrateHydroponicsSeedsMedicinal
-    chance: 0.55
+    chance: 0.9
     offset: 0.0
     #rarePrototypes:
     #- CrateServiceKitHydroponics
@@ -123,7 +123,7 @@
     prototypes:
     - CrateVendingMachineRestockNutriMaxFilled
     - CrateVendingMachineRestockSeedsFilled
-    chance: 0.55
+    chance: 1.0
     offset: 0.0
 
 - type: entity
@@ -146,7 +146,7 @@
     - CrateHydroSecure
     - CratePlastic
     - CratePlasticBiodegradable
-    chance: 0.55
+    chance: 1.0
     offset: 0.0
 
 # Clothes
@@ -179,7 +179,7 @@
     - ClothingBackpackMessengerHydroponics
     - ClothingBeltPlant
     - ClothingHeadBandBotany
-    chance: 0.55
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - ClothingOuterEVASuitHydro
@@ -209,13 +209,13 @@
     - ChemistryBottleEZNutrient
     - ChemistryBottleRobustHarvest
     - ChemistryBottleUnstableMutagen
-    chance: 0.55
+    chance: 1
     offset: 0.0
     rarePrototypes:
     - ChemistryBottleCognizine
     - ChemistryBottleOmnizine
     - ChemistryBottleLeft4Zed
-    rareChance: 0.015
+    rareChance: 0.03
 
 - type: entity
   name: random seed
@@ -282,7 +282,7 @@
     - PumpkinSeeds
     - CottonSeeds
     - MimanaSeeds
-    chance: 0.55
+    chance: 0.95
     offset: 0.0
     rarePrototypes:
     - KillerTomatoSeeds
@@ -292,4 +292,4 @@
     - BlueTomatoSeeds
     - BloodTomatoSeeds
     - GatfruitSeeds
-    rareChance: 0.025
+    rareChance: 0.05

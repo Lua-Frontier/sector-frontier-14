@@ -2,6 +2,7 @@ gun-examine-caliber-6852 = 6.8x52 STANAG пулеметный
 gun-examine-caliber-865 = 8x65 SKR пулеметный
 
 gun-examine-caliber-127 = 12.7x99 винтовочный
+gun-examine-caliber-145 = 14.5x114 винтовочный
 gun-examine-caliber-55645 = 5.56x45 винтовочный
 gun-examine-caliber-76239 = 7.62x39 винтовочный
 gun-examine-caliber-76251 = 7.62x51 винтовочный

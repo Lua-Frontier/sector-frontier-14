@@ -4,6 +4,7 @@ using System.Linq;
 using Content.Server.Administration.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
@@ -345,6 +346,7 @@ namespace Content.IntegrationTests.Tests
             var protoManager = server.ResolveDependency<IPrototypeManager>();
             var ticker = entManager.EntitySysManager.GetEntitySystem<GameTicker>();
             var shuttleSystem = entManager.EntitySysManager.GetEntitySystem<ShuttleSystem>();
+            var gridAccess = entManager.System<ShuttleGridAccessSystem>();
             var cfg = server.ResolveDependency<IConfigurationManager>();
             Assert.That(cfg.GetCVar(CCVars.GridFill), Is.False);
 
@@ -397,10 +399,10 @@ namespace Content.IntegrationTests.Tests
                     Assert.That(mapLoader.TryLoadGrid(shuttleMap, shuttlePath, out var shuttle),
                         $"Failed to load {shuttlePath}");
 
+                    Assert.That(gridAccess.TryGetShuttleGrid(shuttle!.Value.Owner, out var shuttleGrid), Is.True,
+                        $"Emergency shuttle {shuttlePath} has no shuttle grid component");
                     Assert.That(
-                        shuttleSystem.TryFTLDock(shuttle!.Value.Owner,
-                            entManager.GetComponent<ShuttleComponent>(shuttle!.Value.Owner),
-                            targetGrid.Value),
+                        shuttleSystem.TryFTLDock(shuttle!.Value.Owner, shuttleGrid!, targetGrid.Value),
                         $"Unable to dock {shuttlePath} to {mapProto}");
                 }
 

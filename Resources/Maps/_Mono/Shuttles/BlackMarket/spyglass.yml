@@ -76,7 +76,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
-    - type: Shuttle
+    - type: ShuttleGrid
       dampingModifier: 0.45
     - type: ImplicitRoof
     - type: GridPathfinding
@@ -3673,7 +3673,7 @@ entities:
     - type: Transform
       pos: -2.5,9.5
       parent: 1
-- proto: NFWeaponShotgunSawn
+- proto: WeaponShotgunSawn
   entities:
   - uid: 466
     components:

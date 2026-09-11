@@ -47,13 +47,16 @@
     maxCharge: 500
     startingCharge: 500
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletEnergyGunFrostNonLethal
-    fireCost: 20 #Lua 75<20
-  # - type: EnergyGun # comment from _Lua
-  #   fireModes:
-  #   - proto: BulletEnergyGunFrostNonLethal
-  #     fireCost: 20 #Lua 75<20
-  #     name: disable
+    proto: BulletDisabler
+    fireCost: 75
+  - type: EnergyGun
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 75
+      name: disable
+    - proto: BulletEnergyGunLaser
+      fireCost: 150
+      name: lethal
   - type: MagazineVisuals
     magState: mag
     steps: 4

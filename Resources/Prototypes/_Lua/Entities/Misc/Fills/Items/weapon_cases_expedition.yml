@@ -61,7 +61,7 @@
     contents:
     - id: WeaponSubMachineGunVector
       amount: 1
-    - id: NFMagazineSubMachineGun45
+    - id: Magazine9x19mmSubMachineGunFMJ
       amount: 1
 
 - type: entity
@@ -83,9 +83,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverInspector
+    - id: WeaponRevolverInspector
       amount: 1
-    - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
+    - id: SpeedLoader357_magnumFMJ
       amount: 2
 
 - type: entity
@@ -119,9 +119,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponShotgunEnforcer
+    - id: WeaponShotgunEnforcer
       amount: 1
-    - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       amount: 2
 
 - type: entity
@@ -151,7 +151,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyPistolLaserAntique
+    - id: WeaponAntiqueLaser
       amount: 1
 
 - type: entity
@@ -161,9 +161,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponPistolFlintlock
+    - id: WeaponPistolFlintlock
       amount: 1
-    - id: NFAmmunitionBoxRifle60
+    - id: AmmoBox145x114mm
       amount: 1
 
 - type: entity
@@ -173,7 +173,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergySubMachineGunDisabler
+    - id: WeaponDisablerSMG
       amount: 1
 
 - type: entity
@@ -183,7 +183,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyPistolLaserX01Multiphase
+    - id: WeaponEnergyGunMultiphase
       amount: 1
 
 - type: entity
@@ -193,9 +193,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponShotgunBlunderbuss
+    - id: WeaponShotgunBlunderbuss
       amount: 1
-    - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       amount: 2
 
 - type: entity
@@ -217,9 +217,9 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponShotgunImprovised
+    - id: WeaponShotgunImprovised
       amount: 1
-    - id: AmmoBox23x75mmBuckshot #Lua 4 gauge
+    - id: AmmoBox12_gaugeBuckshot
       amount: 2
 
 - type: entity
@@ -229,7 +229,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyPistolLaserMakeshift
+    - id: WeaponMakeshiftLaser
       amount: 1
 
 - type: entity
@@ -239,7 +239,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyRifleSniperCannon
+    - id: WeaponLaserCannon
       amount: 1
 
 - type: entity
@@ -249,7 +249,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponEnergyRifleSniperXrayCannon
+    - id: WeaponXrayCannon
       amount: 1
 
 - type: entity
@@ -271,7 +271,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverPirate
+    - id: WeaponRevolverPirate
       amount: 1
     - id: SpeedLoader357_magnumFMJ #Lua 45 -> magnum
       amount: 2
@@ -283,7 +283,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: NFWeaponRevolverWard45
+    - id: WeaponRevolverMateba
       amount: 1
     - id: SpeedLoader357_magnumFMJ #Lua 45 -> magnum
       amount: 2

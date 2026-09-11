@@ -19,8 +19,8 @@
                 <Label Name="BalanceLabel" Text="{Loc 'bank-atm-menu-no-bank'}" Margin="3 0"/>
             </BoxContainer>
             <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                <Label Text="{Loc 'bank-atm-yupi-code'}" FontColorOverride="Silver"/>
-                <Label Name="YUPICode" Text="{Loc 'bank-atm-yupi-code-default'}" Margin="3 0" StyleClasses="monospace"/>
+                <Label Text="{Loc 'bank-atm-galbank-code'}" FontColorOverride="Silver"/>
+                <Label Name="GalBankCode" Text="{Loc 'bank-atm-galbank-code-default'}" Margin="3 0" StyleClasses="monospace"/>
             </BoxContainer>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
                 <Label Text="{Loc 'bank-atm-menu-operation-history-label'}" FontColorOverride="Silver"/>

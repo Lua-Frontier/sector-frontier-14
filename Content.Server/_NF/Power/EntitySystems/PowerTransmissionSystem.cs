@@ -1,4 +1,4 @@
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server._NF.Power.Components;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;

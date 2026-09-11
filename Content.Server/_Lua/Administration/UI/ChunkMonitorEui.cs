@@ -1,16 +1,12 @@
 // LuaCorp - This file is licensed under AGPLv3
 // Copyright (c) 2025 LuaCorp
 // See AGPLv3.txt for details.
-using Content.Server._NF.Worldgen.Components.Debris;
+using Content.Server._Lua.Shuttles.Systems;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
-using Content.Server.Shuttles.Components;
-using Content.Server.Station.Components;
 using Content.Server.Worldgen;
 using Content.Server.Worldgen.Components;
-using Content.Server.Worldgen.Components.GC;
 using Content.Shared._Lua.Administration.ChunkMonitor;
-using Content.Shared._Mono.Ships.Components;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
@@ -35,12 +31,8 @@ public sealed class ChunkMonitorEui : BaseEui
     private EntityQuery<ChunkEvictionComponent> _evictQuery;
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<ActorComponent> _actorQuery;
-    private EntityQuery<ShuttleComponent> _serverShuttleQuery;
     private EntityQuery<MapGridComponent> _gridQuery;
-    private EntityQuery<BecomesStationComponent> _becomesStationQuery;
-    private EntityQuery<GCAbleObjectComponent> _gcAbleQuery;
-    private EntityQuery<SpaceDebrisComponent> _spaceDebrisQuery;
-    private EntityQuery<VesselComponent> _vesselQuery;
+    private ShuttleGridAccessSystem _gridAccess = default!;
     private EntityQuery<ShuttleDeedComponent> _shuttleDeedQuery;
     private NetEntity _selectedMap = NetEntity.Invalid;
     private readonly Dictionary<EntityUid, int> _deletedByMapSession = new();
@@ -57,12 +49,8 @@ public sealed class ChunkMonitorEui : BaseEui
         _evictQuery = _entMan.GetEntityQuery<ChunkEvictionComponent>();
         _xformQuery = _entMan.GetEntityQuery<TransformComponent>();
         _actorQuery = _entMan.GetEntityQuery<ActorComponent>();
-        _serverShuttleQuery = _entMan.GetEntityQuery<ShuttleComponent>();
+        _gridAccess = _entMan.System<ShuttleGridAccessSystem>();
         _gridQuery = _entMan.GetEntityQuery<MapGridComponent>();
-        _becomesStationQuery = _entMan.GetEntityQuery<BecomesStationComponent>();
-        _gcAbleQuery = _entMan.GetEntityQuery<GCAbleObjectComponent>();
-        _spaceDebrisQuery = _entMan.GetEntityQuery<SpaceDebrisComponent>();
-        _vesselQuery = _entMan.GetEntityQuery<VesselComponent>();
         _shuttleDeedQuery = _entMan.GetEntityQuery<ShuttleDeedComponent>();
     }
 
@@ -205,6 +193,7 @@ public sealed class ChunkMonitorEui : BaseEui
         var entityCountByChunk = new Dictionary<Vector2i, int>();
         var playerCountByChunk = new Dictionary<Vector2i, int>();
         var shuttleCountByChunk = new Dictionary<Vector2i, int>();
+        var aiShuttleCountByChunk = new Dictionary<Vector2i, int>();
         var stationCountByChunk = new Dictionary<Vector2i, int>();
         var debrisCountByChunk = new Dictionary<Vector2i, int>();
         var gridCountByChunk = new Dictionary<Vector2i, int>();
@@ -226,25 +215,29 @@ public sealed class ChunkMonitorEui : BaseEui
             }
             if (_gridQuery.HasComponent(uid))
             {
-                if (_becomesStationQuery.HasComponent(uid))
+                switch (_gridAccess.GetKind(uid))
                 {
-                    stationCountByChunk.TryGetValue(chunk, out var stc);
-                    stationCountByChunk[chunk] = stc + 1;
-                }
-                else if (_gcAbleQuery.HasComponent(uid) || _spaceDebrisQuery.HasComponent(uid))
-                {
-                    debrisCountByChunk.TryGetValue(chunk, out var dc);
-                    debrisCountByChunk[chunk] = dc + 1;
-                }
-                else if (_serverShuttleQuery.HasComponent(uid) && _vesselQuery.HasComponent(uid) && _shuttleDeedQuery.HasComponent(uid))
-                {
-                    shuttleCountByChunk.TryGetValue(chunk, out var sc);
-                    shuttleCountByChunk[chunk] = sc + 1;
-                }
-                else
-                {
-                    gridCountByChunk.TryGetValue(chunk, out var gc);
-                    gridCountByChunk[chunk] = gc + 1;
+                    case ShuttleGridKind.Station:
+                        stationCountByChunk.TryGetValue(chunk, out var stc);
+                        stationCountByChunk[chunk] = stc + 1;
+                        break;
+                    case ShuttleGridKind.Debris:
+                    case ShuttleGridKind.Wrecks:
+                        debrisCountByChunk.TryGetValue(chunk, out var dc);
+                        debrisCountByChunk[chunk] = dc + 1;
+                        break;
+                    case ShuttleGridKind.Shuttle when _shuttleDeedQuery.HasComponent(uid):
+                        shuttleCountByChunk.TryGetValue(chunk, out var sc);
+                        shuttleCountByChunk[chunk] = sc + 1;
+                        break;
+                    case ShuttleGridKind.ShuttleAi:
+                        aiShuttleCountByChunk.TryGetValue(chunk, out var ac);
+                        aiShuttleCountByChunk[chunk] = ac + 1;
+                        break;
+                    default:
+                        gridCountByChunk.TryGetValue(chunk, out var gc);
+                        gridCountByChunk[chunk] = gc + 1;
+                        break;
                 }
             }
         }
@@ -256,10 +249,11 @@ public sealed class ChunkMonitorEui : BaseEui
             entityCountByChunk.TryGetValue(coords, out var entities);
             playerCountByChunk.TryGetValue(coords, out var players);
             shuttleCountByChunk.TryGetValue(coords, out var shuttles);
+            aiShuttleCountByChunk.TryGetValue(coords, out var aiShuttles);
             stationCountByChunk.TryGetValue(coords, out var stations);
             debrisCountByChunk.TryGetValue(coords, out var debris);
             gridCountByChunk.TryGetValue(coords, out var grids);
-            chunkInfos.Add(new ChunkMonitorChunkInfo(coords, status, entities, players, shuttles, stations, debris, grids));
+            chunkInfos.Add(new ChunkMonitorChunkInfo(coords, status, entities, players, shuttles, aiShuttles, stations, debris, grids));
         }
         _chunks = chunkInfos.ToArray();
     }

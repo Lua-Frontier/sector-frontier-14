@@ -16,6 +16,8 @@ using Content.Shared.Decals;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
 using Content.Shared.Light.Components;
+using Content.Server._Mono.Planets;
+using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Layers;
 using Content.Shared.Parallax.Biomes.Markers;
@@ -1687,6 +1689,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         SetTemplate(mapUid, biome, biomeTemplate, false);
         AddComp(mapUid, biome, true);
         Dirty(mapUid, biome, metadata);
+
+        var planetMap = EnsureComp<PlanetMapComponent>(mapUid);
+        var parallax = EnsureComp<ParallaxComponent>(mapUid);
+        parallax.Parallax = planetMap.Parallax;
+        Dirty(mapUid, parallax, metadata);
 
         var gravity = EnsureComp<GravityComponent>(mapUid);
         gravity.Enabled = true;

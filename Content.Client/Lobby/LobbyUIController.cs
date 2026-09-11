@@ -207,7 +207,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         var dummy = LoadProfileEntity(humanoid, null, true);
         PreviewPanel.SetSprite(dummy);
         PreviewPanel.SetSummaryText(humanoid.Summary);
-        PreviewPanel.SetBankBalanceText(humanoid.BankBalanceText); // Frontier
+        PreviewPanel.SetBankBalanceText(_preferencesManager.Preferences?.BankBalanceText ?? string.Empty); // Frontier
 
         // Company Display
         var companyId = humanoid.Company;

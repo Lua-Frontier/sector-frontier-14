@@ -115,7 +115,7 @@ public sealed partial class GunSystem : SharedGunSystem
             // pneumatic cannon doesn't shoot bullets it just throws them, ignore ammo handling
             if (throwItems && ent != null)
             {
-                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, gunUid, user);
+                ShootOrThrow(ent.Value, mapDirection, gunVelocity, gun, gunUid, user, fromCoordinates);
                 continue;
             }
 
@@ -161,6 +161,9 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (ent == null)
                         break;
 
+                    if (TryComp<HitscanBasicDamageComponent>(ent.Value, out var hitscanDamageComp))
+                        hitscanDamageComp.Damage *= gun.DamageModifier;
+
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,
@@ -195,19 +198,19 @@ public sealed partial class GunSystem : SharedGunSystem
                 var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
                     mapAngle + spreadEvent.Spread / 2, ammoSpreadComp.Count);
 
-                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user);
+                ShootOrThrow(ammoEnt, angles[0].ToVec(), gunVelocity, gun, gunUid, user, fromCoordinates);
                 shotProjectiles.Add(ammoEnt);
 
                 for (var i = 1; i < ammoSpreadComp.Count; i++)
                 {
                     var newuid = Spawn(ammoSpreadComp.Proto, fromEnt);
-                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user);
+                    ShootOrThrow(newuid, angles[i].ToVec(), gunVelocity, gun, gunUid, user, fromCoordinates);
                     shotProjectiles.Add(newuid);
                 }
             }
             else
             {
-                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, gunUid, user);
+                ShootOrThrow(ammoEnt, mapDirection, gunVelocity, gun, gunUid, user, fromCoordinates);
                 shotProjectiles.Add(ammoEnt);
             }
 
@@ -216,13 +219,30 @@ public sealed partial class GunSystem : SharedGunSystem
         }
     }
 
-    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
+    private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user, EntityCoordinates? fromCoordinates = null)
     {
         if (gun.Target is { } target && !TerminatingOrDeleted(target))
         {
             var targeted = EnsureComp<TargetedProjectileComponent>(uid);
             targeted.Target = target;
             Dirty(uid, targeted);
+        }
+
+        // Mono - cartridge-spawned hitscan (e.g. Magnum45 from Repeater)
+        if (HasComp<HitscanAmmoComponent>(uid))
+        {
+            if (TryComp<HitscanBasicDamageComponent>(uid, out var hitscanDamageComp))
+                hitscanDamageComp.Damage *= gun.DamageModifier;
+
+            ShootHitscan(
+                uid,
+                fromCoordinates,
+                mapDirection,
+                gunUid,
+                user,
+                gun.Target);
+
+            return;
         }
 
         // Do a throw

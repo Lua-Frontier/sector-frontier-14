@@ -27,10 +27,29 @@ public sealed partial class BuyerSponsorTierCondition : ListingCondition
         if (sponsorManager.TryGetAllActiveSponsors(userId, out var allSponsors)) roles = allSponsors.Select(s => s.Role).Where(DonorGroups.IsKnownTier);
         else if (sponsorManager.TryGetActiveSponsor(userId, out var sponsor) && DonorGroups.IsKnownTier(sponsor.Role)) roles = [sponsor.Role];
         else return false;
-        var roleSet = roles.ToHashSet(StringComparer.OrdinalIgnoreCase);
+        var roleSet = DonorGroups.GetEffectiveTiers(roles);
         if (roleSet.Count == 0) return false;
-        if (Blacklist != null && roleSet.Any(r => Blacklist.Contains(r))) return false;
-        if (Whitelist != null && !roleSet.Any(r => Whitelist.Contains(r))) return false;
+        if (Blacklist != null)
+        {
+            var blacklist = ResolveConfiguredTiers(Blacklist);
+            if (roleSet.Overlaps(blacklist)) return false;
+        }
+        if (Whitelist != null)
+        {
+            var whitelist = ResolveConfiguredTiers(Whitelist);
+            if (!roleSet.Overlaps(whitelist)) return false;
+        }
         return true;
+    }
+
+    private static HashSet<string> ResolveConfiguredTiers(IEnumerable<string> configured)
+    {
+        var result = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var value in configured)
+        {
+            if (DonorGroups.TryResolveTier(value, out var tier))
+                result.Add(tier);
+        }
+        return result;
     }
 }

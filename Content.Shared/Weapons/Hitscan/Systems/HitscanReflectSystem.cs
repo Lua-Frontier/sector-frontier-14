@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Weapons.Hitscan.Components;
@@ -20,7 +21,7 @@ public sealed class HitscanReflectSystem : EntitySystem
 
     private void OnHitscanHit(Entity<HitscanReflectComponent> hitscan, ref HitscanRaycastFiredEvent args)
     {
-        if (hitscan.Comp.ReflectiveType == ReflectType.None || args.HitEntity == null)
+        if (hitscan.Comp.ReflectiveType == ReflectType.None || args.HitEntities.Count == 0)
             return;
 
         if (hitscan.Comp.CurrentReflections >= hitscan.Comp.MaxReflections)
@@ -31,7 +32,7 @@ public sealed class HitscanReflectSystem : EntitySystem
             : null;
 
         var ev = new HitScanReflectAttemptEvent(args.Shooter ?? args.Gun, args.Gun, hitscan.Comp.ReflectiveType, args.ShotDirection, false, damage);
-        RaiseLocalEvent(args.HitEntity.Value, ref ev);
+        RaiseLocalEvent(args.HitEntities.First(), ref ev);
 
         if (!ev.Reflected)
             return;
@@ -40,14 +41,14 @@ public sealed class HitscanReflectSystem : EntitySystem
 
         args.Canceled = true;
 
-        var fromEffect = Transform(args.HitEntity.Value).Coordinates;
+        var fromEffect = Transform(args.HitEntities.First()).Coordinates;
 
         var hitFiredEvent = new HitscanTraceEvent
         {
             FromCoordinates = fromEffect,
             ShotDirection = ev.Direction,
             Gun = args.Gun,
-            Shooter = args.HitEntity.Value,
+            Shooter = args.HitEntities.First(),
         };
 
         RaiseLocalEvent(hitscan, ref hitFiredEvent);

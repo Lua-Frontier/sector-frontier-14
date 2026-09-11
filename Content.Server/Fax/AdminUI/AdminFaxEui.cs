@@ -31,7 +31,7 @@ public sealed class AdminFaxEui : BaseEui
 
     public override AdminFaxEuiState GetNewState()
     {
-        var faxes = _entityManager.EntityQueryEnumerator<FaxMachineComponent, DeviceNetworkComponent>();
+        var faxes = _entityManager.AllEntityQueryEnumerator<FaxMachineComponent, DeviceNetworkComponent>();
         var entries = new List<AdminFaxEntry>();
         while (faxes.MoveNext(out var uid, out var fax, out var device))
         {

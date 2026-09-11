@@ -1,8 +1,9 @@
 using System.Text;
+using Content.Server._NF.Bank; // SectorBankComponent
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.Components;
 
-namespace Content.Server._NF.Bank;
+namespace Content.Server._Lua.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {

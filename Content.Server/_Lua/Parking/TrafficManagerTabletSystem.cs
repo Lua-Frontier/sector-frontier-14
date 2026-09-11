@@ -4,7 +4,7 @@
 
 using Content.Shared._NF.Bank;
 using Content.Server._Lua.Frontier.Parking;
-using Content.Server._NF.Bank;
+using Content.Server._Lua.Bank;
 using Content.Server._NF.Shipyard.Systems;
 using Content.Server.Popups;
 using Content.Server.Shuttles.Systems;

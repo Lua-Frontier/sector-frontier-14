@@ -41,7 +41,7 @@
             - Magazine635x40mmCaseless #Lua NFMagazineSubMachineGunPistol45<Magazine635x40mmCaseless
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol45
+        startingItem: Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
@@ -94,11 +94,11 @@
             - NFMagazineSubMachineGunPistol45
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgePistol45
+        startingItem: Cartridge357_magnumFMJ
         priority: 1
         whitelist:
           tags:
-            - CartridgeMagnum
+            - Cartridge357_magnumFMJ
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
