@@ -186,10 +186,10 @@
           - BMUplink
 
 - type: listing
-  id: UplinkBMNFWeaponPistolN1984
+  id: UplinkBMWeaponPistolN1984
   name: uplink-bm-Pistol1984-name
   description: uplink-bm-Pistol1984-desc
-  productEntity: NFWeaponPistolN1984
+  productEntity: WeaponPistolN1984
   cost:
     Speso: 27500
   categories:
@@ -201,40 +201,10 @@
           - BMUplink
 
 - type: listing
-  id: UplinkBMNFWeaponRifleSVS
-  name: uplink-bm-RifleSVS-name
-  description: uplink-bm-RifleSVS-desc
-  productEntity: NFWeaponRifleSVS
-  cost:
-    Speso: 56000
-  categories:
-    - UplinkBMWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - BMUplink
-
-- type: listing
-  id: UplinkBMNFWeaponRifleAssaultGestio
-  name: uplink-bm-Gestio-name
-  description: uplink-bm-Gestio-desc
-  productEntity: NFWeaponRifleAssaultGestio
-  cost:
-    Speso: 32500
-  categories:
-    - UplinkBMWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - BMUplink
-
-- type: listing
-  id: UplinkBMNFWeaponRifleMusket
+  id: UplinkBMMusket
   name: uplink-bm-Musket-name
   description: uplink-bm-Musket-desc
-  productEntity: NFWeaponRifleMusket
+  productEntity: Musket
   cost:
     Speso: 20000
   categories:
@@ -246,10 +216,10 @@
           - BMUplink
 
 - type: listing
-  id: UplinkBMNFWeaponShotgunKammerer
+  id: UplinkBMWeaponShotgunKammerer
   name: uplink-bm-Kammerer-name
   description: uplink-bm-Kammerer-desc
-  productEntity: NFWeaponShotgunKammerer
+  productEntity: WeaponShotgunKammerer
   cost:
     Speso: 67500
   categories:
@@ -261,10 +231,10 @@
           - BMUplink
 
 - type: listing
-  id: UplinkBMNFWeaponEnergyLightMachineGunTurbo
-  name: uplink-bm-EnergyLightMachineGunTurbo-name
-  description: uplink-bm-EnergyLightMachineGunTurbo-desc
-  productEntity: NFWeaponEnergyLightMachineGunTurbo
+  id: UplinkBMWeaponLaserTurboNF
+  name: uplink-bm-WeaponLaserTurboNF-name
+  description: uplink-bm-WeaponLaserTurboNF-desc
+  productEntity: WeaponLaserTurboNF
   cost:
     Speso: 37500
   categories:
@@ -276,10 +246,10 @@
           - BMUplink
 
 - type: listing
-  id: UplinkBMNFWeaponPistolPollock
+  id: UplinkBMWeaponPistolPollock
   name: uplink-bm-Pollock-name
   description: uplink-bm-Pollock-desc
-  productEntity: NFWeaponPistolPollock
+  productEntity: WeaponPistolPollock
   cost:
     Speso: 42500
   categories:

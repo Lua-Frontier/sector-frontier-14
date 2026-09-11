@@ -46,20 +46,14 @@ uplink-bm-Jackdaw-desc = лёгкий полу-универсальный авт
 uplink-bm-Pistol1984-name = N1984
 uplink-bm-Pistol1984-desc = Запасное оружие любого уважающего себя человека. Большие обоймы и калибр .45 ACP решают многое.
 
-uplink-bm-RifleSVS-name = SVS-42
-uplink-bm-RifleSVS-desc = Изначально сконструированно Самоновым, это орудие старой эпохи пришло прямиком из СССП
-
-uplink-bm-Gestio-name = Гестио
-uplink-bm-Gestio-desc = Старый, добрый, и надёждый лёгкий автомат "Гестио".
-
 uplink-bm-Musket-name = Мушкет
 uplink-bm-Musket-desc = Некогда - орудие каждой войны, сейчас - более пережиток прошлого.
 
 uplink-bm-Kammerer-name = Каммерер
 uplink-bm-Kammerer-desc = Удобный, компактный и сильный дробовик "Каммерер" на калибре 4 gauge.
 
-uplink-bm-EnergyLightMachineGunTurbo-name = турбо-лазер MK3
-uplink-bm-EnergyLightMachineGunTurbo-desc = Турболазер, снятый с какого-то старого ИИ-конструкта, и переделанный под компактное оружие.
+uplink-bm-WeaponLaserTurboNF-name = турбо-лазер MK3
+uplink-bm-WeaponLaserTurboNF-desc = Турболазер, снятый с какого-то старого ИИ-конструкта, и переделанный под компактное оружие.
 
 uplink-bm-Pollock-name = Поллок
 uplink-bm-Pollock-desc = Компактный и лёгкий в создании боевой пистолет "Поллок". Использует патроны калибра 6.35x40мм
