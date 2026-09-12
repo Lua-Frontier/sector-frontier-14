@@ -22,6 +22,9 @@ public sealed partial class RadarBlipIconComponent : Component
     public float Scale = 1f;
 
     [DataField, AutoNetworkedField]
+    public bool ScaleDownWhenClose;
+
+    [DataField, AutoNetworkedField]
     public float MaxDistance = 0f;
 
     [DataField, AutoNetworkedField]

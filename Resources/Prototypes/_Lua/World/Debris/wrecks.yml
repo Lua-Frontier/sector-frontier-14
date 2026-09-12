@@ -237,14 +237,16 @@
 #region NF wrecks
 - type: entity
   id: NFBaseWreckDebris
-  parent: NFBaseDebris
+  parent: BaseDebris
   abstract: true
   components:
+  - type: WrecksGrid
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/wreck.png
     scale: 1.2
     maxDistance: 1024
     allowWhenHidden: true
+    scaleDownWhenClose: true
   - type: BlobFloorPlanBuilder
     floorTileset:
       - Plating
@@ -346,14 +348,16 @@
 
 - type: entity
   id: NFBaseWreckDebrisBrass
-  parent: NFBaseDebris
+  parent: BaseDebris
   abstract: true
   components:
+  - type: WrecksGrid
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/wreck.png
     scale: 1.2
     maxDistance: 1024
     allowWhenHidden: true
+    scaleDownWhenClose: true
   - type: BlobFloorPlanBuilder
     floorTileset:
       - PlatingBrass

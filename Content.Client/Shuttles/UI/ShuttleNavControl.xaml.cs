@@ -802,14 +802,9 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var allowBlip = !hideLabel;
             if (effectiveHideLabelShuttle) allowBlip = true;
 
-            const float FullScaleDistance = 200f;
-            const float ScaleEndDistance = 800f;
-            const float MinDistanceScale = 0.35f;
             var scaledMousePos = GetScaledMouseUiPosition();
             var isHovered = Vector2.Distance(scaledMousePos, uiPosition * UIScale) < 30f;
-            var distanceScale = isHovered || worldDist <= FullScaleDistance
-                ? 1f
-                : MathF.Max(MinDistanceScale, 1f - (worldDist - FullScaleDistance) / (ScaleEndDistance - FullScaleDistance) * (1f - MinDistanceScale));
+            var distanceScale = GetRadarIconDistanceScale(worldDist, ShouldScaleDownRadarIconWhenClose(gUid, isPlayerShuttle), isHovered);
 
             Texture? vesselIcon = null;
             var blipScale = 1f;
@@ -1146,12 +1141,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                             if (cache.TryGetResource<TextureResource>(blipIcon.Icon, out var texRes))
                             {
                                 // Same sizing as IFF/debris RadarBlipIcon path (RadarBlipSize * UIScale * Scale * distanceScale).
-                                const float fullScaleDistance = 200f;
-                                const float scaleEndDistance = 800f;
-                                const float minDistanceScale = 0.35f;
-                                var distanceScale = blipWorldDist <= fullScaleDistance
-                                    ? 1f
-                                    : MathF.Max(minDistanceScale, 1f - (blipWorldDist - fullScaleDistance) / (scaleEndDistance - fullScaleDistance) * (1f - minDistanceScale));
+                                var distanceScale = GetRadarIconDistanceScale(blipWorldDist, blipIcon.ScaleDownWhenClose, isHovered: false);
                                 var s = (RadarBlipSize * UIScale) * blipIcon.Scale * distanceScale;
                                 var half = new Vector2(s / 2f, s / 2f);
                                 var box = new UIBox2(blipPosInView - half, blipPosInView + half);
@@ -1378,6 +1368,38 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
     }
 
     // Lua decrypt mod start
+    private const float RadarIconFullScaleDistance = 200f;
+    private const float RadarIconScaleEndDistance = 800f;
+    private const float RadarIconMinDistanceScale = 0.35f;
+
+    /// <summary>
+    /// Default: full size when close, smaller when far.
+    /// ScaleDownWhenClose (ships/debris/wrecks): smaller when close so the grid outline stays readable.
+    /// </summary>
+    private static float GetRadarIconDistanceScale(float worldDist, bool scaleDownWhenClose, bool isHovered)
+    {
+        if (isHovered)
+            return 1f;
+
+        float farScale;
+        if (worldDist <= RadarIconFullScaleDistance)
+            farScale = 1f;
+        else
+            farScale = MathF.Max(RadarIconMinDistanceScale, 1f - (worldDist - RadarIconFullScaleDistance) / (RadarIconScaleEndDistance - RadarIconFullScaleDistance) * (1f - RadarIconMinDistanceScale));
+
+        return scaleDownWhenClose
+            ? RadarIconMinDistanceScale + 1f - farScale
+            : farScale;
+    }
+
+    private bool ShouldScaleDownRadarIconWhenClose(EntityUid uid, bool isPlayerShuttle)
+    {
+        if (isPlayerShuttle || EntManager.HasComponent<VesselComponent>(uid))
+            return true;
+
+        return EntManager.TryGetComponent<RadarBlipIconComponent>(uid, out var icon) && icon.ScaleDownWhenClose;
+    }
+
     /// <summary>
     /// Quantize font scale for radar labels.
     /// Continuous scales in GetDimensions/DrawString leak glyph atlas RAM (956a2b5).

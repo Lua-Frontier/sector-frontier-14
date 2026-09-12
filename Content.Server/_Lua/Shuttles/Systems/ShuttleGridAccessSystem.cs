@@ -29,6 +29,8 @@ public enum ShuttleGridKind
 public sealed class ShuttleGridAccessSystem : EntitySystem
 {
     private static readonly EntProtoId BaseScrapDebrisId = "BaseScrapDebris";
+    private static readonly EntProtoId NFBaseWreckDebrisId = "NFBaseWreckDebris";
+    private static readonly EntProtoId NFBaseWreckDebrisBrassId = "NFBaseWreckDebrisBrass";
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     private EntityQuery<ShuttleGridComponent> _shuttleGridQuery;
     private EntityQuery<StationGridComponent> _stationGridQuery;
@@ -169,7 +171,11 @@ public sealed class ShuttleGridAccessSystem : EntitySystem
         if (TryMigrateLegacyShuttle(uid))
             return;
         if (HasAnyGridType(uid))
+        {
+            if (GetKind(uid) == ShuttleGridKind.Debris && IsWreckDebris(uid))
+                EnsureGridType(uid, ShuttleGridKind.Wrecks);
             return;
+        }
         EnsureGridType(uid, ResolveGridType(uid));
     }
 
@@ -241,7 +247,9 @@ public sealed class ShuttleGridAccessSystem : EntitySystem
             return true;
         if (!TryComp<MetaDataComponent>(uid, out var meta) || meta.EntityPrototype is not { } proto)
             return false;
-        return InheritsFrom(proto.ID, BaseScrapDebrisId);
+        return InheritsFrom(proto.ID, BaseScrapDebrisId)
+            || InheritsFrom(proto.ID, NFBaseWreckDebrisId)
+            || InheritsFrom(proto.ID, NFBaseWreckDebrisBrassId);
     }
 
     private bool InheritsFrom(string protoId, EntProtoId ancestorId)

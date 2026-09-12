@@ -577,8 +577,12 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
         owned.OwningController = uid;
         owned.LastKey = point;
         EnsureComp<SpaceDebrisComponent>(ent);
-        if (HasComp<MapGridComponent>(ent) && !_gridAccess.HasAnyGridType(ent))
-            _gridAccess.EnsureGridType(ent, _gridAccess.ResolveGridType(ent));
+        if (HasComp<MapGridComponent>(ent))
+        {
+            var kind = _gridAccess.ResolveGridType(ent);
+            if (!_gridAccess.HasAnyGridType(ent) || _gridAccess.GetKind(ent) != kind)
+                _gridAccess.EnsureGridType(ent, kind);
+        }
 
         if (!pregen)
             return;
