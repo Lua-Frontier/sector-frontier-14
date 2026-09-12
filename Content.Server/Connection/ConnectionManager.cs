@@ -22,6 +22,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._NF.Auth; // Frontier
+using Content.Server._Lua.SitePlayerSync;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -70,6 +71,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly MiniAuthManager _authManager = default!; //Frontier
+        [Dependency] private readonly SitePlayerSyncManager _sitePlayerSync = default!; // Lua
 
         private GameTicker? _ticker;
 
@@ -92,6 +94,7 @@ namespace Content.Server.Connection
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
             _plyMgr.PlayerStatusChanged += PlayerStatusChanged;
             _cfg.OnValueChanged(CLVars.DevMode, OnDevModeChanged, invokeImmediately: true);
+            _sitePlayerSync.Initialize();
             // Approval-based IP bans disabled because they don't play well with Happy Eyeballs.
             // _netMgr.HandleApprovalCallback = HandleApproval;
         }
@@ -172,6 +175,7 @@ namespace Content.Server.Connection
                     return;
 
                 await _db.UpdatePlayerRecordAsync(userId, e.UserName, addr, hwid);
+                _sitePlayerSync.NotifyPlayerSeen(userId, e.UserName);
             }
         }
 

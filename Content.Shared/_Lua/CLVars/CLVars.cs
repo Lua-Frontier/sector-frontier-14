@@ -232,6 +232,13 @@ namespace Content.Shared.Lua.CLVar
         public static readonly CVarDef<string> LunaCoinServerName =
             CVarDef.Create("lunacoin.server_name", "luna", CVar.SERVERONLY | CVar.ARCHIVE);
 
+        public static readonly CVarDef<string> SitePlayerSyncApiUrl =
+            CVarDef.Create("site_player.api_url", "", CVar.SERVERONLY | CVar.ARCHIVE);
+        public static readonly CVarDef<string> SitePlayerSyncApiToken =
+            CVarDef.Create("site_player.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+        public static readonly CVarDef<bool> SitePlayerSyncEnabled =
+            CVarDef.Create("site_player.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
+
         public static readonly CVarDef<bool> FactionWarEnabled =
             CVarDef.Create("lua.faction_war.enabled", true, CVar.SERVERONLY | CVar.ARCHIVE);
 
