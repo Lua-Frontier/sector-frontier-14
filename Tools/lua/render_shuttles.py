@@ -3,7 +3,6 @@
 import os
 import subprocess
 import sys
-import shutil
 import json
 import time
 import hashlib
@@ -19,6 +18,9 @@ def get_project_root() -> str:
     project_root = os.path.dirname(os.path.dirname(script_dir))
     return project_root
 
+def get_script_dir() -> str:
+    return os.path.dirname(os.path.abspath(__file__))
+
 def calculate_file_hash(file_path: str) -> str:
     try:
         hash_md5 = hashlib.md5()
@@ -32,7 +34,7 @@ def calculate_file_hash(file_path: str) -> str:
 
 def log_error(error_msg: str, shuttle_name: str = "", details: str = ""):
     try:
-        log_path = os.path.join(os.path.dirname(__file__), ERROR_LOG_FILE)
+        log_path = os.path.join(get_script_dir(), ERROR_LOG_FILE)
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 
         with open(log_path, 'a', encoding='utf-8') as f:
@@ -48,7 +50,7 @@ def log_error(error_msg: str, shuttle_name: str = "", details: str = ""):
 
 def load_render_info() -> Dict[str, Dict]:
     try:
-        info_path = os.path.join(os.path.dirname(__file__), RENDER_INFO_FILE)
+        info_path = os.path.join(get_script_dir(), RENDER_INFO_FILE)
         if os.path.exists(info_path):
             with open(info_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
@@ -70,7 +72,7 @@ def load_render_info() -> Dict[str, Dict]:
 
 def save_render_info(render_info: Dict[str, Dict]):
     try:
-        info_path = os.path.join(os.path.dirname(__file__), RENDER_INFO_FILE)
+        info_path = os.path.join(get_script_dir(), RENDER_INFO_FILE)
         with open(info_path, 'w', encoding='utf-8') as f:
             json.dump(render_info, f, indent=2, ensure_ascii=False)
         print(f"V Информация о рендеринге сохранена в {info_path}")
@@ -157,13 +159,24 @@ def check_files_for_changes(shuttle_files: List[Tuple[str, str, str]], render_in
 
     return changed_files
 
-def render_shuttle(shuttle_path: str, output_dir: str, project_root: str) -> Tuple[bool, str]:
+def find_output_pngs(output_dir: str, shuttle_name: str) -> List[str]:
+    shuttle_out = os.path.join(output_dir, shuttle_name)
+    if not os.path.isdir(shuttle_out):
+        return []
+    return sorted(
+        os.path.join(shuttle_out, f)
+        for f in os.listdir(shuttle_out)
+        if f.lower().endswith(".png")
+    )
+
+def render_shuttle(shuttle_path: str, shuttle_name: str, full_path: str, output_dir: str, project_root: str) -> Tuple[bool, str]:
     try:
         maprender_exe = os.path.join(project_root, "bin", "Content.MapRenderer", "Content.MapRenderer.exe")
+        map_file_arg = os.path.relpath(full_path, project_root).replace("\\", "/")
         cmd = [
             maprender_exe,
             "-o", output_dir,
-            "-f", f"Maps/{shuttle_path}"
+            "-f", map_file_arg
         ]
 
         print(f"Рендерим: {shuttle_path}")
@@ -177,18 +190,31 @@ def render_shuttle(shuttle_path: str, output_dir: str, project_root: str) -> Tup
             timeout=300
         )
 
-        if result.returncode == 0:
-            print(f"V Успешно отрендерен: {shuttle_path}")
-            return True, ""
-        else:
+        if result.stdout.strip():
+            print(result.stdout.strip())
+        if result.stderr.strip():
+            print(result.stderr.strip())
+
+        if result.returncode != 0:
             error_msg = f"Ошибка рендеринга {shuttle_path}"
             print(f"X {error_msg}:")
-            print(f"  stdout: {result.stdout}")
-            print(f"  stderr: {result.stderr}")
             details = f"stdout: {result.stdout}, stderr: {result.stderr}"
             log_error(error_msg, shuttle_path, details)
-
             return False, f"Код ошибки: {result.returncode}"
+
+        output_pngs = find_output_pngs(output_dir, shuttle_name)
+        if not output_pngs:
+            error_msg = f"Рендер завершился без PNG: {shuttle_path}"
+            print(f"X {error_msg}")
+            print(f"  Ожидался файл в: {os.path.join(output_dir, shuttle_name)}")
+            details = f"stdout: {result.stdout}, stderr: {result.stderr}"
+            log_error(error_msg, shuttle_path, details)
+            return False, "PNG не создан"
+
+        print(f"V Успешно отрендерен: {shuttle_path}")
+        for png in output_pngs:
+            print(f"  -> {png}")
+        return True, ""
 
     except subprocess.TimeoutExpired:
         error_msg = f"Таймаут при рендеринге {shuttle_path}"
@@ -201,38 +227,6 @@ def render_shuttle(shuttle_path: str, output_dir: str, project_root: str) -> Tup
         print(f"X {error_msg}: {e}")
         log_error(error_msg, shuttle_path, str(e))
         return False, str(e)
-
-# Чисто мой прикол, вам яндекс не нужен
-def copy_to_yandex_disk(tmp_dir: str) -> bool:
-    try:
-        yandex_path = os.path.expanduser(r"%USERPROFILE%\YandexDisk\Job\Render")
-        if not os.path.exists(yandex_path):
-            yandex_path = os.path.expanduser(r"~\YandexDisk\Job\Render")
-        if not os.path.exists(yandex_path):
-            print(f"!!!  Папка Яндекс.Диска не найдена: {yandex_path}")
-            print("Результаты остаются в папке tmp")
-            return False
-        print(f"\nКопируем результаты в Яндекс.Диск: {yandex_path}")
-        os.makedirs(yandex_path, exist_ok=True)
-        for item in os.listdir(tmp_dir):
-            src_path = os.path.join(tmp_dir, item)
-            dst_path = os.path.join(yandex_path, item)
-
-            if os.path.isdir(src_path):
-                if os.path.exists(dst_path):
-                    shutil.rmtree(dst_path)
-                shutil.copytree(src_path, dst_path)
-                print(f"  V Скопирована папка: {item}")
-            else:
-                shutil.copy2(src_path, dst_path)
-                print(f"  V Скопирован файл: {item}")
-        print(f"VVV Все результаты скопированы в Яндекс.Диск!")
-        return True
-
-    except Exception as e:
-        print(f"X Ошибка при копировании в Яндекс.Диск: {e}")
-        log_error(f"Ошибка при копировании в Яндекс.Диск: {e}")
-        return False
 
 def cleanup_tmp_files(tmp_dir: str):
     try:
@@ -304,7 +298,7 @@ def main():
         log_error(error_msg, "", f"Файл не найден: {maprender_path}")
         sys.exit(1)
 
-    output_dir = os.path.join(project_root, "bin", "Content.MapRenderer", "tmp")
+    output_dir = os.path.join(get_script_dir(), "Render")
     os.makedirs(output_dir, exist_ok=True)
     print(f"Папка вывода: {output_dir}")
 
@@ -325,14 +319,13 @@ def main():
     if not changed_files:
         print(f"\nVVV Все шаттлы уже отрендерены и не изменились!")
         print("Никаких действий не требуется.")
-        print(f"\n>>> Рендеренные шаттлы доступны <<<")
-        print(f"  >>> Яндекс.Диск: https://disk.yandex.ru/d/AqwhAxgvM9oafQ")
-        print(f"  >>> Если новые шаттлы, то локальная папка: {output_dir}")
+        print(f"\n>>> Рендеренные шаттлы: {output_dir}")
         return
 
     successful = 0
     failed = 0
     failed_shuttles = []
+    successful_files = []
 
     print(f"\nНачинаем рендеринг измененных файлов...")
     start_time = time.time()
@@ -340,10 +333,11 @@ def main():
     for i, (shuttle_path, shuttle_name, full_path) in enumerate(changed_files, 1):
         print(f"\n[{i}/{len(changed_files)}] Рендерим {shuttle_name}")
 
-        success, error_msg = render_shuttle(shuttle_path, output_dir, project_root)
+        success, error_msg = render_shuttle(shuttle_path, shuttle_name, full_path, output_dir, project_root)
 
         if success:
             successful += 1
+            successful_files.append((shuttle_path, shuttle_name, full_path))
         else:
             failed += 1
             failed_shuttles.append((shuttle_path, shuttle_name, full_path, error_msg))
@@ -366,19 +360,13 @@ def main():
         print(f"\nVVV Все измененные шаттлы успешно отрендерены!")
         print(f"Результаты сохранены в: {output_dir}")
 
-    successful_files = [(path, name, full) for path, name, full in changed_files
-                        if (path, name, full, "") not in failed_shuttles]
-
     if successful_files:
         update_render_info(successful_files, render_info)
         save_render_info(render_info)
 
     cleanup_tmp_files(output_dir)
-    copy_to_yandex_disk(output_dir)
 
-    print(f"\n>>> Рендеренные шаттлы доступны <<<")
-    print(f"  >>> Яндекс.Диск: https://disk.yandex.ru/d/AqwhAxgvM9oafQ")
-    print(f"  >>> Если новые шаттлы, то локальная папка: {output_dir}")
+    print(f"\n>>> Рендеренные шаттлы: {output_dir}")
 
     if failed > 0:
         print(f"\n==> РЕЗЮМЕ:")
