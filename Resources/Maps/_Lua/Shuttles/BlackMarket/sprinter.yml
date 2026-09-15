@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 268.0.0
-  forkId: dsfrontier
+  engineVersion: 275.1.0
+  forkId: ""
   forkVersion: ""
-  time: 01/24/2026 16:58:00
-  entityCount: 979
+  time: 09/15/2026 23:15:48
+  entityCount: 968
 maps: []
 grids:
 - 1
@@ -1282,20 +1282,6 @@ entities:
     - type: Transform
       pos: 0.5,2.5
       parent: 1
-- proto: AirlockExternal
-  entities:
-  - uid: 23
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -8.5,-2.5
-      parent: 1
-  - uid: 24
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 8.5,-2.5
-      parent: 1
 - proto: AirlockExternalGlass
   entities:
   - uid: 25
@@ -1317,6 +1303,16 @@ entities:
     components:
     - type: Transform
       pos: 8.5,-4.5
+      parent: 1
+  - uid: 126
+    components:
+    - type: Transform
+      pos: -8.5,-2.5
+      parent: 1
+  - uid: 127
+    components:
+    - type: Transform
+      pos: 8.5,-2.5
       parent: 1
 - proto: AirlockGlassShuttle
   entities:
@@ -1465,6 +1461,44 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,0.5
+      parent: 1
+- proto: AtmosDeviceFanDirectional
+  entities:
+  - uid: 207
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-4.5
+      parent: 1
+  - uid: 211
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-3.5
+      parent: 1
+  - uid: 213
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -12.5,-2.5
+      parent: 1
+  - uid: 214
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,-4.5
+      parent: 1
+  - uid: 215
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,-3.5
+      parent: 1
+  - uid: 220
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 12.5,-2.5
       parent: 1
 - proto: AtmosFixBlockerMarker
   entities:
@@ -1853,16 +1887,6 @@ entities:
       parent: 1
 - proto: CableApcExtension
   entities:
-  - uid: 126
-    components:
-    - type: Transform
-      pos: -8.5,-5.5
-      parent: 1
-  - uid: 127
-    components:
-    - type: Transform
-      pos: -0.5,5.5
-      parent: 1
   - uid: 128
     components:
     - type: Transform
@@ -2258,11 +2282,6 @@ entities:
     - type: Transform
       pos: -0.5,8.5
       parent: 1
-  - uid: 207
-    components:
-    - type: Transform
-      pos: 0.5,9.5
-      parent: 1
   - uid: 208
     components:
     - type: Transform
@@ -2278,30 +2297,10 @@ entities:
     - type: Transform
       pos: -3.5,0.5
       parent: 1
-  - uid: 211
-    components:
-    - type: Transform
-      pos: -2.5,0.5
-      parent: 1
   - uid: 212
     components:
     - type: Transform
       pos: -3.5,-5.5
-      parent: 1
-  - uid: 213
-    components:
-    - type: Transform
-      pos: -6.5,-5.5
-      parent: 1
-  - uid: 214
-    components:
-    - type: Transform
-      pos: 2.5,-5.5
-      parent: 1
-  - uid: 215
-    components:
-    - type: Transform
-      pos: 0.5,-5.5
       parent: 1
   - uid: 216
     components:
@@ -2323,25 +2322,10 @@ entities:
     - type: Transform
       pos: -0.5,-5.5
       parent: 1
-  - uid: 220
-    components:
-    - type: Transform
-      pos: -2.5,-5.5
-      parent: 1
-  - uid: 221
-    components:
-    - type: Transform
-      pos: -1.5,-5.5
-      parent: 1
   - uid: 222
     components:
     - type: Transform
       pos: -4.5,-2.5
-      parent: 1
-  - uid: 223
-    components:
-    - type: Transform
-      pos: -4.5,-5.5
       parent: 1
   - uid: 224
     components:
@@ -2352,11 +2336,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,-1.5
-      parent: 1
-  - uid: 226
-    components:
-    - type: Transform
-      pos: -5.5,-5.5
       parent: 1
   - uid: 227
     components:
@@ -2373,20 +2352,10 @@ entities:
     - type: Transform
       pos: -4.5,-1.5
       parent: 1
-  - uid: 230
-    components:
-    - type: Transform
-      pos: -7.5,-5.5
-      parent: 1
   - uid: 231
     components:
     - type: Transform
       pos: -3.5,-0.5
-      parent: 1
-  - uid: 232
-    components:
-    - type: Transform
-      pos: -8.5,-5.5
       parent: 1
   - uid: 233
     components:
@@ -2428,20 +2397,10 @@ entities:
     - type: Transform
       pos: -4.5,-1.5
       parent: 1
-  - uid: 241
-    components:
-    - type: Transform
-      pos: -2.5,-1.5
-      parent: 1
   - uid: 242
     components:
     - type: Transform
       pos: -1.5,-1.5
-      parent: 1
-  - uid: 243
-    components:
-    - type: Transform
-      pos: -0.5,-1.5
       parent: 1
   - uid: 244
     components:
@@ -2493,20 +2452,10 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
-  - uid: 254
-    components:
-    - type: Transform
-      pos: 0.5,7.5
-      parent: 1
   - uid: 255
     components:
     - type: Transform
       pos: 0.5,8.5
-      parent: 1
-  - uid: 256
-    components:
-    - type: Transform
-      pos: 0.5,9.5
       parent: 1
   - uid: 257
     components:
@@ -2519,16 +2468,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,6.5
-      parent: 1
-  - uid: 259
-    components:
-    - type: Transform
-      pos: -2.5,9.5
-      parent: 1
-  - uid: 260
-    components:
-    - type: Transform
-      pos: -2.5,8.5
       parent: 1
   - uid: 261
     components:
@@ -2810,6 +2749,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,6.5
       parent: 1
+- proto: Cartridge45_ACPFMJ
+  entities:
+  - uid: 24
+    components:
+    - type: Transform
+      parent: 11
+    - type: Physics
+      canCollide: False
 - proto: Catwalk
   entities:
   - uid: 316
@@ -5120,6 +5067,10 @@ entities:
     components:
     - type: Transform
       parent: 2
+    - type: BallisticAmmoProvider
+      unspawnedCount: 30
+    - type: EmitSoundOnCollide
+      nextSound: -1119.9249049
     - type: Physics
       canCollide: False
   - uid: 12
@@ -5129,7 +5080,7 @@ entities:
     - type: Transform
       parent: 11
     - type: BallisticAmmoProvider
-      unspawnedCount: 24
+      unspawnedCount: 30
     - type: EmitSoundOnCollide
       nextSound: -101286.8547716
     - type: Physics
@@ -5146,7 +5097,7 @@ entities:
     - type: Transform
       parent: 2
     - type: BallisticAmmoProvider
-      unspawnedCount: 25
+      unspawnedCount: 30
     - type: EmitSoundOnCollide
       nextSound: -101286.8547716
     - type: Physics
@@ -5164,7 +5115,7 @@ entities:
     - type: Transform
       parent: 2
     - type: BallisticAmmoProvider
-      unspawnedCount: 25
+      unspawnedCount: 30
     - type: EmitSoundOnCollide
       nextSound: -101286.8547716
     - type: Physics
@@ -5182,7 +5133,7 @@ entities:
     - type: Transform
       parent: 2
     - type: BallisticAmmoProvider
-      unspawnedCount: 25
+      unspawnedCount: 30
     - type: EmitSoundOnCollide
       nextSound: -101286.8547716
     - type: Physics
@@ -5193,6 +5144,12 @@ entities:
       dnas: []
       fibers: []
       fingerprints: []
+  - uid: 23
+    components:
+    - type: Transform
+      parent: 11
+    - type: Physics
+      canCollide: False
 - proto: MagazineBox357
   entities:
   - uid: 374
@@ -5228,32 +5185,6 @@ entities:
     - type: Transform
       pos: -1.5,-6.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 13
-    components:
-    - type: Transform
-      parent: 11
-    - type: Physics
-      canCollide: False
-- proto: WeaponSubMachineGunVector45_ACP
-  entities:
-  - uid: 11
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 2
-    - type: Physics
-      canCollide: False
-- proto: WeaponRevolverPython357
-  entities:
-  - uid: 376
-    components:
-    - type: Transform
-      parent: 368
-    - type: Physics
-      canCollide: False
 - proto: NFHolopadShip
   entities:
   - uid: 617
@@ -5261,22 +5192,6 @@ entities:
     - type: Transform
       pos: -1.5,9.5
       parent: 1
-- proto: WeaponProtoKineticAcceleratorSawn
-  entities:
-  - uid: 600
-    components:
-    - type: Transform
-      parent: 599
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 601
-    components:
-    - type: Transform
-      parent: 599
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: NitrogenCanister
   entities:
   - uid: 618
@@ -5306,7 +5221,19 @@ entities:
       bodyType: Static
 - proto: Paper
   entities:
+  - uid: 13
+    components:
+    - type: Transform
+      parent: 11
+    - type: Physics
+      canCollide: False
   - uid: 377
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+  - uid: 378
     components:
     - type: Transform
       parent: 368
@@ -5326,6 +5253,8 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 1
+    - type: DeltaPressure
+      gridUid: 1
 - proto: PlasteelArmingSword
   entities:
   - uid: 602
@@ -5602,18 +5531,24 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-5.5
       parent: 1
+    - type: DeltaPressure
+      gridUid: 1
   - uid: 665
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -4.5,-5.5
       parent: 1
+    - type: DeltaPressure
+      gridUid: 1
   - uid: 666
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 1.5,-10.5
       parent: 1
+    - type: DeltaPressure
+      gridUid: 1
 - proto: SheetSteel
   entities:
   - uid: 667
@@ -5844,14 +5779,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-0.5
       parent: 1
-- proto: Paper
-  entities:
-  - uid: 378
-    components:
-    - type: Transform
-      parent: 368
-    - type: Physics
-      canCollide: False
 - proto: StoolBar
   entities:
   - uid: 29
@@ -7478,6 +7405,58 @@ entities:
     - type: Transform
       pos: 1.5,10.5
       parent: 1
+- proto: WeaponProtoKineticAcceleratorSawn
+  entities:
+  - uid: 600
+    components:
+    - type: Transform
+      parent: 599
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 601
+    components:
+    - type: Transform
+      parent: 599
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: WeaponRevolverPython357
+  entities:
+  - uid: 376
+    components:
+    - type: Transform
+      parent: 368
+    - type: Physics
+      canCollide: False
+- proto: WeaponSubMachineGunVector45_ACP
+  entities:
+  - uid: 11
+    mapInit: true
+    paused: true
+    components:
+    - type: Transform
+      parent: 2
+    - type: Gun
+      nextFire: -1119.9249049
+    - type: ContainerContainer
+      containers:
+        gun_magazine: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 23
+        gun_chamber: !type:ContainerSlot
+          showEnts: False
+          occludes: True
+          ent: 24
+    - type: MeleeWeapon
+      nextAttack: -1119.9249049
+    - type: GunJam
+      destroyThreshold: 9000
+    - type: EmitSoundOnCollide
+      nextSound: -1119.9249049
+    - type: Physics
+      canCollide: False
 - proto: WeaponTurretType35
   entities:
   - uid: 972
