@@ -171,6 +171,13 @@ public sealed partial class BlockingSystem : EntitySystem
             return false;
         }
 
+        // Energy shields must be toggled on before raising; otherwise durability transfer is skipped.
+        if (!_toggle.IsActivated(item))
+        {
+            CantBlockError(user);
+            return false;
+        }
+
         //Don't allow someone to block if someone else is on the same tile
         var playerTileRef = _turf.GetTileRef(xform.Coordinates);
         if (playerTileRef != null)
