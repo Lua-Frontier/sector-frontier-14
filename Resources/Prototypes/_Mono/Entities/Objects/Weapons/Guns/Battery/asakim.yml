@@ -19,17 +19,15 @@
     - 0,0,2,1
     sprite: _Mono/Objects/Weapons/Guns/Battery/asakimrifle.rsi
 #  - type: GunWieldBonus # comment from _Lua
-#    minAngle: -16 #Lua -18 -> -16
+#    minAngle: -18 #Lua
 #    maxAngle: -14
   - type: Gun
-#    minAngle: 18
-#    maxAngle: 26
-    minAngle: 8.1 #Lua  #Maksimvini 3.1>8.1  Rebalance
-    maxAngle: 18.5 #Lua  #Maksimvini 15.5>18.5 Rebalance
-    angleIncrease: 1.5 #Lua  #Maksimvini 0.7>1.5 Rebalance
+    minAngle: 18 #Lua  
+    maxAngle: 26 #Lua  
+    angleIncrease: 0.7 #Lua
     angleDecay: 5 #Lua
-    fireRate: 3.5 #Lua 6<4  #Maksimvini 4>3.5 Rebalance
-    burstFireRate: 10 #Lua 15 -> 10
+    fireRate: 4 #Lua 4
+    burstFireRate: 15 #Lua 15 -> 10
     shotsPerBurst: 5
     selectedMode: FullAuto
     availableModes:
@@ -44,13 +42,13 @@
     zeroVisible: false
   - type: ProjectileBatteryAmmoProvider
     proto: HandheldAutopulserProjectile
-    fireCost: 25 #Maksimvini 20>25 (25x13=325, 13 shots)
+    fireCost: 50 #lua
   - type: Appearance
   - type: StaticPrice
     price: 1750
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 50 #Maksimvini 25>50. Less ammo cap, faster reload rebalance.
+    autoRechargeRate: 60 #lua
   - type: Battery
-    maxCharge: 325  #Maksimvini 500>325 (13 shots)
-    startingCharge: 325  #Maksimvini 500>325 (13 shots)
+    maxCharge: 500 #lua
+    startingCharge: 500 #lua
