@@ -16,8 +16,8 @@
     - suitStorage
     - Belt
   - type: Gun
-    fireRate: 1.2   #Maksimvini 2>1.2 balance
-    projectileSpeed: 25 #Lua 65 -> 25
+    fireRate: 2 #lua
+    projectileSpeed: 65 #Lua 
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -27,7 +27,7 @@
     capacity: 7
     count: 7
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 3.5  #Maksimvini 1.5>3.5 Balance
+    rechargeCooldown: 5 
     rechargeSound:
       path: /Audio/Weapons/Guns/Cock/shotgun_close.ogg
   - type: AmmoCounter
@@ -45,5 +45,5 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 9 #Lua -20 #Maksimvini 20>9 balance
-        Blunt: 10 #Lua add #Maksimvini 20>10 Balance
+        Piercing: 60
+    armorPenetration: 0.4
