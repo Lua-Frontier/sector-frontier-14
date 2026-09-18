@@ -27,25 +27,25 @@
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
     angleDecay: 5 #Lua
-    fireRate: 3.8 #Lua 1.5<3.8
+    fireRate: 2 
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 600 # Maksimvini 600<1800
-    startingCharge: 600 # Maksimvini 600<1800
+    maxCharge: 1800
+    startingCharge: 1800
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 60
+    fireCost: 100
   - type: EnergyGun
     fireModes:
     - proto: BulletDisabler
-      fireCost: 60
+      fireCost: 100
       name: disable
       state: disabler
     - proto: BulletEnergyGun357_magnum
-      fireCost: 35
+      fireCost: 150
       name: lethal
       state: lethal
   - type: MagazineVisuals
@@ -64,4 +64,4 @@
     - Sidearm
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20 #Maksimvini
+    autoRechargeRate: 75 #Lua
