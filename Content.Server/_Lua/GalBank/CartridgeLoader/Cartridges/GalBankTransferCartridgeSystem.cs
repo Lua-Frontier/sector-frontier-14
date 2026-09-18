@@ -58,7 +58,7 @@ public sealed class GalBankTransferCartridgeSystem : EntitySystem
 
         if (_playerManager.TryGetSessionByEntity(owner, out var session))
         {
-            _ = await _bank.FetchGalBankCodeAsync(session.UserId);
+            _ = await _bank.FetchGalBankCodeAsync(session.UserId, forceRefresh: true);
         }
         else
         {

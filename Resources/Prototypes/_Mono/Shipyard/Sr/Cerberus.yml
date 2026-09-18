@@ -1,0 +1,31 @@
+- type: vessel
+  id: Cerberus
+  parent: BaseVessel
+  name: Cerberus
+  description: Малый шаттл службы безопасности Фронтира, предназначенный для перевозок заключенных а так же патруль вокруг космического пространства станции, оснащен щитом и приемлемым вооружением.
+  price: 220000
+  mass: 689
+  category: Medium
+  group: Sr
+  access: Security
+  shuttlePath: /Maps/_Mono/Shuttles/Cerberus.yml
+  guidebookPage: Null
+  class:
+  - Patrol
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Cerberus
+  mapName: 'Cerberus'
+  mapPath: /Maps/_Mono/Shuttles/Cerberus.yml
+  minPlayers: 0
+  stations:
+    Cerberus:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Cerberus {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

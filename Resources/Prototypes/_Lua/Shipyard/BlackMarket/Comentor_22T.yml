@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+# Author: Maksimvini (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: Comentor_22T
+  name: Comentor_22T
+  description: "Полноценный летающий дом экспедиторов и шахтёров. Обладает утильской, микро медом, хорошими дормами и комнатой отдыха, РНД отделом. Создан концерном NXL 22T. Вооружён тремя AK570, двумя Горными импульсерами М25."
+  price: 265000 #test
+  mass: 249
+  limit: 3
+  category: Medium
+  group: ASBlackMarket
+  class:
+  - Science # Maksimvini
+  - Medical # Maksimvini
+  - Cargo # Maksimvini
+  - Salvage # Maksimvini
+  engine:
+  - Bananium
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/Comentor_22T.yml
+
+- type: gameMap
+  id: Comentor_22T
+  mapName: 'Comentor_22T'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/Comentor_22T.yml
+  minPlayers: 0
+  stations:
+    Comentor_22T:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Comentor_22T {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

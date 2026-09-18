@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+# Author: Maksimvini (Discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: Solution_22T
+  name: Solution_22T
+  description: "Крупный линейный шаттл Наёмников и их весомый аргумент в стычках. Сконструирован концерном NXL 22T. Много места, двухядерный ДАМ, небольшой МЕД отдел.На вооружении четыре 220-ММ Кирёхи, 3 90-мм КЛЫК."
+  price: 580000 #test
+  mass: 310
+  limit: 2
+  category: Medium
+  group: ASBlackMarket
+  access: Mercenary
+  class:
+  - Mercenary # Maksimvini
+  - Medical # Maksimvini
+  - Pursuit # Maksimvini
+  engine:
+  - AME
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/Solution_22T.yml
+
+- type: gameMap
+  id: Solution_22T
+  mapName: 'Solution_22T'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/Solution_22T.yml
+  minPlayers: 0
+  stations:
+    Solution_22T:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Solution_22T {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

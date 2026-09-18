@@ -80,6 +80,90 @@
         variation: 0.09
 
 - type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesRedHeels
+  name: красные туфли
+  description: Модные красные туфли для авантюристов со вкусом.
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 6
+  - type: Sprite
+    sprite: _Lua/Clothing/Sok/Shoes/heelsred.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Sok/Shoes/heelsred.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesYellowHeels
+  name: жёлтые туфли
+  description: Модные жёлтые туфли для авантюристов со вкусом.
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 6
+  - type: Sprite
+    sprite: _Lua/Clothing/Sok/Shoes/heelsyellow.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Sok/Shoes/heelsyellow.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesBlackHeels
+  name: чёрные туфли
+  description: Модные чёрные туфли для авантюристов со вкусом.
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 6
+  - type: Sprite
+    sprite: _Lua/Clothing/Sok/Shoes/heelsblack.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Sok/Shoes/heelsblack.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesGreenHeels
+  name: зелёные туфли
+  description: Модные зелёные туфли для авантюристов со вкусом.
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 6
+  - type: Sprite
+    sprite: _Lua/Clothing/Sok/Shoes/heelsgreen.rsi
+  - type: Clothing
+    sprite: _Lua/Clothing/Sok/Shoes/heelsgreen.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHighHeels
+      params:
+        volume: -6
+        variation: 0.09
+
+- type: entity
   parent: [ ClothingShoesMilitaryBase ] # Frontier: removed BaseRestrictedContraband
   id: ClothingShoesBootsMercenary # Frontier: Merc to Mercenary
   name: mercenary boots

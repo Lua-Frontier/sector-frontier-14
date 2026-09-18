@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+# Author: Maksimvini (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: Faraloner_22T
+  name: Faraloner_22T
+  description: "Некогда судно, созданное для грузоперевозок, теперь полноценное судно утилизаторов, экспедиторов и свободных рабочих. Создано старым концерном NXL 22T. Из вооружения два RAC-30, два L85"
+  price: 152200 #test
+  mass: 180
+  limit: 5
+  category: Small
+  group: ASBlackMarket
+  class:
+  - Cargo # Maksimvini
+  - Salvage # Maksimvini
+  - Medical # Maksimvini
+  - Expedition # Maksimvini
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/Faraloner_22T.yml
+
+- type: gameMap
+  id: Faraloner_22T
+  mapName: 'Faraloner_22T'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/Faraloner_22T.yml
+  minPlayers: 0
+  stations:
+    Faraloner_22T:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Faraloner_22T {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -41,47 +41,55 @@ public sealed partial class BlockingSystem
 
     private void OnUserDamageModified(EntityUid uid, BlockingUserComponent component, DamageModifyEvent args)
     {
-        if (TryComp<BlockingComponent>(component.BlockingItem, out var blocking))
+        if (component.BlockingItem is not { } item ||
+            !TryComp<BlockingComponent>(item, out var blocking))
+            return;
+
+        if (args.Damage.GetTotal() <= 0)
+            return;
+
+        // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
+        if (!TryComp<DamageableComponent>(item, out var dmgComp))
+            return;
+
+        if (!_toggle.IsActivated(item)) // Goobstation
+            return;
+
+        var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
+        blockFraction = Math.Clamp(blockFraction, 0, 1);
+
+        var absorbed = args.OriginalDamage * blockFraction;
+        var durabilityModifier = blocking.IsBlocking
+            ? blocking.ActiveBlockDamageModifier
+            : blocking.PassiveBlockDamageModifer;
+
+        if (durabilityModifier != null)
+            absorbed = DamageSpecifier.ApplyModifierSet(absorbed, durabilityModifier);
+
+        if (absorbed.AnyPositive())
         {
-            if (args.Damage.GetTotal() <= 0)
-                return;
-
-            // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
-            if (!TryComp<DamageableComponent>(component.BlockingItem, out var dmgComp))
-                return;
-
-            if (!_toggle.IsActivated(component.BlockingItem.Value)) // Goobstation
-                return;
-
-            var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
-            blockFraction = Math.Clamp(blockFraction, 0, 1);
-            _damageable.TryChangeDamage(component.BlockingItem,
-                blockFraction * args.OriginalDamage,
+            _damageable.TryChangeDamage(item, absorbed, ignoreResistances: true,
                 armorPenetration: args.ArmorPenetration);
-
-            var modify = new DamageModifierSet();
-            foreach (var key in dmgComp.Damage.DamageDict.Keys)
-            {
-                modify.Coefficients.TryAdd(key, 1 - blockFraction);
-            }
-
-            args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage,
-                DamageSpecifier.PenetrateArmor(modify, args.ArmorPenetration));
-
-            if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))
-            {
-                _audio.PlayPvs(blocking.BlockSound, uid);
-            }
         }
+
+        var modify = new DamageModifierSet();
+        foreach (var key in dmgComp.Damage.DamageDict.Keys)
+        {
+            modify.Coefficients.TryAdd(key, 1 - blockFraction);
+        }
+
+        args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage,
+            DamageSpecifier.PenetrateArmor(modify, args.ArmorPenetration));
+
+        if (blocking.IsBlocking && !args.Damage.Equals(args.OriginalDamage))
+            _audio.PlayPvs(blocking.BlockSound, uid);
     }
 
     private void OnDamageModified(EntityUid uid, BlockingComponent component, DamageModifyEvent args)
     {
-        var modifier = component.IsBlocking ? component.ActiveBlockDamageModifier : component.PassiveBlockDamageModifer;
+        var modifier = component.PassiveBlockDamageModifer;
         if (modifier == null)
-        {
             return;
-        }
 
         args.Damage = DamageSpecifier.ApplyModifierSet(args.Damage, modifier);
     }

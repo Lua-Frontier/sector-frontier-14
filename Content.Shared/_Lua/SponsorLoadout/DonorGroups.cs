@@ -210,6 +210,98 @@ public static class DonorGroups
             : Loc.GetString(locKey);
     }
 
+    public static int GetTierPriority(string? role)
+    {
+        if (!TryResolveTier(role, out var tier))
+            return 0;
+
+        return tier switch
+        {
+            Shareholder => 1300,
+            ShareholderLua => 1200,
+            God => 1100,
+            Rank1 => 1000,
+            Rank2 => 900,
+            Rank3 => 800,
+            Rank4 => 700,
+            Rank5 => 600,
+            Rank6 => 500,
+            Rank7 => 400,
+            Rank8 => 300,
+            Rank9 => 200,
+            Rank10 => 100,
+            Boost => 50,
+            _ => 0
+        };
+    }
+
+    public static string? GetOocColorHex(string? role)
+    {
+        if (!TryResolveTier(role, out var tier))
+            return null;
+
+        return tier switch
+        {
+            Shareholder or ShareholderLua => "#F05C29",
+            God => "#00FF4A",
+            Boost => "#FF4CF1",
+            _ => null
+        };
+    }
+
+    public static int GetOocColorPriority(string? role)
+    {
+        if (!TryResolveTier(role, out var tier))
+            return 0;
+
+        return tier switch
+        {
+            God => 300,
+            Shareholder or ShareholderLua => 200,
+            Boost => 100,
+            _ => 0
+        };
+    }
+
+    public static string? SelectHighestOocColorHex(IEnumerable<string> roles)
+    {
+        string? bestHex = null;
+        var bestPriority = int.MinValue;
+        foreach (var raw in roles)
+        {
+            var hex = GetOocColorHex(raw);
+            if (hex == null)
+                continue;
+            var priority = GetOocColorPriority(raw);
+            if (priority <= bestPriority)
+                continue;
+            bestHex = hex;
+            bestPriority = priority;
+        }
+
+        return bestHex;
+    }
+
+    public static string? SelectHighestPriorityRole(IEnumerable<string> roles)
+    {
+        string? best = null;
+        var bestPriority = int.MinValue;
+        foreach (var raw in roles)
+        {
+            if (!TryResolveTier(raw, out var tier))
+                continue;
+            var priority = GetTierPriority(tier);
+            if (priority < bestPriority)
+                continue;
+            if (priority == bestPriority && best != null)
+                continue;
+            best = tier;
+            bestPriority = priority;
+        }
+
+        return best;
+    }
+
     public static string FormatTiersDisplay(IEnumerable<string> roles)
     {
         var tokens = GetShopHeaderTokens(roles);

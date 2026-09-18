@@ -34,14 +34,9 @@ public partial class ShuttleNavControl
         var uiYCentre = (int)Height / 2;
         var scaledMousePos = GetScaledMouseUiPosition();
 
-        const float fullScaleDistance = 200f;
-        const float minDistanceScale = 0.35f;
-        const float scaleEndDistance = 800f;
-        var maxScaleRange = scaleEndDistance;
-
         var celestialQuery = EntManager.AllEntityQueryEnumerator<SectorCelestialBodyComponent, RadarBlipIconComponent, TransformComponent>();
         while (celestialQuery.MoveNext(out var uid, out _, out var icon, out var xform))
-            TryDrawHazardIcon(handle, cache, uid, icon, xform, mapId, mapOrigin, view, uiXCentre, uiYCentre, scaledMousePos, fullScaleDistance, minDistanceScale, maxScaleRange);
+            TryDrawHazardIcon(handle, cache, uid, icon, xform, mapId, mapOrigin, view, uiXCentre, uiYCentre, scaledMousePos);
 
         var fieldQuery = EntManager.AllEntityQueryEnumerator<AmbientSpaceFieldComponent, RadarBlipIconComponent, TransformComponent>();
         while (fieldQuery.MoveNext(out var uid, out var field, out var icon, out var xform))
@@ -49,7 +44,7 @@ public partial class ShuttleNavControl
             if (!field.HasWeather)
                 continue;
 
-            TryDrawHazardIcon(handle, cache, uid, icon, xform, mapId, mapOrigin, view, uiXCentre, uiYCentre, scaledMousePos, fullScaleDistance, minDistanceScale, maxScaleRange);
+            TryDrawHazardIcon(handle, cache, uid, icon, xform, mapId, mapOrigin, view, uiXCentre, uiYCentre, scaledMousePos);
         }
     }
 
@@ -64,10 +59,7 @@ public partial class ShuttleNavControl
         Matrix3x2 view,
         int uiXCentre,
         int uiYCentre,
-        Vector2 scaledMousePos,
-        float fullScaleDistance,
-        float minDistanceScale,
-        float maxScaleRange)
+        Vector2 scaledMousePos)
     {
         if (xform.MapID != mapId || icon.Icon == default)
             return;
@@ -98,9 +90,7 @@ public partial class ShuttleNavControl
         }
 
         var isHovered = Vector2.Distance(scaledMousePos, uiPosition * UIScale) < 30f;
-        var distanceScale = isHovered || worldDist <= fullScaleDistance
-            ? 1f
-            : MathF.Max(minDistanceScale, 1f - (worldDist - fullScaleDistance) / (maxScaleRange - fullScaleDistance) * (1f - minDistanceScale));
+        var distanceScale = GetRadarIconDistanceScale(worldDist, icon.ScaleDownWhenClose, isHovered);
 
         var s = (RadarBlipSize * UIScale) * icon.Scale * distanceScale;
         var half = new Vector2(s / 2f, s / 2f);

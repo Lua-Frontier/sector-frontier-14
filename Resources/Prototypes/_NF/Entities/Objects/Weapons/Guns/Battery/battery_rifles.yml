@@ -15,11 +15,11 @@
     availableModes:
     - SemiAuto
     - FullAuto
-    minAngle: 3.1
-    maxAngle: 15.5
+    minAngle: 8.1 #Maksimvini 3.1>8.1
+    maxAngle: 22.5 #Maksimvini 15.5>22.5
     angleIncrease: 0.7
     angleDecay: 5
-    fireRate: 6
+    fireRate: 4.2 # Maksimvini 6<4.2
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
   - type: Sprite
@@ -33,11 +33,11 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/temp_gun.rsi
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 480 # 12 shoots with 40 cost each. By maksimvini
+    startingCharge: 480 #Maksimvini
   - type: ProjectileBatteryAmmoProvider
     proto: NFBoltTempgunCold
-    fireCost: 20
+    fireCost: 40 # Maksimvini 25>40
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -46,7 +46,7 @@
     manufacturer: weapon-details-manufacturer-custom-made
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 35 # Maksimvini 20>35
 
 - type: entity
   name: freezing bolt
@@ -57,6 +57,7 @@
   - type: Projectile
     impactEffect: BulletImpactEffectDisabler
     damage:
-      types:
-        Shock: 15
-        Caustic: 5
+      types:  # Maksimvini - Removed 15 shock, 5 Caustic. New types from temperature-reality weapon: Blunt, Cold, Heat.
+        Blunt: 7
+        Cold: 2
+        Heat: 12 # Maksimvini - Total DMG was 20, now 21

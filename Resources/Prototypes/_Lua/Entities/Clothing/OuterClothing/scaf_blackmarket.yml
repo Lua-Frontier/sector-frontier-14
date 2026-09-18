@@ -19,17 +19,18 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.65
-        Radiation: 0.6
+        Blunt: 0.60 #Maksimvini 40% now
+        Slash: 0.55 #Maksimvini 45% now
+        Piercing: 0.70 #Maksimvini 30% now
+        Heat: 0.75 #Maksimvini 25% now
+        Radiation: 0.4 #Maksimvini 60% now
+        Poison: 0.9 #New resist type 10%
         Caustic: 0.8
   - type: StaminaDamageResistance
-    coefficient: 0.6
+    coefficient: 0.85
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.85 #Maksimvini 0.85<0.95 (15% now)
+    sprintModifier: 0.85 #Maksimvini 0.85<0.95
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     requiredSlot: outerclothing
@@ -64,9 +65,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.7
-        Piercing: 0.45
+        Blunt: 0.55 #Maksimvini 45% now
+        Slash: 0.60 #Maksimvini 40% now
+        Piercing: 0.65 #Maksimvini 35% now
+        Poison: 0.95 #New resist type 5%
         Heat: 0.65
         Radiation: 0.8
         Caustic: 0.6
@@ -109,9 +111,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
+        Blunt: 0.65 #Maksimvini 35% now
+        Slash: 0.60 #Maksimvini 40% now
+        Piercing: 0.55 #Maksimvini 45% now
+        Poison: 0.9 #New resist type 10%
         Heat: 0.7
         Radiation: 0.7
         Caustic: 0.7
@@ -154,9 +157,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.7
+        Blunt: 0.65 #Maksimvini 35% now
+        Slash: 0.75 #Maksimvini 25% now
+        Piercing: 0.5 #Maksimvini 50% now
+        Poison: 0.85 #New resist type 15%
         Heat: 0.7
         Radiation: 0.7
         Caustic: 0.7

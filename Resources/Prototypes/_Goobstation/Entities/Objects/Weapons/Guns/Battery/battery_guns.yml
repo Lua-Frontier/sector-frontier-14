@@ -27,7 +27,7 @@
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
     angleDecay: 5 #Lua
-    fireRate: 3.8 #Lua 1.5<3.8
+    fireRate: 2 
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
@@ -64,4 +64,4 @@
     - Sidearm
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 75
+    autoRechargeRate: 75 #Lua

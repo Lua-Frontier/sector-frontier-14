@@ -1,0 +1,33 @@
+- type: vessel
+  id: Attache
+  parent: BaseVessel
+  name: Attache
+  description: Сервисный шаттл для консьержа Фронтира. Оснащен парой гидропонных лотков и полностью обустроенной кухней с зоной для постояльцев.
+  price: 82000
+  mass: 493.5
+  category: Small
+  group: Sr
+  access: Janitor
+  shuttlePath: /Maps/_Mono/Shuttles/Attache.yml
+  guidebookPage: Null
+  class:
+  - Civilian
+  engine:
+  - Bananium
+
+- type: gameMap
+  id: Attache
+  mapName: 'Attache'
+  mapPath: /Maps/_Mono/Shuttles/Attache.yml
+  minPlayers: 0
+  stations:
+    Attache:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Attache {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationJobs
+          availableJobs: {}

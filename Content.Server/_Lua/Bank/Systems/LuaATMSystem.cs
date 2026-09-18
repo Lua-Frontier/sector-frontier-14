@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using System.Linq;
+using System.Threading.Tasks;
 using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
 using Robust.Server.Audio;
@@ -19,6 +20,7 @@ using Content.Server.Popups;
 using Content.Server._Lua.Bank;
 using Content.Server.Hands.Systems;
 using Content.Server.Administration.Logs;
+using Robust.Shared.Asynchronous;
 using Robust.Shared.Player;
 
 namespace Content.Server._Lua.Bank.Systems;
@@ -34,6 +36,7 @@ public sealed class LuaATMSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly ITaskManager _taskManager = default!;
 
     public override void Initialize()
     {
@@ -209,14 +212,50 @@ public sealed class LuaATMSystem : EntitySystem
 
         foreach (var actor in actors)
         {
+            _ = RefreshPersonalInfoAsync(atm, actor);
+        }
+    }
+
+    private async Task RefreshPersonalInfoAsync(EntityUid atm, EntityUid actor)
+    {
+        var galBankCode = string.Empty;
+        if (_player.TryGetSessionByEntity(actor, out var session))
+            galBankCode = await _bank.FetchGalBankCodeAsync(session.UserId, forceRefresh: true) ?? string.Empty;
+        else
+            galBankCode = _bank.EnsureGalBankForEntity(actor);
+
+        await RunOnMainThread(() =>
+        {
+            if (!Exists(atm) || !Exists(actor) || !_userInterface.HasUi(atm, BankATMMenuUiKey.Key))
+                return;
+
             var enabled = _bank.TryGetBalance(actor, out var bankBalance);
             var balance = enabled ? bankBalance : 0;
-            var galBankCode = _bank.EnsureGalBankForEntity(actor);
-            var history = GetOperationHistory(actor);
+            if (string.IsNullOrWhiteSpace(galBankCode))
+                galBankCode = _bank.EnsureGalBankForEntity(actor);
 
+            var history = GetOperationHistory(actor);
             var personalMessage = new LuaATMPersonalInfoMessage(enabled, balance, galBankCode, history);
             _userInterface.ServerSendUiMessage(atm, BankATMMenuUiKey.Key, personalMessage, actor);
-        }
+        });
+    }
+
+    private async Task RunOnMainThread(Action action)
+    {
+        var tcs = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+        _taskManager.RunOnMainThread(() =>
+        {
+            try
+            {
+                action();
+                tcs.TrySetResult();
+            }
+            catch (Exception e)
+            {
+                tcs.TrySetException(e);
+            }
+        });
+        await tcs.Task;
     }
 
     private int GetDepositValue(BankATMComponent atmComp, out EntityUid? depositItem)

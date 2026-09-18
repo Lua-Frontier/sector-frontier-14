@@ -1,11 +1,13 @@
 using Content.Server.Database;
 using Content.Server.Players.JobWhitelist;
+using Content.Shared._Lua.SponsorLoadout;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Content.Server.Sponsors;
@@ -80,8 +82,11 @@ public sealed class SponsorManager : IPostInjectInit
     {
         try
         {
-            var sponsor = await _db.GetActiveSponsor(session.UserId.UserId);
             var allSponsors = await _db.GetAllActiveSponsors(session.UserId.UserId);
+            var sponsor = allSponsors
+                .OrderByDescending(s => DonorGroups.GetTierPriority(s.Role))
+                .ThenByDescending(s => s.StartDate)
+                .FirstOrDefault();
             if (sponsor != null)
             {
                 _activeSponsors[session.UserId] = sponsor;
