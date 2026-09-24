@@ -176,3 +176,30 @@
     - state: base-b
       map: ["enum.GunVisualLayers.Base"]
   - type: Appearance
+
+- type: entity
+  parent: BaseAmmoBox762x39mm
+  id: AmmoBox762x39mmOverpressure
+  name: ammunition box (7.62x39mm overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge762x39mmOverpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: HP
+
+- type: entity
+  parent: AmmoBox762x39mmBigFMJ
+  id: AmmoBox762x39mmBigOverpressure
+  name: big ammunition box (7.62x39mm overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 210
+    proto: Cartridge762x39mmOverpressure
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: HP

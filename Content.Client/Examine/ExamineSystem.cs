@@ -1,8 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
-using ClientReputationSystem = Content.Client._Lua.Reputation.ReputationSystem;
 using Content.Client.Verbs;
+using Content.Lua.UIKit.Reputation;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Input;
@@ -31,7 +31,7 @@ namespace Content.Client.Examine
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IEyeManager _eyeManager = default!;
         [Dependency] private readonly VerbSystem _verbSystem = default!;
-        [Dependency] private readonly ClientReputationSystem _reputation = default!;
+        [Dependency] private readonly IReputationExamine _reputation = default!;
         [Dependency] private readonly SpriteSystem _sprite = default!;
 
         private List<Verb> _verbList = new();

@@ -107,6 +107,8 @@
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
+  - type: TimedDespawn
+    lifetime: 20
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Ammunition/Projectiles/projectiles2.rsi
     layers:
@@ -291,31 +293,49 @@
   parent: BulletGrenadeBaton
   id: NFBulletGrenadeBaton
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: BulletGrenadeBlast
   id: NFBulletGrenadeBlast
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: BulletGrenadeCleanade
   id: NFBulletGrenadeCleanade
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: BulletGrenadeFlash
   id: NFBulletGrenadeFlash
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: BulletGrenadeFrag
   id: NFBulletGrenadeFrag
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: BulletGrenadeEMP
   id: NFBulletGrenadeEMP
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: BulletCap
@@ -335,6 +355,9 @@
   parent: BulletCannonBall
   id: NFBulletCannonBall
   categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 20
 
 - type: entity
   parent: GrapplingHook

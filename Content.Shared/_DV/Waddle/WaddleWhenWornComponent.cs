@@ -1,5 +1,6 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Prototypes; // imp edit
 using Content.Shared.Alert; // imp edit
 

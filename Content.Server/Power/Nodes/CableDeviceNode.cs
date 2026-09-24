@@ -1,4 +1,4 @@
-using Content.Server.NodeContainer;
+﻿using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
@@ -40,7 +40,10 @@ namespace Content.Server.Power.Nodes
             if (!xform.Anchored || grid == null)
                 yield break;
 
-            var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+            var map = entMan.System<SharedMapSystem>();
+            if (xform.GridUid == null)
+                yield break;
+            var gridIndex = map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
             foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, grid, gridIndex))
             {
@@ -50,3 +53,4 @@ namespace Content.Server.Power.Nodes
         }
     }
 }
+

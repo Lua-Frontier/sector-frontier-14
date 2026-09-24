@@ -15,11 +15,11 @@ using Content.Shared.Stacks;
 using Content.Shared.Temperature;
 using Content.Shared.Tools.Systems;
 using Content.Shared._Mono.NoDeconstruct;
-using Content.Shared._Lua.ShipProtection;
+using Content.Lua.Shared.ShipProtection;
+using Content.Shared.ShipProtection;
 using Content.Shared.Popups;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
-using Content.Server._Lua.ShipProtection;
 
 #if EXCEPTION_TOLERANCE
 // ReSharper disable once RedundantUsingDirective
@@ -67,7 +67,7 @@ namespace Content.Server.Construction
                 if (!validation && ev is InteractUsingEvent interactEv)
                 {
                     var popup = EntityManager.System<SharedPopupSystem>();
-                    var shipProtection = EntityManager.System<ShipProtectionSystem>();
+                    var shipProtection = EntityManager.System<IShipProtectionSystem>();
                     var minutes = shipProtection.GetRemainingMinutes(uid);
                     popup.PopupEntity(Loc.GetString("ship-protection-active"), uid, interactEv.User);
                 }

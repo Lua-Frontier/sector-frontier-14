@@ -1,5 +1,5 @@
-using Content.Shared._Lua.Autodoc;
-using Content.Shared._Lua.Autodoc.Components;
+using Content.Shared.Autodoc;
+using Content.Shared.Autodoc.Components;
 using Content.Shared._Shitmed.Autodoc.Components;
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared._Shitmed.Medical.Surgery;

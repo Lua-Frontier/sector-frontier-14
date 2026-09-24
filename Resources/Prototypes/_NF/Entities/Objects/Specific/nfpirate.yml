@@ -23,6 +23,14 @@
   - type: Currency
     price:
       Doubloon: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Doubloon: 1
+  - type: Tag
+    tags:
+    - Sheet
+    - RawMaterial
 
 - type: entity
   parent: [Doubloon, BaseC3PirateContraband] # Lua-changes: added BaseC3PirateContraband
@@ -48,62 +56,6 @@
   - type: Stack
     count: 10
 
-# region Uplinks
-- type: entity
-  parent: [BaseItem, StorePresetPirateUplink, BaseC3PirateContrabandPremium] # Lua-changes: added BaseC3PirateContrabandPremium
-  id: BasePirateUplink
-  name: pirate uplink
-  description: A coconut with an antenna?
-  suffix: Empty
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: _NF/Objects/Devices/pirate_uplink.rsi
-    layers:
-    - state: icon
-      scale: 0.7, 0.7
-    - state: icon-overlay
-      scale: 0.7, 0.7
-      shader: unshaded
-  - type: Item
-    sprite: _NF/Objects/Devices/pirate_uplink.rsi
-    heldPrefix: icon
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-  - type: ActivatableUI
-    key: enum.StoreUiKey.Key
-  - type: Tag
-    tags:
-    - PirateUplink
-
-- type: entity
-  parent: BasePirateUplink
-  id: BasePirateUplinkRadioDebug
-  suffix: Pirate, DEBUG
-  components:
-  - type: Store
-    balance:
-      Doubloon: 99999
-
-- type: entity
-  parent: BasePirateUplink
-  id: BasePirateUplinkRadioPirateCaptain
-  suffix: P. Captain 20
-  components:
-  - type: Store
-    balance:
-      Doubloon: 20
-
-- type: entity
-  parent: BasePirateUplink
-  id: BasePirateUplinkPirateCrew
-  suffix: Crew 15
-  components:
-  - type: Store
-    balance:
-      Doubloon: 15
 
 # region Misc Items
 - type: entity

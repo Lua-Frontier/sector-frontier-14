@@ -369,6 +369,26 @@
       state: generic_panel_open
 
 - type: entity
+  parent: [BaseStructureComputerTabletop, ComputerResearchAndDevelopmentLuaTech]
+  id: ComputerTabletopResearchAndDevelopmentLuaTech
+  categories: [ LuaTech ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    drawdepth: SmallObjects
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_tabletop_holo
+    - map: ["computerLayerKeyboard"]
+      state: holo_generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: holo_shuttlecontrolluatech
+    - map: ["computerLayerKeys"]
+      state: holo_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: holo_generic_panel_open
+
+- type: entity
   parent: [BaseStructureComputerTabletop, ComputerAnalysisConsole]
   id: ComputerTabletopAnalysisConsole
   components:

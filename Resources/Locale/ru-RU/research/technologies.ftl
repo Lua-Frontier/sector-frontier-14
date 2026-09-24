@@ -39,6 +39,7 @@ research-technology-machine-gcs-medium = Средняя плата сервер�
 research-technology-machine-gcs-high = Высокомощная плата сервера вооружения
 research-technology-basic-shuttle-armament = Базовое корабельное вооружение
 research-technology-advanced-shuttle-weapon = Продвинутое корабельное оружие
+research-technology-armorylathe = Корабельный автолат
 research-technology-shiparmory-ballistic-bases = Калиберные базы
 research-technology-shiparmory-heavy-ballistic-bases = Тяжёлые калиберные базы
 research-technology-shiparmory-tesla-base = Тесла-турель

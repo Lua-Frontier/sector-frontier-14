@@ -67,12 +67,20 @@ public abstract class SharedAnomalySystem : EntitySystem
         _physics.SetBodyType(ent, BodyType.Static);
     }
 
+    private bool IsCompressionLocked(EntityUid uid)
+    {
+        return TryComp<AnomalySyncHeldComponent>(uid, out var held) && held.Compressing;
+    }
+
     public void DoAnomalyPulse(EntityUid uid, AnomalyComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
         if (!Timing.IsFirstTimePredicted)
+            return;
+
+        if (IsCompressionLocked(uid))
             return;
 
         DebugTools.Assert(component.MinPulseLength > TimeSpan.FromSeconds(3)); // this is just to prevent lagspikes mispredicting pulses
@@ -175,7 +183,7 @@ public abstract class SharedAnomalySystem : EntitySystem
         var ev = new AnomalySupercriticalEvent(uid, powerMod);
         RaiseLocalEvent(uid, ref ev, true);
 
-        EndAnomaly(uid, component, true, logged: true);
+        EndAnomaly(uid, component, supercritical: true, spawnCore: false, logged: true);
     }
 
     /// <summary>
@@ -228,6 +236,25 @@ public abstract class SharedAnomalySystem : EntitySystem
             RemCompDeferred<AnomalySupercriticalComponent>(uid);
     }
 
+    public bool TryCompressIntoCore(EntityUid uid, AnomalyComponent? component = null)
+    {
+        if (!Resolve(uid, ref component) || component.CorePrototype is not { } coreProto)
+            return false;
+
+        if (_net.IsServer)
+        {
+            var core = Spawn(coreProto, Transform(uid).Coordinates);
+            _transform.PlaceNextTo(core, uid);
+            if (TryComp<AnomalyCoreComponent>(core, out var coreComp))
+                _anomalyCore.SetValueFromPointsEarned(core, coreComp, component.PointsEarned);
+
+            SpawnCrystals((uid, component));
+        }
+
+        EndAnomaly(uid, component, spawnCore: false, logged: true);
+        return true;
+    }
+
     /// <summary>
     /// Changes the stability of the anomaly.
     /// </summary>
@@ -237,6 +264,9 @@ public abstract class SharedAnomalySystem : EntitySystem
     public void ChangeAnomalyStability(EntityUid uid, float change, AnomalyComponent? component = null)
     {
         if (!Resolve(uid, ref component))
+            return;
+
+        if (IsCompressionLocked(uid))
             return;
 
         var newVal = component.Stability + change;
@@ -257,6 +287,9 @@ public abstract class SharedAnomalySystem : EntitySystem
     public void ChangeAnomalySeverity(EntityUid uid, float change, AnomalyComponent? component = null)
     {
         if (!Resolve(uid, ref component))
+            return;
+
+        if (IsCompressionLocked(uid))
             return;
 
         var newVal = component.Severity + change;
@@ -282,11 +315,14 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        if (IsCompressionLocked(uid) && change < 0)
+            return;
+
         var newVal = component.Health + change;
 
         if (newVal < 0)
         {
-            EndAnomaly(uid, component, logged: true);
+            EndAnomaly(uid, component, spawnCore: false, logged: true);
             return;
         }
 
@@ -343,6 +379,9 @@ public abstract class SharedAnomalySystem : EntitySystem
         var anomalyQuery = EntityQueryEnumerator<AnomalyComponent>();
         while (anomalyQuery.MoveNext(out var ent, out var anomaly))
         {
+            if (IsCompressionLocked(ent))
+                continue;
+
             // if the stability is under the death threshold,
             // update it every second to start killing it slowly.
             if (anomaly.Stability < anomaly.DecayThreshold)

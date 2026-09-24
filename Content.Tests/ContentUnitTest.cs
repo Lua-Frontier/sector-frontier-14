@@ -31,16 +31,20 @@ namespace Content.Tests
         {
             var l = new List<Assembly>
             {
-                typeof(Content.Shared.Entry.EntryPoint).Assembly
+                typeof(Content.Shared.Entry.EntryPoint).Assembly,
+                typeof(Content.Lua.Shared.Entry.EntryPoint).Assembly,
+                typeof(Content.Lua.Common.Entry.EntryPoint).Assembly,
             };
 
             if (Project == UnitTestProject.Server)
             {
                 l.Add(typeof(EntryPoint).Assembly);
+                l.Add(typeof(Content.Lua.Server.Entry.EntryPoint).Assembly);
             }
             else if (Project == UnitTestProject.Client)
             {
                 l.Add(typeof(Content.Client.Entry.EntryPoint).Assembly);
+                l.Add(typeof(Content.Lua.Client.Entry.EntryPoint).Assembly);
             }
 
             l.Add(typeof(ContentUnitTest).Assembly);

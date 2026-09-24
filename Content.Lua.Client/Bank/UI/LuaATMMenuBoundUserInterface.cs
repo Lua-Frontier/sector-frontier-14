@@ -1,0 +1,61 @@
+// LuaCorp - This file is licensed under AGPLv3
+// Copyright (c) 2026 LuaCorp Contributors
+// See AGPLv3.txt for details.
+
+using Content.Lua.Shared.Achievements;
+using Content.Lua.Shared.Bank.Events;
+using Content.Lua.Shared.Bank.UI;
+using Content.Shared._NF.Bank.Events;
+using Robust.Client.UserInterface;
+using Robust.Shared.Network;
+
+namespace Content.Client.Lua.Bank.UI;
+
+public sealed class LuaATMMenuBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+{
+    [Dependency] private readonly INetManager _net = default!;
+
+    private LuaATMMenu? _menu;
+
+    protected override void Open()
+    {
+        base.Open();
+
+        _menu = this.CreateWindow<LuaATMMenu>();
+
+        _menu.WithdrawRequest += OnWithdraw;
+        _menu.DepositRequest += OnDeposit;
+
+        _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerBankATM));
+    }
+
+    private void OnWithdraw(int amount)
+    {
+        SendMessage(new BankWithdrawMessage(amount));
+    }
+
+    private void OnDeposit()
+    {
+        SendMessage(new BankDepositMessage());
+    }
+
+    protected override void UpdateState(BoundUserInterfaceState state)
+    {
+        if (_menu == null || state is not LuaATMMenuInterfaceState bankState)
+        {
+            return;
+        }
+
+        _menu.UpdateState(bankState);
+    }
+
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        if (_menu == null || message is not LuaATMPersonalInfoMessage personalMessage)
+        {
+            return;
+        }
+
+        _menu.UpdatePersonalState(personalMessage);
+    }
+}

@@ -89,11 +89,13 @@ namespace Content.Shared.Research.Prototypes
         [DataField]
         public float MaterialDiscountScale = 1f; // Mono - changed from bool to float
 
-        /// <summary>
-        /// List of categories used for visually sorting lathe recipes in the UI.
-        /// </summary>
+
         [DataField]
+        [AlwaysPushInheritance]
         public List<ProtoId<LatheCategoryPrototype>> Categories = new();
+
+        [DataField]
+        public ProtoId<TechDisciplinePrototype>? ResearchDiscipline;
 
         /// <summary>
         /// Mono - Amount of entities to spawn on production.

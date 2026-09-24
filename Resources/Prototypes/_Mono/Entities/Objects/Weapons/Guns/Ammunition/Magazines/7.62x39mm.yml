@@ -36,6 +36,7 @@
 # Magazines
 - type: entity
   id: Magazine762x39mmBox
+  categories: [ HideSpawnMenu ]
   name: "L6 SAW magazine box (7.62x39mm FMJ)"
   parent: BaseMagazine762x39mm
   components:
@@ -55,7 +56,16 @@
   - type: Appearance
 
 - type: entity
+  id: Magazine762x39mmBoxEmpty
+  parent: Magazine762x39mmBox
+  name: "L6 SAW magazine box (7.62x39mm FMJ) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine762x39mmFMJ
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm FMJ)"
   parent: BaseMagazine762x39mm
   components:
@@ -85,6 +95,7 @@
 
 - type: entity
   id: Magazine762x39mmPractice
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm practice)"
   parent: BaseMagazine762x39mm
   components:
@@ -99,6 +110,7 @@
 
 - type: entity
   id: Magazine762x39mmUranium
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm uranium)"
   parent: BaseMagazine762x39mm
   components:
@@ -113,6 +125,7 @@
 
 - type: entity
   id: Magazine762x39mmIncendiary
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm incendiary)"
   parent: Magazine762x39mmFMJ
   components:
@@ -127,6 +140,7 @@
 
 - type: entity
   id: Magazine762x39mmMaxim
+  categories: [ HideSpawnMenu ]
   name: "pan magazine (7.62x39mm FMJ)"
   parent: BaseMagazine762x39mm
   components:
@@ -140,7 +154,17 @@
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Magazine/7.62x39mm/maxim.rsi
 
 - type: entity
+  id: Magazine762x39mmMaximEmpty
+  categories: [ HideSpawnMenu ]
+  parent: Magazine762x39mmMaxim
+  name: "pan magazine (7.62x39mm FMJ) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine762x39mmPkBox
+  categories: [ HideSpawnMenu ]
   name: "PK munitions box (7.62x39mm FMJ)"
   parent: BaseMagazine762x39mm
   components:
@@ -159,7 +183,16 @@
   - type: Appearance
 
 - type: entity
+  id: Magazine762x39mmPkBoxEmpty
+  parent: Magazine762x39mmPkBox
+  name: "PK munitions box (7.62x39mm FMJ) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine762x39mmRubber
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm rubber)"
   parent: Magazine762x39mmFMJ
   components:
@@ -196,6 +229,7 @@
 
 - type: entity
   id: Magazine762x39mmLowCapacityFMJ
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x39mm FMJ)"
   parent: Magazine762x39mmFMJ
   components:
@@ -216,6 +250,7 @@
 
 - type: entity
   id: Magazine762x39mmLowCapacityPractice
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x39mm practice)"
   parent: Magazine762x39mmLowCapacityFMJ
   components:
@@ -230,6 +265,7 @@
 
 - type: entity
   id: Magazine762x39mmLowCapacityRubber
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x39mm rubber)"
   parent: Magazine762x39mmLowCapacityFMJ
   components:
@@ -244,6 +280,7 @@
 
 - type: entity
   id: Magazine762x39mmLowCapacityUranium
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x39mm uranium)"
   parent: Magazine762x39mmLowCapacityFMJ
   components:
@@ -258,6 +295,7 @@
 
 - type: entity
   id: Magazine762x39mmLowCapacityIncendiary
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x39mm incendiary)"
   parent: Magazine762x39mmLowCapacityFMJ
   components:
@@ -272,6 +310,7 @@
 
 - type: entity
   id: Magazine762x39mmSubsonic
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm subsonic)"
   parent: BaseMagazine762x39mm
   components:
@@ -295,6 +334,7 @@
 
 - type: entity
   id: MagazineDP29
+  categories: [ HideSpawnMenu ]
   name: "DP-29 magazine (7.62x39mm)"
   parent: BaseMagazine762x39mm
   components:
@@ -318,7 +358,16 @@
 # Mono AP syst
 #anti-flesh:
 - type: entity
+  id: MagazineDP29Empty
+  parent: MagazineDP29
+  name: "DP-29 magazine (7.62x39mm) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine762x39mmHP
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm hollow-point)"
   parent: BaseMagazine762x39mm
   components:
@@ -333,6 +382,7 @@
 
 - type: entity
   id: Magazine762x39mmRIP
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm RIP)"
   parent: BaseMagazine762x39mm
   components:
@@ -349,6 +399,7 @@
 
 - type: entity
   id: Magazine762x39mmPlasteelAP
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x39mm AP)"
   parent: BaseMagazine762x39mm
   components:

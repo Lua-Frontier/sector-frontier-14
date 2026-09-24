@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Station.Components;
@@ -38,7 +38,7 @@ public sealed partial class GameTicker
     private void NFRoundStarted()
     {
         MapId mapId = MapId.Nullspace;
-        var sectors = EntityManager.System<SectorSystem>();
+        var sectors = EntityManager.System<ISectorSystem>();
         if (sectors.TryGetHubMapId(out var hubMap) && _map.MapExists(hubMap))
         {
             mapId = hubMap;

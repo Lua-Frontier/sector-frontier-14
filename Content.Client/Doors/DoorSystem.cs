@@ -17,6 +17,7 @@ public sealed class DoorSystem : SharedDoorSystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<DoorComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<DoorComponent, AppearanceChangeEvent>(OnAppearanceChange);
     }
 
@@ -76,6 +77,27 @@ public sealed class DoorSystem : SharedDoorSystem
                 },
             },
         };
+    }
+
+    private void OnComponentStartup(EntityUid uid, DoorComponent comp, ComponentStartup args)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+
+        if (!sprite.LayerMapTryGet(DoorVisualLayers.BaseColor, out _))
+            return;
+
+        ((Animation)comp.OpeningAnimation).AnimationTracks.Add(new AnimationTrackSpriteFlick
+        {
+            LayerKey = DoorVisualLayers.BaseColor,
+            KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(comp.OpeningColorSpriteState, 0f) },
+        });
+
+        ((Animation)comp.ClosingAnimation).AnimationTracks.Add(new AnimationTrackSpriteFlick
+        {
+            LayerKey = DoorVisualLayers.BaseColor,
+            KeyFrames = { new AnimationTrackSpriteFlick.KeyFrame(comp.ClosingColorSpriteState, 0f) },
+        });
     }
 
     private void OnAppearanceChange(Entity<DoorComponent> entity, ref AppearanceChangeEvent args)

@@ -1,7 +1,7 @@
-using Content.Client._Lua.Styles;
+using Content.Lua.UIKit.Styles;
 using Content.Client.Shuttles.Systems;
 using Content.Client.Stylesheets;
-using Content.Shared._Lua.SpaceHazards;
+using Content.Lua.Shared.SpaceHazards;
 using Content.Shared._Mono.Company;
 using Content.Shared._NF.Shuttles.Components;
 using Content.Shared._NF.Shipyard.Components;
@@ -27,6 +27,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -35,7 +36,6 @@ public sealed partial class MapScreen : BoxContainer
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     private readonly SharedAudioSystem _audio;
     private readonly SharedMapSystem _maps;
@@ -440,7 +440,7 @@ public sealed partial class MapScreen : BoxContainer
             _mapHeadings.Add(mapComp.MapId, gridContents);
             var viewerCompanyName = string.Empty;
             if (_entManager.TryGetComponent(_shuttleEntity.Value, out CompanyComponent? viewerCompany)) viewerCompanyName = viewerCompany.CompanyName;
-            foreach (var grid in _mapManager.GetAllGrids(mapComp.MapId))
+            foreach (var grid in _maps.GetAllGrids(mapComp.MapId))
             {
                 if (grid.Owner != _shuttleEntity && IsHiddenByNebulaVeil(grid.Owner))
                     continue;

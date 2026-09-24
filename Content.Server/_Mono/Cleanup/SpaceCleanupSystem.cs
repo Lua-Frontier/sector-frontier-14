@@ -3,7 +3,7 @@ using Content.Server.NPC.HTN;
 using Content.Server.Shuttles.Components;
 using Content.Server.Tabletop;
 using Content.Server.Tesla.Components;
-using Content.Shared._Lua.SpaceHazards;
+using Content.Lua.Shared.SpaceHazards;
 using Content.Shared._Mono.CCVar;
 using Content.Shared.Mind.Components;
 using Content.Shared.Physics;
@@ -29,8 +29,8 @@ public sealed class SpaceCleanupSystem : BaseCleanupSystem<PhysicsComponent>
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    private object _manifold = default!;
-    private MethodInfo _testOverlap = default!;
+    private object? _manifold;
+    private MethodInfo? _testOverlap;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
@@ -118,6 +118,9 @@ public sealed class SpaceCleanupSystem : BaseCleanupSystem<PhysicsComponent>
 
     private bool GetWallStuck(Entity<TransformComponent> ent)
     {
+        if (_testOverlap == null || _manifold == null)
+            return false;
+
         if (ent.Comp.GridUid is not { } gridUid
             || ent.Comp.Anchored
             || ent.Comp.ParentUid != gridUid // ignore if not directly parented to grid
@@ -158,7 +161,7 @@ public sealed class SpaceCleanupSystem : BaseCleanupSystem<PhysicsComponent>
             var xf = _physics.GetLocalPhysicsTransform(anch, xform);
             var shape = fix.Shape;
 
-            if ((bool?)_testOverlap.Invoke(_manifold, [shape, 0, shapeB, 0, xf, xfB]) ?? false)
+            if ((bool?)_testOverlap.Invoke(_manifold, [shape, 0, shapeB, 0, xf, xfB, false]) ?? false)
                 return true;
         }
 

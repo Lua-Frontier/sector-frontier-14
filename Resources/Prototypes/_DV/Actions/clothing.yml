@@ -1,7 +1,13 @@
 - type: entity
+  parent: BaseAction
   id: ActionToggleTray
   name: Toggle T-ray
   description: Toggles T-ray hud on and off.
   components:
+  - type: Action
+    useDelay: 0.5
+    icon:
+      sprite: _DV/Clothing/Eyes/Glasses/traymeson.rsi
+      state: icon
   - type: InstantAction
     event: !type:ToggleTrayScannerEvent

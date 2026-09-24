@@ -1,6 +1,6 @@
 using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
-using Content.Shared._Lua.Shuttles;
+using Content.Shared.Shuttles;
 using Content.Shared._Mono.Detection;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.Components;

@@ -1,0 +1,71 @@
+- type: entity
+  id: VendingMachineNutriMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NutriMax machine board
+  description: A machine printed circuit board for a NutriMax vendor.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: VendingMachineNutriEmpty
+    requirements:
+      Manipulator: 1
+      MatterBin: 1
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+      Cable: 2
+
+- type: entity
+  id: VendingMachineSeedsUnlockedMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: MegaSeed Servitor machine board
+  description: A machine printed circuit board for a MegaSeed Servitor vendor.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: VendingMachineSeedsUnlockedEmpty
+    requirements:
+      Manipulator: 1
+      MatterBin: 1
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+      Cable: 2
+
+- type: entity
+  id: VendingMachineMedicalMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NanoMed Plus machine board
+  description: A machine printed circuit board for a NanoMed Plus vendor.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: VendingMachineMedicalEmpty
+    requirements:
+      Manipulator: 1
+      MatterBin: 1
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+      Cable: 2
+
+- type: entity
+  id: VendingMachineChemicalsMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ChemVend machine board
+  description: A machine printed circuit board for a ChemVend vendor.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: VendingMachineChemicalsEmpty
+    requirements:
+      Manipulator: 1
+      MatterBin: 1
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+      Cable: 2

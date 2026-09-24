@@ -1,0 +1,1849 @@
+- type: technology
+  id: NFAdvancedParts
+  name: nf-research-technology-advanced-parts
+  entityIcon: AdvancedMatterBinStockPart
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - AdvancedCapacitorStockPart
+  - AdvancedMatterBinStockPart
+  - NanoManipulatorStockPart
+- type: technology
+  id: IndustrialFurnaceEconomyCompactCircuitboard
+  name: research-technology-industrialfurnaceeconomycompactcircuitboard
+  entityIcon: IndustrialFurnaceEconomyCompact
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - IndustrialFurnaceEconomyCompactCircuitboard
+- type: technology
+  id: PrecisionAssemblerEconomyCompactCircuitboard
+  name: research-technology-precisionassemblereconomycompactcircuitboard
+  entityIcon: PrecisionAssemblerEconomyCompact
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - PrecisionAssemblerEconomyCompactCircuitboard
+- type: technology
+  id: BasicProcessing
+  name: research-technology-basic-economy
+  entityIcon: UraniumProcessingIcon
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - CentrifugeLatheMiniCircuitboard
+- type: technology
+  id: IndustrialPressEconomyElectronicsMMCMachineCircuitboard
+  name: research-technology-industrialpresseconomyelectronicsmmcmachinecircuitboard
+  entityIcon: IndustrialPressEconomyElectronicsMMC
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - IndustrialPressEconomyElectronicsMMCMachineCircuitboard
+- type: technology
+  id: IndustrialPressEconomyPlatesMMCMachineCircuitboard
+  name: research-technology-industrialpresseconomyplatesmmcmachinecircuitboard
+  entityIcon: IndustrialPressEconomyPlatesMMC
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - IndustrialPressEconomyPlatesMMCMachineCircuitboard
+- type: technology
+  id: NFAdvancedAtmosphericsPortable
+  name: nf-research-technology-advanced-atmospherics-portable
+  entityIcon: PortableScrubber
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - PortableScrubberMachineCircuitBoard
+- type: technology
+  id: NFAdvancedAtmosphericsTools
+  name: nf-research-technology-advanced-atmospherics-tools
+  entityIcon: HolofanProjector
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - HolofanProjector
+- type: technology
+  id: NFAdvancedCharging
+  name: nf-research-technology-advanced-charging
+  entityIcon: TurboItemRecharger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Ussp
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - TurboItemRechargerCircuitboard
+- type: technology
+  id: NFAdvancedCyborgToolsTechnology
+  name: nf-research-technology-advanced-cyborg-tools
+  entityIcon: BorgModuleAdvancedTool
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedTool
+- type: technology
+  id: NFAdvancedPowercells
+  name: nf-research-technology-advanced-powercells
+  entityIcon: PowerCellHigh
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - PowerCellHigh
+- type: technology
+  id: NFAdvancedPowerGeneration
+  name: nf-research-technology-fission-generators
+  entityIcon: PortableGeneratorDKJr
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - PortableGeneratorDKJrMachineCircuitboard
+- type: technology
+  id: NFAdvancedRoboticsEquipment
+  name: nf-research-technology-advanced-robotics-equipment
+  entityIcon: MechEquipmentGrabber
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - MechEquipmentGrabber
+- type: technology
+  id: NFAdvancedSMES
+  name: nf-research-technology-advanced-smes
+  entityIcon: SMESAdvancedEmpty
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - SMESAdvancedMachineCircuitboard
+- type: technology
+  id: PowerDrill
+  name: research-technology-powerdrill
+  entityIcon: PowerDrill
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - PowerDrill
+- type: technology
+  id: JawsOfLife
+  name: research-technology-jawsoflife
+  entityIcon: JawsOfLife
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - JawsOfLife
+- type: technology
+  id: RemoteSignallerAdvanced
+  name: research-technology-remotesignalleradvanced
+  entityIcon: RemoteSignallerAdvanced
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - SignallerAdvanced
+- type: technology
+  id: ClothingEyesGlassesMesonTray
+  name: research-technology-clothingeyesglassesmesontray
+  entityIcon: ClothingEyesGlassesMesonTray
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - TrayGoggles
+- type: technology
+  id: WelderExperimental
+  name: research-technology-welderexperimental
+  entityIcon: WelderExperimental
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - WelderExperimental
+- type: technology
+  id: ClothingMaskWeldingGas
+  name: research-technology-clothingmaskweldinggas
+  entityIcon: ClothingMaskWeldingGas
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Pirates
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingMaskWeldingGas
+- type: technology
+  id: ClothingEyesGlassesMeson
+  name: research-technology-clothingeyesglassesmeson
+  entityIcon: ClothingEyesGlassesMeson
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingEyesGlassesMeson
+- type: technology
+  id: GasMiningDrillMachineCircuitboard
+  name: research-technology-gasminingdrillmachinecircuitboard
+  entityIcon: GasMiningDrill
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - GasMiningDrillMachineCircuitboard
+- type: technology
+  id: GaslockFrameMachineCircuitboard
+  name: research-technology-gaslockframemachinecircuitboard
+  entityIcon: GaslockFrame
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - GaslockFrameMachineCircuitboard
+- type: technology
+  id: ThermomachineFreezerMachineCircuitBoard
+  name: research-technology-thermomachinefreezermachinecircuitboard
+  entityIcon: GasThermoMachineFreezer
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ThermomachineFreezerMachineCircuitBoard
+- type: technology
+  id: GasRecyclerMachineCircuitboard
+  name: research-technology-gasrecyclermachinecircuitboard
+  entityIcon: GasRecycler
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - GasRecyclerMachineCircuitboard
+- type: technology
+  id: NFBasicPowerGeneration
+  name: nf-research-technology-basic-power-generators
+  entityIcon: PortableGeneratorPacman
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - PortableGeneratorPacmanMachineCircuitboard
+- type: technology
+  id: NFBasicRobotics
+  name: nf-research-technology-basic-robotics
+  entityIcon: ExosuitFabricator
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - ProximitySensor
+- type: technology
+  id: NFBasicRoboticsEquipment
+  name: nf-research-technology-basic-robotics-equipment
+  entityIcon: MechEquipmentFork
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - MechEquipmentFork
+- type: technology
+  id: ClothingBackpackHolding
+  name: research-technology-clothingbackpackholding
+  entityIcon: ClothingBackpackHolding
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - ClothingBackpackHolding
+- type: technology
+  id: ClothingBackpackSatchelHolding
+  name: research-technology-clothingbackpacksatchelholding
+  entityIcon: ClothingBackpackSatchelHolding
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Pirates
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - ClothingBackpackSatchelHolding
+- type: technology
+  id: ClothingBackpackDuffelHolding
+  name: research-technology-clothingbackpackduffelholding
+  entityIcon: ClothingBackpackDuffelHolding
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - ClothingBackpackDuffelHolding
+- type: technology
+  id: ClothingBackpackMessengerHolding
+  name: research-technology-clothingbackpackmessengerholding
+  entityIcon: ClothingBackpackMessengerHolding
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - ClothingBackpackMessengerHolding
+- type: technology
+  id: ConstructionBagOfHolding
+  name: research-technology-constructionbagofholding
+  entityIcon: ConstructionBagOfHolding
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - ConstructionBagOfHolding
+- type: technology
+  id: NFEmitter
+  name: nf-research-technology-particle-emission
+  entityIcon: Emitter
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - EmitterCircuitboard
+- type: technology
+  id: NFFission
+  name: nf-research-technology-fission-powercells
+  entityIcon: PowerCellMicroreactor
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PowerCellMicroreactor
+- type: technology
+  id: ClothingOuterHardsuitAtmos
+  name: research-technology-clothingouterhardsuitatmos
+  entityIcon: ClothingOuterHardsuitAtmos
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitAtmos
+- type: technology
+  id: ClothingOuterHardsuitEngineering
+  name: research-technology-clothingouterhardsuitengineering
+  entityIcon: ClothingOuterHardsuitEngineering
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitEngineering
+- type: technology
+  id: NFIndustrialCutter
+  name: nf-research-technology-industrial-cutter
+  entityIcon: CutterMachine
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - CutterMachineCircuitboard
+- type: technology
+  id: AutolatheHyperConvectionMachineCircuitboard
+  name: research-technology-autolathehyperconvectionmachinecircuitboard
+  entityIcon: AutolatheHyperConvection
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - AutolatheHyperConvectionMachineCircuitboard
+- type: technology
+  id: ProtolatheHyperConvectionMachineCircuitboard
+  name: research-technology-protolathehyperconvectionmachinecircuitboard
+  entityIcon: ProtolatheHyperConvection
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ProtolatheHyperConvectionMachineCircuitboard
+- type: technology
+  id: CircuitImprinterHyperConvectionMachineCircuitboard
+  name: research-technology-circuitimprinterhyperconvectionmachinecircuitboard
+  entityIcon: CircuitImprinterHyperConvection
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - CircuitImprinterHyperConvectionMachineCircuitboard
+- type: technology
+  id: LatheUpgradeKitHyper
+  name: research-technology-latheupgradekithyper
+  entityIcon: LatheUpgradeKitHyper
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - LatheUpgradeKitHyper
+- type: technology
+  id: LatheUpgradeKitCryo
+  name: research-technology-latheupgradekitcryo
+  entityIcon: LatheUpgradeKitCryo
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - LatheUpgradeKitCryo
+- type: technology
+  id: RoboticArmCircuitboard
+  name: research-technology-roboticarmcircuitboard
+  entityIcon: RoboticArm
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - RoboticArmCircuitboard
+- type: technology
+  id: StorageBinCircuitboard
+  name: research-technology-storagebincircuitboard
+  entityIcon: StorageBin
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - StorageBinCircuitboard
+- type: technology
+  id: InteractorCircuitboard
+  name: research-technology-interactorcircuitboard
+  entityIcon: Interactor
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - InteractorCircuitboard
+- type: technology
+  id: ConstructorCircuitboard
+  name: research-technology-constructorcircuitboard
+  entityIcon: Constructor
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ConstructorCircuitboard
+- type: technology
+  id: IndustrialPressEconomyElectronicsMachineCircuitboard
+  name: research-technology-industrialpresseconomyelectronicsmachinecircuitboard
+  entityIcon: IndustrialPressEconomyElectronics
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - IndustrialPressEconomyElectronicsMachineCircuitboard
+- type: technology
+  id: IndustrialPressEconomyPlatesMachineCircuitboard
+  name: research-technology-industrialpresseconomyplatesmachinecircuitboard
+  entityIcon: IndustrialPressEconomyPlates
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - IndustrialPressEconomyPlatesMachineCircuitboard
+- type: technology
+  id: NFIndustrialSilo
+  name: nf-research-technology-industrial-silo
+  entityIcon: MachineMaterialSilo
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - MaterialSiloMachineCircuitboard
+- type: technology
+  id: NFMagnetsTech
+  name: nf-research-technology-magnets-tech
+  entityIcon: ClothingShoesBootsMag
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingShoesBootsMag
+- type: technology
+  id: NFMatterEnergyConversion
+  name: nf-research-technology-matter-energy-conversion
+  entityIcon: BorgModuleRCD
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - BorgModuleRCD
+- type: technology
+  id: NFMechanicalCompression
+  name: nf-research-technology-mechanical-compression
+  entityIcon: MachineFlatpacker
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - FlatpackerMachineCircuitboard
+- type: technology
+  id: NFParticleDecelerator
+  name: nf-research-technology-portable-particle-emission
+  entityIcon: WeaponParticleDecelerator
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - NFWeaponParticleDecelerator
+- type: technology
+  id: NFPortableFission
+  name: nf-research-technology-portable-fission
+  entityIcon: PortableRecharger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - NFPortableRecharger
+- type: technology
+  id: NFPowerGeneration
+  name: nf-research-technology-power-generators
+  entityIcon: PortableGeneratorSuperPacman
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+- type: technology
+  id: LargeAPCElectronics
+  name: research-technology-largeapcelectronics
+  entityIcon: LargeAPC
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - LargeAPCElectronics
+- type: technology
+  id: SolarControlComputerCircuitboard
+  name: research-technology-solarcontrolcomputercircuitboard
+  entityIcon: ComputerSolarControl
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  cost: 2500
+  recipeUnlocks:
+  - SolarControlComputerCircuitboard
+- type: technology
+  id: SolarTrackerElectronics
+  name: research-technology-solartrackerelectronics
+  entityIcon: SolarTrackerElectronics
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  cost: 2500
+  recipeUnlocks:
+  - SolarTrackerElectronics
+- type: technology
+  id: ShipyardRCD
+  name: research-technology-shipyardrcd
+  entityIcon: ShipyardRCD
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - ShipyardRCD
+- type: technology
+  id: ShipyardRCDAmmo
+  name: research-technology-shipyardrcdammo
+  entityIcon: ShipyardRCDAmmo
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ShipyardRCDAmmo
+- type: technology
+  id: PlanetaryRCD
+  name: research-technology-planetaryrcd
+  entityIcon: PlanetaryRCD
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - PlanetaryRCD
+- type: technology
+  id: ShipRepairDevice
+  name: research-technology-shiprepairdevice
+  entityIcon: ShipRepairDevice
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  cost: 10000
+  recipeUnlocks:
+  - ShipRepairDevice
+- type: technology
+  id: ShipRepairDeviceAmmo
+  name: research-technology-shiprepairdeviceammo
+  entityIcon: ShipRepairDeviceAmmo
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  cost: 5000
+  recipeUnlocks:
+  - ShipRepairDeviceAmmo
+- type: technology
+  id: NFRapidPartExchange
+  name: nf-research-technology-rped
+  entityIcon: RPED
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - RPED
+- type: technology
+  id: NFRipleyAPLU
+  name: nf-research-technology-ripley-aplu
+  entityIcon: MechRipley
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - RipleyHarness
+  - RipleyLArm
+  - RipleyRArm
+  - RipleyLLeg
+  - RipleyRLeg
+  - RipleyCentralElectronics
+  - RipleyPeripheralsElectronics
+- type: technology
+  id: NFRoboticsEquipment
+  name: nf-research-technology-robotics-equipment
+  entityIcon: MechEquipmentGrabberSmall
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - MechEquipmentGrabberSmall
+- type: technology
+  id: ComputerShuttle
+  name: research-technology-computershuttle
+  entityIcon: ComputerShuttle
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ShuttleConsoleCircuitboard
+- type: technology
+  id: GravityGeneratorMini
+  name: research-technology-gravitygeneratormini
+  entityIcon: GravityGeneratorMini
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - MiniGravityGeneratorCircuitboard
+- type: technology
+  id: MiniStationAnchor
+  name: research-technology-ministationanchor
+  entityIcon: MiniStationAnchor
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - MiniStationAnchorCircuitboard
+- type: technology
+  id: SmallThruster
+  name: research-technology-smallthruster
+  entityIcon: SmallThruster
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - SmallThrusterMachineCircuitboard
+- type: technology
+  id: SmallGyroscope
+  name: research-technology-smallgyroscope
+  entityIcon: SmallGyroscope
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - SmallGyroscopeMachineCircuitboard
+- type: technology
+  id: Thruster
+  name: research-technology-thruster
+  entityIcon: Thruster
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterMachineCircuitboard
+- type: technology
+  id: ThrusterMedium
+  name: research-technology-thrustermedium
+  entityIcon: ThrusterMedium
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - LargeThrusterMachineCircuitboard
+- type: technology
+  id: ThrusterLarge
+  name: research-technology-thrusterlarge
+  entityIcon: ThrusterLarge
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterLargeMachineCircuitboard
+- type: technology
+  id: Gyroscope
+  name: research-technology-gyroscope
+  entityIcon: Gyroscope
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - GyroscopeMachineCircuitboard
+- type: technology
+  id: NFSpaceHandHeldScanning
+  name: nf-research-technology-space-handheld-scanning
+  entityIcon: HandHeldMassScanner
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - HandHeldMassScanner
+- type: technology
+  id: NFSpaceScanning
+  name: nf-research-technology-space-scanning
+  entityIcon: ComputerRadar
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - RadarConsoleCircuitboard
+- type: technology
+  id: NFTrashPowerGeneration
+  name: nf-research-technology-trash-power-generators
+  entityIcon: PortableGeneratorJrPacman
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - PortableGeneratorJrPacmanMachineCircuitboard
+- type: technology
+  id: NFVim
+  name: nf-research-technology-vim
+  entityIcon: MechVim
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - VimHarness
+- type: technology
+  id: NuclearFabricatorMachineCircuitboard
+  name: research-technology-nuclearfabricatormachinecircuitboard
+  entityIcon: NuclearFabricator
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - NuclearFabricatorMachineCircuitboard
+- type: technology
+  id: NuclearReactorMonitorComputerCircuitboard
+  name: research-technology-nuclearreactormonitorcomputercircuitboard
+  entityIcon: NuclearReactorMonitor
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - NuclearReactorMonitorComputerCircuitboard
+- type: technology
+  id: GasTurbineMonitorComputerCircuitboard
+  name: research-technology-gasturbinemonitorcomputercircuitboard
+  entityIcon: GasTurbineMonitor
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - GasTurbineMonitorComputerCircuitboard
+- type: technology
+  id: UraniumReactorFuelRod
+  name: research-technology-uraniumreactorfuelrod
+  entityIcon: UraniumReactorFuelRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - UraniumReactorFuelRod
+- type: technology
+  id: PlasmaReactorFuelRod
+  name: research-technology-plasmareactorfuelrod
+  entityIcon: PlasmaReactorFuelRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasmaReactorFuelRod
+- type: technology
+  id: UraniumGlassReactorFuelRod
+  name: research-technology-uraniumglassreactorfuelrod
+  entityIcon: UraniumGlassReactorFuelRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - UraniumGlassReactorFuelRod
+- type: technology
+  id: SilverReactorControlRod
+  name: research-technology-silverreactorcontrolrod
+  entityIcon: SilverReactorControlRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - SilverReactorControlRod
+- type: technology
+  id: PlasteelReactorControlRod
+  name: research-technology-plasteelreactorcontrolrod
+  entityIcon: PlasteelReactorControlRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasteelReactorControlRod
+- type: technology
+  id: PlasmaGlassReactorControlRod
+  name: research-technology-plasmaglassreactorcontrolrod
+  entityIcon: PlasmaGlassReactorControlRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasmaGlassReactorControlRod
+- type: technology
+  id: SilverReactorGasChannel
+  name: research-technology-silverreactorgaschannel
+  entityIcon: SilverReactorGasChannel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - SilverReactorGasChannel
+- type: technology
+  id: PlasteelReactorGasChannel
+  name: research-technology-plasteelreactorgaschannel
+  entityIcon: PlasteelReactorGasChannel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasteelReactorGasChannel
+- type: technology
+  id: PlasmaGlassReactorGasChannel
+  name: research-technology-plasmaglassreactorgaschannel
+  entityIcon: PlasmaGlassReactorGasChannel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasmaGlassReactorGasChannel
+- type: technology
+  id: SilverReactorHeatExchanger
+  name: research-technology-silverreactorheatexchanger
+  entityIcon: SilverReactorHeatExchanger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - SilverReactorHeatExchanger
+- type: technology
+  id: PlasteelReactorHeatExchanger
+  name: research-technology-plasteelreactorheatexchanger
+  entityIcon: PlasteelReactorHeatExchanger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasteelReactorHeatExchanger
+- type: technology
+  id: PlasmaGlassReactorHeatExchanger
+  name: research-technology-plasmaglassreactorheatexchanger
+  entityIcon: PlasmaGlassReactorHeatExchanger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - PlasmaGlassReactorHeatExchanger
+- type: technology
+  id: NuclearCentrifugeMachineCircuitboard
+  name: research-technology-nuclearcentrifugemachinecircuitboard
+  entityIcon: NuclearCentrifuge
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - NuclearCentrifugeMachineCircuitboard
+- type: technology
+  id: PlutoniumReactorFuelRod
+  name: research-technology-plutoniumreactorfuelrod
+  entityIcon: PlutoniumReactorFuelRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - PlutoniumReactorFuelRod
+- type: technology
+  id: BananiumReactorFuelRod
+  name: research-technology-bananiumreactorfuelrod
+  entityIcon: BananiumReactorFuelRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - BananiumReactorFuelRod
+- type: technology
+  id: GoldReactorControlRod
+  name: research-technology-goldreactorcontrolrod
+  entityIcon: GoldReactorControlRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - GoldReactorControlRod
+- type: technology
+  id: DiamondReactorControlRod
+  name: research-technology-diamondreactorcontrolrod
+  entityIcon: DiamondReactorControlRod
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Ussp
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - DiamondReactorControlRod
+- type: technology
+  id: GoldReactorGasChannel
+  name: research-technology-goldreactorgaschannel
+  entityIcon: GoldReactorGasChannel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - GoldReactorGasChannel
+- type: technology
+  id: DiamondReactorGasChannel
+  name: research-technology-diamondreactorgaschannel
+  entityIcon: DiamondReactorGasChannel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Ussp
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - DiamondReactorGasChannel
+- type: technology
+  id: GoldReactorHeatExchanger
+  name: research-technology-goldreactorheatexchanger
+  entityIcon: GoldReactorHeatExchanger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - GoldReactorHeatExchanger
+- type: technology
+  id: DiamondReactorHeatExchanger
+  name: research-technology-diamondreactorheatexchanger
+  entityIcon: DiamondReactorHeatExchanger
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 12500
+  recipeUnlocks:
+  - DiamondReactorHeatExchanger
+- type: technology
+  id: Ripley2
+  name: research-technology-ripley-mkii
+  entityIcon: MechRipley2
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 8000
+  recipeUnlocks:
+  - RipleyMKIIHarness
+  - RipleyUpgradeKit
+- type: technology
+  id: UniversalMaterialResearchT1
+  name: research-technology-universal-engsci-1
+  entityIcon: SheetSteel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - UniversalMaterialSheetSteel
+- type: technology
+  id: UniversalMaterialResearchT2
+  name: research-technology-universal-engsci-2
+  entityIcon: SheetPlasteel
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 50000
+  recipeUnlocks:
+  - UniversalMaterialSheetPlasteel
+- type: technology
+  id: UniversalMaterialResearchT3
+  name: research-technology-universal-engsci-3
+  entityIcon: SheetPlastitanium
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 100000
+  recipeUnlocks:
+  - UniversalMaterialSheetPlastitanium
+- type: technology
+  id: UraniumCentrifugeReprocessingMini
+  name: research-technology-uraniumcentrifugereprocessingmini
+  entityIcon: NuclearCentrifuge
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - UraniumCentrifugeReprocessingMini
+- type: technology
+  id: UraniumCentrifugeEnrichedProcessingMini
+  name: research-technology-uraniumcentrifugeenrichedprocessingmini
+  entityIcon: NuclearCentrifuge
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Ussp
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - UraniumCentrifugeEnrichedProcessingMini
+- type: technology
+  id: NFSuperParts
+  name: nf-research-technology-super-parts
+  entityIcon: SuperMatterBinStockPart
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - SuperCapacitorStockPart
+  - SuperMatterBinStockPart
+  - PicoManipulatorStockPart
+- type: technology
+  id: NFBluespaceParts
+  name: nf-research-technology-bluespace-parts
+  entityIcon: BluespaceMatterBinStockPart
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Nanotrasen
+  - Ussp
+  - Neutral
+  cost: 25000
+  recipeUnlocks:
+  - QuadraticCapacitorStockPart
+  - BluespaceMatterBinStockPart
+  - FemtoManipulatorStockPart
+- type: technology
+  id: AccessBreaker
+  name: research-technology-accessbreaker
+  entityIcon: AccessBreaker
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Syndicate
+  - Pirates
+  cost: 5000
+  recipeUnlocks:
+  - AccessBreaker
+- type: technology
+  id: RadioJammer
+  name: research-technology-radiojammer
+  entityIcon: RadioJammer
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  cost: 5000
+  recipeUnlocks:
+  - RadioJammer
+- type: technology
+  id: SyndicateJawsOfLife
+  name: research-technology-syndicatejawsoflife
+  entityIcon: SyndicateJawsOfLife
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Syndicate
+  cost: 5000
+  recipeUnlocks:
+  - SyndicateJawsOfLife
+- type: technology
+  id: Emag
+  name: research-technology-emag
+  entityIcon: Emag
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  factions:
+  - Syndicate
+  cost: 5000
+  recipeUnlocks:
+  - Emag
+- type: technology
+  id: EmagPass
+  name: research-technology-emagpass
+  entityIcon: EmagPass
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Syndicate
+  discoveryWeight: 1.35
+  factions:
+  - Syndicate
+  - Pirates
+  cost: 18000
+  recipeUnlocks:
+  - EmagPass
+- type: technology
+  id: SolarAssemblyCircuitboard
+  name: research-technology-solarassemblycircuitboard
+  entityIcon: SolarAssemblyPart
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  cost: 2500
+  recipeUnlocks:
+  - SolarAssemblyCircuitboard
+- type: technology
+  id: SpaceHeaterMachineCircuitBoard
+  name: research-technology-spaceheatermachinecircuitboard
+  entityIcon: SpaceHeater
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  cost: 2500
+  recipeUnlocks:
+  - SpaceHeaterMachineCircuitBoard

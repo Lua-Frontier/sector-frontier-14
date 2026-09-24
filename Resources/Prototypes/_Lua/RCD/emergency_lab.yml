@@ -1,0 +1,284 @@
+- type: rcd
+  id: EmergencyLabCircuitImprinter
+  name: rcd-component-circuit-imprinter
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/circuit_imprinter.rsi
+    state: icon
+  mode: ConstructObject
+  prototype: CircuitImprinter
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabAutolathe
+  name: rcd-component-autolathe
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/autolathe.rsi
+    state: icon
+  mode: ConstructObject
+  prototype: Autolathe
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabProtolathe
+  name: rcd-component-protolathe
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/protolathe.rsi
+    state: icon
+  mode: ConstructObject
+  prototype: Protolathe
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabAnalysisConsole
+  name: rcd-component-analysis-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerAnalysisConsole
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabArtifactAnalyzer
+  name: rcd-component-artifact-analyzer
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/artifact_analyzer.rsi
+    state: icon
+  mode: ConstructObject
+  prototype: MachineArtifactAnalyzer
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsoleNanotrasen
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopment
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerNanotrasen
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServer
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsoleSyndicate
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopmentSyndicate
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerSyndicate
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServerSyndicate
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsolePirates
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopmentRogues
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerPirates
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServerRogues
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsoleUssp
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopmentUssp
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerUssp
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServerUssp
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsoleSecurity
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopmentTSFMC
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerSecurity
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServerTSFMC
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsoleNeutral
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopmentMerc
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerNeutral
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/server.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServerMerc
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndConsoleLuaTech
+  name: rcd-component-rnd-console
+  category: EmergencyLab
+  sprite:
+    sprite: _Lua/Structures/Machines/computers.rsi
+    state: computer_holo
+  mode: ConstructObject
+  prototype: ComputerResearchAndDevelopmentLuaTech
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
+  id: EmergencyLabRndServerLuaTech
+  name: rcd-component-rnd-server
+  category: EmergencyLab
+  sprite:
+    sprite: _Lua/Structures/Machines/Taipan/server_luatech.rsi
+    state: server
+  mode: ConstructObject
+  prototype: ResearchAndDevelopmentServerLuaTech
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2

@@ -1,14 +1,14 @@
 nf-research-discipline-all = All Available
 nf-research-discipline-engineering = Engineering
 nf-research-discipline-medical = Medical
-nf-research-discipline-arsenal-mercenary = Mercenary
-nf-research-discipline-arsenal-nfsd = NFSD
+nf-research-discipline-arsenal = Arsenal
 nf-research-discipline-salvage = Salvage
 nf-research-discipline-science = Science
 nf-research-discipline-service = Service
 
 # Keep these alphabetical by key.
 nf-research-technology-abnormal-artifact-manipulation = Artifact Recycling
+nf-research-technology-anomaly-core-harnessing = Anomaly Core Harnessing
 nf-research-technology-advanced-anomaly-research = Advanced Anomalous Research
 nf-research-technology-advanced-atmospherics = Advanced Atmospherics
 nf-research-technology-advanced-atmospherics-portable = Portable Atmospherics
@@ -59,7 +59,6 @@ nf-research-technology-biomass = Organic Matter Recycling
 nf-research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 nf-research-technology-bluespace-chemistry = Bluespace Chemistry
 nf-research-technology-bluespace-storage = Bluespace Storage
-nf-research-technology-bluespace-time-manipulation = Bluespace Time Manipulation
 nf-research-technology-bluespace-gas-tanks = Bluespace Gas Tanks
 nf-research-technology-bounty-hunting = Peacekeeping Basics
 nf-research-technology-clowning-utilities = Clowning Utilities
@@ -136,6 +135,7 @@ nf-research-technology-space-handheld-scanning = Portable Object Detection
 nf-research-technology-space-scanning = Radar
 nf-research-technology-special-means = Special Means
 nf-research-technology-super-parts = Super Parts
+nf-research-technology-bluespace-parts = Bluespace Parts
 nf-research-technology-syringe-gun = Syringe Gun
 nf-research-technology-trash-power-generators = Combustion Power Generators
 nf-research-technology-vim = Vim

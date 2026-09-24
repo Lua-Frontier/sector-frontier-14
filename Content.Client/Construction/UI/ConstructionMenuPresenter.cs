@@ -3,7 +3,7 @@ using System.Numerics;
 using Content.Client.Lobby;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
-using Content.Shared._Lua.Achievements;
+using Content.Lua.Shared.Achievements;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;
@@ -515,7 +515,7 @@ namespace Content.Client.Construction.UI
 
             foreach (var id in favorites)
             {
-                if (_prototypeManager.TryIndex(id, out ConstructionPrototype? recipe, logError: false))
+                if (_prototypeManager.TryIndex(id, out var recipe))
                     _favoritedRecipes.Add(recipe);
             }
 

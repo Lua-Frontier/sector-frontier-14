@@ -101,22 +101,6 @@
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#00b0ff"
 
-#region .20 rifle
-- type: entity
-  id: NFCartridgeRifle20Overpressure
-  name: cartridge (.20 rifle, overpressure)
-  parent: NFBaseCartridgeRifle20
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletRifle20Overpressure
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff8d00"
-
 #region .25 rifle
 - type: entity
   id: NFCartridgeRifle25
@@ -207,22 +191,6 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#00b0ff"
-
-#region .30 rifle
-- type: entity
-  id: NFCartridgeRifle30Overpressure
-  name: cartridge (.30 rifle, overpressure)
-  parent: NFBaseCartridgeRifle30
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletRifle30Overpressure
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff8d00"
 
 #region .60 rifle
 - type: entity

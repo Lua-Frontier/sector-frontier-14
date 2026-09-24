@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server._NF.SectorServices;
 using Content.Server._NF.Shipyard.Systems;
@@ -28,14 +28,14 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Text;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles;
 
 namespace Content.Server._NF.Smuggling;
 
 public sealed class DeadDropSystem : EntitySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
@@ -53,7 +53,7 @@ public sealed class DeadDropSystem : EntitySystem
     [Dependency] private readonly SharedGameTicker _ticker = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly StationRenameWarpsSystems _stationRenameWarps = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
     private ISawmill _sawmill = default!;
 
     private readonly Queue<EntityUid> _drops = [];

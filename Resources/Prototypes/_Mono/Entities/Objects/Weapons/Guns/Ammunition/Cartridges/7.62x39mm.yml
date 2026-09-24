@@ -157,3 +157,18 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#888888"
+
+- type: entity
+  id: Cartridge762x39mmOverpressure
+  name: cartridge (7.62x39mm overpressure)
+  parent: BaseCartridge762x39mm
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletRifle30Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff8d00"

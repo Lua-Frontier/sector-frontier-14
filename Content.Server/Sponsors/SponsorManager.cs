@@ -1,6 +1,6 @@
 using Content.Server.Database;
 using Content.Server.Players.JobWhitelist;
-using Content.Shared._Lua.SponsorLoadout;
+using Content.Lua.Shared.SponsorLoadout;
 using Content.Shared.Roles;
 using Robust.Server.Player;
 using Robust.Shared.Network;

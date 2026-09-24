@@ -2,7 +2,6 @@ using Content.Shared.Backmen.Disease;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
@@ -27,8 +26,8 @@ public sealed partial class ChemCauseDisease : EntityEffect
     /// <summary>
     /// The disease to add.
     /// </summary>
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<DiseasePrototype>), required: true)]
-    public string Disease = default!;
+    [DataField(required: true)]
+    public ProtoId<DiseasePrototype> Disease = default!;
 
     public override void Effect(EntityEffectBaseArgs args)
     {

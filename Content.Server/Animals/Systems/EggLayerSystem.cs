@@ -1,8 +1,8 @@
-using Content.Server._Lua.Animals.Components;
+using Content.Lua.Shared.Animals;
 using Content.Server.Actions;
 using Content.Server.Animals.Components;
 using Content.Server.Popups;
-using Content.Shared._Lua.Actions.Events;
+using Content.Lua.Shared.Actions.Events;
 using Content.Shared.Actions.Events;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;

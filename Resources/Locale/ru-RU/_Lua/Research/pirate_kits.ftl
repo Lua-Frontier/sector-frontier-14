@@ -1,0 +1,14 @@
+research-technology-pirate-arsenal-small-arms = Пистолеты
+research-technology-pirate-arsenal-smgs = ПП
+research-technology-pirate-arsenal-carbines = Карабинная доктрина
+research-technology-pirate-arsenal-heavy = Тяжёлое оружие
+research-technology-pirate-arsenal-boarding = Штурмовые заряды
+research-technology-pirate-arsenal-grenades = Штурмовые гранаты
+research-technology-pirate-arsenal-black-powder = Чёрный порох
+research-technology-pirate-arsenal-energy-melee = Энерго-ближний бой
+research-technology-pirate-arsenal-raider-suits = Костюмы рейдеров
+research-technology-pirate-arsenal-black-flag = Чёрный флаг
+research-technology-pirate-medical-combat = Боевая медицина
+research-technology-pirate-utility-boarding = Штурмовое снаряжение
+research-technology-pirate-utility-dirty-tricks = Грязные трюки
+research-technology-pirate-utility-field-shop = Полевая мастерская

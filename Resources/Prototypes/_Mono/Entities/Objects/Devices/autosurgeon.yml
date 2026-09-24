@@ -12,20 +12,6 @@
       actionProto: ActionToggleRightMantisBlade
 
 - type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonRightMantisBladeMieyoFlatpack
-  name: syndicate autosurgeon (right mantis blade) flatpack
-  description: A flatpack used for constructing a syndicate autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonRightMantisBladeMieyo
-  - type: StaticPrice
-    price: 2500
-  - type: Sprite
-    layers:
-    - state: medical_lathe
-
-- type: entity
   parent: BaseAutosurgeon
   id: AutosurgeonLeftMantisBladeMieyo
   name: syndicate autosurgeon (left mantis blade)
@@ -37,20 +23,6 @@
     componentsToPart:
     - type: MantisBladeArm
       actionProto: ActionToggleLeftMantisBlade
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonLeftMantisBladeMieyoFlatpack
-  name: syndicate autosurgeon (left mantis blade) flatpack
-  description: A flatpack used for constructing a syndicate autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonLeftMantisBladeMieyo
-  - type: StaticPrice
-    price: 2500
-  - type: Sprite
-    layers:
-    - state: medical_lathe
 
 - type: entity
   parent: [BaseAutosurgeon, ConstructibleMachine]
@@ -86,20 +58,6 @@
     newPartProto: OrganHeartTSFSandevistan
 
 - type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonSandevistanTSFFlatpack
-  name: security autosurgeon (WJY-21X sandevistan) flatpack
-  description: A flatpack used for constructing a security autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonSandevistanTSF
-  - type: StaticPrice
-    price: 15000
-  - type: Sprite
-    layers:
-    - state: medical_lathe
-
-- type: entity
   parent: BaseAutosurgeon
   id: AutosurgeonShuntTSF
   name: security autosurgeon (KR-22 shunt device)
@@ -109,20 +67,6 @@
     targetBodyPart: Torso
     targetOrgan: Heart
     newPartProto: OrganHeartTSFShunt
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonShuntTSFFlatpack
-  name: security autosurgeon (KR-22 shunt device) flatpack
-  description: A flatpack used for constructing a security autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonShuntTSF
-  - type: StaticPrice
-    price: 50000
-  - type: Sprite
-    layers:
-    - state: medical_lathe
 
 - type: entity
   parent: [BaseAutosurgeon, ConstructibleMachine]
@@ -163,17 +107,3 @@
       dashAction: ActionDashMuscleFibersImplant
       requireItem: false
       isUser: true
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: AutosurgeonMuscleFibersMieyoFlatpack
-  name: syndicate autosurgeon (muscle fibers suite) flatpack
-  description: A flatpack used for constructing a syndicate autosurgeon.
-  components:
-  - type: Flatpack
-    entity: AutosurgeonMuscleFibersMieyo
-  - type: StaticPrice
-    price: 2500
-  - type: Sprite
-    layers:
-    - state: medical_lathe

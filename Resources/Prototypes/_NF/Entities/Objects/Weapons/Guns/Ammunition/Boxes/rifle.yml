@@ -266,28 +266,10 @@
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
 
-#region .20 rifle
-- type: entity
-  id: NFAmmunitionBoxRifle20Overpressure
-  parent: NFBaseAmmunitionBoxRifle20
-  name: ammunition box (.20 rifle, overpressure)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Overpressure
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-      color: "#cbca8f"
-    - state: decal-01
-      color: "#ff8d00"
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
 #region .20 rifle big
 - type: entity
   id: NFAmmunitionBoxBigRifle20
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle)
   components:
@@ -302,24 +284,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxBigRifle20Overpressure
-  parent: NFBaseAmmunitionBoxBigRifle20
-  name: ammunition box (.20 rifle, overpressure)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Overpressure
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff8d00"
-    - state: decal-calibre-20
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle20Incendiary
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, incendiary)
   components:
@@ -337,6 +303,7 @@
 
 - type: entity
   id: NFAmmunitionBoxBigRifle20Uranium
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, uranium)
   components:
@@ -354,6 +321,7 @@
 
 - type: entity
   id: NFAmmunitionBoxBigRifle20Practice
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, practice)
   components:
@@ -371,6 +339,7 @@
 
 - type: entity
   id: NFAmmunitionBoxBigRifle20Rubber
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle20
   name: ammunition box (.20 rifle, rubber)
   components:
@@ -596,25 +565,8 @@
 
 #region .30 rifle
 - type: entity
-  id: NFAmmunitionBoxRifle30Overpressure
-  parent: NFBaseAmmunitionBoxRifle30
-  name: ammunition box (.30 rifle, overpressure)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Overpressure
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-      color: "#b55f59"
-    - state: decal-01
-      color: "#ff8d00"
-    - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxRifle30Rubber
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxRifle30
   name: ammunition box (.30 rifle, rubber)
   components:
@@ -634,6 +586,7 @@
 #region .30 rifle big
 - type: entity
   id: NFAmmunitionBoxBigRifle30
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle)
   components:
@@ -648,24 +601,8 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: NFAmmunitionBoxBigRifle30Overpressure
-  parent: NFBaseAmmunitionBoxBigRifle30
-  name: ammunition box (.30 rifle, overpressure)
-  components:
-  - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Overpressure
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: decal-01
-      color: "#ff8d00"
-    - state: decal-calibre-30
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-
-- type: entity
   id: NFAmmunitionBoxBigRifle30Incendiary
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle, incendiary)
   components:
@@ -683,6 +620,7 @@
 
 - type: entity
   id: NFAmmunitionBoxBigRifle30Uranium
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle, uranium)
   components:
@@ -700,6 +638,7 @@
 
 - type: entity
   id: NFAmmunitionBoxBigRifle30Practice
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle, practice)
   components:
@@ -717,6 +656,7 @@
 
 - type: entity
   id: NFAmmunitionBoxBigRifle30Rubber
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxBigRifle30
   name: ammunition box (.30 rifle, rubber)
   components:
@@ -735,6 +675,7 @@
 #region .60 rifle
 - type: entity
   id: NFAmmunitionBoxRifle60
+  categories: [ HideSpawnMenu ]
   parent: NFBaseAmmunitionBoxRifle60
   name: ammunition box (.60 rifle)
   components:

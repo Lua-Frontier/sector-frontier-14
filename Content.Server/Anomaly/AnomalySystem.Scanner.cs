@@ -138,8 +138,19 @@ public sealed partial class AnomalySystem
 
     public FormattedMessage GetScannerMessage(AnomalyScannerComponent component)
     {
+        if (component.ScannedAnomaly is not { } anomaly)
+        {
+            var empty = new FormattedMessage();
+            empty.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-no-anomaly"));
+            return empty;
+        }
+
+        return GetScannerMessageForAnomaly(anomaly);
+    }
+    public FormattedMessage GetScannerMessageForAnomaly(EntityUid anomaly)
+    {
         var msg = new FormattedMessage();
-        if (component.ScannedAnomaly is not { } anomaly || !TryComp<AnomalyComponent>(anomaly, out var anomalyComp))
+        if (!TryComp<AnomalyComponent>(anomaly, out var anomalyComp))
         {
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-no-anomaly"));
             return msg;

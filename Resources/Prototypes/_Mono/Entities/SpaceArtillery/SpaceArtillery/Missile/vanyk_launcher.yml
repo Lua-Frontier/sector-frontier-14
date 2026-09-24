@@ -3,8 +3,9 @@
   id: WeaponTurretVanyk
   name: ASM-150 "Vanyk" Missile Pod
   parent:
-  - BallisticArtilleryUnanchorableMagazine
+  - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   description: An escort missile pod manufactured by Aetherion Dynamics. Launches 150mm guided missiles for basic ship-to-ship combat and area denial. Uses a built-in autoloader instead of a rack, increasing capacity but reducing rate of fire. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
@@ -34,19 +35,15 @@
     powerChargeRate: 350
     powerUsePassive: 600
     powerUseActive: 0
-  - type: MagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: VanykMagazine
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - VanykMagazine
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: VanykCartridge
+    capacity: 30
+    whitelist:
+      tags:
+      - VanykCartridge
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 1.5
@@ -58,3 +55,10 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 100
+  - type: Machine
+    board: WeaponTurretVanykCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

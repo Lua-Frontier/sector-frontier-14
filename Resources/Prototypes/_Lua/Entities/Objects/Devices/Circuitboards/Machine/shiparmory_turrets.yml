@@ -1,0 +1,2428 @@
+- type: entity
+  categories: [ ShuttleGun ]
+  id: AmmoLoaderCircuitboard
+  parent: BaseMachineCircuitboard
+  name: ammo loader machine board
+  description: A machine printed circuit board for a ammo loader.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: AmmoLoader
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: AmmoLoaderSmallCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small ammo loader machine board
+  description: A machine printed circuit board for a small ammo loader.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: AmmoLoaderSmall
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: MachineShieldTSFCapitalCircuitboard
+  parent: BaseMachineCircuitboard
+  name: TSF capital shield machine board
+  description: A machine printed circuit board for a TSF capital shield.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShieldGeneratorTSFCapital
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: MachineShieldPOICircuitboard
+  parent: BaseMachineCircuitboard
+  name: FS-421 Fortress shield machine board
+  description: A machine printed circuit board for a Fortress outpost shield generator.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShieldGeneratorPOI
+    requirements:
+      MatterBin: 6
+      Manipulator: 8
+    stackRequirements:
+      Steel: 40
+      Plasma: 30
+      Plasteel: 40
+      CableHV: 12
+      Gold: 15
+      Silver: 15
+      Uranium: 20
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 6
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 4
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 3
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 2
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: MachineShieldPOIBioCircuitboard
+  parent: BaseMachineCircuitboard
+  name: S-243 Biodome shield machine board
+  description: A machine printed circuit board for a Biodome outpost shield generator.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShieldGeneratorPOIBio
+    requirements:
+      MatterBin: 5
+      Manipulator: 7
+    stackRequirements:
+      Steel: 30
+      Plasma: 25
+      Plasteel: 30
+      CableHV: 10
+      Gold: 12
+      Silver: 12
+      Uranium: 15
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 3
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 5
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 3
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 2
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: TeslaTurretBaseCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Tesla turret machine board
+  description: A machine printed circuit board for a Tesla turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: TeslaTurretBase
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: Weapon95mmCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 105mm mount machine board
+  description: A machine printed circuit board for a 105mm mount.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: Weapon95mm
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: Weapon130mmCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 120mm mount machine board
+  description: A machine printed circuit board for a 120mm mount.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: Weapon130mm
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: Weapon155mmCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 140mm mount machine board
+  description: A machine printed circuit board for a 140mm mount.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: Weapon155mm
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: Weapon25mmCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 20mm mount machine board
+  description: A machine printed circuit board for a 20mm mount.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: Weapon25mm
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: Weapon45mmCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 53mm mount machine board
+  description: A machine printed circuit board for a 53mm mount.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: Weapon45mm
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: Weapon75mmCircuitboard
+  parent: BaseMachineCircuitboard
+  name: 80mm mount machine board
+  description: A machine printed circuit board for a 80mm mount.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: Weapon75mm
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponLaserTurretApolloCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Apollo laser machine board
+  description: A machine printed circuit board for a Apollo laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponLaserTurretApollo
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponLaserTurretFlayerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Flayer auto-coil machine board
+  description: A machine printed circuit board for a Flayer auto-coil.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponLaserTurretFlayer
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponLaserTurretL1PhalanxCircuitboard
+  parent: BaseMachineCircuitboard
+  name: L1 Phalanx laser machine board
+  description: A machine printed circuit board for a L1 Phalanx laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponLaserTurretL1Phalanx
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponLaserTurretPrometheusCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Prometheus laser machine board
+  description: A machine printed circuit board for a Prometheus laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponLaserTurretPrometheus
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponMissileLauncherCerberCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Cerber launcher machine board
+  description: A machine printed circuit board for a Cerber launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponMissileLauncherCerber
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponMissileLauncherLancerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Lancer launcher machine board
+  description: A machine printed circuit board for a Lancer launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponMissileLauncherLancer
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponMissileLauncherNightHunterCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NightHunter launcher machine board
+  description: A machine printed circuit board for a NightHunter launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponMissileLauncherNightHunter
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponMissileLauncherStarColosusCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Star Colosus machine board
+  description: A machine printed circuit board for a Star Colosus.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponMissileLauncherStarColosusEmpty
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretAK570Circuitboard
+  parent: BaseMachineCircuitboard
+  name: AK570 turret machine board
+  description: A machine printed circuit board for a AK570 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretAK570
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretASM220Circuitboard
+  parent: BaseMachineCircuitboard
+  name: ASM220 launcher machine board
+  description: A machine printed circuit board for a ASM220 launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretASM220
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretAdderScattercannonCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Adder scattercannon machine board
+  description: A machine printed circuit board for a Adder scattercannon.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretAdderScattercannon
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretAk820Circuitboard
+  parent: BaseMachineCircuitboard
+  name: AK820 turret machine board
+  description: A machine printed circuit board for a AK820 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretAk820
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretBoforsCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Bofors turret machine board
+  description: A machine printed circuit board for a Bofors turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretBofors
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretCerberusCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Cerberus turret machine board
+  description: A machine printed circuit board for a Cerberus turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretCerberus
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretCharonCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Charon turret machine board
+  description: A machine printed circuit board for a Charon mass driver.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretCharon
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretCyrexaCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Cyrexa turret machine board
+  description: A machine printed circuit board for a Cyrexa turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretCyrexa
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretDravonCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Dravon turret machine board
+  description: A machine printed circuit board for a Dravon turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretDravon
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretDymereCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Dymere turret machine board
+  description: A machine printed circuit board for a Dymere turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretDymere
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretFangCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fang turret machine board
+  description: A machine printed circuit board for a Fang turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretFang
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretFlareCircuitboard
+  parent: BaseMachineCircuitboard
+  name: flare launcher machine board
+  description: A machine printed circuit board for a flare launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretFlare
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretFragmentCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Fragment turret machine board
+  description: A machine printed circuit board for a Fragment turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretFragment
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretShardCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Shard turret machine board
+  description: A machine printed circuit board for a Shard mass driver.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretShard
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretPinholeCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Pinhole turret machine board
+  description: A machine printed circuit board for a Pinhole railgun.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretPinhole
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretHadesCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Hades turret machine board
+  description: A machine printed circuit board for a Hades turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretHades
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretHarbringerCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Harbringer turret machine board
+  description: A machine printed circuit board for a Harbringer turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretHarbringer
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretHydraCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Hydra turret machine board
+  description: A machine printed circuit board for a Hydra turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretHydra
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretL85AutocannonCircuitboard
+  parent: BaseMachineCircuitboard
+  name: L85 autocannon machine board
+  description: A machine printed circuit board for a L85 autocannon.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretL85Autocannon
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ HideSpawnMenu, ShuttleGun ]
+  id: WeaponTurretLaserLuaTechCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LuaTech laser machine board
+  description: A machine printed circuit board for a LuaTech laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretLaserLuaTech
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretLaserShuttleLuaTechCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LuaTech shuttle laser machine board
+  description: A machine printed circuit board for a LuaTech shuttle laser turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretLaserShuttleLuaTech
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretBigLaserShuttleLuaTechCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LuaTech big laser machine board
+  description: A machine printed circuit board for a LuaTech big laser turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretBigLaserShuttleLuaTech
+    requirements:
+      MatterBin: 4
+      Manipulator: 5
+    stackRequirements:
+      Steel: 15
+      Plasma: 8
+      Plasteel: 8
+      CableHV: 6
+      Gold: 3
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 3
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretLaserSyndieCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Syndie laser machine board
+  description: A machine printed circuit board for a Syndie laser.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretLaserSyndie
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretLeviathanCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Leviathan turret machine board
+  description: A machine printed circuit board for a Leviathan turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretLeviathan
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretLightMunitionsBayCircuitboard
+  parent: BaseMachineCircuitboard
+  name: light munitions bay machine board
+  description: A machine printed circuit board for a light munitions bay.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretLightMunitionsBay
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretLongbowCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Longbow turret machine board
+  description: A machine printed circuit board for a Longbow turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretLongbow
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretM220Circuitboard
+  parent: BaseMachineCircuitboard
+  name: M220 turret machine board
+  description: A machine printed circuit board for a M220 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretM220
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretPaladinCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Paladin missile pod machine board
+  description: A machine printed circuit board for a Paladin missile pod.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretPaladin
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretR300Circuitboard
+  parent: BaseMachineCircuitboard
+  name: R300 turret machine board
+  description: A machine printed circuit board for a R300 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretR300
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretRAC30Circuitboard
+  parent: BaseMachineCircuitboard
+  name: RAC30 turret machine board
+  description: A machine printed circuit board for a RAC30 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretRAC30
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretReaperCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Reaper turret machine board
+  description: A machine printed circuit board for a Reaper turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretReaper
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretScyllaCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Scylla turret machine board
+  description: A machine printed circuit board for a Scylla turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretScylla
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretScytheCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Scythe turret machine board
+  description: A machine printed circuit board for a Scythe turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretScythe
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretSerpentMissileCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Serpent missile machine board
+  description: A machine printed circuit board for a Serpent missile.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretSerpentMissile
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretSunderCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Sunder turret machine board
+  description: A machine printed circuit board for a Sunder turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretSunder
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretTarnyxCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Tarnyx turret machine board
+  description: A machine printed circuit board for a Tarnyx turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretTarnyx
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: ImpulseLaserBaseCircuitboard
+  parent: BaseMachineCircuitboard
+  name: impulse laser machine board
+  description: A machine printed circuit board for an impulse laser turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ImpulseLaserBase
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponShuttleGrapplingTurretCircuitboard
+  parent: BaseMachineCircuitboard
+  name: shuttle grappling turret machine board
+  description: A machine printed circuit board for a shuttle grappling turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponShuttleGrapplingTurret
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  id: AirlockDockingMagnetCircuitboard
+  parent: BaseMachineCircuitboard
+  name: docking magnet machine board
+  description: A machine printed circuit board for a ship docking magnet.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: AirlockDockingMagnet
+    requirements:
+      MatterBin: 2
+      Manipulator: 2
+    stackRequirements:
+      Steel: 8
+      Plasma: 3
+      CableHV: 3
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 1
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretTartarusCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Tartarus turret machine board
+  description: A machine printed circuit board for a Tartarus turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretTartarus
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretThanatosCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Thanatos turret machine board
+  description: A machine printed circuit board for a Thanatos turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretThanatos
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretTorpedoEntropyCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Entropy torpedo machine board
+  description: A machine printed circuit board for a Entropy torpedo.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretTorpedoEntropy
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretTovekCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Tovek launcher machine board
+  description: A machine printed circuit board for a Tovek launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretTovek
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretType241Circuitboard
+  parent: BaseMachineCircuitboard
+  name: Type241 turret machine board
+  description: A machine printed circuit board for a Type241 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretType241
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretType35Circuitboard
+  parent: BaseMachineCircuitboard
+  name: Type35 turret machine board
+  description: A machine printed circuit board for a Type35 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretType35
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretType54Circuitboard
+  parent: BaseMachineCircuitboard
+  name: Type54 turret machine board
+  description: A machine printed circuit board for a Type54 turret.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretType54
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretVanquisherCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Vanquisher launcher machine board
+  description: A machine printed circuit board for a Vanquisher launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretVanquisher
+    requirements:
+      MatterBin: 4
+      Manipulator: 6
+    stackRequirements:
+      Steel: 20
+      Plasma: 10
+      Plasteel: 15
+      CableHV: 8
+      Gold: 5
+      Silver: 5
+      Uranium: 5
+    tagRequirements:
+      ElectromagnetEconomy2:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy2
+      MicroprocessorEconomy1:
+        amount: 4
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      RadioEconomy2:
+        amount: 1
+        defaultPrototype: RadioEconomy2
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretVanykCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Vanyk launcher machine board
+  description: A machine printed circuit board for a Vanyk launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretVanyk
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      Plasma: 2
+      CableHV: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 1
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 1
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  categories: [ ShuttleGun ]
+  id: WeaponTurretVesperaCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Vespera launcher machine board
+  description: A machine printed circuit board for a Vespera launcher.
+  suffix: Machine Board
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: WeaponTurretVespera
+    requirements:
+      MatterBin: 3
+      Manipulator: 4
+    stackRequirements:
+      Steel: 10
+      Plasma: 5
+      Plasteel: 5
+      CableHV: 4
+      Gold: 2
+    tagRequirements:
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+      MicroprocessorEconomy1:
+        amount: 3
+        defaultPrototype: MicroprocessorEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1

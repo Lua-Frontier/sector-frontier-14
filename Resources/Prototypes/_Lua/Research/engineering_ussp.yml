@@ -1,0 +1,175 @@
+- type: technology
+  id: UsspRndServer
+  name: research-technology-ussp-rnd-server
+  entityIcon: ResearchAndDevelopmentServerUssp
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Ussp
+  cost: 500
+  recipeUnlocks:
+  - ResearchAndDevelopmentServerUsspMachineCircuitboard
+- type: technology
+  id: UsspRndConsole
+  name: research-technology-ussp-rnd-console
+  entityIcon: ComputerResearchAndDevelopmentUssp
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Ussp
+  cost: 500
+  recipeUnlocks:
+  - ResearchComputerUsspCircuitboard
+- type: technology
+  id: ThrusterUSSPMachineCircuitboard
+  name: research-technology-thrusterusspmachinecircuitboard
+  entityIcon: ThrusterUSSP
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Ussp
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterUSSPMachineCircuitboard
+- type: technology
+  id: ThrusterMediumUSSPMachineCircuitboard
+  name: research-technology-thrustermediumusspmachinecircuitboard
+  entityIcon: ThrusterMediumUSSP
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Ussp
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterMediumUSSPMachineCircuitboard
+- type: technology
+  id: ThrusterLargeUSSPMachineCircuitboard
+  name: research-technology-thrusterlargeusspmachinecircuitboard
+  entityIcon: ThrusterLargeUSSP
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Ussp
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterLargeUSSPMachineCircuitboard
+- type: technology
+  id: GeneratorCRPinchMachineCircuitboard
+  name: research-technology-generatorcrpinchmachinecircuitboard
+  entityIcon: GeneratorCRPinch
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - GeneratorCRPinchMachineCircuitboard
+- type: technology
+  id: TurbineSmallMachineCircuitboard
+  name: research-technology-turbinesmallmachinecircuitboard
+  entityIcon: TurbineSmall
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - TurbineSmallMachineCircuitboard
+- type: technology
+  id: TurbineMachineCircuitboard
+  name: research-technology-turbinemachinecircuitboard
+  entityIcon: Turbine
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - TurbineMachineCircuitboard
+- type: technology
+  id: NuclearReactorSmallEmptyMachineCircuitboard
+  name: research-technology-nuclearreactorsmallemptymachinecircuitboard
+  entityIcon: NuclearReactorSmallEmpty
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - NuclearReactorSmallEmptyMachineCircuitboard
+- type: technology
+  id: NuclearReactorEmptyMachineCircuitboard
+  name: research-technology-nuclearreactoremptymachinecircuitboard
+  entityIcon: NuclearReactorEmpty
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 25000
+  recipeUnlocks:
+  - NuclearReactorEmptyMachineCircuitboard

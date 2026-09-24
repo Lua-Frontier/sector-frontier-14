@@ -1,0 +1,14 @@
+research-technology-pirate-arsenal-small-arms = Small Arms
+research-technology-pirate-arsenal-smgs = Submachine Guns
+research-technology-pirate-arsenal-carbines = Carbine Doctrine
+research-technology-pirate-arsenal-heavy = Heavy Weapons
+research-technology-pirate-arsenal-boarding = Boarding Charges
+research-technology-pirate-arsenal-grenades = Boarding Grenades
+research-technology-pirate-arsenal-black-powder = Black Powder
+research-technology-pirate-arsenal-energy-melee = Energy Melee
+research-technology-pirate-arsenal-raider-suits = Raider Suits
+research-technology-pirate-arsenal-black-flag = Black Flag Suite
+research-technology-pirate-medical-combat = Combat Medicine
+research-technology-pirate-utility-boarding = Boarding Gear
+research-technology-pirate-utility-dirty-tricks = Dirty Tricks
+research-technology-pirate-utility-field-shop = Field Workshop

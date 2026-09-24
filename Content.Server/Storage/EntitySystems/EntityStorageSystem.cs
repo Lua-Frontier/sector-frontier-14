@@ -18,6 +18,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Storage.EntitySystems;
 
@@ -25,7 +26,7 @@ public sealed class EntityStorageSystem : SharedEntityStorageSystem
 {
     [Dependency] private readonly ConstructionSystem _construction = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly IMapManager _map = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
     public override void Initialize()

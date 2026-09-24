@@ -1,3 +1,4 @@
+using Content.Lua.Shared.Shuttles;
 using Content.Server._NF.Shuttles.Components;
 using Content.Server._Mono.Cleanup;
 using Content.Server.Shuttles.Components;
@@ -25,7 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System;
 using System.Numerics;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

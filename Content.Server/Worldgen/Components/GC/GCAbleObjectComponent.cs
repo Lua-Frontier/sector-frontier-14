@@ -1,6 +1,6 @@
 using Content.Server.Worldgen.Prototypes;
 using Content.Server.Worldgen.Systems.GC;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Worldgen.Components.GC;
 
@@ -15,8 +15,8 @@ public sealed partial class GCAbleObjectComponent : Component
     /// <summary>
     ///     Which queue to insert this object into when GCing
     /// </summary>
-    [DataField("queue", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<GCQueuePrototype>))]
-    public string Queue = default!;
+    [DataField("queue", required: true)]
+    public ProtoId<GCQueuePrototype> Queue = default!;
 
     [ViewVariables(VVAccess.ReadOnly)]
     [DataField("linkedGridEntity")]

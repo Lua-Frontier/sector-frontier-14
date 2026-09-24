@@ -1,0 +1,263 @@
+- type: Tag
+  id: ResearchDataDisk
+
+- type: entity
+  parent: BaseItem
+  id: ResearchDataDisk
+  name: research data disk
+  description: A blank data disk for recording anomaly and artifact telemetry. Craft more at an autolathe.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    layers:
+    - state: datadisk_base
+      map: ["enum.DamageStateVisualLayers.Base"]
+    - state: datadisk_label
+    - state: data_no_unshaded
+      shader: unshaded
+      map: ["enum.ResearchDataDiskVisuals.Stage"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ResearchDataDiskVisuals.Stage:
+        enum.ResearchDataDiskVisuals.Stage:
+          Empty: { state: data_no_unshaded }
+          Raw: { state: data_idle_unshaded }
+          Decoded: { state: data_on_unshaded }
+  - type: RandomSprite
+    available:
+    - enum.DamageStateVisualLayers.Base:
+        datadisk_base: Sixteen
+  - type: Item
+    size: Small
+  - type: ResearchDataDisk
+  - type: Tag
+    tags:
+    - ResearchDataDisk
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  parent: BaseBlueprint
+  id: ResearchRecipeBlueprint
+  name: research recipe blueprint
+  description: A single-recipe blueprint printed from a research journal.
+  components:
+  - type: Blueprint
+    providedRecipes: []
+  - type: StaticPrice
+    price: 500
+
+- type: entity
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  id: ResearchComputeServer
+  name: research compute server
+  description: Accelerates anomaly, artifact, and data analysis workloads. Draws heavy power and dumps heat under load. Sensitive to ambient conditions. Crowbar sabotage can crash a rack in a mild flash; repair with a server tech reconfigurator.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/telecomms.rsi
+    snapCardinals: true
+    layers:
+    - state: telecom-nopower
+    - state: telecom-on
+      shader: unshaded
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+    - state: telecom-stripe
+      shader: unshaded
+      visible: false
+      map: [ "enum.ResearchComputeServerVisuals.Broken" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+      enum.ResearchComputeServerVisuals.Broken:
+        enum.ResearchComputeServerVisuals.Broken:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ResearchComputeServer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: ResearchComputeServer
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ApcPowerReceiver
+    powerLoad: 150
+  - type: ExtensionCableReceiver
+  - type: ActivatableUI
+    key: enum.ResearchComputeServerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ResearchComputeServerUiKey.Key:
+        type: ResearchComputeServerBoundUserInterface
+  - type: Machine
+    board: ResearchComputeServerCircuitboard
+  - type: Destructible
+    thresholds:
+    # Already broken racks can be finished off into a machine frame.
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ResearchComputeServerCircuitboard
+  name: research compute server machine board
+  description: A machine printed circuit board for a research compute server.
+  components:
+  - type: MachineBoard
+    prototype: ResearchComputeServer
+    stackRequirements:
+      Steel: 4
+      Glass: 2
+      Cable: 5
+
+# Journal lives on ComputerResearchAndDevelopment* - no separate ComputerDiscoveryJournal.
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: MachineDiscoverySourceConsole
+  name: anomaly research console
+  description: Link to an anomaly vessel, tune the radio probe with arrow pads, and scan onto a research data disk.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: rdcomp
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: DiscoverySourceConsole
+  - type: ResearchClient
+    allowedFactions: []
+  - type: TechnologyDatabase
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: BasicDevice
+  - type: DeviceLinkSource
+    range: 8
+    ports:
+    - DiscoveryAnomalyVesselSender
+  - type: ItemSlots
+    slots:
+      research_disk_slot:
+        name: research-data-disk-slot
+        whitelist:
+          components:
+          - ResearchDataDisk
+        insertSound: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound: /Audio/Machines/terminal_insert_disc.ogg
+  - type: ContainerContainer
+    containers:
+      research_disk_slot: !type:ContainerSlot
+      board: !type:Container
+  - type: ActivatableUI
+    key: enum.DiscoverySourceUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DiscoverySourceUiKey.Key:
+        type: DiscoverySourceBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: DiscoverySourceConsoleCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#5EC8E8"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: DiscoverySourceConsoleCircuitboard
+  name: anomaly research console board
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: MachineDiscoverySourceConsole
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: MachineDiscoveryAnalysisConsole
+  name: research data analysis console
+  description: Decrypts research data disks and uploads technologies to the linked R&D server.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: artifact
+    - map: ["computerLayerKeys"]
+      state: tech_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: DiscoveryAnalysisConsole
+  - type: ResearchClient
+    allowedFactions: []
+  - type: TechnologyDatabase
+  - type: ItemSlots
+    slots:
+      research_disk_slot:
+        name: research-data-disk-slot
+        whitelist:
+          components:
+          - ResearchDataDisk
+        insertSound: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound: /Audio/Machines/terminal_insert_disc.ogg
+  - type: ContainerContainer
+    containers:
+      research_disk_slot: !type:ContainerSlot
+      board: !type:Container
+  - type: ActivatableUI
+    key: enum.DiscoveryAnalysisUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.DiscoveryAnalysisUiKey.Key:
+        type: DiscoveryAnalysisBoundUserInterface
+      enum.ResearchClientUiKey.Key:
+        type: ResearchClientBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: DiscoveryAnalysisConsoleCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#b53ca1"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: DiscoveryAnalysisConsoleCircuitboard
+  name: research data analysis console board
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: MachineDiscoveryAnalysisConsole

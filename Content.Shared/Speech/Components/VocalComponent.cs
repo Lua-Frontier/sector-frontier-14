@@ -3,8 +3,6 @@ using Content.Shared.Humanoid;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared.Speech.Components;
 
@@ -23,9 +21,8 @@ public sealed partial class VocalComponent : Component
     [AutoNetworkedField]
     public Dictionary<Sex, ProtoId<EmoteSoundsPrototype>>? Sounds;
 
-    [DataField("screamId", customTypeSerializer: typeof(PrototypeIdSerializer<EmotePrototype>))]
-    [AutoNetworkedField]
-    public string ScreamId = "Scream";
+    [DataField("screamId")]
+    public ProtoId<EmotePrototype> ScreamId = "Scream";
 
     [DataField("wilhelm")]
     [AutoNetworkedField]
@@ -35,9 +32,8 @@ public sealed partial class VocalComponent : Component
     [AutoNetworkedField]
     public float WilhelmProbability = 0.0002f;
 
-    [DataField("screamAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    [AutoNetworkedField]
-    public string? ScreamAction = "ActionScream";
+    [DataField("screamAction")]
+    public EntProtoId? ScreamAction = "ActionScream";
 
     [DataField("screamActionEntity")]
     [AutoNetworkedField]

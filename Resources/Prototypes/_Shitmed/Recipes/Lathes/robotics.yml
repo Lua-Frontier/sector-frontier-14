@@ -181,8 +181,8 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: AutosurgeonRightMantisBladeMieyoFlatpack
-  result: AutosurgeonRightMantisBladeMieyoFlatpack
+  id: AutosurgeonRightMantisBladeMieyo
+  result: AutosurgeonRightMantisBladeMieyo
   materialDiscountScale: 0
   materials:
     Steel: 3000
@@ -196,14 +196,14 @@
     Iridite: 20
 
 - type: latheRecipe
-  parent: AutosurgeonRightMantisBladeMieyoFlatpack
-  id: AutosurgeonLeftMantisBladeMieyoFlatpack
-  result: AutosurgeonLeftMantisBladeMieyoFlatpack
+  parent: AutosurgeonRightMantisBladeMieyo
+  id: AutosurgeonLeftMantisBladeMieyo
+  result: AutosurgeonLeftMantisBladeMieyo
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: AutosurgeonSandevistanMieyoFlatpack
-  result: AutosurgeonSandevistanMieyoFlatpack
+  id: AutosurgeonSandevistanMieyo
+  result: AutosurgeonSandevistan
   materialDiscountScale: 0
   materials:
     Steel: 6000
@@ -219,8 +219,8 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: AutosurgeonMuscleFibersMieyoFlatpack
-  result: AutosurgeonMuscleFibersMieyoFlatpack
+  id: AutosurgeonMuscleFibersMieyo
+  result: AutosurgeonMuscleFibersMieyo
   materialDiscountScale: 0
   materials:
     Steel: 2500
@@ -233,8 +233,8 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: AutosurgeonSandevistanTSFFlatpack
-  result: AutosurgeonSandevistanTSFFlatpack
+  id: AutosurgeonSandevistanTSF
+  result: AutosurgeonSandevistanTSF
   materialDiscountScale: 0
   materials:
     Steel: 6000
@@ -250,8 +250,8 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: AutosurgeonShuntTSFFlatpack
-  result: AutosurgeonShuntTSFFlatpack
+  id: AutosurgeonShuntTSF
+  result: AutosurgeonShuntTSF
   materialDiscountScale: 0
   materials:
     Steel: 10000

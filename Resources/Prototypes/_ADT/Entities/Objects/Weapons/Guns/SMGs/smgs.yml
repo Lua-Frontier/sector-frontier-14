@@ -32,7 +32,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine635x40mmCaseless #Lua NFMagazineSubMachineGun45<Magazine635x40mmCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -41,7 +40,6 @@
             - Magazine635x40mmCaseless #Lua NFMagazineSubMachineGunPistol45<Magazine635x40mmCaseless
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
@@ -74,6 +72,7 @@
   - type: Clothing
     sprite: ADT/Objects/Weapons/Guns/SMGs/ump.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-357
     fireRate: 3
     selectedMode: FullAuto
     soundGunshot:
@@ -85,7 +84,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineSubMachineGun45
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -94,7 +92,6 @@
             - NFMagazineSubMachineGunPistol45
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge357_magnumFMJ
         priority: 1
         whitelist:
           tags:

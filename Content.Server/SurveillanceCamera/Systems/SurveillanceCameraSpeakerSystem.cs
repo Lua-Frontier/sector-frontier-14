@@ -1,6 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Speech;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Speech;
 using Robust.Shared.Audio.Systems;

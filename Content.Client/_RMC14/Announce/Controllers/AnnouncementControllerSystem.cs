@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using Content.Client._Lua.Announce;
+using Content.Lua.UIKit.Announce;
+using Content.Client._RMC14.Announce;
 using Content.Client.UserInterface.Systems.Chat;
-using Content.Shared._Lua.Announce;
-using Content.Shared._Lua.CCVar;
+using Content.Lua.Shared.Announce;
+using Content.Lua.Shared.CCVar;
 using Content.Shared._RMC14.Announce;
 using Content.Shared.Chat;
 using Robust.Client.UserInterface;

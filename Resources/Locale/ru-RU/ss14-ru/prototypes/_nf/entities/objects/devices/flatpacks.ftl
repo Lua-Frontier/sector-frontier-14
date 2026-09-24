@@ -149,14 +149,7 @@ ent-NfsdTechFabFlatpack = упакованный техфаб Frontline Solution
     .desc = Упаковка, содержащая техфаб Frontline Solutions.
 ent-JukeboxFlatpack = упакованный музыкальный аппарат
     .desc = Упаковка, при помощи которой можно создать музыкальный аппарат.
-ent-HoverbikeFlatpack = упакованный ховербайк
-    .desc = Упаковка, содержащая ховербайк. Ключи в комплекте.
-ent-HoverbikeMailcarrierFlatpack = упакованный ховербайк почтальона
-    .desc = Упаковка, содержащая ховербайк. Ключи в комплекте.
-ent-HoverbikeNfsdFlatpack = упакованный ховербайк Frontline Solutions
-    .desc = Упаковка, содержащая ховербайк. Ключи в комплекте.
-ent-HoverbikeSyndicateFlatpack = упакованный ховербайк синдиката
-    .desc = Упаковка, содержащая ховербайк. Ключи в комплекте.
+
 ent-VendingMachineBoozeFlatpack = упакованный алкомат
     .desc = Упаковка, при помощи которой можно создать алкомат.
 ent-VendingMachineCigsFlatpack = упакованный shadycigs делюкс

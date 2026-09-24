@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Client._Lua.Styles;
+using Content.Lua.UIKit.Styles;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Mono.GridEdgeMarker; // Mono
 using Content.Shared.Maps; // Mono

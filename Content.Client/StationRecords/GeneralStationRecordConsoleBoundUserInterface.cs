@@ -1,4 +1,4 @@
-using Content.Shared._Lua.StationRecords;
+using Content.Lua.Shared.StationRecords;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.StationRecords;
 using Robust.Client.UserInterface;

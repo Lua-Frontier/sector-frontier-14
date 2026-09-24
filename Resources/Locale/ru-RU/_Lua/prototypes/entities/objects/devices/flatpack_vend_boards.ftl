@@ -1,0 +1,12 @@
+ent-SolarAssemblyCircuitboard = плата солнечной сборки
+    .desc = Печатная плата для частей солнечной сборки.
+ent-AirlockCircuitboard = плата шлюза
+    .desc = Печатная плата для шлюза.
+ent-AirlockGlassCircuitboard = плата стеклянного шлюза
+    .desc = Печатная плата для стеклянного шлюза.
+ent-AirlockShuttleCircuitboard = плата стыковочного шлюза
+    .desc = Печатная плата для стыковочного шлюза.
+ent-AirlockGlassShuttleCircuitboard = плата стеклянного стыковочного шлюза
+    .desc = Печатная плата для стеклянного стыковочного шлюза.
+ent-TeslaGroundingRodCircuitboard = плата заземляющего стержня
+    .desc = Печатная плата для заземляющего стержня Теслы.

@@ -66,11 +66,12 @@
 
 - type: entity
   id: NFMagazineRifle30Overpressure
+  categories: [ HideSpawnMenu ]
   name: magazine (.30 rifle, overpressure)
   parent: NFBaseMagazineRifle30
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Overpressure
+    proto: Cartridge762x39mmOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -102,6 +103,7 @@
 
 - type: entity
   id: NFMagazineLowCapacityRifle30
+  categories: [ HideSpawnMenu ]
   name: low cap magazine (.30 rifle)
   parent: NFBaseMagazineLowCapacityRifle30
   components:
@@ -110,11 +112,12 @@
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Overpressure
+  categories: [ HideSpawnMenu ]
   name: low cap magazine (.30 rifle, overpressure)
   parent: NFBaseMagazineLowCapacityRifle30
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle30Overpressure
+    proto: Cartridge762x39mmOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -136,6 +139,7 @@
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Incendiary
+  categories: [ HideSpawnMenu ]
   name: low cap magazine (.30 rifle, incendiary)
   parent: NFBaseMagazineLowCapacityRifle30
   components:
@@ -162,6 +166,7 @@
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Uranium
+  categories: [ HideSpawnMenu ]
   name: low cap magazine (.30 rifle, uranium)
   parent: NFBaseMagazineLowCapacityRifle30
   components:
@@ -188,6 +193,7 @@
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Practice
+  categories: [ HideSpawnMenu ]
   name: low cap magazine (.30 rifle, practice)
   parent: NFBaseMagazineLowCapacityRifle30
   components:
@@ -214,6 +220,7 @@
 
 - type: entity
   id: NFMagazineLowCapacityRifle30Rubber
+  categories: [ HideSpawnMenu ]
   name: low cap magazine (.30 rifle, rubber)
   parent: NFBaseMagazineLowCapacityRifle30
   components:

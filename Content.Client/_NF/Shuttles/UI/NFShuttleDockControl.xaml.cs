@@ -12,6 +12,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._NF.Shuttles.UI;
 
@@ -19,7 +20,6 @@ namespace Content.Client._NF.Shuttles.UI;
 public sealed partial class NFShuttleDockControl : BaseShuttleControl
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     protected override bool AllowResize => true; // Lua
     protected override bool ScaleWithControlSize => true; // Lua
     private readonly DockingSystem _dockSystem;
@@ -123,7 +123,7 @@ public sealed partial class NFShuttleDockControl : BaseShuttleControl
         // Draw nearby grids
         var controlBounds = PixelSizeBox;
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
+        Maps.FindGridsIntersecting(gridXform.MapID, viewBoundsWorld, ref _grids);
 
         // offset the dotted-line position to the bounds.
         Vector2? viewedDockPos = _viewedState != null ? MidPointVector : null;

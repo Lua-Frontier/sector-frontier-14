@@ -10,7 +10,7 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Holopad;
 
-public sealed partial class HolopadSystem : SharedHolopadSystem
+public sealed class HolopadSystem : SharedHolopadSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -50,6 +50,15 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
 
         var netEv = new HolopadUserTypingChangedEvent(GetNetEntity(uid.Value), ev.State); // Corvax-TypingIndicator
         RaiseNetworkEvent(netEv);
+    }
+
+    public void RefreshHologram(EntityUid hologram, EntityUid? linkedEntity)
+    {
+        if (!TryComp<HolopadHologramComponent>(hologram, out var holopadHologram))
+            return;
+
+        holopadHologram.LinkedEntity = linkedEntity;
+        UpdateHologramSprite(hologram, linkedEntity);
     }
 
     private void UpdateHologramSprite(EntityUid hologram, EntityUid? target)

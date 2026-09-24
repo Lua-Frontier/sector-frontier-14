@@ -3,9 +3,9 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: anomaly synchronizer
   description: A sophisticated device that reads changes in anomalous waves, and converts them into energy signals.
-  categories: [ HideSpawnMenu ] # Frontier: doesn't make much sense for Frontier
   components:
   - type: AnomalySynchronizer
+  - type: AnomalyImmune
   - type: Machine
     board: AnomalySynchronizerCircuitboard
   - type: DeviceNetwork
@@ -20,6 +20,9 @@
       - Growing
       - Pulse
       - Supercritical
+  - type: DeviceLinkSink
+    ports:
+      - AnomalySynchronizerConsoleReceiver
   - type: Sprite
     noRot: true
     sprite: Structures/Machines/anomaly_sync.rsi
@@ -40,7 +43,7 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.35,-0.35,0.35,0.35"
-        density: 100
+        density: 190
         mask:
         - ItemMask
         hard: True
@@ -53,6 +56,22 @@
   - type: UpgradePowerDraw
     powerDrawMultiplier: 0.80
     scaling: Exponential
+  - type: MixedPowerReceiver
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+          - PowerCell
   - type: ItemPlacer
     whitelist:
       components:
@@ -62,7 +81,6 @@
     radius: 1.8
     energy: 3.0
     color: "#b53ca1"
-  - type: LitOnPowered
   - type: Appearance
   - type: GenericVisualizer
     visuals:

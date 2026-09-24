@@ -31,6 +31,9 @@ public sealed partial class ESItemMapperSystem : ESSharedItemMapperSystem
 
         foreach (var (key, state) in layers)
         {
+            if (!_sprite.LayerExists((ent, sprite), key))
+                continue;
+
             _sprite.LayerSetVisible((ent, sprite), key, state != null);
             _sprite.LayerSetRsiState((ent, sprite), key, state);
         }

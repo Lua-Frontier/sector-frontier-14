@@ -567,23 +567,23 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - AutolatheFlatpack
-    - ExosuitFabricatorFlatpack
-    - ProtolatheFlatpack
-    - CircuitImprinterFlatpack
-    - MaterialReclaimerFlatpack
-    - CutterMachineFlatpack
-    - WeaponCapacitorRechargerFlatpack
-    - BorgChargerFlatpack
-    - MachineFlatpackerFlatpack
-    - PortableGeneratorJrPacmanFlatpack
-    - PortableGeneratorPacmanFlatpack
-    - PortableGeneratorSuperPacmanFlatpack
-    - GeneratorRTGFlatpack
+    - AutolatheMachineCircuitboard
+    - ExosuitFabricatorMachineCircuitboard
+    - ProtolatheMachineCircuitboard
+    - CircuitImprinterMachineCircuitboard
+    - MaterialReclaimerMachineCircuitboard
+    - CutterMachineCircuitboard
+    - WeaponCapacitorRechargerCircuitboard
+    - BorgChargerCircuitboard
+    - FlatpackerMachineCircuitboard
+    - PortableGeneratorJrPacman
+    - PortableGeneratorPacman
+    - PortableGeneratorSuperPacman
+    - GeneratorRTGMachineCircuitboard
     chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - AmeControllerUnanchoredFlatpack
-    - RadiationCollectorFullTankFlatpack
-    - TeslaCoilFlatpack
+    - AmeControllerUnanchored
+    - RadiationCollectorFullTank
+    - TeslaCoil
     rareChance: 0.05

@@ -2,7 +2,7 @@ using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.Muting;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;

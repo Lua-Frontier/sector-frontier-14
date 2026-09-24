@@ -4,7 +4,9 @@
 
 - type: entity
   categories: [ ShuttleGun ]
-  parent: WeaponTurretVespera
+  parent:
+  - WeaponTurretVespera
+  - ConstructibleMachine
   id: WeaponMissileLauncherNightHunter
   name: Артиллерийская установка "Ночной Хищник"
   description: Компактная установка, предназначенная для маневренных космических боев. Снаряд "Томагавк" с легкостью пробивает броню врага, оставляя лишь обломки.
@@ -15,15 +17,19 @@
     drawdepth: Mobs
     layers:
     - state: space_artillery
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineNightHunter
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineNightHunter
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeNightHunter
+    capacity: 78
+    whitelist:
+      tags:
+      - MissileNightHunter
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: WeaponMissileLauncherNightHunterCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

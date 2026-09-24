@@ -16,7 +16,7 @@ using Content.Shared.Actions.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Input;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;

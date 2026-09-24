@@ -254,13 +254,17 @@ public sealed partial class PowerCellSystem : SharedPowerCellSystem
 
     private void OnCellSlotExamined(EntityUid uid, PowerCellSlotComponent component, ExaminedEvent args)
     {
-        TryGetBatteryFromSlot(uid, out var battery);
-        OnBatteryExamined(uid, battery, args);
+        if (!TryGetBatteryFromSlot(uid, out var batteryUid, out var battery))
+        {
+            args.PushMarkup(Loc.GetString("power-cell-component-examine-details-no-battery"));
+            return;
+        }
+        OnBatteryExamined(batteryUid.Value, battery, args);
     }
 
     public void OnBatteryExamined(EntityUid uid, BatteryComponent? component, ExaminedEvent args) // WD EDIT
     {
-        if (Resolve(uid, ref component, false)) // WD EDIT
+        if (component != null)
         {
             var charge = component.CurrentCharge / component.MaxCharge * 100;
             args.PushMarkup(Loc.GetString("power-cell-component-examine-details", ("currentCharge", $"{charge:F0}")));

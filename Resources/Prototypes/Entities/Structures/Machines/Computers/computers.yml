@@ -585,16 +585,21 @@
   - type: ResearchClient
     allowedFactions: [Nanotrasen] # Lua: one family<multi-family research clients
   - type: ResearchConsole
+  - type: DiscoveryJournalConsole
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
   - type: ActiveRadio
     channels:
     - Science
   - type: TechnologyDatabase
   - type: ActivatableUI
-    key: enum.ResearchConsoleUiKey.Key
+    key: enum.DiscoveryJournalUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.ResearchConsoleUiKey.Key:
-        type: ResearchConsoleFrontierBoundUserInterface # Frontier: ResearchConsole<ResearchConsoleFrontier
+      enum.DiscoveryJournalUiKey.Key:
+        type: DiscoveryJournalBoundUserInterface
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface
       enum.WiresUiKey.Key:
@@ -604,6 +609,8 @@
   - type: Computer
     board: ResearchComputerCircuitboard
   - type: AccessReader
+    accessCompanies: [Nanotrasen]
+  - type: ActivatableUIRequiresAccess
   - type: ShipRepairable
     repairCost: 2
 #    access: [["Research"]]
@@ -636,16 +643,21 @@
   - type: ResearchClient
     allowedFactions: [Syndicate]
   - type: ResearchConsole
+  - type: DiscoveryJournalConsole
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
   - type: ActiveRadio
     channels:
     - Syndicate
   - type: TechnologyDatabase
   - type: ActivatableUI
-    key: enum.ResearchConsoleUiKey.Key
+    key: enum.DiscoveryJournalUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.ResearchConsoleUiKey.Key:
-        type: ResearchConsoleFrontierBoundUserInterface
+      enum.DiscoveryJournalUiKey.Key:
+        type: DiscoveryJournalBoundUserInterface
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface
       enum.WiresUiKey.Key:
@@ -655,6 +667,8 @@
   - type: Computer
     board: ResearchComputerSyndicateCircuitboard
   - type: AccessReader
+    accessCompanies: [Syndicate]
+  - type: ActivatableUIRequiresAccess
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -671,6 +685,8 @@
   components:
   - type: ResearchClient
     allowedFactions: [Pirates]
+  - type: AccessReader
+    accessCompanies: [Pirates]
   - type: Computer
     board: ResearchComputerRoguesCircuitboard
   - type: PointLight
@@ -684,6 +700,8 @@
   components:
   - type: ResearchClient
     allowedFactions: [Ussp]
+  - type: AccessReader
+    accessCompanies: [Ussp]
   - type: Computer
     board: ResearchComputerUsspCircuitboard
   - type: PointLight
@@ -697,6 +715,8 @@
   components:
   - type: ResearchClient
     allowedFactions: [Security]
+  - type: AccessReader
+    accessCompanies: [Security]
   - type: Computer
     board: ResearchComputerTSFMCCircuitboard
   - type: PointLight
@@ -710,16 +730,48 @@
   components:
   - type: ResearchClient
     allowedFactions: [Neutral]
+  - type: AccessReader
+    accessCompanies: [Neutral]
   - type: Computer
     board: ResearchComputerMercCircuitboard
   - type: PointLight
     color: "#9f9a8c"
 
 - type: entity
+  parent: ComputerResearchAndDevelopment
+  id: ComputerResearchAndDevelopmentLuaTech
+  name: LuaTech R&D computer
+  description: A holographic console used to interface with Lua Technologies R&D tools.
+  categories: [ LuaTech ]
+  components:
+  - type: LuaTech
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer_holo
+    - map: ["computerLayerKeyboard"]
+      state: holo_generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: holo_shuttlecontrolluatech
+    - map: ["computerLayerKeys"]
+      state: holo_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: holo_generic_panel_open
+  - type: ResearchClient
+    allowedFactions: [LuaTech]
+  - type: AccessReader
+    accessCompanies: [LuaTech]
+  - type: Computer
+    board: ResearchComputerLuaTechCircuitboard
+  - type: PointLight
+    color: "#2287af"
+
+- type: entity
   parent: BaseComputerAiAccess
   id: ComputerAnalysisConsole
   name: analysis console
-  description: A computer used to interface with the artifact analyzer.
+  description: Linked to an artifact analyzer pad. Lock onto flickering telemetry on the sample and write discoveries to a research data disk.
   components:
   - type: Sprite
     layers:
@@ -734,20 +786,36 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: ResearchClient
+    allowedFactions: []
   - type: AnalysisConsole
+  - type: DiscoverySourceConsole
+  - type: TechnologyDatabase
   - type: DeviceList
   - type: DeviceNetwork
     deviceNetId: Wired
   - type: DeviceLinkSource
-    range: 8 # Frontier
+    range: 8
     ports:
       - ArtifactAnalyzerSender
+  - type: ItemSlots
+    slots:
+      research_disk_slot:
+        name: research-data-disk-slot
+        whitelist:
+          components:
+          - ResearchDataDisk
+        insertSound: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound: /Audio/Machines/terminal_insert_disc.ogg
+  - type: ContainerContainer
+    containers:
+      research_disk_slot: !type:ContainerSlot
+      board: !type:Container
   - type: ActivatableUI
-    key: enum.ArtifactAnalyzerUiKey.Key
+    key: enum.DiscoverySourceUiKey.Key
   - type: UserInterface
     interfaces:
-      enum.ArtifactAnalyzerUiKey.Key:
-        type: AnalysisConsoleBoundUserInterface
+      enum.DiscoverySourceUiKey.Key:
+        type: DiscoverySourceBoundUserInterface
       enum.ResearchClientUiKey.Key:
         type: ResearchClientBoundUserInterface
       enum.WiresUiKey.Key:
@@ -763,7 +831,6 @@
   - type: GuideHelp
     guides:
     - Xenoarchaeology
-
   - type: ShipRepairable
     repairCost: 2
 - type: entity

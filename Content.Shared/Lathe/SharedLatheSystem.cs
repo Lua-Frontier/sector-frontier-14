@@ -7,6 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Localizations;
 using Content.Shared.Materials;
+using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Stacks;
 using JetBrains.Annotations;
@@ -29,6 +30,7 @@ public abstract class SharedLatheSystem : EntitySystem
     [Dependency] protected readonly EntityQuery<StackComponent> _stackQuery = default!;
 
     public readonly Dictionary<string, List<LatheRecipePrototype>> InverseRecipes = new();
+    public HashSet<ProtoId<LatheRecipePrototype>> ResearchGatedRecipes { get; private set; } = new();
 
     public override void Initialize()
     {
@@ -40,6 +42,7 @@ public abstract class SharedLatheSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
 
         BuildInverseRecipeDictionary();
+        BuildResearchGatedRecipeSet();
     }
 
     /// <summary>
@@ -70,6 +73,29 @@ public abstract class SharedLatheSystem : EntitySystem
         {
             var pack = _proto.Index(id);
             recipes.UnionWith(pack.Recipes);
+        }
+    }
+
+    public void AddRecipesFromStaticPacks(
+        HashSet<ProtoId<LatheRecipePrototype>> recipes,
+        IEnumerable<ProtoId<LatheRecipePackPrototype>> packs,
+        TechnologyDatabaseComponent? database,
+        bool getUnavailable)
+    {
+        foreach (var id in packs)
+        {
+            var pack = _proto.Index(id);
+            foreach (var recipe in pack.Recipes)
+            {
+                if (ResearchGatedRecipes.Contains(recipe))
+                {
+                    if (getUnavailable || (database != null && database.UnlockedRecipes.Contains(recipe)))
+                        recipes.Add(recipe);
+                    continue;
+                }
+
+                recipes.Add(recipe);
+            }
         }
     }
 
@@ -201,9 +227,11 @@ public abstract class SharedLatheSystem : EntitySystem
 
     private void OnPrototypesReloaded(PrototypesReloadedEventArgs obj)
     {
-        if (!obj.WasModified<LatheRecipePrototype>())
-            return;
-        BuildInverseRecipeDictionary();
+        if (obj.WasModified<LatheRecipePrototype>())
+            BuildInverseRecipeDictionary();
+
+        if (obj.WasModified<LatheRecipePrototype>() || obj.WasModified<TechnologyPrototype>())
+            BuildResearchGatedRecipeSet();
     }
 
     private void BuildInverseRecipeDictionary()
@@ -215,6 +243,16 @@ public abstract class SharedLatheSystem : EntitySystem
                 continue;
 
             InverseRecipes.GetOrNew(result).Add(latheRecipe);
+        }
+    }
+
+    private void BuildResearchGatedRecipeSet()
+    {
+        ResearchGatedRecipes = new HashSet<ProtoId<LatheRecipePrototype>>();
+        foreach (var tech in _proto.EnumeratePrototypes<TechnologyPrototype>())
+        {
+            foreach (var recipe in tech.RecipeUnlocks)
+                ResearchGatedRecipes.Add(recipe);
         }
     }
 

@@ -1,3 +1,5 @@
+using Content.Client.UserInterface;
+using Content.Lua.UIKit.Machines;
 using Content.Shared._NF.Lathe; // Frontier
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
@@ -7,10 +9,10 @@ using Robust.Client.UserInterface;
 namespace Content.Client.Lathe.UI
 {
     [UsedImplicitly]
-    public sealed class LatheBoundUserInterface : BoundUserInterface
+    public sealed class LatheBoundUserInterface : FactoryBoundUserInterface
     {
         [ViewVariables]
-        private LatheMenu? _menu;
+        private ILunaLatheMenu? _menu;
         public LatheBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
         }
@@ -19,7 +21,11 @@ namespace Content.Client.Lathe.UI
         {
             base.Open();
 
-            _menu = this.CreateWindowCenteredRight<LatheMenu>();
+            if (!IoCManager.Instance!.TryResolveType<ILuaMachineUiFactory>(out var factory))
+                return;
+
+            _menu = factory.CreateLatheMenu();
+            OpenWindowCenteredRight(_menu.Window);
             _menu.SetEntity(Owner);
 
             _menu.OnServerListButtonPressed += _ =>
@@ -49,19 +55,23 @@ namespace Content.Client.Lathe.UI
         {
             base.UpdateState(state);
 
-            switch (state)
-            {
-                case LatheUpdateState msg:
-                    if (_menu != null)
-                        _menu.Recipes = msg.Recipes;
-                    _menu?.PopulateRecipes();
-                    _menu?.UpdateCategories();
-                    _menu?.PopulateQueueList(msg.Queue);
-                    _menu?.SetQueueInfo(msg.CurrentlyProducing);
-                    _menu?.SetLooping(msg.Looping); // Mono
-                    _menu?.SetSkipping(msg.Skipping); // Mono
-                    break;
-            }
+            if (state is not LatheUpdateState msg || _menu == null)
+                return;
+
+            _menu.Recipes = msg.Recipes;
+            _menu.Refresh();
+            _menu.PopulateQueueList(msg.Queue);
+            _menu.SetQueueInfo(msg.CurrentlyProducing, msg.ProductionStartedAt, msg.ProductionLength);
+            _menu.SetLooping(msg.Looping);
+            _menu.SetSkipping(msg.Skipping);
+            _menu.SetResearchServerConnected(msg.HasResearchServer);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            if (disposing)
+                _menu?.Window.Dispose();
         }
     }
 }

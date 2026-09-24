@@ -1,8 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
 using Robust.Shared.Serialization;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Research.Components
 {
@@ -13,7 +12,7 @@ namespace Content.Shared.Research.Components
     public sealed partial class ResearchClientComponent : Component
     {
         [DataField("allowedFactions")]
-        public List<ProtoId<RndFactionPrototype>> AllowedFactions = new() { "Nanotrasen" };
+        public List<ProtoId<RndFactionPrototype>> AllowedFactions = new();
 
         [DataField("allowedServerTypes")]
         public List<string> LegacyAllowedServerTypes

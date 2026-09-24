@@ -1,0 +1,47 @@
+- type: latheRecipe
+  id: GeneratorCRPinchMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: GeneratorCRPinchMachineCircuitboard
+  materials:
+    Steel: 1200
+    Glass: 1500
+    Plasteel: 800
+    Plasma: 500
+
+- type: latheRecipe
+  id: NuclearReactorSmallEmptyMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: NuclearReactorSmallEmptyMachineCircuitboard
+  materials:
+    Steel: 2000
+    Glass: 1800
+    Plasteel: 1200
+    Uranium: 400
+
+- type: latheRecipe
+  id: NuclearReactorEmptyMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: NuclearReactorEmptyMachineCircuitboard
+  materials:
+    Steel: 3000
+    Glass: 2500
+    Plasteel: 2000
+    Uranium: 800
+
+- type: latheRecipe
+  id: TurbineSmallMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: TurbineSmallMachineCircuitboard
+  materials:
+    Steel: 1500
+    Glass: 1200
+    Plasteel: 600
+
+- type: latheRecipe
+  id: TurbineMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: TurbineMachineCircuitboard
+  materials:
+    Steel: 2500
+    Glass: 1800
+    Plasteel: 1000

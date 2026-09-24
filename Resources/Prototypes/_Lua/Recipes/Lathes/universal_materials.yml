@@ -1,0 +1,22 @@
+- type: latheRecipe
+  id: UniversalMaterialSheetSteel
+  result: SheetSteel1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Steel: 100
+
+- type: latheRecipe
+  id: UniversalMaterialSheetPlasteel
+  result: SheetPlasteel1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Steel: 200
+    Plasma: 100
+
+- type: latheRecipe
+  id: UniversalMaterialSheetPlastitanium
+  result: SheetPlastitanium1
+  parent: BaseMaterialsNoDiscountRecipe
+  materials:
+    Steel: 300
+    Plasma: 200

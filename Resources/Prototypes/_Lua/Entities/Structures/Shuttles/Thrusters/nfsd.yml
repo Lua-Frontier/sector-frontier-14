@@ -27,6 +27,8 @@
   parent: ThrusterMedium
   suffix: NFSD, 88.1
   components:
+  - type: Machine
+    board: ThrusterMediumNfsdMachineCircuitboard
   - type: Thruster
     baseThrust: 350
     thrust: 616.7

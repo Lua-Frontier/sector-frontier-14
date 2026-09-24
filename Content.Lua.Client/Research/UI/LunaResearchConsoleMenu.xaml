@@ -1,0 +1,92 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Lua.UIKit.Styles;assembly=Content.Lua.UIKit"
+                   xmlns:nf="clr-namespace:Content.Client._NF.Research.UI;assembly=Content.Client"
+                   Title="{Loc 'research-console-menu-title'}"
+                   SetSize="1200 840"
+                   Resizable="False">
+    <LayoutContainer Name="Shell" HorizontalExpand="True" VerticalExpand="True">
+
+        <PanelContainer Name="ResearchesContainer" RectClipContent="True">
+            <PanelContainer Name="TechViewport"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            RectClipContent="True"
+                            MouseFilter="Pass">
+                <nf:ResearchesContainerPanel Name="DragContainer"
+                                             MouseFilter="Pass"
+                                             HorizontalExpand="False"
+                                             VerticalExpand="False"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Top"/>
+            </PanelContainer>
+        </PanelContainer>
+
+        <PanelContainer Name="SectorsPanel" RectClipContent="True">
+            <BoxContainer Orientation="Vertical" Margin="8 6" SeparationOverride="4" VerticalExpand="True">
+                <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                    <GridContainer Name="SectorsContainer" Columns="1"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer Name="InfoPanel" RectClipContent="True">
+            <ScrollContainer HScrollEnabled="False"
+                             HorizontalExpand="True"
+                             VerticalExpand="True"
+                             RectClipContent="True">
+                <BoxContainer Name="InfoContainer"
+                              Orientation="Vertical"
+                              HorizontalExpand="True"
+                              Margin="6"/>
+            </ScrollContainer>
+        </PanelContainer>
+        <PanelContainer Name="TopBar">
+            <BoxContainer Orientation="Vertical" Margin="10 8" SeparationOverride="4">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                    <RichTextLabel Name="ResearchAmountLabel" VerticalAlignment="Center"/>
+                    <BoxContainer Name="TierDisplayContainer"
+                                  Orientation="Horizontal"
+                                  SeparationOverride="10"
+                                  VerticalAlignment="Center"/>
+                    <Control HorizontalExpand="True"/>
+                    <LineEdit Name="SearchEdit"
+                              PlaceHolder="{Loc 'research-console-search-placeholder'}"
+                              MinWidth="180"
+                              MaxWidth="240"
+                              MinHeight="28"
+                              VerticalAlignment="Center"/>
+                    <RichTextLabel Name="ResearchedAmountLabel" VerticalAlignment="Center"/>
+                    <Button Name="ServerButton"
+                            Text="{Loc 'research-console-menu-server-selection-button'}"
+                            MinWidth="140"
+                            MinHeight="28"/>
+                    <Button Name="RecenterButton"
+                            Text="{Loc 'research-console-menu-recenter-button'}"
+                            MinWidth="100"
+                            MinHeight="28"/>
+                </BoxContainer>
+                <ScrollContainer HorizontalExpand="True"
+                                 SetHeight="56"
+                                 HScrollEnabled="True"
+                                 VScrollEnabled="False">
+                    <BoxContainer Name="QueueContainer"
+                                  Orientation="Horizontal"
+                                  VerticalAlignment="Center"
+                                  SeparationOverride="6"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </PanelContainer>
+
+        <PanelContainer Name="FooterBar">
+            <BoxContainer Orientation="Horizontal" Margin="10 2 8 2">
+                <Label Name="HintLabel" Text="{Loc 'research-console-hint'}"/>
+                <Label Name="VersionLabel"
+                       Text="{Loc 'research-console-version'}"
+                       HorizontalAlignment="Right"
+                       HorizontalExpand="True"/>
+            </BoxContainer>
+        </PanelContainer>
+
+    </LayoutContainer>
+</styles:LunaWindow>

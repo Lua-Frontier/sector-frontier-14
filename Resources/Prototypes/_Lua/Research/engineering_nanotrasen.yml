@@ -1,0 +1,64 @@
+- type: technology
+  id: NFAdvancedBeltTechnology
+  name: nf-research-technology-advanced-belt
+  entityIcon: ClothingBeltChiefEngineer
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingBeltChiefEngineer
+- type: technology
+  id: ClothingOuterHardsuitEngineeringWhite
+  name: research-technology-clothingouterhardsuitengineeringwhite
+  entityIcon: ClothingOuterHardsuitEngineeringWhite
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitEngineeringWhite
+- type: technology
+  id: NFAdvancedPersonalPropulsion
+  name: nf-research-technology-advanced-personal-propulsion
+  entityIcon: JetpackVoid
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - JetpackVoid
+- type: technology
+  id: NFAdvancedAtmospherics
+  name: nf-research-technology-advanced-atmospherics
+  entityIcon: GasThermoMachineHellfireFreezer
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - HellfireFreezerMachineCircuitBoard

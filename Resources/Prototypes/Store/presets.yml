@@ -1,28 +1,3 @@
-- type: entity
-  id: StorePresetUplink
-  abstract: true
-  components:
-  - type: Store
-    name: store-preset-name-uplink
-    categories:
-    # - UplinkConverter
-    - UplinkWeaponry
-    - UplinkAmmo
-    - UplinkExplosives
-    - UplinkChemicals
-    - UplinkDeception
-    - UplinkDisruption
-    - UplinkImplants
-    - UplinkAllies
-    - UplinkWearables
-    - UplinkJob
-    - UplinkPointless
-    currencyWhitelist:
-    - Telecrystal
-    - Speso
-    balance:
-      Telecrystal: 0
-    useBankAccount: true
 
 - type: entity
   id: StorePresetSpellbook

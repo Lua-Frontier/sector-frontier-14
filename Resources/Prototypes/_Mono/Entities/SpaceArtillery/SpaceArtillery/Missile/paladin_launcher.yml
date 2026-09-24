@@ -3,8 +3,9 @@
   id: WeaponTurretPaladin
   name: MLRS-382 "Paladin" Missile Pod
   parent:
-  - BallisticArtilleryUnanchorableMagazine
+  - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   description: Heavy missile pod firing 250mm guided rockets in bursts of 4.
   suffix: Large, T4
   components:
@@ -41,19 +42,15 @@
     powerChargeRate: 350
     powerUsePassive: 600
     powerUseActive: 0
-  - type: MagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: PaladinMagazine
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - PaladinMagazine
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: MissileCartridge250mm
+    capacity: 24
+    whitelist:
+      tags:
+      - MissileCartridge250mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 3
@@ -76,24 +73,10 @@
         - MachineMask
         layer:
         - MachineLayer
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretPaladinInfinite
-  parent:
-  - WeaponTurretPaladin
-  suffix: Large, T4, Infinite
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        disableEject: true
-        startingItem: PaladinMagazineInfinite
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - PaladinMagazine
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: Machine
+    board: WeaponTurretPaladinCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

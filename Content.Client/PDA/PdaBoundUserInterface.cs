@@ -1,7 +1,7 @@
 using Content.Client.CartridgeLoader;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared._Lua.Achievements;
+using Content.Lua.Shared.Achievements;
 using Content.Shared.PDA;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;

@@ -263,8 +263,13 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             return;
 
         // Frontier: assign crispiness levels to a prototype
-        if (crispinessLevels == null && !_prototypeManager.TryIndex<CrispinessLevelSetPrototype>(component.CrispinessLevelSet, out crispinessLevels))
-            return;
+        if (crispinessLevels == null)
+        {
+            if (!_prototypeManager.TryIndex<CrispinessLevelSetPrototype>(component.CrispinessLevelSet, out var indexedCrispinessLevels))
+                return;
+
+            crispinessLevels = indexedCrispinessLevels;
+        }
 
         if (crispinessLevels.Levels.Count <= 0)
             return;
@@ -337,7 +342,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
             {
                 maxCrispiness = int.Max(0, crispinessLevels.Levels.Count - 1);
             }
-            if (deepFriedComponent.Crispiness > MaximumCrispiness)
+            if (deepFriedComponent.Crispiness > maxCrispiness)
             {
                 BurnItem(uid, component, item);
                 return;

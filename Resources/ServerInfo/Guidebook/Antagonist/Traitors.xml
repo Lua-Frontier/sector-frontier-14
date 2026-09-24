@@ -7,28 +7,20 @@
   <Box>
     <GuideEntityEmbed Entity="PosterContrabandSyndicateRecruitment" Caption=""/>
   </Box>
-  Предатели — антагонисты на службе у [color=#ff0000]Синдиката[/color]. Вы спящий агент с доступом к инструментам и оружию через [bold]аплинк[/bold].
+  Предатели — антагонисты на службе у [color=#ff0000]Синдиката[/color]. Вы спящий агент; снаряжение получают через [bold]Syndicate R&D[/bold] и [bold]SyndicateTechFab[/bold], а не через TC-аплинк.
   Вы также получаете [bold]кодовые слова[/bold] для опознания других агентов, а скоординированная команда предателей [italic]чрезвычайно эффективна[/italic].
 
   Предателем может быть кто угодно, кроме [textlink="глав отделов" link="Command"] и членов [textlink="СБ" link="Security"].
 
-  ## Аплинк и активация
-  [color=cyan]Аплинк[/color] — ваш главный инструмент. Обменивайте стартовые 20 [color=red]телекристаллов[/color] (TC) на предметы под задачи.
+  ## Снаряжение и цели
+  Откройте [color=yellow][bold][keybind="OpenCharacterMenu"][/bold][/color], чтобы увидеть цели и кодовые слова.
 
-  Нажмите [color=yellow][bold][keybind="OpenCharacterMenu"][/bold][/color], чтобы увидеть личный код аплинка. [bold]Установите его рингтоном PDA — аплинк откроется.[/bold]
-  Эта же клавиша показывает ваши цели и кодовые слова.
-
-  Если PDA нет при активации, выдают [color=cyan]имплант-аплинк[/color] [bold]по полной цене в [color=red]TC[/color][/bold].
-  Доступен с хотбара.
+  Для печати снаряжения используйте консоль и сервер [bold]ResearchAndDevelopmentServerSyndicate[/bold], связанные с [bold]SyndicateTechFab[/bold] (на базах/кораблях Синдиката).
   <Box>
     <GuideEntityEmbed Entity="PassengerPDA" Caption="PDA"/>
-    <GuideEntityEmbed Entity="Telecrystal" Caption="Telecrystals"/>
-    <GuideEntityEmbed Entity="BaseUplinkRadio" Caption="Uplink Implant"/>
+    <GuideEntityEmbed Entity="ResearchAndDevelopmentServerSyndicate" Caption="Syndicate R&D"/>
+    <GuideEntityEmbed Entity="SyndicateTechFab" Caption="Syndicate TechFab"/>
   </Box>
-
-  [bold]Всегда закрывайте аплинк PDA[/bold], чтобы его не увидели другие. Не давайте [color=#cb0000]СБ[/color] повода изъять его!
-
-  Имплант-аплинки обычно недоступны другим, поэтому без мер защиты. Но их можно вынуть пустым имплантером.
 
   <Box>
     <GuideEntityEmbed Entity="NFWeaponPistolCobra" Caption="Weaponry"/>

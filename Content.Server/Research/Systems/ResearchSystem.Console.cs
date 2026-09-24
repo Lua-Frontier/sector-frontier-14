@@ -1,78 +1,38 @@
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
 using Content.Shared.UserInterface;
-using Content.Shared.Access.Components;
-using Content.Shared.Emag.Components;
-using Content.Shared.Emag.Systems;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
-using Content.Shared.Research.Prototypes;
 using Content.Shared._NF.Research; // Frontier
-using System.Linq; // Frontier
-using Robust.Shared.Prototypes; // Frontier
 
 namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    // [Dependency] private readonly EmagSystem _emag = default!; // Frontier: silent R&D computers, useless
-
     private void InitializeConsole()
     {
         SubscribeLocalEvent<ResearchConsoleComponent, ConsoleUnlockTechnologyMessage>(OnConsoleUnlock);
+        SubscribeLocalEvent<ResearchConsoleComponent, ConsoleCancelProjectMessage>(OnConsoleCancelProject);
         SubscribeLocalEvent<ResearchConsoleComponent, BeforeActivatableUIOpenEvent>(OnConsoleBeforeUiOpened);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchServerPointsChangedEvent>(OnPointsChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, ResearchRegistrationChangedEvent>(OnConsoleRegistrationChanged);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseModifiedEvent>(OnConsoleDatabaseModified);
         SubscribeLocalEvent<ResearchConsoleComponent, TechnologyDatabaseSynchronizedEvent>(OnConsoleDatabaseSynchronized);
-        //SubscribeLocalEvent<ResearchConsoleComponent, GotEmaggedEvent>(OnEmagged); // Frontier: silent R&D computers, useless
     }
 
     private void OnConsoleUnlock(EntityUid uid, ResearchConsoleComponent component, ConsoleUnlockTechnologyMessage args)
     {
-        var act = args.Actor;
+        _popup.PopupEntity(Loc.GetString("discovery-research-graph-disabled"), args.Actor);
+    }
 
-        if (!this.IsPowered(uid, EntityManager))
-            return;
-
-        if (!PrototypeManager.TryIndex<TechnologyPrototype>(args.Id, out var technologyPrototype))
-            return;
-
-        if (TryComp<AccessReaderComponent>(uid, out var access) && !_accessReader.IsAllowed(act, uid, access))
-        {
-            _popup.PopupEntity(Loc.GetString("research-console-no-access-popup"), act);
-            return;
-        }
-
-        if (!UnlockTechnology(uid, args.Id, act))
-            return;
-
-        // Frontier: silent R&D computers, useless
-        /*
-        if (!_emag.CheckFlag(uid, EmagType.Interaction))
-        {
-            var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
-            RaiseLocalEvent(getIdentityEvent);
-
-            var message = Loc.GetString(
-                "research-console-unlock-technology-radio-broadcast",
-                ("technology", Loc.GetString(technologyPrototype.Name)),
-                ("amount", technologyPrototype.Cost),
-                ("approver", getIdentityEvent.Title ?? string.Empty)
-            );
-            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
-        }
-        */
-        // End Frontier
-
-        SyncClientWithServer(uid);
-        UpdateConsoleInterface(uid, component);
+    private void OnConsoleCancelProject(EntityUid uid, ResearchConsoleComponent component, ConsoleCancelProjectMessage args)
+    {
+        _popup.PopupEntity(Loc.GetString("discovery-research-graph-disabled"), args.Actor);
     }
 
     private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
     {
         SyncClientWithServer(uid);
-        UpdateConsoleInterface(uid, component); // Frontier: ensure first open has a valid tech state
+        UpdateConsoleInterface(uid, component);
     }
 
     private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
@@ -80,47 +40,23 @@ public sealed partial class ResearchSystem
         if (!Resolve(uid, ref component, ref clientComponent, false))
             return;
 
-        // Frontier: R&D Console Rework Start
-        var allTechs = PrototypeManager.EnumeratePrototypes<TechnologyPrototype>();
-        Dictionary<string, ResearchAvailability> techList;
         var points = 0;
         string? researchFaction = null;
-
-        if (TryGetClientServer(uid, out var serverUid, out var server, clientComponent) &&
-            TryComp<TechnologyDatabaseComponent>(serverUid, out var db))
+        if (TryGetClientServer(uid, out _, out var server, clientComponent))
         {
+            points = server.Points;
             researchFaction = server.Faction;
-            var unlockedTechs = new HashSet<ProtoId<TechnologyPrototype>>(db.UnlockedTechnologies);
-            techList = allTechs.ToDictionary(
-                proto => proto.ID,
-                proto =>
-                {
-                    if (!IsTechnologyFactionAllowed(serverUid.Value, proto))
-                        return ResearchAvailability.Unavailable;
-
-                    if (unlockedTechs.Contains(proto.ID))
-                        return ResearchAvailability.Researched;
-
-                    var prereqsMet = GetTechnologyPrerequisites(serverUid.Value, proto).All(p => unlockedTechs.Contains(p));
-                    var canAfford = server.Points >= proto.Cost;
-
-                    return prereqsMet ?
-                        (canAfford ? ResearchAvailability.Available : ResearchAvailability.PrereqsMet)
-                        : ResearchAvailability.Unavailable;
-                });
-
-            if (clientComponent != null)
-                points = clientComponent.ConnectedToServer ? server.Points : 0;
-        }
-        else
-        {
-            researchFaction = clientComponent?.AllowedFactions.FirstOrDefault();
-            techList = allTechs.ToDictionary(proto => proto.ID, _ => ResearchAvailability.Unavailable);
         }
 
         _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key,
-            new ResearchConsoleBoundInterfaceState(points, techList, researchFaction));
-        // Frontier: R&D Console Rework End
+            new ResearchConsoleBoundInterfaceState(
+                points,
+                new Dictionary<string, ResearchAvailability>(),
+                researchFaction,
+                new List<ResearchProjectUiState>(),
+                new List<ResearchProjectUiState>(),
+                maxActiveSlots: 0,
+                new Dictionary<string, int>()));
     }
 
     private void OnPointsChanged(EntityUid uid, ResearchConsoleComponent component, ref ResearchServerPointsChangedEvent args)
@@ -144,22 +80,5 @@ public sealed partial class ResearchSystem
 
     private void OnConsoleDatabaseSynchronized(EntityUid uid, ResearchConsoleComponent component, ref TechnologyDatabaseSynchronizedEvent args)
     {
-        //UpdateConsoleInterface(uid, component); // Lua
     }
-
-    // Frontier: unneeded emag call
-    /*
-    private void OnEmagged(Entity<ResearchConsoleComponent> ent, ref GotEmaggedEvent args)
-    {
-        if (!_emag.CompareFlag(args.Type, EmagType.Interaction))
-            return;
-
-        if (_emag.CheckFlag(ent, EmagType.Interaction))
-            return;
-
-        args.Handled = true;
-    }
-    */
-    // End Frontier: unneeded emag call
-
 }

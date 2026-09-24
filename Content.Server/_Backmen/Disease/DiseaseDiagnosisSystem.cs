@@ -15,7 +15,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Paper;
 using Content.Shared.Power;
 using Content.Shared.Tools.Components;
-using Content.Shared._Lua.Disease.Components; // Lua
+using Content.Lua.Shared.Disease.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;

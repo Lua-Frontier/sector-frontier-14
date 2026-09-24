@@ -7,7 +7,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine556x45mmRubber
+      - id: Magazine556x45mmEmpty
         amount: 4
 
 - type: entity
@@ -18,7 +18,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle20Overpressure
+      - id: NFMagazineClipRifle556x45Empty
         amount: 4
 
 #region .30 rifle
@@ -30,7 +30,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine762x39mmRubber
+      - id: Magazine762x39mmEmpty
         amount: 4
 
 - type: entity
@@ -41,7 +41,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine762x39mmFMJ
+      - id: Magazine762x39mmEmpty
         amount: 4
 
 - type: entity
@@ -52,7 +52,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineRifle30Overpressure
+      - id: NFMagazineLowCapacityRifle30Empty
         amount: 4
 
 #region .35 pistol
@@ -64,7 +64,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineHighCapacityPistol35Rubber
+      - id: NFMagazineHighCapacityPistol35Empty
         amount: 4
 
 - type: entity
@@ -75,7 +75,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineHighCapacityPistol35Practice
+      - id: NFMagazineHighCapacityPistol35Empty
         amount: 4
 
 - type: entity
@@ -86,7 +86,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmSubMachineGunRubber
+      - id: Magazine9x19mmSubMachineGunEmpty
         amount: 3
 
 - type: entity
@@ -97,5 +97,5 @@
   components:
   - type: StorageFill
     contents:
-      - id: NFMagazineHighCapacityPistol35Overpressure
+      - id: NFMagazineHighCapacityPistol35Empty
         amount: 4

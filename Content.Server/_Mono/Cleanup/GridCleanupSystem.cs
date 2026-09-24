@@ -1,6 +1,6 @@
 using Content.Server.Cargo.Systems;
-using Content.Server._Lua.Shuttles.Systems;
-using Content.Server._Lua.Worldgen;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.Worldgen;
 using Content.Server.Power.Components;
 using Content.Shared._Mono.CCVar;
 using Content.Shared.Power.Components;
@@ -22,7 +22,7 @@ public sealed partial class GridCleanupSystem : BaseCleanupSystem<MapGridCompone
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private PricingSystem _pricing = default!;
     [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private IShuttleGridAccessSystem _gridAccess = default!;
 
     private float _maxDistance;
     private float _maxValue;

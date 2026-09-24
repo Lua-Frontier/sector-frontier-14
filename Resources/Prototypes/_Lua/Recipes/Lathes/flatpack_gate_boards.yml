@@ -1,0 +1,34 @@
+- type: latheRecipe
+  id: SolarAssemblyCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: SolarAssemblyCircuitboard
+  materials:
+    Steel: 500
+    Glass: 300
+
+- type: latheRecipe
+  id: TeslaGroundingRodCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: TeslaGroundingRodCircuitboard
+  materials:
+    Steel: 600
+    Glass: 400
+    Gold: 100
+
+- type: latheRecipe
+  id: ComputerWithdrawBankATMComputerCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory]
+  result: ComputerWithdrawBankATMComputerCircuitboard
+  materials:
+    Steel: 400
+    Glass: 500
+
+- type: latheRecipe
+  id: ComputerIFFCircuitboard
+  parent: [BaseGoldCircuitboardRecipe, BaseSupplyComputerRecipeCategory]
+  result: ComputerIFFCircuitboard
+
+- type: latheRecipe
+  id: CrewMonitoringComputerCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseMedicalComputerRecipeCategory]
+  result: CrewMonitoringComputerCircuitboard

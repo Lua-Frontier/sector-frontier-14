@@ -9,7 +9,7 @@ using Content.Shared._Mono.Company;
 using Content.Shared._NF.CCVar;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Content.Shared.Preferences;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;

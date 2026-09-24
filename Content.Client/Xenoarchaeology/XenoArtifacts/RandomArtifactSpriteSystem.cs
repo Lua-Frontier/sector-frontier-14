@@ -20,7 +20,8 @@ public sealed class RandomArtifactSpriteSystem : VisualizerSystem<RandomArtifact
             isActivated = false;
 
         var spriteIndexStr = spriteIndex.ToString("D2");
-        var spritePrefix = isUnlocking ? "_on" : "";
+        var glowing = isUnlocking || isActivated;
+        var spritePrefix = glowing ? "_on" : "";
 
         // layered artifact sprite
         if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ArtifactsVisualLayers.UnlockingEffect, out var layer, false))
@@ -28,13 +29,10 @@ public sealed class RandomArtifactSpriteSystem : VisualizerSystem<RandomArtifact
             var spriteState = "ano" + spriteIndexStr;
             SpriteSystem.LayerSetRsiState((uid, args.Sprite), ArtifactsVisualLayers.Base, spriteState);
             SpriteSystem.LayerSetRsiState((uid, args.Sprite), layer, spriteState + "_on");
-            SpriteSystem.LayerSetVisible((uid, args.Sprite), layer, isUnlocking);
+            SpriteSystem.LayerSetVisible((uid, args.Sprite), layer, glowing);
 
             if (SpriteSystem.LayerMapTryGet((uid, args.Sprite), ArtifactsVisualLayers.ActivationEffect, out var activationEffectLayer, false))
-            {
-                SpriteSystem.LayerSetRsiState((uid, args.Sprite), activationEffectLayer, "artifact-activation");
-                SpriteSystem.LayerSetVisible((uid, args.Sprite), activationEffectLayer, isActivated);
-            }
+                SpriteSystem.LayerSetVisible((uid, args.Sprite), activationEffectLayer, false);
         }
         // non-layered
         else

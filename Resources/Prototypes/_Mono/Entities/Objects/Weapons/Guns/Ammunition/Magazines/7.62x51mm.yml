@@ -36,6 +36,7 @@
 # Magazines
 - type: entity
   id: Magazine762x51mmFMJ
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm FMJ)"
   parent: BaseMagazine762x51mm
   components:
@@ -65,6 +66,7 @@
 
 - type: entity
   id: Magazine762x51mmPractice
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm practice)"
   parent: BaseMagazine762x51mm
   components:
@@ -79,6 +81,7 @@
 
 - type: entity
   id: Magazine762x51mmUranium
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm uranium)"
   parent: BaseMagazine762x51mm
   components:
@@ -93,6 +96,7 @@
 
 - type: entity
   id: Magazine762x51mmIncendiary
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm incendiary)"
   parent: Magazine762x51mmFMJ
   components:
@@ -107,6 +111,7 @@
 
 - type: entity
   id: Magazine762x51mmRubber
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm rubber)"
   parent: Magazine762x51mmFMJ
   components:
@@ -143,6 +148,7 @@
 
 - type: entity
   id: Magazine762x51mmLowCapacityFMJ
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x51mm FMJ)"
   parent: Magazine762x51mmFMJ
   components:
@@ -163,6 +169,7 @@
 
 - type: entity
   id: Magazine762x51mmLowCapacityPractice
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x51mm practice)"
   parent: Magazine762x51mmLowCapacityFMJ
   components:
@@ -177,6 +184,7 @@
 
 - type: entity
   id: Magazine762x51mmLowCapacityRubber
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x51mm rubber)"
   parent: Magazine762x51mmLowCapacityFMJ
   components:
@@ -191,6 +199,7 @@
 
 - type: entity
   id: Magazine762x51mmLowCapacityUranium
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x51mm uranium)"
   parent: Magazine762x51mmLowCapacityFMJ
   components:
@@ -205,6 +214,7 @@
 
 - type: entity
   id: Magazine762x51mmLowCapacityIncendiary
+  categories: [ HideSpawnMenu ]
   name: "low cap magazine (7.62x51mm incendiary)"
   parent: Magazine762x51mmLowCapacityFMJ
   components:
@@ -221,6 +231,7 @@
 #anti-flesh:
 - type: entity
   id: Magazine762x51mmHP
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm hollow-point)"
   parent: BaseMagazine762x51mm
   components:
@@ -235,6 +246,7 @@
 
 - type: entity
   id: Magazine762x51mmRIP
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm RIP)"
   parent: BaseMagazine762x51mm
   components:
@@ -251,6 +263,7 @@
 
 - type: entity
   id: Magazine762x51mmPlasteelAP
+  categories: [ HideSpawnMenu ]
   name: "magazine (7.62x51mm AP)"
   parent: BaseMagazine762x51mm
   components:

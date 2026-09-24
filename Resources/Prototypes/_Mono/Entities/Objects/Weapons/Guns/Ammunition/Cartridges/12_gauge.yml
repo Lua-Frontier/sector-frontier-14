@@ -243,3 +243,18 @@
     proto: Pellet12_gaugeFlechetteSpread
   - type: SpentAmmoVisuals
     state: "slug"
+
+- type: entity
+  id: ShellShotgun12_gaugeOverpressure
+  name: shotgun shell (12 gauge overpressure)
+  parent: BaseShellShotgun12_gauge
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+      - state: overpressure
+        map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: CartridgeAmmo
+    proto: NFPelletShotgunOverpressureSpread
+  - type: SpentAmmoVisuals
+    state: "overpressure"

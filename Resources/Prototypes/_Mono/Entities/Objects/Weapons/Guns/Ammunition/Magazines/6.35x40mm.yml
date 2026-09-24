@@ -83,6 +83,7 @@
 
 - type: entity
   id: Magazine635x40mmCaselessBig
+  categories: [ HideSpawnMenu ]
   name: "box magazine (6.35x40mm Caseless)"
   parent: BaseMagazine635x40mmCaseless
   components:
@@ -97,7 +98,16 @@
     zeroVisible: false
 
 - type: entity
+  id: Magazine635x40mmCaselessBigEmpty
+  parent: Magazine635x40mmCaselessBig
+  name: "box magazine (6.35x40mm Caseless) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine635x40mmCaselessPistol
+  categories: [ HideSpawnMenu ]
   name: "pistol magazine (6.35x40mm Caseless)"
   parent: BaseMagazine635x40mmCaselessPistol
   components:
@@ -117,7 +127,23 @@
   - type: Appearance
 
 - type: entity
+  id: Magazine635x40mmCaselessPistolEmpty
+  name: "pistol magazine (6.35x40mm Caseless any)"
+  suffix: empty
+  parent: Magazine635x40mmCaselessPistol
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: red
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: Magazine635x40mmCaselessPistolPractice
+  categories: [ HideSpawnMenu ]
   name: "pistol magazine (6.35x40mm Caseless practice)"
   parent: BaseMagazine635x40mmCaselessPistol
   components:
@@ -138,6 +164,7 @@
 
 - type: entity
   id: Magazine635x40mmCaseless
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.35x40mm Caseless)"
   parent: BaseMagazine635x40mmCaseless
   components:
@@ -151,7 +178,16 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: Magazine635x40mmCaselessEmpty
+  parent: Magazine635x40mmCaseless
+  name: "magazine (6.35x40mm Caseless) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine635x40mmCaselessRubber
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.35x40mm Caseless)"
   parent: BaseMagazine635x40mmCaseless
   components:
@@ -166,6 +202,7 @@
 
 - type: entity
   id: Magazine635x40mmCaselessPractice
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.35x40mm Caseless practice)"
   parent: BaseMagazine635x40mmCaseless
   components:
@@ -180,6 +217,7 @@
 
 - type: entity
   id: Magazine635x40mmCaselessShort
+  categories: [ HideSpawnMenu ]
   name: "short magazine (6.35x40mm Caseless)"
   parent: BaseMagazine635x40mmCaselessShort
   components:
@@ -194,7 +232,16 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: Magazine635x40mmCaselessShortEmpty
+  parent: Magazine635x40mmCaselessShort
+  name: "short magazine (6.35x40mm Caseless) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine635x40mmCaselessShortPractice
+  categories: [ HideSpawnMenu ]
   name: "short magazine (6.35x40mm Caseless practice)"
   parent: BaseMagazine635x40mmCaselessShort
   components:

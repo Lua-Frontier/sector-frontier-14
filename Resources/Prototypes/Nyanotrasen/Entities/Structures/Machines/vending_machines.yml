@@ -1,5 +1,5 @@
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineRepDrobe
   name: RepDrobe
   description: A machine for all your reporting needs, as long as you need clothes.
@@ -19,9 +19,22 @@
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: WiresVisuals
+  - type: Machine
+    board: VendingMachineRepDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineBoxingDrobe
   name: Boxing Drobe
   description: Always short on stock.
@@ -38,9 +51,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineBoxingDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineMailDrobe
   name: MailDrobe
   description: Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
@@ -69,3 +95,16 @@
     color: "#4b93ad"
   - type: AccessReader # Frontier
     access: [["Mail"]] # Frontier
+  - type: Machine
+    board: VendingMachineMailDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

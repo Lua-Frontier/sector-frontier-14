@@ -4,7 +4,11 @@ tech-disk-examine = The label has a small dot matrix printed image depicting a {
 tech-disk-examine-more = There are more images printed, but they're too small to discern.
 tech-disk-name-format = {$baseName} ({$technology})
 
-tech-disk-ui-name = technology disk terminal
+tech-disk-ui-name = research point disk terminal
 tech-disk-ui-total-label = There are {$amount} points on the selected server
 tech-disk-ui-cost-label = Each disk costs {$amount} points to print
-tech-disk-ui-print-button = Print Disk
+tech-disk-ui-select-amount = Select how many points to write onto a disk
+tech-disk-ui-printing = Printing disk...
+tech-disk-ui-print-button = Print Disk ({$amount})
+tech-disk-ui-print-points-button = Print {$amount}-point disk
+tech-disk-ui-print-rare-button = Print Rare Disk ({$amount})

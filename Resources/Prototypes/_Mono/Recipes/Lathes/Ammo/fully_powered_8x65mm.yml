@@ -1,23 +1,11 @@
 #Magazines
 
 - type: latheRecipe
-  parent: BaseAmmoFMJFullyPoweredMagazineRecipe
-  id: Magazine8x65mmSKR
-  result: Magazine8x65mmSKR
-
-- type: latheRecipe
-  parent: BaseAmmoPracticeFullyPoweredMagazineRecipe
-  id: Magazine8x65mmSKRPractice
-  result: Magazine8x65mmSKRPractice
-
-- type: latheRecipe
-  parent: BaseAmmoIncendiaryFullyPoweredMagazineRecipe
-  id: Magazine8x65mmSKRIncendiary
-  result: Magazine8x65mmSKRIncendiary
-
-- type: latheRecipe
   parent: BaseAmmoEmptyFullyPoweredMagazineRecipe
   id: Magazine8x65mmEmpty
+  categories:
+  - AmmoCaliber8x65
+  - AmmoKindMagazine
   result: Magazine8x65mmEmpty
 
 #Box Magazines (for MR-8B)
@@ -37,14 +25,23 @@
 - type: latheRecipe
   parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
   id: AmmoBox8x65mmSKR
+  categories:
+  - AmmoCaliber8x65
+  - AmmoKindBox
   result: AmmoBox8x65mmSKR
 
 - type: latheRecipe
   parent: BaseAmmoIncendiaryFullyPoweredAmmoBoxRecipe
   id: AmmoBox8x65mmSKRIncendiary
+  categories:
+  - AmmoCaliber8x65
+  - AmmoKindBox
   result: AmmoBox8x65mmSKRIncendiary
 
 - type: latheRecipe
   parent: BaseAmmoPracticeFullyPoweredAmmoBoxRecipe
   id: AmmoBox8x65mmSKRPractice
+  categories:
+  - AmmoCaliber8x65
+  - AmmoKindBox
   result: AmmoBox8x65mmSKRPractice

@@ -84,6 +84,16 @@
   description: signal-port-description-artifact-analyzer-receiver
 
 - type: sinkPort
+  id: DiscoveryAnomalyVesselReceiver
+  name: signal-port-name-discovery-anomaly-vessel-receiver
+  description: signal-port-description-discovery-anomaly-vessel-receiver
+
+- type: sinkPort
+  id: AnomalySynchronizerConsoleReceiver
+  name: signal-port-name-anomaly-synchronizer-console-receiver
+  description: signal-port-description-anomaly-synchronizer-console-receiver
+
+- type: sinkPort
   id: InputA
   name: signal-port-name-logic-input-a
   description: signal-port-description-logic-input-a

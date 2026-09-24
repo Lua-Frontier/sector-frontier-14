@@ -1,6 +1,7 @@
 using System.Numerics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Random.Rules;
 
@@ -27,7 +28,7 @@ public sealed partial class GridInRangeRule : RulesRule
         }
 
         var transform = entManager.System<SharedTransformSystem>();
-        var mapManager = IoCManager.Resolve<IMapManager>();
+        var mapManager = IoCManager.Resolve<IEntityManager>().System<SharedMapSystem>();
 
         var worldPos = transform.GetWorldPosition(xform);
         var gridRange = new Vector2(Range, Range);

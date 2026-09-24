@@ -1,5 +1,6 @@
 - type: entity
   id: MagazineShenzhen
+  categories: [ HideSpawnMenu ]
   name: "QBU-284 magazine (13.4x92mm DU-APFSDS)"
   parent: [BaseItem, RecyclableItemSteelTiny]
   components:
@@ -30,3 +31,12 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+- type: entity
+  id: MagazineShenzhenEmpty
+  categories: [ HideSpawnMenu ]
+  parent: MagazineShenzhen
+  name: "QBU-284 magazine (13.4x92mm DU-APFSDS) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null

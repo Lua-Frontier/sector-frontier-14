@@ -5,7 +5,7 @@ using Content.Server.Speech.Components;
 using Content.Shared._DV.TapeRecorder;
 using Content.Shared._DV.TapeRecorder.Components;
 using Content.Shared._DV.TapeRecorder.Systems;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Paper;
 using Content.Shared.Speech;

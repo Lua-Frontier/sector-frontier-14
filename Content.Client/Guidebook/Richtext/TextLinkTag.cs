@@ -12,7 +12,8 @@ namespace Content.Client.Guidebook.RichText;
 [UsedImplicitly]
 public sealed class TextLinkTag : IMarkupTagHandler
 {
-    public static Color LinkColor => Color.CornflowerBlue;
+    public static Color LinkColor => Color.FromHex("#5EC8E8");
+    public static Color HoverColor => Color.FromHex("#9AE0F5");
 
     public string Name => "textlink";
 
@@ -34,8 +35,8 @@ public sealed class TextLinkTag : IMarkupTagHandler
         label.FontColorOverride = LinkColor;
         label.DefaultCursorShape = Control.CursorShape.Hand;
 
-        label.OnMouseEntered += _ => label.FontColorOverride = Color.LightSkyBlue;
-        label.OnMouseExited += _ => label.FontColorOverride = Color.CornflowerBlue;
+        label.OnMouseEntered += _ => label.FontColorOverride = HoverColor;
+        label.OnMouseExited += _ => label.FontColorOverride = LinkColor;
         label.OnKeyBindDown += args => OnKeybindDown(args, link, label);
 
         control = label;

@@ -2,7 +2,7 @@ using Content.Server._NF.Shipyard.Systems; // Frontier
 using Content.Server.Chat.Systems;
 using Content.Server.Containers;
 using Content.Server.StationRecords.Systems;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems; // Lua
 using Content.Shared._NF.Shipyard.Components; // Frontier
 using Content.Shared.Access;
 using Content.Shared.Access.Components;

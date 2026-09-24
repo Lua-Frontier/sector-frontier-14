@@ -1,0 +1,69 @@
+- type: entity
+  parent: [Airlock, ConstructibleMachine]
+  id: AirlockMachine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: AirlockCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
+- type: entity
+  parent: [AirlockGlass, ConstructibleMachine]
+  id: AirlockGlassMachine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: AirlockGlassCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
+- type: entity
+  parent: [AirlockShuttle, ConstructibleMachine]
+  id: AirlockShuttleMachine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: AirlockShuttleCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
+- type: entity
+  parent: [AirlockGlassShuttle, ConstructibleMachine]
+  id: AirlockGlassShuttleMachine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: AirlockGlassShuttleCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
+- type: entity
+  parent: [SolarAssembly, ConstructibleMachine]
+  id: SolarAssemblyMachine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Machine
+    board: SolarAssemblyCircuitboard
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

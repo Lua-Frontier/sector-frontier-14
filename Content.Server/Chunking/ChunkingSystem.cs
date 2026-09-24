@@ -9,6 +9,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using ChunkIndicesEnumerator = Robust.Shared.Map.Enumerators.ChunkIndicesEnumerator;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Chunking;
 
@@ -19,7 +20,7 @@ namespace Content.Shared.Chunking;
 public sealed class ChunkingSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;

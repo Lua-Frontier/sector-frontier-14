@@ -1,4 +1,4 @@
-using Content.Shared._Lua.MedicalScanner.UI; // Lua
+using Content.Shared.MedicalScanner.UI;
 using Content.Shared.FixedPoint;
 using Content.Shared._Shitmed.Targeting; // Shitmed
 using Robust.Shared.Serialization;

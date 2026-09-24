@@ -23,12 +23,12 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Server._Lua.Sectors; // Lua
-using Content.Server._Lua.StationRecords.Systems; // Lua
-using Content.Server._Lua.Bank; // Frontier
+using Content.Shared._NF.Shipyard.Components; // Frontier
+using Content.Lua.Shared.Sectors;
+using Content.Lua.Shared.StationRecords;
+using Content.Lua.Shared.Bank; // Frontier
 using Content.Server._NF.SectorServices; // Frontier
 using Content.Server._NF.Shipyard.Systems; // Frontier
-using Content.Shared._NF.Shipyard.Components; // Frontier
 using Robust.Shared.Map;
 
 namespace Content.Server.PDA
@@ -46,9 +46,9 @@ namespace Content.Server.PDA
         [Dependency] private readonly ContainerSystem _containerSystem = default!;
         [Dependency] private readonly IdCardSystem _idCard = default!;
         [Dependency] private readonly SectorServiceSystem _sectorService = default!;
-        [Dependency] private readonly SectorSystem _sectorSystem = default!; // Lua
-        [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!; // Lua
-        [Dependency] private readonly BankSystem _bank = default!; // Frontier
+        [Dependency] private readonly ISectorSystem _sectorSystem = default!;
+        [Dependency] private readonly IShipCrewAssignmentSystem _shipCrew = default!;
+        [Dependency] private readonly IBankSystem _bank = default!; // Frontier
 
         public override void Initialize()
         {

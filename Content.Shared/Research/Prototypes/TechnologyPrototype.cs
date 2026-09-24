@@ -41,13 +41,8 @@ public sealed partial class TechnologyPrototype : IPrototype
     [DataField(required: true)]
     public ProtoId<TechDisciplinePrototype> Discipline;
 
-    /// <summary>
-    /// What tier research is this?
-    /// The tier governs how much lower-tier technology
-    /// needs to be unlocked before this one.
-    /// </summary>
-    [DataField(required: true)]
-    public int Tier;
+    [DataField]
+    public int Tier = 1;
 
     /// <summary>
     /// Hidden tech is not ever available at the research console.
@@ -67,6 +62,9 @@ public sealed partial class TechnologyPrototype : IPrototype
     [DataField]
     public int Cost = 10000;
 
+    [DataField]
+    public bool InstantUnlock = false;
+
     /// <summary>
     /// A list of <see cref="TechnologyPrototype"/>s that need to be unlocked in order to unlock this technology.
     /// </summary>
@@ -85,6 +83,15 @@ public sealed partial class TechnologyPrototype : IPrototype
     [DataField]
     public IReadOnlyList<GenericUnlock> GenericUnlocks = new List<GenericUnlock>();
 
+    [DataField]
+    public List<string> Tags = new();
+
+    [DataField]
+    public ProtoId<RndFactionPrototype>? SignatureFor;
+
+    [DataField]
+    public float DiscoveryWeight = 1f;
+
     /// Frontier: R&D console rework
     /// <summary>
     /// Position of this tech in console menu
@@ -100,23 +107,11 @@ public sealed partial class TechnologyPrototype : IPrototype
     public PrerequisiteLineType PrerequisiteLineType { get; private set; } = PrerequisiteLineType.LShape;
 
     /// <summary>
-    /// Additional disciplines this technology belongs to.
-    /// When specified, the technology will show a split color display.
-    /// Limited to one additional discipline (total of 2 disciplines).
-    /// </summary>
-    [DataField]
-    public ProtoId<TechDisciplinePrototype>? SecondaryDiscipline = null;
-
-    /// <summary>
     /// Get all disciplines this technology belongs to.
-    /// Returns primary discipline and secondary discipline if present.
     /// </summary>
     public List<ProtoId<TechDisciplinePrototype>> GetAllDisciplines()
     {
-        var disciplines = new List<ProtoId<TechDisciplinePrototype>> { Discipline };
-        if (SecondaryDiscipline.HasValue)
-            disciplines.Add(SecondaryDiscipline.Value);
-        return disciplines;
+        return new List<ProtoId<TechDisciplinePrototype>> { Discipline };
     }
 
     /// <summary>
@@ -124,7 +119,7 @@ public sealed partial class TechnologyPrototype : IPrototype
     /// </summary>
     public bool HasDiscipline(ProtoId<TechDisciplinePrototype> disciplineId)
     {
-        return Discipline == disciplineId || (SecondaryDiscipline.HasValue && SecondaryDiscipline.Value == disciplineId);
+        return Discipline == disciplineId;
     }
     /// End Frontier: R&D console rework
 }

@@ -453,20 +453,6 @@
     - CrateArmoryRifleGestioExpedition
     - CrateArmoryRifleNovaliteC1Expedition
     - CrateArmoryEnergyGunExpedition
-    # Ammo
-    - CrateAmmoBoxLethal20
-    - CrateAmmoBoxLethal25
-    - CrateAmmoBoxLethal30
-    - CrateAmmoBoxLethal35
-    - CrateAmmoBoxLethal45
-    - CrateAmmoBoxLethalShotgun
-    - CrateAmmoBoxSlugShotgun
-    - CrateAmmoBoxRubber20
-    - CrateAmmoBoxRubber25
-    - CrateAmmoBoxRubber30
-    - CrateAmmoBoxRubber35
-    - CrateAmmoBoxRubber45
-    - CrateAmmoBoxRubberShotgun
     chance: 0.85
     offset: 0.0
     rarePrototypes:
@@ -477,30 +463,6 @@
     - CrateSecurityNonlethal
     - CrateSecureMercenaryHardsuitMagBoots
     - CrateSecureMercenaryPrivateSecHardsuitMagBoots
-    # Ammo
-    - CrateAmmoBoxBigLethal20
-    - CrateAmmoBoxBigLethal25
-    - CrateAmmoBoxBigLethal30
-    - CrateAmmoBoxBigRubber20
-    - CrateAmmoBoxBigRubber25
-    - CrateAmmoBoxIncendiary20
-    - CrateAmmoBoxIncendiary30
-    - CrateAmmoBoxIncendiary35
-    - CrateAmmoBoxIncendiary45
-    - CrateAmmoBoxIncendiaryShotgun
-    - CrateAmmoBoxUranium20
-    - CrateAmmoBoxUranium30
-    - CrateAmmoBoxUranium35
-    - CrateAmmoBoxUranium45
-    - CrateAmmoBoxUraniumShotgun
-    - CrateAmmoBoxFlareShotgun
-    - CrateAmmoBoxEmp35
-    - CrateAmmoBoxPractice20
-    - CrateAmmoBoxPractice25
-    - CrateAmmoBoxPractice30
-    - CrateAmmoBoxPractice35
-    - CrateAmmoBoxPractice45
-    - CrateAmmoBoxPracticeShotgun
     rareChance: 0.05
 
 - type: entity
@@ -598,15 +560,13 @@
   - type: RandomSpawner
     prototypes:
 #    - AmmoTechFab # comment from _Lua
-    - MercenaryTechFab
-    - MercenaryTechFabFlatpack
-    - MercenaryTechFabCircuitboardNF
-#    - AmmoTechFabFlatpack # comment from _Lua
+    - Protolathe
+    - ProtolatheMachineCircuitboard
+    - ProtolatheMachineCircuitboard
     chance: 1
     offset: 0.0
     rarePrototypes:
-    - MercenaryTechFab
-    - MercenaryTechFabFlatpack
-    - MercenaryTechFabCircuitboardNF
-#    - AmmoTechFabFlatpack # comment from _Lua
+    - Protolathe
+    - ProtolatheMachineCircuitboard
+    - ProtolatheMachineCircuitboard
     rareChance: 0.005

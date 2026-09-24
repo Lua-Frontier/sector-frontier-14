@@ -1,40 +1,5 @@
 - type: entity
-  categories: [ ShuttleGun ]
-  id: SunnyMagazine
-  name: "Sunny flare autoloader"
-  parent: [BaseItem, RecyclableItemSteelTiny]
-  components:
-  - type: Tag
-    tags:
-    - SunnyMagazine
-  - type: Item
-    size: Small
-  - type: BallisticAmmoProvider
-    proto: SunnyCartridge
-    capacity: 30
-    mayTransfer: true
-    infiniteUnspawned: true
-    whitelist:
-      tags:
-      - SunnyCartridge
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
-    layers:
-    - state: base
-      map: [ "enum.GunVisualLayers.Base" ]
-    - state: mag-0
-      map: [ "enum.GunVisualLayers.Mag" ]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: SunnyCartridge
   name: Packaged flare
   description: An individual electronically activated flare for the GS-002 countermeasure system.

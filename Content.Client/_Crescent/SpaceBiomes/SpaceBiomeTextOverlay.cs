@@ -1,7 +1,7 @@
 using System.Numerics;
 using System.Text;
 using Content.Client.Resources;
-using Content.Client._Lua.Styles;
+using Content.Lua.UIKit.Styles;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
@@ -38,7 +38,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
     private readonly Font _font;
     private readonly Font _descriptionfont;
     private readonly Font _motdFont;
-    private readonly Font _motdHintFont;
 
     public string? Text;
     public int Index;
@@ -63,7 +62,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
     private TimeSpan _motdNextUpd = TimeSpan.Zero;
     private TimeSpan _motdCharInterval = TimeSpan.Zero;
     private TimeSpan _motdHoldUntil = TimeSpan.Zero;
-    private string _motdDismissHint = string.Empty;
 
     public bool IsMotdActive => _motdPhase != MotdPhase.None && !string.IsNullOrEmpty(MotdText);
 
@@ -73,7 +71,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
         _font = _cache.GetFont("/Fonts/Doloto/Doloto-Regular.ttf", 75); //Lua Iceberg -> Doloto
         _descriptionfont = _cache.GetFont("/Fonts/Doloto/Doloto-Regular.ttf", 30); //Lua Iceberg -> Doloto
         _motdFont = LunaWindowStyle.FontBody;
-        _motdHintFont = LunaWindowStyle.FontSmall;
     }
 
     public void Reset()
@@ -105,7 +102,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
         _motdNextUpd = TimeSpan.Zero;
         _motdCharInterval = TimeSpan.Zero;
         _motdHoldUntil = TimeSpan.Zero;
-        _motdDismissHint = string.Empty;
     }
 
     public void ShowMotd(string text, Vector2 viewportSize)
@@ -123,7 +119,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
         MotdText = LunaWindowStyle.WrapText(text.Trim(), _motdFont, contentWidth);
         _motdCharInterval = TimeSpan.FromSeconds(1f / MotdCharsPerSecond);
         _motdPhase = MotdPhase.Typing;
-        _motdDismissHint = Loc.GetString("company-briefing-overlay-dismiss");
     }
 
     private static void LayoutMotdArea(Vector2 viewport, out float contentWidth, out Vector2 origin, out float contentBottom)
@@ -139,17 +134,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
         contentWidth = MathF.Max(160f, windowW - MotdContentPadding * 2f);
         origin = new Vector2(left + MotdContentPadding, top + MotdContentPadding);
         contentBottom = top + windowH - MotdContentPadding;
-    }
-
-    public void HandleMotdDismissInput()
-    {
-        if (!IsMotdActive)
-            return;
-
-        if (_motdPhase == MotdPhase.Typing)
-            BeginMotdHold();
-        else
-            ResetMotd();
     }
 
     public void DismissMotd() => ResetMotd();
@@ -241,8 +225,7 @@ public sealed class SpaceBiomeTextOverlay : Overlay
         var visible = MotdText[..Math.Clamp(MotdIndex, 0, MotdText.Length)];
         var y = _motdOrigin.Y;
         var lineHeight = _motdFont.GetHeight(1f) + 2f;
-        var hintHeight = _motdHintFont.GetHeight(1f) + lineHeight;
-        var textBottomLimit = _motdContentBottom - hintHeight;
+        var textBottomLimit = _motdContentBottom;
 
         foreach (var line in visible.Replace("\r\n", "\n").Split('\n'))
         {
@@ -255,11 +238,6 @@ public sealed class SpaceBiomeTextOverlay : Overlay
 
         if (_motdPhase == MotdPhase.Holding)
         {
-            var hintWidth = MeasureWidth(_motdHintFont, _motdDismissHint);
-            var hintX = _motdOrigin.X + MathF.Max(0f, (_motdContentWidth - hintWidth) * 0.5f);
-            var hintY = _motdContentBottom - _motdHintFont.GetHeight(1f);
-            DrawSoftString(args.ScreenHandle, _motdHintFont, new Vector2(hintX, hintY), _motdDismissHint, Color.LightGray);
-
             if (_timing.CurTime >= _motdHoldUntil)
                 ResetMotd();
 
@@ -331,18 +309,5 @@ public sealed class SpaceBiomeTextOverlay : Overlay
         }
 
         return new Vector2((viewport.X - strSize.X) / 2, strSize.Y + 110 + 140);
-    }
-
-    private static float MeasureWidth(Font font, string text)
-    {
-        var width = 0f;
-        foreach (var rune in text.EnumerateRunes())
-        {
-            if (!font.TryGetCharMetrics(rune, 1f, out var metrics))
-                continue;
-            width += metrics.Advance;
-        }
-
-        return width;
     }
 }

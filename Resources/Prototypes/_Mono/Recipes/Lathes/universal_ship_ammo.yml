@@ -169,54 +169,74 @@
 - type: latheRecipe
   id: Magazine140mmAmmoRecipe
   parent: BaseHeavyShipgunAmmoRecipe
-  result: Magazine140mm
+  result: 140mmCartridge
 
 - type: latheRecipe
   id: Magazine140mmSACLOSAmmoRecipe
   parent: BaseHeavyShipgunAmmoRecipe
-  result: Magazine140mmSACLOS
+  result: 140mmCartridgeSACLOS
 
 # Mags
 
 - type: latheRecipe
   parent: BaseLightShipgunAmmoRecipe
   id: Magazine20mmAmmoRecipe
-  result: Magazine20mm
+  result: 20mmCartridge
 
 - type: latheRecipe
   parent: BaseLightShipgunAmmoRecipe
   id: Magazine20mmASAmmoRecipe
-  result: Magazine20mmAS
+  result: 20mmCartridgeAS
 
 - type: latheRecipe
   parent: BaseShipgunAmmoRecipe
   id: Magazine30mmAmmoRecipe
-  result: Magazine30mm
+  result: 30mmCartridge
 
 - type: latheRecipe
   parent: BaseShipgunAmmoRecipe
   id: Magazine30mmHEAmmoRecipe
-  result: Magazine30mmHE
+  result: 30mmCartridgeHE
 
 - type: latheRecipe
   parent: BaseShipgunAmmoRecipe
   id: Magazine57mmHEAmmoRecipe
-  result: Magazine57mmHE
+  result: 57mmCartridgeHE
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine57mmSmartAmmoRecipe
+  result: 57mmCartridgeSmart
+
+- type: latheRecipe
+  parent: BaseShipgunAmmoRecipe
+  id: Magazine57mmSACLOSAmmoRecipe
+  result: 57mmCartridgeSACLOS
 
 - type: latheRecipe
   parent: BaseMediumShipgunAmmoRecipe
   id: 90mmMagazineHEAmmoRecipe
-  result: 90mmMagazineHE
+  result: 90mmCartridgeHE
 
 - type: latheRecipe
   parent: BaseMediumShipgunAmmoRecipe
   id: 90mmMagazineAPAmmoRecipe
-  result: 90mmMagazineAP
+  result: 90mmCartridgeAP
 
 - type: latheRecipe
   parent: BaseMediumShipgunAmmoRecipe
   id: 90mmMagazineFlakAmmoRecipe
-  result: 90mmMagazineFlak
+  result: 90mmCartridgeFlak
+
+- type: latheRecipe
+  parent: BaseMediumShipgunAmmoRecipe
+  id: 90mmMagazineMinelayerAmmoRecipe
+  result: 90mmCartridgeMinelayer
+
+- type: latheRecipe
+  parent: BaseLightShipgunAmmoRecipe
+  id: SunnyMagazineAmmoRecipe
+  result: SunnyCartridge
 
 - type: latheRecipe
   parent: BaseLightShipgunAmmoRecipe
@@ -251,32 +271,42 @@
 - type: latheRecipe
   parent: BaseMissileShipgunAmmoRecipe
   id: MissileMagazine50mmHEAmmoRecipe
-  result: MissileMagazine50mmHE
+  result: MissileCartridge50mmHE
 
 - type: latheRecipe
   parent: BaseMissileShipgunAmmoRecipe
   id: VanykMagazineAmmoRecipe
-  result: VanykMagazine
+  result: VanykCartridge
 
 - type: latheRecipe
   parent: BaseHeavyMissileShipgunAmmoRecipe
   id: PaladinMagazineAmmoRecipe
-  result: PaladinMagazine
+  result: MissileCartridge250mm
 
 - type: latheRecipe
   parent: BaseHeavyMissileShipgunAmmoRecipe
   id: PaladinMagazineEMPHEAmmoRecipe
-  result: PaladinMagazineEMPHE
+  result: TovekCartridge
 
 - type: latheRecipe
   parent: BaseHeavyMissileShipgunAmmoRecipe
   id: PaladinMagazineHVAmmoRecipe
-  result: PaladinMagazineHV
+  result: MissileCartridge250mmHV
 
 - type: latheRecipe
   parent: BaseHeavyMissileShipgunAmmoRecipe
   id: VanquisherMagazineAmmoRecipe
-  result: VanquisherMagazine
+  result: VanykCartridgeUnguided
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: MissileCartridge250mmHVAmmoRecipe
+  result: MissileCartridge250mmHV
+
+- type: latheRecipe
+  parent: BaseTorpedoRecipe
+  id: MissileTNDAmmoRecipe
+  result: MissileTND
 
 - type: latheRecipe
   parent: BaseShipgunAmmoRecipe

@@ -1,0 +1,47 @@
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Lua.UIKit.Styles;assembly=Content.Lua.UIKit"
+                   xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   Title="{Loc 'payout-window-title'}"
+                   MinSize="340 520"
+                   SetSize="340 555">
+  <PanelContainer Name="Shell" Margin="4 2 4 4">
+    <PanelContainer.PanelOverride>
+      <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+    </PanelContainer.PanelOverride>
+    <BoxContainer Orientation="Vertical" SeparationOverride="8" Margin="10 8 10 10">
+      <Label Name="FactionLabel" Text=""/>
+      <Label Name="OwnedLabel" Text="{Loc 'payout-owned-default'}"/>
+      <Label Name="AccumLabel" Text="{Loc 'payout-accum-default'}"/>
+      <Label Name="RateLabel" Text=""/>
+      <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+        <Label Name="NextPayoutLabel" Text="{Loc 'payout-next'}" VerticalAlignment="Center" MinWidth="120"/>
+        <ProgressBar Name="NextPayoutBar"
+                     HorizontalExpand="True"
+                     MinValue="0"
+                     MaxValue="1"
+                     SetHeight="14"
+                     VerticalAlignment="Center"/>
+        <Label Name="NextPayoutText"
+               Text="00:00:00"
+               MinWidth="64"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+      </BoxContainer>
+      <PanelContainer Name="Divider" MinHeight="1" MaxHeight="1" HorizontalExpand="True"/>
+      <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+        <Label Name="DepositCaption" Text="{Loc 'payout-deposit-label'}" VerticalAlignment="Center"/>
+        <Label Name="DepositLabel" Text="{Loc 'payout-deposit-none'}" HorizontalExpand="True" VerticalAlignment="Center"/>
+        <Button Name="DepositButton" Text="{Loc 'payout-deposit'}" MinWidth="96"/>
+      </BoxContainer>
+      <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+        <LineEdit Name="WithdrawEdit" HorizontalExpand="True" PlaceHolder="{Loc 'payout-withdraw-placeholder'}"/>
+        <Button Name="WithdrawButton" Text="{Loc 'payout-withdraw'}" MinWidth="96"/>
+      </BoxContainer>
+      <Label Name="HistoryHeadingLabel" Text="{Loc 'payout-history-title'}"/>
+      <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="140">
+        <BoxContainer Name="HistoryContainer" Orientation="Vertical" SeparationOverride="2"/>
+      </ScrollContainer>
+      <Label Name="HistoryEmptyLabel" Text="{Loc 'payout-last-claim-none'}"/>
+    </BoxContainer>
+  </PanelContainer>
+</styles:LunaWindow>

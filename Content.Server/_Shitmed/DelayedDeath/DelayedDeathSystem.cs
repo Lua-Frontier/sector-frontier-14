@@ -1,5 +1,5 @@
 using Content.Server.Chat.Systems;
-using Content.Shared._Lua.Chat.Systems;
+using Content.Shared.Chat.Systems;
 using Content.Shared.Chat; // Einstein Engines - Languages
 using Content.Shared.Medical;
 using Content.Shared.Mobs;

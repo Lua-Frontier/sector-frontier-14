@@ -1,11 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Access.Components;
+using Content.Shared._Mono.Company;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Emag.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.NameIdentifier;
 using Content.Shared.PDA;
@@ -48,7 +50,8 @@ public sealed class AccessReaderSystem : EntitySystem
     private void OnGetState(EntityUid uid, AccessReaderComponent component, ref ComponentGetState args)
     {
         args.State = new AccessReaderComponentState(component.Enabled, component.DenyTags, component.AccessLists,
-            _recordsSystem.Convert(component.AccessKeys), component.AccessLog, component.AccessLogLimit);
+            component.AccessCompanies, _recordsSystem.Convert(component.AccessKeys), component.AccessLog,
+            component.AccessLogLimit);
     }
 
     private void OnHandleState(EntityUid uid, AccessReaderComponent component, ref ComponentHandleState args)
@@ -67,6 +70,7 @@ public sealed class AccessReaderSystem : EntitySystem
         }
 
         component.AccessLists = new(state.AccessLists);
+        component.AccessCompanies = new(state.AccessCompanies);
         component.DenyTags = new(state.DenyTags);
         component.AccessLog = new(state.AccessLog);
         component.AccessLogLimit = state.AccessLogLimit;
@@ -124,10 +128,24 @@ public sealed class AccessReaderSystem : EntitySystem
         if (!IsAllowed(access, stationKeys, target, reader))
             return false;
 
+        if (!IsCompanyAllowed(user, reader))
+            return false;
+
         if (!_tag.HasTag(user, PreventAccessLoggingTag))
             LogAccess((target, reader), user);
 
         return true;
+    }
+
+    public bool IsCompanyAllowed(EntityUid user, AccessReaderComponent reader)
+    {
+        if (reader.AccessCompanies.Count == 0)
+            return true;
+        if (HasComp<BypassInteractionChecksComponent>(user))
+            return true;
+        if (!TryComp<CompanyComponent>(user, out var company) || string.IsNullOrEmpty(company.CompanyName))
+            return false;
+        return reader.AccessCompanies.Contains(company.CompanyName);
     }
 
     /// <summary>

@@ -8,8 +8,8 @@ using Content.Server.Power.Components; // Frontier
 using Content.Shared.DeviceNetwork; // Frontier
 using Content.Shared.DeviceLinking.Events; // Frontier
 using Content.Shared.DeviceNetwork.Events; // Frontier
-using Content.Server._Lua.Shuttles.Systems;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -19,7 +19,7 @@ public sealed class StationAnchorSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly DeviceLinkSystem _signalSystem = default!; // Frontier
     [Dependency] private readonly PowerChargeSystem _chargeSystem = default!; // Frontier
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
 
     public override void Initialize()
     {

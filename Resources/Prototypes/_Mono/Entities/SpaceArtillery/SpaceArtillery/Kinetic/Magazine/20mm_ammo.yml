@@ -1,43 +1,5 @@
 - type: entity
-  categories: [ ShuttleGun ]
-  id: Magazine20mm
-  name: "20mm solid ammo loader"
-  description: "An ammunition loader containing infinite 20mm solid rounds. Usable by vessel-mounted artillery pieces."
-  parent: [BaseItem, RecyclableItemSteelTiny]
-  components:
-  - type: Tag
-    tags:
-    - Magazine20mm
-  - type: Item
-    size: Small
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    proto: 20mmCartridge
-    capacity: 1 # normally should hold 1250
-    mayTransfer: true
-    whitelist:
-      tags:
-      - 20mmCartridge
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
-  - type: StaticPrice
-    price: 1
-
-- type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: 20mmCartridge
   name: cartridge (20mm Solid)
   parent: BaseCartridge
@@ -76,45 +38,7 @@
     damageModifierSet: Metallic
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: Magazine20mmAS
-  name: "20mm AS ammo loader"
-  description: "An ammunition loader containing 1250 20mm anti-shield rounds. Usable by vessel-mounted artillery pieces."
-  parent: [BaseItem, RecyclableItemSteelTiny]
-  components:
-  - type: Tag
-    tags:
-    - Magazine20mm
-  - type: Item
-    size: Small
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: false
-    proto: 20mmCartridgeAS
-    capacity: 1250
-    mayTransfer: true
-    whitelist:
-      tags:
-      - 20mmCartridge
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/generic_shipgun_box.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: false
-  - type: Appearance
-  - type: StaticPrice
-    price: 1
-
-- type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: 20mmCartridgeAS
   name: cartridge (20mm AS)
   parent: BaseCartridge

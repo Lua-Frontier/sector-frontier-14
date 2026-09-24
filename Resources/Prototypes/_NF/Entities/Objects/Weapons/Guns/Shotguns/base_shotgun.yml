@@ -59,7 +59,7 @@
 #region chamber
 - type: entity
   abstract: true
-  id: NFBaseWeaponShotgunChamber23x75 #Lua 4 gauge
+  id: NFBaseWeaponShotgunChamber12Gauge
   components:
   - type: Gun
     examineCaliber: gun-examine-caliber-50
@@ -67,10 +67,10 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: BallisticAmmoProvider
     capacity: 7
-    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
+    proto: null #Lua
     whitelist:
       tags:
-      - ShellShotgun23x75mmBuckshot #Lua 4 gauge
+      - ShellShotgun12_gaugeBuckshot
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -78,7 +78,7 @@
 
 - type: entity
   abstract: true
-  id: NFBaseWeaponShotgunChamber23x75Magazine #Lua 4 gauge
+  id: NFBaseWeaponShotgunChamber12GaugeMagazine
   components:
   - type: Sprite # janky here, but mag is optional and tied with chamber
     layers:
@@ -99,7 +99,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine12_gaugeBuckshot
         priority: 2
         whitelist:
           tags:

@@ -11,8 +11,6 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
 
 namespace Content.Server.Nyanotrasen.Kitchen.Components
@@ -106,14 +104,14 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         /// <summary>
         /// What flavors go well with deep frying?
         /// </summary>
-        [DataField(customTypeSerializer: typeof(PrototypeIdHashSetSerializer<FlavorPrototype>))]
-        public HashSet<string> GoodFlavors { get; set; } = new();
+        [DataField]
+        public HashSet<ProtoId<FlavorPrototype>> GoodFlavors { get; set; } = new();
 
         /// <summary>
         /// What flavors don't go well with deep frying?
         /// </summary>
-        [DataField(customTypeSerializer: typeof(PrototypeIdHashSetSerializer<FlavorPrototype>))]
-        public HashSet<string> BadFlavors { get; set; } = new();
+        [DataField]
+        public HashSet<ProtoId<FlavorPrototype>> BadFlavors { get; set; } = new();
 
         /// <summary>
         /// How much is the price coefficiency of a food changed for each good flavor?

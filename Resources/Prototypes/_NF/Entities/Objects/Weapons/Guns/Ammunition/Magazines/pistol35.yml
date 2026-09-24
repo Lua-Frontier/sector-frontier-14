@@ -124,11 +124,12 @@
 
 - type: entity
   id: NFMagazinePistol35Overpressure
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (.35 pistol, overpressure)
   parent: NFBaseMagazinePistol35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35Overpressure
+    proto: Cartridge9x19mmOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -150,6 +151,7 @@
 
 - type: entity
   id: NFMagazinePistol35Emp
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (.35 pistol, EMP)
   parent: NFBaseMagazinePistol35
   components:
@@ -177,6 +179,7 @@
 #region highcap
 - type: entity
   id: NFMagazineHighCapacityPistol35Empty
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, any)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -185,6 +188,7 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -193,11 +197,12 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Overpressure
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, overpressure)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35Overpressure
+    proto: Cartridge9x19mmOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -219,6 +224,7 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Incendiary
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, incendiary)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -245,6 +251,7 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Uranium
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, uranium)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -271,6 +278,7 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Practice
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, practice)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -286,6 +294,7 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Emp
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, EMP)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -312,6 +321,7 @@
 
 - type: entity
   id: NFMagazineHighCapacityPistol35Rubber
+  categories: [ HideSpawnMenu ]
   name: high capacity pistol magazine (.35 pistol, rubber)
   parent: NFBaseMagazineHighCapacityPistol35
   components:
@@ -338,11 +348,12 @@
 
 - type: entity
   id: NFMagazineSubMachineGun35Overpressure
+  categories: [ HideSpawnMenu ]
   name: smg magazine (.35 pistol, overpressure)
   parent: NFBaseMagazinePistolSubMachineGun35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35Overpressure
+    proto: Cartridge9x19mmOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -364,11 +375,12 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Overpressure
+  categories: [ HideSpawnMenu ]
   name: top mounted smg magazine (.35 pistol, overpressure)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol35Overpressure
+    proto: Cartridge9x19mmOverpressure
   - type: Sprite
     layers:
       - state: base
@@ -381,6 +393,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Incendiary
+  categories: [ HideSpawnMenu ]
   name: top mounted smg magazine (.35 pistol, incendiary)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
@@ -398,6 +411,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Uranium
+  categories: [ HideSpawnMenu ]
   name: top mounted smg magazine (.35 pistol, uranium)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
@@ -415,6 +429,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Practice
+  categories: [ HideSpawnMenu ]
   name: top mounted smg magazine (.35 pistol, practice)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
@@ -423,6 +438,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Emp
+  categories: [ HideSpawnMenu ]
   name: top mounted smg magazine (.35 pistol, EMP)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:
@@ -440,6 +456,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGunTopMounted35Rubber
+  categories: [ HideSpawnMenu ]
   name: top mounted smg magazine (.35 pistol, rubber)
   parent: NFBaseMagazineSubMachineGunTopMounted35
   components:

@@ -1,5 +1,6 @@
+using Content.Lua.Shared.Shuttles;
 using System.Numerics;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Components;
 

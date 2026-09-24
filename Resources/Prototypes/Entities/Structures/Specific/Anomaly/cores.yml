@@ -29,6 +29,7 @@
   - type: Tag
     tags:
     - ForceableFollow
+    - Payload
   - type: AnomalyCore
     timeToDecay: 600
     startPrice: 10000
@@ -39,6 +40,8 @@
   id: AnomalyCorePyroclastic
   suffix: Pyroclastic
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyPyroclastic
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/pyro_core.rsi
   - type: PointLight
@@ -55,6 +58,8 @@
   id: AnomalyCoreGravity
   suffix: Gravity
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyGravity
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/gravity_core.rsi
   - type: PointLight
@@ -68,6 +73,8 @@
   id: AnomalyCoreIce
   suffix: Ice
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyIce
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/ice_core.rsi
   - type: PointLight
@@ -82,6 +89,8 @@
   description: The core of a destroyed flesh anomaly. Pulsates sickeningly, but might be a hearty meal if cooked.
   suffix: Flesh
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyFlesh
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/flesh_core.rsi
   - type: PointLight
@@ -95,6 +104,8 @@
   id: AnomalyCoreRock
   suffix: Rock
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyRockIron
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/rock_core.rsi
   - type: PointLight
@@ -108,6 +119,8 @@
   id: AnomalyCoreLiquid
   suffix: Liquid
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyLiquid
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/liquid_core.rsi
   - type: PointLight
@@ -121,6 +134,8 @@
   id: AnomalyCoreBluespace
   suffix: Bluespace
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyBluespace
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
   - type: PointLight
@@ -134,6 +149,8 @@
   id: AnomalyCoreElectricity
   suffix: Electricity
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyElectricity
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/electric_core.rsi
   - type: PointLight
@@ -148,6 +165,8 @@
   id: AnomalyCoreFlora
   suffix: Flora
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyFlora
   - type: Seed
     seedId: anomalyBerry
   - type: Sprite
@@ -163,6 +182,8 @@
   id: AnomalyCoreShadow
   suffix: Shadow
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyShadow
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/shadow_core.rsi
   - type: PointLight
@@ -176,6 +197,8 @@
   id: AnomalyCoreTech
   suffix: Tech
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyTech
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/tech_core.rsi
   - type: PointLight
@@ -189,6 +212,8 @@
   id: AnomalyCoreSanta
   suffix: Santa
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalySanta
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/santa_core.rsi
   - type: PointLight
@@ -219,6 +244,8 @@
   id: AnomalyCorePyroclasticInert
   suffix: Pyroclastic, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyPyroclastic
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/pyro_core.rsi
   - type: PointLight
@@ -232,6 +259,8 @@
   id: AnomalyCoreGravityInert
   suffix: Gravity, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyGravity
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/gravity_core.rsi
   - type: PointLight
@@ -245,6 +274,8 @@
   id: AnomalyCoreIceInert
   suffix: Ice, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyIce
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/ice_core.rsi
   - type: PointLight
@@ -259,6 +290,8 @@
   description: The inert core of a destroyed flesh anomaly. Pulsates sickeningly, but might be good food in the right hands?
   suffix: Flesh, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyFlesh
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/flesh_core.rsi
   - type: PointLight
@@ -272,6 +305,8 @@
   id: AnomalyCoreRockInert
   suffix: Rock, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyRockIron
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/rock_core.rsi
   - type: PointLight
@@ -285,6 +320,8 @@
   id: AnomalyCoreLiquidInert
   suffix: Liquid, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyLiquid
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/liquid_core.rsi
   - type: PointLight
@@ -298,6 +335,8 @@
   id: AnomalyCoreBluespaceInert
   suffix: Bluespace, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyBluespace
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
   - type: PointLight
@@ -311,6 +350,8 @@
   id: AnomalyCoreElectricityInert
   suffix: Electricity, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyElectricity
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/electric_core.rsi
   - type: PointLight
@@ -324,6 +365,8 @@
   id: AnomalyCoreFloraInert #Turns into a seed that grows into artifexium
   suffix: Flora, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyFlora
   - type: Seed
     seedId: anomalyBerry
   - type: Sprite
@@ -339,6 +382,8 @@
   id: AnomalyCoreShadowInert
   suffix: Shadow, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyShadow
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/shadow_core.rsi
   - type: PointLight
@@ -352,6 +397,8 @@
   id: AnomalyCoreTechInert
   suffix: Tech, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalyTech
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/tech_core.rsi
   - type: PointLight
@@ -365,6 +412,8 @@
   id: AnomalyCoreSantaInert
   suffix: Santa, Inert
   components:
+  - type: AnomalyCorePayload
+    anomaly: AnomalySanta
   - type: Sprite
     sprite: Structures/Specific/Anomalies/Cores/santa_core.rsi
   - type: PointLight

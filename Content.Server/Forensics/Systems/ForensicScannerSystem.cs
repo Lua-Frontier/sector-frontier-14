@@ -22,7 +22,7 @@ using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Server.Stack; // Frontier
 using Content.Shared._NF.Bank; // Frontier
 using Content.Shared._NF.Bank.Components; // Frontier
-using Content.Server._Lua.Bank; // Frontier
+using Content.Lua.Shared.Bank; // Frontier
 using Content.Shared._NF.Bank.BUI; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Containers.ItemSlots; // Frontier
@@ -53,7 +53,7 @@ namespace Content.Server.Forensics
         [Dependency] private readonly ItemSlotsSystem _itemSlots = default!; // Frontier
         [Dependency] private readonly SectorServiceSystem _service = default!; // Frontier
         [Dependency] private readonly IConfigurationManager _cfg = default!; // Frontier
-        [Dependency] private readonly BankSystem _bank = default!; // Frontier
+        [Dependency] private readonly IBankSystem _bank = default!; // Frontier
 
         // Frontier: payout constants
         // Temporary values, sane defaults, will be overwritten by CVARs.

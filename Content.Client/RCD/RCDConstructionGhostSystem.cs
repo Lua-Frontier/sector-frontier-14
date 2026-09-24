@@ -32,8 +32,7 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
         var placerProto = _placementManager.CurrentPermission?.EntityType;
         var placerIsRCD = HasComp<RCDComponent>(placerEntity);
 
-        // Exit if erasing or the current placer is not an RCD (build mode is active)
-        if (_placementManager.Eraser || (placerEntity != null && !placerIsRCD))
+        if (_placementManager.Eraser)
             return;
 
         // Determine if player is carrying an RCD in their active hand
@@ -44,12 +43,13 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
 
         if (!TryComp<RCDComponent>(heldEntity, out var rcd))
         {
-            // If the player was holding an RCD, but is no longer, cancel placement
-            if (placerIsRCD)
+            if (placerIsRCD || (placerEntity != null && placerEntity == heldEntity))
                 _placementManager.Clear();
 
             return;
         }
+        if (placerEntity != null && !placerIsRCD)
+            return;
         var prototype = _protoManager.Index(rcd.ProtoId);
 
         // Update the direction the RCD prototype based on the placer direction

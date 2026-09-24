@@ -1,101 +1,92 @@
 #Magazines
 
 - type: latheRecipe
-  parent: BaseAmmoFMJFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRFMJ
-  result: Magazine762x54mmRFMJ
-
-- type: latheRecipe
-  parent: BaseAmmoPlasteelAPFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRPlasteelAP
-  result: Magazine762x54mmRPlasteelAP
-
-- type: latheRecipe
-  parent: BaseAmmoRubberFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRRubber
-  result: Magazine762x54mmRRubber
-
-- type: latheRecipe
-  parent: BaseAmmoIncendiaryFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRIncendiary
-  result: Magazine762x54mmRIncendiary
-
-- type: latheRecipe
-  parent: BaseAmmoPracticeFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRPractice
-  result: Magazine762x54mmRPractice
-
-- type: latheRecipe
   parent: BaseAmmoEmptyFullyPoweredMagazineRecipe
   id: Magazine762x54mmREmpty
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindMagazine
   result: Magazine762x54mmREmpty
 
 - type: latheRecipe
-  parent: BaseAmmoUraniumFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRUranium
-  result: Magazine762x54mmRUranium
-
-- type: latheRecipe
-  parent: BaseAmmoHPFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRHP
-  result: Magazine762x54mmRHP
-
-- type: latheRecipe
-  parent: BaseAmmoRIPFullyPoweredMagazineRecipe
-  id: Magazine762x54mmRRIP
-  result: Magazine762x54mmRRIP
-
-#Speedloaders
-
-- type: latheRecipe
-  parent: BaseAmmoFMJFullyPoweredSpeedloaderRecipe
-  id: SpeedLoader762x54mmRFMJ
-  result: SpeedLoader762x54mmRFMJ
+  parent: BaseAmmoEmptyIntermediateSpeedloaderRecipe
+  id: SpeedLoader762x54mmREmpty
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindSpeedLoader
+  result: SpeedLoader762x54mmREmpty
 
 #Boxes
 
 - type: latheRecipe
   parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRFMJ
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRFMJ
 
 - type: latheRecipe
   parent: BaseAmmoPlasteelAPFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRPlasteelAP
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRPlasteelAP
 
 - type: latheRecipe
   parent: BaseAmmoRubberFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRRubber
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRRubber
 
 - type: latheRecipe
   parent: BaseAmmoIncendiaryFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRIncendiary
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRIncendiary
 
 - type: latheRecipe
   parent: BaseAmmoPracticeFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRPractice
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRPractice
 
 - type: latheRecipe
   parent: BaseAmmoUraniumFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRUranium
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRUranium
 
 - type: latheRecipe
   parent: BaseAmmoHPFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRHP
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRHP
 
 - type: latheRecipe
   parent: BaseAmmoRIPFullyPoweredAmmoBoxRecipe
   id: AmmoBox762x54mmRRIP
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRRIP
 
 #big box
 - type: latheRecipe
   parent: BaseAmmoFMJFullyPoweredBigAmmoBoxRecipe
   id: AmmoBox762x54mmRBigFMJ
+  categories:
+  - AmmoCaliber762x54R
+  - AmmoKindBox
   result: AmmoBox762x54mmRBigFMJ

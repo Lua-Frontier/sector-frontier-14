@@ -1,0 +1,18 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls;assembly=Content.Client"
+                      Title="{Loc 'emergency-lab-menu-title'}"
+                      MinSize="360 420"
+                      SetSize="380 480">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="ItemList"
+                          Orientation="Vertical"
+                          SeparationOverride="4"
+                          HorizontalExpand="True" />
+        </ScrollContainer>
+        <Label Name="HintLabel"
+               Text="{Loc 'emergency-lab-menu-hint'}"
+               StyleClasses="WindowFooterText"
+               HorizontalExpand="True" />
+    </BoxContainer>
+</controls:FancyWindow>

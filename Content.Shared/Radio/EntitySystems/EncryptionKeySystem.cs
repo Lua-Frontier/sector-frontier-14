@@ -73,7 +73,8 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             if (TryComp<EncryptionKeyComponent>(ent, out var key))
             {
                 component.Channels.UnionWith(key.Channels);
-                component.DefaultChannel ??= key.DefaultChannel;
+                if (component.DefaultChannel == null && key.DefaultChannel is { } defaultChannel)
+                    component.DefaultChannel = defaultChannel;
             }
         }
 
@@ -98,7 +99,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         }
         else if (component.KeysExtractionMethod != null // Frontier: add null check
                  && TryComp<ToolComponent>(args.Used, out var tool)
-                 && _tool.HasQuality(args.Used, component.KeysExtractionMethod, tool)
+                 && _tool.HasQuality(args.Used, component.KeysExtractionMethod.Value, tool)
                  && component.KeyContainer.ContainedEntities.Count > 0) // dont block deconstruction
         {
             args.Handled = true;
@@ -161,7 +162,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             return;
         }
 
-        _tool.UseTool(args.Used, args.User, uid, 1f, component.KeysExtractionMethod, new EncryptionRemovalFinishedEvent(), toolComponent: tool);
+        _tool.UseTool(args.Used, args.User, uid, 1f, component.KeysExtractionMethod.Value, new EncryptionRemovalFinishedEvent(), toolComponent: tool);
     }
 
     private void OnStartup(EntityUid uid, EncryptionKeyHolderComponent component, ComponentStartup args)
@@ -207,7 +208,11 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if(component.Channels.Count > 0)
         {
             args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
-            AddChannelsExamine(component.Channels, component.DefaultChannel, args, _protoManager, "examine-encryption-channel");
+            AddChannelsExamine(component.Channels,
+                component.DefaultChannel,
+                args,
+                _protoManager,
+                "examine-encryption-channel");
         }
     }
 
@@ -217,12 +222,12 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     /// <param name="channels">HashSet of channels in headset, encryptionkey or etc.</param>
     /// <param name="protoManager">IPrototypeManager for getting prototypes of channels with their variables.</param>
     /// <param name="channelFTLPattern">String that provide id of pattern in .ftl files to format channel with variables of it.</param>
-    public void AddChannelsExamine(HashSet<string> channels, string? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
+    public void AddChannelsExamine(IEnumerable<ProtoId<RadioChannelPrototype>> channels, ProtoId<RadioChannelPrototype>? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
     {
         RadioChannelPrototype? proto;
         foreach (var id in channels)
         {
-            proto = _protoManager.Index<RadioChannelPrototype>(id);
+            proto = _protoManager.Index(id);
 
             var key = id == SharedChatSystem.CommonChannel
                 ? SharedChatSystem.RadioCommonPrefix.ToString()
@@ -235,7 +240,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                 ("freq", proto.Frequency / 10f)));
         }
 
-        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel, out proto))
+        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel.Value, out proto))
         {
             if (HasComp<HeadsetComponent>(examineEvent.Examined))
             {

@@ -1,7 +1,7 @@
 using Content.Client._NF.Shipyard.UI;
-using Content.Shared._Lua.Achievements;
-using Content.Shared._Lua.Shipyard.Events;
-using Content.Shared._Lua.Shipyard.BUIStates;
+using Content.Lua.Shared.Achievements;
+using Content.Lua.Shared.Shipyard.Events;
+using Content.Lua.Shared.Shipyard.BUIStates;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard.Prototypes; // Lua
@@ -10,6 +10,7 @@ using Robust.Client.UserInterface;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes; // Lua
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._NF.Shipyard.BUI;
 
@@ -39,18 +40,6 @@ public sealed class ShipyardConsoleBoundUserInterface : BoundUserInterface
             _menu.OnDockPortSelected += SelectDockPort; // Lua
             _menu.TargetIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent("ShipyardConsole-targetId"));
             _menu.SetRadarConsole(Owner);
-
-            // Disable the NFSD popup for now.
-            // var rules = new FormattedMessage();
-            // _rulesWindow = new ShipyardRulesPopup(this);
-            // if (ShipyardConsoleUiKey.Security == (ShipyardConsoleUiKey) UiKey)
-            // {
-            //     rules.AddText(Loc.GetString($"shipyard-rules-default1"));
-            //     rules.PushNewline();
-            //     rules.AddText(Loc.GetString($"shipyard-rules-default2"));
-            //     _rulesWindow.ShipRules.SetMessage(rules);
-            //     _rulesWindow.OpenCentered();
-            // }
             _net.ClientSendMessage(new TryUnlockAchievementMessage(AchievementIds.ComputerShipyard));
         }
     }

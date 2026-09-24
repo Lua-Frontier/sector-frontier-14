@@ -194,3 +194,22 @@
   reagents:
     Leporazine: 20
     Dermaline: 20
+
+- type: latheRecipe
+  id: SpaceMedipen
+  result: SpaceMedipen
+  completetime: 5
+  entities:
+    BlankMediPen: 1
+  reagents:
+    Leporazine: 10
+    Barozine: 20
+
+- type: latheRecipe
+  id: StimpackMiniAssembler
+  result: StimpackMini
+  completetime: 5
+  entities:
+    BlankMediPen: 1
+  reagents:
+    Stimulants: 15

@@ -23,6 +23,7 @@
     - Belt
   - type: AmmoCounter
   - type: Gun
+    examineCaliber: gun-examine-caliber-357
     selectedMode: SemiAuto
     fireRate: 1.5
     availableModes:
@@ -41,7 +42,7 @@
         - Cartridge357_magnumFMJ
         - SpeedLoader357_magnumFMJ
     mayTransfer: true # Frontier
-    proto: Cartridge357_magnumFMJ
+    proto: null
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]
@@ -147,7 +148,7 @@
   suffix: armor-piercing
   components:
   - type: RevolverAmmoProvider
-    proto: Cartridge357_magnumAP
+    proto: null
 
 - type: entity
   name: LWC Python (.357 magnum)
@@ -208,10 +209,12 @@
   id: WeaponRevolverPythonAP # For the uplink.
   suffix: armor-piercing
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-357
   - type: RevolverAmmoProvider
     whitelist:
       tags:
         - Cartridge357_magnumFMJ
         - SpeedLoader357_magnumFMJ
-    proto: Cartridge357_magnumAP
+    proto: null
 

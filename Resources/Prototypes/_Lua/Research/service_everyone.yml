@@ -1,0 +1,730 @@
+- type: technology
+  id: SprayPainterMagic
+  name: research-technology-spraypaintermagic
+  entityIcon: SprayPainterMagic
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - SprayPainterMagic
+- type: technology
+  id: CrayonMagic
+  name: research-technology-crayonmagic
+  entityIcon: CrayonMagic
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - CrayonMagic
+- type: technology
+  id: LuaWaterRegenerator
+  name: lua-research-technology-water-regenerator
+  entityIcon: WaterRegenerator
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - WaterRegenerator
+- type: technology
+  id: NFAdvancedCleaning
+  name: nf-research-technology-advanced-cleaning
+  entityIcon: AdvMopItem
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - AdvMopItem
+- type: technology
+  id: NFAdvancedCleaningCyborg
+  name: nf-research-technology-advanced-cleaning-cyborg
+  entityIcon: BorgModuleAdvancedCleaning
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedCleaning
+- type: technology
+  id: ComputerTelevisionCircuitboard
+  name: research-technology-computertelevisioncircuitboard
+  entityIcon: ComputerTelevision
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ComputerTelevisionCircuitboard
+- type: technology
+  id: SurveillanceWirelessCameraMovableCircuitboard
+  name: research-technology-surveillancewirelesscameramovablecircuitboard
+  entityIcon: SurveillanceWirelessCameraMovableConstructed
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - SurveillanceWirelessCameraMovableCircuitboard
+- type: technology
+  id: SurveillanceWirelessCameraAnchoredCircuitboard
+  name: research-technology-surveillancewirelesscameraanchoredcircuitboard
+  entityIcon: SurveillanceWirelessCameraAnchoredConstructed
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - SurveillanceWirelessCameraAnchoredCircuitboard
+- type: technology
+  id: KitchenElectricRange
+  name: research-technology-kitchenelectricrange
+  entityIcon: KitchenElectricRange
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ElectricRangeMachineCircuitboard
+- type: technology
+  id: KitchenAssembler
+  name: research-technology-kitchenassembler
+  entityIcon: KitchenAssembler
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - KitchenAssemblerMachineCircuitboard
+- type: technology
+  id: ReagentGrinderIndustrial
+  name: research-technology-reagentgrinderindustrial
+  entityIcon: ReagentGrinderIndustrial
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ReagentGrinderIndustrialMachineCircuitboard
+- type: technology
+  id: NFAdvancedHydroponicsEquipment
+  name: nf-research-technology-advanced-botanical-equipment
+  entityIcon: PlantAnalyzer
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - PlantAnalyzer
+- type: technology
+  id: NFAdvancedHydroponicsStorge
+  name: nf-research-technology-advanced-botanical-storage
+  entityIcon: PlantBagOfHolding
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - PlantBagOfHolding
+- type: technology
+  id: SynthesizerInstrument
+  name: research-technology-synthesizerinstrument
+  entityIcon: SynthesizerInstrument
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - SynthesizerInstrument
+- type: technology
+  id: DawInstrumentMachineCircuitboard
+  name: research-technology-dawinstrumentmachinecircuitboard
+  entityIcon: DawInstrument
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Pirates
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - DawInstrumentMachineCircuitboard
+- type: technology
+  id: JukeboxCircuitBoard
+  name: research-technology-jukeboxcircuitboard
+  entityIcon: Jukebox
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - JukeboxCircuitBoard
+- type: technology
+  id: ClothingBackpackWaterTank
+  name: research-technology-clothingbackpackwatertank
+  entityIcon: ClothingBackpackWaterTank
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ClothingBackpackWaterTank
+- type: technology
+  id: WeaponSprayNozzle
+  name: research-technology-weaponspraynozzle
+  entityIcon: WeaponSprayNozzle
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - WeaponSprayNozzle
+- type: technology
+  id: NFBasicSpray
+  name: nf-research-technology-basic-spray
+  entityIcon: MegaSprayBottle
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - MegaSprayBottle
+- type: technology
+  id: NFBiogenerator
+  name: nf-research-technology-biogenerator
+  entityIcon: Biogenerator
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - BiogeneratorMachineCircuitboard
+- type: technology
+  id: NFBiomass
+  name: nf-research-technology-biomass
+  entityIcon: BiomassReclaimer
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - BiomassReclaimerMachineCircuitboard
+- type: technology
+  id: NFDeepFryer
+  name: nf-research-technology-deep-fryer
+  entityIcon: KitchenDeepFryer
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - DeepFryerMachineCircuitboard
+- type: technology
+  id: FauxTileAstroGrass
+  name: research-technology-fauxtileastrograss
+  entityIcon: FloorTileItemAstroGrass
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileAstroGrass
+- type: technology
+  id: FauxTileMowedAstroGrass
+  name: research-technology-fauxtilemowedastrograss
+  entityIcon: FloorTileItemMowedAstroGrass
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileMowedAstroGrass
+- type: technology
+  id: FauxTileJungleAstroGrass
+  name: research-technology-fauxtilejungleastrograss
+  entityIcon: FloorTileItemJungleAstroGrass
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileJungleAstroGrass
+- type: technology
+  id: FauxTileAstroIce
+  name: research-technology-fauxtileastroice
+  entityIcon: FloorTileItemAstroIce
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileAstroIce
+- type: technology
+  id: FauxTileAstroSnow
+  name: research-technology-fauxtileastrosnow
+  entityIcon: FloorTileItemAstroSnow
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileAstroSnow
+- type: technology
+  id: FauxTileAstroAsteroidSand
+  name: research-technology-fauxtileastroasteroidsand
+  entityIcon: FloorTileItemAstroAsteroidSand
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - FauxTileAstroAsteroidSand
+- type: technology
+  id: KitchenMicrowave
+  name: research-technology-kitchenmicrowave
+  entityIcon: KitchenMicrowave
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - MicrowaveMachineCircuitboard
+- type: technology
+  id: KitchenReagentGrinder
+  name: research-technology-kitchenreagentgrinder
+  entityIcon: KitchenReagentGrinder
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ReagentGrinderMachineCircuitboard
+- type: technology
+  id: KitchenElectricGrill
+  name: research-technology-kitchenelectricgrill
+  entityIcon: KitchenElectricGrill
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ElectricGrillMachineCircuitboard
+- type: technology
+  id: BoozeDispenser
+  name: research-technology-boozedispenser
+  entityIcon: BoozeDispenser
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Pirates
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - BoozeDispenserMachineCircuitboard
+- type: technology
+  id: SodaDispenser
+  name: research-technology-sodadispenser
+  entityIcon: SodaDispenser
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - SodaDispenserMachineCircuitboard
+- type: technology
+  id: ImpCoffeeMachine
+  name: research-technology-impcoffeemachine
+  entityIcon: ImpCoffeeMachine
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ImpCoffeeMachineCircuitboard
+- type: technology
+  id: NFHardsuitBotanist
+  name: lua-research-technology-botanist-hardsuit
+  entityIcon: ClothingOuterHardsuitBotanist
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - ClothingOuterHardsuitBotanist
+- type: technology
+  id: NFHologramCommunication
+  name: nf-research-technology-hologram-communication
+  entityIcon: NFHolopadShip
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - NFHolopadShipMachineCircuitboard
+- type: technology
+  id: HydroponicsTrayMachineCircuitboard
+  name: research-technology-hydroponicstraymachinecircuitboard
+  entityIcon: hydroponicsTray
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - HydroponicsTrayMachineCircuitboard
+- type: technology
+  id: VendingMachineNutriMachineCircuitboard
+  name: research-technology-vendingmachinenutrimachinecircuitboard
+  entityIcon: VendingMachineNutri
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - VendingMachineNutriMachineCircuitboard
+- type: technology
+  id: VendingMachineSeedsUnlockedMachineCircuitboard
+  name: research-technology-vendingmachineseedsunlockedmachinecircuitboard
+  entityIcon: VendingMachineSeedsUnlocked
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - VendingMachineSeedsUnlockedMachineCircuitboard
+- type: technology
+  id: NFJanicart
+  name: nf-research-technology-janicart
+  entityIcon: NFVehicleJanicart
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - NFVehicleJanicartKey
+- type: technology
+  id: NFJournalism
+  name: nf-research-technology-journalism
+  entityIcon: ComputerMassMedia
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - MassMediaCircuitboard
+- type: technology
+  id: NFMeatManipulation
+  name: nf-research-technology-meat-manipulation
+  entityIcon: FatExtractor
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Syndicate
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - FatExtractorMachineCircuitboard
+- type: technology
+  id: NFPortablePump
+  name: nf-research-technology-portable-cleaning
+  entityIcon: PortablePump
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - PortablePumpMachineCircuitBoard
+- type: technology
+  id: NFSeedExtractor
+  name: nf-research-technology-seed-extractor
+  entityIcon: SeedExtractor
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - SeedExtractorMachineCircuitboard
+- type: technology
+  id: NFSelectiveDropper
+  name: nf-research-technology-food-filtration
+  entityIcon: ServiceSelectiveDropper
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - ServiceSelectiveDropper
+- type: technology
+  id: NFWirelessAudioVisualCommunication
+  name: nf-research-technology-wireless-audio-visual-communication
+  entityIcon: TelecomServer
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - TelecomServerCircuitboard
+- type: technology
+  id: SurveillanceCameraRouterCircuitboard
+  name: research-technology-surveillancecameraroutercircuitboard
+  entityIcon: SurveillanceCameraRouterConstructed
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - SurveillanceCameraRouterCircuitboard
+- type: technology
+  id: SurveillanceCameraMonitorCircuitboard
+  name: research-technology-surveillancecameramonitorcircuitboard
+  entityIcon: ComputerSurveillanceCameraMonitor
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - SurveillanceCameraMonitorCircuitboard
+- type: technology
+  id: ClothingOuterHardsuitCap
+  name: research-technology-clothingouterhardsuitcap
+  entityIcon: ClothingOuterHardsuitCap
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitCap
+- type: technology
+  id: WeaponWaterPistol
+  name: research-technology-weaponwaterpistol
+  entityIcon: WeaponWaterPistol
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - WeaponWaterPistol
+- type: technology
+  id: WeaponWaterBlasterSuper
+  name: research-technology-weaponwaterblastersuper
+  entityIcon: WeaponWaterBlasterSuper
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponWaterBlasterSuper
+- type: technology
+  id: WeaponWaterBlaster
+  name: research-technology-weaponwaterblaster
+  entityIcon: WeaponWaterBlaster
+  discipline: NFService
+  tags:
+  - service
+  factions:
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponWaterBlaster

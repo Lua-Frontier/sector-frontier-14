@@ -1,0 +1,3 @@
+research-console-hint = RMB adds to auto-research. Drag or scroll to pan the tree to the right.
+research-console-version = v1.4
+research-console-search-placeholder = Search technologies...

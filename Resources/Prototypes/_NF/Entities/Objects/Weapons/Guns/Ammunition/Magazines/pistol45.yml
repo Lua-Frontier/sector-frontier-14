@@ -77,6 +77,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGun45
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (.45 pistol)
   parent: NFBaseMagazinePistolSubMachineGun45
   components:
@@ -85,11 +86,12 @@
 
 - type: entity
   id: NFMagazineSubMachineGun45Overpressure
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (.45 pistol, overpressure)
   parent: NFBaseMagazinePistolSubMachineGun45
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Overpressure
+    proto: Cartridge357_magnumOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -111,6 +113,7 @@
 
 - type: entity
   id: NFMagazineSubMachineGun45Rubber
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (.45 pistol, rubber)
   parent: NFBaseMagazinePistolSubMachineGun45
   components:

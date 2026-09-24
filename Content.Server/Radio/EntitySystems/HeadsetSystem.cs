@@ -1,4 +1,5 @@
-using Content.Server._Lua.Language; // Lua
+using System.Linq;
+using Content.Lua.Shared.Language;
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Radio.Components;
@@ -13,6 +14,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -21,7 +23,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Lua
+    [Dependency] private readonly ILanguageSystem _language = default!;
 
     public override void Initialize()
     {

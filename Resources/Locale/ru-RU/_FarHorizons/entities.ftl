@@ -9,9 +9,6 @@ ent-NuclearReactorNormal = ядерный реактор
 ent-NuclearReactorEmpty = ядерный реактор
     .desc = { ent-BaseNuclearReactor.desc }
     .suffix = Пустой
-ent-NuclearReactorRandom = ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Случайный
 ent-NuclearReactorMeltdown = ядерный реактор
     .desc = { ent-BaseNuclearReactor.desc }
     .suffix = Расплавление
@@ -20,35 +17,15 @@ ent-NuclearReactorMelted = ядерный реактор
     .suffix = Расплавлен
 ent-NuclearReactorSmall = малый ядерный реактор
     .desc = { ent-BaseNuclearReactor.desc }
-ent-NuclearReactorSmallRandom = малый ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Случайный
 ent-NuclearReactorSmallMelted = малый ядерный реактор
     .desc = Корпус ядерного реактора, давно расплавившийся. Всё ещё светится остаточным теплом и радиацией.
     .suffix = Расплавлен
 
-## Salvage variants
+## Salvage leftovers
 
-ent-NuclearReactorSalvage = ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-ent-NuclearReactorNormalSalvage = ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Сальваж
-ent-NuclearReactorEmptySalvage = ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Пустой, Сальваж
-ent-NuclearReactorRandomSalvage = ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Случайный, Сальваж
 ent-NuclearReactorMeltedSalvage = ядерный реактор
     .desc = Корпус ядерного реактора, давно расплавившийся. Всё ещё светится остаточным теплом и радиацией.
     .suffix = Расплавлен, Сальваж
-ent-NuclearReactorSmallSalvage = малый ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Сальваж
-ent-NuclearReactorSmallRandomSalvage = малый ядерный реактор
-    .desc = { ent-BaseNuclearReactor.desc }
-    .suffix = Случайный, Сальваж
 ent-NuclearReactorSmallMeltedSalvage = малый ядерный реактор
     .desc = Корпус ядерного реактора, давно расплавившийся. Всё ещё светится остаточным теплом и радиацией.
     .suffix = Расплавлен, Сальваж
@@ -100,6 +77,14 @@ ent-NuclearFabricatorMachineCircuitboard = плата ядерного фабр�
     .desc = Печатная плата машины для ядерного фабрикатора. Использует раму 2×1.
 ent-NuclearCentrifugeMachineCircuitboard = плата ядерной центрифуги
     .desc = Печатная плата машины для ядерной центрифуги.
+ent-NuclearReactorSmallEmptyMachineCircuitboard = малый ядерный реактор (машинная плата)
+    .desc = Печатная плата машины для пустого малого ядерного реактора. Использует раму 3×3.
+ent-NuclearReactorEmptyMachineCircuitboard = ядерный реактор (машинная плата)
+    .desc = Печатная плата машины для пустого ядерного реактора. Использует раму 3×3.
+ent-TurbineSmallMachineCircuitboard = малая газовая турбина (машинная плата)
+    .desc = Печатная плата машины для малой газовой турбины. Использует раму 2×2.
+ent-TurbineMachineCircuitboard = газовая турбина (машинная плата)
+    .desc = Печатная плата машины для газовой турбины. Использует раму 3×3.
 
 ## Materials
 

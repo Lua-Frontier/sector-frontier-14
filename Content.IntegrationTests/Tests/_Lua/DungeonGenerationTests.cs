@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Content.Server.Procedural;
-using Content.Shared._Lua.Expedition;
+using Content.Lua.Shared.Expedition;
 using Content.Shared.Procedural;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -37,7 +37,7 @@ public sealed class DungeonGenerationTests
         var entMan = server.ResolveDependency<IEntityManager>();
         var protoMan = server.ResolveDependency<IPrototypeManager>();
         var mapSys = entMan.System<SharedMapSystem>();
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
         var dungeonSys = entMan.System<DungeonSystem>();
 
         Assert.That(protoMan.HasIndex<DungeonConfigPrototype>(configId), Is.True,

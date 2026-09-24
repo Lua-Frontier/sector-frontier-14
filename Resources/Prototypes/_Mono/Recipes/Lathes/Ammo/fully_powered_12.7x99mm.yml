@@ -1,9 +1,15 @@
 - type: latheRecipe
-  parent: BaseAmmoFMJFullyPoweredMagazineRecipe
-  id: Magazine127x99mm
-  result: Magazine127x99mm
+  parent: BaseAmmoEmptyFullyPoweredMagazineRecipe
+  id: Magazine127x99mmEmpty
+  categories:
+  - AmmoCaliber127x99
+  - AmmoKindMagazine
+  result: Magazine127x99mmEmpty
 
 - type: latheRecipe
   parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
   id: AmmoBox127x99mm
+  categories:
+  - AmmoCaliber127x99
+  - AmmoKindBox
   result: AmmoBox127x99mm

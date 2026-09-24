@@ -4,7 +4,7 @@
 
 using Content.Server._Crescent.ShipShields.Components;
 using Content.Shared._Crescent.ShipShields;
-using Content.Shared._Lua.SpaceHazards;
+using Content.Lua.Shared.SpaceHazards;
 
 namespace Content.Server._Crescent.ShipShields;
 

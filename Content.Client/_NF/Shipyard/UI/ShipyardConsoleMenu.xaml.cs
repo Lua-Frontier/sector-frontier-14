@@ -1,6 +1,8 @@
 using System.Linq;
+using System.Numerics;
 using Content.Client.UserInterface.Controls;
 using Content.Client._NF.Shipyard.BUI;
+using Content.Lua.UIKit.Machines;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared.Shuttles.BUIStates;
@@ -46,6 +48,7 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
     private Dictionary<ProtoId<VesselPrototype>, int> _limitedCounts = new();
     private readonly SharedTransformSystem _xform;
     private readonly SpriteSystem _sprite;
+    private IShipyardDockRadar? _dockRadar;
 
     private static readonly ResPath JobIcons = new("/Textures/Interface/Misc/job_icons.rsi");
     private static readonly ResPath NFJobIcons = new("/Textures/_NF/Interface/Misc/job_icons.rsi");
@@ -117,14 +120,22 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         UnassignDeedButton.OnPressed += (args) => { OnUnassignDeed?.Invoke(args); };
         RenameButton.OnPressed += OnRenameButtonPressed;
 
-        DockRadar.ShowIFF = false; // Lua
-        DockRadar.ShowIFFShuttles = false; // Lua
-        DockRadar.ShowDocks = true; // Lua
-        DockRadar.OnRadarClick += OnDockRadarClick; // Lua
+        if (IoCManager.Instance!.TryResolveType<ILuaMachineUiFactory>(out var factory))
+        {
+            _dockRadar = factory.CreateShipyardDockRadar();
+            _dockRadar.Control.HorizontalExpand = true;
+            _dockRadar.Control.VerticalExpand = true;
+            _dockRadar.Control.MinSize = new Vector2(400, 400);
+            DockRadarHost.AddChild(_dockRadar.Control);
+            _dockRadar.ShowIFF = false;
+            _dockRadar.ShowIFFShuttles = false;
+            _dockRadar.ShowDocks = true;
+            _dockRadar.OnRadarClick += OnDockRadarClick;
+        }
     }
 
     public void SetRadarConsole(EntityUid console)
-    { DockRadar.SetConsole(console); }
+    { _dockRadar?.SetConsole(console); }
 
     public void UpdateDockSelect(NavInterfaceState? nav, NetEntity? selectedPort) // Lua
     {
@@ -136,8 +147,10 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         }
         _dockNav = nav;
         _selectedDockPort = selectedPort;
-        DockRadar.UpdateState(nav);
-        DockRadar.HighlightDockPort = selectedPort;
+        if (_dockRadar == null)
+            return;
+        _dockRadar.UpdateState(nav);
+        _dockRadar.HighlightDockPort = selectedPort;
     }
 
     private void OnDockRadarClick(EntityCoordinates coords) // Lua
@@ -165,19 +178,19 @@ public sealed partial class ShipyardConsoleMenu : FancyWindow
         if (best == null || bestDistSq > maxPickDistance * maxPickDistance)
         {
             _selectedDockPort = null;
-            DockRadar.HighlightDockPort = null;
+            _dockRadar!.HighlightDockPort = null;
             OnDockPortSelected?.Invoke(null);
             return;
         }
         if (_selectedDockPort.HasValue && best == _selectedDockPort.Value)
         {
             _selectedDockPort = null;
-            DockRadar.HighlightDockPort = null;
+            _dockRadar!.HighlightDockPort = null;
             OnDockPortSelected?.Invoke(null);
             return;
         }
         _selectedDockPort = best;
-        DockRadar.HighlightDockPort = best;
+        _dockRadar!.HighlightDockPort = best;
         OnDockPortSelected?.Invoke(best);
     }
 

@@ -6,13 +6,14 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using static Content.Shared.Decals.DecalGridComponent;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Decals
 {
     public abstract class SharedDecalSystem : EntitySystem
     {
         [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-        [Dependency] protected readonly IMapManager MapManager = default!;
+        [Dependency] protected readonly SharedMapSystem MapManager = default!;
 
         protected bool PvsEnabled;
 

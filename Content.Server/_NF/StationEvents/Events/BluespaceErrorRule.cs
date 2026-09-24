@@ -9,7 +9,7 @@ using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
 using Content.Server._NF.Salvage;
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using Content.Shared._NF.Bank.BUI;
 using Content.Server.Procedural;
 using Robust.Shared.Prototypes;
@@ -19,16 +19,16 @@ using Content.Server.StationEvents.Events;
 using Content.Server._NF.Station.Systems;
 using Content.Server._NF.StationEvents.Components;
 using Robust.Shared.EntitySerialization.Systems;
-using Content.Server._Lua.Sectors;
-using Content.Server._Lua.Starmap.Systems;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Sectors;
+using Content.Lua.Shared.Starmap;
+using Content.Lua.Shared.Shuttles;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._NF.StationEvents.Events;
 
 public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleComponent>
 {
     NanotrasenNameGenerator _nameGenerator = new();
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
@@ -41,11 +41,11 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
     [Dependency] private readonly PricingSystem _pricing = default!;
     [Dependency] private readonly LinkedLifecycleGridSystem _linkedLifecycleGrid = default!;
     [Dependency] private readonly StationRenameWarpsSystems _renameWarps = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IBankSystem _bank = default!;
     [Dependency] private readonly SharedSalvageSystem _salvage = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
-    [Dependency] private readonly StarmapSystem _starmap = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
+    [Dependency] private readonly IStarmapSystem _starmap = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     private readonly Dictionary<EntityUid, MapId> _eventMap = new();
 
     private MapId _relevantMapId = MapId.Nullspace;
@@ -87,7 +87,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
             return;
         }
 
-        var mapUid = _mapManager.GetMapEntityId(targetMapId);
+        var mapUid = _mapSystem.GetMapOrInvalid(targetMapId);
         _relevantMapId = targetMapId;
 
         var spawnCoords = new EntityCoordinates(mapUid, Vector2.Zero);
@@ -248,7 +248,7 @@ public sealed class BluespaceErrorRule : StationEventSystem<BluespaceErrorRuleCo
 
         _mapSystem.CreateMap(out var mapId);
 
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
+        var spawnedGrid = _mapSystem.CreateGridEntity(mapId);
 
         _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
         _dungeon.GenerateDungeon(dungeonProto, dungeonProtoId, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);

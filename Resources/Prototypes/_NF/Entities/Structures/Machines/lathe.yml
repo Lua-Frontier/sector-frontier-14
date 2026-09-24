@@ -17,157 +17,6 @@
     - blueprint
 
 - type: entity
-  id: NfsdTechFab
-  parent: [ NFBlueprintReceiverBase, SecurityTechFab ]
-  name: NFSD techfab
-  description: Prints equipment for use by NFSD.
-  suffix: Need balance test
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/techfab.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: nfsd
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: NfsdTechFabCircuitboard
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    staticPacks:
-    - MonoAmmoPackModified #Lua MonoAmmoPack<MonoAmmoPackModified
-    - NFLightsStatic
-    - NFBasicToolsStatic
-    - NFBasicStorageStatic
-    - NFBasicPartsStatic
-    - NFBasicElectronicsStatic
-    - NFBasicEvaStatic
-    - NFBasicEVAToolsStatic
-    - NFMaterialElectronicsStatic
-    - ReportingStatic # DeltaV
-    - NfsdWeaponsStatic
-    - NFMercenaryStorageStatic
-    - NfsdToolsStatic
-    - NfsdTargetsStatic
-    - NfsdBoardsStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - NFBlueprintNfsdTechfab
-      - NFBlueprintAdvanced
-  - type: OreSiloClient
-
-- type: entity
-  id: MercenaryTechFab
-  parent: [ NFBlueprintReceiverBase, BaseLatheLube ]
-  name: mercenary techfab
-  description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/techfab.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: mercenary
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: MercenaryTechFabCircuitboardNF
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    staticPacks:
-    - MonoAmmoPackModifiedCivilian
-    - NFMercenaryTechfabDeprecatedStatic
-    - NFLightsStatic
-    - NFBasicToolsStatic
-    - NFBasicStorageStatic
-    - NFBasicPartsStatic
-    - NFBasicElectronicsStatic
-    - NFBasicEvaStatic
-    - NFBasicEVAToolsStatic
-    - NFMaterialElectronicsStatic
-    - NFBasicEvaLightsStatic
-    - NFMercenaryStatic
-    - NFMercenaryClothesStatic
-    - NFMercenaryStorageStatic
-    - NFMercenaryWeaponsStatic
-    - NFTopicalsStatic
-    - NFMercenaryArchetypeStatic
-    - LuaMercenaryClothesStatic # Lua
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - NFBlueprintMercenaryTechfab
-      - NFBlueprintAdvanced
-  - type: OreSiloClient
-
-- type: entity
-  id: MercenaryTechFabStation
-  parent: [ NFBlueprintReceiverBase, BaseLatheLube, BaseStructureDisableToolUse, BaseStructureIndestructible ]
-  name: mercenary techfab
-  description: Prints the bare minimum of tools of the trade that any budget mercenary or private security could need. Nothing fancy.
-  suffix: POI
-  components:
-  - type: Sprite
-    sprite: _NF/Structures/Machines/techfab.rsi
-    snapCardinals: true
-    layers:
-    - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
-    - state: mercenary
-    - state: unlit
-      shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-    - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-  - type: Machine
-    board: MercenaryTechFabCircuitboardNF
-  - type: Lathe
-    idleState: icon
-    runningState: icon
-    staticPacks:
-    - MonoAmmoPackModifiedCivilian
-    # - NFMercenaryTechfabDeprecatedStatic
-    # - NFLightsStatic
-    # - NFBasicToolsStatic
-    # - NFBasicStorageStatic
-    # - NFBasicPartsStatic
-    # - NFBasicElectronicsStatic
-    # - NFBasicEvaStatic
-    # - NFBasicEVAToolsStatic
-    # - NFMaterialElectronicsStatic
-    # - NFBasicEvaLightsStatic
-    # - NFMercenaryStatic
-    # - NFMercenaryClothesStatic
-    # - NFMercenaryStorageStatic
-    # - NFMercenaryWeaponsStatic
-    # - NFTopicalsStatic
-    # - NFMercenaryArchetypeStatic
-  - type: BlueprintReceiver
-    whitelist:
-      tags:
-      - NFBlueprintMercenaryTechfab
-      - NFBlueprintAdvanced
-  - type: OreSiloClient
-
-- type: entity
   parent: [BaseStructureDisableToolUse, BaseLathe]
   id: PrizeCounter
   name: prize counter
@@ -247,8 +96,8 @@
         - MachineLayer
   - type: BlueprintLathe
     blueprintPrintMaterials:
-      Paper: 300
-    blueprintPrintTime: 5
+      Paper: 100
+    blueprintPrintTime: 30
   - type: BlueprintLatheClientState # persistent, per-client UI state
   - type: MaterialStorage
     whitelist:
@@ -283,6 +132,7 @@
   - type: StaticPrice
     price: 800
   - type: ResearchClient
+    allowedFactions: []
   - type: TechnologyDatabase
   - type: MaterialStorageMagnetPickup
     range: 0.30
@@ -436,3 +286,5 @@
     unlitRunningState: mediwave-on-unlit
     staticPacks:
     - MedicalAssemblerStatic
+    dynamicPacks:
+    - MedicalAssemblerDynamic

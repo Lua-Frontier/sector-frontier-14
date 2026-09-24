@@ -1,10 +1,9 @@
-﻿using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Nutrition.EntitySystems;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Nutrition.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Nutrition.Components;
 
@@ -36,8 +35,8 @@ public sealed partial class FatExtractorComponent : Component
     /// <summary>
     /// Which machine part affects the nutrition rate
     /// </summary>
-    [DataField("machinePartNutritionRate", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-    public string MachinePartNutritionRate = "Manipulator";
+    [DataField("machinePartNutritionRate")]
+    public ProtoId<MachinePartPrototype> MachinePartNutritionRate = "Manipulator";
 
     /// <summary>
     /// The increase in rate per each rating above 1.
@@ -62,8 +61,8 @@ public sealed partial class FatExtractorComponent : Component
     /// <summary>
     /// Meat spawned by the extractor.
     /// </summary>
-    [DataField("meatPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
-    public string MeatPrototype = "FoodMeat";
+    [DataField("meatPrototype"), ViewVariables(VVAccess.ReadWrite)]
+    public EntProtoId MeatPrototype = "FoodMeat";
 
     /// <summary>
     /// When the next update will occur

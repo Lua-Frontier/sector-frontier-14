@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server._Lua.Reputation;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Shared.Administration;
@@ -16,6 +15,7 @@ public sealed class ReputationPanelCommand : LocalizedCommands
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly EuiManager _euis = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly IReputationModerationEuiFactory _reputationEui = default!;
 
     public override string Command => "reputationpanel";
 
@@ -48,7 +48,7 @@ public sealed class ReputationPanelCommand : LocalizedCommands
             return;
         }
 
-        _euis.OpenEui(new ReputationModerationEui(kind, target.UserId, target.Username), admin);
+        _euis.OpenEui(_reputationEui.Create(kind, target.UserId, target.Username), admin);
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)

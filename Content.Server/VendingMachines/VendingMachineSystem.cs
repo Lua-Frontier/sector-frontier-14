@@ -1,7 +1,7 @@
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.Bank.Components;
 using System.Linq;
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using System.Numerics;
 using Content.Server.Cargo.Systems;
 //using Content.Server.Emp; // Frontier: Upstream - #28984
@@ -46,7 +46,7 @@ namespace Content.Server.VendingMachines
         [Dependency] private readonly IGameTiming _timing = default!;
 
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!; // Frontier
-        [Dependency] private readonly BankSystem _bankSystem = default!; // Frontier
+        [Dependency] private readonly IBankSystem _bankSystem = default!; // Frontier
         [Dependency] private readonly PopupSystem _popupSystem = default!; // Frontier
         [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Frontier
         [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
@@ -115,14 +115,16 @@ namespace Content.Server.VendingMachines
 
         private void OnRequestBalance(EntityUid uid, VendingMachineComponent component, VendingMachineRequestBalanceMessage args)
         {
-            SendBalance(uid, args.Actor);
+            PushBalance(uid, args.Actor);
         }
 
-        private void SendBalance(EntityUid uid, EntityUid actor)
+        public void PushBalance(EntityUid uid, EntityUid actor)
         {
             _bankSystem.TryGetBalance(actor, out var balance);
             UISystem.ServerSendUiMessage(uid, VendingMachineUiKey.Key, new VendingMachineBalanceMessage(balance), actor);
         }
+
+        private void SendBalance(EntityUid uid, EntityUid actor) => PushBalance(uid, actor);
 
         protected override void UpdateUI(Entity<VendingMachineComponent?> entity)
         {

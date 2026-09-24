@@ -1,4 +1,4 @@
-using Content.Shared._Lua.Language; // Lua
+using Content.Shared.Language;
 
 namespace Content.Server.Speech;
 

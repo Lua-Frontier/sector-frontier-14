@@ -5,13 +5,15 @@
 - type: entity
   id: MedipenTechFabCircuitboard
   parent: BaseMachineCircuitboard
+  abstract: true
+  categories: [ HideSpawnMenu ]
   name: медипен техфаб (машинная плата)
-  description: Машинная плата техфаба медипенов
+  description: Устарело. Используйте MedicalAssemblerMachineCircuitboard.
   components:
     - type: Sprite
       state: medical
     - type: MachineBoard
-      prototype: MedipenTechfab
+      prototype: MedicalAssembler
       requirements:
         MatterBin: 2
         Manipulator: 2
@@ -133,24 +135,3 @@
     stackRequirements:
       Steel: 8
       Glass: 8
-
-- type: entity
-  id: MachineShieldPLTCircuitboardBuild
-  parent: [MachineShieldPLTCircuitboard, BaseMachineCircuitboard]
-  suffix: Lua
-  components:
-  - type: LuaTech
-  - type: MachineBoard
-    prototype: CircularShieldLuaBuild
-    componentRequirements:
-      AmeFuelContainer:
-        amount: 2
-        defaultPrototype: AmeJar
-    requirements:
-      Capacitor: 4
-      MatterBin: 2
-    stackRequirements:
-      Glass: 10
-      Uranium: 10
-      Plasma: 30
-      Plasteel: 10

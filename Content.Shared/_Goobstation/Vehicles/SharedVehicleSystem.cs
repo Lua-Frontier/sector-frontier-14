@@ -13,6 +13,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Content.Shared._NF.Vehicle.Components; // Frontier
 using Content.Shared.ActionBlocker; // Frontier
 using Content.Shared.Actions.Components; // Frontier

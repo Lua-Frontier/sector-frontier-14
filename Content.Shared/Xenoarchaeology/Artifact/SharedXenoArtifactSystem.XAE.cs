@@ -16,9 +16,6 @@ public abstract partial class SharedXenoArtifactSystem
 
     private void InitializeXAE()
     {
-        SubscribeLocalEvent<XenoArtifactComponent, UseInHandEvent>(OnUseInHand);
-        SubscribeLocalEvent<XenoArtifactComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<XenoArtifactComponent, ActivateInWorldEvent>(OnActivateInWorld);
     }
 
     private void OnUseInHand(Entity<XenoArtifactComponent> ent, ref UseInHandEvent args)

@@ -96,7 +96,7 @@
     netsync: false
     radius: 16
     energy: 8
-    mask: /Textures/_NF/Effects/LightMasks/beam.png
+    lightMask: LightMaskBeam
     color: "#990000"
 
 - type: entity # Basic ballistic turret
@@ -127,6 +127,7 @@
   abstract: true
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-919
     fireRate: 6
     selectedMode: FullAuto
     availableModes:

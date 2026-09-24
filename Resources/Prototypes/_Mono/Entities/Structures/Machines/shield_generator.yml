@@ -187,6 +187,8 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 300
+  - type: Machine
+    board: MachineShieldPOICircuitboard
 
 - type: entity
   id: ShieldGeneratorPOIBio
@@ -230,6 +232,8 @@
     whitelist:
       tags:
         - Chimera
+  - type: Machine
+    board: MachineShieldPOIBioCircuitboard
 
 # TSF capital shield - inbetween POI and MS-500, meant for flyssa
 - type: entity
@@ -304,6 +308,8 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 300
+  - type: Machine
+    board: MachineShieldTSFCapitalCircuitboard
 
 # High-End
 - type: entity

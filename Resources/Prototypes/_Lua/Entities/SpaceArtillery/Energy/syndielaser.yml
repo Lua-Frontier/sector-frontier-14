@@ -26,10 +26,18 @@
 
 - type: entity
   categories: [ ShuttleGun ]
-  parent: WeaponTurretBaseLaserSyndie
+  parent:
+  - WeaponTurretBaseLaserSyndie
+  - ConstructibleMachine
   id: WeaponTurretLaserSyndie
   suffix: ЯО, Ивентовая, ShuttleGun
   components:
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: Machine
+    board: WeaponTurretLaserSyndieCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

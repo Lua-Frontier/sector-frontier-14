@@ -1,0 +1,146 @@
+<!-- LuaCorp - This file is licensed under AGPLv3 -->
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:styles="clr-namespace:Content.Lua.UIKit.Styles;assembly=Content.Lua.UIKit"
+                   xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                   xmlns:ui="clr-namespace:Content.Client.Materials.UI;assembly=Content.Client"
+                   Title="{Loc 'lathe-menu-title'}"
+                   MinSize="1040 620"
+                   SetSize="1180 700">
+    <PanelContainer Name="Shell" Margin="4 2 4 4">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="10 8 10 10">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Name="HeaderTitle" Text="{Loc 'lathe-menu-title'}" HorizontalExpand="True" />
+                <ContainerButton Name="ServerListButton" MinHeight="28" Mode="Press">
+                    <BoxContainer Orientation="Horizontal"
+                                  SeparationOverride="6"
+                                  Margin="8 0"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center">
+                        <PanelContainer Name="ServerStatusDot"
+                                        SetSize="10 10"
+                                        MinSize="10 10"
+                                        MaxSize="10 10"
+                                        VerticalAlignment="Center" />
+                        <Label Text="{Loc 'lathe-menu-server-list'}" VerticalAlignment="Center" />
+                    </BoxContainer>
+                </ContainerButton>
+            </BoxContainer>
+            <PanelContainer Name="HeaderDivider" MinHeight="1" MaxHeight="1" HorizontalExpand="True" />
+            <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="8"
+                          SizeFlagsStretchRatio="5">
+                <PanelContainer Name="CategoryPanel" MinWidth="140" MaxWidth="168" SetWidth="156" VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+                        <Label Name="CategoryHeader" Text="{Loc 'luna-lathe-menu-categories'}" />
+                        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                            <BoxContainer Name="CategoryList"
+                                          Orientation="Vertical"
+                                          SeparationOverride="2"
+                                          HorizontalExpand="True" />
+                        </ScrollContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="4">
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="4">
+                        <BoxContainer Orientation="Horizontal"
+                                      HorizontalExpand="True"
+                                      SizeFlagsStretchRatio="1">
+                            <LineEdit Name="SearchBar"
+                                      PlaceHolder="{Loc 'lathe-menu-search-designs'}"
+                                      HorizontalExpand="True" />
+                        </BoxContainer>
+                        <BoxContainer Name="DisciplineTabs"
+                                      Orientation="Horizontal"
+                                      SeparationOverride="2"
+                                      VerticalAlignment="Center"
+                                      HorizontalAlignment="Left"
+                                      HorizontalExpand="True"
+                                      SizeFlagsStretchRatio="1"
+                                      MinHeight="28"
+                                      MaxHeight="28"
+                                      ToolTip="{Loc 'lathe-menu-discipline-tooltip'}" />
+                    </BoxContainer>
+                    <PanelContainer Name="RecipePanel" VerticalExpand="True" HorizontalExpand="True" MinHeight="160">
+                        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                            <BoxContainer Name="RecipeList"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True"
+                                          RectClipContent="True" />
+                        </ScrollContainer>
+                    </PanelContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <Label Name="AmountLabel" Text="{Loc 'lathe-menu-amount'}" Margin="0 0 8 0" />
+                        <LineEdit Name="AmountLineEdit" PlaceHolder="1" Text="1" MinWidth="64" />
+                        <Label Name="RecipeCount" HorizontalExpand="True" Align="Right" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <CheckBox Name="LoopCheckbox" HorizontalExpand="True" Text="{Loc 'lathe-menu-loop'}" />
+                        <CheckBox Name="SkipCheckbox" HorizontalExpand="True" Text="{Loc 'lathe-menu-skip'}" />
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
+
+            <PanelContainer Name="BodyDivider" MinHeight="1" MaxHeight="1" HorizontalExpand="True" />
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="8"
+                          MinHeight="180" MaxHeight="180">
+                <PanelContainer Name="QueuePanel"
+                                HorizontalExpand="True"
+                                SizeFlagsStretchRatio="1"
+                                MinWidth="320"
+                                VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+                        <Label Name="QueueHeader" Text="{Loc 'lathe-menu-queue-title'}" HorizontalAlignment="Center" />
+                        <PanelContainer Name="FabricatingContainer" HorizontalExpand="True" MinHeight="40">
+                            <BoxContainer Orientation="Vertical" HorizontalExpand="True" Margin="4" SeparationOverride="2">
+                                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                                    <BoxContainer Name="FabricatingDisplayContainer"
+                                                  MinSize="28 28"
+                                                  VerticalAlignment="Center" />
+                                    <Label Name="NameLabel"
+                                           HorizontalExpand="True"
+                                           VerticalAlignment="Center"
+                                           Margin="8 0 0 0"
+                                           RectClipContent="True" />
+                                    <Button Name="DeleteFabricating"
+                                            StyleClasses="Caution"
+                                            Text="✖"
+                                            SetSize="38 32" />
+                                </BoxContainer>
+                                <ProgressBar Name="ProductionProgress"
+                                             MinValue="0"
+                                             MaxValue="1"
+                                             Value="0"
+                                             HorizontalExpand="True"
+                                             MinHeight="8"
+                                             MaxHeight="8" />
+                            </BoxContainer>
+                        </PanelContainer>
+                        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                            <BoxContainer Name="QueueList"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          VerticalExpand="True"
+                                          RectClipContent="True" />
+                        </ScrollContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="MaterialsPanel"
+                                HorizontalExpand="True"
+                                SizeFlagsStretchRatio="1"
+                                MinWidth="320"
+                                VerticalExpand="True">
+                    <BoxContainer Orientation="Vertical" Margin="6" SeparationOverride="4">
+                        <Label Name="MaterialsHeader" Text="{Loc 'lathe-menu-materials-title'}" HorizontalAlignment="Center" />
+                        <ui:MaterialStorageControl Name="MaterialsList" VerticalExpand="True" />
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</styles:LunaWindow>

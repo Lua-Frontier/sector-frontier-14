@@ -69,7 +69,7 @@
   categories: [ ShuttleGun ]
   id: WeaponTurretCharon
   name: M381 CHARON mass driver
-  parent: [WeaponTurretCharonBase, BallisticArtilleryUnanchorable]
+  parent: [WeaponTurretCharonBase, BallisticArtilleryUnanchorable, ConstructibleMachine]
   suffix: Station, Recharging Ammo
   description: A capital-class railgun that fires a massive slug at extreme velocity, capable of catastrophic damage to enemy ships. Heavy linear accelerator, can be remotely activated or linked up to a GCS. This one feeds from an autoloader somewhere, and doesn't need manual reloads.
   components:
@@ -83,22 +83,10 @@
   - type: ProjectileBatteryAmmoProvider
     proto: ShipRailgunProjectile
     fireCost: 1500
+  - type: Machine
+    board: WeaponTurretCharonCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
-# Ship one w/ limited ammo
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretCharonReload
-  name: M381 CHARON mass driver
-  parent: [WeaponTurretCharonBase, BallisticArtilleryUnanchorableCartridge]
-  suffix: Spinal, T4
-  description: A capital-class railgun that fires a massive slug at extreme velocity, capable of catastrophic damage to enemy ships. Heavy linear accelerator, can be remotely activated or linked up to a GCS.
-  components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - CharonSlug
-    capacity: 1
-    proto: CharonSlugAmmo
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg

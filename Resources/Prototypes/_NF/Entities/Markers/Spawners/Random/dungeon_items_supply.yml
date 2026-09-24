@@ -307,15 +307,14 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - TelecomServerFlatpack
-    - OreProcessorFlatpack
-    - ProtolatheFlatpack
-    - OreProcessorIndustrialFlatpack
-    - MaterialReclaimerFlatpack
-    - WeaponCapacitorRechargerFlatpack
+    - TelecomServerCircuitboard
+    - OreProcessorMachineCircuitboard
+    - ProtolatheMachineCircuitboard
+    - OreProcessorIndustrialMachineCircuitboard
+    - MaterialReclaimerMachineCircuitboard
+    - WeaponCapacitorRechargerCircuitboard
     chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - ShuttleGunKineticFlatpack
-#    - AmmoTechFabFlatpack # comment from _Lua
+    - ShuttleGunKineticCircuitboard
     rareChance: 0.01

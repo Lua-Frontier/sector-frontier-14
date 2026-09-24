@@ -21,6 +21,7 @@
 
 - type: entity
   id: SpeedLoader9x19mmFMJ
+  categories: [ HideSpawnMenu ]
   name: "speed loader (9x19mm FMJ)"
   parent: BaseSpeedLoader9x19mm
   components:
@@ -44,6 +45,7 @@
 
 - type: entity
   id: SpeedLoader9x19mmEmpty
+  categories: [ HideSpawnMenu ]
   name: "speed loader (9x19mm any)"
   parent: SpeedLoader9x19mmFMJ
   components:
@@ -62,6 +64,7 @@
 
 - type: entity
   id: SpeedLoader9x19mmIncendiary
+  categories: [ HideSpawnMenu ]
   name: "speed loader (9x19mm incendiary)"
   parent: BaseSpeedLoader9x19mm
   components:
@@ -82,6 +85,7 @@
 
 - type: entity
   id: SpeedLoader9x19mmPractice
+  categories: [ HideSpawnMenu ]
   name: "speed loader (9x19mm practice)"
   parent: BaseSpeedLoader9x19mm
   components:
@@ -105,6 +109,7 @@
 
 - type: entity
   id: SpeedLoader9x19mmUranium
+  categories: [ HideSpawnMenu ]
   name: "speed loader (9x19mm uranium)"
   parent: BaseSpeedLoader9x19mm
   components:
@@ -128,6 +133,7 @@
 
 - type: entity
   id: SpeedLoader9x19mmRubber
+  categories: [ HideSpawnMenu ]
   name: "speed loader (9x19mm rubber)"
   parent: BaseSpeedLoader9x19mm
   components:

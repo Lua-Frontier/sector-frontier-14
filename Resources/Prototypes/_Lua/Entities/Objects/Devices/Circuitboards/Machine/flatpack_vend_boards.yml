@@ -1,0 +1,87 @@
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SolarAssemblyCircuitboard
+  name: solar assembly machine board
+  description: A machine printed circuit board for solar assembly parts.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: SolarAssemblyMachine
+    stackRequirements:
+      Steel: 3
+      Glass: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AirlockCircuitboard
+  name: airlock machine board
+  description: A machine printed circuit board for an airlock.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: AirlockMachine
+    stackRequirements:
+      Steel: 5
+      Glass: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AirlockGlassCircuitboard
+  name: glass airlock machine board
+  description: A machine printed circuit board for a glass airlock.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: AirlockGlassMachine
+    stackRequirements:
+      Steel: 4
+      Glass: 4
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AirlockShuttleCircuitboard
+  name: docking airlock machine board
+  description: A machine printed circuit board for a docking airlock.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: AirlockShuttleMachine
+    stackRequirements:
+      Steel: 6
+      Glass: 2
+      Plasma: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: AirlockGlassShuttleCircuitboard
+  name: glass docking airlock machine board
+  description: A machine printed circuit board for a glass docking airlock.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: AirlockGlassShuttleMachine
+    stackRequirements:
+      Steel: 5
+      Glass: 4
+      Plasma: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: TeslaGroundingRodCircuitboard
+  name: grounding rod machine board
+  description: A machine printed circuit board for a tesla grounding rod.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: TeslaGroundingRod
+    requirements:
+      Capacitor: 2
+    stackRequirements:
+      Steel: 5
+      CableHV: 2

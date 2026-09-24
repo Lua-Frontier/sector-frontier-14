@@ -8,6 +8,7 @@
   id: BaseTraitorRule
   components:
   - type: TraitorRule
+    giveUplink: false
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
