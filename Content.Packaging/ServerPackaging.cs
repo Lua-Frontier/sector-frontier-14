@@ -196,6 +196,11 @@ public static class ServerPackaging
         inputPassResources.InjectFinished();
     }
 
+    private static readonly string[] ExtraServerAssemblies =
+    [
+        "Content.Lua.Server",
+    ];
+
     // This returns both content assemblies (e.g. Content.Server.dll) and dependencies (e.g. Npgsql)
     private static IEnumerable<string> GetContentAssemblyNamesToCopy(DepsHandler deps)
     {
@@ -207,7 +212,7 @@ public static class ServerPackaging
         // Remove .dll suffix and apply filtering.
         var names = depsContentExclusive.Select(p => p[..^4]).Where(p => !ServerNotExtraAssemblies.Any(p.StartsWith));
 
-        return names;
+        return names.Concat(ExtraServerAssemblies).Distinct();
 
         IEnumerable<string> GetLibraryNames(string library) => deps.Libraries[library].GetDllNames();
     }

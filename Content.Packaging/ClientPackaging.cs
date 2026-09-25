@@ -75,7 +75,15 @@ public static class ClientPackaging
             inputPass,
             contentDir,
             "Content.Client",
-            new[] { "Content.Client", "Content.Shared", "Content.Shared.Database" },
+            [
+                "Content.Client",
+                "Content.Shared",
+                "Content.Shared.Database",
+                "Content.Lua.Client",
+                "Content.Lua.Shared",
+                "Content.Lua.Common",
+                "Content.Lua.UIKit",
+            ],
             cancel: cancel);
 
         await RobustClientPackaging.WriteClientResources(contentDir, inputPass, cancel);
