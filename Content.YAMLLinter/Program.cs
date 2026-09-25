@@ -177,7 +177,8 @@ namespace Content.YAMLLinter
         private static async Task<(Assembly[] clientAssemblies, Assembly[] serverAssemblies)>
             GetClientServerAssemblies()
         {
-            await using var pair = await PoolManager.GetServerClient();
+            await using var pair = await PoolManager.GetServerClient(
+                testContext: new ExternalTestContext(nameof(YAMLLinter), Console.Out));
 
             var result = (GetAssemblies(pair.Client), GetAssemblies(pair.Server));
 

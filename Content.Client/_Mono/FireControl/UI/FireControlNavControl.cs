@@ -1,4 +1,4 @@
-using Content.Client._Lua.Styles;
+using Content.Lua.UIKit.Styles;
 using Content.Client._Mono.Radar;
 using Content.Client.Shuttles.UI;
 using Content.Shared._Mono.FireControl;

@@ -1,4 +1,4 @@
-﻿using Content.Server.Storage.Components;
+using Content.Server.Storage.Components;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -52,10 +52,13 @@ public sealed class LinkBluespaceLocker : IConsoleCommand
         }
 
         _entManager.EnsureComponent<BluespaceLockerComponent>(originUid.Value, out var originBluespaceComponent);
+        EnableTeleportEffects(originBluespaceComponent);
         originBluespaceComponent.BluespaceLinks.Add(targetUid.Value);
+
         _entManager.EnsureComponent<BluespaceLockerComponent>(targetUid.Value, out var targetBluespaceComponent);
         if (bidirectional)
         {
+            EnableTeleportEffects(targetBluespaceComponent);
             targetBluespaceComponent.BluespaceLinks.Add(originUid.Value);
         }
         else if (targetBluespaceComponent.BluespaceLinks.Count == 0)
@@ -64,5 +67,10 @@ public sealed class LinkBluespaceLocker : IConsoleCommand
             targetBluespaceComponent.BehaviorProperties.TransportEntities = false;
             targetBluespaceComponent.BehaviorProperties.TransportGas = false;
         }
+    }
+    private static void EnableTeleportEffects(BluespaceLockerComponent component)
+    {
+        component.BehaviorProperties.BluespaceEffectOnTeleportSource = true;
+        component.BehaviorProperties.BluespaceEffectOnTeleportTarget = true;
     }
 }

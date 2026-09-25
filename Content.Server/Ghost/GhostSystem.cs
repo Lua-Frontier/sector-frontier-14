@@ -12,7 +12,7 @@ using Content.Server.Warps;
 using Content.Shared.Actions;
 using Content.Shared.Cargo; // Frontier
 using Content.Shared.CCVar;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
@@ -45,7 +45,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.Preferences.Managers;
 using Content.Server.Sponsors;
-using Content.Shared._Lua.SponsorLoadout;
+using Content.Lua.Shared.SponsorLoadout;
 using Robust.Shared.Network;
 
 namespace Content.Server.Ghost

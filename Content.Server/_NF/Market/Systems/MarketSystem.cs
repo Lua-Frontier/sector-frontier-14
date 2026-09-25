@@ -1,4 +1,4 @@
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using Content.Server.Cargo.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
@@ -13,7 +13,7 @@ namespace Content.Server._NF.Market.Systems;
 
 public sealed partial class MarketSystem: SharedMarketSystem
 {
-    [Dependency] private readonly BankSystem _bankSystem = default!;
+    [Dependency] private readonly IBankSystem _bankSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;

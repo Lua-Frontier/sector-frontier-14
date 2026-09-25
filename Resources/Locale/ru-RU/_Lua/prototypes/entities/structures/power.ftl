@@ -3,6 +3,9 @@ ent-GeneratorCRPinch = SKR CR-class Z-pinch термоядерный реакт�
     Идеальная мощность составляет 105 кВт. Минимальная и максимальная мощность составляет 60 и 150 кВт.
     Без защиты реактор является высокорадиоактивным из-за легкой иридитовой рамы.
 
+ent-GeneratorCRPinchMachineCircuitboard = пинч-генератор CR (машинная плата)
+    .desc = Печатная плата машины для SKR CR-class Z-pinch термоядерного генератора. Использует раму 2×1.
+
 ent-GeneratorCRPinchShuttle = SKR CR-class Z-pinch термоядерный реактор
     .desc = { ent-GeneratorCRPinch.desc }
 

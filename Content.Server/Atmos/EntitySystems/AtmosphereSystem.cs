@@ -2,7 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -22,6 +22,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Threading;
 using System.Linq;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Atmos.EntitySystems;
 
@@ -65,8 +66,6 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
 
     private float _metricsTimer;
     private const float MetricsInterval = 30f;
-
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IParallelManager _parallel = default!;
@@ -81,7 +80,7 @@ public sealed partial class AtmosphereSystem : SharedAtmosphereSystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] public readonly PuddleSystem Puddle = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!; // Frontier
+    [Dependency] private readonly ISectorSystem _sectors = default!;
 
     private const float ExposedUpdateDelay = 1f;
     private float _exposedTimer = 0f;

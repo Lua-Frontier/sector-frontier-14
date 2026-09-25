@@ -1,0 +1,131 @@
+- type: technology
+  id: MechEquipmentHonkerBananaMortar
+  name: research-technology-mechequipmenthonkerbananamortar
+  entityIcon: WeaponMechSpecialBananaMortar
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 6000
+  recipeUnlocks:
+  - MechEquipmentHonkerBananaMortar
+- type: technology
+  id: MechEquipmentHonkerMousetrapMortar
+  name: research-technology-mechequipmenthonkermousetrapmortar
+  entityIcon: WeaponMechSpecialMousetrapMortar
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 6000
+  recipeUnlocks:
+  - MechEquipmentHonkerMousetrapMortar
+- type: technology
+  id: NFCritterMechs
+  name: nf-research-technology-critter-mechs
+  entityIcon: MechHamtr
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - HamtrHarness
+  - HamtrLArm
+  - HamtrRArm
+  - HamtrLLeg
+  - HamtrRLeg
+  - HamtrCentralElectronics
+  - HamtrPeripheralsElectronics
+- type: technology
+  id: ClothingOuterHardsuitClown
+  name: research-technology-clothingouterhardsuitclown
+  entityIcon: ClothingOuterHardsuitClown
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitClown
+- type: technology
+  id: ClothingOuterHardsuitMime
+  name: research-technology-clothingouterhardsuitmime
+  entityIcon: ClothingOuterHardsuitMime
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitMime
+- type: technology
+  id: NFHONKMech
+  name: nf-research-technology-honk-mech
+  entityIcon: MechHonker
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - HonkerHarness
+  - HonkerLArm
+  - HonkerRArm
+  - HonkerLLeg
+  - HonkerRLeg
+  - HonkerCentralElectronics
+  - HonkerPeripheralsElectronics
+  - HonkerTargetingElectronics
+- type: technology
+  id: NFHornRoboticsEquipment
+  name: nf-research-technology-horn-robotics-equipment
+  entityIcon: MechEquipmentHorn
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - MechEquipmentHorn
+- type: technology
+  id: NFPushHorn
+  name: nf-research-technology-clowning-utilities
+  entityIcon: PushHorn
+  discipline: NFService
+  tags:
+  - service
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - PushHorn

@@ -5,6 +5,7 @@
   parent:
   - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier3HP
+  - ConstructibleMachine
   description: A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
   components:
   - type: StaticPrice
@@ -36,6 +37,8 @@
       tags:
       - LightFighterOrdinance
     capacity: 2
+    infiniteUnspawned: true
+    proto: LightFighterOrdinanceGPOItem
     soundInsert:
       path: /Audio/Items/rped.ogg
   - type: Actions
@@ -50,3 +53,10 @@
   - type: ShipRepairable
     repairTime: 25
     repairCost: 100
+  - type: Machine
+    board: WeaponTurretLightMunitionsBayCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

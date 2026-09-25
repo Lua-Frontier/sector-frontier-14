@@ -3,7 +3,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
-using Content.Server._Lua.Language; // Lua
+using Content.Lua.Shared.Language;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Radio;
 using Robust.Shared.Configuration;
@@ -25,7 +25,7 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly TTSManager _ttsManager = default!;
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] private readonly IRobustRandom _rng = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Lua
+    [Dependency] private readonly ILanguageSystem _language = default!;
 
     private readonly List<string> _sampleText =
         new()

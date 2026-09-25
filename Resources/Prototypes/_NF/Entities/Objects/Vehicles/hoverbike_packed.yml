@@ -1,0 +1,82 @@
+- type: entity
+  id: BaseHoverbikePacked
+  parent: BaseItem
+  abstract: true
+  name: packed hoverbike
+  description: A folded hoverbike. Use it on the floor to unpack. Keys included.
+  components:
+  - type: MultiHandedItem
+  - type: Sprite
+    sprite: _Lua/Objects/Vehicles/hoverbike_packed.rsi
+    state: packed
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: _Lua/Objects/Vehicles/hoverbike_packed.rsi
+
+- type: entity
+  id: HoverbikePacked
+  parent: BaseHoverbikePacked
+  name: packed hoverbike
+  suffix: Neutral
+  description: A folded hoverbike. Use it on the floor to unpack. Keys included.
+  components:
+  - type: SpawnAfterInteract
+    prototype: NFVehicleHoverbikeKeys
+    doAfter: 5
+    removeOnInteract: true
+
+- type: entity
+  id: HoverbikeMailcarrierPacked
+  parent: BaseHoverbikePacked
+  name: packed mailcarrier hoverbike
+  suffix: Nanotrasen
+  description: A folded mailcarrier hoverbike. Use it on the floor to unpack. Keys included.
+  components:
+  - type: SpawnAfterInteract
+    prototype: VehicleHoverbikeMailcarrierKey
+    doAfter: 5
+    removeOnInteract: true
+
+- type: entity
+  id: HoverbikeNfsdPacked
+  parent:
+  - BaseC2ContrabandUnredeemable
+  - BaseHoverbikePacked
+  name: packed NFSD hoverbike
+  suffix: Security
+  description: A folded NFSD hoverbike. Use it on the floor to unpack. Keys included.
+  components:
+  - type: SpawnAfterInteract
+    prototype: NFVehicleHoverbikeNfsdKey
+    doAfter: 5
+    removeOnInteract: true
+
+- type: entity
+  id: HoverbikePiratePacked
+  parent:
+  - BaseC1PirateContraband
+  - BaseHoverbikePacked
+  name: packed pirate hoverbike
+  suffix: Pirate
+  description: A folded pirate hoverbike. Use it on the floor to unpack. Keys included.
+  components:
+  - type: SpawnAfterInteract
+    prototype: VehicleHoverbikePirateKey
+    doAfter: 5
+    removeOnInteract: true
+
+- type: entity
+  id: HoverbikeSyndicatePacked
+  parent:
+  - BaseC1SyndicateContraband
+  - BaseHoverbikePacked
+  name: packed syndicate hoverbike
+  suffix: Syndicate
+  description: A folded syndicate hoverbike. Use it on the floor to unpack. Keys included.
+  components:
+  - type: SpawnAfterInteract
+    prototype: VehicleHoverbikeSyndicateKey
+    doAfter: 5
+    removeOnInteract: true

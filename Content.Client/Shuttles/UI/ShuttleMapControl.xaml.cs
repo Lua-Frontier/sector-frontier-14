@@ -1,8 +1,10 @@
 using System.Buffers;
 using System.Numerics;
-using Content.Client._Lua.Styles;
+using Content.Lua.UIKit.Styles;
 using Content.Client.Shuttles.Systems;
-using Content.Shared._Lua.SpaceHazards;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.SpaceHazards;
+using Content.Lua.UIKit.Shuttles;
 using Content.Shared._Mono.Company;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -34,7 +36,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
     private readonly SharedMapSystem _mapSystem;
     private readonly ShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xformSystem;
-    private readonly IFFDecryptionSystem _iffDecrypt; // Lua Decrypt mod
+    private readonly IIFFDecryptionSystem _iffDecrypt; // Lua Decrypt mod
 
     protected override bool Draggable => true;
     protected override bool AllowResize => true; // Lua
@@ -103,7 +105,7 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         _mapSystem = EntManager.System<SharedMapSystem>();
         _shuttles = EntManager.System<ShuttleSystem>();
         _xformSystem = EntManager.System<SharedTransformSystem>();
-        _iffDecrypt = EntManager.System<IFFDecryptionSystem>(); // Lua Decrypt mod
+        _iffDecrypt = EntManager.System<IIFFDecryptionSystem>(); // Lua Decrypt mod
         var cache = IoCManager.Resolve<IResourceCache>();
 
         _physicsQuery = EntManager.GetEntityQuery<PhysicsComponent>();
@@ -499,7 +501,24 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             LunaDraw.Circle(handle, localPos, exclusion.Range * MinimapScale, exclusionColor.WithAlpha(0.05f));
             LunaDraw.Circle(handle, localPos, exclusion.Range * MinimapScale, exclusionColor, filled: false);
         }
-        DrawMapSpaceHazards(handle, matty, viewBox);
+        if (IoCManager.Instance != null && IoCManager.Instance.TryResolveType(out IShuttleRadarLuaDraw? luaRadar))
+        {
+            luaRadar.DrawMapOverlays(new ShuttleMapLuaDrawContext
+            {
+                Handle = handle,
+                EntManager = EntManager,
+                Transform = _xformSystem,
+                ViewingMap = ViewingMap,
+                MapTransform = matty,
+                ViewBox = viewBox,
+                EyeOffset = Offset,
+                MinimapScale = MinimapScale,
+                UIScale = UIScale,
+                Font = _font,
+                ScalePosition = ScalePosition,
+                DrawSoftText = DrawSoftMapText,
+            });
+        }
 
         _verts.Clear();
         _edges.Clear();
@@ -683,7 +702,20 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
         var mousePos = _inputs.MouseScreenPosition;
         var mouseLocalPos = GetLocalPosition(mousePos);
 
-        DrawDroneRoutes(handle, matty, (float) realTime.TotalSeconds * 30f);
+        if (IoCManager.Instance != null && IoCManager.Instance.TryResolveType(out IShuttleRadarLuaDraw? luaMapRadar))
+        {
+            luaMapRadar.DrawMapDroneRoutes(new ShuttleMapLuaDroneContext
+            {
+                Handle = handle,
+                EntManager = EntManager,
+                Transform = _xformSystem,
+                ViewingMap = ViewingMap,
+                MapTransform = matty,
+                AnimOffset = (float) realTime.TotalSeconds * 30f,
+                ScalePosition = ScalePosition,
+                DroneRoutes = _droneRoutes,
+            });
+        }
 
         // Draw dotted line from our own shuttle entity to mouse.
         if (FtlMode && !ShowFTLRangeOnly)

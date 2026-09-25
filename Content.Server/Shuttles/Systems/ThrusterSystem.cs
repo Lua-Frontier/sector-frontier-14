@@ -25,8 +25,8 @@ using Content.Shared.Localizations;
 using Content.Shared.Power;
 using Content.Shared.DeviceLinking.Events; // Frontier
 using Content.Shared.Shuttles.Events;
-using Content.Server._Lua.Shuttles.Systems;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -43,7 +43,7 @@ public sealed class ThrusterSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     private const string GrillePrototypeId = "Grille";
     private static readonly HashSet<string> CablePrototypeIds = new() { "CableApcExtension", "CableHV", "CableMV" };

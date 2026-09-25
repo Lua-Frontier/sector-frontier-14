@@ -3,13 +3,16 @@ using System.Runtime.CompilerServices;
 using Content.Server.Physics.Components;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server._Lua.Shuttles.Systems; // Lua
-using Content.Server._Lua.SpaceHazards;
+using Content.Shared.Shuttles;
+using Content.Lua.Shared.Shuttles.Components;
+using Content.Shared.SpaceHazards;
 using Content.Shared.Friction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
+using Content.Lua.Shared.SpaceHazards;
+using Content.Lua.Shared.Shuttles;
 using Content.Shared.Ghost; // Frontier
 using Prometheus;
 using Robust.Shared.Physics.Components;
@@ -18,7 +21,6 @@ using Robust.Shared.Player;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using Robust.Shared.Map.Components;
-using Content.Server._Lua.Shuttles.Components;
 
 namespace Content.Server.Physics.Controllers;
 
@@ -30,9 +32,9 @@ public sealed class MoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
-    [Dependency] private readonly NebulaEnvironmentSystem _nebulaEnvironment = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleTabletSystem _tablet = default!;
+    [Dependency] private readonly INebulaEnvironmentSystem _nebulaEnvironment = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 

@@ -117,11 +117,14 @@
 
 - type: entity
   id: TeslaGroundingRod
+  parent: ConstructibleMachine
   name: grounding rod
   description: A machine that keeps lightning from striking too far away.
   placement:
     mode: SnapgridCenter
   components:
+  - type: Machine
+    board: TeslaGroundingRodCircuitboard
   - type: Transform
     anchored: true
   - type: Physics

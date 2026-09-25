@@ -1,0 +1,31 @@
+- type: technology
+  id: NanotrasenRndServer
+  name: research-technology-nanotrasen-rnd-server
+  entityIcon: ResearchAndDevelopmentServer
+  discipline: NFScience
+  tags:
+  - science
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Security
+  - Neutral
+  cost: 500
+  recipeUnlocks:
+  - ResearchAndDevelopmentServerMachineCircuitboard
+- type: technology
+  id: NanotrasenRndConsole
+  name: research-technology-nanotrasen-rnd-console
+  entityIcon: ComputerResearchAndDevelopment
+  discipline: NFScience
+  tags:
+  - science
+  signatureFor: Nanotrasen
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 500
+  recipeUnlocks:
+  - ResearchComputerCircuitboard

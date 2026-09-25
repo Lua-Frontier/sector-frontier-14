@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server._NF.Shuttles.Components; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
@@ -32,8 +32,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Maps;
 using Content.Shared.Tag;
-using Content.Server._Lua.Shuttles.Systems;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.Shuttles.Components;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -46,7 +47,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly IAdminLogManager _logger = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly BiomeSystem _biomes = default!;
@@ -73,8 +74,8 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
 
     private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<MapGridComponent> _gridQuery;

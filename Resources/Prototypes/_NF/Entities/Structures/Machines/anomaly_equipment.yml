@@ -1,8 +1,8 @@
 - type: entity
   id: MachineMiniAnomalyGenerator
-  parent: MachineAnomalyGenerator
+  parent: [ MachineAnomalyGenerator, ConstructibleMachine ]
   name: mini anomaly generator
-  description: The peak of pseudoscientific technology.
+  description: The peak of compact pseudoscientific technology.
   placement:
     mode: AlignTileAny
   components:
@@ -46,6 +46,8 @@
         - LargeMobMask
         layer:
         - WallLayer
+  - type: Machine
+    board: MiniAnomalyGeneratorCircuitboard
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -59,3 +61,28 @@
         enum.AnomalyGeneratorVisualLayers.Base:
           True: { visible: true }
           False: { visible: false }
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: MiniAnomalyGeneratorCircuitboard
+  name: mini anomaly generator machine board
+  description: A machine printed circuit board for a mini anomaly generator.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: MachineMiniAnomalyGenerator
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    stackRequirements:
+      Glass: 5
+      Steel: 5
+      Cable: 5
+    tagRequirements:
+      MicroprocessorEconomy1:
+        amount: 2
+        defaultPrototype: MicroprocessorEconomy1
+      RadioEconomy1:
+        amount: 1
+        defaultPrototype: RadioEconomy1

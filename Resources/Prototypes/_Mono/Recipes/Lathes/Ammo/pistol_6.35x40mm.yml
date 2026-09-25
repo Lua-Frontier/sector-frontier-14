@@ -1,23 +1,76 @@
 #SMG Magazines
 
 - type: latheRecipe
-  parent: BaseAmmoFMJPistolCaliberSubMachineGunMagazineRecipe
-  id: Magazine635x40mmCaseless
-  result: Magazine635x40mmCaseless
+  parent: BaseAmmoEmptyPistolCaliberPistolMagazineRecipe
+  id: Magazine635x40mmCaselessPistolEmpty
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindMagazine
+  result: Magazine635x40mmCaselessPistolEmpty
 
 #Ammo boxes
 
 - type: latheRecipe
   parent: BaseAmmoFMJPistolCaliberAmmoBoxRecipe
   id: AmmoBox635x40mmCaseless
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindBox
   result: AmmoBox635x40mmCaseless
 
 - type: latheRecipe
   parent: BaseAmmoFMJPistolCaliberAmmoBoxRecipe
-  id: MagazineAsmgtUniversal635x40mm
-  result: MagazineAsmgtUniversal635x40mm
+  id: AmmoBox635x40mmCaselessBig
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindBox
+  result: AmmoBox635x40mmCaselessBig
 
 - type: latheRecipe
-  parent: BaseAmmoFMJPistolCaliberAmmoBoxRecipe
-  id: AmmoBox635x40mmCaselessBig
-  result: AmmoBox635x40mmCaselessBig
+  parent: BaseAmmoPracticePistolCaliberAmmoBoxRecipe
+  id: AmmoBox635x40mmCaselessPractice
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindBox
+  result: AmmoBox635x40mmCaselessPractice
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberAmmoBoxRecipe
+  id: AmmoBox635x40mmCaselessRubber
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindBox
+  result: AmmoBox635x40mmCaselessRubber
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberAmmoBoxRecipe
+  id: AmmoBox635x40mmCaselessBigRubber
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindBox
+  result: AmmoBox635x40mmCaselessBigRubber
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine635x40mmCaselessEmpty
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindMagazine
+  result: Magazine635x40mmCaselessEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine635x40mmCaselessBigEmpty
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindMagazine
+  result: Magazine635x40mmCaselessBigEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberPistolMagazineRecipe
+  id: Magazine635x40mmCaselessShortEmpty
+  categories:
+  - AmmoCaliber635x40
+  - AmmoKindMagazine
+  result: Magazine635x40mmCaselessShortEmpty
+

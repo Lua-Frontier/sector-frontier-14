@@ -8,6 +8,7 @@
   parent:
   - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: Large, T4
   description: A main battery with dual barrels, delivering rapid, punishing salvos at extreme range. Fires 220mm auto shells with slightly reduced brute strength. Can be remotely activated or linked up to a GCS.
   components:
@@ -83,43 +84,13 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 150
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretCyrexaHomingCluster
-  name: CYREXA 220mm cannon
-  parent: WeaponTurretCyrexa
-  suffix: Large, T4, Infinite HMNG-CLST
-  components:
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    whitelist:
-      tags:
-      - 220mmCartridge
-    capacity: 24
-    proto: 220mmCartridgeSmartCluster
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretCyrexaHECluster
-  name: CYREXA 220mm cannon
-  parent: WeaponTurretCyrexa
-  suffix: Large, T4, Infinite HE-CLST
-  components:
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    whitelist:
-      tags:
-      - 220mmCartridge
-    capacity: 24
-    proto: 220mmCartridgeHECluster
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-
-# AK820 120mm
-
+  - type: Machine
+    board: WeaponTurretCyrexaCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretAk820
@@ -127,6 +98,7 @@
   parent:
   - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: Large, T4
   description: Large hard hitting naval gun for steady damage. Fires APHEDS rounds, allowing for enhanced penetration, but not as much explosive power as full-sized APHE rounds. Feeds from an 96 round internal magazine.
   components:
@@ -197,6 +169,13 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 150
+  - type: Machine
+    board: WeaponTurretAk820Circuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 - type: soundCollection
   id: 120mmAutocannonAK820
@@ -206,7 +185,6 @@
   - /Audio/_Mono/Weapons/Guns/Gunshots/autocannon_3.ogg
 
 # Bofors 255mm
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretBofors
@@ -214,6 +192,7 @@
   parent:
   - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: Large, T4
   description: A single-barrel, heavy artillery cannon designed for cruisers, delivering massive impact with each long-range shot. Can be remotely activated or linked up to a GCS.
   components:
@@ -283,9 +262,15 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 150
+  - type: Machine
+    board: WeaponTurretBoforsCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # HADES 255mm
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretHades
@@ -293,6 +278,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier5HP
+  - ConstructibleMachine
   suffix: Capital/Station, T4
   description: One of the largest chemical-based kinetic weapons in the sector. Its power is only rivaled by mass drivers such as the M381. Automatically reloads full-power 255mm shells.
   components:
@@ -367,9 +353,14 @@
   - type: ShipRepairable
     repairTime: 45
     repairCost: 300
+  - type: Machine
+    board: WeaponTurretHadesCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # R-300 430mm
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretR300
@@ -377,6 +368,7 @@
   parent:
   - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier5HP
+  - ConstructibleMachine
   suffix: Capital/Station, T4
   description: A giant, stupid howitzer. A stupid low velocity, a stupid long reload, and a stupidly powerful explosion if you can get it to hit. No AP whatsover.
   components:
@@ -423,6 +415,7 @@
       tags:
       - R300Shell
     capacity: 1
+    infiniteUnspawned: true
     proto: R300ShellHE
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -445,16 +438,23 @@
   - type: ShipRepairable
     repairTime: 45
     repairCost: 200
+  - type: Machine
+    board: WeaponTurretR300Circuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Longbow
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretLongbow
   name: L/65 "Longbow" 140mm autocannon
   parent:
-  - BallisticArtilleryUnanchorableMagazine
+  - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier5HP
+  - ConstructibleMachine
   suffix: Capital/Station, T4
   description: Fires 140mm shells in a 15 round burst from an internal autoloader.
   components:
@@ -512,18 +512,15 @@
       respectZoom: true
       rotate: true
       bounds: "-1.5,-1.5,1.5,1.5"
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: Magazine140mm
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - Magazine140mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: 140mmCartridge
+    capacity: 120
+    whitelist:
+      tags:
+      - 140mmCartridge
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: ShipGunType
     shipType: Ballistic
   - type: ShipGunClass
@@ -531,3 +528,10 @@
   - type: ShipRepairable
     repairTime: 45
     repairCost: 300
+  - type: Machine
+    board: WeaponTurretLongbowCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

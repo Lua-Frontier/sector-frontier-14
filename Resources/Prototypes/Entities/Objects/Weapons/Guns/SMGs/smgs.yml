@@ -16,6 +16,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    examineCaliber: gun-examine-caliber-919
     minAngle: 2
     maxAngle: 16
     fireRate: 8
@@ -37,7 +38,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -47,7 +47,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -143,6 +142,7 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
+    examineCaliber: gun-examine-caliber-4630
     fireRate: 8 # Mono
     minAngle: 1
     maxAngle: 6
@@ -162,7 +162,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine46x30mmSubMachineGunTopMountedFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -172,7 +171,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge46x30mmFMJ
         priority: 1
         whitelist:
           tags:

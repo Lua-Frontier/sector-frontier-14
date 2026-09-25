@@ -47,5 +47,8 @@
 - type: entity
   name: tesla gun lightning
   id: TeslaGunTurretBullet
-  parent: ShipIonProjectile
+  parent: TeslaGunBullet
   categories: [ HideSpawnMenu, ShuttleGun ]
+  components:
+  - type: TimedDespawn
+    lifetime: 5

@@ -16,7 +16,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Content.Shared._NF.Bank; // Frontier
 using Content.Shared._NF.CCVar; // Frontier
-using Content.Shared._Lua.SponsorLoadout; // Lua
+using Content.Lua.Shared.SponsorLoadout;
 
 namespace Content.Client.Administration;
 

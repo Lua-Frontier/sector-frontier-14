@@ -1,5 +1,5 @@
-using Content.Server._Lua.DynamicMarket.Systems; // Lua
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.DynamicMarket;
+using Content.Lua.Shared.Bank;
 using Content.Server._NF.SectorServices;
 using Content.Server.Cargo.Components;
 using Content.Server.Cargo.Systems;
@@ -29,12 +29,12 @@ namespace Content.Server._NF.Cargo.Systems;
 public sealed partial class NFCargoSystem : SharedNFCargoSystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DynamicMarketDbSystem _dynamicMarket = default!; // Lua
+    [Dependency] private readonly IDynamicMarketDbSystem _dynamicMarket = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IBankSystem _bank = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DeviceLinkSystem _linker = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;

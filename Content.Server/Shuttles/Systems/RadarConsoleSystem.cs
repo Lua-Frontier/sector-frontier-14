@@ -8,14 +8,14 @@ using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Content.Server.Shuttles.Components; // Frontier
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem // Frontier: add partial
 {
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly TransformSystem _transform = default!; // Frontier
 

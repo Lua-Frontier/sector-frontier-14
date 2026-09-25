@@ -7,7 +7,7 @@
     - type: Sprite
       state: engineering
     - type: MachineBoard
-      prototype: EngineeringTechFab
+      prototype: Autolathe
       requirements:
         MatterBin: 2
         Manipulator: 2
@@ -28,7 +28,7 @@
     - type: Sprite
       state: service
     - type: MachineBoard
-      prototype: ServiceTechFab
+      prototype: Autolathe
       requirements:
         MatterBin: 2
         Manipulator: 2

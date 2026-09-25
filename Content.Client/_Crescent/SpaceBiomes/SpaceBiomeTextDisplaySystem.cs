@@ -1,7 +1,7 @@
 using System.Numerics;
 using Content.Shared._Crescent.SpaceBiomes;
 using Content.Shared._Crescent.Vessel;
-using Content.Shared._Lua.Company;
+using Content.Lua.Shared.Company;
 using Content.Client.Audio;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -18,7 +18,7 @@ public sealed class SpaceTextDisplaySystem : EntitySystem
     [Dependency] private readonly IInputManager _input = default!;
 
     private SpaceBiomeTextOverlay _overlay = default!;
-    private bool _dismissKeyHeld;
+    private bool _moveKeyHeld;
 
     public override void Initialize()
     {
@@ -42,24 +42,30 @@ public sealed class SpaceTextDisplaySystem : EntitySystem
 
         if (!_overlay.IsMotdActive)
         {
-            _dismissKeyHeld = false;
+            _moveKeyHeld = false;
             return;
         }
 
-        var down = _input.IsKeyDown(Keyboard.Key.Space)
-                   || _input.IsKeyDown(Keyboard.Key.Escape);
+        var moving = _input.IsKeyDown(Keyboard.Key.W)
+                     || _input.IsKeyDown(Keyboard.Key.A)
+                     || _input.IsKeyDown(Keyboard.Key.S)
+                     || _input.IsKeyDown(Keyboard.Key.D)
+                     || _input.IsKeyDown(Keyboard.Key.Up)
+                     || _input.IsKeyDown(Keyboard.Key.Down)
+                     || _input.IsKeyDown(Keyboard.Key.Left)
+                     || _input.IsKeyDown(Keyboard.Key.Right);
 
-        if (!down)
+        if (!moving)
         {
-            _dismissKeyHeld = false;
+            _moveKeyHeld = false;
             return;
         }
 
-        if (_dismissKeyHeld)
+        if (_moveKeyHeld)
             return;
 
-        _dismissKeyHeld = true;
-        _overlay.HandleMotdDismissInput();
+        _moveKeyHeld = true;
+        _overlay.DismissMotd();
     }
 
     private void OnSwap(ref SpaceBiomeSwapMessage ev)

@@ -715,11 +715,12 @@
         components:
         - ConstructionMaterials
       displayName: borg-placeholder-display-name-construction-material
-    - id: ThrusterFlatpack
+    - id: ThrusterMachineCircuitboard
       whitelist:
         components:
-        - Flatpack
-      displayName: borg-placeholder-display-name-flatpack
+        - MachineBoard
+        - Electronics
+      displayName: borg-placeholder-display-name-electronics
     - id: StationRecordsComputerCircuitboard
       whitelist:
         components:

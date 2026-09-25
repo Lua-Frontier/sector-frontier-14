@@ -3,6 +3,7 @@
   name: "speed loader (.357 magnum)"
   parent: BaseItem
   abstract: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
@@ -23,6 +24,7 @@
   id: SpeedLoader357
   name: "speed loader (.357 magnum)"
   parent: BaseSpeedLoader357
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: Cartridge357

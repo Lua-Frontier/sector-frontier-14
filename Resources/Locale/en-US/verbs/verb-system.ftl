@@ -26,6 +26,7 @@ verb-categories-set-sensor = Sensor
 verb-categories-timer = Set Delay
 verb-categories-lever = Lever
 verb-categories-select-type = Select Type
+verb-categories-defense-mode = Defense
 verb-categories-fax = Set Destination
 verb-categories-power-level = Power Level
 verb-categories-adjust = Adjust

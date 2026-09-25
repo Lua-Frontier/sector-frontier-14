@@ -12,7 +12,7 @@ namespace Content.Shared.RCD.Components;
 /// Charges can be refilled with RCD ammo
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(RCDSystem))]
+[Access(typeof(RCDSystem), typeof(Content.Shared.EmergencyRockCutter.EmergencyLabAssemblerSystem))]
 public sealed partial class RCDComponent : Component
 {
     /// <summary>

@@ -32,9 +32,24 @@
     zeroVisible: false
   - type: Appearance
 
-# Magazines
+- type: entity
+  id: ADTExtMagazineRifleEmpty
+  name: "extended magazine (5.56x45 rifle)"
+  suffix: empty
+  parent: ADTBaseExtMagazineRifle
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
 - type: entity
   id: ADTExtMagazineRifle
+  categories: [ HideSpawnMenu ]
   name: "extended magazine (5.56x45 rifle)" #Lua 20 -> 556x45
   parent: ADTBaseExtMagazineRifle
   components:

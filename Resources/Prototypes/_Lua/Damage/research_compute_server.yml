@@ -1,0 +1,16 @@
+# LuaCorp - AGPLv3
+# Softer chassis so crowbar sabotage (~8 blunt) can actually land hits.
+- type: damageModifierSet
+  id: ResearchComputeServer
+  coefficients:
+    Blunt: 1
+    Slash: 0.8
+    Piercing: 0.8
+    Shock: 1.2
+    Heat: 0.85
+    Structural: 0.5
+  flatReductions:
+    Blunt: 0
+    Slash: 2
+    Piercing: 2
+    Heat: 2

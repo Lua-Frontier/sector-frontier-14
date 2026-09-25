@@ -1,11 +1,12 @@
-using Content.Client._Lua.Styles;
+using Content.Lua.UIKit.Styles;
 using Content.Client._Mono.Radar;
 using Content.Client.Resources;
 using Content.Client.Shuttles.Systems;
 using Content.Client.Station; // Frontier
-using Content.Client._Lua.AmbientSpaceEffects;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.UIKit.Shuttles;
 using Content.Shared._Crescent.ShipShields;
-using Content.Shared._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 using Content.Shared._Mono.Company;
 using Content.Shared._Mono.Detection;
 using Content.Shared._Mono.Ships.Components;
@@ -30,6 +31,7 @@ using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using System.Numerics;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Shuttles.UI;
 
@@ -37,14 +39,13 @@ namespace Content.Client.Shuttles.UI;
 [Virtual]
 public partial class ShuttleNavControl : BaseShuttleControl // Mono
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     protected override bool AllowResize => true; // Lua
     protected override bool ScaleWithControlSize => true; // Lua
     private readonly DetectionSystem _detection; // Mono
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _transform;
-    private readonly IFFDecryptionSystem _iffDecrypt; // Lua Decrypt mod
+    private readonly IIFFDecryptionSystem _iffDecrypt; // Lua Decrypt mod
     private readonly Font _cipherFont; // Lua Decrypt mod
     private readonly Texture _vesselMicroIcon; // Lua vessel blip
     private readonly Texture _vesselSmallIcon; // Lua vessel blip
@@ -120,7 +121,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         _detection = EntManager.System<DetectionSystem>(); // Mono
         _shuttles = EntManager.System<SharedShuttleSystem>();
         _transform = EntManager.System<SharedTransformSystem>();
-        _iffDecrypt = EntManager.System<IFFDecryptionSystem>(); // Lua Decrypt mod
+        _iffDecrypt = EntManager.System<IIFFDecryptionSystem>(); // Lua Decrypt mod
         var cache = IoCManager.Resolve<IResourceCache>(); // Lua
         _cipherFont = cache.GetFont("/Fonts/Drakkhen/drakkhen_beta.ttf", 12); // Lua Decrypt mod
         _vesselMicroIcon = cache.GetTexture("/Textures/_Lua/Interface/Radar/micro_white.png"); // Lua vessel blip
@@ -130,7 +131,6 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         _unknownVesselIcon = cache.GetTexture("/Textures/_Lua/Interface/Radar/unknown.png"); // Lua vessel blip
         _station = EntManager.System<StationSystem>(); // Frontier
         _blips = EntManager.System<RadarBlipsSystem>();
-        _nebulaVisibility = new AmbientSpaceNebulaVisibility(EntManager, _mapManager, IoCManager.Resolve<IPrototypeManager>());
 
         OnMouseEntered += HandleMouseEntered;
         OnMouseExited += HandleMouseExited;
@@ -550,9 +550,28 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
         // Draw shields
         DrawShields(handle, xform, worldToShuttle);
-        DrawNebulaContours(handle, xform, worldToShuttle, shuttleToView);
-        DrawSpaceHazardRadarIcons(handle, xform, worldToShuttle, shuttleToView, consoleMapPos);
-        DrawDroneRoutes(handle, worldToShuttle * shuttleToView);
+        if (IoCManager.Instance != null && IoCManager.Instance.TryResolveType(out IShuttleRadarLuaDraw? luaRadar))
+        {
+            luaRadar.DrawNavOverlays(new ShuttleNavLuaDrawContext
+            {
+                Handle = handle,
+                EntManager = EntManager,
+                Transform = _transform,
+                ConsoleXform = xform,
+                WorldToShuttle = worldToShuttle,
+                ShuttleToView = shuttleToView,
+                ConsoleMapPos = consoleMapPos,
+                WorldRange = WorldRange,
+                Width = Width,
+                Height = Height,
+                UIScale = UIScale,
+                Font = Font,
+                ScaledMouseUiPos = GetScaledMouseUiPosition(),
+                RadarBlipSize = RadarBlipSize,
+                DroneRoutes = _droneRoutes,
+                DroneRouteFilter = _droneRouteFilter,
+            });
+        }
 
         // Frontier Corvax: north line drawing
         DrawNorthLine(handle, worldRot);
@@ -634,7 +653,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
         // Lua end
 
         _grids.Clear();
-        _mapManager.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
+        Maps.FindGridsIntersecting(xform.MapID, new Box2(mapPos.Position - MaxRadarRangeVector, mapPos.Position + MaxRadarRangeVector), ref _grids, approx: true, includeMap: false);
 
         // Frontier - collect blip location data outside foreach - more changes ahead
         var blipDataList = new List<BlipData>();
@@ -679,7 +698,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             var gridCenterMap = _transform.ToMapCoordinates(new EntityCoordinates(gUid, gridBody.LocalCenter)).Position;
             // Distance from console/ship, NOT from panned camera — pan must not reveal cloaked ships or inflate label scale.
             var worldDist = Vector2.Distance(gridCenterMap, consoleMapPos);
-            var detected = detectionLevel != DetectionLevel.Undetected || (!hideLabel && !effectiveHideLabelShuttle) || (effectiveHideLabelShuttle && worldDist <= IFFDecryptionSystem.Range); // Lua Decrypt mod
+            var detected = detectionLevel != DetectionLevel.Undetected || (!hideLabel && !effectiveHideLabelShuttle) || (effectiveHideLabelShuttle && worldDist <= _iffDecrypt.Range); // Lua Decrypt mod
             if (!detected) continue; // Lua Decrypt mod
             var beyondRadar = worldDist > CornerRadarRange;
             if (MaximumIFFDistance >= 0.0f && worldDist > MaximumIFFDistance) continue;
@@ -1121,11 +1140,31 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
                 }
 
                 var handledByLuaStyle = false;
-                DrawLuaRadarBlip(handle, blip.NetUid, blip.SonarEcho, blipPosInView, drawScale * 3f, drawColor.WithAlpha(0.8f), drawShape, ref handledByLuaStyle);
+                IShuttleRadarLuaDraw? luaRadarBlip = null;
+                if (IoCManager.Instance != null)
+                    IoCManager.Instance.TryResolveType(out luaRadarBlip);
+                if (luaRadarBlip != null)
+                {
+                    luaRadarBlip.DrawNavRadarBlip(new ShuttleNavLuaBlipContext
+                    {
+                        Handle = handle,
+                        NetUid = blip.NetUid,
+                        SonarEcho = blip.SonarEcho,
+                        Position = blipPosInView,
+                        Size = drawScale * 3f,
+                        Color = drawColor.WithAlpha(0.8f),
+                        Shape = drawShape,
+                        MidPoint = MidPointVector,
+                        ControlSize = Size,
+                        CurTime = Timing.CurTime,
+                    }, ref handledByLuaStyle);
+                }
                 if (!handledByLuaStyle)
                 {
                     var blipEnt = EntManager.GetEntity(blip.NetUid);
-                    if (blipEnt != EntityUid.Invalid && IsRadarBlipIconDrawnElsewhere(blipEnt))
+                    if (blipEnt != EntityUid.Invalid
+                        && luaRadarBlip != null
+                        && luaRadarBlip.IsRadarBlipIconDrawnElsewhere(EntManager, blipEnt, ShowIFF))
                     {
                         handledByLuaStyle = true;
                     }
@@ -1244,7 +1283,8 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
 
                 //var color = Color.ToSrgb(Color.Magenta); // Frontier
                 var color = Color.ToSrgb(state.HighlightedRadarColor); // Frontier
-                GetDockColorOverride(ref color, state); // Lua
+                if (HighlightDockPort.HasValue && state.Entity == HighlightDockPort.Value) // Lua
+                    color = Color.Gold;
 
                 var scale = DockScale; // Lua
                 if (HighlightDockPort.HasValue && state.Entity == HighlightDockPort.Value) scale = HighlightDockScale;
@@ -1280,7 +1320,7 @@ public partial class ShuttleNavControl : BaseShuttleControl // Mono
             // End Frontier
         }
     }
-    partial void GetDockColorOverride(ref Color color, DockingPortState state); // Lua
+    public NetEntity? HighlightDockPort { get; set; }
     protected Vector2 InverseScalePosition(Vector2 value)
     {
         // Account for UI scaling: value is unscaled, so adjust by UIScale

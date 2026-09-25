@@ -1,0 +1,30 @@
+- type: technology
+  id: NeutralRndServer
+  name: research-technology-neutral-rnd-server
+  entityIcon: ResearchAndDevelopmentServerMerc
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Neutral
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 500
+  recipeUnlocks:
+  - ResearchAndDevelopmentServerMercMachineCircuitboard
+- type: technology
+  id: NeutralRndConsole
+  name: research-technology-neutral-rnd-console
+  entityIcon: ComputerResearchAndDevelopmentMerc
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Neutral
+  discoveryWeight: 1.35
+  factions:
+  - Neutral
+  cost: 500
+  recipeUnlocks:
+  - ResearchComputerMercCircuitboard

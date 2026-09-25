@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -7,7 +7,7 @@ using Content.Server.Radio.EntitySystems; // Frontier
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
-using Content.Shared._Lua.Announce;
+using Content.Lua.Shared.Announce;
 using Content.Shared._RMC14.Announce;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
@@ -33,8 +33,8 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
     [Dependency] protected readonly StationSystem StationSystem = default!;
     [Dependency] protected readonly RadioSystem RadioSystem = default!; // Frontier
     [Dependency] protected readonly MapSystem MapSystem = default!; // Frontier
-    [Dependency] private readonly SectorIdleFreezeSystem _sectorIdleFreeze = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ISectorIdleFreezeSystem _sectorIdleFreeze = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
 
     protected ISawmill Sawmill = default!;
 

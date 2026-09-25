@@ -64,6 +64,7 @@ public sealed class TechAnomalySystem : EntitySystem
         var range = MathHelper.Lerp(tech.Comp.LinkRadius.Min, tech.Comp.LinkRadius.Max, anomaly.Severity);
 
         var devices = _lookup.GetEntitiesInRange<DeviceLinkSinkComponent>(Transform(tech).Coordinates, range);
+        devices.RemoveWhere(d => HasComp<AnomalyImmuneComponent>(d));
         if (devices.Count < 1)
             return;
 
@@ -94,10 +95,12 @@ public sealed class TechAnomalySystem : EntitySystem
         var sources =
             _lookup.GetEntitiesInRange<DeviceLinkSourceComponent>(Transform(tech).Coordinates,
                 tech.Comp.LinkRadius.Max);
+        sources.RemoveWhere(s => HasComp<AnomalyImmuneComponent>(s));
 
         var sinks =
             _lookup.GetEntitiesInRange<DeviceLinkSinkComponent>(Transform(tech).Coordinates,
                 tech.Comp.LinkRadius.Max);
+        sinks.RemoveWhere(s => HasComp<AnomalyImmuneComponent>(s));
 
         for (var i = 0; i < tech.Comp.LinkCountSupercritical; i++)
         {

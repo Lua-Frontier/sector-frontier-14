@@ -1,6 +1,6 @@
 using System.Linq;
-using Content.Shared._Lua.Announce;
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Announce;
+using Content.Lua.Shared.Sectors;
 using Content.Server._NF.SectorServices;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Components;
@@ -21,7 +21,7 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SectorServiceSystem _sectorService = default!;
-    [Dependency] private readonly SectorSystem _sectorSystem = default!;
+    [Dependency] private readonly ISectorSystem _sectorSystem = default!;
 
     public const string DefaultAlertLevelSet = "stationAlerts";
 

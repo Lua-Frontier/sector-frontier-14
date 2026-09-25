@@ -1,21 +1,4 @@
 # Backpack
-- type: sponsorLoadout
-  id: Wisdom
-  ownerLogin: Wisdom
-  tier: god
-  entities:
-    - ClothingBackpackWisdom
-    - ClothingBeltWisdom
-    - ClothingHandsGlovesWisdom
-    - ClothingOuterHardsuitWisdom
-    - ClothingUniformJumpsuitWisdom
-    - ClothingShoesBootsMagWisdom
-    - ClothingMaskWisdom
-    - ClothingHeadsetWisdom
-    - PDAWisdom
-    - ClothingOuterCoatWisdom
-    - ClothingBeltHolsterWisdom
-    - SyndicateJawsOfLifeWisdom
 
 - type: entity
   parent: ClothingBackpack
@@ -276,13 +259,13 @@
     size: Normal
   - type: MultipleTool
     entries:
-    - behavior: Prying
+    - behavior: [ Prying ]
       sprite:
         sprite: _Lua/Sponsor/Wisdom/jawsoflife.rsi
         state: syn_jaws_pry
       useSound: /Audio/Items/jaws_pry.ogg
       changeSound: /Audio/Items/change_jaws.ogg
-    - behavior: Cutting
+    - behavior: [ Cutting ]
       sprite:
         sprite: _Lua/Sponsor/Wisdom/jawsoflife.rsi
         state: syn_jaws_cutter

@@ -3,6 +3,7 @@ using Content.Server.Damage.Systems;
 using Content.Server.Shuttles.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Content.Shared.Tag;
 using Content.Shared.Doors.Components;
 using Content.Server.Shuttles.Systems;
@@ -28,6 +29,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Prying.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Backmen.Arrivals;
 
@@ -42,7 +44,7 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
     [Dependency] private readonly GodmodeSystem _godmodeSystem = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly ApcSystem _apcSystem = default!;
 
     public override void Initialize()
@@ -143,11 +145,11 @@ public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
     private void ProcessGrid(EntityUid uid)
     {
         EntityUid grid;
-        if (_mapManager.IsGrid(uid))
+        if (HasComp<MapGridComponent>(uid))
         {
             grid = uid;
         }
-        else if (_mapManager.IsMap(uid))
+        else if (HasComp<MapComponent>(uid))
         {
             return;
         }

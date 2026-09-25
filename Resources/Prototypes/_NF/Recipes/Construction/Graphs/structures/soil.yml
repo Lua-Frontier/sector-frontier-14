@@ -11,7 +11,7 @@
         - to: start
           completed:
             - !type:SpawnPrototype
-              prototype: HydroponicsSoilEmptyFlatpack
+              prototype: HydroponicsSoilEmpty
               amount: 1
           steps:
             - tool: Digging
@@ -22,7 +22,7 @@
         - to: start
           completed:
             - !type:SpawnPrototype
-              prototype: HydroponicsSoilEmptyFlatpack
+              prototype: HydroponicsSoilEmpty
               amount: 1
           steps:
             - tool: Digging

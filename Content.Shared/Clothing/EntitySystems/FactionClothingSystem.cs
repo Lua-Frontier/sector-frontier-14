@@ -2,6 +2,7 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Player; // Frontier - Dont edit AI factions
 using Content.Shared.Inventory; // Frontier
 using Content.Shared.NPC.Prototypes; // Frontier

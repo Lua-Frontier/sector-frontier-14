@@ -1,7 +1,7 @@
 using Content.Shared.Buckle.Components;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Content.Shared.Construction.Prototypes; // Frontier
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype; // Frontier
 
 namespace Content.Shared.Bed.Components;
 
@@ -23,7 +23,7 @@ public sealed partial class StasisBedComponent : Component
     public float BaseMultiplier = 10f;
 
 
-    [DataField("machinePartMetabolismModifier", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-    public string MachinePartMetabolismModifier = "Capacitor";
+    [DataField("machinePartMetabolismModifier")]
+    public ProtoId<MachinePartPrototype> MachinePartMetabolismModifier = "Capacitor";
     // End Frontier
 }

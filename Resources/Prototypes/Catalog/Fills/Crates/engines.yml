@@ -8,7 +8,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: AmePartFlatpack
+      - id: AmePart
         amount: 9
 
 - type: entity
@@ -30,7 +30,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: AmeControllerUnanchoredFlatpack # Frontier - AmeControllerUnanchored to AmeControllerUnanchoredFlatpack
+      - id: AmeControllerUnanchored
 
 # Singularity
 
@@ -42,7 +42,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: EmitterFlatpack
+      - id: Emitter
 
 - type: entity
   id: CrateEngineeringSingularityCollector
@@ -52,7 +52,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: RadiationCollectorFlatpack
+      - id: RadiationCollectorNoTank
       - id: PlasmaTankFilled
 
 - type: entity
@@ -63,7 +63,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ContainmentFieldGeneratorFlatpack
+      - id: ContainmentFieldGenerator
 
 - type: entity
   id: CrateEngineeringSingularityGenerator
@@ -73,7 +73,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SingularityGeneratorFlatpack
+      - id: SingularityGenerator
 
 # Particle Accelerator
 
@@ -93,19 +93,6 @@
       - id: MachineParticleAcceleratorPowerBoxCircuitboard
       - id: ParticleAcceleratorComputerCircuitboard
 
-# Non-functional for some reason
-
-#- type: entity
-#  id: CrateEngineeringSingularity
-#  name:  singularity crate
-#  description:  "Prank the station!"
-#  parent: CrateEngineeringSecure
-#  components:
-#  - type: StorageFill
-#    contents:
-#      - id: Singularity
-#        amount: 1
-
 - type: entity
   id: CrateEngineeringGenerator
   parent: CrateEngineering
@@ -124,7 +111,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SolarAssemblyFlatpack
+      - id: SolarAssemblyPart
         amount: 10
       - id: SheetGlass10
         amount: 2
@@ -150,7 +137,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaGeneratorFlatpack
+      - id: TeslaGenerator
 
 - type: entity
   id: CrateEngineeringTeslaCoil
@@ -160,7 +147,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaCoilFlatpack
+      - id: TeslaCoil
 
 - type: entity
   id: CrateEngineeringTeslaGroundingRod
@@ -170,4 +157,4 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaGroundingRodFlatpack
+      - id: TeslaGroundingRod

@@ -66,3 +66,30 @@
   id: PicoManipulatorStockPart
   parent: NFBaseSuperPartRecipe
   result: PicoManipulatorStockPart
+
+- type: latheRecipe
+  abstract: true
+  id: NFBaseBluespacePartRecipe
+  parent: NFBaseSuperPartRecipe
+  completetime: 4
+  materials:
+    Steel: 150
+    Plastic: 150
+    Plasma: 75
+    Gold: 75
+    Bluespace: 100
+
+- type: latheRecipe
+  id: QuadraticCapacitorStockPart
+  parent: NFBaseBluespacePartRecipe
+  result: QuadraticCapacitorStockPart
+
+- type: latheRecipe
+  id: BluespaceMatterBinStockPart
+  parent: NFBaseBluespacePartRecipe
+  result: BluespaceMatterBinStockPart
+
+- type: latheRecipe
+  id: FemtoManipulatorStockPart
+  parent: NFBaseBluespacePartRecipe
+  result: FemtoManipulatorStockPart

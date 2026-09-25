@@ -22,7 +22,7 @@ using Content.Shared.Access.Systems; // Frontier
 using Content.Shared.Verbs; //Frontier
 using Robust.Shared.Utility; // Frontier
 using Content.Shared.ActionBlocker; //Frontier
-using Content.Server._Lua.Language; // Lua
+using Content.Lua.Shared.Language;
 
 namespace Content.Server.Radio.EntitySystems;
 
@@ -40,7 +40,7 @@ public sealed class RadioDeviceSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AccessReaderSystem _access = default!; // Frontier: access
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!; // Frontier
-    [Dependency] private readonly LanguageSystem _language = default!; // Lua
+    [Dependency] private readonly ILanguageSystem _language = default!;
 
     // Used to prevent a shitter from using a bunch of radios to spam chat.
     private HashSet<(string, EntityUid, RadioChannelPrototype)> _recentlySent = new();
@@ -264,7 +264,7 @@ public sealed class RadioDeviceSystem : EntitySystem
 
     private void OnIntercomEncryptionChannelsChanged(Entity<IntercomComponent> ent, ref EncryptionChannelsChangedEvent args)
     {
-        ent.Comp.SupportedChannels = args.Component.Channels.Select(p => new ProtoId<RadioChannelPrototype>(p)).ToList();
+        ent.Comp.SupportedChannels = args.Component.Channels.ToList();
 
         var channel = args.Component.DefaultChannel;
         if (ent.Comp.CurrentChannel != null && ent.Comp.SupportedChannels.Contains(ent.Comp.CurrentChannel.Value))
@@ -329,12 +329,12 @@ public sealed class RadioDeviceSystem : EntitySystem
 
         if (TryComp<RadioMicrophoneComponent>(ent, out var mic))
         {
-            mic.BroadcastChannel = channel;
+            mic.BroadcastChannel = channel.Value;
             if(_protoMan.TryIndex<RadioChannelPrototype>(channel, out var channelProto)) // Frontier
                 mic.Frequency = channelProto.Frequency; // Frontier
         }
         if (TryComp<RadioSpeakerComponent>(ent, out var speaker))
-            speaker.Channels = new() { channel };
+            speaker.Channels = new() { channel.Value };
         Dirty(ent);
     }
 

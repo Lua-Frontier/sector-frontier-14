@@ -1,5 +1,6 @@
+using Content.Shared.ERP;
 using Content.Shared.Examine;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -27,8 +28,8 @@ public sealed class DetailExaminableSystem : EntitySystem
 
         var color = ent.Comp.ERPStatus switch
         {
-            Content.Shared._Lua.ERP.EnumERPStatus.FULL => "green",
-            Content.Shared._Lua.ERP.EnumERPStatus.HALF => "yellow",
+            EnumERPStatus.FULL => "green",
+            EnumERPStatus.HALF => "yellow",
             _ => "red"
         };
 

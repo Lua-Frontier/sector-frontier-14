@@ -1,5 +1,5 @@
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSecDrobeAux
   name: SDDrobe
   description: You defy the light above. Your existence is a crime. Be wise. Give up.
@@ -27,3 +27,16 @@
     radius: 1.5
     energy: 1.6
     color: "#326e3f"
+  - type: Machine
+    board: VendingMachineSecDrobeAuxMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

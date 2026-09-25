@@ -136,7 +136,10 @@ public sealed partial class TegNodeGenerator : Node
         if (!xform.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var map = entMan.System<SharedMapSystem>();
+            if (xform.GridUid == null)
+                yield break;
+            var gridIndex = map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
         var dir = xform.LocalRotation.GetDir();
         var a = FindCirculator(dir);
@@ -188,7 +191,10 @@ public sealed partial class TegNodeCirculator : Node
         if (!xform.Anchored || grid == null)
             yield break;
 
-        var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+        var map = entMan.System<SharedMapSystem>();
+            if (xform.GridUid == null)
+                yield break;
+            var gridIndex = map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
         var dir = xform.LocalRotation.GetDir();
         var searchDir = dir.GetClockwise90Degrees();
@@ -211,3 +217,4 @@ public sealed partial class TegNodeCirculator : Node
         }
     }
 }
+

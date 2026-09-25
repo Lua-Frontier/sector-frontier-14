@@ -1,6 +1,6 @@
-﻿using Content.Server.Shuttles.Systems;
+using Content.Server.Shuttles.Systems;
+using Robust.Shared.Prototypes;
 using Content.Shared.DeviceLinking; // Frontier
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype; // Frontier
 
 namespace Content.Server.Shuttles.Components;
 
@@ -9,14 +9,14 @@ namespace Content.Server.Shuttles.Components;
 public sealed partial class StationAnchorComponent : Component
 {
     // Frontier: Add ports for linking
-    [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OnPort = "On";
+    [DataField("onPort")]
+    public ProtoId<SinkPortPrototype> OnPort = "On";
 
-    [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OffPort = "Off";
+    [DataField("offPort")]
+    public ProtoId<SinkPortPrototype> OffPort = "Off";
 
-    [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string TogglePort = "Toggle";
+    [DataField("togglePort")]
+    public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
     // End Frontier
 
     [DataField("switchedOn")]

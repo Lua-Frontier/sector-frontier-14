@@ -1,4 +1,4 @@
-using Content.Server.NodeContainer;
+﻿using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map;
@@ -18,7 +18,10 @@ namespace Content.Server.Power.Nodes
             if (!xform.Anchored || grid == null)
                 yield break;
 
-            var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+            var map = entMan.System<SharedMapSystem>();
+            if (xform.GridUid == null)
+                yield break;
+            var gridIndex = map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
             // While we go over adjacent nodes, we build a list of blocked directions due to
             // incoming or outgoing wire terminals.
@@ -68,3 +71,4 @@ namespace Content.Server.Power.Nodes
         }
     }
 }
+

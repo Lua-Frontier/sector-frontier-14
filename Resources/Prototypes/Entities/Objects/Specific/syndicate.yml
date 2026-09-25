@@ -22,6 +22,14 @@
   - type: Currency
     price:
       Telecrystal: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Telecrystal: 1
+  - type: Tag
+    tags:
+    - Sheet
+    - RawMaterial
 
 - type: entity
   parent: Telecrystal
@@ -47,79 +55,4 @@
   - type: Stack
     count: 10
 
-# Uplinks
-- type: entity
-  parent: [BaseItem, StorePresetUplink, BaseC3SyndicateContrabandPremium] # Frontier: BaseSyndicateContraband<BaseC3SyndicateContraband  # Lua-changes: BaseC3SyndicateContraband > BaseC3SyndicateContrabandPremium
-  id: BaseUplinkRadio
-  name: syndicate uplink
-  description: Suspiciously looking old radio...
-  suffix: Empty
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/communication.rsi
-    layers:
-    - state: old-radio
-  - type: Item
-    sprite: Objects/Devices/communication.rsi
-    heldPrefix: old-radio
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-  - type: ActivatableUI
-    key: enum.StoreUiKey.Key
-  - type: Store
-    balance:
-      Telecrystal: 0
 
-- type: entity
-  parent: BaseUplinkRadio
-  id: BaseUplinkRadio20TC
-  suffix: 20 TC
-  components:
-  - type: Store
-    balance:
-      Telecrystal: 20
-
-- type: entity
-  parent: BaseUplinkRadio
-  id: BaseUplinkRadio25TC
-  suffix: 25 TC
-  components:
-  - type: Store
-    balance:
-      Telecrystal: 25
-
-#this uplink MUST be used for nukeops, as it has the tag for filtering the listing.
-- type: entity
-  parent: BaseUplinkRadio
-  id: BaseUplinkRadio40TC
-  suffix: 40 TC, NukeOps
-  components:
-  - type: Store
-    balance:
-      Telecrystal: 40
-  - type: Tag
-    tags:
-    - NukeOpsUplink
-
-- type: entity
-  parent: BaseUplinkRadio
-  id: BaseUplinkRadio60TC
-  suffix: 60 TC, LoneOps
-  components:
-  - type: Store
-    balance:
-      Telecrystal: 60
-  - type: Tag
-    tags:
-    - NukeOpsUplink
-
-- type: entity
-  parent: BaseUplinkRadio
-  id: BaseUplinkRadioDebug
-  suffix: DEBUG
-  components:
-  - type: Store
-    balance:
-      Telecrystal: 99999

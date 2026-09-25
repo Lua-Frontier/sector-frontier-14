@@ -1,9 +1,8 @@
 <DefaultWindow xmlns="https://spacestation14.io"
             xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
             xmlns:dtabs="clr-namespace:Content.Client._DV.Options.UI.Tabs"
-            xmlns:luaTabs="clr-namespace:Content.Client._Lua.Options.UI.Tabs"
             Title="{Loc 'ui-options-title'}"
-            MinSize="800 450"> <!-- Lua: Added xmlns:luaTabs -->
+            MinSize="800 450">
     <TabContainer Name="Tabs" Access="Public">
         <tabs:MiscTab Name="MiscTab" />
         <tabs:GraphicsTab Name="GraphicsTab" />
@@ -12,6 +11,5 @@
         <tabs:AccessibilityTab Name="AccessibilityTab" />
         <tabs:AdminOptionsTab Name="AdminOptionsTab" />
         <dtabs:DeltaTab Name="ExtraTab" /> <!-- Delta-V -->
-        <luaTabs:NetworkTab Name="NetworkTab" /> <!-- Lua -->
     </TabContainer>
 </DefaultWindow>

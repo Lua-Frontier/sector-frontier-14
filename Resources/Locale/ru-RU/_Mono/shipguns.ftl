@@ -44,13 +44,5 @@ ent-Asm220TorpedoHESACLOS = торпеда ASM-220 HE-SACLOS
     .ammo-loader-type = Торпеда
     .ammo-loader-caliber = ASM-220 HE SACLOS
     .ammo-loader-weight = 180 кг
-ent-WeaponCaseHeavyAmmo = ящик для боеприпасов
-    .desc = Усиленный кейс для тяжёлых корабельных снарядов или магазинов.
-    .suffix = Heavy
-    .ammo-loader-type = Контейнер
-    .ammo-loader-caliber = тяжёлый ящик
-    .ammo-loader-weight = 5 кг
-
-lathe-recipe-WeaponCaseHeavyAmmo-name = ящик для боеприпасов (тяжёлый, пустой)
 
 ship-gun-class-component-examine-detail = Орудие использует [color=yellow]{$processingPower}[/color] вычислительной мощности.

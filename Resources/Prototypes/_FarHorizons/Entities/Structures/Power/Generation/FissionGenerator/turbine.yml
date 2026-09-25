@@ -1,9 +1,17 @@
 - type: entity
   id: Turbine
-  parent: BaseStructure
+  parent: [BaseStructure, ConstructibleMachine]
   name: gas turbine
   description: A large turbine used for generating power using hot gas.
   components:
+  - type: Machine
+    board: TurbineMachineCircuitboard
+  - type: Construction
+    graph: Machine3x3
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/turbine.rsi
     layers:
@@ -126,6 +134,14 @@
   parent: Turbine
   name: small gas turbine
   components:
+  - type: Machine
+    board: TurbineSmallMachineCircuitboard
+  - type: Construction
+    graph: Machine2x2
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: Sprite
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_turbine.rsi
     offset: 0, -0.5

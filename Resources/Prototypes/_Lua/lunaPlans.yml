@@ -6,14 +6,11 @@
 # labels: LocId keys (roadmap-tag-*)
 
 # Done
-# (empty)
-
-# Active
 - type: lunaPlan
   id: RoadmapFactionRnd
   headline: roadmap-entry-faction-rnd-title
   summary: roadmap-entry-faction-rnd-desc
-  status: Active
+  status: Done
   sort: 1
   labels:
   - roadmap-tag-factions
@@ -21,15 +18,48 @@
   - roadmap-tag-gameplay
 
 - type: lunaPlan
+  id: RoadmapAdminRanks
+  headline: roadmap-entry-admin-ranks-title
+  summary: roadmap-entry-admin-ranks-desc
+  status: Done
+  sort: 2
+  labels:
+  - roadmap-tag-admin
+  - roadmap-tag-site
+  - roadmap-tag-discord
+
+# Active
+- type: lunaPlan
   id: RoadmapUsspStation
   headline: roadmap-entry-ussp-station-title
   summary: roadmap-entry-ussp-station-desc
   status: Active
-  sort: 2
+  sort: 1
   labels:
   - roadmap-tag-ussp
   - roadmap-tag-mapping
   - roadmap-tag-factions
+
+- type: lunaPlan
+  id: RoadmapRulesSync
+  headline: roadmap-entry-rules-sync-title
+  summary: roadmap-entry-rules-sync-desc
+  status: Active
+  sort: 2
+  labels:
+  - roadmap-tag-site
+  - roadmap-tag-discord
+  - roadmap-tag-wiki
+
+- type: lunaPlan
+  id: RoadmapSiteSync
+  headline: roadmap-entry-roadmap-sync-title
+  summary: roadmap-entry-roadmap-sync-desc
+  status: Active
+  sort: 3
+  labels:
+  - roadmap-tag-site
+  - roadmap-tag-ui
 
 # Queued
 - type: lunaPlan
@@ -153,36 +183,3 @@
   labels:
   - roadmap-tag-economy
   - roadmap-tag-balance
-
-- type: lunaPlan
-  id: RoadmapRulesSync
-  headline: roadmap-entry-rules-sync-title
-  summary: roadmap-entry-rules-sync-desc
-  status: Queued
-  sort: 13
-  labels:
-  - roadmap-tag-site
-  - roadmap-tag-discord
-  - roadmap-tag-wiki
-
-- type: lunaPlan
-  id: RoadmapAdminRanks
-  headline: roadmap-entry-admin-ranks-title
-  summary: roadmap-entry-admin-ranks-desc
-  status: Done
-  sort: 14
-  labels:
-  - roadmap-tag-admin
-  - roadmap-tag-site
-  - roadmap-tag-discord
-
-- type: lunaPlan
-  id: RoadmapSiteSync
-  headline: roadmap-entry-roadmap-sync-title
-  summary: roadmap-entry-roadmap-sync-desc
-  status: Queued
-  sort: 15
-  labels:
-  - roadmap-tag-site
-  - roadmap-tag-ui
-

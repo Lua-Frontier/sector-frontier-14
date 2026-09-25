@@ -42,6 +42,7 @@
 
 - type: entity
   id: Magazine127x99mm
+  categories: [ HideSpawnMenu ]
   name: "magazine (12.7x99mm anti-material)"
   parent: BaseMagazine127x99mm
   components:
@@ -50,6 +51,7 @@
 
 - type: entity
   id: Magazine127x99mmExplosive
+  categories: [ HideSpawnMenu ]
   name: "magazine (12.7x99mm high-explosive)"
   parent: BaseMagazine127x99mm
   components:

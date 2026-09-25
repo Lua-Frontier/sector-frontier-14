@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: [BaseMachinePowered, ConstructibleMachine]
   id: MachineOreMagnet
   name: ore magnet
@@ -109,15 +109,3 @@
         ents: []
       machine_board: !type:Container
       machine_parts: !type:Container
-
-- type: entity
-  name: ore magnet flatpack
-  id: OreMagnetFlatpack
-  parent: BaseNFFlatpack
-  description: A flatpack used for constructing an ore magnet.
-  components:
-  - type: Flatpack
-    entity: MachineOreMagnet
-  - type: StaticPrice
-    price: 6500
-    vendPrice: 10000

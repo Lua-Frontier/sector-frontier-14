@@ -27,9 +27,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.DeviceNetwork.Components;
-using Content.Shared._Lua.Expedition; // Frontier
+using Content.Lua.Shared.Expedition;
 using Content.Server._NF.Medical.SuitSensors; // Frontier
-using Content.Server._Lua.Sectors; // Lua
+using Content.Lua.Shared.Sectors;
 using Content.Shared.Emp; // Frontier
 
 namespace Content.Server.Medical.SuitSensors;
@@ -51,7 +51,7 @@ public sealed class SuitSensorSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!; // Lua
+    [Dependency] private readonly ISectorSystem _sectors = default!;
 
     // Lua start
     private TimeSpan _nextSensorsScan = TimeSpan.Zero;

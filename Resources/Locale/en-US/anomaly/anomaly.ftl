@@ -53,8 +53,29 @@ anomaly-sync-disconnected = The connection to the anomaly has been lost!
 anomaly-sync-no-anomaly = No anomaly in range.
 anomaly-sync-examine-connected = It is [color=darkgreen]attached[/color] to an anomaly.
 anomaly-sync-examine-not-connected = It is [color=darkred]not attached[/color] to an anomaly.
-anomaly-sync-connect-verb-text = Attach anomaly
-anomaly-sync-connect-verb-message = Attach a nearby anomaly to {THE($machine)}.
+anomaly-sync-compress-start = Anomaly compression started.
+anomaly-sync-compress-complete = Compression finished. Anomaly core extracted.
+anomaly-sync-compress-no-core = This anomaly has no core to extract.
+anomaly-sync-console-title = Anomaly synchronizer
+anomaly-sync-console-connect = Capture
+anomaly-sync-console-disconnect = Release
+anomaly-sync-console-compress = Compress
+anomaly-sync-console-compressing = Compressing {$percent}%
+anomaly-sync-console-compress-idle = Ready to compress
+anomaly-sync-console-linked = Synchronizer linked: {$name}.
+anomaly-sync-console-unlinked = No synchronizer linked
+anomaly-sync-console-no-anomaly = No anomaly captured
+anomaly-sync-console-phase-none = Phase: -
+anomaly-sync-console-phase-decaying = Phase: decaying
+anomaly-sync-console-phase-stable = Phase: stable
+anomaly-sync-console-phase-growing = Phase: growing
+anomaly-sync-console-meters = Severity {$severity}% | Stability {$stability}% | Health {$health}%
+anomaly-sync-console-battery = Battery
+anomaly-sync-console-battery-empty = No power cell
+anomaly-sync-console-battery-level = Charge {$percent}%
+anomaly-sync-console-battery-charging = Charging {$percent}%
+anomaly-sync-connect-verb-text = Capture anomaly
+anomaly-sync-connect-verb-message = Capture a nearby anomaly with {THE($machine)}.
 
 anomaly-generator-ui-title = Anomaly Generator
 # Frontier: Plasma<Anomalite

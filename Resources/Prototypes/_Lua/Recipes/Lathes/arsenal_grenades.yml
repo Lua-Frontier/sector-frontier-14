@@ -1,0 +1,270 @@
+- type: latheRecipe
+  abstract: true
+  parent: BaseAmmoRecipe
+  id: BaseGrenadeAmmoRecipe
+  categories:
+  - Ammo
+  - AmmoCaliberMisc
+  - AmmoKindMisc
+  completetime: 6
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: GrenadeDummy
+  result: GrenadeDummy
+  completetime: 4
+  materials:
+    Steel: 400
+    Plastic: 300
+    Glass: 150
+    Telecrystal: 2
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: CleanerGrenade
+  result: CleanerGrenade
+  completetime: 5
+  materials:
+    Steel: 500
+    Plastic: 400
+    Glass: 250
+    Plasma: 100
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: ModularGrenade
+  result: ModularGrenade
+  completetime: 5
+  materials:
+    Steel: 600
+    Plastic: 400
+    Glass: 200
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: MetalFoamGrenade
+  result: MetalFoamGrenade
+  materials:
+    Steel: 800
+    Plastic: 400
+    Glass: 300
+    Plasma: 200
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: AirGrenade
+  result: AirGrenade
+  materials:
+    Steel: 700
+    Plastic: 350
+    Glass: 250
+    Plasma: 250
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: GrenadeFlashBang
+  result: GrenadeFlashBang
+  materials:
+    Steel: 900
+    Plastic: 500
+    Glass: 400
+    Plasma: 200
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: GrenadeStinger
+  result: GrenadeStinger
+  materials:
+    Steel: 1000
+    Plastic: 500
+    Glass: 300
+    Plasma: 300
+    Plasteel: 150
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: TearGasGrenade
+  result: TearGasGrenade
+  materials:
+    Steel: 1000
+    Plastic: 600
+    Glass: 400
+    Plasma: 350
+    FrontierUplinkCoin: 2
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: EmpGrenade
+  result: EmpGrenade
+  materials:
+    Steel: 1200
+    Plastic: 500
+    Glass: 500
+    Gold: 250
+    Plasma: 400
+    Silver: 150
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: ExGrenade
+  result: ExGrenade
+  materials:
+    Steel: 1500
+    Plastic: 700
+    Plasma: 500
+    Plasteel: 300
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: GrenadeShrapnel
+  result: GrenadeShrapnel
+  materials:
+    Steel: 1600
+    Plastic: 600
+    Plasma: 450
+    Plasteel: 400
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: GrenadeIncendiary
+  result: GrenadeIncendiary
+  materials:
+    Steel: 1400
+    Plastic: 700
+    Plasma: 600
+    Glass: 250
+    Plasteel: 250
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: StickyGrenade
+  result: StickyGrenade
+  materials:
+    Steel: 1500
+    Plastic: 900
+    Plasma: 500
+    Plasteel: 300
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: LandMineExplosive
+  result: LandMineExplosive
+  completetime: 8
+  materials:
+    Steel: 2000
+    Plastic: 1000
+    Plasma: 700
+    Plasteel: 500
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: C4
+  result: C4
+  completetime: 8
+  materials:
+    Steel: 1800
+    Plastic: 1400
+    Plasma: 900
+    Plasteel: 400
+    Doubloon: 2
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: PirateGrenadeFire
+  result: PirateGrenadeFire
+  materials:
+    Steel: 1400
+    Plastic: 700
+    Plasma: 550
+    Plasteel: 250
+    Doubloon: 2
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: PirateGrenadeRadiation
+  result: PirateGrenadeRadiation
+  materials:
+    Steel: 1500
+    Plastic: 600
+    Plasma: 500
+    Uranium: 300
+    Plasteel: 300
+    Doubloon: 2
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: PirateGrenadeConcussion
+  result: PirateGrenadeConcussion
+  materials:
+    Steel: 1500
+    Plastic: 700
+    Plasma: 500
+    Plasteel: 350
+    Doubloon: 2
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: ClusterGrenade
+  result: ClusterGrenade
+  completetime: 10
+  materials:
+    Steel: 2800
+    Plastic: 1200
+    Plasma: 1200
+    Plasteel: 900
+    Gold: 300
+    Telecrystal: 8
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: WhiteholeGrenade
+  result: WhiteholeGrenade
+  completetime: 12
+  materials:
+    Steel: 3200
+    Plasma: 2200
+    Uranium: 600
+    Bluespace: 400
+    Plasteel: 1200
+    Gold: 250
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: SingularityGrenade
+  result: SingularityGrenade
+  completetime: 14
+  materials:
+    Steel: 3800
+    Plasma: 2800
+    Uranium: 900
+    Bluespace: 600
+    Plasteel: 1600
+    Gold: 400
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: NuclearGrenade
+  result: NuclearGrenade
+  completetime: 16
+  materials:
+    Steel: 5000
+    Plasma: 3500
+    Uranium: 2500
+    Plasteel: 2200
+    Gold: 600
+    Silver: 600
+    Bluespace: 300
+
+- type: latheRecipe
+  parent: BaseGrenadeAmmoRecipe
+  id: HolyHandGrenade
+  result: HolyHandGrenade
+  completetime: 15
+  materials:
+    Steel: 3000
+    Plastic: 800
+    Gold: 1200
+    Silver: 1200
+    Plasma: 1200
+    Bluespace: 400
+    Plasteel: 800

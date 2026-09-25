@@ -1,5 +1,6 @@
 ent-NFShellShotgunBuckshot = Ружейный патрон (.50 дробь)
-ent-NFShellShotgunBuckshotOverpressure = Ружейный патрон (.50 дробь, усиленная)
+ent-ShellShotgun12_gaugeOverpressure = ружейный патрон (12 gauge, усиленная дробь)
+ent-NFShellShotgunBuckshotOverpressure = { ent-ShellShotgun12_gaugeOverpressure }
 ent-NFShellShotgunIncendiary = Ружейный патрон (.50 дробь, зажигательная)
 ent-NFShellShotgunPractice = Ружейный патрон (.50 дробь, учебная)
 ent-NFShellShotgunUranium = Ружейный патрон (.50 дробь, урановая)

@@ -14,6 +14,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/mk32.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-919
     fireRate: 4 # Frontier: 3<4
     availableModes:
     - SemiAuto
@@ -23,7 +24,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmPistolFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -34,7 +34,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -57,6 +56,7 @@
   - type: Clothing
     sprite: _DV/Objects/Weapons/Guns/Pistols/pollock.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-919
     fireRate: 5
     availableModes:
     - SemiAuto
@@ -64,7 +64,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmPistolFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -75,7 +74,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:

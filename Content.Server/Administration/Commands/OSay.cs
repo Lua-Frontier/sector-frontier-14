@@ -1,6 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Robust.Shared.Console;

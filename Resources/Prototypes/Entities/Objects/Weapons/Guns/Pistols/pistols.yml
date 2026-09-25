@@ -26,6 +26,7 @@
     - suitStorage
     - Belt
   - type: Gun
+    examineCaliber: gun-examine-caliber-919
     fireRate: 6
     selectedMode: SemiAuto
     availableModes:
@@ -41,7 +42,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmPistolFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -51,7 +51,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -147,7 +146,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmPistolFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -158,7 +156,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -224,6 +221,7 @@
   - type: StaticPrice # Mono - 200 from frontier 1k
     price: 200
   - type: Gun # Mono change - Sound for viper
+    examineCaliber: gun-examine-caliber-919
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/viper_fire.ogg
 
@@ -315,6 +313,7 @@
   - type: ChamberMagazineAmmoProvider
     boltClosed: null
   - type: Gun
+    examineCaliber: gun-examine-caliber-63540
     fireRate: 4
     projectileSpeed: 30 # Mono
     soundGunshot:
@@ -327,7 +326,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine635x40mmCaselessPistol
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -337,7 +335,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge635x40mmCaseless
         priority: 1
         whitelist:
           tags:
@@ -366,6 +363,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-45acp
     fireRate: 5
     availableModes:
     - SemiAuto
@@ -377,7 +375,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine45_ACPPistolFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
         priority: 2
@@ -388,7 +385,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge45_ACPFMJ
         priority: 1
         whitelist:
           tags:

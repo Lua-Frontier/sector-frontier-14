@@ -60,6 +60,7 @@
           EndingCall: { state: lights_hanging_up }
   - type: Holopad
     hologramProtoId: HolopadHologram
+  - type: HolopadAdvertise
     scriptedSenderName: "Хакс Луа"
     scriptedVoiceId: Annah
     scriptedAvatarProto: MobHacksLuaNewYear
@@ -82,9 +83,9 @@
       facialHairStyleId: FacialHairShaved
       markings:
       - markingId: VulpEar
-        markingColor: ['#8D8E8FFF', '#FFFFFFFF']
+        markingColors: ['#8D8E8FFF', '#FFFFFFFF']
       - markingId: VulpTailWagTip
-        markingColor: ['#FFFFFFFF', '#A5A5A5FF']
+        markingColors: ['#FFFFFFFF', '#A5A5A5FF']
     scriptedMessages:
     - message: "..."
       delaySeconds: 1

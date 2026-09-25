@@ -50,19 +50,20 @@
 - type: entity
   id: NFBluespaceSyndicateCrate
   parent: NFBaseStationEventModerateDelay
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     startAnnouncement: bluespace-syndicate-crate-event-announcement
     announcementScope: Station
     startAudio:
       path: /Audio/_Lua/Announcements/attention.ogg # Lua
-    weight: 1
+    weight: 0
     duration: 35
     earliestStart: 90
     minimumPlayers: 20
     reoccurrenceDelay: 480 # 8 hours
   - type: BluespaceCargoRule
-    spawnerPrototype: CrateSyndicateSurplusBundle
+    spawnerPrototype: CrateCybersunJuggernautBundle
     maximumSpawns: 1
 
 - type: entity

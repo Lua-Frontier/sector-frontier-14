@@ -9,6 +9,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Content.Server.Carrying; // Frontier
 using Content.Shared.Actions; // Frontier
 using Robust.Shared.Prototypes; // Frontier

@@ -1,16 +1,7 @@
-###############
-#             #
-#             #
-# region SOLO
-#             #
-#             #
-###############
-
 # region Engineering
 - type: latheRecipePack
   id: NFBlueprintsEngineering
   recipes:
-  # CritterMechs
   - HamtrHarness
   - HamtrLArm
   - HamtrRArm
@@ -20,29 +11,24 @@
   - HamtrPeripheralsElectronics
   - MechEquipmentGrabberSmall
   - VimHarness
-  # AudioVisualCommunication
   - TelecomServerCircuitboard
   - NFHolopadShipMachineCircuitboard
   - SurveillanceCameraRouterCircuitboard
   - SurveillanceCameraMonitorCircuitboard
   - SurveillanceWirelessCameraMonitorCircuitboard
-  # AdvancedEntertainment
   - ComputerTelevisionCircuitboard
   - SynthesizerInstrument
   - DawInstrumentMachineCircuitboard
   - MassMediaCircuitboard
   - JukeboxCircuitBoard
-  # RoboticCleanliness
   - BorgModuleAdvancedCleaning
   - PortablePumpMachineCircuitBoard
-  # FauxAstroTiles
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
   - FauxTileJungleAstroGrass
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
-  # HONKMech
   - HonkerHarness
   - HonkerLArm
   - HonkerRArm
@@ -52,36 +38,24 @@
   - HonkerPeripheralsElectronics
   - HonkerTargetingElectronics
   - MechEquipmentHorn
-  # MiscellaneousItemsOrganization
-  - NFPouchEngineering
-  - NFPouchAtmospherics
-  # BasicRobotics
   - ProximitySensor
-    # SalvageEquipment
   - ClothingMaskWeldingGas
-  # SpaceScanning
   - RadarConsoleCircuitboard
   - HandHeldMassScanner
-  # AdvancedPowercells
   - SMESAdvancedMachineCircuitboard
-  # MechanicalCompression
   - FlatpackerMachineCircuitboard
-  # IndustrialEngineering
   - AutolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
   - SheetifierMachineCircuitboard
   - MaterialSiloMachineCircuitboard
-  # PowerGeneration
   - PortableGeneratorPacmanMachineCircuitboard
   - PortableGeneratorSuperPacmanMachineCircuitboard
   - PortableGeneratorJrPacmanMachineCircuitboard
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
-  # AtmosphericTech
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
-  # RipleyAPLU
   - RipleyHarness
   - RipleyLArm
   - RipleyRArm
@@ -91,7 +65,6 @@
   - RipleyPeripheralsElectronics
   - MechEquipmentGrabber
   - MechEquipmentFork
-  # Shuttlecraft
   - ShuttleConsoleCircuitboard
   - ThrusterMachineCircuitboard
   - GyroscopeMachineCircuitboard
@@ -99,38 +72,26 @@
   - MiniStationAnchorCircuitboard
   - SmallThrusterMachineCircuitboard
   - SmallGyroscopeMachineCircuitboard
-  # AdvancedAtmospherics
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
-  # AdvancedToolsTechnology
   - WelderExperimental
   - PowerDrill
   - JawsOfLife
   - ClothingBeltChiefEngineer
   - BorgModuleAdvancedTool
-  # PortableFission
   - PortableGeneratorDKJrMachineCircuitboard
-  # RapidConstruction
   - ShipyardRCD
   - ShipyardRCDAmmo
-  # ConstructionBags
   - ConstructionBagOfHolding
-  # HardsuitsSpecialized
   - ClothingOuterHardsuitAtmos
   - ClothingOuterHardsuitEngineering
-  # AtmosphericDrilling
   - GasMiningDrillMachineCircuitboard
   - GaslockFrameMachineCircuitboard
-  # HardsuitsAdvanced
   - ClothingOuterHardsuitEngineeringWhite
-  # PortableParticleEmission
   - NFWeaponParticleDecelerator
-  # MatterEnergyConversion
   - BorgModuleRCD
-  # MagnetsTech
   - ClothingShoesBootsMag
-  # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
 
@@ -138,42 +99,29 @@
 - type: latheRecipePack
   id: NFBlueprintsMedical
   recipes:
-  # MeatManipulation
   - BiomassReclaimerMachineCircuitboard
-  # BiochemicalStasis
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
   - CryostasisBeaker
   - SyringeCryostasis
-  # MechanizedTreatment
   - BorgModuleAdvancedParamedic
-  # RoboticCleanliness
   - PortablePumpMachineCircuitBoard
-  # AdvancedCleaning
   - MegaSprayBottle
   - ReinforcedJug
-  # BluespaceChemistry
   - BluespaceBeaker
   - SyringeBluespace
   - JugBluespace
   - VialBluespace
-  # MiscellaneousItemsOrganization
-  - NFPouchFirstAid
-  - NFPouchFirstAidAlt
-  - MedicalPouch
-  # ChemicalDispensary
   - ChemMasterMachineCircuitboard
   - ChemDispenserMachineCircuitboard
-  # IndustrialMedicine
+  - VendingMachineMedicalMachineCircuitboard
+  - VendingMachineChemicalsMachineCircuitboard
   - MedicalAssemblerMachineCircuitboard
   - HotplateMachineCircuitboard
   - DefibrillatorCompact
-  # SyringeGun
   - LauncherSyringe
   - MiniSyringe
-  # HardsuitsAdvanced
   - ClothingOuterHardsuitMedical
-  # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
 
@@ -181,15 +129,11 @@
 - type: latheRecipePack
   id: NFBlueprintsMercenary
   recipes:
-  # MagnetsTechCombat
   - ClothingShoesBootsMagSecurity
   - ClothingShoesBootsMagMercenary
-  # HardsuitsArmored
   - ClothingOuterHardsuitMercenary
   - ClothingOuterHardsuitPrivateSecurity
-  # HardsuitsOldWar
   - ClothingOuterHardsuitSurplus
-  # ArsenalStyle
   - ClothingEyesPunkInfoShades
   - ClothingOuterArmorPunkRandomized
   - ClothingOuterArmorPunkRed
@@ -207,128 +151,84 @@
   - ClothingUniformRandomPunkCroptopShorts
   - ClothingOuterCoatLettermanRandomized
   - ClothingOuterCoatBomberRandomized
-  # HardsuitsArmoredAdvanced
   - ClothingOuterHardsuitScaf
   - ClothingOuterHardsuitNoble
-  # MiscellaneousItemsOrganization
-  - NFPouchMercenary
-  - NFPouchPrivateSecurity
-  # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
   - JetpackSecurity
-  # AdvancedPersonalPropulsion
   - JetpackVoid
-  # HardsuitsExperimentalIndustrial
   - ClothingOuterHardsuitMaximPrototype
 
 # region NFSD
 - type: latheRecipePack
   id: NFBlueprintsNfsd
   recipes:
-  # BountyHunting
   - FlashlightSecliteNF
-  # NFSpecialMeans
   - NFClothingBackpackElectropack
-  # NFBasicShuttleArmament
   - NFGrenadeFlash
   - NFGrenadeEMP
-  # PersonalPropulsion
   - JetpackNfsd
 
 # region Salvage
 - type: latheRecipePack
   id: NFBlueprintsSalvage
   recipes:
-  ## Frontier
-  # ImprovedSalvageWeapons
   - NFWeaponPkaCannon
-  # NFSalvageWeapons
   - NFWeaponPka
   - WeaponCrusher
   - WeaponCrusherDagger
   - WeaponCrusherGlaive
-  # MiscellaneousItemsOrganization
-  - NFPouchSalvage
-  - NFPouchCargo # in lieu of a proper cargo fab
-  # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
-  # AdvancedPersonalPropulsion
   - JetpackVoid
-  # BluespaceGasTanks
   - BluespaceAirTank
   - SmallBluespaceAirTank
-  # SalvageEquipment
   - MiningDrill
   - WeaponGrapplingGun
   - MineralScannerEmpty
   - OreProcessorMachineCircuitboard
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
-  # SpaceScanning
   - HandHeldMassScanner
-  # AdvancedToolsTechnology
   - BorgModuleAdvancedTool
-  # MassExcavation
   - OreBagOfHolding
   - MiningDrillDiamond
   - AdvancedMineralScannerEmpty
   - BorgModuleAdvancedMining
-  ## Frontier
-  # HardsuitsSpecialized
   - ClothingOuterHardsuitSpatio
   - ClothingOuterHardsuitSalvage
-  # HardsuitsAdvanced
   - ClothingOuterHardsuitLuxury
 
 # region Science
 - type: latheRecipePack
   id: NFBlueprintsScience
   recipes:
-  # RoboticCleanliness
   - BorgModuleAdvancedCleaning
   - PortablePumpMachineCircuitBoard
-  # AdvancedCleaning
   - MegaSprayBottle
   - ReinforcedJug
-  # BasicAnomalousResearch
   - AnomalyScanner
   - AnomalyLocator
   - AnomalyLocatorWide
   - APECircuitboard
   - AnomalyVesselCircuitboard
-  # BasicXenoArcheology
   - NodeScanner
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ResearchComputerCircuitboard
-  # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
-  # BasicMagnetsTech
   - ClothingShoesBootsMagSci
-  # GravityResistantTech
   - NFClothingShoesBootsMoon
-  # AnomalyCoreHarnessing
   - WeaponGauntletGorilla
-  # AbnormalArtifactManipulation
   - ArtifactCrusherMachineCircuitboard
-  # AdvancedAnomalyResearch
   - NFWeaponPistolCHIMP
   - AnomalyVesselExperimentalCircuitboard
-  # DeterrenceTechnologies
   - HoloprojectorField
-  # BluespaceTimeManipulation
-  - DeviceDesynchronizer
-  # MagnetsTechAdvanced
   - ClothingShoesBootsMagAdv
-  # HardsuitsExperimentalProtection
   - ClothingOuterHardsuitRd
   - ClothingOuterHardsuitHostileEnvironment
-  # IndustrialEngineering
   - ProtolatheHyperConvectionMachineCircuitboard
-  # AdvancedToolsTechnology
   - BorgModuleAdvancedTool
   - FloorTileItemSepia
   - FloorTileItemBluespace
@@ -337,121 +237,64 @@
 - type: latheRecipePack
   id: NFBlueprintsService
   recipes:
-  # Hydroponics
   - PlantBagOfHolding
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
+  - VendingMachineNutriMachineCircuitboard
+  - VendingMachineSeedsUnlockedMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
   - PlantAnalyzer
-  # AudioVisualCommunication
   - SurveillanceWirelessCameraMovableCircuitboard
   - SurveillanceWirelessCameraAnchoredCircuitboard
-  # AdvancedEntertainment
   - ComputerTelevisionCircuitboard
   - SynthesizerInstrument
   - DawInstrumentMachineCircuitboard
   - MassMediaCircuitboard
   - JukeboxCircuitBoard
-  # RoboticCleanliness
   - BorgModuleAdvancedCleaning
   - PortablePumpMachineCircuitBoard
-  # MeatManipulation
   - FatExtractorMachineCircuitboard
   - BiogeneratorMachineCircuitboard
-  # FauxAstroTiles
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
   - FauxTileJungleAstroGrass
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
-  # AdvancedCleaning
   - AdvMopItem
   - MegaSprayBottle
   - ReinforcedJug
-  # AdvancedSpray
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-  # PushHorn
   - PushHorn
-  # QuantumFiberWeaving
   - ClothingShoesBootsSpeed
-  # PersonalPropulsion
   - JetpackBlue
   - JetpackCaptain
-  # FoodService
   - MicrowaveMachineCircuitboard
   - ReagentGrinderMachineCircuitboard
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
   - SodaDispenserMachineCircuitboard
   - ImpCoffeeMachineCircuitboard
-  # MiscellaneousItemsOrganization
-  - NFPouchUtility
-  - NFPouchEngineering
-  - NFPouchFirstAid
-  - NFPouchFirstAidAlt
-  - NFPouchScience
-  - NFPouchSalvage
-  - NFPouchAtmospherics
-  - NFPouchHydroponics
-  - NFPouchChaplain
-  - NFPouchPunk
-  - NFPouchMercenary
-  - NFPouchPrivateSecurity
-  - NFPouchJanitor
-  - NFPouchContractor
-  - NFPouchClown
-  - NFPouchMime
-  - NFPouchCaptain
-  - NFPouchCargo
-  # AdvancedFoodService
   - DeepFryerMachineCircuitboard
   - ServiceSelectiveDropper
   - KitchenAssemblerMachineCircuitboard
   - ElectricRangeMachineCircuitboard
-  # MobileSanitation
-  - JanicartFlatpack
-  # MagnetsTech
+  - NFVehicleJanicartKey
   - NFClothingShoesBootsMoon
-  # HardsuitsSpecialized
   - ClothingOuterHardsuitClown
   - ClothingOuterHardsuitMime
   - ClothingOuterHardsuitPilot
 
-#################
-#               #
-#               #
-# region SHARED
-#               #
-#               #
-#################
-
-# region Merc & NFSD
 - type: latheRecipePack
   id: NFBlueprintsMercenaryNfsd
   recipes:
-  ## Frontier
-  # BasicAmmunitionProduction
-  - NFAmmunitionBoxShellShotgunBuckshot
-  - NFAmmunitionBoxShellShotgunSlug
-  - NFAmmunitionBoxRifle20
-  - NFAmmunitionBoxRifle30
-  - NFAmmunitionBoxPistol35
-  - NFAmmunitionBoxPistol45
+  - AmmoBox12_gaugeBuckshot
+  - AmmoBox12_gaugeSlug
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
-  - NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
-  - MagazineLightRifleLowCapacityEmpty
-  - NFMagazinePistol35Empty
-  # NonlethalAmmunition
-  - NFAmmunitionBoxShellShotgunBeanbag
-  - NFAmmunitionBoxRifle20Rubber
-  - NFAmmunitionBoxRifle30Rubber
-  - NFAmmunitionBoxPistol35Rubber
-  - NFAmmunitionBoxPistol45Rubber
-  - NFAmmunitionBoxShellShotgunTranquilizer
-  # BountyHunting
+  - AmmoBox12_gaugeBeanbag
+  - AmmoBox12_gaugeTranquilizer
   - BolaNF
   - NFHandcuffs
   - ClothingOuterArmorBulletproofNF
@@ -459,29 +302,16 @@
   - PinpointerUniversalNF
   - ClothingEyesHudBountyHunter
   - NFForensicPad
-  # ImprovedPistolAmmo
-  - NFAmmunitionBoxPistol35Overpressure
-  - NFAmmunitionBoxPistol45Overpressure
-  - NFMagazineHighCapacityPistol35Empty
-  - NFMagazineSubMachineGun35Empty
-  - NFMagazineSubMachineGunTopMounted35Empty
+  - AmmoBox9x19mmOverpressure
+  - AmmoBox357_magnumOverpressure
   - NFMagazinePistol45Empty
-  # ImprovedRifleAmmo
-  - NFAmmunitionBoxRifle20Overpressure
-  - NFAmmunitionBoxRifle30Overpressure
-  - NFAmmunitionBoxShellShotgunOverpressure
-  - NFMagazineRifle20Empty
-  - NFMagazineRifle30Empty
-  - NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
+  - AmmoBox556x45mmOverpressure
+  - AmmoBox762x39mmOverpressure
+  - AmmoBox12_gaugeOverpressure
   - MagazineAsmgtUniversalEmpty
-  # BulkRifleAmmo
-  - NFAmmunitionBoxBigRifle20
-  - NFAmmunitionBoxBigRifle20Overpressure
-  - NFAmmunitionBoxBigRifle30
-  - NFAmmunitionBoxBigRifle30Overpressure
-  # NFAdvancedRiotControl
+  - AmmoBox556x45mmBigOverpressure
+  - AmmoBox762x39mmBigOverpressure
   - NFTelescopicShield
-  # NFExplosiveTechnology
   - SignallerAdvanced
   - SignalTrigger
   - VoiceTrigger
@@ -489,31 +319,24 @@
   - FlashPayload
   - ChemicalPayload
   - ExplosivePayload
-  # NFBasicShuttleArmament
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
   - PowerCageMedium
   - PowerCageHigh
   - NFMagazineGrenadeEmpty
-  # NFPortableMicrofusionWeaponry
   - NFPortableRecharger
 
 # region Common
 - type: latheRecipePack
   id: NFBlueprintsCommon
   recipes:
-  # AdvancedPowercells
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
-  # BluespaceStorage
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
   - ClothingBackpackMessengerHolding
-  # PortableFission
   - PowerCellMicroreactor
-  # HardsuitsBasic
   - ClothingOuterHardsuitSpatio
   - ClothingOuterHardsuitPilot
-  # HardsuitsAdvanced
   - ClothingOuterHardsuitCap

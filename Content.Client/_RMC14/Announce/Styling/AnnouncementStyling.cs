@@ -1,4 +1,4 @@
-using Content.Shared._Lua.Announce;
+using Content.Lua.Shared.Announce;
 using Content.Shared._RMC14.Announce;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;

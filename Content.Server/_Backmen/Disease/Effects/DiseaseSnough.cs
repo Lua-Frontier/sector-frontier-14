@@ -1,8 +1,7 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.Chat.Prototypes;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Backmen.Disease.Effects;
 
@@ -16,8 +15,8 @@ public sealed partial class DiseaseSnough : DiseaseEffect
     /// <summary>
     /// Emote to play when snoughing
     /// </summary>
-    [DataField("emote", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EmotePrototype>))]
-    public string EmoteId = String.Empty;
+    [DataField("emote", required: true)]
+    public ProtoId<EmotePrototype> EmoteId = String.Empty;
 
     /// <summary>
     /// Whether to spread the disease through the air

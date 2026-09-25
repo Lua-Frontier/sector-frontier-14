@@ -220,8 +220,10 @@ public sealed class BlueprintLatheSystem : SharedBlueprintLatheSystem
             return;
 
         var producing = component.CurrentBlueprintType ?? component.Queue.FirstOrDefault()?.BlueprintType;
+        var hasResearchServer = TryComp<ResearchClientComponent>(uid, out var researchClient) &&
+            researchClient.Server != null;
 
-        var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing);
+        var state = new BlueprintLatheUpdateState(GetAvailableRecipes(uid), component.Queue, producing, hasResearchServer);
         _uiSys.SetUiState(uid, BlueprintLatheUiKey.Key, state);
     }
 

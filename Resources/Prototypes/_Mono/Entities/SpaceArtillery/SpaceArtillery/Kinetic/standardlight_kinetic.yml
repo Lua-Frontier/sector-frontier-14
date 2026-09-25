@@ -5,8 +5,9 @@
   id: WeaponTurretL85Autocannon
   name: L85 20mm autocannon
   parent:
-  - BallisticArtilleryMagazine
+  - BallisticArtilleryCartridge
   - BallisticArtilleryTier1HP
+  - ConstructibleMachine
   suffix: Small, T1
   description: A light 20mm ballistic autocannon designed for rapid fire point defense and suppressing smaller targets at close range. Cheap, light, and can be remotely activated or linked up to a GCS.
   components:
@@ -45,18 +46,15 @@
   - type: CombatMode
     isInCombatMode: true
   - type: Airtight
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: Magazine20mm
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - Magazine20mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: 20mmCartridge
+    capacity: 1250
+    whitelist:
+      tags:
+      - 20mmCartridge
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: Destructible
     thresholds:
     - trigger:
@@ -87,16 +85,23 @@
   - type: ShipRepairable
     repairTime: 10
     repairCost: 20
+  - type: Machine
+    board: WeaponTurretL85AutocannonCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Draupnir
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretRAC30
   name: RAC-30 Draupnir Autocannon
   parent:
-  - BallisticArtilleryMagazine
+  - BallisticArtilleryCartridge
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: A heavy duty rapid fire 30mm autocannon, originally mounted as a dogfighting weapon on atmospheric craft. Low range, but devastating damage.
   components:
@@ -134,18 +139,15 @@
   - type: CombatMode
     isInCombatMode: true
   - type: Airtight
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: Magazine30mm
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - Magazine30mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: 30mmCartridge
+    capacity: 2000
+    whitelist:
+      tags:
+      - 30mmCartridge
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadiationBlocker
     resistance: 8
   - type: RadarBlip
@@ -159,3 +161,10 @@
   - type: ShipRepairable
     repairTime: 15
     repairCost: 40
+  - type: Machine
+    board: WeaponTurretRAC30Circuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

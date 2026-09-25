@@ -1,7 +1,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Radio.Components;
 using Content.Server.Vocalization.Components;
-using Content.Shared._Lua.Chat.Systems;
+using Content.Shared.Chat.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Inventory;
 using Content.Shared.Radio;
@@ -43,9 +43,9 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
     /// Selects a random radio channel from all ActiveRadio entities in a given entity's inventory
     /// If no channels are found, this returns false and sets channel to an empty string
     /// </summary>
-    private bool TryPickRandomRadioChannel(EntityUid entity, out string channel)
+    private bool TryPickRandomRadioChannel(EntityUid entity, out ProtoId<RadioChannelPrototype> channel)
     {
-        HashSet<string> potentialChannels = [];
+        HashSet<ProtoId<RadioChannelPrototype>> potentialChannels = [];
 
         // we don't have to check if this entity has an inventory. GetHandOrInventoryEntities will not yield anything
         // if an entity has no inventory or inventory slots
@@ -59,7 +59,7 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
 
         if (potentialChannels.Count == 0)
         {
-            channel = string.Empty;
+            channel = default;
             return false;
         }
 
@@ -84,7 +84,7 @@ public sealed partial class RadioVocalizationSystem : EntitySystem
         if (!TryPickRandomRadioChannel(entity, out var channel))
             return false;
 
-        var channelPrefix = _proto.Index<RadioChannelPrototype>(channel).KeyCode;
+        var channelPrefix = _proto.Index(channel).KeyCode;
 
         // send a whisper using the radio channel prefix and whatever relevant radio channel character
         // along with the message. This is analogous to how radio messages are sent by players

@@ -82,6 +82,19 @@ public sealed class MoverController : SharedMoverController
         SetMoveInput(entity, MoveButtons.None);
     }
 
+    public void ClearLocalMovement()
+    {
+        if (_playerManager.LocalEntity is not { Valid: true } player)
+            return;
+
+        if (RelayQuery.TryGetComponent(player, out var relay) &&
+            MoverQuery.TryGetComponent(relay.RelayEntity, out var relayMover))
+            SetMoveInput((relay.RelayEntity, relayMover), MoveButtons.None);
+
+        if (MoverQuery.TryGetComponent(player, out var mover))
+            SetMoveInput((player, mover), MoveButtons.None);
+    }
+
     public override void UpdateBeforeSolve(bool prediction, float frameTime)
     {
         base.UpdateBeforeSolve(prediction, frameTime);

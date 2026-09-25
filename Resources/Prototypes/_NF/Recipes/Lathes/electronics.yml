@@ -147,6 +147,11 @@
   result: ResearchComputerMercCircuitboard
 
 - type: latheRecipe
+  id: ResearchComputerLuaTechCircuitboard
+  parent: [BaseGoldCircuitboardRecipe, BaseResearchComputerRecipeCategory]
+  result: ResearchComputerLuaTechCircuitboard
+
+- type: latheRecipe
   id: NFScreenTimerElectronics
   parent: BaseCircuitboardRecipe
   result: ScreenTimerElectronics
@@ -178,12 +183,21 @@
     Plasteel: 400
 
 - type: latheRecipe
+  id: ThrusterMediumNfsdMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterMediumNfsdMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 1200
+
+- type: latheRecipe
   id: ThrusterUSSPMachineCircuitboard
   parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
   result: ThrusterUSSPMachineCircuitboard
   materials:
     Steel: 400
     Glass: 900
+    RedSpaceCoupons: 2
 
 - type: latheRecipe
   id: ThrusterRogueMachineCircuitboard
@@ -192,6 +206,23 @@
   materials:
     Steel: 400
     Glass: 900
+
+- type: latheRecipe
+  id: ThrusterMediumRogueMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterMediumRogueMachineCircuitboard
+  materials:
+    Steel: 800
+    Glass: 1200
+
+- type: latheRecipe
+  id: ThrusterLargeRogueMachineCircuitboard
+  parent: [BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory]
+  result: ThrusterLargeRogueMachineCircuitboard
+  materials:
+    Steel: 1200
+    Glass: 1600
+    Plasteel: 400
 
 - type: latheRecipe
   id: ThrusterPiratesMachineCircuitboard
@@ -225,6 +256,7 @@
   materials:
     Steel: 800
     Glass: 1200
+    RedSpaceCoupons: 4
 
 - type: latheRecipe
   id: ThrusterLargeUSSPMachineCircuitboard
@@ -234,6 +266,7 @@
     Steel: 1200
     Glass: 1600
     Plasteel: 400
+    RedSpaceCoupons: 8
 
 - type: latheRecipe
   id: LargeThrusterMachineCircuitboard

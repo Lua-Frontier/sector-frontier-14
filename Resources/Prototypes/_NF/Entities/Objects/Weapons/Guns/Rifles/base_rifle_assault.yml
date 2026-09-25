@@ -173,7 +173,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556x45mmFMJ #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -184,7 +183,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber20Standard
         name: Chamber
-        startingItem: Cartridge556x45mmFMJ #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:
@@ -201,7 +199,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: LuaMagazineCaselessRifle
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -211,7 +208,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: NFCartridgeRifle25
         priority: 1
         whitelist:
           tags:
@@ -226,7 +222,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556x45mmRubber #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -234,7 +229,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge556x45mmRubber #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:
@@ -251,7 +245,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -274,7 +267,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -285,7 +277,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber30Standard
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ #Lua 30 -> 762x39
         priority: 1
         whitelist: &chamber30Whitelist
           tags:
@@ -300,7 +291,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmRubber #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -308,7 +298,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber30Rubber
         name: Chamber
-        startingItem: Cartridge762x39mmRubber #Lua 30 -> 762x39
         priority: 1
         whitelist: *chamber30Whitelist
 
@@ -321,7 +310,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmFMJ #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -338,7 +326,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmRubber #Lua 30 -> 762x39
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2

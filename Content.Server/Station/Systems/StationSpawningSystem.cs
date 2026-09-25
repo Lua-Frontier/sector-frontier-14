@@ -7,7 +7,7 @@ using Content.Server.Station.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
-using Content.Shared.Lua.CLVar; // Lua
+using Content.Lua.Common.CLVar;
 using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
 using Content.Shared.Humanoid;
@@ -24,7 +24,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Server.Spawners.Components;
-using Content.Server._Lua.Bank; // Frontier
+using Content.Lua.Shared.Bank; // Frontier
 using Content.Server.Preferences.Managers; // Frontier
 using System.Linq; // Frontier
 using Content.Server.CartridgeLoader; // Frontier
@@ -56,7 +56,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!; // Frontier
     [Dependency] private readonly IServerPreferencesManager _preferences = default!; // Frontier
-    [Dependency] private readonly BankSystem _bank = default!; // Frontier
+    [Dependency] private readonly IBankSystem _bank = default!; // Frontier
     [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!; // Frontier
     [Dependency] private readonly TransformSystem _xformSystem = default!; // Frontier
     [Dependency] private readonly SharedContainerSystem _container = default!; // Frontier

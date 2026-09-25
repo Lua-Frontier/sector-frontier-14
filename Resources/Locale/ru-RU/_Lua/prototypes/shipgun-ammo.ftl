@@ -1,67 +1,73 @@
-ent-CartridgeLua20mm = патрон 20мм
-    .desc = Патрон для Lua 20мм корабельных пушек.
+ent-CartridgeLua25mm = патрон 25мм
+    .desc = Патрон для Lua 25мм корабельных пушек.
     .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 20mm
+    .ammo-loader-caliber = 25mm
     .ammo-loader-weight = 0.10 кг
 
-ent-MagazineLua20mm = магазин 20мм
-    .desc = Зарядник для Lua 20мм корабельных пушек.
+ent-MagazineLua25mm = магазин 25мм
+    .desc = Зарядник для Lua 25мм корабельных пушек.
     .ammo-loader-type = Контейнер
-    .ammo-loader-caliber = 20mm
+    .ammo-loader-caliber = 25mm
     .ammo-loader-weight = 8 кг
 
-ent-CartridgeLua53mm = патрон 53мм
-    .desc = Патрон для Lua 53мм корабельных пушек.
+ent-CartridgeLua45mm = патрон 45мм
+    .desc = Патрон для Lua 45мм корабельных пушек.
     .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 53mm
+    .ammo-loader-caliber = 45mm
     .ammo-loader-weight = 0.40 кг
 
-ent-MagazineLua53mm = магазин 53мм
-    .desc = Зарядник для Lua 53мм корабельных пушек.
+ent-MagazineLua45mm = магазин 45мм
+    .desc = Зарядник для Lua 45мм корабельных пушек.
     .ammo-loader-type = Контейнер
-    .ammo-loader-caliber = 53mm
+    .ammo-loader-caliber = 45mm
     .ammo-loader-weight = 15 кг
 
-ent-CartridgeLua80mm = патрон 80мм
-    .desc = Патрон для Lua 80мм корабельных пушек.
+ent-CartridgeLua75mm = патрон 75мм
+    .desc = Патрон для Lua 75мм корабельных пушек.
     .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 80mm
+    .ammo-loader-caliber = 75mm
     .ammo-loader-weight = 0.85 кг
 
-ent-MagazineLua80mm = магазин 80мм
-    .desc = Зарядник для Lua 80мм корабельных пушек.
+ent-MagazineLua75mm = магазин 75мм
+    .desc = Зарядник для Lua 75мм корабельных пушек.
     .ammo-loader-type = Контейнер
-    .ammo-loader-caliber = 80mm
+    .ammo-loader-caliber = 75mm
     .ammo-loader-weight = 22 кг
 
-ent-CartridgeLua105mm = патрон 105мм
-    .desc = Патрон для Lua 105мм корабельных пушек.
+ent-CartridgeLua95mm = патрон 95мм
+    .desc = Патрон для Lua 95мм корабельных пушек.
     .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 105mm
+    .ammo-loader-caliber = 95mm
     .ammo-loader-weight = 1.5 кг
 
-ent-MagazineLua105mm = магазин 105мм
-    .desc = Зарядник для Lua 105мм корабельных пушек.
+ent-MagazineLua95mm = магазин 95мм
+    .desc = Зарядник для Lua 95мм корабельных пушек.
     .ammo-loader-type = Контейнер
-    .ammo-loader-caliber = 105mm
+    .ammo-loader-caliber = 95mm
     .ammo-loader-weight = 30 кг
 
-ent-CartridgeLua120mm = патрон 120мм
-    .desc = Одиночный 120мм патрон для Lua корабельных орудий.
+ent-CartridgeLua130mm = патрон 130мм
+    .desc = Одиночный 130мм патрон для Lua корабельных орудий.
     .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 120mm
+    .ammo-loader-caliber = 130mm
     .ammo-loader-weight = 12 кг
 
-ent-CartridgeLua140mm = патрон 140мм
-    .desc = Патрон для Lua 140мм корабельных пушек.
+ent-MagazineLua130mm = магазин 130мм
+    .desc = Зарядник для Lua 130мм корабельных пушек.
+    .ammo-loader-type = Контейнер
+    .ammo-loader-caliber = 130mm
+    .ammo-loader-weight = 40 кг
+
+ent-CartridgeLua155mm = патрон 155мм
+    .desc = Патрон для Lua 155мм корабельных пушек.
     .ammo-loader-type = Боеприпас
-    .ammo-loader-caliber = 140mm
+    .ammo-loader-caliber = 155mm
     .ammo-loader-weight = 3.5 кг
 
-ent-MagazineLua140mm = магазин 140мм
-    .desc = Зарядник для Lua 140мм корабельных пушек.
+ent-MagazineLua155mm = магазин 155мм
+    .desc = Зарядник для Lua 155мм корабельных пушек.
     .ammo-loader-type = Контейнер
-    .ammo-loader-caliber = 140mm
+    .ammo-loader-caliber = 155mm
     .ammo-loader-weight = 55 кг
 
 ent-CartridgeNightHunter = ракета Tomahawk

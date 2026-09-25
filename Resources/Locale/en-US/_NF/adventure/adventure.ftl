@@ -10,7 +10,16 @@ adventure-webhook-top-profit = made a total profit of {$amount}.
 adventure-webhook-top-loss = lost a total of {$amount}.
 
 adventure-webhook-ledger-start = Ledger Summary
-adventure-webhook-shipstats-start = Shipyard Statistics
+adventure-webhook-shipstats-start = Shipyard Preferences
+adventure-webhook-shipstats-summary = Total: {$ships} · Abandoned: {$abandoned} · Avg. lifetime: {$avgTime}
+adventure-webhook-shipstats-thresholds = Round thresholds: newcomers ≤ {$newcomers} · low ≤ {$low} · mid ≤ {$mid}
+adventure-webhook-shipstats-category-newcomers = **Newcomers** (≤ {$max})
+adventure-webhook-shipstats-category-low = **Low class** ({$min}-{$max})
+adventure-webhook-shipstats-category-mid = **Mid class** ({$min}-{$max})
+adventure-webhook-shipstats-category-high = **High class** (≥ {$min})
+adventure-webhook-shipstats-entry = {$count}× {$ship} · avg {$avgTime} · abandoned {$abandoned}/{$count}
+adventure-webhook-shipstats-empty = No purchases
+adventure-webhook-shipstats-avg-na = -
 
 adventure-webhook-footer =
     Server: {$serverName}

@@ -7,6 +7,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
   components:
@@ -58,9 +59,14 @@
   - type: ShipRepairable
     repairTime: 15
     repairCost: 60
+  - type: Machine
+    board: WeaponTurretType35Circuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Cerbrus
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretCerberus
@@ -68,6 +74,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier3HP
+  - ConstructibleMachine
   suffix: Medium, T3
   description: Borrowing from the design of the Marauder, the Cerberus fires very similar shots, but in a tight spread of 3 blasts
   components:
@@ -118,9 +125,14 @@
   - type: ShipRepairable
     repairTime: 50
     repairCost: 120
+  - type: Machine
+    board: WeaponTurretCerberusCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Type 54 autopulser
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretType54
@@ -128,6 +140,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: A rapidly firing energy weapon, well known for its devastating burst followed by a constant stream of plasma.
   components:
@@ -180,10 +193,14 @@
   - type: ShipRepairable
     repairTime: 25
     repairCost: 100
+  - type: Machine
+    board: WeaponTurretType54Circuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
-
- # M25
-
+# M25
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretM25
@@ -265,6 +282,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: Launches EMP projectiles at ships, disabling systems with powerful electromagnetic pulses. Ideal for non-lethal engagements and can be remotely activated or linked to a GCS.
   components:
@@ -313,9 +331,14 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 60
+  - type: Machine
+    board: WeaponTurretM220Circuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Scylla
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretScylla
@@ -323,6 +346,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: Large, T4
   description: A more specialized energy weapon, the Scylla fires a massive burst of plasma projectiles down range, in a huge spew to erase large and small targets alike.
   components:
@@ -385,9 +409,14 @@
   - type: ShipRepairable
     repairTime: 70
     repairCost: 150
+  - type: Machine
+    board: WeaponTurretScyllaCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # DYMERE
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretDymere
@@ -395,6 +424,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier5HP
+  - ConstructibleMachine
   suffix: Station, T5
   description: Aetherion Dynamics' most iconic supercapital battery. Fires enormous ionized gas projectiles that melt through the toughest ship armor. Can be remotely activated or linked to a GCS.
   components:
@@ -464,11 +494,15 @@
   - type: ShipRepairable
     repairTime: 45
     repairCost: 250
+  - type: Machine
+    board: WeaponTurretDymereCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Laser Hitscan
-
 # Phalanx
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponLaserTurretL1Phalanx
@@ -476,6 +510,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier1HP
+  - ConstructibleMachine
   suffix: Small, T1
   description: A light laser emplacement designed by the Pantheon Collective, used to shred threats of all types.
   components:
@@ -522,9 +557,14 @@
   - type: ShipRepairable
     repairTime: 15
     repairCost: 40
+  - type: Machine
+    board: WeaponLaserTurretL1PhalanxCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Prometheus
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponLaserTurretPrometheus
@@ -532,6 +572,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: A heavier laser cannon mount, after the relative failure of the Apollo and its subsequent conversion into a mining laser, the Prometheus comes to the field as the new heavy laser cannon, perfect for melting through hostile hulls.
   components:
@@ -589,15 +630,21 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 100
+  - type: Machine
+    board: WeaponLaserTurretPrometheusCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Apollo
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponLaserTurretApollo
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier4HP # This shit is massive lol
+  - ConstructibleMachine
   suffix: Large, T3
   name: L-20 Apollo Mining Laser Cannon
   description: One of the Pantheon Collective's top weapons, the Apollo is aptly named for its beams heating surfaces to beyond the temperature of nearby stars.
@@ -655,12 +702,15 @@
   - type: ShipRepairable
     repairTime: 25
     repairCost: 100
+  - type: Machine
+    board: WeaponLaserTurretApolloCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # PRE- FRACTURE
-
-
 # Curio-8640 plasma lance "Malice"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretType241
@@ -668,6 +718,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier5HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: A devastating weapon, known for glassing whole fleets when used en masse
   components:
@@ -748,10 +799,14 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
-
+  - type: Machine
+    board: WeaponTurretType241Circuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Tachyon Lance "Reaper"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretReaper
@@ -759,6 +814,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: A terrifying weapon to have aimed at you, the Reaper is an ancient piece of pre-fracture tech capable of shattering the strongest of hulls within one or two blasts.
   components:
@@ -830,9 +886,14 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
+  - type: Machine
+    board: WeaponTurretReaperCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Ion Cannnon "Harbringer"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretHarbringer
@@ -840,6 +901,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: One of the most powerful EMP weapons in sector, it is a sign of doom for its targets.
   components:
@@ -912,9 +974,14 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
+  - type: Machine
+    board: WeaponTurretHarbringerCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Anti-Matter Particle Cannon "Tartarus"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretTartarus
@@ -922,6 +989,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: A rarer, powerful cannon mounted on larger ADS units. Firing a singular particle of antimatter wrapped in energy. Annihalating sections of shuttles at a time.
   components:
@@ -986,9 +1054,14 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
+  - type: Machine
+    board: WeaponTurretTartarusCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Proton Cannon "Sunder"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretSunder
@@ -996,6 +1069,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: A potent proton cannon from before the Fracture, known for melting holes through both inorganic and organic matter with ease.
   components:
@@ -1050,9 +1124,14 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
+  - type: Machine
+    board: WeaponTurretSunderCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Neutron Repeater "Scythe"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretScythe
@@ -1060,6 +1139,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: A burst firing neutron repeater, firing high-damage but slow balls of hell. A marvel of rapture weapons technology. Specializes in tunneling through anything that can't outmanuever it.
   components:
@@ -1119,9 +1199,14 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
+  - type: Machine
+    board: WeaponTurretScytheCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Auto-Coil "Flayer"
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponLaserTurretFlayer
@@ -1129,6 +1214,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: ADS ONLY
   description: A unique pre-fracture weapon, the Flayer fires a storm of tungsten alloy darts at near the speed of light, barraging targets to pieces.
   components:
@@ -1179,3 +1265,9 @@
     toolWhitelist:
       tags:
       - ADSRepairTool
+  - type: Machine
+    board: WeaponLaserTurretFlayerCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

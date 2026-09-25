@@ -26,10 +26,5 @@ ent-150mmApheShell = 150mm APHE shell
     .desc = A chemically-propelled APHE shell for 150mm cannons.
 ent-Asm220TorpedoHESACLOS = ASM-220 high-explosive SACLOS torpedo
     .desc = Contains a large explosive payload with SACLOS guidance. Faster, but requires manual guidance.
-ent-WeaponCaseHeavyAmmo = ammo case
-    .desc = A reinforced casing for storing heavy cannon shells or bulk low caliber munitions.
-    .suffix = Heavy
-
-lathe-recipe-WeaponCaseHeavyAmmo-name = ammo case (heavy, empty)
 
 ship-gun-class-component-examine-detail = The gun uses [color=yellow]{$processingPower}[/color] processing power.

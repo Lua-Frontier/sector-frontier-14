@@ -7,7 +7,6 @@
   - AutolatheMachineCircuitboard
   - CircuitImprinterMachineCircuitboard
   - ExosuitFabricatorMachineCircuitboard
-  - CutterMachineCircuitboard
   - BorgChargerCircuitboard
 
 - type: latheRecipePack
@@ -29,7 +28,6 @@
   - HoloprojectorField
   - SignallerAdvanced
   # - DeviceQuantumSpinInverter # Frontier
-  - DeviceDesynchronizer
   - NFClothingBackpackHarmpack # Frontier: use NF variant
 
 - type: latheRecipePack
@@ -71,6 +69,8 @@
   - FauxTileAstroIce
   - FauxTileAstroSnow
   - FauxTileAstroAsteroidSand
+  - FloorTileItemBluespace
+  - FloorTileItemSepia
 
 - type: latheRecipePack
   id: ScienceExplosives
@@ -89,14 +89,15 @@
   - AutolatheHyperConvectionMachineCircuitboard
   - ProtolatheHyperConvectionMachineCircuitboard
   - CircuitImprinterHyperConvectionMachineCircuitboard
-  # - TechDiskComputerCircuitboard # Frontier: no tech disks
+  - TechDiskComputerCircuitboard
   - FlatpackerMachineCircuitboard
   - SheetifierMachineCircuitboard
   - PowerCageRechargerCircuitboard
   - AnalysisComputerCircuitboard
   - AnomalyVesselCircuitboard
   - AnomalyVesselExperimentalCircuitboard
-  # - AnomalySynchronizerCircuitboard # Frontier: no synchronizer
+  - AnomalySynchronizerCircuitboard
+  - AnomalySynchronizerConsoleCircuitboard
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
@@ -106,12 +107,16 @@
   - ResearchComputerUsspCircuitboard
   - ResearchComputerTSFMCCircuitboard
   - ResearchComputerMercCircuitboard
+  - ResearchComputerLuaTechCircuitboard
   - ResearchAndDevelopmentServerMachineCircuitboard
   - ResearchAndDevelopmentServerSyndicateMachineCircuitboard
   - ResearchAndDevelopmentServerRoguesMachineCircuitboard
   - ResearchAndDevelopmentServerUsspMachineCircuitboard
   - ResearchAndDevelopmentServerTSFMCMachineCircuitboard
   - ResearchAndDevelopmentServerMercMachineCircuitboard
+  - ResearchAndDevelopmentServerLuaTechMachineCircuitboard
+  - CutterMachineCircuitboard
+  - BlueprintLithographMachineCircuitboard
 
 - type: latheRecipePack
   id: CameraBoards

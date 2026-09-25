@@ -1,0 +1,36 @@
+- type: entity
+  parent: BaseItem
+  id: ServerTechReconfigurator
+  name: server tech reconfigurator
+  description: A handheld intrusion terminal that extracts technology records from a directly connected R&D server.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/multitool_drop.ogg
+  - type: Sprite
+    sprite: Objects/Tools/access_configurator.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Clothing
+    sprite: Objects/Tools/access_configurator.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: ServerTechReconfigurator
+  - type: ItemSlots
+    slots:
+      research_disk_slot:
+        name: research-data-disk-slot
+        whitelist:
+          components:
+          - ResearchDataDisk
+        insertSound: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound: /Audio/Machines/terminal_insert_disc.ogg
+  - type: ContainerContainer
+    containers:
+      research_disk_slot: !type:ContainerSlot
+  - type: UserInterface
+    interfaces:
+      enum.ServerTechReconfiguratorUiKey.Key:
+        type: ServerTechReconfiguratorBoundUserInterface

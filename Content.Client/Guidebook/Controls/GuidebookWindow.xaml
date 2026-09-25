@@ -1,39 +1,140 @@
-<controls:FancyWindow xmlns="https://spacestation14.io"
-                xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                xmlns:styles="clr-namespace:Content.Lua.UIKit.Styles;assembly=Content.Lua.UIKit"
                 xmlns:fancyTree="clr-namespace:Content.Client.UserInterface.Controls.FancyTree"
-                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                SetSize="900 700"
-                MinSize="300 200"
+                xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                SetSize="1320 760"
+                MinSize="1320 760"
                 Resizable="True"
-                Title="{Loc 'guidebook-window-title'}"> <!-- Lua: MinSize="100 200" < "300 200" -->
-    <SplitContainer Orientation="Horizontal" HorizontalExpand="True" Name="Split">
-        <!-- Guide select -->
-        <BoxContainer Orientation="Horizontal" Name="TreeBox" MinSize="150 100"> <!-- Lua: Added MinSize="150 100" -->
-            <fancyTree:FancyTree Name="Tree" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
-            <cc:VSeparator StyleClasses="LowDivider" Margin="0 -2"/>
-        </BoxContainer>
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" MinSize="150 100"> <!-- Lua: Added MinSize="150 100" -->
-            <BoxContainer Name="SearchContainer" Visible="False" HorizontalExpand="True">
-                <LineEdit
-                    Name="SearchBar"
-                    PlaceHolder="{Loc 'guidebook-filter-placeholder-text'}"
-                    HorizontalExpand="True"
-                    Margin="0 5 10 5">
-                </LineEdit>
+                Title="{Loc 'guidebook-window-title'}">
+    <PanelContainer Name="Shell" Margin="4 2 4 4" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer.PanelOverride>
+            <graphics:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1"/>
+        </PanelContainer.PanelOverride>
+        <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="6 4 6 6"
+                      HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Name="Toolbar" Orientation="Horizontal" SeparationOverride="4" HorizontalExpand="True">
+                <Button Name="BackButton" Text="{Loc 'guidebook-button-back'}" Disabled="True"/>
+                <Button Name="ForwardButton" Text="{Loc 'guidebook-button-forward'}" Disabled="True"/>
+                <Button Name="HomeRootButton" Text="{Loc 'guidebook-button-home'}"/>
+                <Button Name="ToggleTreeButton" Text="{Loc 'guidebook-button-toggle-tree'}"/>
+                <Button Name="ExpandAllButton" Text="{Loc 'guidebook-button-expand-all'}"/>
+                <Button Name="CollapseAllButton" Text="{Loc 'guidebook-button-collapse-all'}"/>
+                <Control HorizontalExpand="True" MinWidth="8"/>
+                <Label Name="BreadcrumbLabel" VerticalAlignment="Center" ClipText="True" MaxWidth="420"/>
             </BoxContainer>
-            <BoxContainer Access="Internal" Name="ReturnContainer" Orientation="Horizontal" HorizontalAlignment="Right" Visible="False">
-                <Button Name="HomeButton" Text="{Loc 'ui-rules-button-home'}" Margin="0 0 10 0"/>
+            <BoxContainer Name="ToolsRow" Orientation="Horizontal" SeparationOverride="4" HorizontalExpand="True">
+                <Button Name="ScrollTopButton" Text="{Loc 'guidebook-button-scroll-top'}"/>
+                <Button Name="FontMinusButton" Text="A-"/>
+                <Button Name="FontPlusButton" Text="A+"/>
+                <Button Name="PinButton" Text="{Loc 'guidebook-button-pin'}"/>
+                <Button Name="UnpinButton" Text="{Loc 'guidebook-button-unpin'}"/>
+                <Control HorizontalExpand="True"/>
             </BoxContainer>
-            <ScrollContainer Name="Scroll" HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
-                <Control>
-                    <BoxContainer Orientation="Vertical" Name="EntryContainer" Margin="5 5 5 5" Visible="False">
+
+            <PanelContainer Name="ToolbarDivider" MinHeight="1" MaxHeight="1" HorizontalExpand="True"/>
+
+            <BoxContainer Name="WebLinkBar" Orientation="Horizontal" SeparationOverride="6"
+                          Visible="False" HorizontalExpand="True">
+                <Label Name="WebLinkTitleLabel" VerticalAlignment="Center"/>
+                <LineEdit Name="WebLinkUrlEdit" Editable="False" HorizontalExpand="True" MinHeight="28"/>
+                <Button Name="WebLinkOpenButton" Text="{Loc 'guidebook-button-open-browser'}"/>
+                <Button Name="WebLinkCopyButton" Text="{Loc 'guidebook-button-copy-url'}"/>
+                <Button Name="WebLinkCloseButton" Text="{Loc 'guidebook-button-close-link'}"/>
+            </BoxContainer>
+            <SplitContainer Name="Split" Orientation="Horizontal"
+                            HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Name="TreePanel" Orientation="Horizontal"
+                              MinWidth="260" MaxWidth="420"
+                              HorizontalExpand="False" VerticalExpand="True">
+                    <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="0 0 4 0">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1"/>
+                        </PanelContainer.PanelOverride>
+                        <BoxContainer Name="TreeBox" Orientation="Vertical" SeparationOverride="4"
+                                      Margin="6" HorizontalExpand="True" VerticalExpand="True">
+                            <LineEdit Name="TreeSearchBar"
+                                      PlaceHolder="{Loc 'guidebook-tree-filter-placeholder'}"
+                                      HorizontalExpand="True"
+                                      MinHeight="28"/>
+                            <PanelContainer Name="TreeHost"
+                                            VerticalExpand="True"
+                                            HorizontalExpand="True"
+                                            MinHeight="80"
+                                            RectClipContent="True">
+                                <fancyTree:FancyTree Name="Tree"
+                                                     VerticalExpand="True"
+                                                     HorizontalExpand="True"
+                                                     Access="Public"/>
+                            </PanelContainer>
+                            <PanelContainer Name="PinsDivider" MinHeight="1" MaxHeight="1" HorizontalExpand="True"/>
+                            <Label Name="PinsHeader" Text="{Loc 'guidebook-pins-header'}"/>
+                            <ScrollContainer Name="PinsScroll"
+                                             SetHeight="72"
+                                             HorizontalExpand="True"
+                                             VerticalExpand="False">
+                                <BoxContainer Name="PinsContainer" Orientation="Vertical"
+                                              SeparationOverride="2" HorizontalExpand="True"/>
+                            </ScrollContainer>
+                        </BoxContainer>
+                    </PanelContainer>
+                    <PanelContainer Name="SplitDivider" MinWidth="2" MaxWidth="2" VerticalExpand="True"/>
+                </BoxContainer>
+
+                <PanelContainer Name="ContentPanel"
+                                MinWidth="400"
+                                HorizontalExpand="True"
+                                VerticalExpand="True">
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BackgroundColor="#0E1218" BorderColor="#2A3344" BorderThickness="1"/>
+                    </PanelContainer.PanelOverride>
+                    <BoxContainer Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  SeparationOverride="4"
+                                  Margin="8 6 8 8">
+                        <BoxContainer Name="SearchContainer" Visible="False" HorizontalExpand="True">
+                            <LineEdit Name="SearchBar"
+                                      PlaceHolder="{Loc 'guidebook-filter-placeholder-text'}"
+                                      HorizontalExpand="True"
+                                      MinHeight="28"/>
+                        </BoxContainer>
+                        <BoxContainer Access="Internal" Name="ReturnContainer" Orientation="Horizontal"
+                                      HorizontalAlignment="Right" Visible="False">
+                            <Button Name="HomeButton" Text="{Loc 'ui-rules-button-home'}"/>
+                        </BoxContainer>
+                        <BoxContainer Name="BrowserNavBar" Orientation="Horizontal" SeparationOverride="4"
+                                      Visible="False" HorizontalExpand="True">
+                            <Button Name="BrowserBackButton" Text="{Loc 'guidebook-browser-back'}"/>
+                            <Button Name="BrowserForwardButton" Text="{Loc 'guidebook-browser-forward'}"/>
+                            <Button Name="BrowserReloadButton" Text="{Loc 'guidebook-browser-reload'}"/>
+                            <LineEdit Name="BrowserUrlEdit" HorizontalExpand="True" MinHeight="26"/>
+                            <Button Name="BrowserGoButton" Text="{Loc 'guidebook-browser-go'}"/>
+                            <Button Name="BrowserCloseButton" Text="{Loc 'guidebook-browser-close'}"/>
+                        </BoxContainer>
+                        <PanelContainer Name="BrowserHost" Visible="False"
+                                        HorizontalExpand="True" VerticalExpand="True"/>
+
+                        <ScrollContainer Name="Scroll"
+                                         HScrollEnabled="False"
+                                         HorizontalExpand="True"
+                                         VerticalExpand="True">
+                            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                                <BoxContainer Orientation="Vertical" Name="EntryContainer"
+                                              Margin="8 4 12 12" Visible="False"
+                                              HorizontalExpand="True"/>
+                                <BoxContainer Orientation="Vertical" Name="Placeholder"
+                                              Margin="8 24 8 8" SeparationOverride="6"
+                                              HorizontalExpand="True">
+                                    <Label Name="PlaceholderLabel" HorizontalAlignment="Center"
+                                           Text="{Loc 'guidebook-placeholder-text'}"/>
+                                    <Label Name="PlaceholderLabel2" HorizontalAlignment="Center"
+                                           Text="{Loc 'guidebook-placeholder-text-2'}"/>
+                                </BoxContainer>
+                            </BoxContainer>
+                        </ScrollContainer>
                     </BoxContainer>
-                    <BoxContainer Orientation="Vertical" Name="Placeholder" Margin="5 5 5 5">
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Loc 'guidebook-placeholder-text'}"/>
-                        <Label HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Loc 'guidebook-placeholder-text-2'}"/>
-                    </BoxContainer>
-                </Control>
-            </ScrollContainer>
+                </PanelContainer>
+            </SplitContainer>
         </BoxContainer>
-    </SplitContainer>
-</controls:FancyWindow>
+    </PanelContainer>
+</styles:LunaWindow>

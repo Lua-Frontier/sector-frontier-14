@@ -2,13 +2,12 @@
 // Copyright (c) 2025 LuaWorld
 // See AGPLv3.txt for details.
 
-using Content.Server._Lua.Company;
-using Content.Server._Lua.Sectors;
-using Content.Server._Lua.Starmap.Systems;
+using Content.Lua.Shared.Company;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Shuttles.Components;
-using Content.Shared.Lua.CLVar;
-using Content.Shared._Lua.Starmap;
-using Content.Shared._Lua.Starmap.Components;
+using Content.Lua.Common.CLVar;
+using Content.Lua.Shared.Starmap;
+using Content.Lua.Shared.Starmap.Components;
 using Content.Shared._Mono.Company;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Shuttles.BUIStates;
@@ -25,13 +24,13 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
 {
-    [Dependency] private readonly StarmapSystem _starmap = default!; // Lua
-    [Dependency] private readonly FactionOwnedStationSystem _factionOwnedStations = default!; // Lua
-    [Dependency] private readonly SectorSystem _sectors = default!; // Lua
+    [Dependency] private readonly IStarmapSystem _starmap = default!;
+    [Dependency] private readonly IFactionOwnedStationSystem _factionOwnedStations = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!; // Lua
-    [Dependency] private readonly FactionWarSystem _factionWar = default!; // Lua
+    [Dependency] private readonly IFactionWarSystem _factionWar = default!;
 
     private void OnConsoleDiskInserted(EntityUid uid, ShuttleConsoleComponent component, EntInsertedIntoContainerMessage args) // Lua
     {
@@ -76,7 +75,7 @@ public sealed partial class ShuttleConsoleSystem
             stars = _starmap.CollectStarsFresh(updateCache: true);
         var edges = _starmap.GetHyperlanesCached();
         if ((edges == null || edges.Count == 0) && stars.Count > 0)
-            edges = EntityManager.System<StarmapSystem>().GetHyperlanesCached();
+            edges = EntityManager.System<IStarmapSystem>().GetHyperlanesCached();
 
         if (currentMap != MapId.Nullspace)
         {
@@ -296,7 +295,7 @@ public sealed partial class ShuttleConsoleSystem
     {
         try
         {
-            EntityManager.System<SimpleStarmapSystem>().WarpToStar(uid, args.Star, args.Actor);
+            EntityManager.System<ISimpleStarmapSystem>().WarpToStar(uid, args.Star, args.Actor);
         }
         catch { }
     }

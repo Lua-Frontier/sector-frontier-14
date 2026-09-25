@@ -4,60 +4,35 @@
 
 # ---- Tags ----
 - type: Tag
-  id: MagazineLua20mm
+  id: CartridgeLua25mm
 
 - type: Tag
-  id: CartridgeLua20mm
+  id: CartridgeLua45mm
 
 - type: Tag
-  id: MagazineLua53mm
+  id: CartridgeLua75mm
 
 - type: Tag
-  id: CartridgeLua53mm
+  id: CartridgeLua95mm
 
 - type: Tag
-  id: MagazineLua80mm
+  id: CartridgeLua130mm
 
 - type: Tag
-  id: CartridgeLua80mm
+  id: CartridgeLua155mm
 
-- type: Tag
-  id: MagazineLua105mm
-
-- type: Tag
-  id: CartridgeLua105mm
-
-- type: Tag
-  id: CartridgeLua120mm
-
-- type: Tag
-  id: MagazineLua140mm
-
-- type: Tag
-  id: CartridgeLua140mm
-
-- type: Tag
-  id: MagazineNightHunter
-
-- type: Tag
-  id: MagazineLancer
-
-- type: Tag
-  id: MagazineCerber
-
-# ---- 20mm ----
 - type: entity
-  categories: [ ShuttleGun ]
-  id: CartridgeLua20mm
-  name: cartridge (20mm)
+  categories: [HideSpawnMenu, ShuttleGun]
+  id: CartridgeLua25mm
+  name: cartridge (25mm)
   parent: 20mmCartridge
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeLua20mm
+    - CartridgeLua25mm
   - type: CartridgeAmmo
-    proto: Bullet20mm
+    proto: Bullet25mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
     layers:
@@ -65,37 +40,17 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineLua20mm
-  name: 20mm ammo loader
-  description: An ammunition loader for Lua 20mm ship guns.
-  parent: Magazine20mm
-  components:
-  - type: Tag
-    tags:
-    - MagazineLua20mm
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    mayTransfer: true
-    capacity: 1
-    proto: CartridgeLua20mm
-    whitelist:
-      tags:
-      - CartridgeLua20mm
-
-# ---- 53mm ----
-- type: entity
-  categories: [ ShuttleGun ]
-  id: CartridgeLua53mm
-  name: cartridge (53mm)
+  categories: [HideSpawnMenu, ShuttleGun]
+  id: CartridgeLua45mm
+  name: cartridge (45mm)
   parent: 57mmCartridgeHE
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeLua53mm
+    - CartridgeLua45mm
   - type: CartridgeAmmo
-    proto: Bullet53mm
+    proto: Bullet45mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
     layers:
@@ -103,37 +58,17 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineLua53mm
-  name: 53mm ammo loader
-  description: An ammunition loader for Lua 53mm ship guns.
-  parent: Magazine57mmHE
-  components:
-  - type: Tag
-    tags:
-    - MagazineLua53mm
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    mayTransfer: true
-    capacity: 1
-    proto: CartridgeLua53mm
-    whitelist:
-      tags:
-      - CartridgeLua53mm
-
-# ---- 80mm ----
-- type: entity
-  categories: [ ShuttleGun ]
-  id: CartridgeLua80mm
-  name: cartridge (80mm)
+  categories: [HideSpawnMenu, ShuttleGun]
+  id: CartridgeLua75mm
+  name: cartridge (75mm)
   parent: 90mmCartridgeHE
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeLua80mm
+    - CartridgeLua75mm
   - type: CartridgeAmmo
-    proto: Bullet80mm
+    proto: Bullet75mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
     layers:
@@ -141,37 +76,17 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineLua80mm
-  name: 80mm ammo loader
-  description: An ammunition loader for Lua 80mm ship guns.
-  parent: 90mmMagazineHE
-  components:
-  - type: Tag
-    tags:
-    - MagazineLua80mm
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    mayTransfer: true
-    capacity: 1
-    proto: CartridgeLua80mm
-    whitelist:
-      tags:
-      - CartridgeLua80mm
-
-# ---- 105mm ----
-- type: entity
-  categories: [ ShuttleGun ]
-  id: CartridgeLua105mm
-  name: shell (105mm)
+  categories: [HideSpawnMenu, ShuttleGun]
+  id: CartridgeLua95mm
+  name: shell (95mm)
   parent: 90mmCartridgeHE
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeLua105mm
+    - CartridgeLua95mm
   - type: CartridgeAmmo
-    proto: Bullet105mm
+    proto: Bullet95mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
     layers:
@@ -179,56 +94,35 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineLua105mm
-  name: 105mm ammo loader
-  description: An ammunition loader for Lua 105mm mortars.
-  parent: 90mmMagazineHE
-  components:
-  - type: Tag
-    tags:
-    - MagazineLua105mm
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    mayTransfer: true
-    capacity: 1
-    proto: CartridgeLua105mm
-    whitelist:
-      tags:
-      - CartridgeLua105mm
-
-# ---- 120mm (direct cartridge feed, like AK820) ----
-- type: entity
-  categories: [ ShuttleGun ]
-  id: CartridgeLua120mm
-  name: shell (120mm)
+  categories: [HideSpawnMenu, ShuttleGun]
+  id: CartridgeLua130mm
+  name: shell (130mm)
   parent: 120mmCartridgeAPHEDS
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeLua120mm
+    - CartridgeLua130mm
   - type: CartridgeAmmo
-    proto: Bullet120mm
+    proto: Bullet130mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
     layers:
     - state: 120mmhe
       map: ["enum.AmmoVisualLayers.Base"]
 
-# ---- 140mm ----
 - type: entity
-  categories: [ ShuttleGun ]
-  id: CartridgeLua140mm
-  name: shell (140mm)
+  categories: [HideSpawnMenu, ShuttleGun]
+  id: CartridgeLua155mm
+  name: shell (155mm)
   parent: 140mmCartridge
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeLua140mm
+    - CartridgeLua155mm
   - type: CartridgeAmmo
-    proto: Bullet140mm
+    proto: Bullet155mm
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
     layers:
@@ -236,27 +130,7 @@
       map: ["enum.AmmoVisualLayers.Base"]
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineLua140mm
-  name: 140mm ammo loader
-  description: An ammunition loader for Lua 140mm mortars.
-  parent: Magazine140mm
-  components:
-  - type: Tag
-    tags:
-    - MagazineLua140mm
-  - type: BallisticAmmoProvider
-    infiniteUnspawned: true
-    mayTransfer: true
-    capacity: 1
-    proto: CartridgeLua140mm
-    whitelist:
-      tags:
-      - CartridgeLua140mm
-
-# ---- Missiles ----
-- type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: CartridgeNightHunter
   name: Tomahawk missile
   parent: MissileCartridge50mmHE
@@ -269,23 +143,7 @@
     proto: BulletTomahawk
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineNightHunter
-  name: Night Hunter missile loader
-  description: Missile magazine for the Night Hunter launcher.
-  parent: MissileMagazine50mmHE
-  components:
-  - type: Tag
-    tags:
-    - MagazineNightHunter
-  - type: BallisticAmmoProvider
-    proto: CartridgeNightHunter
-    whitelist:
-      tags:
-      - MissileNightHunter
-
-- type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: CartridgeLancer
   name: Spear missile
   parent: VanykCartridge
@@ -298,23 +156,7 @@
     proto: BulletWolf
 
 - type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineLancer
-  name: Lancer missile loader
-  description: Missile magazine for the Lancer-14 launcher.
-  parent: VanykMagazine
-  components:
-  - type: Tag
-    tags:
-    - MagazineLancer
-  - type: BallisticAmmoProvider
-    proto: CartridgeLancer
-    whitelist:
-      tags:
-      - MissileLancer
-
-- type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: CartridgeCerber
   name: Anaconda missile
   parent: MissileCartridge250mm
@@ -327,18 +169,3 @@
     proto: BulletGR
   # Sprite: inherit Mono MissileCartridge250mm (generic_cartridges.rsi / tovek)
 
-- type: entity
-  categories: [ ShuttleGun ]
-  id: MagazineCerber
-  name: Cerber missile loader
-  description: Missile magazine for the Cerber-X launcher.
-  parent: PaladinMagazine
-  components:
-  - type: Tag
-    tags:
-    - MagazineCerber
-  - type: BallisticAmmoProvider
-    proto: CartridgeCerber
-    whitelist:
-      tags:
-      - MissileCerber

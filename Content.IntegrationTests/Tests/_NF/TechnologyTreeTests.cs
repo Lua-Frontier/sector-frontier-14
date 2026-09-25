@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using Content.Server.Research.Systems;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -14,7 +13,7 @@ namespace Content.IntegrationTests.Tests._NF;
 public sealed class TechnologyTreeTests
 {
     [Test]
-    public async Task CheckDuplicateTechPositions()
+    public async Task CheckTechnologyRecipesAndPrerequisites()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -25,18 +24,12 @@ public sealed class TechnologyTreeTests
         await server.WaitPost(() =>
         {
             var research = entMan.System<ResearchSystem>();
-            var factions = protoManager.EnumeratePrototypes<RndFactionPrototype>()
-                .Select(faction => (ProtoId<RndFactionPrototype>) faction.ID)
-                .ToList();
             var technologies = protoManager.EnumeratePrototypes<TechnologyPrototype>().ToList();
 
             Assert.Multiple(() =>
             {
                 foreach (var tech in technologies)
                 {
-                    Assert.That(GetDefinedPositions(tech).Any(), Is.True,
-                        $"Tech {tech.ID} does not define a base position or any faction override positions.");
-
                     foreach (var recipe in tech.RecipeUnlocks)
                     {
                         Assert.That(protoManager.TryIndex(recipe, out _), Is.True,
@@ -48,21 +41,19 @@ public sealed class TechnologyTreeTests
                         Assert.That(protoManager.TryIndex(prereq, out _), Is.True,
                             $"Technology {tech.ID} has {prereq} as a pre-requisite, but {prereq} is not a valid technology.");
                     }
-                }
 
-                foreach (var faction in factions)
-                {
-                    Dictionary<Vector2, string> techNamesByPosition = new();
-
-                    foreach (var tech in technologies)
+                    foreach (var (faction, factionOverride) in tech.FactionOverrides)
                     {
-                        if (!research.IsTechnologyFactionAllowed(faction, tech))
+                        if (factionOverride.TechnologyPrerequisites == null)
                             continue;
 
-                        var position = research.GetTechnologyPosition(faction, tech);
-                        Assert.That(techNamesByPosition.TryGetValue(position, out var techName), Is.False,
-                            $"Tech {tech.ID} has a duplicate position {position} with {techName} for faction {faction}.");
-                        techNamesByPosition[position] = tech.ID;
+                        foreach (var prereq in factionOverride.TechnologyPrerequisites)
+                        {
+                            Assert.That(protoManager.TryIndex(prereq, out _), Is.True,
+                                $"Technology {tech.ID} faction override {faction} has invalid prerequisite {prereq}.");
+                        }
+
+                        _ = research.GetTechnologyPrerequisites(faction, tech);
                     }
                 }
             });
@@ -72,7 +63,7 @@ public sealed class TechnologyTreeTests
     }
 
     [Test]
-    public async Task TechnologyUsesFactionOverridePosition()
+    public async Task TechnologyUsesFactionOverridePrerequisites()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -80,36 +71,16 @@ public sealed class TechnologyTreeTests
         var entMan = server.ResolveDependency<IEntityManager>();
         await server.WaitAssertion(() =>
         {
+            if (!protoManager.TryIndex<TechnologyPrototype>("ThrusterPiratesMachineCircuitboard", out var tech))
+                return;
+
             var research = entMan.System<ResearchSystem>();
-            var tech = protoManager.Index<TechnologyPrototype>("NFAdvancedParts");
             var researchUid = entMan.SpawnEntity(null, MapCoordinates.Nullspace);
             var researchServer = entMan.AddComponent<ResearchServerComponent>(researchUid);
-            researchServer.Faction = "Nanotrasen";
-            var ntPosition = research.GetTechnologyPosition(researchUid, tech);
-            researchServer.Faction = "Syndicate";
-            var syndicatePosition = research.GetTechnologyPosition(researchUid, tech);
-            Assert.Multiple(() =>
-            {
-                Assert.That(ntPosition.X, Is.EqualTo(0f).Within(0f));
-                Assert.That(ntPosition.Y, Is.EqualTo(0f).Within(0f));
-                Assert.That(syndicatePosition.X, Is.EqualTo(0f).Within(0f));
-                Assert.That(syndicatePosition.Y, Is.EqualTo(0f).Within(0f));
-            });
+            researchServer.Faction = "Pirates";
+            var prereqs = research.GetTechnologyPrerequisites(researchUid, tech);
+            Assert.That(prereqs, Does.Not.Contain((ProtoId<TechnologyPrototype>) "LuaDisciplinePlaceholderEngineering"));
         });
         await pair.CleanReturnAsync();
-    }
-
-    private static IEnumerable<Vector2> GetDefinedPositions(TechnologyPrototype tech)
-    {
-        if (tech.Position is { } position)
-            yield return position;
-
-        foreach (var overridePosition in tech.FactionOverrides.Values.Select(overrideData => overrideData.Position).OfType<Vector2>())
-        {
-            if (tech.Position == overridePosition)
-                continue;
-
-            yield return overridePosition;
-        }
     }
 }

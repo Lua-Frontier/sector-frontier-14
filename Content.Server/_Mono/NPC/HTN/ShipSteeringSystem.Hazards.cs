@@ -3,8 +3,8 @@
 // See AGPLv3.txt for details.
 
 using System.Numerics;
-using Content.Shared._Lua.AmbientSpaceEffects;
-using Content.Shared._Lua.SpaceHazards;
+using Content.Lua.Shared.AmbientSpaceEffects;
+using Content.Lua.Shared.SpaceHazards;
 using Content.Shared.Shuttles.BUIStates;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -350,7 +350,8 @@ public sealed partial class ShipSteeringSystem
             var shipMap = _transform.GetMapCoordinates(shipXform);
             if (mapFilter != null && shipMap.MapId != mapFilter.Value) continue;
             if (shipMap.MapId == MapId.Nullspace) continue;
-            var mapUid = _mapMan.GetMapEntityId(shipMap.MapId);
+            var mapUid = _mapMan.GetMapOrInvalid(shipMap.MapId);
+            if (!mapUid.IsValid()) continue;
             var points = new List<NetCoordinates>
             { GetNetCoordinates(new EntityCoordinates(mapUid, shipMap.Position)), };
             if (steerer.Waypoints != null)

@@ -3,8 +3,9 @@
   id: WeaponTurretVanquisher
   name: SRM-573 "Vanquisher" Missile Pod
   parent:
-  - BallisticArtilleryUnanchorableMagazine
+  - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   description: A short-ranged missile pod firing 150mm unguided rockets with devastating fire rate.
   suffix: Large, T4
   components:
@@ -41,19 +42,15 @@
     powerChargeRate: 350
     powerUsePassive: 600
     powerUseActive: 0
-  - type: MagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: VanquisherMagazine
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - VanquisherMagazine
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: VanykCartridgeUnguided
+    capacity: 288
+    whitelist:
+      tags:
+      - VanykCartridgeUnguided
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 3
@@ -76,23 +73,10 @@
         - MachineMask
         layer:
         - MachineLayer
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretVanquisherInfinite
-  parent: WeaponTurretVanquisher
-  suffix: Large, T4, Infinite
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        disableEject: true
-        name: Magazine
-        startingItem: VanquisherMagazineInfinite
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - VanquisherMagazine
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: Machine
+    board: WeaponTurretVanquisherCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

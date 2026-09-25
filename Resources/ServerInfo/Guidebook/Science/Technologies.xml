@@ -1,11 +1,62 @@
 <Document>
-# Технологии
+# Как открывать технологии
 
-Все технологии имеют стоимость и требования по тиру для исследования. Их открытие добавляет набор рецептов, которые можно печатать на разных станках.
+Раньше технологии открывали кликом по дереву. Сейчас путь такой:
 
-Ниже перечислены технологии и соответствующие им дисциплины.
+## 1. Пустой диск
+<Box>
+  <GuideEntityEmbed Entity="ResearchDataDisk"/>
+</Box>
+Напечатайте диск на автолате. Это чистый носитель.
 
-<!-- Frontier: all disciplines below swapped to NF variants -->
+## 2. Запись данных (скан)
+<Box>
+  <GuideEntityEmbed Entity="MachineDiscoverySourceConsole"/>
+  <GuideEntityEmbed Entity="AnomalyScanner"/>
+</Box>
+
+Вставьте пустой диск в [bold]консоль источника[/bold] у аномалии или артефакта и запустите скан.
+
+Во время скана сервер получает [bold]очки исследований[/bold]. Иногда на диск пишется технология.
+
+После скана диск становится [bold]сырым[/bold]: видно дисциплину, примерную цену и риск, но не точное имя.
+
+Подсказка: [bold]стойки вычислений[/bold] на том же корабле ускоряют [bold]ручной скан[/bold] и [bold]расшифровку[/bold]. Автоскан медленнее и стойки его не ускоряют.
+<Box>
+  <GuideEntityEmbed Entity="ResearchComputeServer"/>
+</Box>
+
+## 3. Расшифровка
+<Box>
+  <GuideEntityEmbed Entity="MachineDiscoveryAnalysisConsole"/>
+</Box>
+
+Вставьте сырой диск в [bold]консоль анализа[/bold] и расшифруйте. Появится полное название технологии.
+
+## 4. Загрузка на сервер
+Тем же анализом загрузите расшифрованный диск на [bold]сервер R&D этого корабля[/bold].
+
+Технология открыта. Рецепты появляются на станках, привязанных к этому серверу.
+
+Если такая технология уже есть - можно [bold]очистить диск[/bold] или получить [bold]очки[/bold] (около 80% от стоимости).
+
+## Журнал и чертежи
+<Box>
+  <GuideEntityEmbed Entity="ComputerResearchAndDevelopment"/>
+  <GuideEntityEmbed Entity="ResearchRecipeBlueprint"/>
+</Box>
+
+В консоли R&D виден только список [bold]открытого[/bold]. Оттуда можно напечатать [bold]чертёж[/bold] на один рецепт (нужна бумага, около 30 секунд). Чертёж не заменяет открытие - оно уже есть на сервере.
+
+## Кража технологий
+<Box>
+  <GuideEntityEmbed Entity="ServerTechReconfigurator"/>
+</Box>
+
+Прибор [bold]реконфигуратор сервера[/bold] (есть почти у всех фракций с самого старта): пустой диск + применение к чужому запитанному серверу → мини-игра → технология снимается с жертвы и оказывается на вашем диске.
+
+## Дисциплины
+Технологии делятся по направлениям. Список ниже обновляется автоматически:
 
 ## Инженерия
 <GuideTechDisciplineEmbed Discipline="NFEngineering"/>
@@ -13,11 +64,8 @@
 ## Медицина
 <GuideTechDisciplineEmbed Discipline="NFMedical"/>
 
-## Наёмники
-<GuideTechDisciplineEmbed Discipline="NFArsenalMercenary"/>
-
-## Frontline Solutions
-<GuideTechDisciplineEmbed Discipline="NFArsenalNfsd"/>
+## Арсенал
+<GuideTechDisciplineEmbed Discipline="NFArsenal"/>
 
 ## Утилизация
 <GuideTechDisciplineEmbed Discipline="NFSalvage"/>
@@ -28,7 +76,7 @@
 ## Сервис
 <GuideTechDisciplineEmbed Discipline="NFService"/>
 
-## Гражданские службы
+## Корабельное вооружение
 <GuideTechDisciplineEmbed Discipline="Shiparmory"/>
 
 </Document>

@@ -7,7 +7,6 @@ using Content.Server.Objectives.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.PowerCell;
-using Content.Server.Research.Systems;
 using Content.Server.Roles;
 using Content.Shared.Alert;
 using Content.Shared.Doors.Components;
@@ -41,7 +40,6 @@ public sealed class SpaceNinjaSystem : SharedSpaceNinjaSystem
         base.Initialize();
 
         SubscribeLocalEvent<SpaceNinjaComponent, EmaggedSomethingEvent>(OnDoorjack);
-        SubscribeLocalEvent<SpaceNinjaComponent, ResearchStolenEvent>(OnResearchStolen);
         SubscribeLocalEvent<SpaceNinjaComponent, ThreatCalledInEvent>(OnThreatCalledIn);
         SubscribeLocalEvent<SpaceNinjaComponent, CriminalRecordsHackedEvent>(OnCriminalRecordsHacked);
     }
@@ -53,20 +51,6 @@ public sealed class SpaceNinjaSystem : SharedSpaceNinjaSystem
         {
             SetSuitPowerAlert((uid, ninja));
         }
-    }
-
-    /// <summary>
-    /// Download the given set of nodes, returning how many new nodes were downloaded.
-    /// </summary>
-    private int Download(EntityUid uid, List<string> ids)
-    {
-        if (!_mind.TryGetObjectiveComp<StealResearchConditionComponent>(uid, out var obj))
-            return 0;
-
-        var oldCount = obj.DownloadedNodes.Count;
-        obj.DownloadedNodes.UnionWith(ids);
-        var newCount = obj.DownloadedNodes.Count;
-        return newCount - oldCount;
     }
 
     // TODO: can probably copy paste borg code here
@@ -131,19 +115,6 @@ public sealed class SpaceNinjaSystem : SharedSpaceNinjaSystem
         // handle greentext
         if (_mind.TryGetObjectiveComp<DoorjackConditionComponent>(uid, out var obj))
             obj.DoorsJacked++;
-    }
-
-    /// <summary>
-    /// Add to greentext when stealing technologies.
-    /// </summary>
-    private void OnResearchStolen(EntityUid uid, SpaceNinjaComponent comp, ref ResearchStolenEvent args)
-    {
-        var gained = Download(uid, args.Techs);
-        var str = gained == 0
-            ? Loc.GetString("ninja-research-steal-fail")
-            : Loc.GetString("ninja-research-steal-success", ("count", gained), ("server", args.Target));
-
-        Popup.PopupEntity(str, uid, uid, PopupType.Medium);
     }
 
     private void OnThreatCalledIn(Entity<SpaceNinjaComponent> ent, ref ThreatCalledInEvent args)

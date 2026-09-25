@@ -38,13 +38,14 @@
   </Box>
 
   ## Подготовка
-  У каждого есть [color=cyan]аплинк[/color], чтобы купить всё необходимое, аналогично [textlink="предателям" link="Traitors"].
+  У оперативников есть flatpack [bold]Syndicate R&D[/bold], консоли и [bold]SyndicateTechFab[/bold] для исследования и печати снаряжения (вместо TC-аплинка).
 
   <Box>
-    <GuideEntityEmbed Entity="BaseUplinkRadio40TC" Caption="your uplink"/>
+    <GuideEntityEmbed Entity="ResearchAndDevelopmentServerSyndicateFlatpack" Caption="R&D server"/>
+    <GuideEntityEmbed Entity="SyndicateTechFabFlatpack" Caption="TechFab"/>
   </Box>
 
-  Доступно то же, что и предателям, но с лучшим качеством и большим числом телекристаллов.
+  Доступно оружие, броня и утилиты через дерево технологий Синдиката.
   <Box>
     <GuideEntityEmbed Entity="NFWeaponLightMachineGunL6" Caption="Weaponry"/>
     <GuideEntityEmbed Entity="NFAmmunitionBoxRifle30" State="icon" Caption="Ammo"/>
@@ -60,7 +61,7 @@
     <GuideEntityEmbed Entity="ClothingEyesGlassesOutlawGlasses" Caption="Pointless"/>
   </Box>
 
-  Нужно решить, [color=red]объявлять войну[/color] или нет. Это даёт команде [bold]по 40 телекристаллов[/bold] каждому, но экипаж сразу узнает о вас и успеет подготовиться.
+  Нужно решить, [color=red]объявлять войну[/color] или нет. Объявление войны предупреждает экипаж заранее.
 
   [bold]Командир[/bold] - единственный, кто может объявить войну. Решайте быстро, [italic]предложение ограничено по времени[/italic]!
   <Box>

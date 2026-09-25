@@ -5,7 +5,7 @@ using Content.Server._NF.Worldgen.Components.Debris; // Frontier
 using Content.Server._NF.Salvage; // Frontier
 using Content.Server.StationEvents.Events; // Frontier
 using Content.Server._Mono.Cleanup;
-using Content.Server._Lua.Worldgen;
+using Content.Lua.Shared.Worldgen;
 using Robust.Shared.Spawners;
 
 namespace Content.Server.Worldgen.Systems;

@@ -1,6 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Shared._RMC14.Announce;
-using Content.Shared._Lua.CCVar;
+using Content.Lua.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Configuration;

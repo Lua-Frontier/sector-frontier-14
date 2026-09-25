@@ -1,64 +1,21 @@
-<Document>
-  # Робототехника
-  Научная команда может создавать разные типы роботов под нужды станции. Для начала исследуйте технологию [color=#a4885c]Robotics[/color].
+﻿<Document>
+# Робототехника
 
-  ## Exosuit Fabricator
-  <Box>
-  <GuideEntityEmbed Entity="ExosuitFabricator" Caption="Exosuit Fabricator"/>
-  </Box>
-  [color=#a4885c]Exosuit Fabricator[/color] печатает большинство деталей для ваших проектов, например:
-  - конечности [textlink="киборгов" link="Cyborgs"]
-  - части и оборудование мехов
-  - датчики приближения
+Наука собирает ботов, мехов и киборгов. Печать деталей - на [bold]фабрикаторе экзокостюмов[/bold], привязанном к серверу R&D.
 
-  Работа с экзокостюм-фабрикатором как с любым станком: кликните по нему, чтобы открыть интерфейс, затем выберите нужную деталь.
-  - Нет рецептов? Нажмите кнопку [color=#a4885c]sync[/color] — возможно, появились новые чертежи. Если всё равно пусто, нужная технология пока не исследована.
-  - Рецепт серый? Не хватает материалов. Вставляйте материалы ([color=#99A3A4]сталь[/color], [color=#ECF0F1]пластик[/color], [color=#AED6F1]стекло[/color]) кликом по станку, держа их в руке.
+<Box>
+  <GuideEntityEmbed Entity="ExosuitFabricator"/>
+</Box>
 
-  На старте у станции есть полный набор оборудования для робототехники, но можно сделать ещё один фабрикатор при наличии технологии [color=#a4885c]Robotics[/color], чтобы напечатать соответствующую плату.
+## Боты
+Простые помощники: уборка, доставка, медицина. Собираются из корпуса и модулей. Не требуют ИИ-мозга.
 
-  ## Боты
-  <Box>
-  <GuideEntityEmbed Entity="MobCleanBot" Caption="Cleanbot"/>
-  <GuideEntityEmbed Entity="MobMedibot" Caption="Medibot"/>
-  </Box>
-  <Box>
-  <GuideEntityEmbed Entity="MobHonkBot" Caption="Honkbot"/>
-  <GuideEntityEmbed Entity="MobMimeBot" Caption="Mimebot"/>
-  </Box>
-  [color=#a4885c]Боты[/color] — маленькие автоматы для простых задач вроде уборки. Питание им не нужно, но они хрупкие. Для сборки потребуются части из Exosuit Fabricator.
+## Мехи
+Большие машины с пилотом. Нужны детали, батарея, иногда оружие. Сборка обычно на специальном станке или по инструкции в рецепте.
 
-  Откройте [color=#a4885c]меню строительства[/color] и выберите категорию "Utilities" (или ищите "bot") — там весь список. Имея нужные части рядом, жмите [color=#a4885c]Build[/color] — через пару секунд новый кремниевый помощник появится у ваших ног.
+## Киборги
+Подробнее: [textlink="киборги" link="Cyborgs"].
 
-  ## Мехи
-  <Box>
-  <GuideEntityEmbed Entity="MechRipley" Caption="Ripley APLU"/>
-  <GuideEntityEmbed Entity="MechHonker" Caption="H.O.N.K."/>
-  <GuideEntityEmbed Entity="MechHamtr" Caption="HAMTR"/>
-  <GuideEntityEmbed Entity="MechVim" Caption="Vim"/>
-  </Box>
-  [color=#a4885c]Мехи[/color] — гигантские машины под разные задачи, пилотируемые игроками, требуют энергоячейки.
+Многие рецепты робототехники открываются через [textlink="диски и технологии" link="Technologies"], а не с самого старта.
 
-  У каждого меха свой набор конечностей и деталей. Их печатают на Exosuit Fabricator; платы делают на [color=#a4885c]Circuit Board Imprinter[/color], обычно в отделе [textlink="науки" link="Science"].
-  <Box>
-  <GuideEntityEmbed Entity="RipleyCentralElectronics" Caption="Ripley central controls module"/>
-  </Box>
-  <Box>
-  <GuideEntityEmbed Entity="RipleyPeripheralsElectronics" Caption="Ripley peripherals control module"/>
-  </Box>
-
-  Например, обе эти платы нужны для меха Ripley и не подходят для других мехов.
-
-  Начните с печати каркаса и установки конечностей; затем [color=#a4885c]осматривайте[/color] его, чтобы видеть дальнейшие шаги.
-  - Каждый мех после сборки шасси требует проводки, инструментов и уникальных плат. Для Ripley нужны платы [color=#a4885c]ripley controls module[/color] и [color=#a4885c]ripley peripherals module[/color].
-  - Мехи требуют много материалов — просите коллег и карго помочь с недостающим.
-  - Экзокостюм Vim требует пару борго-ног и EVA-шлем (обычный или синдикатовский), затем голосовой триггер и энергоячейку.
-
-  ## Оборудование
-    Мех без инструментов — просто дорогая болванка. Оборудование печатается как и прочие детали.
-  <Box>
-  <GuideEntityEmbed Entity="MechEquipmentGrabber" Caption="Гидрозахват, как пример."/>
-  </Box>
-  - Установка: кликните по меху, держа модуль в руке.
-  - Использование: переключайте действие "Cycle Equipment" до нужного инструмента.
 </Document>

@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Server.Gateway.Components;
-using Content.Server._Lua.MapperGrid; // Lua
+using Content.Lua.Shared.MapperGrid;
 using Content.Server.Storage.Components;
 using Content.Shared.Tiles;
 using Robust.Shared.Containers;

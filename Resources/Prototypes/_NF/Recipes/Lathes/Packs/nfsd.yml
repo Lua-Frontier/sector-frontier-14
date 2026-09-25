@@ -1,40 +1,20 @@
 - type: latheRecipePack
   id: NfsdPracticeStatic
   recipes:
-  - NFAmmunitionBoxPistol35Practice
-  - NFAmmunitionBoxPistol45Practice
-  - NFAmmunitionBoxRifle20Practice
-  - NFAmmunitionBoxRifle30Practice
-  - NFAmmunitionBoxShellShotgunPractice
+  - AmmoBox12_gaugePractice
   - NFWeaponEnergyPistolDisablerPractice
-  #- NFWeaponEnergyRifleCarbinePractice
 
 - type: latheRecipePack
   id: NfsdAmmoStatic
   recipes:
-  # Ammo boxes
-  - NFAmmunitionBoxShellShotgunOverpressure
-  - NFAmmunitionBoxShellShotgunSlug
-  - NFAmmunitionBoxShellShotgunBeanbag
-  - NFAmmunitionBoxRifle20
-  - NFAmmunitionBoxRifle20Overpressure
-  - NFAmmunitionBoxRifle20Rubber
-  - NFAmmunitionBoxRifle30
-  - NFAmmunitionBoxRifle30Overpressure
-  - NFAmmunitionBoxRifle30Rubber
-  - NFAmmunitionBoxPistol35
-  - NFAmmunitionBoxPistol35Overpressure
-  - NFAmmunitionBoxPistol35Rubber
-  - NFAmmunitionBoxPistol45
-  - NFAmmunitionBoxPistol45Overpressure
-  - NFAmmunitionBoxPistol45Rubber
-  # Magazines (Empty)
-  - NFMagazineHighCapacityPistol35Empty
+  - AmmoBox12_gaugeOverpressure
+  - AmmoBox12_gaugeSlug
+  - AmmoBox12_gaugeBeanbag
+  - AmmoBox556x45mmOverpressure
+  - AmmoBox762x39mmOverpressure
+  - AmmoBox9x19mmOverpressure
+  - AmmoBox357_magnumOverpressure
   - NFMagazinePistol45Empty
-  - NFMagazineSubMachineGun35Empty
-  - NFMagazineSubMachineGunTopMounted35Empty
-  - NFMagazineRifle20Empty
-  - NFMagazineRifle30Empty
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
   - MagazineAsmgtUniversalEmpty
@@ -71,7 +51,6 @@
   id: NfsdWeaponsStatic
   recipes:
   - NFCombatKnife
-  #- WeaponLaserSvalinn # After the changes made to windows shouldn't be that much of an issue now if it's widely available
   - NFWeaponEnergyPistolLaser
   - NFWeaponRevolverArgenti
   - NFWeaponPistolMk58
@@ -87,4 +66,5 @@
   recipes:
   - GyroscopeNfsdMachineCircuitboard
   - ThrusterNfsdMachineCircuitboard
+  - ThrusterMediumNfsdMachineCircuitboard
   - ThrusterLargeNfsdMachineCircuitboard

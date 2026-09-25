@@ -1,5 +1,6 @@
 - type: entity
   id: MagazineSmartLMG
+  categories: [ HideSpawnMenu ]
   name: "MlA-79 drum (.160 smart)"
   parent: [BaseItem, RecyclableItemSteelTiny]
   components:
@@ -30,3 +31,12 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+- type: entity
+  id: MagazineSmartLMGEmpty
+  categories: [ HideSpawnMenu ]
+  parent: MagazineSmartLMG
+  name: "MlA-79 drum (.160 smart) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null

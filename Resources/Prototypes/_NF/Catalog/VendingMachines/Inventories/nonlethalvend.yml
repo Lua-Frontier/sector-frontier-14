@@ -1,7 +1,7 @@
 - type: vendingMachineInventory
   id: NonLethalVendInventory
   startingInventory:
-    TargetDartsFlatpack: 2
+    TargetDarts: 2
     BoxDarts: 4
   # Weapons
     NFRevolverCapGun: 2
@@ -10,6 +10,8 @@
     WeaponDisablerPractice: 4
   #  NFWeaponEnergyRifleCarbinePractice: 4
   # Magazines
+    SpeedLoader9x19mmEmpty: 3
+    SpeedLoader357_magnumEmpty: 3
   # Ammo boxes
     NFBoxCartridgeCap: 4
     NFBoxDonkSoftBox: 4
@@ -20,7 +22,5 @@
     AmmoBox762x39mmPractice: 5 #Lua 30 -> 762x39
     AmmoBox23x75mmPractice: 8 #Lua 4 gauges
   contrabandInventory:
-    SpeedLoader9x19mmPractice: 3 #Lua 35 -> 9x19
-    SpeedLoader357_magnumPractice: 3 #Lua 45 -> Magnum
   emaggedInventory:
     ThrowingKnife: 1

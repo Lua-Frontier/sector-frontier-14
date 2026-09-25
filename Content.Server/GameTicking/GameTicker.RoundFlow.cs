@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server._DV.CustomObjectiveSummary; // Frontier
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server._NF.RoundNotifications.Events; // Frontier
 using Content.Server.Announcements;
 using Content.Server.Discord;
@@ -94,15 +94,15 @@ namespace Content.Server.GameTicking
         /// </remarks>
         private void LoadMaps()
         {
-            var sectors = EntityManager.System<SectorSystem>();
+            var sectors = EntityManager.System<ISectorSystem>();
             if (sectors.TryGetHubMapId(out var existingHub) && _map.MapExists(existingHub))
                 return;
 
             AddGamePresetRules();
 
-            if (ShouldLoadDevMapOnly())
+            if (ShouldLoadConfiguredMapOnly())
             {
-                _sawmill.Info("LoadMaps: DEBUG build — loading configured game.map only (no starmap sectors)");
+                _sawmill.Info($"LoadMaps: loading configured game.map only (preset={CurrentPreset?.ID ?? "<null>"})");
                 LoadConfiguredGameMap();
                 return;
             }
@@ -113,12 +113,12 @@ namespace Content.Server.GameTicking
                 throw new SectorBootstrapException("starmap hub sector failed to start; ensure exactly one star has isHub: true with station + autoStart");
         }
 
-        private static bool ShouldLoadDevMapOnly()
+        private bool ShouldLoadConfiguredMapOnly()
         {
 #if DEBUG
             return true;
 #else
-            return false;
+            return CurrentPreset?.ID is not "LuaAdventure";
 #endif
         }
 
@@ -461,7 +461,7 @@ namespace Content.Server.GameTicking
                 }
                 _pendingMapInit.Clear();
 
-                var sectors = EntityManager.System<SectorSystem>();
+                var sectors = EntityManager.System<ISectorSystem>();
                 if (sectors.TryGetHubMapId(out var hubMap) && _map.MapExists(hubMap) && !_map.IsInitialized(hubMap))
                     _map.InitializeMap(hubMap);
 
@@ -770,8 +770,6 @@ namespace Content.Server.GameTicking
             NFRoundRestartCleanup(); // Frontier
 
             EntityManager.FlushEntities();
-
-            _mapManager.Restart();
 
             _banManager.Restart();
 

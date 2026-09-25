@@ -19,6 +19,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: Gun
+    examineCaliber: gun-examine-caliber-76239
     fireRate: 0.75
     damageModifier: 1.5 # Mono
     selectedMode: SemiAuto
@@ -116,6 +117,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/musket.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-145
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -149,6 +151,7 @@
   description: A pirate's companion. Yarrr! Uses 145x114mm ammo. An illegal weapon often used by pirates.
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-145
     minAngle: 0
     maxAngle: 30 #miss him entirely because the barrel is smoothbore
     projectileSpeed: 25 # Mono

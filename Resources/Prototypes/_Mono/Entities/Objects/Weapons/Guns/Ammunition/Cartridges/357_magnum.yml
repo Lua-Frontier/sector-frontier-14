@@ -152,3 +152,37 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#888888"
+
+- type: entity
+  id: Cartridge357_magnumOverpressure
+  name: cartridge (.357 magnum overpressure)
+  parent: BaseCartridge357_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff8d00"
+
+- type: entity
+  id: Cartridge357_magnumEmp
+  name: cartridge (.357 magnum emp)
+  parent: BaseCartridge357_magnum
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol45Emp
+  - type: EmpDescription
+    range: 0.3
+    energyConsumption: 2700000
+    disableDuration: 10
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#00ffff"

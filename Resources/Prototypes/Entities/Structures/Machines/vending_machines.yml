@@ -212,7 +212,7 @@
 # Vending machines
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCondiments
   name: condiment station
   description: Slather these thick gooey substances on your food for a full flavor effect.
@@ -234,11 +234,7 @@
           bounds: "-0.3,-0.16,0.3,0.40"
         mask:
         - Impassable # Frontier
-#        - MidImpassable # Frontier - Do not add this, it will block shutters from closing on it.
         - LowImpassable # Frontier
-#        - MachineMask # Frontier
-#        layer: # Frontier
-#        - MachineLayer # Frontier
         density: 190
   - type: DatasetVocalizer
     dataset: CondimentVendAds
@@ -246,9 +242,22 @@
     pack: GenericVendGoodbyes
   - type: Transform
     noRot: false
+  - type: Machine
+    board: VendingMachineCondimentsMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine] # Frontier
+  parent: [BaseStructureDisableAnchoring, VendingMachine, SmallConstructibleMachine]
   id: VendingMachineAmmo
   name: liberation station
   description: An overwhelming amount of ancient patriotism washes over you just by looking at the machine.
@@ -274,9 +283,22 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: MarketModifier # Frontier
     mod: 12 # Frontier
+  - type: Machine
+    board: VendingMachineAmmoMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineBooze
   name: Booze-O-Mat
   description: A technological marvel, supposedly able to mix just the mixture you'd like to drink the moment you ask for one.
@@ -308,9 +330,22 @@
     guides:
     - Bartender
     - Drinks
+  - type: Machine
+    board: VendingMachineBoozeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineBooze
+  parent: [VendingMachineBooze, SmallConstructibleMachine]
   id: VendingMachineBoozeSyndicate # syndie booze-o-mat for nukie outpost
   name: Bruise-O-Mat
   description: A refurbished Booze-O-Mat for boosting operative morale. An imprint of a blood-red hardsuit is visible on one side, and the paint seems ashed off on the other side.
@@ -342,9 +377,22 @@
     guides:
     - Bartender
     - Drinks
+  - type: Machine
+    board: VendingMachineBoozeSyndicateMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCart
   name: PTech
   description: PTech vending! Providing a ROBUST selection of PDAs, cartridges, and anything else a dull paper pusher needs!
@@ -372,9 +420,22 @@
     color: "#ffb0b0"
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+  - type: Machine
+    board: VendingMachineCartMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineChefvend
   name: ChefVend
   description: An ingredient vendor for all your cheffin needs.
@@ -405,9 +466,22 @@
     color: "#4b93ad"
   - type: MarketModifier # Frontier
     mod: 5 # Frontier
+  - type: Machine
+    board: VendingMachineChefvendMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCigs
   name: ShadyCigs Deluxe
   description: If you want to get cancer, might as well do it in style.
@@ -435,9 +509,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineCigsMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineClothing
   name: ClothesMate
   description: A vending machine for clothing.
@@ -466,9 +553,22 @@
     radius: 1.8
     energy: 3.0
     color: "#3db83b"
+  - type: Machine
+    board: VendingMachineClothingMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineWinter
   name: WinterDrobe
   description: The best place to enjoy the cold!
@@ -497,9 +597,22 @@
     radius: 1.8
     energy: 3.0
     color: "#3db83b"
+  - type: Machine
+    board: VendingMachineWinterMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCoffee
   name: Solar's Best Hot Drinks
   description: Served boiling so it stays hot all shift!
@@ -538,9 +651,22 @@
     radius: 1.5
     energy: 2.0
     color: "#ad7c4b"
+  - type: Machine
+    board: VendingMachineCoffeeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCola
   name: Robust Softdrinks
   description: A softdrink vendor provided by Robust Industries, LLC.
@@ -574,9 +700,22 @@
     radius: 1.5
     energy: 3.0
     color: "#3c5eb5"
+  - type: Machine
+    board: VendingMachineColaMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineCola
+  parent: [VendingMachineCola, SmallConstructibleMachine]
   id: VendingMachineColaBlack
   suffix: Black
   components:
@@ -594,9 +733,22 @@
     radius: 1.5
     energy: 3.0
     color: "#423438"
+  - type: Machine
+    board: VendingMachineColaBlackMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineCola
+  parent: [VendingMachineCola, SmallConstructibleMachine]
   id: VendingMachineColaRed
   name: Space Cola Vendor
   description: It vends cola, in space.
@@ -615,9 +767,22 @@
     radius: 1.5
     energy: 3.0
     color: "#A50824"
+  - type: Machine
+    board: VendingMachineColaRedMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineCola
+  parent: [VendingMachineCola, SmallConstructibleMachine]
   id: VendingMachineSpaceUp
   name: Space-Up! Vendor
   description: Indulge in an explosion of flavor.
@@ -638,9 +803,22 @@
     radius: 1.5
     energy: 3.0
     color: "#44964A"
+  - type: Machine
+    board: VendingMachineSpaceUpMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineCola
+  parent: [VendingMachineCola, SmallConstructibleMachine]
   id: VendingMachineSoda
   suffix: Soda
   components:
@@ -660,9 +838,22 @@
     radius: 1.5
     energy: 3.0
     color: "#CBC6BE"
+  - type: Machine
+    board: VendingMachineSodaMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineCola
+  parent: [VendingMachineCola, SmallConstructibleMachine]
   id: VendingMachineStarkist
   name: Star-kist Vendor
   description: The taste of a star in liquid form.
@@ -683,9 +874,22 @@
     radius: 1.5
     energy: 3.0
     color: "#D3A44D"
+  - type: Machine
+    board: VendingMachineStarkistMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineShamblersJuice
   name: Shambler's Juice Vendor
   description: ~Shake me up some of that Shambler's Juice!~
@@ -717,9 +921,22 @@
     radius: 1.5
     energy: 3.0
     color: "#66538F"
+  - type: Machine
+    board: VendingMachineShamblersJuiceMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachinePwrGame
   name: Pwr Game Vendor
   description: You want it, we got it. Brought to you in partnership with Vlad's Salads.
@@ -753,9 +970,22 @@
     radius: 1.5
     energy: 3.0
     color: "#6927C5"
+  - type: Machine
+    board: VendingMachinePwrGameMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineDrGibb
   name: Dr. Gibb Vendor
   description: Canned explosion of different flavors in this very vendor!
@@ -789,9 +1019,22 @@
     radius: 1.5
     energy: 3.0
     color: "#D82929"
+  - type: Machine
+    board: VendingMachineDrGibbMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSmite
   name: Smite Vendor
   description: Popular with the administration.
@@ -825,9 +1068,22 @@
     radius: 1.5
     energy: 3.0
     color: "#00E645"
+  - type: Machine
+    board: VendingMachineSmiteMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineDinnerware
   name: Plasteel Chef's Dinnerware Vendor
   description: A kitchen and restaurant equipment vendor.
@@ -860,9 +1116,22 @@
     color: "#4b93ad"
   - type: MarketModifier # Frontier
     mod: 5 # Frontier
+  - type: Machine
+    board: VendingMachineDinnerwareMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineMagivend
   name: MagiVend
   description: A magic vending machine.
@@ -890,9 +1159,22 @@
     radius: 1.5
     energy: 3.0
     color: "#9a18d6"
+  - type: Machine
+    board: VendingMachineMagivendMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineDiscount
   name: Discount Dan's
   description: A vending machine containing discount snacks from the infamous 'Discount Dan' franchise.
@@ -923,9 +1205,22 @@
     radius: 1.5
     energy: 3.0
     color: "#6148c7"
+  - type: Machine
+    board: VendingMachineDiscountMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineEngivend
   name: Engi-Vend
   description: Spare tool vending. What? Did you expect some witty description?
@@ -951,9 +1246,22 @@
     radius: 1.5
     energy: 3.0
     color: "#b89e2a"
+  - type: Machine
+    board: VendingMachineEngivendMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [ VendingMachine, SmallConstructibleMachine ]
   id: VendingMachineMedical
   name: NanoMed Plus
   description: It's a medical drug dispenser. Natural chemicals only!
@@ -991,9 +1299,44 @@
   - type: GuideHelp
     guides:
     - MedicalDoctor
+  - type: Machine
+    board: VendingMachineMedicalMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EjectVendorItems
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
 
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachineMedical
+  id: VendingMachineMedicalEmpty
+  suffix: Empty
+  components:
+  - type: VendingMachine
+    pack: EmptyVendingMachineInventory
+
+- type: entity
+  parent: [ VendingMachine, SmallConstructibleMachine ]
   id: VendingMachineNutri
   name: NutriMax
   description: A vending machine containing nutritional substances for plants and botanical tools.
@@ -1025,9 +1368,44 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
+  - type: Machine
+    board: VendingMachineNutriMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EjectVendorItems
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
 
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachineNutri
+  id: VendingMachineNutriEmpty
+  suffix: Empty
+  components:
+  - type: VendingMachine
+    pack: EmptyVendingMachineInventory
+
+- type: entity
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSec
   name: SecTech
   description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
@@ -1065,9 +1443,22 @@
     guides:
     - Security
     # - Antagonists # Frontier: removed guidebook entry
+  - type: Machine
+    board: VendingMachineSecMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [ VendingMachine, SmallConstructibleMachine ]
   id: VendingMachineSeedsUnlocked
   name: MegaSeed Servitor
   description: For when you need seeds fast. Hands down the best seed selection on the station!
@@ -1100,6 +1491,41 @@
     color: "#326e3f"
   - type: MarketModifier # Frontier
     mod: 5 # Frontier
+  - type: Machine
+    board: VendingMachineSeedsUnlockedMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EjectVendorItems
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+
+- type: entity
+  parent: VendingMachineSeedsUnlocked
+  id: VendingMachineSeedsUnlockedEmpty
+  suffix: Empty
+  components:
+  - type: VendingMachine
+    pack: EmptyVendingMachineInventory
 
 - type: entity
   parent: VendingMachineSeedsUnlocked
@@ -1110,7 +1536,7 @@
     mod: 5 # Frontier
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSnack
   name: Getmore Chocolate Corp
   description: A snack machine courtesy of the Getmore Chocolate Corporation, based out of Mars.
@@ -1143,9 +1569,22 @@
     radius: 1.5
     energy: 3.0
     color: "#c73434"
+  - type: Machine
+    board: VendingMachineSnackMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineSnack
+  parent: [VendingMachineSnack, SmallConstructibleMachine]
   id: VendingMachineSustenance
   name: Sustenance Vendor
   description: A vending machine which vends food, as required by section 47-C of the NT's Prisoner Ethical Treatment Agreement.
@@ -1173,9 +1612,22 @@
     radius: 1.5
     energy: 3.0
     color: "#737785"
+  - type: Machine
+    board: VendingMachineSustenanceMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineSnack
+  parent: [VendingMachineSnack, SmallConstructibleMachine]
   id: VendingMachineSnackBlue
   suffix: Blue
   components:
@@ -1193,9 +1645,22 @@
     radius: 1.5
     energy: 3.0
     color: "#3c5eb5"
+  - type: Machine
+    board: VendingMachineSnackBlueMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineSnack
+  parent: [VendingMachineSnack, SmallConstructibleMachine]
   id: VendingMachineSnackOrange
   suffix: Orange
   components:
@@ -1213,9 +1678,22 @@
     radius: 1.5
     energy: 3.0
     color: "#CE3401"
+  - type: Machine
+    board: VendingMachineSnackOrangeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineSnack
+  parent: [VendingMachineSnack, SmallConstructibleMachine]
   id: VendingMachineSnackGreen
   suffix: Green
   components:
@@ -1233,9 +1711,22 @@
     radius: 1.5
     energy: 3.0
     color: "#5F6A1C"
+  - type: Machine
+    board: VendingMachineSnackGreenMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachineSnack
+  parent: [VendingMachineSnack, SmallConstructibleMachine]
   id: VendingMachineSnackTeal
   suffix: Teal
   components:
@@ -1253,9 +1744,22 @@
     radius: 1.5
     energy: 3.0
     color: "#207E79"
+  - type: Machine
+    board: VendingMachineSnackTealMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSovietSoda
   name: BODA
   description: An old vending machine containing sweet water.
@@ -1289,9 +1793,22 @@
     energy: 3.0
     color: "#389690"
   - type: RussianAccent
+  - type: Machine
+    board: VendingMachineSovietSodaMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineTheater
   name: AutoDrobe
   description: A vending machine containing costumes.
@@ -1325,9 +1842,22 @@
     radius: 1.5
     energy: 3.0
     color: "#c73434"
+  - type: Machine
+    board: VendingMachineTheaterMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineVendomat
   name: Vendomat
   description: Only the finest robust equipment in space!
@@ -1357,9 +1887,22 @@
     radius: 1.5
     energy: 3.0
     color: "#9dc5c9"
+  - type: Machine
+    board: VendingMachineVendomatMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineRobotics
   name: Robotech Deluxe
   description: All the tools you need to create your own robot army.
@@ -1394,9 +1937,22 @@
   - type: GuideHelp
     guides:
     - Robotics
+  - type: Machine
+    board: VendingMachineRoboticsMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineYouTool
   name: YouTool
   description: "A vending machine containing standard tools. A label reads: Tools for tools."
@@ -1422,9 +1978,22 @@
     radius: 1.5
     energy: 3.0
     color: "#d4ab33"
+  - type: Machine
+    board: VendingMachineYouToolMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineGames
   name: Good Clean Fun
   description: Vends things that the station representatives are probably not going to appreciate you fiddling with instead of your job...
@@ -1454,9 +2023,22 @@
     radius: 1.5
     energy: 3.0
     color: "#326e3f"
+  - type: Machine
+    board: VendingMachineGamesMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineChang
   name: Mr. Chang
   description: A self-serving Chinese food machine, for all your Chinese food needs.
@@ -1487,9 +2069,22 @@
     radius: 1.5
     energy: 3.0
     color: "#ffe599"
+  - type: Machine
+    board: VendingMachineChangMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSalvage
   name: Salvage Vendor
   description: A dwarf's best friend!
@@ -1521,9 +2116,22 @@
   #   - Salvage # Frontier: removed guidebook entry
   - type: MarketModifier # Frontier
     mod: 15 # Frontier
+  - type: Machine
+    board: VendingMachineSalvageMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineDonut
   name: Monkin' Donuts
   description: A donut vendor provided by Robust Industries, LLC.
@@ -1558,9 +2166,22 @@
     mod: 5 # Frontier
 
 # job clothing
+  - type: Machine
+    board: VendingMachineDonutMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineHydrobe
   name: HyDrobe
   description: A machine with a catchy name. It dispenses botany related clothing and gear.
@@ -1590,9 +2211,22 @@
     color: "#326e3f"
   # - type: AccessReader # Frontier
   #   access: [["Hydroponics"]] # Frontier
+  - type: Machine
+    board: VendingMachineHydrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineLawDrobe
   name: LawDrobe
   description: Objection! This wardrobe dispenses the rule of law... and lawyer clothing..
@@ -1616,9 +2250,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineLawDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSecDrobe
   name: SecDrobe
   description: A vending machine for security and security-related clothing!
@@ -1648,9 +2295,22 @@
     color: "#d82929"
   - type: AccessReader
     access: [["Security"]]
+  - type: Machine
+    board: VendingMachineSecDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingBarDrobe
   name: BarDrobe
   description: A stylish vendor to dispense the most stylish bar clothing!
@@ -1674,9 +2334,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingBarDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineChapel
   name: PietyVend
   components:
@@ -1700,9 +2373,22 @@
     radius: 1.5
     energy: 3.0
     color: "#CCCCCC" #The holy C
+  - type: Machine
+    board: VendingMachineChapelMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCargoDrobe
   name: CargoDrobe
   description: A highly advanced vending machine for buying cargo related clothing for free.
@@ -1732,9 +2418,22 @@
     color: "#b89e2a"
   # - type: AccessReader # Frontier
   #   access: [["Cargo"]] # Frontier
+  - type: Machine
+    board: VendingMachineCargoDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineMediDrobe
   name: MediDrobe
   description: A vending machine rumoured to be capable of dispensing clothing for medical personnel.
@@ -1760,9 +2459,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineMediDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineChemDrobe
   name: ChemDrobe
   description: A vending machine for dispensing chemistry related clothing.
@@ -1786,9 +2498,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineChemDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCuraDrobe
   name: CuraDrobe
   description: A lowstock vendor only capable of vending clothing for curators and librarians.
@@ -1814,9 +2539,22 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 #  - type: AccessReader # Frontier
 #    access: [["Service"]]
+  - type: Machine
+    board: VendingMachineCuraDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineAtmosDrobe
   name: AtmosDrobe
   description: This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job.
@@ -1846,9 +2584,22 @@
     color: "#b89e2a"
   # - type: AccessReader # Frontier
   #   access: [["Engineering"]] # Frontier
+  - type: Machine
+    board: VendingMachineAtmosDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineEngiDrobe
   name: EngiDrobe
   description: A vending machine renowned for vending industrial grade clothing.
@@ -1878,9 +2629,22 @@
     color: "#b89e2a"
   # - type: AccessReader # Frontier
   #   access: [["Engineering"]] # Frontier
+  - type: Machine
+    board: VendingMachineEngiDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineChefDrobe
   name: ChefDrobe
   description: This vending machine might not dispense meat, but it certainly dispenses chef related clothing.
@@ -1904,9 +2668,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineChefDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineDetDrobe
   name: DetDrobe
   description: A machine for all your detective needs, as long as you need clothes.
@@ -1930,9 +2707,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineDetDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineJaniDrobe
   name: JaniDrobe
   description: A self cleaning vending machine capable of dispensing clothing for janitors.
@@ -1962,9 +2752,22 @@
     color: "#6927C5"
   # - type: AccessReader # Frontier
   #   access: [["Janitor"]] # Frontier
+  - type: Machine
+    board: VendingMachineJaniDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineSciDrobe
   name: SciDrobe
   description: A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans.
@@ -1988,9 +2791,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineSciDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine, BaseC2SyndicateContraband] # Frontier # Lua-changes: added BaseC2SyndicateContraband
+  parent: [BaseStructureDisableAnchoring, VendingMachine, BaseC2SyndicateContraband, SmallConstructibleMachine]
   id: VendingMachineSyndieDrobe
   name: SyndieDrobe
   description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
@@ -2020,9 +2836,22 @@
     color: "#d82929"
   - type: AccessReader
     access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: Machine
+    board: VendingMachineSyndieDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineRoboDrobe
   name: RoboDrobe
   description: A vending machine designed to dispense clothing known only to roboticists.
@@ -2046,9 +2875,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineRoboDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineGeneDrobe
   name: GeneDrobe
   description: A machine for dispensing clothing related to genetics.
@@ -2072,9 +2914,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineGeneDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineViroDrobe
   name: ViroDrobe
   description: An unsterilized machine for dispending virology related clothing.
@@ -2098,9 +2953,22 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: VendingMachineViroDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: [BaseStructureDisableAnchoring, VendingMachine] # Frontier
+  parent: [BaseStructureDisableAnchoring, VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCentDrobe
   name: CentDrobe
   description: A one-of-a-kind vending machine for all your centcomm aesthetic needs!
@@ -2126,9 +2994,22 @@
     color: "#48CF48"
   - type: AccessReader
     access: [["CentralCommand"]]
+  - type: Machine
+    board: VendingMachineCentDrobeMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineHappyHonk
   name: Happy Honk Dispenser
   description: A happy honk meal box dispenser made by honk! co.
@@ -2168,9 +3049,22 @@
     mod: 5 # Frontier
 
 # Pride Vending Machine
+  - type: Machine
+    board: VendingMachineHappyHonkMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachinePride
   name: Pride-O-Mat
   description: A vending machine containing pride.
@@ -2202,9 +3096,22 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 # Gas Tank Dispenser
+  - type: Machine
+    board: VendingMachinePrideMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineTankDispenserEVA
   suffix: EVA [O2, N2]
   name: gas tank dispenser
@@ -2217,9 +3124,22 @@
     state: dispenser
   - type: MarketModifier # Frontier
     mod: 5 # Frontier
+  - type: Machine
+    board: VendingMachineTankDispenserEVAMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineTankDispenserEngineering
   suffix: ENG [O2, Plasma]
   name: gas tank dispenser
@@ -2232,9 +3152,22 @@
     layers:
     - state: dispenser
     - state: dispensereng
+  - type: Machine
+    board: VendingMachineTankDispenserEngineeringMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
 
 - type: entity
-  parent: VendingMachine
+  parent: [ VendingMachine, SmallConstructibleMachine ]
   id: VendingMachineChemicals
   name: ChemVend
   description: Probably not the coffee machine.
@@ -2262,6 +3195,41 @@
     guides:
     - Chemicals
     - Chemist
+  - type: Machine
+    board: VendingMachineChemicalsMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:EjectVendorItems
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
+
+- type: entity
+  parent: VendingMachineChemicals
+  id: VendingMachineChemicalsEmpty
+  suffix: Empty
+  components:
+  - type: VendingMachine
+    pack: EmptyVendingMachineInventory
 
 - type: entity
   parent: VendingMachineChemicals
@@ -2281,7 +3249,7 @@
 
 # wallmount
 - type: entity
-  parent: VendingMachineWallmount
+  parent: [VendingMachineWallmount, SmallConstructibleMachine]
   id: VendingMachineWallMedical
   name: NanoMed
   description: "It's a wall-mounted medical equipment dispenser. Natural chemicals only!"
@@ -2315,3 +3283,16 @@
     - Medical
   - type: MarketModifier # Frontier
     mod: 5 # Frontier
+  - type: Machine
+    board: VendingMachineWallMedicalMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

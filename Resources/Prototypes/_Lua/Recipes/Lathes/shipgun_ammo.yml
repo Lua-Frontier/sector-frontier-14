@@ -1,63 +1,58 @@
 # LuaWorld - This file is licensed under AGPLv3
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
-# Lathe recipes for Lua shipgun magazines / cartridges (Ammo TechFab)
-# Unlocked via Shiparmory R&D — not roundstart.
 
 - type: latheRecipe
   parent: BaseLightShipgunAmmoRecipe
-  id: MagazineLua20mmAmmoRecipe
-  result: MagazineLua20mm
+  id: MagazineLua25mmAmmoRecipe
+  result: CartridgeLua25mm
 
 - type: latheRecipe
   parent: BaseShipgunAmmoRecipe
-  id: MagazineLua53mmAmmoRecipe
-  result: MagazineLua53mm
+  id: MagazineLua45mmAmmoRecipe
+  result: CartridgeLua45mm
 
 - type: latheRecipe
   parent: BaseMediumShipgunAmmoRecipe
-  id: MagazineLua80mmAmmoRecipe
-  result: MagazineLua80mm
+  id: MagazineLua75mmAmmoRecipe
+  result: CartridgeLua75mm
 
 - type: latheRecipe
   parent: BaseMediumShipgunAmmoRecipe
-  id: MagazineLua105mmAmmoRecipe
-  result: MagazineLua105mm
+  id: MagazineLua95mmAmmoRecipe
+  result: CartridgeLua95mm
 
 - type: latheRecipe
-  parent: BaseLightShipgunAmmoRecipe
-  id: CartridgeLua120mmAmmoRecipe
-  result: CartridgeLua120mm
+  parent: BaseMediumShipgunAmmoRecipe
+  id: MagazineLua130mmAmmoRecipe
+  result: CartridgeLua130mm
 
 - type: latheRecipe
   parent: BaseHeavyShipgunAmmoRecipe
-  id: MagazineLua140mmAmmoRecipe
-  result: MagazineLua140mm
+  id: MagazineLua155mmAmmoRecipe
+  result: CartridgeLua155mm
 
 - type: latheRecipe
   parent: BaseMissileShipgunAmmoRecipe
   id: MagazineNightHunterAmmoRecipe
-  result: MagazineNightHunter
+  result: CartridgeNightHunter
 
 - type: latheRecipe
   parent: BaseMissileShipgunAmmoRecipe
   id: MagazineLancerAmmoRecipe
-  result: MagazineLancer
+  result: CartridgeLancer
 
 - type: latheRecipe
   parent: BaseHeavyMissileShipgunAmmoRecipe
   id: MagazineCerberAmmoRecipe
-  result: MagazineCerber
+  result: CartridgeCerber
 
-- type: latheRecipePack
-  id: LuaShipgunAmmo
-  recipes:
-  - MagazineLua20mmAmmoRecipe
-  - MagazineLua53mmAmmoRecipe
-  - MagazineLua80mmAmmoRecipe
-  - MagazineLua105mmAmmoRecipe
-  - CartridgeLua120mmAmmoRecipe
-  - MagazineLua140mmAmmoRecipe
-  - MagazineNightHunterAmmoRecipe
-  - MagazineLancerAmmoRecipe
-  - MagazineCerberAmmoRecipe
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: TovekCartridgeAmmoRecipe
+  result: TovekCartridge
+
+- type: latheRecipe
+  parent: BaseHeavyMissileShipgunAmmoRecipe
+  id: MissileCartridge250mmAmmoRecipe
+  result: MissileCartridge250mm

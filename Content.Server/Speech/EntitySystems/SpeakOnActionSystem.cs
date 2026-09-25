@@ -1,5 +1,5 @@
 using Content.Server.Chat.Systems;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Actions.Events;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;

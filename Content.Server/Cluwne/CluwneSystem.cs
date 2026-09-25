@@ -4,7 +4,7 @@ using Content.Server.Clothing.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.Popups;
 using Content.Server.Speech.EntitySystems;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;

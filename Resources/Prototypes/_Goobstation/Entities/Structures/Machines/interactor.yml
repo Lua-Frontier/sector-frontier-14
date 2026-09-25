@@ -57,6 +57,8 @@
   - type: Machine
     board: InteractorCircuitboard
   - type: Construction
+    graph: Machine
+    node: machine
     containers:
     - machine_board
     - machine_parts

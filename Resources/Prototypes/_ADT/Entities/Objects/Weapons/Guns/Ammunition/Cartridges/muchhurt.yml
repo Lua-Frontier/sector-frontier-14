@@ -3,6 +3,7 @@
   name: cartridge (.357 magnum)
   parent: BaseCartridge
   abstract: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Tag
     tags:
@@ -24,6 +25,7 @@
   id: Cartridge357
   name: cartridge (.357 magnum)
   parent: BaseCartridge357
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: Bullet357
@@ -32,6 +34,7 @@
   id: Cartridge357Practice
   name: cartridge (.357 magnum practice)
   parent: BaseCartridge357
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: Bullet357Practice
@@ -40,7 +43,7 @@
   id: Cartridge357Incendiary
   name: cartridge (.357 magnum incendiary)
   parent: BaseCartridge357
+  categories: [ HideSpawnMenu ]
   components:
   - type: CartridgeAmmo
     proto: Bullet357Incendiary
-

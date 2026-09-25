@@ -48,17 +48,7 @@ public abstract class BaseXATSystem<T> : EntitySystem where T : Component
     /// <param name="node">Node from <see cref="artifact"/>.</param>
     protected bool CanTrigger(Entity<XenoArtifactComponent> artifact, Entity<XenoArtifactNodeComponent> node)
     {
-        if (Timing.CurTime < artifact.Comp.NextUnlockTime)
-            return false;
-
-        if (_unlockingQuery.TryComp(artifact, out var unlocking) &&
-            unlocking.TriggeredNodeIndexes.Contains(XenoArtifact.GetIndex(artifact, node)))
-            return false;
-
-        if (!XenoArtifact.CanUnlockNode((node, node)))
-            return false;
-
-        return true;
+        return false;
     }
 
     /// <summary>

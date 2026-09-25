@@ -242,6 +242,13 @@ public abstract class SharedDeviceLinkSystem : EntitySystem
         return links;
     }
 
+    public List<EntityUid> GetLinkedSinks(EntityUid sourceUid, DeviceLinkSourceComponent? sourceComponent = null)
+    {
+        if (!Resolve(sourceUid, ref sourceComponent, false))
+            return new List<EntityUid>();
+        return sourceComponent.LinkedPorts.Keys.ToList();
+    }
+
     /// <summary>
     /// Returns the default links for the given list of source port prototypes
     /// </summary>

@@ -4,11 +4,13 @@
 
 - type: entity
   categories: [ ShuttleGun ]
-  parent: WeaponTurretASM220
-  id: WeaponMissileLauncherStarColosus
+  parent:
+  - WeaponTurretASM220
+  - ConstructibleMachine
+  id: WeaponMissileLauncherStarColosusEmpty
   name: Ядерная артиллерийская установка "Звездный Колосс"
   description: Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
-  suffix: НЕ МАППИТЬ!, ShuttleGun
+  suffix: Пустой, ShuttleGun
   components:
   - type: Sprite
     sprite: _Lua/Objects/ShuttleWeapons/bigfuckinglaser.rsi
@@ -20,55 +22,54 @@
       tags:
       - MissileStarColosus
     capacity: 1
-    unspawnedCount: 1
+    infiniteUnspawned: true
     proto: MissileTND
-
-- type: entity
-  categories: [ ShuttleGun ]
-  parent: WeaponMissileLauncherStarColosus
-  id: WeaponMissileLauncherStarColosusEmpty
-  suffix: Пустой, ShuttleGun
-  components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - MissileStarColosus
-    capacity: 1
-    unspawnedCount: 0
-    proto: MissileTND
-
-- type: entity
-  categories: [ ShuttleGun ]
-  parent: BaseNFFlatpack
-  id: WeaponMissileLauncherStarColosusFlatpack
-  name: упакованная ядерная артиллерийская установка "Звездный Колосс"
-  description: Упакованная ядерная артиллерийская установка "Звездный Колосс", использует ядерный снаряд "Инферно".
-  components:
-  - type: Flatpack
-    entity: WeaponMissileLauncherStarColosusEmpty
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon
+  - type: Machine
+    board: WeaponMissileLauncherStarColosusCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 - type: entity
   id: BulletTND
   name: Инферно
   parent: ShipMissileASM220HE
   categories: [ HideSpawnMenu, ShuttleGun ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 800
+        Blunt: 600
+        Heat: 400
+  - type: TimedDespawn
+    lifetime: 80
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 100
+    intensitySlope: 5
+    totalIntensity: 1666667
+  - type: TargetSeeking
+    acceleration: 120
+    detectionRange: 4000
+    scanArc: 20
+    launchSpeed: 80
+    maxSpeed: 300
+    trackDelay: 2
 
 - type: entity
-  categories: [ ShuttleGun ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   id: MissileTND
   name: ядерная ракета класса "Инферно"
   suffix: Missile
   parent: Asm220TorpedoHE
   components:
-    - type: Tag
-      tags:
-        - MissileStarColosus
-    - type: CartridgeAmmo
-      deleteOnSpawn: true
-      proto: BulletTND
+  - type: Tag
+    tags:
+    - MissileStarColosus
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: BulletTND
+    muzzleFlash: null

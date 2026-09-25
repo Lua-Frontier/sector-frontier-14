@@ -1,9 +1,8 @@
 using Content.Shared._NF.Bank;
-using Content.Server._Lua.ShipProtection;
-using Content.Server._Lua.Shipyard.Systems;
+using Content.Lua.Shared.ShipProtection;
 using Content.Server._Mono.Ships.Systems;
 using Content.Server._Mono.Shipyard;
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using Content.Server._NF.Shipyard.Components;
 using Content.Server._NF.ShuttleRecords;
 using Content.Server._NF.Station.Components;
@@ -21,8 +20,8 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationRecords;
 using Content.Server.StationRecords.Systems;
-using Content.Shared._Lua.Chat.Systems; // Lua
-using Content.Shared._Lua.LuaTech; // Lua
+using Content.Shared.Chat.Systems;
+using Content.Shared.LuaTech;
 using Content.Shared._Mono.Company;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared._Mono.Shipyard;
@@ -30,6 +29,7 @@ using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.BUI;
 using Content.Shared._NF.Shipyard.Components;
+using Content.Lua.Shared.Shipyard.Components;
 using Content.Shared._NF.Shipyard.Events;
 using Content.Shared._NF.Shipyard.Prototypes;
 using Content.Shared._NF.ShuttleRecords;
@@ -40,11 +40,11 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Ghost;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Preferences;
 using Content.Shared.Radio;
-using Content.Shared._Lua.Shipyard.BUIStates;
+using Content.Lua.Shared.Shipyard.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.Tag;
@@ -74,7 +74,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IBankSystem _bank = default!;
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -121,7 +121,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (component.ParkingConsole)
+        if (TryComp(shipyardConsoleUid, out ShipyardLuaConsoleComponent? luaParking) && luaParking.ParkingConsole)
         {
             HandleParkingPurchase(shipyardConsoleUid, component, player, targetId);
             return;
@@ -395,8 +395,9 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                 _records.CreateGeneralRecord(shuttleStation.Value, targetId, profile.Name, profile.Age, profile.Species, profile.Gender, $"Captain", fingerprintComponent!.Fingerprint, dnaComponent!.DNA, profile, stationRec!);
             }
         }
-        if (shuttleStation != null) _records.Synchronize(shuttleStation.Value);
-        if (hasStation)
+        if (shuttleStation != null && HasComp<StationRecordsComponent>(shuttleStation.Value))
+            _records.Synchronize(shuttleStation.Value);
+        if (hasStation && HasComp<StationRecordsComponent>(station))
             _records.Synchronize(station);
 
         EntityManager.AddComponents(shuttleUid, vessel.AddComponents);
@@ -404,7 +405,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         // Lua
         if (isLuaTech)
         {
-            var shipProtection = _entityManager.System<ShipProtectionSystem>();
+            var shipProtection = _entityManager.System<IShipProtectionSystem>();
             var protectionDuration = TimeSpan.FromMinutes(30);
             var xformQuery = GetEntityQuery<TransformComponent>();
             var machineQuery = AllEntityQuery<MachineComponent, TransformComponent>();
@@ -466,7 +467,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     entityUid: EntityManager.GetNetEntity(shuttleUid),
                     purchasedWithVoucher: voucherUsed,
                     purchasePrice: (uint)vessel.Price,
-                    vesselPrototypeId: vessel.ID
+                    vesselPrototypeId: vessel.ID,
+                    buyerBalance: balance
                 )
             );
         }
@@ -510,7 +512,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
         }
 
-        if (component.ParkingConsole)
+        if (TryComp(uid, out ShipyardLuaConsoleComponent? luaParking) && luaParking.ParkingConsole)
         {
             HandleParkingSell(uid, component, player, targetId);
             return;
@@ -566,7 +568,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             {
                 //_records.RemoveRecord(keyStorage.Key.Value);
                 _records.AddRecordEntry(stationUid, record);
-                _records.Synchronize(stationUid);
+                if (HasComp<StationRecordsComponent>(stationUid))
+                    _records.Synchronize(stationUid);
             }
         }
 
@@ -697,7 +700,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
         var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
 
-        if (component.ParkingConsole)
+        if (TryComp(uid, out ShipyardLuaConsoleComponent? luaParking) && luaParking.ParkingConsole)
         {
             RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
             return;
@@ -812,7 +815,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
             var voucherUsed = HasComp<ShipyardVoucherComponent>(targetId);
 
-            if (component.ParkingConsole)
+            if (TryComp(uid, out ShipyardLuaConsoleComponent? luaParking) && luaParking.ParkingConsole)
             {
                 RefreshParkingState(uid, deed != null ? GetFullName(deed) : null, targetId);
                 continue;

@@ -1,47 +1,54 @@
-<Document>
-# Xenoarchaeology
-Xenoarchaeology is a field of science focused on researching and experimenting on alien artifacts.
+﻿<Document>
+# Артефакты
 
-Artifacts can be found by mining asteroids found around the sector, or you can buy some from miners or salvagers.
+Артефакты - переносные объекты с [bold]узлами[/bold]. Наука активирует узлы, получает очки и может записать технологию на диск.
 
-By researching the unique things each artifact can do, you gain Research Points, increase the artifact's sale value, and potentially discover a useful ability or two!
-
-## Artifact Nodes
+## Что нужно
 <Box>
-<GuideEntityEmbed Entity="ComplexXenoArtifact" Caption=""/>
-<GuideEntityEmbed Entity="ComplexXenoArtifactItem" Caption=""/>
+  <GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
+  <GuideEntityEmbed Entity="ComputerAnalysisConsole"/>
+  <GuideEntityEmbed Entity="MachineDiscoverySourceConsole"/>
+  <GuideEntityEmbed Entity="NodeScanner"/>
 </Box>
-Artifacts consist of a randomly-generated tree of nodes. These nodes have a "[color=#a4885c]depth[/color]", representing how dangerous the node is, and the number of other nodes connected to it, called "[color=#a4885c]edges[/color]",
 
-Artifacts always start at depth zero, the root of the tree. Travelling the tree to find as many nodes as possible is the main goal of the scientists working on them. Knowledge is extracted from nodes to gain Research Points and increase the artifact's sale value.
+Свяжите анализатор с консолью [bold]мультитулом[/bold] или конфигуратором сетей. Положите артефакт на анализатор.
 
-Each node has two components: its [color=#a4885c]stimulus[/color] and a [color=#a4885c]reaction[/color].
+## Как активировать узел
+1. На консоли выберите активный узел.
+2. Смотрите раздел [bold]«Триггеры»[/bold] - это условия активации.
+3. Выполните [bold]все[/bold] триггеры (порядок не важен).
+4. Артефакт «оживёт», затем узел активируется - вы получите [bold]очки[/bold] на сервер R&D.
 
-A stimulus is the external behavior that triggers the reaction. There's a variety of these, and higher depth nodes have more difficult to accomplish stimuli. Some stimuli will need improvisation to trigger, and you may need special materials or resources to get everything you need.
+Глубокие узлы дают больше очков, но у них больше условий.
 
-Some reactions are instantaneous effects while others are permanent changes. Once an artifact is triggered, the reaction causes the artifact to randomly move to another node it is linked to.
+## Примеры триггеров
+- газ вокруг артефакта (плазма, CO2, оксид азота и др.);
+- температура (нагреть или охладить);
+- лом, удар, бросок;
+- смерть рядом;
+- таймер (узел сам подскажет время).
 
-With some experimental science, you can begin to grasp how the different nodes of an artifact are connected, and how to move between them by repeatedly activating nodes.
+Для газов удобны две камеры: одна «газовая», вторая «горячая». Материалы часто есть на синих обломках.
 
-All non-zero-depth nodes will have exactly one edge that leads up to its parent node. All other edges a node has lead down to the next depth.
-
-## Artifact Analyzer and Analysis Console
+## Сканер узлов
 <Box>
-<GuideEntityEmbed Entity="MachineArtifactAnalyzer"/>
-<GuideEntityEmbed Entity="ComputerAnalysisConsole"/>
+  <GuideEntityEmbed Entity="NodeScanner"/>
 </Box>
-The main equipment that you'll be using for Xenoarchaeology is the [color=#a4885c]artifact analyzer[/color] and the [color=#a4885c]analysis console[/color]. You can use these to create reports that contain valuable information about an artifact.
+Показывает активные узлы - меньше работы наугад.
 
-To set them up, simply link them with a network configurator and set an artifact on top of the analyzer. Every science vessel has at least one of these machines already set up.
+## Диск у артефакта
+<Box>
+  <GuideEntityEmbed Entity="MachineDiscoverySourceConsole"/>
+  <GuideEntityEmbed Entity="ResearchDataDisk"/>
+</Box>
 
-Use the console's [color=#a4885c]scan[/color] button to discover what stimulus the artifact needs and what its reaction will do. Scanning takes thirty seconds.
+Пустой диск в [bold]консоль источника[/bold] → скан → расшифровка → загрузка на сервер.
+Подробнее: [textlink="как открывать технологии" link="Technologies"].
 
-Use the [color=#a4885c]print[/color] button to save the scan result, so you can refer to it later.
+## Отчёты
+Консоль может печатать [textlink="отчёты" link="ArtifactReports"] - шпаргалка по уже изученному.
 
-Once you've discovered a new node, you can extract points from the artifact using the [color=#a4885c]Extract[/color] button.
+## Осторожно
+Некоторые узлы опасны: газ, огонь, радиация, телепорт. Работайте в закрытой зоне и следите за атмосферой.
 
-## Assembling Artifacts
-<GuideEntityEmbed Entity="ArtifactFragment" Caption="Artifact Fragment"/>
-
-It is possible to gather multiple artifact fragments and assemble them into a working artifact. You can ask for these from mining ships, who usually find these while mining asteroids or on Expeditions.
 </Document>

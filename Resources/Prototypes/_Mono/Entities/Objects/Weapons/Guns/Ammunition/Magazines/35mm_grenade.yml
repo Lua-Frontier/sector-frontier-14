@@ -35,6 +35,7 @@
 
 - type: entity
   id: Magazine35mmGrenade
+  categories: [ HideSpawnMenu ]
   name: "magazine (35x53mm grenade SAPHE)"
   parent: BaseMagazine35mmGrenade
   abstract: false
@@ -45,6 +46,7 @@
 
 - type: entity
   id: Magazine35mmGrenadeEmpty
+  categories: [ HideSpawnMenu ]
   name: "magazine (35x53mm grenade any)"
   parent: BaseMagazine35mmGrenade
   abstract: false

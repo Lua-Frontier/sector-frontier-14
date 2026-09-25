@@ -1,9 +1,6 @@
-using Content.Server._Mono.AmmoLoader;
 using Content.Server._Mono.FireControl;
-using Content.Shared.DeviceLinking.Events;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Shared._Mono.AmmoLoader;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared._Mono.SpaceArtillery;
 using Content.Shared.Camera;
@@ -23,7 +20,6 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _recoilSystem = default!;
     [Dependency] private readonly FireControlSystem _fireControl = default!;
-    [Dependency] private readonly AmmoLoaderSystem _ammoLoader = default!;
 
     private const float BIG_DAMAGE = 1000;
     private const float BIG_DAMGE_KICK = 35;
@@ -37,20 +33,9 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
         SubscribeLocalEvent<SpaceArtilleryComponent, AmmoShotEvent>(OnShotEvent);
         SubscribeLocalEvent<SpaceArtilleryComponent, PowerChangedEvent>(OnApcChanged);
         SubscribeLocalEvent<SpaceArtilleryComponent, OnEmptyGunShotEvent>(OnEmptyShotEvent);
-        SubscribeLocalEvent<SpaceArtilleryComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<SpaceArtilleryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
         SubscribeLocalEvent<ShipWeaponProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
         SubscribeLocalEvent<ShipGunClassComponent, ExaminedEvent>(OnExamined);
-    }
-
-
-    private void OnSignalReceived(EntityUid uid, SpaceArtilleryComponent component, ref SignalReceivedEvent args)
-    {
-        if (args.Port != component.SpaceArtilleryLoadPort)
-            return;
-
-        if (TryComp<AmmoLoaderComponent>(args.Trigger, out var loader) && args.Trigger != null)
-            _ammoLoader.TryTransferAmmoTo(new Entity<AmmoLoaderComponent>(args.Trigger.Value, loader), uid);
     }
 
 

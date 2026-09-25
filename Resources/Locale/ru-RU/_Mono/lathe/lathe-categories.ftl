@@ -29,6 +29,32 @@ lathe-category-ship-ammo = Корабельное оружие
 lathe-category-plasteelap-ammo = Пласталевые боеприпасы
 lathe-category-hp-ammo = Боеприпасы hollow-point
 lathe-category-rip-ammo = Боеприпасы RIP
+lathe-category-emp-ammo = EMP-боеприпасы
+lathe-category-caustic-ammo = Едкие боеприпасы
+
+lathe-category-ammo-caliber-9x19 = 9x19mm
+lathe-category-ammo-caliber-45acp = .45 ACP
+lathe-category-ammo-caliber-357 = .357 Magnum
+lathe-category-ammo-caliber-46x30 = 4.6x30mm
+lathe-category-ammo-caliber-57x28 = 5.7x28mm
+lathe-category-ammo-caliber-635x40 = 6.35x40mm
+lathe-category-ammo-caliber-556x45 = 5.56x45mm
+lathe-category-ammo-caliber-762x39 = 7.62x39mm
+lathe-category-ammo-caliber-68x52 = 6.8x52mm
+lathe-category-ammo-caliber-762x51 = 7.62x51mm
+lathe-category-ammo-caliber-762x54r = 7.62x54mmR
+lathe-category-ammo-caliber-8x65 = 8x65mm
+lathe-category-ammo-caliber-127x99 = 12.7x99mm
+lathe-category-ammo-caliber-145x114 = 14.5x114mm
+lathe-category-ammo-caliber-12gauge = 12 Gauge
+lathe-category-ammo-caliber-4gauge = 4 Gauge
+lathe-category-ammo-caliber-40mm = 40mm
+lathe-category-ammo-caliber-misc = Прочее
+
+lathe-category-ammo-kind-box = Коробки
+lathe-category-ammo-kind-magazine = Магазины
+lathe-category-ammo-kind-speedloader = Спидлоадеры
+lathe-category-ammo-kind-misc = Прочее
 
 # Weapons
 lathe-category-guns-rifles = Винтовки

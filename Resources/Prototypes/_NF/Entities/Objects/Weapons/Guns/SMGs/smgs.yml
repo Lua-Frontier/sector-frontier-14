@@ -7,6 +7,7 @@
     Pla-ket-ket-ket-ket! An illegal firearm often used by Syndicate agents.
   components:
   - type: Gun
+    examineCaliber: gun-examine-caliber-5728
     fireRate: 5.5 #_Lua
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
@@ -18,7 +19,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine57x28mmSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -28,7 +28,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge57x28mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -46,7 +45,7 @@
     shape:
     - 0,0,2,1
   - type: Gun
-    examineCaliber: gun-examine-caliber-919 #Lua
+    examineCaliber: gun-examine-caliber-919
     minAngle: 3.1 #Lua
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
@@ -68,7 +67,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -78,7 +76,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber35Standard
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -95,7 +92,7 @@
     shape:
     - 0,0,2,1
   - type: Gun
-    examineCaliber: gun-examine-caliber-45acp #Lua
+    examineCaliber: gun-examine-caliber-45acp
     minAngle: 3.1 #Lua
     maxAngle: 15.5 #Lua
     angleIncrease: 0.7 #Lua
@@ -111,7 +108,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine45_ACPSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -121,7 +117,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge45_ACPFMJ
         priority: 1
         whitelist:
           tags:
@@ -139,35 +134,3 @@
       gun_chamber: !type:ContainerSlot
       attachment_barrel: !type:ContainerSlot
 
-- type: entity
-  id: WeaponSubMachineGunDrozdRubber
-  parent: WeaponSubMachineGunDrozd
-  suffix: Non-Lethal
-  components:
-    - type: ItemSlots
-      slots:
-        gun_magazine:
-          name: Magazine
-          startingItem: Magazine45_ACPSubMachineGunRubber
-          insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-          ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-          priority: 2
-          whitelist:
-            tags:
-              - Magazine45_ACPSubMachineGunFMJ
-          whitelistFailPopup: gun-magazine-whitelist-fail
-        gun_chamber:
-          name: Chamber
-          startingItem: Cartridge45_ACPRubber
-          priority: 1
-          whitelist:
-            tags:
-              - Cartridge45_ACPFMJ
-        # Mono
-        attachment_barrel:
-          insertSound: /Audio/Items/screwdriver.ogg
-          ejectSound: /Audio/Items/screwdriver.ogg
-          priority: 0
-          whitelist:
-            tags:
-            - MonoSuppressorMulticalPistol

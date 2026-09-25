@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
 using System.Linq;
 using System.Numerics;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client._Crescent.DroneControl;
 
@@ -15,7 +16,7 @@ namespace Content.Client._Crescent.DroneControl;
 public sealed partial class DroneConsoleWindow : FancyWindow
 {
     [Dependency] private IEntityManager _entity = default!;
-    [Dependency] private IMapManager _mapManager = default!;
+    private readonly SharedMapSystem _mapManager;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedTransformSystem _xform;
 
@@ -34,6 +35,7 @@ public sealed partial class DroneConsoleWindow : FancyWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        _mapManager = _entity.System<SharedMapSystem>();
         _shuttles = _entity.System<SharedShuttleSystem>();
         _xform = _entity.System<SharedTransformSystem>();
 

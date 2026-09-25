@@ -1,0 +1,80 @@
+- type: technology
+  id: SecurityRndServer
+  name: research-technology-security-rnd-server
+  entityIcon: ResearchAndDevelopmentServerTSFMC
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Security
+  cost: 500
+  recipeUnlocks:
+  - ResearchAndDevelopmentServerTSFMCMachineCircuitboard
+- type: technology
+  id: SecurityRndConsole
+  name: research-technology-security-rnd-console
+  entityIcon: ComputerResearchAndDevelopmentTSFMC
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Security
+  cost: 500
+  recipeUnlocks:
+  - ResearchComputerTSFMCCircuitboard
+- type: technology
+  id: ThrusterNfsdMachineCircuitboard
+  name: research-technology-thrusternfsdmachinecircuitboard
+  entityIcon: ThrusterNfsd
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Security
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterNfsdMachineCircuitboard
+- type: technology
+  id: ThrusterMediumNfsdMachineCircuitboard
+  name: research-technology-thrustermediumnfsdmachinecircuitboard
+  entityIcon: ThrusterMediumNfsd
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Security
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterMediumNfsdMachineCircuitboard
+- type: technology
+  id: ThrusterLargeNfsdMachineCircuitboard
+  name: research-technology-thrusterlargenfsdmachinecircuitboard
+  entityIcon: ThrusterLargeNfsd
+  discipline: NFEngineering
+  tags:
+  - industrial
+  - energy
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ThrusterLargeNfsdMachineCircuitboard

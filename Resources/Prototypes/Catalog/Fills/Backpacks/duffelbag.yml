@@ -41,10 +41,9 @@
   - type: StorageFill
     contents:
       - id: WeaponShotgunBulldog # Frontier: WeaponShotgunBulldog<NFWeaponShotgunBulldog
-      - id: Magazine12_gaugeBuckshot # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+      - id: Magazine12_gaugeEmpty
         amount: 3
-      - id: Magazine12_gaugeSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
-#     - id: ThermalImagingGoggles
+      - id: Magazine12_gaugeEmpty
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -55,23 +54,8 @@
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r
-      - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
+      - id: Magazine9x19mmSubMachineGunEmpty
         amount: 2
-#     - id: SMGSuppressor
-
-# Frontier TODO: Balance this and readd
-#- type: entity
-#  parent: ClothingBackpackDuffelSyndicateBundle
-#  id: ClothingBackpackDuffelSyndicateFilledRifle
-#  name: Estoc DMR bundle
-#  description: "For medium-range sharpshooting, the Estoc DMR. Bundled with three magazines."
-#  components:
-#  - type: StorageFill
-#    contents:
-#    - id: WeaponRifleEstoc
-#    - id: MagazineRifle
-#      amount: 2
-
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledRevolver
@@ -81,7 +65,7 @@
   - type: StorageFill
     contents:
       - id: WeaponRevolverPython # Frontier: WeaponRevolverPythonAP<NFWeaponRevolverRitland45
-      - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
+      - id: SpeedLoader357_magnumEmpty
         amount: 2
 
 - type: entity
@@ -93,39 +77,8 @@
   - type: StorageFill
     contents:
       - id: WeaponLightMachineGunL6 # Frontier: WeaponLightMachineGunL6<NFWeaponLightMachineGunL6
-      - id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
+      - id: NFMagazineBoxRifle556x45Empty
 
-# - type: entity
-#   parent: ClothingBackpackDuffelSyndicateBundle
-#   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
-#   name: China-Lake bundle
-#   description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
-#   components:
-#   - type: StorageFill
-#     contents:
-#       - id: NFWeaponLauncherChinaLake # Frontier: WeaponLauncherChinaLake<NFWeaponLauncherChinaLake
-#       - id: NFGrenadeBlast # Frontier: GrenadeBlast<NFGrenadeBlast
-#         amount: 4
-#       - id: NFGrenadeFrag # Frontier: GrenadeFrag<NFGrenadeFrag
-#         amount: 4
-
-# - type: entity
-#   parent: ClothingBackpackDuffelSyndicateBundle
-#   id: ClothingBackpackDuffelSyndicateFilledCarbine
-#   name: M-90gl bundle
-#   description: "A versatile battle rifle with an attached grenade launcher, bundled with 3 magazines and 6 grenades of various capabilities."
-#   components:
-#   - type: StorageFill
-#     contents:
-#       - id: NFWeaponRifleAssaultM90GrenadeLauncher # Frontier: WeaponRifleM90GrenadeLauncher<NFWeaponRifleAssaultM90GrenadeLauncher
-#       - id: NFMagazineRifle20 # Frontier: MagazineRifle<NFMagazineRifle20
-#         amount: 2
-#       - id: NFGrenadeBlast # Frontier: GrenadeBlast<NFGrenadeBlast
-#         amount: 2
-#       - id: NFGrenadeFlash # Frontier: GrenadeFlash<NFGrenadeFlash
-#         amount: 2
-#       - id: NFGrenadeFrag # Frontier: GrenadeFrag<NFGrenadeFrag
-#         amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -135,15 +88,15 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
+      - id: Magazine9x19mmSubMachineGunEmpty # Lua 35 -> 9x19
         amount: 4
-      - id: Magazine12_gaugeBuckshot # Frontier: MagazineShotgun<NFMagazineShotgunDrum
+      - id: Magazine12_gaugeEmpty
         amount: 4
-      - id: Magazine556x45mmFMJ # Frontier: MagazineRifle<NFMagazineRifle20
+      - id: Magazine556x45mmEmpty
         amount: 3
-      - id: Magazine12_gaugeSlug # Frontier: MagazineShotgunSlug<NFMagazineShotgunDrumSlug
+      - id: Magazine12_gaugeEmpty
         amount: 1
-      - id: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
+      - id: NFMagazineBoxRifle556x45Empty
         amount: 2
 
 - type: entity
@@ -365,9 +318,9 @@
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunC20r # Frontier: WeaponSubMachineGunC20r
-      - id: Magazine9x19mmSubMachineGunFMJ # Lua 35 -> 9x19
+      - id: Magazine9x19mmSubMachineGunEmpty
         amount: 2 # Frontier: 3<2
-      - id: Magazine9x19mmPistolFMJ # Lua 35 -> 9x19
+      - id: Magazine9x19mmPistolEmpty
         amount: 2
       - id: SyndicateJawsOfLife
       - id: C4

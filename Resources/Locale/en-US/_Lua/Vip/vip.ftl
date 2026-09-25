@@ -12,3 +12,17 @@ store-vip-tier-rank7 = Rank VII
 store-vip-tier-rank8 = Rank VIII
 store-vip-tier-rank9 = Rank IX
 store-vip-tier-rank10 = Rank X
+
+store-vip-category-flatpack = Flatpacks
+store-vip-category-crates = Crates
+store-vip-category-cloaks = Cloaks
+store-vip-category-bedsheets = Bedsheets
+store-vip-category-useful = Useful
+store-vip-category-fuel = Fuel
+
+store-merc-category-hardsuit = Hardsuits
+store-merc-category-clothing = Clothing
+store-merc-category-backpack = Backpacks
+store-merc-category-gun = Guns
+store-merc-category-ammo = Ammo
+store-merc-category-nocat = Misc

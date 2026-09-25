@@ -24,6 +24,14 @@
   - type: Currency
     price:
       RedSpaceCoupons: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      RedSpaceCoupons: 1
+  - type: Tag
+    tags:
+    - Sheet
+    - RawMaterial
 
 - type: entity
   parent: RedSpaceCoupons

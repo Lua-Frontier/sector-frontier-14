@@ -241,7 +241,8 @@ namespace Content.Server.Lathe
         public List<ProtoId<LatheRecipePrototype>> GetAvailableRecipes(EntityUid uid, LatheComponent component, bool getUnavailable = false)
         {
             var ev = new LatheGetRecipesEvent((uid, component), getUnavailable);
-            AddRecipesFromPacks(ev.Recipes, component.StaticPacks);
+            TryComp<TechnologyDatabaseComponent>(uid, out var database);
+            AddRecipesFromStaticPacks(ev.Recipes, component.StaticPacks, database, getUnavailable);
             RaiseLocalEvent(uid, ev);
             return ev.Recipes.ToList();
         }
@@ -453,7 +454,26 @@ namespace Content.Server.Lathe
             if (producing == null && component.Queue.Count != 0 && component.Queue.First() is { } node) // Frontier - add extra checks since we're still using a list
                 producing = node.Recipe; // Frontier, remove .Value.
 
-            var state = new LatheUpdateState(GetAvailableRecipes(uid, component), component.Queue, producing, component.Loop, component.SkipBad); // Mono
+            TimeSpan? productionStartedAt = null;
+            TimeSpan? productionLength = null;
+            if (component.CurrentRecipe != null && TryComp<LatheProducingComponent>(uid, out var producingComp))
+            {
+                productionStartedAt = producingComp.StartTime;
+                productionLength = producingComp.ProductionLength * ProductionTimeMultiplier;
+            }
+
+            var hasResearchServer = TryComp<ResearchClientComponent>(uid, out var researchClient) &&
+                researchClient.Server != null;
+
+            var state = new LatheUpdateState(
+                GetAvailableRecipes(uid, component),
+                component.Queue,
+                producing,
+                component.Loop,
+                component.SkipBad,
+                productionStartedAt,
+                productionLength,
+                hasResearchServer);
             _uiSys.SetUiState(uid, LatheUiKey.Key, state);
         }
 
@@ -739,6 +759,8 @@ namespace Content.Server.Lathe
                 return;
             if (component.CurrentRecipe != null)
             {
+                RefundConsumedRecipeCost(uid, component, component.CurrentRecipe.Value);
+
                 // Items incremented on start, need to decrement with removal
                 if (component.Queue.Count > 0)
                 {
@@ -765,6 +787,18 @@ namespace Content.Server.Lathe
             RemCompDeferred<LatheProducingComponent>(uid);
             UpdateUserInterfaceState(uid, component);
             UpdateRunningAppearance(uid, false);
+        }
+
+        private void RefundConsumedRecipeCost(EntityUid uid, LatheComponent component, ProtoId<LatheRecipePrototype> recipeId)
+        {
+            if (!_proto.TryIndex(recipeId, out LatheRecipePrototype? recipe))
+                return;
+
+            foreach (var (mat, amount) in recipe.Materials)
+            {
+                var adjustedAmount = AdjustMaterial(amount, recipe.MaterialDiscountScale, component.FinalMaterialUseMultiplier);
+                _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
+            }
         }
 
         public void OnLatheDeleteRequestMessage(EntityUid uid, LatheComponent component, ref LatheDeleteRequestMessage args)
@@ -805,6 +839,7 @@ namespace Content.Server.Lathe
                 LogImpact.Low,
                 $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(_proto.Index(component.CurrentRecipe.GetValueOrDefault()))} at {ToPrettyString(uid):lathe}");
 
+            RefundConsumedRecipeCost(uid, component, component.CurrentRecipe.Value);
             component.CurrentRecipe = null;
             FinishProducing(uid, component);
         }

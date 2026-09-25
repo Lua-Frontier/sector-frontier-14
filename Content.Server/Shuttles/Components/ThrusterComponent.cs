@@ -1,10 +1,10 @@
-using System.Numerics;
+﻿using System.Numerics;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking; // Frontier
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Shuttles.Components
 {
@@ -71,14 +71,14 @@ namespace Content.Server.Shuttles.Components
         /// <summary>
         /// Togglable thrusters
         /// </summary>
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string OnPort = "On";
+        [DataField]
+        public ProtoId<SinkPortPrototype> OnPort = "On";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string OffPort = "Off";
+        [DataField]
+        public ProtoId<SinkPortPrototype> OffPort = "Off";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string TogglePort = "Toggle";
+        [DataField]
+        public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 
         // Mono
         /// <summary>

@@ -1,6 +1,6 @@
 using Content.Client._NF.Bank.UI;
 using Content.Shared._NF.Bank.BUI;
-using Content.Shared._Lua.Achievements;
+using Content.Lua.Shared.Achievements;
 using Content.Shared._NF.Bank.Events;
 using Robust.Shared.Network;
 using Robust.Client.UserInterface;

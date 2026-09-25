@@ -1,9 +1,8 @@
 using Content.Server._Mono.Projectiles.TargetGuided;
 using Content.Server._Mono.Projectiles.TargetSeeking;
-using Content.Server._Lua.SpaceHazards;
-using Content.Shared._Lua.AmbientSpaceEffects;
-using Content.Shared._Lua.Shuttles.Components;
-using Content.Shared._Lua.SpaceHazards;
+using Content.Lua.Shared.AmbientSpaceEffects;
+using Content.Lua.Shared.Shuttles.Components;
+using Content.Lua.Shared.SpaceHazards;
 using Content.Shared._Mono.Radar;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
@@ -15,6 +14,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Shared.SpaceHazards;
 
 namespace Content.Server._Mono.Radar;
 
@@ -27,7 +27,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SpaceHazardActivitySystem _hazardActivity = default!;
+    [Dependency] private readonly ISpaceHazardActivitySystem _hazardActivity = default!;
 
     private TimeSpan _nextMobBlipCheck;
     private readonly Dictionary<MapId, (TimeSpan BuiltAt, List<(AmbientSpaceFieldComponent Field, Vector2 Pos)> Fields)> _veilCache = new();

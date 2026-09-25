@@ -1,0 +1,55 @@
+# ВРЕМЕННО!!!!!
+- type: entity
+  id: BaseMechSyndiePacked
+  parent:
+  - BaseC3SyndicateContrabandPremium
+  - BaseItem
+  abstract: true
+  name: packed syndicate mech
+  description: A folded combat mech. Use it on the floor to unpack.
+  components:
+  - type: MultiHandedItem
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+
+- type: entity
+  id: MechGygaxSyndiePacked
+  parent: BaseMechSyndiePacked
+  name: packed dark gygax
+  suffix: Syndicate, Packed
+  description: A folded Dark Gygax. Use it on the floor to unpack. Battery and weapons included.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: darkgygax
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: Objects/Specific/Mech/mecha.rsi
+  - type: SpawnAfterInteract
+    prototype: MechGygaxSyndieFilled
+    doAfter: 8
+    removeOnInteract: true
+
+- type: entity
+  id: MechMaulerSyndiePacked
+  parent: BaseMechSyndiePacked
+  name: packed mauler
+  suffix: Syndicate, Packed
+  description: A folded Mauler. Use it on the floor to unpack. Battery and weapons included.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: mauler
+  - type: Item
+    size: Ginormous
+    shape:
+    - 0,0,3,3
+    sprite: Objects/Specific/Mech/mecha.rsi
+  - type: SpawnAfterInteract
+    prototype: MechMaulerSyndieFilled
+    doAfter: 8
+    removeOnInteract: true

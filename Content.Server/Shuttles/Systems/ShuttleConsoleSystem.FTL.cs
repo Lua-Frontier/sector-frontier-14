@@ -1,3 +1,4 @@
+using Content.Lua.Shared.Shuttles;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Popups;
@@ -10,7 +11,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

@@ -1,13 +1,13 @@
 #.20 rifle
 ent-NFCartridgeRifle20 = патрон (.20 винтовочный)
-ent-NFCartridgeRifle20Overpressure = (.20 винтовочный, усиленный)
+ent-Cartridge556x45mmOverpressure = патрон (5.56x45mm, усиленный)
 ent-NFCartridgeRifle20Incendiary = (.20 винтовочный, зажигательный)
 ent-NFCartridgeRifle20Uranium = (.20 винтовочный, урановый)
 ent-NFCartridgeRifle20Practice = (.20 винтовочный, учебный)
 ent-NFCartridgeRifle20Rubber = (.20 винтовочный, резиновый)
 #.30 rifle
 ent-NFCartridgeRifle30 = патрон (.30 винтовочный)
-ent-NFCartridgeRifle30Overpressure = (.30 винтовочный, усиленный)
+ent-Cartridge762x39mmOverpressure = патрон (7.62x39mm, усиленный)
 ent-NFCartridgeRifle30Incendiary = (.30 винтовочный, зажигательный)
 ent-NFCartridgeRifle30Uranium = (.30 винтовочный, урановый)
 ent-NFCartridgeRifle30Practice = (.30 винтовочный, учебный)

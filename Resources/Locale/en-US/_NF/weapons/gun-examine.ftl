@@ -7,6 +7,7 @@ gun-examine-nf-fire-rate-burst = - [color={$color}]Fire rate[/color]: [color=lig
 gun-examine-nf-muzzle-velocity = - [color={$color}]Muzzle velocity[/color]: [color=lightblue]{NATURALFIXED($value, 1)} m/s[/color]
 gun-examine-nf-class = - [color={$color}]Class[/color]: [color=lightblue]{$value}[/color]
 gun-examine-nf-manufacturer = - [color={$color}]Manufacturer[/color]: [color=lightblue]{$value}[/color]
+gun-examine-nf-caliber = - [color={$color}]Ammunition[/color]: [color=lightblue]{$value}[/color]
 
 # Calibers
 gun-examine-caliber-35 = 9x19mm ammo
@@ -16,7 +17,7 @@ gun-examine-caliber-10 = .10 rifle ammo
 gun-examine-caliber-25 = .25 rifle ammo
 gun-examine-caliber-20 = 5.56x45mm ammo
 gun-examine-caliber-30 = 7.62x39mm ammo
-gun-examine-caliber-50 = 4 gauge shells
+gun-examine-caliber-50 = 12 gauge
 gun-examine-caliber-60 = .60 rifle ammo
 gun-examine-caliber-asmgt = .35 pistol / .20 rifle / .25 rifle / .30 rifle ammo
 gun-examine-caliber-foam = foam darts
@@ -42,6 +43,27 @@ gun-examine-caliber-40mm-grenade-dart = 40mm grenades / tracking darts
 gun-examine-caliber-rocket = rocket-propelled grenades
 gun-examine-caliber-cannon-ball = cannon balls
 gun-examine-caliber-mail-capsule = mail capsules
+
+# Lua / Mono calibers
+gun-examine-caliber-6852 = 6.8x52 STANAG
+gun-examine-caliber-6852-55645 = 6.8x52 / 5.56x45
+gun-examine-caliber-865 = 8x65 SKR
+gun-examine-caliber-127 = 12.7x99
+gun-examine-caliber-145 = 14.5x114
+gun-examine-caliber-55645 = 5.56x45
+gun-examine-caliber-76239 = 7.62x39
+gun-examine-caliber-76251 = 7.62x51
+gun-examine-caliber-76254 = 7.62x54R
+gun-examine-caliber-45mgn = .45 Magnum / .357 Magnum
+gun-examine-caliber-357 = .357 Magnum
+gun-examine-caliber-45acp = .45 ACP
+gun-examine-caliber-919-45acp = 9x19 / .45 ACP
+gun-examine-caliber-919 = 9x19
+gun-examine-caliber-63540 = 6.35x40 caseless
+gun-examine-caliber-63540-919 = 6.35x40 caseless / 9x19
+gun-examine-caliber-4630 = 4.6x30
+gun-examine-caliber-5728 = 5.7x28
+gun-examine-caliber-4g = 4 gauge / 23x75mm
 
 # Manufacturers (alphabetical please)
 weapon-details-manufacturer-custom-made = Custom Made

@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Forensics;
-using Content.Server._Lua.Reputation;
+using Content.Lua.Shared.Reputation;
 using Content.Server.Afk; // Lua
 using Content.Server.Afk.Events; // Lua
 using Content.Server.GameTicking;
@@ -38,11 +38,11 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared._NF.Bank.Events; // Frontier
-using Content.Server._Lua.Bank; // Frontier
+using Content.Lua.Shared.Bank; // Frontier
 using Content.Server.Sponsors; // Lua
 using Content.Server._Mono.Company; // Lua
 using Content.Shared._Mono.Company; // Lua
-using Content.Shared._Lua.SponsorLoadout; // Lua
+using Content.Lua.Shared.SponsorLoadout; // Lua
 
 namespace Content.Server.Administration.Systems;
 
@@ -65,10 +65,10 @@ public sealed class AdminSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly BankSystem _bank = default!; // Frontier
+    [Dependency] private readonly IBankSystem _bank = default!; // Frontier
     [Dependency] private readonly IAfkManager _afkManager = default!; // Lua
-    [Dependency] private readonly ReputationSystem _reputation = default!;
-    [Dependency] private readonly SponsorManager _sponsorManager = default!;
+    [Dependency] private readonly IReputationSystem _reputation = default!;
+    [Dependency] private readonly SponsorManager _sponsorManager = default!; // from master
 
     private readonly Dictionary<NetUserId, PlayerInfo> _playerList = new();
 

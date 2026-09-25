@@ -25,7 +25,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: USSPSFMagazineLightRifle
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -34,7 +33,6 @@
             - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: USSPSFCartridgeLightRifle
         priority: 1
         whitelist:
           tags:
@@ -52,6 +50,7 @@
     price: 500
   - type: AmmoCounter
   - type: Gun
+    examineCaliber: gun-examine-caliber-30
     fireRate: 6.5
     maxAngle: 7
     angleIncrease: 1.5

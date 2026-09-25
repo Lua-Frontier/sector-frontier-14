@@ -147,11 +147,39 @@
     unlockAllTech: true
 
 - type: entity
+  parent: ResearchDisk
+  id: ResearchDiskDebugFactionTechs
+  name: research technology disk
+  suffix: DEBUG, Faction Techs, DO NOT MAP
+  categories: [ DoNotMap ]
+  description: Unlocks all technologies available to this R&D server's faction.
+  components:
+  - type: ResearchDisk
+    points: 0
+    unlockFactionTechnologies: true
+  - type: StaticPrice
+    price: 0
+
+- type: entity
+  parent: ResearchDisk
+  id: ResearchDiskDebugAllTechs
+  name: research technology disk
+  suffix: DEBUG, All Techs, DO NOT MAP
+  categories: [ DoNotMap ]
+  description: Unlocks every technology on the R&D server.
+  components:
+  - type: ResearchDisk
+    points: 0
+    unlockAllTechnologies: true
+  - type: StaticPrice
+    price: 0
+
+- type: entity
   parent: BaseItem
   id: TechnologyDisk
   name: technology disk
   description: A disk for the R&D server containing research technology.
-  categories: [ HideSpawnMenu ] # Frontier: no tech disks
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Misc/module.rsi
@@ -164,19 +192,19 @@
     - enum.DamageStateVisualLayers.Base:
         datadisk_base: Sixteen
   - type: TechnologyDisk
-    tierWeightPrototype: TechDiskTierWeights # Frontier
+    tierWeightPrototype: TechDiskTierWeights
   - type: StaticPrice
-    price: 0.01 # Frontier 100<0.01 - research points are a means to an end, not an end of their own
+    price: 0.01
   - type: StealTarget
     stealGroup: TechnologyDisk
-  - type: PirateBountyItem # Frontier
-    id: TechnologyDisk # Frontier
+  - type: PirateBountyItem
+    id: TechnologyDisk
 
 - type: entity
   parent: TechnologyDisk
   id: TechnologyDiskRare
   suffix: rare.
-  categories: [ HideSpawnMenu ] # Frontier: no tech disks
+  categories: [ HideSpawnMenu ]
   components:
   - type: TechnologyDisk
     tierWeightPrototype: RareTechDiskTierWeights

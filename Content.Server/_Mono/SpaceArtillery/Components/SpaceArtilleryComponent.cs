@@ -1,5 +1,5 @@
 using Content.Shared.DeviceLinking;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Mono.SpaceArtillery.Components;
 
@@ -34,13 +34,13 @@ public sealed partial class SpaceArtilleryComponent : Component
     /// <summary>
     /// Signal port that makes space artillery fire.
     /// </summary>
-    //[DataField("spaceArtilleryFirePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+    //[DataField("spaceArtilleryFirePort")]
     //public string SpaceArtilleryFirePort = "SpaceArtilleryFire";
 
     /// <summary>
     /// Signal port that receives ammunition from a linked AmmoLoader.
     /// </summary>
-    [DataField("spaceArtilleryLoadPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string SpaceArtilleryLoadPort = "SpaceArtilleryLoad";
+    [DataField("spaceArtilleryLoadPort")]
+    public ProtoId<SinkPortPrototype> SpaceArtilleryLoadPort = "SpaceArtilleryLoad";
 
 }

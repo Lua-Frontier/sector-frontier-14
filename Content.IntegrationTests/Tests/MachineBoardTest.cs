@@ -25,6 +25,13 @@ public sealed class MachineBoardTest
         "MachineParticleAcceleratorEmitterPortCircuitboard",
         "ParticleAcceleratorComputerCircuitboard",
         "ThrusterLuaBuildMachineCircuitboard",
+        "MercenaryTechFabCircuitboardNF",
+        "NfsdTechFabCircuitboard",
+        "USSPSFSecurityTechFabCircuitboard",
+        "SalvageTechFabCircuitboardNF",
+        "EngineeringTechFabCircuitboard",
+        "ServiceTechFabCircuitboard",
+        "MedipenTechFabCircuitboard",
     };
 
     /// <summary>

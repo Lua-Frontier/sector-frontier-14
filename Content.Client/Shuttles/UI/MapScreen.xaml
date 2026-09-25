@@ -3,7 +3,8 @@
        VerticalExpand="True"
        xmlns:controls="https://spacestation14.io"
        xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI">
+       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
+       xmlns:bss="clr-namespace:Content.Lua.UIKit.Shuttles;assembly=Content.Lua.UIKit">
     <controls:PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="4 2 4 4">
         <controls:PanelContainer.PanelOverride>
             <gfx:StyleBoxFlat BackgroundColor="#0B0F14" BorderColor="#243041" BorderThickness="1" />
@@ -38,7 +39,7 @@
                                                 FontColorOverride="#C5CEDB"
                                                 HorizontalAlignment="Right"/>
                             </controls:BoxContainer>
-                            <ui:ShuttleBssProgressBar Name="FTLBar" HorizontalExpand="True" MinHeight="14"/>
+                            <bss:ShuttleBssProgressBar Name="FTLBar" HorizontalExpand="True" MinHeight="14"/>
                         </controls:BoxContainer>
                     </controls:PanelContainer>
                     <controls:PanelContainer HorizontalExpand="True" VerticalExpand="True">

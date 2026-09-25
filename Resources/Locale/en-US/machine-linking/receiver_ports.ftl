@@ -64,6 +64,18 @@ signal-port-description-artifact-analyzer-sender = Analysis console signal sende
 signal-port-name-artifact-analyzer-receiver = Pad
 signal-port-description-artifact-analyzer-receiver = Artifact analyzer signal receiver
 
+signal-port-name-discovery-anomaly-vessel-sender = Console
+signal-port-description-discovery-anomaly-vessel-sender = Anomaly research console link to a vessel
+
+signal-port-name-discovery-anomaly-vessel-receiver = Vessel
+signal-port-description-discovery-anomaly-vessel-receiver = Anomaly vessel link from a research console
+
+signal-port-name-anomaly-synchronizer-console-sender = Console
+signal-port-description-anomaly-synchronizer-console-sender = Anomaly synchronizer console link
+
+signal-port-name-anomaly-synchronizer-console-receiver = Synchronizer
+signal-port-description-anomaly-synchronizer-console-receiver = Receives the synchronizer control console
+
 signal-port-name-set-particle-delta = Set particle type: delta
 signal-port-description-set-particle-delta = Sets the type of particle this device emits to delta.
 

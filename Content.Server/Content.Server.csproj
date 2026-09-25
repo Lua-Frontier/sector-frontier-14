@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\bin\Content.Server\</OutputPath>
@@ -23,11 +23,17 @@
     <ProjectReference Include="..\Content.Server.Database\Content.Server.Database.csproj" />
     <ProjectReference Include="..\Content.Shared.Database\Content.Shared.Database.csproj" />
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
+    <ProjectReference Include="..\Content.Lua.Shared\Content.Lua.Shared.csproj" />
+    <ProjectReference Include="..\Content.Lua.Common\Content.Lua.Common.csproj" />
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
+  <Target Name="BuildLuaServerModule" AfterTargets="Build" Condition="'$(BuildingLuaModule)' != 'true' and '$(DesignTimeBuild)' != 'true'">
+    <MSBuild Projects="$(MSBuildThisFileDirectory)..\Content.Lua.Server\Content.Lua.Server.csproj" Properties="Configuration=$(Configuration);BuildingLuaModule=true" />
+  </Target>
 
   <Import Project="..\RobustToolbox\Imports\Lidgren.props" />
   <Import Project="..\RobustToolbox\Imports\Server.props" />
   <Import Project="..\RobustToolbox\Imports\Shared.props" />
   <Import Project="..\RobustToolbox\Imports\Packaging.props" />
 </Project>
+

@@ -1,5 +1,5 @@
 using System.Runtime.CompilerServices;
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Atmos.Components;
 using Content.Server.Maps;
 using Content.Shared.Atmos;

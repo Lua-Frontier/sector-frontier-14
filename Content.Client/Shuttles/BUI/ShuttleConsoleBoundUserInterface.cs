@@ -1,7 +1,7 @@
 using Content.Client.Shuttles.UI;
-using Content.Shared._Lua.Expedition;
-using Content.Shared._Lua.Achievements;
-using Content.Shared._Lua.Starmap;
+using Content.Lua.Shared.Expedition;
+using Content.Lua.Shared.Achievements;
+using Content.Lua.Shared.Starmap;
 using Content.Shared._Mono.Shuttles;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Events;

@@ -1,44 +1,41 @@
-<Document>
-# Наука
-[color=#c96dbf]Наука[/color], также известная как Исследования и разработки, занимается генерацией очков исследований для открытия новых технологий и использованием этих технологий для печати новых предметов на станках, чтобы помогать сектору.
+﻿<Document>
+# Научный отдел
 
-## Технологии
-  <Box>
-    <GuideEntityEmbed Entity="ComputerResearchAndDevelopment"/>
-    <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
-  </Box>
-Самое важное в отделе — сервер R&D, который хранит открытые технологии, и компьютер R&D, через который можно открывать [color=#a4885c]технологии[/color].
+Ваша работа - [color=#c96dbf]добывать знания[/color], открывать технологии и печатать полезные вещи для сектора.
 
-Каждая технология стоит [color=#a4885c]очков исследований[/color] и открывает рецепты на станках. У некоторых технологий есть предварительные требования, которые нужно выполнить перед изучением.
+Технологии [bold]больше не кликаются на дереве[/bold]. Их находят с помощью [bold]дисков[/bold], аномалий и артефактов.
 
-[textlink="Список технологий смотрите здесь." link="Technologies"].
+## С чего начать
+<Box>
+  <GuideEntityEmbed Entity="ResearchAndDevelopmentServer"/>
+  <GuideEntityEmbed Entity="ComputerResearchAndDevelopment"/>
+  <GuideEntityEmbed Entity="ResearchDataDisk"/>
+</Box>
 
-## Дисциплины
-Технологии распределены по 4 дисциплинам:
-  <Box>
-    <GuideEntityEmbed Entity="Wrench" Caption="Промышленность"/>
-    <GuideEntityEmbed Entity="WeaponTetherGun" Caption="Экспериментальная"/>
-    <GuideEntityEmbed Entity="ComputerTelevision" Caption="Гражданские службы"/>
-    <GuideEntityEmbed Entity="NFWeaponEnergyRifleSniperXrayCannon" Caption="Арсенал"/> <!-- Frontier: WeaponXrayCannon<WeaponEnergyRifleSniperXrayCannon -->
-  </Box>
+1. На корабле или станции должен быть [bold]сервер R&D[/bold] - на нём хранятся открытые технологии.
+2. Консоль R&D показывает [bold]журнал[/bold]: только то, что уже открыто.
+3. Пустой [bold]диск данных[/bold] печатается на автолате.
 
-<GuideEntityEmbed Entity="ComputerResearchAndDevelopment"/> Используйте ближайшую консоль R&D, чтобы понять, какие исследования закреплены за каждым древом дисциплины.
+## Как открыть технологию (коротко)
 
-## Тиры
-У каждого древа дисциплины — до 3 тиров технологий. Вначале открыт только тир 1.
+Пустой диск → сканер у аномалии или артефакта → сырой диск → расшифровка → загрузка на сервер.
 
-Чтобы продвигаться дальше, нужно изучить не менее [color=brown]75%[/color] текущего тира, чтобы перейти к следующему. То есть, чтобы открыть исследования T2, нужно исследовать 75% T1.
+Подробнее: [textlink="Как открывать технологии" link="Technologies"].
+
+## Чем ещё занимается наука
+
+- [textlink="Аномалии" link="AnomalousResearch"] - опасные объекты, очки и данные на диск.
+- [textlink="Артефакты" link="Xenoarchaeology"] - исследование узлов, очки и данные на диск.
+- [textlink="Робототехника" link="Robotics"] - боты, мехи, киборги.
+- [textlink="Улучшение машин" link="MachineUpgrading"] - более сильные детали в станки.
 
 ## Станки
-  <Box>
-    <GuideEntityEmbed Entity="Protolathe"/>
-    <GuideEntityEmbed Entity="CircuitImprinter"/>
-  </Box>
-  <Box>
-    <GuideEntityEmbed Entity="ExosuitFabricator"/>
-    <GuideEntityEmbed Entity="MedicalTechFab"/>
-    <GuideEntityEmbed Entity="SecurityTechFab"/>
-  </Box>
-На станке можно выбрать сервер, чтобы разрешить печать открытых рецептов. Рецепты требуют материалы (сталь, стекло, пластик, золото, плазма), которые поставляют шахтёры или утилизаторы.
+<Box>
+  <GuideEntityEmbed Entity="Protolathe"/>
+  <GuideEntityEmbed Entity="CircuitImprinter"/>
+  <GuideEntityEmbed Entity="ExosuitFabricator"/>
+</Box>
+
+Выберите на станке [bold]свой сервер R&D[/bold]. Печатается только то, что уже открыто. Нужны материалы: сталь, стекло, пластик, золото, плазма.
 
 </Document>

@@ -1,7 +1,7 @@
 
 using Content.Shared._NF.Bank;
 using System.Linq;
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using Content.Server._NF.Medical.Components;
 using Content.Server.Administration.Logs;
 using Content.Shared.Body.Components;
@@ -37,7 +37,7 @@ public sealed partial class MedicalBountySystem : EntitySystem
     [Dependency] IRobustRandom _random = default!;
     [Dependency] IPrototypeManager _proto = default!;
     [Dependency] AudioSystem _audio = default!;
-    [Dependency] BankSystem _bank = default!;
+    [Dependency] IBankSystem _bank = default!;
     [Dependency] BloodstreamSystem _bloodstream = default!;
     [Dependency] DamageableSystem _damageable = default!;
     [Dependency] HandsSystem _hands = default!;

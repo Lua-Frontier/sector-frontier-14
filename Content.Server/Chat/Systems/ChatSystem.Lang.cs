@@ -1,5 +1,5 @@
-using Content.Shared._Lua.Chat.Systems;
-using Content.Shared._Lua.Language;
+using Content.Shared.Chat.Systems;
+using Content.Shared.Language;
 using Robust.Shared.Physics;
 using Robust.Shared.Utility;
 using Robust.Shared.Random;

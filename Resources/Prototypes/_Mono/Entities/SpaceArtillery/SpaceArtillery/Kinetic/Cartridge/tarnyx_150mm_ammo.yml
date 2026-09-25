@@ -29,7 +29,7 @@
     disableDuration: 5.5
 
 - type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: 150mmEmpShell
   name: 150mm EMP shell
   description: A chemically-propelled EMP shell, used in 150mm cannons such as the TARNYX. Nothing fancy.
@@ -98,7 +98,7 @@
     lifetime: 5
 
 - type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: 150mmApShell
   name: 150mm AP shell
   description: A chemically-propelled AP shell for 150mm cannons. Its not very good, as most 150mm cannons are optimized for EMP shells. Its a crude method, and it certainly wouldn't pass a TSFN inspection.
@@ -171,7 +171,7 @@
     lifetime: 5
 
 - type: entity
-  categories: [ ShuttleGun ]
+  categories: [HideSpawnMenu, ShuttleGun]
   id: 150mmApheShell
   name: 150mm APHE shell
   description: A chemically-propelled APHE shell for 150mm cannons. It'll work.

@@ -32,16 +32,45 @@ public sealed partial class AnomalySynchronizerComponent : Component
     /// minimum distance from the synchronizer to the anomaly to be attached
     /// </summary>
     [DataField]
-    public float AttachRange = 0.4f;
+    public float AttachRange = 2.5f;
 
     /// <summary>
     /// Periodicheski checks to see if the anomaly has moved to disconnect it.
     /// </summary>
     [DataField]
-    public TimeSpan CheckFrequency = TimeSpan.FromSeconds(1f);
+    public TimeSpan CheckFrequency = TimeSpan.FromSeconds(0.5f);
 
     [DataField, AutoPausedField]
     public TimeSpan NextCheckTime = TimeSpan.Zero;
+
+    [DataField]
+    public bool Compressing;
+
+    [DataField]
+    public float CompressProgress;
+
+    [DataField]
+    public float CompressDuration = 60f;
+
+    [DataField]
+    public float CompressEffectInterval = 2f;
+
+    public float CompressEffectAccumulator;
+
+    [DataField]
+    public EntProtoId CompressLoopEffect = "EffectDesynchronizer";
+
+    [DataField]
+    public SoundSpecifier CompressCompleteSound = new SoundPathSpecifier("/Audio/Machines/scan_finish.ogg");
+
+    [DataField]
+    public float HoldPowerDraw = 3f;
+
+    [DataField]
+    public float CompressPowerDraw = 6f;
+
+    [DataField]
+    public float BatteryChargeRate = 20f;
 
     [DataField]
     public ProtoId<SourcePortPrototype> DecayingPort = "Decaying";

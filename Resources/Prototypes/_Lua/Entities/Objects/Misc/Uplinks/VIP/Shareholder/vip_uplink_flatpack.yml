@@ -8,7 +8,7 @@
 #   id: UplinkVipFlatpackCryopod
 #   name:  uplink-vip-Cryopod-name
 #   description: uplink-vip-Cryopod-desc
-#   productEntity: CryopodFlatpack
+#   productEntity: CryoPodMachineCircuitboard
 #   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: cryopod_flat }
 #   cost:
 #     Speso: 41250
@@ -27,7 +27,7 @@
   id: UplinkVipFlatpackDawInstrument
   name:  uplink-vip-DawInstrument-name
   description: uplink-vip-DawInstrument-desc
-  productEntity: DawInstrumentFlatpack
+  productEntity: DawInstrumentMachineCircuitboard
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: service_music }
   cost:
     Speso: 66000
@@ -49,7 +49,7 @@
   id: UplinkVipFlatpackIFFFlatpack
   name:  uplink-vip-IFFFlatpack-name
   description: uplink-vip-IFFFlatpack-desc
-  productEntity: ComputerIFFFlatpack
+  productEntity: ComputerIFFCircuitboard
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: iff_console }
   cost:
     Speso: 99000
@@ -71,7 +71,7 @@
   id: UplinkVipFlatpackAutolathe
   name:  uplink-vip-Autolathe-name
   description: uplink-vip-Autolathe-desc
-  productEntity: AutolatheFlatpack
+  productEntity: AutolatheMachineCircuitboard
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: supply_lathe }
   cost:
     Speso: 12375
@@ -93,7 +93,7 @@
   id: UplinkVipFlatpackTrayEmptyFlatpack
   name:  uplink-vip-TrayEmptyFlatpack-name
   description: uplink-vip-TrayEmptyFlatpack-desc
-  productEntity: HydroponicsTrayEmptyFlatpack
+  productEntity: HydroponicsTrayEmpty
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: service_tray }
   cost:
     Speso: 12375
@@ -113,9 +113,9 @@
 
 - type: listing
   id: UplinkVipFlatpackProtolatheFlatpack
-  name:  uplink-vip-ProtolatheFlatpack-name
-  description: uplink-vip-ProtolatheFlatpack-desc
-  productEntity: ProtolatheFlatpack
+  name:  uplink-vip-ProtolatheMachineCircuitboard-name
+  description: uplink-vip-ProtolatheMachineCircuitboard-desc
+  productEntity: ProtolatheMachineCircuitboard
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: science_lathe }
   cost:
     Speso: 20625
@@ -137,7 +137,7 @@
   id: UplinkVipFlatpackImprinterFlatpack
   name:  uplink-vip-ImprinterFlatpack-name
   description: uplink-vip-ImprinterFlatpack-desc
-  productEntity: CircuitImprinterFlatpack
+  productEntity: CircuitImprinterMachineCircuitboard
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: science_lathe }
   cost:
     Speso: 20625
@@ -159,7 +159,7 @@
   id: UplinkVipFlatpackOreMachine
   name:  uplink-vip-OreMachine-name
   description: uplink-vip-OreMachine-desc
-  productEntity: OreMachineFlatpack
+  productEntity: OreProcessorMachineCircuitboard
   icon: { sprite: _NF/Objects/Devices/flatpack.rsi, state: ore_machine }
   cost:
     Speso: 20625
@@ -179,9 +179,9 @@
 
 - type: listing
   id: UplinkVipFlatpackFTLDrive600
-  name: uplink-vip-MachineFTLDrive600Flatpack-name
-  description: uplink-vip-MachineFTLDrive600Flatpack-desc
-  productEntity: MachineFTLDrive600Flatpack
+  name: uplink-vip-MachineFTLDrive600Circuitboard-name
+  description: uplink-vip-MachineFTLDrive600Circuitboard-desc
+  productEntity: MachineFTLDrive600Circuitboard
   cost:
     Speso: 20625
   categories:

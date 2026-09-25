@@ -5,8 +5,9 @@
   id: WeaponTurretAK570
   name: AK570 57mm autocannon
   parent:
-  - BallisticArtilleryMagazine
+  - BallisticArtilleryCartridge
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: A dual-barrel, heavy 57mm autocannon firing general-purpose APHE rounds, effective for sustained fire against medium targets. Can be remotely activated or linked up to a GCS.
   components:
@@ -51,18 +52,15 @@
     powerUsePassive: 600
     powerUseActive: 0
   - type: Actions
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: Magazine57mmHE
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - Magazine57mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: 57mmCartridgeHE
+    capacity: 600
+    whitelist:
+      tags:
+      - 57mmCartridge
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip
     radarColor: "#FF0000"
     scale: 1.5
@@ -74,16 +72,23 @@
   - type: ShipRepairable
     repairTime: 15
     repairCost: 60
+  - type: Machine
+    board: WeaponTurretAK570Circuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Dravon
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretDravon
   name: ADBP-7 DRAVON 90mm Autocannon
   parent:
-  - BallisticArtilleryMagazine
+  - BallisticArtilleryCartridge
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   suffix: Medium, T2
   description: A single-barrel autocannon made by Aetherion Dynamics. Medium artillery piece with high impact but relatively low fire rate, firing HEAT shells to damage ship armor and systems. Can be remotely activated or linked up to a GCS.
   components:
@@ -117,18 +122,15 @@
     powerUsePassive: 750
     powerUseActive: 0
   - type: Actions
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: 90mmMagazineHE
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - Magazine90mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: 90mmCartridgeHE
+    capacity: 400
+    whitelist:
+      tags:
+      - 90mmCartridge
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip
     radarColor: "#FF0000"
     scale: 1.5
@@ -140,22 +142,10 @@
   - type: ShipRepairable
     repairTime: 15
     repairCost: 60
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretDravonFlak
-  parent: WeaponTurretDravon
-  suffix: Medium, T2, Flak
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: 90mmMagazineFlak
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - Magazine90mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: Machine
+    board: WeaponTurretDravonCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

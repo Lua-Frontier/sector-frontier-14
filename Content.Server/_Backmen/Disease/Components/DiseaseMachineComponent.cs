@@ -1,6 +1,5 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Backmen.Disease.Components;
 
@@ -31,6 +30,6 @@ public sealed partial class DiseaseMachineComponent : Component
     /// <summary>
     /// What the machine will spawn
     /// </summary>
-    [DataField("machineOutput", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>), required: true)]
-    public string MachineOutput = string.Empty;
+    [DataField("machineOutput", required: true)]
+    public EntProtoId MachineOutput = string.Empty;
 }

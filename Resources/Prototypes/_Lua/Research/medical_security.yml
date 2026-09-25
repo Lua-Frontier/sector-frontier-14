@@ -1,0 +1,67 @@
+- type: technology
+  id: AdvancedJetInjectorNfsd
+  name: research-technology-advancedjetinjectornfsd
+  entityIcon: AdvancedJetInjectorNfsd
+  discipline: NFMedical
+  tags:
+  - medical
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Security
+  cost: 15000
+  recipeUnlocks:
+  - AdvancedJetInjectorNfsd
+- type: technology
+  id: CyberneticEyesSecurity
+  name: research-technology-cybernetic-eyes-security
+  entityIcon: SecurityCyberneticEyes
+  discipline: NFMedical
+  tags:
+  - medical
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Security
+  cost: 4000
+  recipeUnlocks:
+  - SecurityCyberneticEyes
+- type: technology
+  id: CyberneticSpeedLeftLeg
+  name: research-technology-cybernetic-speed-left-leg
+  entityIcon: SpeedLeftLeg
+  discipline: NFMedical
+  tags:
+  - medical
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - SpeedLeftLeg
+- type: technology
+  id: CyberneticSpeedRightLeg
+  name: research-technology-cybernetic-speed-right-leg
+  entityIcon: SpeedRightLeg
+  discipline: NFMedical
+  tags:
+  - medical
+  signatureFor: Security
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - SpeedRightLeg

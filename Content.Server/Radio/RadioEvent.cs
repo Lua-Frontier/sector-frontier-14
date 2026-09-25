@@ -1,4 +1,4 @@
-using Content.Shared._Lua.Language;
+using Content.Shared.Language;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
 

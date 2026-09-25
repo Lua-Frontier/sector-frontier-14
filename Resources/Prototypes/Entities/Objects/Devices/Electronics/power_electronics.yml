@@ -3,7 +3,7 @@
   id: APCElectronics
   parent: BaseElectronics
   name: APC electronics
-  description: Circuit used in APC construction. Can be put into a machine frame to alternatively make a large APC.
+  description: Circuit used in APC construction.
   components:
     - type: ApcElectronics
     - type: Sprite
@@ -16,7 +16,24 @@
         Silicon: 20
     - type: StaticPrice
       price: 34
-    - type: MachineBoard # Mono - LAPC
+
+- type: entity
+  id: LargeAPCElectronics
+  parent: BaseElectronics
+  name: LAPC electronics
+  description: Circuit board used to assemble a large APC substation in a machine frame.
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: charger_APC
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 100
+      chemicalComposition:
+        Silicon: 40
+    - type: StaticPrice
+      price: 120
+    - type: MachineBoard
       prototype: LargeAPC
       requirements:
         Capacitor: 6

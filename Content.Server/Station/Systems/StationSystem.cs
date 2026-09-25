@@ -19,7 +19,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles;
 
 namespace Content.Server.Station.Systems;
 
@@ -38,7 +38,7 @@ public sealed partial class StationSystem : SharedStationSystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly PvsOverrideSystem _pvsOverride = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
 
     private ISawmill _sawmill = default!;
 

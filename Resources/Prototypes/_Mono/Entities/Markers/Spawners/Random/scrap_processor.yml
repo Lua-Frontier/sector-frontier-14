@@ -231,9 +231,8 @@
     - id: SolarControlComputerCircuitboard
     - id: SolarTrackerElectronics
     - id: ContainmentFieldGeneratorCircuitboard
-    - id: SolarAssemblyFlatpack
-    - id: CentrifugeLatheMiniCircuitboard # Mono
-    #- id: IndustrialLatheMachineCircuitboard # Mono
+    - id: SolarAssemblyPart
+    - id: CentrifugeLatheMiniCircuitboard
     #Atmos
     - !type:GroupSelector
       weight: 2
@@ -256,7 +255,6 @@
     - id: ArtifactCrusherMachineCircuitboard
     - id: ResearchAndDevelopmentServerMachineCircuitboard
     - id: ResearchComputerCircuitboard
-    #- id: StationAiUploadCircuitboardUnlocked #Not til it's balanced.
     #Salv
     - id: MaterialReclaimerMachineCircuitboard
     - id: OreProcessorIndustrialMachineCircuitboard
@@ -270,7 +268,7 @@
     - id: CircuitImprinterMachineCircuitboard
     - id: CutterMachineCircuitboard
     - id: MedicalTechFabCircuitboard
-    - id: MercenaryTechFabCircuitboardNF
+    - id: ProtolatheMachineCircuitboard
     - id: ExosuitFabricatorMachineCircuitboard
     - id: AmmoTechFabCircuitboard
     - id: SheetifierMachineCircuitboard
@@ -300,10 +298,6 @@
     - id: MedicalAssemblerMachineCircuitboard
     - id: BiofabricatorMachineCircuitboard
     - id: CrewMonitoringServerMachineCircuitboard
-#    - id: DiagnoserMachineCircuitboard #No function for now
-#    - id: VaccinatorMachineCircuitboard
-#    - id: MedicalRecordsComputerCircuitboard
-#    - id: BodyScannerComputerCircuitboard
     #Service
     - id: BoozeDispenserMachineCircuitboard
     - id: DeepFryerMachineCircuitboard
@@ -336,15 +330,13 @@
     - id: AiCoreElectronics
     - id: OrganHarvesterMachineCircuitboard
     - id: OreMagnetMachineCircuitboard
-    - id: EngineeringTechFabCircuitboard
-    - id: SalvageTechFabCircuitboardNF
+    - id: AutolatheMachineCircuitboard
+    - id: AutolatheMachineCircuitboard
     - id: MedicalBiofabMachineBoard
-    - id: ServiceTechFabCircuitboard
+    - id: AutolatheMachineCircuitboard
     - id: CarpCallerMachineCircuitboard
-    #Reduced drop chance (Currently 50%)
     - !type:GroupSelector
       weight: 1
       children:
       - id: MachineGCSMediumCircuitboard
       - id: RadarConsoleCircuitboard
-      #- id: SalvageExpeditionsComputerCircuitboard #Needs to be sorted out first

@@ -1,4 +1,3 @@
-# Base prototypes can be found in \Resources\Prototypes\Recipes\Lathes\security.yml
 #region Base
 - type: latheRecipe
   id: BaseEmptyMagazineRecipe
@@ -28,323 +27,55 @@
   materials:
     Steel: 25
 
-# Ammo Boxes
-#region .35 Ammo Box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35
-  result: AmmoBox9x19mmFMJ
-  materials:
-    Steel: 1200 # box - free, 80 [bullets] * 15 [Steel per bullet]
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35Overpressure
-  result: NFAmmunitionBoxPistol35Overpressure
-  materials:
-    Steel: 1800 # box - free, 80 [bullets] * 22.5 [Steel per bullet]
 
+#region Shotgun Ammo Box
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35Practice
-  result: AmmoBox9x19mmPractice
-  materials:
-    Steel: 640 # box - free, 80 [bullets] * 8 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35Incendiary
-  result: AmmoBox9x19mmIncendiary
-  materials:
-    Plastic: 1200 # box - free, 80 [bullets] * 15 [Plastic per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35Uranium
-  result: AmmoBox9x19mmUranium
-  materials:
-    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
-    Uranium: 600 # box - free, 80 [bullets] * 7.5 [Uranium per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35Rubber
-  result: AmmoBox9x19mmRubber
-  materials:
-    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
-    Steel: 600 # box - free, 80 [bullets] * 7.5 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol35Emp
-  result: AmmoBox9x19mmEmp
-  materials:
-    Plasma: 800 # box - free, 80 [bullets] * 10 [Plasma per bullet]
-    Silver: 400 # box - free, 80 [bullets] * 5 [Silver per bullet]
-
-#region .45 Ammo Box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45
-  result: AmmoBox357_magnumFMJ
-  materials:
-    Steel: 1200 # box - free, 80 [bullets] * 15 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45Overpressure
-  result: NFAmmunitionBoxPistol45Overpressure
-  materials:
-    Steel: 1800 # box - free, 80 [bullets] * 22.5 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45Practice
-  result: AmmoBox357_magnumPractice
-  materials:
-    Steel: 640 # box - free, 80 [bullets] * 8 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45Incendiary
-  result: AmmoBox357_magnumIncendiary
-  materials:
-    Plastic: 1200 # box - free, 80 [bullets] * 15 [Plastic per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45Uranium
-  result: AmmoBox357_magnumUranium
-  materials:
-    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
-    Uranium: 600 # box - free, 80 [bullets] * 7.5 [Uranium per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45Rubber
-  result: NFAmmunitionBoxPistol45Rubber
-  materials:
-    Plastic: 600 # box - free, 80 [bullets] * 7.5 [Plastic per bullet]
-    Steel: 600 # box - free, 80 [bullets] * 7.5 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxPistol45Emp
-  result: NFAmmunitionBoxPistol45Emp
-  materials:
-    Plasma: 800 # box - free, 80 [bullets] * 10 [Plasma per bullet]
-    Silver: 400 # box - free, 80 [bullets] * 5 [Silver per bullet]
-
-#region .20 Ammo Box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle20
-  result: AmmoBox556x45mmFMJ
-  materials:
-    Steel: 1200 # box - free, 60 [bullets] * 20 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle20Overpressure
-  result: NFAmmunitionBoxRifle20Overpressure
-  materials:
-    Steel: 1800 # box - free, 60 [bullets] * 30 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle20Practice
-  result: AmmoBox556x45mmPractice
-  materials:
-    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle20Incendiary
-  result: AmmoBox556x45mmIncendiary
-  materials:
-    Plastic: 1200 # box - free, 60 [bullets] * 20 [Plastic per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle20Uranium
-  result: AmmoBox556x45mmUranium
-  materials:
-    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Uranium: 600 # box - free, 60 [bullets] * 10 [Uranium per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle20Rubber
-  result: AmmoBox556x45mmRubber
-  materials:
-    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle20
-  result: NFAmmunitionBoxBigRifle20
-  materials:
-    Steel: 4000 # box - free, 200 [bullets] * 20 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle20Overpressure
-  result: NFAmmunitionBoxBigRifle20Overpressure
-  materials:
-    Steel: 6000 # box - free, 200 [bullets] * 30 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle20Practice
-  result: NFAmmunitionBoxBigRifle20Practice
-  materials:
-    Steel: 2000 # box - free, 200 [bullets] * 10 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle20Incendiary
-  result: NFAmmunitionBoxBigRifle20Incendiary
-  materials:
-    Plastic: 4000 # box - free, 200 [bullets] * 20 [Plastic per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle20Uranium
-  result: NFAmmunitionBoxBigRifle20Uranium
-  materials:
-    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Uranium: 2000 # box - free, 60 [bullets] * 10 [Uranium per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle20Rubber
-  result: NFAmmunitionBoxBigRifle20Rubber
-  materials:
-    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Steel: 2000 # box - free, 60 [bullets] * 10 [Steel per bullet]
-
-#region .30 Ammo Box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle30
-  result: AmmoBox762x39mmFMJ
-  materials:
-    Steel: 1200 # box - free, 60 [bullets] * 20 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle30Overpressure
-  result: NFAmmunitionBoxRifle30Overpressure
-  materials:
-    Steel: 1800 # box - free, 60 [bullets] * 30 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle30Practice
-  result: AmmoBox762x39mmPractice
-  materials:
-    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle30Incendiary
-  result: AmmoBox762x39mmIncendiary
-  materials:
-    Plastic: 1200 # box - free, 60 [bullets] * 20 [Plastic per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle30Uranium
-  result: AmmoBox762x39mmUranium
-  materials:
-    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Uranium: 600 # box - free, 60 [bullets] * 10 [Uranium per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxRifle30Rubber
-  result: NFAmmunitionBoxRifle30Rubber
-  materials:
-    Plastic: 600 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Steel: 600 # box - free, 60 [bullets] * 10 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle30
-  result: NFAmmunitionBoxBigRifle30
-  materials:
-    Steel: 4000 # box - free, 200 [bullets] * 20 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle30Overpressure
-  result: NFAmmunitionBoxBigRifle30Overpressure
-  materials:
-    Steel: 6000 # box - free, 200 [bullets] * 30 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle30Practice
-  result: NFAmmunitionBoxBigRifle30Practice
-  materials:
-    Steel: 2000 # box - free, 200 [bullets] * 10 [Steel per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle30Incendiary
-  result: NFAmmunitionBoxBigRifle30Incendiary
-  materials:
-    Plastic: 4000 # box - free, 200 [bullets] * 20 [Plastic per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle30Uranium
-  result: NFAmmunitionBoxBigRifle30Uranium
-  materials:
-    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Uranium: 2000 # box - free, 60 [bullets] * 10 [Uranium per bullet]
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxBigRifle30Rubber
-  result: NFAmmunitionBoxBigRifle30Rubber
-  materials:
-    Plastic: 2000 # box - free, 60 [bullets] * 10 [Plastic per bullet]
-    Steel: 2000 # box - free, 60 [bullets] * 10 [Steel per bullet]
-
-#region .50 Ammo Box
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunBuckshot
+  id: AmmoBox12_gaugeBuckshot
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeBuckshot
   materials:
     Steel: 400 # box - free, 20 [bullets] * 20 [Steel per bullet]
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunOverpressure
-  result: NFAmmunitionBoxShellShotgunOverpressure
+  id: AmmoBox12_gaugeOverpressure
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
+  result: AmmoBox12_gaugeOverpressure
   materials:
     Steel: 600 # box - free, 20 [bullets] * 30 [Steel per bullet]
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunIncendiary
+  id: AmmoBox12_gaugeIncendiary
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeIncendiary
   materials:
     Plastic: 400 # box - free, 20 [bullets] * 20 [Plastic per bullet]
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunPractice
+  id: AmmoBox12_gaugePractice
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugePractice
   materials:
     Steel: 260 # box - free, 20 [bullets] * 13 [Steel per bullet]
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunUranium
+  id: AmmoBox12_gaugeUranium
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeUranium
   materials:
     Plastic: 250 # box - free, 20 [bullets] * 12.5 [Plastic per bullet]
@@ -352,14 +83,20 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunSlug
+  id: AmmoBox12_gaugeSlug
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeSlug
   materials:
     Steel: 400 # box - free, 20 [bullets] * 20 [Steel per bullet]
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunBeanbag
+  id: AmmoBox12_gaugeBeanbag
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeBeanbag
   materials:
     Steel: 200 # box - free, 20 [bullets] * 20 [Steel per bullet]
@@ -367,7 +104,10 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunFlare
+  id: AmmoBox12_gaugeFlare
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeFlare
   materials:
     Plastic: 300 # box - free, 20 [bullets] * 20 [Plastic per bullet]
@@ -375,7 +115,10 @@
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
-  id: NFAmmunitionBoxShellShotgunTranquilizer
+  id: AmmoBox12_gaugeTranquilizer
+  categories:
+  - AmmoCaliber12Gauge
+  - AmmoKindBox
   result: AmmoBox12_gaugeTranquilizer
   materials:
     Plastic: 300
@@ -385,20 +128,6 @@
     Silver: 100
 
 #region Empty Mags
-- type: latheRecipe # novalite mag empty
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
-  result: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
-  materials:
-    Steel: 20
-
-- type: latheRecipe # gestio mag empty
-  parent: BaseEmptyMagazineRecipe
-  id: MagazineLightRifleLowCapacityEmpty
-  result: NFMagazineLowCapacityRifle30Empty
-  materials:
-    Steel: 20
-
 - type: latheRecipe
   parent: BaseEmptyMagazineRecipe
   id: NFSpeedLoaderPistol35Empty
@@ -409,58 +138,19 @@
 - type: latheRecipe
   parent: BaseEmptyMagazineRecipe
   id: NFSpeedLoaderPistol45Empty
-  result: SpeedLoader357_magnumEmpty
+  result: NFSpeedLoaderPistol45Empty
   materials:
     Steel: 20
-
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazinePistol35Empty
-  result: Magazine9x19mmPistolEmpty
-  materials:
-    Steel: 20
-
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineHighCapacityPistol35Empty
-  result: NFMagazineHighCapacityPistol35Empty
-  materials:
-    Steel: 25
-
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineSubMachineGun35Empty
-  result: Magazine9x19mmSubMachineGunEmpty
-  materials:
-    Steel: 30
-
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineSubMachineGunTopMounted35Empty
-  result: Magazine9x19mmSubMachineGunTopMountedEmpty
-  materials:
-    Steel: 30
 
 - type: latheRecipe
   parent: BaseEmptyMagazineRecipe
   id: NFMagazinePistol45Empty
+  categories:
+  - AmmoCaliber357
+  - AmmoKindMagazine
   result: Magazine45_ACPPistolEmpty
   materials:
     Steel: 20
-
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineRifle20Empty
-  result: Magazine556x45mmEmpty
-  materials:
-    Steel: 30
-
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineRifle30Empty
-  result: Magazine762x39mmEmpty
-  materials:
-    Steel: 30
 
 - type: latheRecipe
   parent: BaseEmptyMagazineRecipe
@@ -469,14 +159,6 @@
   materials:
     Steel: 40
 
-- type: latheRecipe
-  parent: BaseEmptyMagazineRecipe
-  id: NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
-  result: NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
-  materials:
-    Steel: 40
-
-#region Weapons
 - type: latheRecipe
   parent: BaseWeaponRecipe
   id: WeaponPistolPollock
@@ -564,7 +246,7 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
-  id: NFWeaponEnergyRifleSniperXrayCannon
+  id: WeaponXrayCannon
   result: WeaponXrayCannon
   materials:
     Steel: 1500
@@ -583,14 +265,6 @@
     Gold: 500
 
 # region Grenades
-- type: latheRecipe
-  id: NFMagazineGrenadeEmpty # Frontier: add NF prefix
-  result: NFMagazineGrenadeEmpty # Frontier: add NF prefix
-  completetime: 3
-  materials:
-    Steel: 150
-    Plastic: 50
-
 - type: latheRecipe
   id: NFGrenadeEMP # Frontier: add NF prefix
   result: NFGrenadeEMP # Frontier: add NF prefix

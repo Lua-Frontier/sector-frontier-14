@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineDrinksBrennNight
   name: Фронтир-Комрад Венд
   description: Автомат с напитками величайших людей! Имеет этикетку "Созданно BrennNight Industries"
@@ -31,3 +31,16 @@
     radius: 3.8
     energy: 0.6
     color: "#ed3cca"
+  - type: Machine
+    board: VendingMachineDrinksBrennNightMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

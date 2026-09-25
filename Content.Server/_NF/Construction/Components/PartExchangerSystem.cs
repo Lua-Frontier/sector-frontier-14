@@ -17,7 +17,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Content.Shared.Stacks;
 using Content.Shared.Construction.Prototypes;
-using Content.Shared._Lua.ShipProtection;
+using Content.Shared.ShipProtection;
 
 namespace Content.Server._NF.Construction;
 

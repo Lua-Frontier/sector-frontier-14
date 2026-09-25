@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <LuaModuleHostOutputPath Condition="'$(LuaModuleHostOutputPath)' == ''"></LuaModuleHostOutputPath>
+  </PropertyGroup>
+
+  <Target Name="DeployLuaModuleToHost"
+          AfterTargets="CopyFilesToOutputDirectory"
+          Condition="'$(LuaModuleHostOutputPath)' != ''">
+    <ItemGroup>
+      <_LuaModuleDeploy Include="$(TargetPath)" />
+      <_LuaModuleDeploy Include="$(TargetDir)$(TargetName).pdb"
+                        Condition="Exists('$(TargetDir)$(TargetName).pdb')" />
+    </ItemGroup>
+    <MakeDir Directories="$(LuaModuleHostOutputPath)" />
+    <Copy SourceFiles="@(_LuaModuleDeploy)"
+          DestinationFolder="$(LuaModuleHostOutputPath)"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>

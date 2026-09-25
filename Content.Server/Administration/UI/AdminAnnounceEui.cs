@@ -1,4 +1,4 @@
-using Content.Server._Lua.Announcements;
+using Content.Lua.Shared.Announcements;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.EUI;
@@ -12,12 +12,12 @@ namespace Content.Server.Administration.UI
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
-        private readonly FactionAnnouncementSystem _factionAnnounce;
+        private readonly IFactionAnnouncementSystem _factionAnnounce;
 
         public AdminAnnounceEui()
         {
             IoCManager.InjectDependencies(this);
-            _factionAnnounce = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<FactionAnnouncementSystem>();
+            _factionAnnounce = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<IFactionAnnouncementSystem>();
         }
 
         public override void Opened()

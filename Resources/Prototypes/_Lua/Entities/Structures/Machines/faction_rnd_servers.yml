@@ -96,6 +96,7 @@
     color: "#b88a44"
   - type: ResearchServer
     faction: Pirates
+    serverName: PATSRV
   - type: Machine
     board: ResearchAndDevelopmentServerRoguesMachineCircuitboard
 
@@ -115,6 +116,7 @@
     color: "#b01340"
   - type: ResearchServer
     faction: Ussp
+    serverName: USPSRV
   - type: Machine
     board: ResearchAndDevelopmentServerUsspMachineCircuitboard
 
@@ -134,6 +136,7 @@
     color: "#0f6fbe"
   - type: ResearchServer
     faction: Security
+    serverName: SCRSRV
   - type: Machine
     board: ResearchAndDevelopmentServerTSFMCMachineCircuitboard
 
@@ -153,5 +156,33 @@
     color: "#9f9a8c"
   - type: ResearchServer
     faction: Neutral
+    serverName: NETSRV
   - type: Machine
     board: ResearchAndDevelopmentServerMercMachineCircuitboard
+
+- type: entity
+  id: ResearchAndDevelopmentServerLuaTech
+  parent: BaseFactionResearchAndDevelopmentServer
+  name: LuaTech R&D server
+  description: Stores Lua Technologies research data.
+  categories: [ LuaTech ]
+  components:
+  - type: LuaTech
+  - type: Sprite
+    sprite: _Lua/Structures/Machines/Taipan/server_luatech.rsi
+    snapCardinals: true
+    layers:
+      - state: server
+      - state: server-off-unshaded
+        shader: unshaded
+      - state: server-on-unshaded
+        visible: false
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+  - type: PointLight
+    color: "#2287af"
+  - type: ResearchServer
+    faction: LuaTech
+    serverName: LTSSRV
+  - type: Machine
+    board: ResearchAndDevelopmentServerLuaTechMachineCircuitboard

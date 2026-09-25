@@ -1,6 +1,5 @@
-﻿using Content.Shared.Actions;
+using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Corvax.OwOAction;
 
@@ -9,8 +8,8 @@ public sealed partial class OwOActionComponent : Component
 {
     private bool _isON;
 
-    [DataField("actionId", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string OwOAction = "OwOVoice";
+    [DataField("actionId")]
+    public EntProtoId OwOAction = "OwOVoice";
 
     [DataField("action")] // must be a data-field to properly save cooldown when saving game state.
     public EntityUid? OwOActionEntity = null;

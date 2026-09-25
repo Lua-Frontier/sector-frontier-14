@@ -1,14 +1,14 @@
-using Content.Server._Lua.Shipyard.Components;
 using Content.Server.Power.Components;
 using Content.Server.Shuttles.Components;
 using Content.Shared._Mono.Ships.Components;
 using Content.Shared._Mono.Shipyard;
 using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.Prototypes;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes; // Lua
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Mono.Ships.Systems;
 

@@ -15,6 +15,7 @@
     shape:
     - 0,0,3,2
   - type: Gun #Lua
+    examineCaliber: gun-examine-caliber-76251
     minAngle: 1 #Lua
     maxAngle: 3.5 #Lua
     angleIncrease: 0.2 #Lua
@@ -27,7 +28,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -37,7 +37,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: &chamber20Standard
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -64,7 +63,7 @@
     steps: 1
     zeroVisible: true
   - type: Gun
-    examineCaliber: gun-examine-caliber-6852 #Lua
+    examineCaliber: gun-examine-caliber-6852-55645
     minAngle: 1 #Lua
     maxAngle: 3.5 #Lua
     angleIncrease: 0.2 #Lua
@@ -76,7 +75,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine68x52mmCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -87,7 +85,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber: # &chamber20Standard #comment from _Lua
         name: Chamber
-        startingItem: Cartridge68x52mmCaseless
         priority: 1
         whitelist:
           tags:

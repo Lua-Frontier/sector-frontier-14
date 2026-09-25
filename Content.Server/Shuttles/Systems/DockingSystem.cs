@@ -3,8 +3,8 @@ using Content.Server.Doors.Systems;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
-using Content.Server._Lua.Shuttles.Systems;
-using Content.Shared._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.Shuttles.Components;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
 using Content.Shared.Popups;
@@ -17,12 +17,12 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics.Joints;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Shuttles.Systems
 {
     public sealed partial class DockingSystem : SharedDockingSystem
     {
-        [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly DoorSystem _doorSystem = default!;
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -32,8 +32,8 @@ namespace Content.Server.Shuttles.Systems
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Lua
-        [Dependency] private readonly MagneticLatchSystem _magLatch = default!; // Lua
-        [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
+        [Dependency] private readonly IMagneticLatchSystem _magLatch = default!;
+        [Dependency] private readonly IShuttleTabletSystem _tablet = default!;
 
         private const string DockingJoint = "docking";
 

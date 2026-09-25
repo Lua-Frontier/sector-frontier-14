@@ -3,6 +3,13 @@
   recipes:
   - ClothingOuterEVASuitMercenary
   - ClothingOuterEVASuitPrivateSec
+  - ClothingOuterArmorBulletproofNF
+  - ClothingShoesBootsMagSecurity
+  - ClothingEyesHudBountyHunter
+  - PinpointerUniversalNF
+  - FlashlightSecliteNF
+  - ClothingBackpackMessengerHolding
+  - JetpackSecurity
 
 - type: latheRecipePack
   id: NFMercenaryClothesStatic
@@ -97,32 +104,17 @@
 - type: latheRecipePack
   id: NFMercenaryAmmoBoxesStatic
   recipes:
-  - NFAmmunitionBoxPistol35
-  - NFAmmunitionBoxShellShotgunBuckshot
-  - NFAmmunitionBoxRifle20
-  - NFAmmunitionBoxRifle30
+  - AmmoBox12_gaugeBuckshot
   - CrossbowBolt
   - CrossbowBoltBroadhead
-  - NFAmmunitionBoxShellShotgunBeanbag
-  - NFAmmunitionBoxShellShotgunSlug
-  - NFAmmunitionBoxRifle30Rubber
-  - NFAmmunitionBoxPistol35Rubber
-  - NFAmmunitionBoxPistol45Rubber
-  - NFAmmunitionBoxRifle20Rubber
+  - AmmoBox12_gaugeBeanbag
+  - AmmoBox12_gaugeSlug
 
 - type: latheRecipePack
   id: NFMercenarySpeedloadersStatic
   recipes:
-  - NFMagazinePistol35Empty
   - NFSpeedLoaderPistol35Empty
   - NFSpeedLoaderPistol45Empty
-  - NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
-  - MagazineLightRifleLowCapacityEmpty
-  - MagazineLightRifleEmpty
-  - MagazineRifle
-  - MagazineRifleEmpty
-  - MagazineShotgunSlug
-  - MagazineShotgunBeanbag
   # - Magazine8x65mmSKR # mono
   # - Magazine8x65mmEmpty # mono
   - AmmoBox8x65mmSKR # mono
@@ -132,14 +124,8 @@
 - type: latheRecipePack
   id: NFMercenaryMagazineStatic
   recipes:
-  - NFMagazineHighCapacityPistol35Empty
   - NFMagazinePistol45Empty
-  - NFMagazineSubMachineGun35Empty
-  - NFMagazineSubMachineGunTopMounted35Empty
-  - NFMagazineRifle20Empty
-  - NFMagazineRifle30Empty
   - MagazineAsmgtUniversalEmpty
-  - NFMagazineDrumRifle556x45Empty #Lua 20 -> 556x45
 
 - type: latheRecipePack
   id: NFMercenaryArchetypeStatic
@@ -214,12 +200,8 @@
   - FlashPayload
   - ChemicalPayload
 ## Ammo boxes
-  - NFAmmunitionBoxShellShotgunBeanbag
-  - NFAmmunitionBoxRifle20Rubber
-  - NFAmmunitionBoxRifle30Rubber
-  - NFAmmunitionBoxPistol35Rubber
-  - NFAmmunitionBoxPistol45Rubber
-  - NFAmmunitionBoxPistol35Overpressure
-  - NFAmmunitionBoxPistol45Overpressure
-  - NFAmmunitionBoxRifle20Overpressure
-  - NFAmmunitionBoxRifle30Overpressure
+  - AmmoBox12_gaugeBeanbag
+  - AmmoBox9x19mmOverpressure
+  - AmmoBox357_magnumOverpressure
+  - AmmoBox556x45mmOverpressure
+  - AmmoBox762x39mmOverpressure

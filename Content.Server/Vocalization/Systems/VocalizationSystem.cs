@@ -2,7 +2,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Vocalization.Components;
 using Content.Shared.ActionBlocker;
-using Content.Shared._Lua.Chat.Systems;
+using Content.Shared.Chat.Systems;
 using Robust.Shared.Player; // Frontier
 using Robust.Shared.Random;
 using Robust.Shared.Timing;

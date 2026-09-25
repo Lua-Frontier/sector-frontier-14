@@ -45,7 +45,7 @@
   name: TSFMC grenade launcher
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherNfsdLake
-  description: Able to lob both grenades and darts!
+  description: Able to lob less-lethal grenades!
   components:
   - type: Sprite
     sprite: _NF/Objects/Weapons/Guns/Launchers/nfsd_lake.rsi
@@ -55,7 +55,20 @@
     proto: null
     whitelist:
       tags:
-        - NFTrackingDart
         - LessLethalGrenade # Mono
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  name: TSFMC dart launcher
+  parent: WeaponLauncherNfsdLake
+  id: WeaponLauncherNfsdDartLake
+  description: Able to lob tracking darts!
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+    whitelist:
+      tags:
+        - NFTrackingDart
   - type: StaticPrice
     price: 50

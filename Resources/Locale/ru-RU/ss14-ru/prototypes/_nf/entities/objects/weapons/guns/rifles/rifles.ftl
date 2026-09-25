@@ -1,9 +1,3 @@
-ent-WeaponRifleLecterRubber = Лектер
-    .suffix = Травматический
-    .desc = { ent-WeaponRifleLecter.desc }
-ent-WeaponRifleNovaliteC1Rubber = { ent-WeaponRifleNovaliteC1 }
-    .suffix = Травматический
-    .desc = { ent-WeaponRifleNovaliteC1.desc }
 ent-WeaponRifleSVS = СВС-42
     .desc = Старая винтовка, разработанная Самоновым. Выглядит так, будто она побывала на нескольких войнах. В ней используются магазины 30-го калибра малой емкости. Оснащена штыком.
 ent-WeaponSniperCeremonial = церемониальная винтовка
@@ -12,5 +6,3 @@ ent-WeaponRifleVulcan = вулкан
     .desc = Эта винтовка, являющаяся одним из самых тяжелых образцов стрелкового оружия в арсенале Службы безопасности, представляет собой современный вариант классической винтовки, которую неофициально называют "Правой рукой свободного мира". В ней используются винтовочные патроны 7.62x51mm.
 ent-WeaponRifleJackdaw = CAWS-25 "Галка"
     .desc = Начало конца возвещается песней галки. Использует безгильзовые патроны 6.35x40mm.
-ent-WeaponRifleVulcanRubber = { ent-WeaponRifleVulcan }
-  .desc = { ent-WeaponRifleVulcan.desc }

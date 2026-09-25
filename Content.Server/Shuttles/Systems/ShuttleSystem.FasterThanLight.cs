@@ -1,10 +1,10 @@
+using Content.Lua.Shared.Shuttles;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Server._NF.Shuttles.Components; // Frontier: FTL knockdown immunity
-using Content.Server._Lua.NoShuttleFTL;
+using Content.Lua.Shared.NoShuttleFTL;
 using Content.Server.Emp; // Lua
-using Content.Server._Lua.Starmap.Components; // Lua Warp transit marker
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
@@ -20,7 +20,7 @@ using Content.Shared.Shuttles.Systems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Timing;
 using Content.Shared.Whitelist;
-using Content.Shared._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -35,7 +35,6 @@ using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
 using Content.Shared._Mono.Ships;
 using Content.Shared._Crescent.SpaceBiomes;
 using Robust.Shared.Prototypes;
-using Content.Server._Lua.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

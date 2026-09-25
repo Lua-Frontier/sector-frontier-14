@@ -18,13 +18,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
-using Content.Shared._Lua.ShipProtection;
+using Content.Shared.ShipProtection;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Construction.EntitySystems;
 
 public sealed partial class AnchorableSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PullingSystem _pulling = default!;
@@ -160,7 +160,7 @@ public sealed partial class AnchorableSystem : EntitySystem
         // TODO: Anchoring snaps rn anyway!
         if (component.Snap)
         {
-            var coordinates = xform.Coordinates.SnapToGrid(EntityManager, _mapManager);
+            var coordinates = xform.Coordinates.SnapToGrid(EntityManager, _map);
 
             if (AnyUnstackable(uid, coordinates))
             {

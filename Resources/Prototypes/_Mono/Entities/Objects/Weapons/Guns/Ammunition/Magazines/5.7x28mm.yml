@@ -34,6 +34,7 @@
 #Start Pistol mags
 - type: entity
   id: Magazine57x28mmPistolFMJ
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm FMJ)
   parent: BaseMagazine57x28mm
   components:
@@ -48,6 +49,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolEmpty
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm any)
   suffix: empty
   parent: Magazine57x28mmPistolFMJ
@@ -63,6 +65,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolIncendiary
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm incendiary)
   parent: Magazine57x28mmPistolFMJ
   components:
@@ -77,6 +80,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolPractice
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm practice)
   parent: BaseMagazine57x28mm
   components:
@@ -91,6 +95,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolUranium
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm uranium)
   parent: BaseMagazine57x28mm
   components:
@@ -106,6 +111,7 @@
 #Upstream
 - type: entity
   id: Magazine57x28mmPistolRubber
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm rubber)
   parent: BaseMagazine57x28mm
   components:
@@ -123,6 +129,7 @@
 #anti-flesh ammo
 - type: entity
   id: Magazine57x28mmPistolHP
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm hollow-point)
   parent: BaseMagazine57x28mm
   components:
@@ -138,6 +145,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolRIP
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm RIP)
   parent: BaseMagazine57x28mm
   components:
@@ -155,6 +163,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolPlasteelAP
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (5.7x28mm AP)
   parent: BaseMagazine57x28mm
   components:
@@ -205,6 +214,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolHighCapacityEmpty
+  categories: [ HideSpawnMenu ]
   name: machine pistol magazine (5.7x28mm any)
   suffix: empty
   parent: BaseMagazine57x28mmPistolHighCapacityFMJ
@@ -220,6 +230,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolHighCapacityFMJ
+  categories: [ HideSpawnMenu ]
   name: machine pistol magazine (5.7x28mm FMJ)
   parent: BaseMagazine57x28mmPistolHighCapacityFMJ
   components:
@@ -234,6 +245,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolHighCapacityPractice
+  categories: [ HideSpawnMenu ]
   name: machine pistol magazine (5.7x28mm practice)
   parent: BaseMagazine57x28mmPistolHighCapacityFMJ
   components:
@@ -248,6 +260,7 @@
 
 - type: entity
   id: Magazine57x28mmPistolHighCapacityRubber
+  categories: [ HideSpawnMenu ]
   name: machine pistol magazine (5.7x28mm rubber)
   parent: BaseMagazine57x28mmPistolHighCapacityFMJ
   components:
@@ -299,6 +312,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunFMJ
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm FMJ)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -333,6 +347,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunPractice
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm practice)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -347,6 +362,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunUranium
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm uranium)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -362,6 +378,7 @@
 - type: entity
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   id: Magazine57x28mmSubMachineGunIncendiary
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm incendiary)
   components:
   - type: BallisticAmmoProvider
@@ -375,6 +392,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunRubber
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm rubber)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -391,6 +409,7 @@
 # Frontier
 - type: entity
   id: Magazine57x28mmSubMachineGunEmp
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm emp)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -408,6 +427,7 @@
 #anti-flesh ammo
 - type: entity
   id: Magazine57x28mmSubMachineGunHP
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm hollow-point)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -423,6 +443,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunRIP
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm RIP)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -440,6 +461,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunPlasteelAP
+  categories: [ HideSpawnMenu ]
   name: SMG magazine (5.7x28mm AP)
   parent: BaseMagazine57x28mmSubMachineGunFMJ
   components:
@@ -457,6 +479,7 @@
 #Start TopMounted mags
 - type: entity
   id: Magazine57x28mmSubMachineGunTopMountedFMJ
+  categories: [ HideSpawnMenu ]
   name: top-mounted magazine (5.7x28mm top-mounted)
   parent: [ BaseItem, RecyclableItemSteelTiny ]
   components:
@@ -489,6 +512,7 @@
 
 - type: entity
   id: Magazine57x28mmSubMachineGunTopMountedEmpty
+  categories: [ HideSpawnMenu ]
   name: top-mounted magazine (5.7x28mm top-mounted any)
   parent: Magazine57x28mmSubMachineGunTopMountedFMJ
   components:

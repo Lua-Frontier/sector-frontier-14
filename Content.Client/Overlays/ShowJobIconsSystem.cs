@@ -1,6 +1,6 @@
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared._Lua.StationRecords.Components;
+using Content.Lua.Shared.StationRecords.Components;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared.Overlays;
 using Content.Shared.PDA;

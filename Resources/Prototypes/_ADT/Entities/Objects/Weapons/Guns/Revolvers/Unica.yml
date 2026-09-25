@@ -16,6 +16,7 @@
     - suitStorage
     - Belt
   - type: Gun
+    examineCaliber: gun-examine-caliber-357
     selectedMode: SemiAuto
     fireRate: 1.5
     availableModes:
@@ -28,9 +29,9 @@
   - type: RevolverAmmoProvider
     whitelist:
       tags:
-        - Cartridge357
-        - SpeedLoader357
-    proto: Cartridge357
+        - Cartridge357_magnumFMJ
+        - SpeedLoader357_magnumFMJ
+    proto: null
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null ]

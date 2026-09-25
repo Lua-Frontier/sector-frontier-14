@@ -100,7 +100,8 @@ public sealed partial class GameTicker
 
     public void SetGamePreset(GamePresetPrototype? preset, bool force = false, int? resetDelay = null)
     {
-        // Do nothing if this game ticker is a dummy!
+        Preset = preset;
+
         if (DummyTicker)
             return;
 
@@ -117,7 +118,6 @@ public sealed partial class GameTicker
             ResetCountdown = null;
         }
 
-        Preset = preset;
         ValidateMap();
         UpdateInfoText();
 

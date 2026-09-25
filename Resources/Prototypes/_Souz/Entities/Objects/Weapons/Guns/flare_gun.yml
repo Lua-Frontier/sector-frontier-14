@@ -7,6 +7,8 @@
   suffix: USSP
   description: A modified flare gun originally designed to be used by security to launch non-lethal shotgun shells, however it can also fire lethal shells without risk.
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-50
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/flaregun_security.rsi
     layers:

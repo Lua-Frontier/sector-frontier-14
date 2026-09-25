@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -18,7 +18,7 @@ namespace Content.IntegrationTests.Tests
             var server = pair.Server;
             await server.WaitIdleAsync();
 
-            var mapMan = server.ResolveDependency<IMapManager>();
+            var mapMan = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entManager = server.ResolveDependency<IEntityManager>();
             var physicsSystem = entManager.System<SharedPhysicsSystem>();
 

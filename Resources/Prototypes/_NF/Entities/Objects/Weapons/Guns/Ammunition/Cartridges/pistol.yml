@@ -42,62 +42,12 @@
 
 #region .35 pistol
 - type: entity
-  id: NFCartridgePistol35Overpressure
-  name: cartridge (.35 pistol, overpressure)
-  parent: NFBaseCartridgePistol35
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol35Overpressure
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff8d00"
-
-- type: entity
   id: NFCartridgePistol35Emp
   name: cartridge (.35 pistol, EMP)
   parent: NFBaseCartridgePistol35
   components:
   - type: CartridgeAmmo
     proto: NFBulletPistol35Emp
-  - type: EmpDescription
-    range: 0.3
-    energyConsumption: 2700000
-    disableDuration: 10
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#00ffff"
-
-#region .45 pistol
-- type: entity
-  id: NFCartridgePistol45Overpressure
-  name: cartridge (.45 pistol, overpressure)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45Overpressure
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#ff8d00"
-
-- type: entity
-  id: NFCartridgePistol45Emp
-  name: cartridge (.45 pistol, EMP)
-  parent: NFBaseCartridgePistol45
-  components:
-  - type: CartridgeAmmo
-    proto: NFBulletPistol45Emp
   - type: EmpDescription
     range: 0.3
     energyConsumption: 2700000

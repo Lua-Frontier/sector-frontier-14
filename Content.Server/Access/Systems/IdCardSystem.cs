@@ -3,7 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Kitchen.Components;
 using Content.Server.Kitchen.EntitySystems;
 using Content.Server.Popups;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems; // Lua
 using Content.Shared.Access;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;

@@ -133,11 +133,20 @@
     Highly radioactive without protection due to the light Iridite frame of the reactor.
   parent:
   - StaticGeneratorBase
+  - ConstructibleMachine
   id: GeneratorCRPinch
   suffix: Bluespace, Rad+, 105 kW # Lua plasma -> bluespace
   placement:
     mode: AlignTileAny
   components:
+  - type: Machine
+    board: GeneratorCRPinchMachineCircuitboard
+  - type: Construction
+    graph: Machine2x1
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
   - type: Sprite
     sprite: _Mono/Structures/Power/Generators/pinchreactor.rsi
     offset: 0,-0.5

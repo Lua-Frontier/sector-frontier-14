@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Linq;
+using System.Text;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Ghost.Roles.Components;
@@ -10,6 +11,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Nutrition;
 using Content.Shared.NPC;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nyanotrasen.Kitchen.Prototypes;
@@ -141,10 +143,12 @@ public sealed partial class DeepFryerSystem
         var extraSolution = new Solution();
         if (TryComp(item, out FlavorProfileComponent? flavorProfileComponent))
         {
-            HashSet<string> goodFlavors = new(flavorProfileComponent.Flavors);
+            HashSet<ProtoId<FlavorPrototype>> goodFlavors = new(flavorProfileComponent.Flavors
+                .Select(flavor => (ProtoId<FlavorPrototype>) flavor));
             goodFlavors.IntersectWith(component.GoodFlavors);
 
-            HashSet<string> badFlavors = new(flavorProfileComponent.Flavors);
+            HashSet<ProtoId<FlavorPrototype>> badFlavors = new(flavorProfileComponent.Flavors
+                .Select(flavor => (ProtoId<FlavorPrototype>) flavor));
             badFlavors.IntersectWith(component.BadFlavors);
 
             deepFriedComponent.PriceCoefficient = Math.Max(0.01f,

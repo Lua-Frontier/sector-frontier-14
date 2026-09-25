@@ -100,3 +100,23 @@
       # Manipulator: 5 # Frontier
       Steel: 5
       CableHV: 2
+
+- type: entity
+  id: ShuttleGunKineticOldCircuitboard
+  parent: BaseMachineCircuitboard
+  name: exomorphic dematerializer machine board
+  description: A machine printed circuit board for an exomorphic dematerializer.
+  suffix: DO NOT MAP, Machine Board
+  categories: [ DoNotMap, ShuttleGun ]
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: ShuttleGunKineticOld
+    requirements:
+      MatterBin: 2
+      Manipulator: 3
+    stackRequirements:
+      Steel: 5
+      CableHV: 2
+      Plasma: 3

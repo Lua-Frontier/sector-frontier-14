@@ -1,14 +1,14 @@
 using Content.IntegrationTests.Tests._NF;
-using Content.Server._Lua.Company;
-using Content.Server._Lua.Company.Components;
+using Content.Lua.Server.Company;
+using Content.Lua.Shared.Company.Components;
 using Content.Server._NF.Station.Components;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.Station;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._Lua.Company;
 using Content.Shared._Mono.Company;
+using Content.Shared.Company;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.GameObjects;
@@ -298,11 +298,10 @@ public sealed class StationJobsTest
         {
             var entMan = server.ResolveDependency<IEntityManager>();
             var mapSystem = entMan.System<SharedMapSystem>();
-            var mapManager = server.MapMan;
             var stationSystem = entMan.System<StationSystem>();
 
             mapSystem.CreateMap(out var mapId);
-            grid = mapManager.CreateGridEntity(mapId);
+            grid = mapSystem.CreateGridEntity(mapId);
 
             var config = new StationConfig
             {
@@ -313,8 +312,7 @@ public sealed class StationJobsTest
                         new ExtraStationInformationComponent
                         {
                             RequiredCompany = "Nanotrasen"
-                        },
-                        null!)
+                        })
                 }
             };
 
@@ -355,11 +353,10 @@ public sealed class StationJobsTest
         {
             var entMan = server.ResolveDependency<IEntityManager>();
             var mapSystem = entMan.System<SharedMapSystem>();
-            var mapManager = server.MapMan;
             var stationSystem = entMan.System<StationSystem>();
 
             mapSystem.CreateMap(out var mapId);
-            grid = mapManager.CreateGridEntity(mapId);
+            grid = mapSystem.CreateGridEntity(mapId);
 
             station = stationSystem.InitializeNewStation(fooStationProto.Stations["OwnedStation"], new[] { grid }, "Ownership Rebuild Test");
         });

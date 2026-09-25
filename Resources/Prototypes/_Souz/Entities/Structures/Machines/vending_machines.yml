@@ -1,6 +1,6 @@
 # source: Entities/Structures/Machines/vending_machines.yml
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: USSPSFVendingMachineCola
   categories: [ USSP ]
   suffix: USSP
@@ -37,8 +37,22 @@
     radius: 1.5
     energy: 1.6
     color: "#3c5eb5"
+  - type: Machine
+    board: USSPSFVendingMachineColaMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
 - type: entity
-  parent: USSPSFVendingMachineCola
+  parent: [USSPSFVendingMachineCola, SmallConstructibleMachine]
   id: USSPSFVendingMachineColaBlack
   categories: [ USSP ]
   suffix: USSP, Black
@@ -58,8 +72,22 @@
     radius: 1.5
     energy: 1.6
     color: "#423438"
+  - type: Machine
+    board: USSPSFVendingMachineColaBlackMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
 - type: entity
-  parent: USSPSFVendingMachineCola
+  parent: [USSPSFVendingMachineCola, SmallConstructibleMachine]
   id: USSPSFVendingMachineColaRed
   categories: [ USSP ]
   suffix: USSP
@@ -81,8 +109,22 @@
     radius: 1.5
     energy: 1.6
     color: "#A50824"
+  - type: Machine
+    board: USSPSFVendingMachineColaRedMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
 - type: entity
-  parent: USSPSFVendingMachineCola
+  parent: [USSPSFVendingMachineCola, SmallConstructibleMachine]
   id: USSPSFVendingMachineSpaceUp
   categories: [ USSP ]
   suffix: USSP
@@ -106,8 +148,22 @@
     radius: 1.5
     energy: 1.6
     color: "#44964A"
+  - type: Machine
+    board: USSPSFVendingMachineSpaceUpMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
 - type: entity
-  parent: USSPSFVendingMachineCola
+  parent: [USSPSFVendingMachineCola, SmallConstructibleMachine]
   id: USSPSFVendingMachineSoda
   categories: [ USSP ]
   suffix: USSP, Soda
@@ -129,8 +185,22 @@
     radius: 1.5
     energy: 1.6
     color: "#CBC6BE"
+  - type: Machine
+    board: USSPSFVendingMachineSodaMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: USSPSFVendingMachineSec
   categories: [ USSP ]
   suffix: USSP
@@ -170,8 +240,22 @@
     - Security
   - type: TTS
     voice: Glowtron
+  - type: Machine
+    board: USSPSFVendingMachineSecMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts
+
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: USSPSFVendingMachineSovietSoda
   categories: [ USSP ]
   name: ВОДА
@@ -208,3 +292,16 @@
     energy: 1.6
     color: "#389690"
   - type: RussianAccent
+  - type: Machine
+    board: USSPSFVendingMachineSovietSodaMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

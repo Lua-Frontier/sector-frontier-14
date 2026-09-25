@@ -144,12 +144,26 @@
 
 # Shuttle guns
 
-# Whatstone - got a rough value based on
+- type: entity
+  parent: NFRedLightLaser
+  categories: [ HideSpawnMenu, ShuttleGun ]
+  id: NFRedSvalinnShuttleLaser
+  components:
+  - type: HitscanRadarSignature
+    radarColor: "#FF4444"
+    lifeTime: 0.1
+  - type: HitscanBasicRaycast
+    maxDistance: 450
 - type: entity
   parent: BasicHitscan
-  categories: [ HideSpawnMenu ]
+  categories: [ HideSpawnMenu, ShuttleGun ]
   id: NFRedShuttleLaser
   components:
+  - type: HitscanRadarSignature
+    radarColor: "#FF2222"
+    lifeTime: 0.15
+  - type: HitscanBasicRaycast
+    maxDistance: 650
   - type: HitscanBasicDamage
     damage:
       types:

@@ -1,5 +1,5 @@
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineChiefEngineer
   name: ChiefEngiDrobe
   description:
@@ -27,3 +27,16 @@
     radius: 1.5
     energy: 1.6
     color: "#73ebe1"
+  - type: Machine
+    board: VendingMachineChiefEngineerMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

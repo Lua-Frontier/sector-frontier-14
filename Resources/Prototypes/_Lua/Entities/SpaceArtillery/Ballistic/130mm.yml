@@ -1,0 +1,40 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  categories: [ ShuttleGun ]
+  parent:
+  - WeaponTurretLongbow
+  - ConstructibleMachine
+  id: Weapon130mm
+  name: Миномёт "130мм"
+  description: Средний миномёт, использует снаряды 130мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets120mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets120mm
+  - type: Gun
+    fireRate: 0.05
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua130mm
+    capacity: 1
+    whitelist:
+      tags:
+      - CartridgeLua130mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: Weapon130mmCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

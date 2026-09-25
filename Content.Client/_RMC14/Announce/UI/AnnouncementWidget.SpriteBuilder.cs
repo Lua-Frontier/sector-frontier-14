@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client.Resources;
-using Content.Client._Lua.Announce;
+using Content.Lua.UIKit.Announce;
+using Content.Client._RMC14.Announce;
 using Content.Client._RMC14.Announce.Styling;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._RMC14.Announce;
@@ -78,7 +79,7 @@ public sealed partial class AnnouncementWidget
                 RectClipContent = true
             };
 
-            var portraitSystem = _owner._entityManager.System<AnnouncementPortraitSystem>();
+            var portraitSystem = _owner._entityManager.System<IAnnouncementPortraitSystem>();
             var hologram = portraitSystem.CreateHologramPortrait(speakerUid.Value);
             var portraitEntity = hologram ?? speakerUid.Value;
             if (hologram is { } ownedHologram)

@@ -1,4 +1,4 @@
-using Content.Server._Lua.Announcements;
+using Content.Lua.Shared.Announcements;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Audio;
@@ -12,7 +12,7 @@ namespace Content.Server.Announcements;
 [AdminCommand(AdminFlags.Moderator)]
 public sealed class AnnounceCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly FactionAnnouncementSystem _factionAnnounce = default!;
+    [Dependency] private readonly IFactionAnnouncementSystem _factionAnnounce = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IResourceManager _res = default!;
 
@@ -33,8 +33,8 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
         }
 
         var message = args[0];
-        var factionId = args.Length >= 2 ? args[1] : FactionAnnouncementSystem.DefaultFactionId;
-        var sectorId = args.Length >= 3 ? args[2] : FactionAnnouncementSystem.AllSectorsId;
+        var factionId = args.Length >= 2 ? args[1] : FactionAnnouncementIds.DefaultFactionId;
+        var sectorId = args.Length >= 3 ? args[2] : FactionAnnouncementIds.AllSectorsId;
         Color? color = null;
         SoundSpecifier? sound = null;
 

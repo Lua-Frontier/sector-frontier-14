@@ -84,6 +84,8 @@
       machine_parts: !type:Container
       board_slot: !type:ContainerSlot
   - type: Construction
+    graph: Machine
+    node: machine
     containers:
     - machine_parts
     - machine_board

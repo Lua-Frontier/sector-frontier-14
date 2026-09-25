@@ -17,6 +17,7 @@
     minAngle: -20
     maxAngle: -30
   - type: Gun
+    examineCaliber: gun-examine-caliber-45acp
     minAngle: 21
     maxAngle: 45
     angleIncrease: 5
@@ -29,7 +30,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine45_ACPSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
         priority: 2
@@ -39,7 +39,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge45_ACPFMJ
         priority: 1
         whitelist:
           tags:

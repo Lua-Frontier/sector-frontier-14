@@ -1,0 +1,40 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  categories: [ ShuttleGun ]
+  parent:
+  - WeaponTurretAK570
+  - ConstructibleMachine
+  id: Weapon45mm
+  name: Пулемёт "45мм"
+  description: Средний пулемёт, использует снаряды 45мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets53mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets53mm
+  - type: Gun
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua45mm
+    capacity: 1
+    whitelist:
+      tags:
+      - CartridgeLua45mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: Weapon45mmCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

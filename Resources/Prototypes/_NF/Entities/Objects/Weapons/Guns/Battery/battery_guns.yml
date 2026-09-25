@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   name: emp emitter
   parent: BaseWeaponBattery
   id: WeaponEmpEmitter
@@ -44,7 +44,7 @@
 
 - type: entity
   id: WeaponLaserTurboNF
-  parent: BaseWeaponBattery
+  parent: MonoBaseWeaponPowerCell
   name: turbo laser mk3
   description: "A turbo laser ripped from the guardian unit. Appears to be a rather old model. Doesn't seem to be working properly. Supposedly highly illegal."
   components:
@@ -68,9 +68,6 @@
     sprite: _NF/Objects/Weapons/Guns/Battery/turbo_laser.rsi
     layers:
     - state: icon-base
-    - state: charge-level-unshaded-5
-      map: ["enum.GunVisualLayers.MagUnshaded"]
-      shader: unshaded
   - type: Clothing
     quickEquip: false
     slots:
@@ -86,31 +83,29 @@
       - state: equipped-back
       - state: equipped-unshaded
         shader: unshaded
-  - type: Battery
-    maxCharge: 4000
-    startingCharge: 4000
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+          - MilitaryPowerCellMG
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
-    fireCost: 32
+    proto: MediumOverchargedLaser
+    fireCost: 15
   - type: Gun
     selectedMode: FullAuto
     availableModes:
-    - Burst
     - FullAuto
-    fireRate: 8
+    fireRate: 7.5
     minAngle: 1
     maxAngle: 10
-    burstFireRate: 12
-    shotsPerBurst: 5
-    burstCooldown: 0.5
     soundGunshot:
       path: /Audio/_DV/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
-  - type: MagazineVisuals
-    magState: charge-level
-    steps: 6
-    zeroVisible: true
   - type: Appearance
 
 - type: entity

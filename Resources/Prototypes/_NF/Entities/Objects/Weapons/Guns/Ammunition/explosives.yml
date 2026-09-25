@@ -10,6 +10,7 @@
     - NFCartridgeGrenade40mm
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [ NFBaseGrenade40mm, GrenadeBaton ]
   id: NFGrenadeBaton
   name: baton grenade round
@@ -18,6 +19,7 @@
     proto: NFBulletGrenadeBaton
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [ NFBaseGrenade40mm, GrenadeBlast ]
   id: NFGrenadeBlast
   name: blast grenade round
@@ -26,6 +28,7 @@
     proto: NFBulletGrenadeBlast
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [ NFBaseGrenade40mm, GrenadeCleanade ]
   id: NFGrenadeCleanade
   name: cleanade grenade round
@@ -34,6 +37,7 @@
     proto: NFBulletGrenadeCleanade
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [ NFBaseGrenade40mm, GrenadeFlash ]
   id: NFGrenadeFlash
   name: flash grenade round
@@ -47,6 +51,7 @@
     proto: NFBulletGrenadeFlash
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [ NFBaseGrenade40mm, GrenadeFrag ]
   id: NFGrenadeFrag
   name: frag grenade round
@@ -55,6 +60,7 @@
     proto: NFBulletGrenadeFrag
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: [ NFBaseGrenade40mm, GrenadeEMP ]
   id: NFGrenadeEMP
   name: EMP grenade round
@@ -73,6 +79,7 @@
 
 # Cannon Balls
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: CannonBall
   id: NFCannonBall
   components:
@@ -80,6 +87,7 @@
     proto: NFBulletCannonBall
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: CannonBallGrapeshot
   id: NFCannonBallGrapeshot
   components:
@@ -87,6 +95,7 @@
     proto: NFPelletGrapeshotSpread
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: CannonBallGlassshot
   id: NFCannonBallGlassshot
   components:
@@ -94,6 +103,7 @@
     proto: NFPelletGlassSpread
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   parent: BaseCannonBall
   id: NFCannonBallEmp
   name: shockshot

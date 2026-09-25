@@ -388,6 +388,21 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: ResearchComputerLuaTechCircuitboard
+  name: LuaTech R&D computer board
+  description: A computer printed circuit board for a LuaTech R&D console.
+  categories: [ LuaTech ]
+  components:
+    - type: LuaTech
+    - type: Sprite
+      state: cpu_science
+    - type: ComputerBoard
+      prototype: ComputerResearchAndDevelopmentLuaTech
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopResearchAndDevelopmentLuaTech
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: AnalysisComputerCircuitboard
   name: analysis computer board
   description: A computer printed circuit board for an analysis console.
@@ -403,15 +418,12 @@
   parent: BaseComputerCircuitboard
   id: TechDiskComputerCircuitboard
   name: tech disk terminal board
-  categories: [ HideSpawnMenu ] # Frontier: no tech disks
   description: A computer printed circuit board for a technology disk terminal.
   components:
   - type: Sprite
     state: cpu_science
   - type: ComputerBoard
     prototype: ComputerTechnologyDiskTerminal
-#  - type: ComputerTabletopBoard # Frontier
-#    prototype: ComputerTabletopTechnologyDiskTerminal # Frontier
 
 - type: entity
   parent: BaseComputerCircuitboard

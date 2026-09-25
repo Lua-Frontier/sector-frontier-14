@@ -110,21 +110,15 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
             if (!_research.IsDisciplineFactionAllowed(Entity, discipline))
                 continue;
 
-            var tier = _research.GetHighestDisciplineTier(Entity, database, discipline);
 
-            // don't show tiers with no available tech
-            if (tier == 0)
-                continue;
-
-            // i'm building the small-ass control here to spare me some mild annoyance in making a new file
             var texture = new TextureRect
             {
                 TextureScale = new Vector2( 2, 2 ),
                 VerticalAlignment = VAlignment.Center
             };
-            var label = new RichTextLabel();
             texture.Texture = _sprite.Frame0(discipline.Icon);
-            label.SetMessage(Loc.GetString("research-console-tier-info-small", ("tier", tier)));
+            var label = new RichTextLabel();
+            label.SetMessage(Loc.GetString(discipline.Name));
 
             var control = new BoxContainer
             {
