@@ -2,7 +2,6 @@
 // Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
-using System.Globalization;
 using System.Linq;
 using Content.Lua.UIKit.Styles;
 using Content.Client.Guidebook.RichText;
@@ -16,7 +15,6 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Client.WebView;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Input;
 using Robust.Shared.Prototypes;
@@ -27,7 +25,6 @@ namespace Content.Client.Guidebook.Controls;
 [GenerateTypedNameReferences]
 public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAnchorClickHandler
 {
-    private const float BrowserContentZoom = 0.9f;
     private const int MinFontStep = -2;
     private const int MaxFontStep = 4;
     private const string WikiLunaUrl = "https://wiki.deadspace14.net/Луна:Заглавная_страница";
@@ -49,10 +46,6 @@ public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAn
     private ProtoId<GuideEntryPrototype>? _rootHomeId;
     private int _fontStep;
     private string? _pendingWebUrl;
-    private WebViewControl? _webView;
-    private bool _pendingBrowserZoom;
-    private bool _browserLoadStarted;
-    private float _browserZoomWait;
 
     public ProtoId<GuideEntryPrototype> LastEntry;
 
@@ -103,21 +96,12 @@ public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAn
         };
         WebLinkCloseButton.OnPressed += _ => HideWebLinkBar();
 
-        BrowserBackButton.OnPressed += _ =>
-        {
-            _webView?.GoBack();
-            RequestBrowserZoom();
-        };
-        BrowserForwardButton.OnPressed += _ =>
-        {
-            _webView?.GoForward();
-            RequestBrowserZoom();
-        };
-        BrowserReloadButton.OnPressed += _ =>
-        {
-            _webView?.Reload();
-            RequestBrowserZoom();
-        };
+        // Embedded CEF disabled: Robust.Client.WebView is not available for engine 290 via wizards CDN.
+        BrowserNavBar.Visible = false;
+        BrowserHost.Visible = false;
+        BrowserBackButton.OnPressed += _ => { };
+        BrowserForwardButton.OnPressed += _ => { };
+        BrowserReloadButton.OnPressed += _ => { };
         BrowserGoButton.OnPressed += _ => NavigateFromUrlBar();
         BrowserUrlEdit.OnTextEntered += _ => NavigateFromUrlBar();
         BrowserCloseButton.OnPressed += _ => CloseBrowser();
@@ -175,8 +159,6 @@ public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAn
             return false;
 
         _pendingWebUrl = link;
-        if (TryShowEmbeddedBrowser(link))
-            return true;
         WebLinkBar.Visible = true;
         WebLinkTitleLabel.Text = Loc.GetString("guidebook-weblink-fallback");
         WebLinkUrlEdit.Text = link;
@@ -184,54 +166,14 @@ public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAn
         return true;
     }
 
-    private bool TryShowEmbeddedBrowser(string url)
+    private void OpenExternalSite(string url)
     {
-        if (!TryEnsureWebView())
-            return false;
-
-        NavigateBrowser(url);
-        return true;
-    }
-
-    private bool TryEnsureWebView()
-    {
-        if (_webView != null)
-            return true;
-
-        try
-        {
-            IoCManager.Resolve<IWebViewManager>();
-            _webView = new WebViewControl
-            {
-                HorizontalExpand = true,
-                VerticalExpand = true,
-                AlwaysActive = true
-            };
-            BrowserHost.AddChild(_webView);
-            return true;
-        }
-        catch (Exception e)
-        {
-            _sawmill.Warning($"In-game WebView unavailable, falling back to system browser: {e.Message}");
-            _webView = null;
-            return false;
-        }
-    }
-
-    private void NavigateBrowser(string url)
-    {
-        if (_webView == null)
-            return;
-
         _pendingWebUrl = url;
-        _webView.Url = url;
-        BrowserUrlEdit.Text = url;
-        BrowserNavBar.Visible = true;
-        BrowserHost.Visible = true;
-        Scroll.Visible = false;
-        SearchContainer.Visible = false;
-        HideWebLinkBar();
-        RequestBrowserZoom();
+        WebLinkBar.Visible = true;
+        WebLinkTitleLabel.Text = Loc.GetString("guidebook-weblink-fallback");
+        WebLinkUrlEdit.Text = url;
+        LunaWindowStyle.StyleSecondary(WebLinkTitleLabel);
+        _uriOpener.OpenUri(url);
     }
 
     private void NavigateFromUrlBar()
@@ -240,56 +182,14 @@ public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAn
         if (!IsHttpUrl(url))
             return;
 
-        NavigateBrowser(url);
-    }
-
-    private void RequestBrowserZoom()
-    {
-        _pendingBrowserZoom = true;
-        _browserLoadStarted = false;
-        _browserZoomWait = 0f;
-    }
-
-    private void ApplyBrowserZoom()
-    {
-        if (_webView == null)
-            return;
-
-        var zoom = BrowserContentZoom.ToString(CultureInfo.InvariantCulture);
-        _webView.ExecuteJavaScript($"document.documentElement.style.zoom='{zoom}';");
-    }
-
-    protected override void FrameUpdate(FrameEventArgs args)
-    {
-        base.FrameUpdate(args);
-
-        if (!_pendingBrowserZoom || _webView == null || !BrowserHost.Visible)
-            return;
-
-        _browserZoomWait += args.DeltaSeconds;
-
-        if (_webView.IsLoading)
-        {
-            _browserLoadStarted = true;
-            return;
-        }
-        if (!_browserLoadStarted && _browserZoomWait < 0.35f)
-            return;
-
-        ApplyBrowserZoom();
-        _pendingBrowserZoom = false;
-        _browserLoadStarted = false;
+        OpenExternalSite(url);
     }
 
     private void CloseBrowser()
     {
-        _pendingBrowserZoom = false;
-        _browserLoadStarted = false;
         BrowserNavBar.Visible = false;
         BrowserHost.Visible = false;
         Scroll.Visible = true;
-        if (_webView != null)
-            _webView.Url = "about:blank";
     }
 
     private void HideWebLinkBar()
@@ -429,9 +329,9 @@ public sealed partial class GuidebookWindow : LunaWindow, ILinkClickHandler, IAn
                 linkControl.EnablePrototypeLink();
         }
         if (entry.Id == "WikiLuna")
-            TryShowEmbeddedBrowser(WikiLunaUrl);
+            OpenExternalSite(WikiLunaUrl);
         else if (entry.Id == "LuaCorpSite")
-            TryShowEmbeddedBrowser(LuaCorpSiteUrl);
+            OpenExternalSite(LuaCorpSiteUrl);
     }
 
     private void PinCurrent(bool pin)
