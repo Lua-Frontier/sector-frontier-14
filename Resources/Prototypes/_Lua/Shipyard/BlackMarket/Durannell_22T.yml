@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaCorp Contributors
+# See AGPLv3.txt for details.
+# Author: Maksimvini (discord)
+
+- type: vessel
+  parent: BaseVessel
+  id: Durannell_22T
+  name: Durannell_22T
+  description: "Некогда судно из старой классики, теперь оборудовано каким-никаким укреплением, вооружением, и расширено до идеала. Больше места и мини мед. Создано старым концерном NXL 22T. На вооружении два AK570 57мм, два Dravon 57мм"
+  price: 105000 #test
+  mass: 132
+  category: Small
+  group: ASBlackMarket
+  access: Mercenary
+  class:
+  - Mercenary # Maksimvini
+  - Cargo # Maksimvini
+  - Medical # Maksimvini
+  engine:
+  - Uranium
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/Durannell_22T.yml
+
+- type: gameMap
+  id: Durannell_22T
+  mapName: 'Durannell_22T'
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/Durannell_22T.yml
+  minPlayers: 0
+  stations:
+    Durannell_22T:
+      stationProto: StandardFrontierVessel
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Durannell_22T {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

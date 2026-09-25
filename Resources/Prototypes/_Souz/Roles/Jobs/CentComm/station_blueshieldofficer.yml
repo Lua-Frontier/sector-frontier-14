@@ -12,15 +12,15 @@
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Engineering
-    time: 36000
+  - !type:RoleTimeRequirement
+    role: JobUsspHeadOfPersonnel #lua
+    time: 20000 #lua
   - !type:DepartmentTimeRequirement
     department: Medical
-    time: 36000
+    time: 12000 #lua
   - !type:RoleTimeRequirement
     role: JobUsspHeadOfSecurity
-    time: 36000
+    time: 32000
   - !type:DepartmentTimeRequirement
     department: OutpostUssp
     time: 36000
@@ -42,6 +42,7 @@
   - USSPEngineering
   - USSPCargo
   accessGroups:
+  - GeneralAccess #lua
   - USSPAll
   special:
   - !type:AddImplantSpecial

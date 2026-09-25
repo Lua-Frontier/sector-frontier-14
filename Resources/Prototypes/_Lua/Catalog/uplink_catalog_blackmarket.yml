@@ -156,21 +156,6 @@
           - BMUplink
 
 - type: listing
-  id: UplinkBMAutoPulser
-  name: uplink-bm-autopulser-name
-  description: uplink-bm-autopulser-desc
-  productEntity: WeaponRifleAsakimAutopulser
-  cost:
-    Speso: 75000
-  categories:
-    - UplinkBMWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - BMUplink
-
-- type: listing
   id: UplinkBMWeaponRifleJackdaw
   name: uplink-bm-Jackdaw-name
   description: uplink-bm-Jackdaw-desc
@@ -275,31 +260,32 @@
         tags:
           - BMUplink
 
-- type: listing
-  id: UplinkBMWeaponPistolHawk4
-  name: uplink-bm-Hawk4-name
-  description: uplink-bm-Hawk4-desc
-  productEntity: WeaponPistolHawk4
-  cost:
-    Speso: 85000
-  categories:
-    - UplinkBMWeapons
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - BMUplink
-
 # Region ammo
 
 # Shotgun ammo
 
 - type: listing
-  id: BMUplinkAmmoBox23x75mmBuckshot # AmmoBox
+  id: BMUplinkAmmoBox23x75mmBuckshot # Lua, Ammobox
   name: uplink-bm-AmmoBox23x75mmBuckshot-name
   description: uplink-bm-AmmoBox23x75mmBuckshot-desc
   productEntity: AmmoBox23x75mmBuckshot
   icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/4_gauge.rsi, state: base }
+  cost:
+    Speso: 10000
+  categories:
+  - UplinkBMAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - BMUplink
+
+- type: listing
+  id: BMUplinkAmmoBox12GaugeBuckshot # Lua, Ammobox
+  name: uplink-bm-AmmoBox12GaugeBuckshot-name
+  description: uplink-bm-AmmoBox12GaugeBuckshot-desc
+  productEntity: AmmoBox12_gaugeBuckshot
+  icon: { sprite: _Mono/Objects/Weapons/Guns/Ammunition/Boxes/12_gauge.rsi, state: base }
   cost:
     Speso: 10000
   categories:
@@ -587,8 +573,8 @@
 
 - type: listing
   id: UplinkBMSpeedLoader357_magnumFMJ # speedloader
-  name: uplink-security-SpeedLoader357_magnumFMJ-name
-  description: uplink-security-SpeedLoader357_magnumFMJ-desc
+  name: uplink-bm-SpeedLoader357_magnumFMJ-name
+  description: uplink-bm-SpeedLoader357_magnumFMJ-desc
   productEntity: LuaBoxSpeedLoader357_magnumFMJ
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
@@ -605,8 +591,8 @@
 
 - type: listing
   id: UplinkBMSpeedLoader357_magnumRubber # speedloader
-  name: uplink-security-SpeedLoader357_magnumRubber-name
-  description: uplink-security-SpeedLoader357_magnumRubber-desc
+  name: uplink-bm-SpeedLoader357_magnumRubber-name
+  description: uplink-bm-SpeedLoader357_magnumRubber-desc
   productEntity: LuaBoxSpeedLoader357_magnumRubber
   icon: { sprite: _NF/Objects/Storage/boxes.rsi, state: icon-magazine }
   cost:
@@ -751,7 +737,7 @@
   productEntity: MedkitCombatFilled
   icon: { sprite: _NF/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
   cost:
-    Speso: 5000
+    Speso: 7500
   categories:
     - UplinkBMMedicine
   conditions:
@@ -766,7 +752,7 @@
   description: uplink-bm-mechmedipen-desc
   productEntity: BruteAutoInjector
   cost:
-    Speso: 5000
+    Speso: 3500
   categories:
     - UplinkBMMedicine
   conditions:
@@ -781,7 +767,7 @@
   description: uplink-bm-burnmedipen-desc
   productEntity: BurnAutoInjector
   cost:
-    Speso: 5000
+    Speso: 3500
   categories:
     - UplinkBMMedicine
   conditions:

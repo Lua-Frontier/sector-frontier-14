@@ -56,6 +56,11 @@
   equipment:
     back: USSPSFClothingBackpackBlueShield
 
+- type: loadout #lua
+  id: UsspLoadoutOuterRIGSecurity
+  equipment:
+    outerClothing: USSPSFClothingOuterRIGSecurity
+
 - type: loadoutGroup
   id: UsspCivilianBackpack
   name: loadout-group-contractor-backpack
@@ -75,6 +80,7 @@
   - UsspLoadoutBackpackSecurity
   - UsspLoadoutSatchelSecurity
   - UsspLoadoutDuffelSecurity
+  - UsspLoadoutClothingBackpackRIGSecurity
   fallbacks:
   - UsspLoadoutBackpackSecurity
 
@@ -417,6 +423,57 @@
   equipment:
     outerClothing: USSPSFClothingOuterCoatHoSTrench
 
+#Lua outer start
+
+- type: loadout
+  id: UsspLoadoutOuterClothingHardsuitSecurity
+  equipment:
+    outerClothing: USSPSFClothingOuterHardsuitSecurity
+
+- type: loadout
+  id: UsspLoadoutClothingBackpackRIGSecurity
+  equipment:
+    Back: USSPSFClothingBackpackRIGSecurity
+
+- type: loadout
+  id: UsspLoadoutOuterClothingSecurityRed
+  equipment:
+    Back: USSPSFClothingOuterHardsuitSecurityRed
+
+- type: loadout
+  id: UsspLoadoutOuterClothingHardsuitCap
+  equipment:
+    Back: USSPSFClothingOuterHardsuitCap
+
+- type: loadout
+  id: UsspLoadoutOuterClothingHardsuitBrigmedic
+  equipment:
+    Back: USSPSFClothingOuterHardsuitBrigmedic
+
+- type: loadout
+  id: UsspLoadoutOuterClothingHardsuitBlueShield
+  equipment:
+    Back: USSPSFClothingOuterHardsuitBlueShield
+
+- type: loadout
+  id: UsspLoadoutOuterClothingOuterRIGSecurityAdvanced
+  equipment:
+    Back: USSPSFClothingOuterRIGSecurityAdvanced
+
+- type: loadout
+  id: UsspLoadoutOuterClothingOuterHardsuitSecurityPilot
+  equipment:
+    Back: USSPSFClothingOuterHardsuitSecurityPilot
+
+- type: loadout
+  id: UsspLoadoutOuterClothingHardsuitL27
+  equipment:
+    Back: ClothingOuterHardsuitUsspL27
+
+
+
+#Lua outer end
+
 - type: loadoutGroup
   id: UsspBrigmedicOuterClothing
   name: loadout-group-contractor-outerclothing
@@ -426,6 +483,7 @@
   - UsspLoadoutOuterCoatAMG
   - UsspLoadoutOuterVestSecurityMedic
   - UsspLoadoutOuterCoatLabBrigOpened
+  - UsspLoadoutOuterClothingHardsuitBrigmedic
 
 - type: loadoutGroup
   id: UsspHoPOuterClothing
@@ -433,6 +491,7 @@
   loadouts:
   - UsspLoadoutOuterWinterHoP
   - UsspLoadoutOuterCoatHoP
+  - UsspLoadoutOuterClothingHardsuitL27
 
 - type: loadoutGroup
   id: UsspBlueShieldOuterClothing
@@ -441,6 +500,7 @@
   - UsspLoadoutOuterArmorBasicBlueShield
   - UsspLoadoutOuterCoatOKGB
   - UsspLoadoutOuterBlackCoatOKGB
+  - UsspLoadoutOuterClothingHardsuitBlueShield
 
 - type: loadoutGroup
   id: UsspCaptainOuterClothing
@@ -453,6 +513,8 @@
   - UsspLoadoutOuterCarapaceBlack
   - UsspLoadoutOuterWinterCapWhite
   - UsspLoadoutOuterWinterCapBlack
+  - UsspLoadoutOuterClothingHardsuitCap
+  - UsspLoadoutOuterClothingOuterRIGSecurityAdvanced
 
 - type: loadoutGroup
   id: UsspHoSOuterClothing
@@ -462,6 +524,7 @@
   - UsspLoadoutOuterWinterSec
   - UsspLoadoutOuterCoatHoSGreatcoat
   - UsspLoadoutOuterWinterHoSArmored
+  - UsspLoadoutOuterClothingSecurityRed
 
 # Belts / gloves / eyes / neck
 - type: loadout

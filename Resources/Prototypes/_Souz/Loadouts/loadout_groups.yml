@@ -350,3 +350,15 @@
   - UsspLoadoutOuterWinterSec
   - UsspLoadoutOuterVestArmorSec
   - UsspLoadoutOuterCoatSecurityOvercoat
+  - UsspLoadoutOuterRIGSecurity #Lua
+  - UsspLoadoutOuterClothingHardsuitSecurity #Lua
+  - UsspLoadoutOuterClothingOuterHardsuitSecurityPilot #Lua
+
+# Lua add below
+
+- type: loadoutGroup
+  id: UsspLoadoutGroupSecurityBackRIG
+  name: loadout-group-contractor-backrig
+  loadouts:
+  - UsspLoadoutClothingBackpackRIGSecurity
+

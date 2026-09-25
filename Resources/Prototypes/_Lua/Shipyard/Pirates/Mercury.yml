@@ -2,14 +2,16 @@
 # Copyright (c) 2025 LuaWorld Contributors
 # See AGPLv3.txt for details.
 # Made by covral (discord) for Dead Space
+# Little remap by Maksimvini (discord) for LuaCorp server
 
 - type: vessel
   parent: BaseVessel
   id: Mercury
   name: Mercury
   description: Шаттл с 6 импульсными пушками, обладающий неплохим бронированием
-  price: 213666
-  mass: 277.5
+  limit: 1
+  price: 150000
+  mass: 274
   category: Medium
   group: BlackMarket
   class:
