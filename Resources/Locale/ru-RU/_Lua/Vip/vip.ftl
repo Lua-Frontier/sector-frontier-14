@@ -49,6 +49,13 @@ store-vip-category-bedsheets = одеяла
 store-vip-category-useful = полезное
 store-vip-category-fuel = топливо
 
+store-merc-category-hardsuit = скафандры
+store-merc-category-clothing = одежда
+store-merc-category-backpack = рюкзаки
+store-merc-category-gun = оружие
+store-merc-category-ammo = патроны
+store-merc-category-nocat = разное
+
 uplink-vip-Luxury-name = элитный шахтёрский скафандр
 uplink-vip-Luxury-desc = Отремонтированный шахтёрский скафандр, выполненный в цветах квартирмейстера. Графеновая подкладка обеспечивает меньшую защиту, но с ней гораздо легче передвигаться.
 

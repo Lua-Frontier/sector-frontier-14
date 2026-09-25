@@ -1,6 +1,6 @@
 using Content.Shared._Mono.Company;
-using Content.Server._Lua.Company;
-using Content.Server._Lua.Company.Components;
+using Content.Lua.Shared.Company;
+using Content.Lua.Shared.Company.Components;
 using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
@@ -10,8 +10,8 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    [Dependency] private readonly FactionCaptureSystem _factionCapture = default!;
-    [Dependency] private readonly FactionOwnedStationSystem _factionOwnedStations = default!;
+    [Dependency] private readonly IFactionCaptureSystem _factionCapture = default!;
+    [Dependency] private readonly IFactionOwnedStationSystem _factionOwnedStations = default!;
 
     private void AddFactionWarVerbs(GetVerbsEvent<Verb> args)
     {
@@ -41,7 +41,7 @@ public sealed partial class AdminVerbSystem
                         return;
                     }
 
-                    _factionOwnedStations.SetOwner(args.Target, normalized, ownedStation);
+                    _factionOwnedStations.SetOwner(args.Target, normalized);
                     _popup.PopupEntity($"Station owner set to {normalized ?? "None"}.", args.User, args.User);
                 });
             },
@@ -58,7 +58,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png")),
                 Act = () =>
                 {
-                    _factionOwnedStations.SetOwner(args.Target, originalOwner, ownedStation);
+                    _factionOwnedStations.SetOwner(args.Target, originalOwner);
                     _popup.PopupEntity($"Station owner restored to {originalOwner}.", args.User, args.User);
                 },
                 Impact = LogImpact.Medium,

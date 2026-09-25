@@ -30,8 +30,8 @@ public sealed class AddAccentClothingSystem : EntitySystem
         AddComp(args.Wearer, accentComponent);
 
         // snowflake case for replacement accent
-        if (accentComponent is ReplacementAccentComponent rep)
-            rep.Accent = component.ReplacementPrototype!;
+        if (accentComponent is ReplacementAccentComponent rep && component.ReplacementPrototype is { } replacement)
+            rep.Accent = replacement;
 
         component.IsActive = true;
         component.Wearer = args.Wearer; // Frontier
@@ -90,8 +90,8 @@ public sealed class AddAccentClothingSystem : EntitySystem
             AddComp(component.Wearer, accentComponent);
 
             // snowflake case for replacement accent
-            if (accentComponent is ReplacementAccentComponent rep)
-                rep.Accent = component.ReplacementPrototype!;
+            if (accentComponent is ReplacementAccentComponent rep && component.ReplacementPrototype is { } replacement)
+                rep.Accent = replacement;
 
             component.IsActive = true;
         }

@@ -1,4 +1,4 @@
-using Content.Client._Lua.Company;
+using Content.Lua.UIKit.Company;
 using Content.Shared._Mono.Company;
 using Content.Shared.Preferences;
 using Robust.Client.Graphics;
@@ -18,8 +18,9 @@ public sealed partial class CompanySelectorGui : BoxContainer
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
-    private readonly CompanyClientSystem _companySystem;
+    private readonly ICompanyClient _companySystem;
     private readonly HashSet<string> _lockedCompanyIds = new(StringComparer.OrdinalIgnoreCase);
 
     public HumanoidCharacterProfile? Profile { get; private set; }
@@ -40,7 +41,7 @@ public sealed partial class CompanySelectorGui : BoxContainer
     public CompanySelectorGui()
     {
         IoCManager.InjectDependencies(this);
-        _companySystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<CompanyClientSystem>();
+        _companySystem = _entityManager.System<ICompanyClient>();
         _companySystem.RejoinLocksUpdated += OnRejoinLocksUpdated;
 
         Orientation = LayoutOrientation.Horizontal;

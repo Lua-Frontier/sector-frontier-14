@@ -1,0 +1,444 @@
+- type: technology
+  id: FloorTileItemBluespace
+  name: research-technology-floortileitembluespace
+  entityIcon: FloorTileItemBluespace
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 50000
+  recipeUnlocks:
+  - FloorTileItemBluespace
+- type: technology
+  id: FloorTileItemSepia
+  name: research-technology-floortileitemsepia
+  entityIcon: FloorTileItemSepia
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 50000
+  recipeUnlocks:
+  - FloorTileItemSepia
+- type: technology
+  id: NFAbnormalArtifactManipulation
+  name: nf-research-technology-abnormal-artifact-manipulation
+  entityIcon: MachineArtifactCrusher
+  discipline: NFScience
+  tags:
+  - science
+  cost: 5000
+  recipeUnlocks:
+  - ArtifactCrusherMachineCircuitboard
+- type: technology
+  id: NFAnomalyCoreHarnessing
+  name: nf-research-technology-anomaly-core-harnessing
+  entityIcon: AnomalyCoreTech
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - WeaponGauntletGorilla
+- type: technology
+  id: NFAdvancedAnomalyResearch
+  name: nf-research-technology-advanced-anomaly-research
+  entityIcon: MachineAnomalyVesselExperimental
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Ussp
+  cost: 10000
+  recipeUnlocks:
+  - AnomalyVesselExperimentalCircuitboard
+- type: technology
+  id: AnomalyScanner
+  name: research-technology-anomalyscanner
+  entityIcon: AnomalyScanner
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - AnomalyScanner
+- type: technology
+  id: AnomalyLocator
+  name: research-technology-anomalylocator
+  entityIcon: AnomalyLocator
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - AnomalyLocator
+- type: technology
+  id: AnomalyLocatorWide
+  name: research-technology-anomalylocatorwide
+  entityIcon: AnomalyLocatorWide
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - AnomalyLocatorWide
+- type: technology
+  id: MachineAPE
+  name: research-technology-machineape
+  entityIcon: MachineAPE
+  discipline: NFScience
+  tags:
+  - science
+  cost: 5000
+  recipeUnlocks:
+  - APECircuitboard
+- type: technology
+  id: MachineAnomalySynchronizer
+  name: research-technology-machineanomalysynchronizer
+  entityIcon: MachineAnomalySynchronizer
+  discipline: NFScience
+  tags:
+  - science
+  cost: 5000
+  recipeUnlocks:
+  - AnomalySynchronizerCircuitboard
+  - AnomalySynchronizerConsoleCircuitboard
+- type: technology
+  id: MachineAnomalyVessel
+  name: research-technology-machineanomalyvessel
+  entityIcon: MachineAnomalyVessel
+  discipline: NFScience
+  tags:
+  - science
+  cost: 5000
+  recipeUnlocks:
+  - AnomalyVesselCircuitboard
+- type: technology
+  id: NFBasicMagnetsTech
+  name: nf-research-technology-basic-magnets-tech
+  entityIcon: ClothingShoesBootsMagSci
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - ClothingShoesBootsMagSci
+- type: technology
+  id: NodeScanner
+  name: research-technology-nodescanner
+  entityIcon: NodeScanner
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - NodeScanner
+- type: technology
+  id: ComputerAnalysisConsole
+  name: research-technology-computeranalysisconsole
+  entityIcon: ComputerAnalysisConsole
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - AnalysisComputerCircuitboard
+- type: technology
+  id: ComputerTechnologyDiskTerminal
+  name: research-technology-computertechnologydiskterminal
+  entityIcon: ComputerTechnologyDiskTerminal
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - TechDiskComputerCircuitboard
+- type: technology
+  id: MachineArtifactAnalyzer
+  name: research-technology-machineartifactanalyzer
+  entityIcon: MachineArtifactAnalyzer
+  discipline: NFScience
+  tags:
+  - science
+  cost: 2500
+  recipeUnlocks:
+  - ArtifactAnalyzerMachineCircuitboard
+- type: technology
+  id: NFGravityResistantTech
+  name: nf-research-technology-anti-gravitational-fields
+  entityIcon: NFClothingShoesBootsMoon
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - NFClothingShoesBootsMoon
+- type: technology
+  id: ClothingOuterHardsuitRd
+  name: research-technology-clothingouterhardsuitrd
+  entityIcon: ClothingOuterHardsuitRd
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitRd
+- type: technology
+  id: ClothingOuterHardsuitHostileEnvironment
+  name: research-technology-clothingouterhardsuithostileenvironment
+  entityIcon: ClothingOuterHardsuitHostileEnvironment
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitHostileEnvironment
+- type: technology
+  id: NFMagnetsTechAdvanced
+  name: nf-research-technology-magnets-tech-advanced
+  entityIcon: ClothingShoesBootsMagAdv
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ClothingShoesBootsMagAdv
+- type: technology
+  id: NFQuantumFiberWeaving
+  name: nf-research-technology-quantum-fiber-weaving
+  entityIcon: ClothingShoesBootsSpeed
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - ClothingShoesBootsSpeed
+- type: technology
+  id: AgentIDCard
+  name: research-technology-agentidcard
+  entityIcon: AgentIDCard
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - AgentIDCard
+- type: technology
+  id: WeaponPistolCHIMP
+  name: research-technology-weaponpistolchimp
+  entityIcon: WeaponPistolCHIMP
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - NFWeaponPistolCHIMP
+- type: technology
+  id: WeaponPistolCHIMPUpgraded
+  name: research-technology-weaponpistolchimpupgraded
+  entityIcon: WeaponPistolCHIMPUpgraded
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - WeaponPistolCHIMPUpgraded
+- type: technology
+  id: WeaponGauntletGorilla
+  name: research-technology-weapongauntletgorilla
+  entityIcon: WeaponGauntletGorilla
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponGauntletGorilla
+- type: technology
+  id: WeaponForceGun
+  name: research-technology-weaponforcegun
+  entityIcon: WeaponForceGun
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponForceGun
+- type: technology
+  id: WeaponTetherGun
+  name: research-technology-weapontethergun
+  entityIcon: WeaponTetherGun
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  cost: 3500
+  recipeUnlocks:
+  - WeaponTetherGun
+- type: technology
+  id: ResearchComputeServerCircuitboard
+  name: lua-research-technology-research-compute-server
+  entityIcon: ResearchComputeServer
+  discipline: NFScience
+  tags:
+  - science
+  cost: 7500
+  recipeUnlocks:
+  - ResearchComputeServerCircuitboard
+- type: technology
+  id: DiscoverySourceConsoleCircuitboard
+  name: lua-research-technology-discovery-source-console
+  entityIcon: MachineDiscoverySourceConsole
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - DiscoverySourceConsoleCircuitboard
+- type: technology
+  id: DiscoveryAnalysisConsoleCircuitboard
+  name: lua-research-technology-discovery-analysis-console
+  entityIcon: MachineDiscoveryAnalysisConsole
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - DiscoveryAnalysisConsoleCircuitboard
+- type: technology
+  id: MachineMiniAnomalyGenerator
+  name: lua-research-technology-mini-anomaly-generator
+  entityIcon: MachineMiniAnomalyGenerator
+  discipline: NFScience
+  tags:
+  - science
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - MiniAnomalyGeneratorCircuitboard
+- type: technology
+  id: ServerTechReconfigurator
+  name: lua-research-technology-server-tech-reconfigurator
+  entityIcon: ServerTechReconfigurator
+  discipline: NFScience
+  tags:
+  - science
+  - stealth
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 500
+  recipeUnlocks:
+  - ServerTechReconfigurator

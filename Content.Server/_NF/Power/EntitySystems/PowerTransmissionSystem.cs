@@ -1,4 +1,4 @@
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using Content.Server._NF.Power.Components;
 using Content.Server.Audio;
 using Content.Server.NodeContainer.EntitySystems;
@@ -25,7 +25,7 @@ public sealed partial class PowerTransmissionSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IBankSystem _bank = default!;
     [Dependency] private readonly NodeContainerSystem _node = default!;
     [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
     [Dependency] private readonly PointLightSystem _pointLight = default!;

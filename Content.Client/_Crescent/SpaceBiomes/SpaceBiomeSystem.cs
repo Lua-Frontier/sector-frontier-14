@@ -1,5 +1,5 @@
 using Content.Shared._Crescent.SpaceBiomes;
-using Content.Shared._Lua.Expedition;
+using Content.Lua.Shared.Expedition;
 using Content.Shared.Shuttles.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;

@@ -3,12 +3,18 @@
 ## generic command errors
 
 cmd-invalid-arg-number-error = Недопустимое число аргументов.
+cmd-hint-float = [float]
 cmd-parse-failure-integer = { $arg } не является допустимым integer.
 cmd-parse-failure-float = { $arg } не является допустимым float.
 cmd-parse-failure-bool = { $arg } не является допустимым bool.
 cmd-parse-failure-uid = { $arg } не является допустимым UID сущности.
 cmd-parse-failure-mapid = { $arg } не является допустимым MapId.
 cmd-parse-failure-entity-exist = UID { $arg } не соответствует существующей сущности.
+cmd-parse-failure-enum = { $arg } не является значением Enum { $enum }.
+cmd-parse-failure-grid = { $arg } не является допустимым гридом.
+cmd-parse-failure-cultureinfo = "{ $arg }" не является допустимым CultureInfo.
+cmd-parse-failure-session = Нет сессии с именем пользователя: { $username }
+cmd-parse-failure-session-guid = Нет сессии с GUID: { $guid }
 cmd-error-file-not-found = Не удалось найти файл: { $file }.
 cmd-error-dir-not-found = Не удалось найти директорию: { $dir }.
 cmd-failure-no-attached-entity = К этой оболочке не привязана никакая сущность.
@@ -428,3 +434,86 @@ cmd-vfs_ls-help =
     vfs_list /Assemblies
 cmd-vfs_ls-err-args = Нужен ровно 1 аргумент.
 cmd-vfs_ls-hint-path = <path>
+
+## 'cvar_subs' command
+
+cmd-cvar_subs-desc = Список подписок OnValueChanged для CVar.
+cmd-cvar_subs-help = Использование: { $command } <name>
+cmd-cvar_subs-invalid-args = Нужен ровно один аргумент.
+cmd-cvar_subs-arg-name = <name>
+
+## save/load game
+
+cmd-savemap-error = Не удалось сохранить карту! См. лог сервера.
+cmd-savegame-desc = Сохраняет полное состояние игры (все сущности) в файл .rtsave.
+cmd-savegame-help = Использование: { $command } <Path>
+cmd-savegame-disabled = Сохранения игры отключены (gamesaves.enabled = false).
+cmd-savegame-attempt = Попытка сохранить игру в { $path }.
+cmd-savegame-success = Игра успешно сохранена.
+cmd-savegame-error = Не удалось сохранить игру. См. лог сервера.
+cmd-loadgame-desc = Загружает полное состояние игры из файла .rtsave.
+cmd-loadgame-help = Использование: { $command } <Path> [flush]
+cmd-loadgame-disabled = Сохранения игры отключены (gamesaves.enabled = false).
+cmd-loadgame-attempt = Попытка загрузить игру из { $path }.
+cmd-loadgame-success = Игра успешно загружена.
+cmd-loadgame-error = Не удалось загрузить игру. См. лог сервера.
+cmd-hint-loadgame-flush = [flush: очистить существующие сущности перед загрузкой]
+
+## 'chunkentities' command
+
+cmd-chunkentities-desc = Список chunk-сущностей во вьюпорте клиента или в указанном радиусе.
+cmd-chunkentities-help = Использование: { $command } [<root entity> <x> <y> <range>]
+cmd-chunkentities-error-invalid-root = Недопустимая корневая сущность: { $root }
+cmd-chunkentities-error-parse = x, y и range должны быть числами.
+cmd-chunkentities-error-nullspace = Текущий глаз находится в nullspace.
+cmd-chunkentities-error-no-map = Нет сущности карты для текущего глаза { $map }.
+cmd-chunkentities-range-header = Chunk-сущности для { $root } около ({ $x }, { $y }) радиус { $range }:
+cmd-chunkentities-viewport-header = Chunk-сущности во вьюпорте клиента на карте { $map } ({ $viewport }):
+cmd-chunkentities-total = Всего: { $count }
+cmd-chunkentities-root-count = Корень { $root }: { $count }
+cmd-chunkentities-entry = { $netEntity } uid={ $uid } root={ $root } chunk={ $chunk } comps={ $componentCount } { $name }
+cmd-chunkentities-arg-root = <root entity>
+cmd-chunkentities-arg-x = <x>
+cmd-chunkentities-arg-y = <y>
+cmd-chunkentities-arg-range = <range>
+
+## map pause
+
+cmd-pausemap-desc = Ставит карту на паузу, останавливая симуляцию на ней.
+cmd-pausemap-help = Использование: pausemap <map ID>
+cmd-unpausemap-desc = Снимает карту с паузы, возобновляя симуляцию.
+cmd-unpausemap-help = Использование: unpausemap <map ID>
+cmd-querymappaused-desc = Проверяет, на паузе ли карта.
+cmd-querymappaused-help = Использование: querymappaused <map ID>
+
+cmd-shutdown-hint-1 = Причина
+
+## debug overlays
+
+cmd-showrot-desc = Показать поворот всех сущностей на экране.
+cmd-showrot-help = Использование: { $command }
+cmd-showvel-desc = Показать локальную скорость всех сущностей на экране.
+cmd-showvel-help = Использование: { $command }
+cmd-showangvel-desc = Показать угловую скорость всех сущностей на экране.
+cmd-showangvel-help = Использование: { $command }
+
+cmd-vvread-help = Использование: { $command } <path>
+
+cmd-reloadtiletextures-desc = Перезагружает атлас текстур тайлов для hot-reload спрайтов.
+cmd-reloadtiletextures-help = Использование: { $command }
+
+cmd-audio_length-desc = Показывает длительность аудиофайла
+cmd-audio_length-help = Использование: { $command } { cmd-audio_length-arg-file-name }
+cmd-audio_length-arg-file-name = <имя файла>
+
+cmd-pvs-override-info-desc = Выводит информацию о PVS-override, связанных с сущностью.
+cmd-pvs-override-info-empty = У сущности { $nuid } нет PVS-override.
+cmd-pvs-override-info-global = У сущности { $nuid } есть глобальный override.
+cmd-pvs-override-info-clients = У сущности { $nuid } есть session override для { $clients }.
+
+cmd-localization_set_culture-desc = Установить DefaultCulture для клиентского LocalizationManager.
+cmd-localization_set_culture-help = Использование: { $command } <cultureName>
+cmd-localization_set_culture-culture-name = <cultureName>
+cmd-localization_set_culture-changed = Локализация изменена на { $code } ({ $nativeName } / { $englishName })
+
+cmd-addmap-hint-2 = runMapInit [true / false]

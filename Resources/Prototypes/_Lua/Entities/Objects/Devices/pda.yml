@@ -209,7 +209,7 @@
     state: pda_shareholder_syndicate
 
 - type: entity
-  parent: [BasePDA, BaseItem, StorePresetUplink, BaseC2SyndicateContrabandNoValue] # Lua-changes: added BaseC2SyndicateContrabandNoValue
+  parent: [BasePDA, BaseItem, BaseC2SyndicateContrabandNoValue]
   id: BaseTypanPDA
   abstract: true
   components:

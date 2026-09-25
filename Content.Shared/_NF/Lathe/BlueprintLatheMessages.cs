@@ -13,15 +13,19 @@ public sealed class BlueprintLatheUpdateState : BoundUserInterfaceState
 
     public ProtoId<BlueprintPrototype>? CurrentlyProducing;
 
+    public bool HasResearchServer;
+
     public BlueprintLatheUpdateState(
         Dictionary<ProtoId<BlueprintPrototype>, int[]> recipeBitsetByBlueprintType,
         List<BlueprintLatheRecipeBatch> queue,
-        ProtoId<BlueprintPrototype>? currentlyProducing = null
+        ProtoId<BlueprintPrototype>? currentlyProducing = null,
+        bool hasResearchServer = false
     )
     {
         RecipeBitsetByBlueprintType = recipeBitsetByBlueprintType;
         Queue = queue;
         CurrentlyProducing = currentlyProducing;
+        HasResearchServer = hasResearchServer;
     }
 }
 

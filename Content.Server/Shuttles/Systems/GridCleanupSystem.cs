@@ -3,19 +3,19 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 using Content.Server.Gateway.Components;
-using Content.Server._Lua.MapperGrid; // Lua
+using Content.Lua.Shared.MapperGrid;
 using Content.Server.StationEvents.Events;
-using Content.Shared._Lua.Expedition;
+using Content.Lua.Shared.Expedition;
 using Content.Shared.Mind.Components;
 using Content.Shared.Tiles;
-using Content.Shared.Lua.CLVar; // Lua
+using Content.Lua.Common.CLVar;
 using Robust.Shared.Player;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed class GridCleanupSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -183,7 +183,7 @@ public sealed class GridCleanupSystem : EntitySystem
         if (!TryComp(gridUid, out TransformComponent? xform))
             return true;
 
-        var mapUid = _mapManager.GetMapEntityId(xform.MapID);
+        var mapUid = _mapSystem.GetMap(xform.MapID);
         return HasComp<ExpeditionMapComponent>(mapUid) || HasComp<ExpeditionPlanetComponent>(mapUid);
     }
     private bool HasPlayersOnGrid(EntityUid gridUid)
@@ -207,14 +207,6 @@ public sealed class GridCleanupSystem : EntitySystem
 
     private int CountTiles(Entity<MapGridComponent> ent)
     {
-        var count = 0;
-        foreach (var _ in _mapSystem.GetAllTiles(ent, ent.Comp))
-        {
-            count++;
-            if (count >= MinimumTiles)
-                return count;
-        }
-
-        return count;
+        return _mapSystem.GetFilledTileCount(ent);
     }
 }

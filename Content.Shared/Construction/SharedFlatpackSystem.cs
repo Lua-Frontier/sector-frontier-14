@@ -9,7 +9,7 @@ using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Systems;
-using Content.Shared._Lua.LuaTech;
+using Content.Shared.LuaTech;
 using Content.Shared._Crescent.ShipShields;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -91,7 +91,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
         // Also: make it ignore ghosts
         var occupied = _entityLookup
             .GetEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static)
-            .Any(ent => !HasComp<ShipShieldComponent>(ent));
+            .Any(other => other != uid && !HasComp<ShipShieldComponent>(other));
 
         if (occupied)
         {

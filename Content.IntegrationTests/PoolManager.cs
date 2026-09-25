@@ -133,6 +133,9 @@ public static partial class PoolManager
             {
                 typeof(Shared.Entry.EntryPoint).Assembly,
                 typeof(Client.Entry.EntryPoint).Assembly,
+                typeof(Lua.Shared.Entry.EntryPoint).Assembly,
+                typeof(Lua.Common.Entry.EntryPoint).Assembly,
+                typeof(Lua.Client.Entry.EntryPoint).Assembly,
                 typeof(PoolManager).Assembly,
             }
         };
@@ -435,6 +438,9 @@ we are just going to end this here to save a lot of time. This is the exception 
         [
             typeof(Shared.Entry.EntryPoint).Assembly,
             typeof(Server.Entry.EntryPoint).Assembly,
+            typeof(Lua.Shared.Entry.EntryPoint).Assembly,
+            typeof(Lua.Common.Entry.EntryPoint).Assembly,
+            typeof(Lua.Server.Entry.EntryPoint).Assembly,
             typeof(PoolManager).Assembly
         ];
         _contentAssemblies.UnionWith(extraAssemblies);

@@ -2,7 +2,6 @@ using Content.Client.Gameplay;
 using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
-using Content.Client._Lua.CryoTimer; //Lua
 using Content.Shared.CCVar;
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Ghost;
@@ -18,7 +17,7 @@ using Content.Client._Corvax.Respawn; // Frontier
 namespace Content.Client.UserInterface.Systems.Ghost;
 
 // TODO hud refactor BEFORE MERGE fix ghost gui being too far up
-public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>, IOnSystemChanged<RespawnSystem>, IOnSystemChanged<CryoReturnTimerSystem>
+public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>, IOnSystemChanged<RespawnSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
@@ -26,7 +25,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
     [UISystemDependency] private readonly RespawnSystem? _respawn = default;
-    [UISystemDependency] private readonly CryoReturnTimerSystem? _cryo = default; //Lua
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
 
@@ -84,23 +82,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         UpdateGui();
         UpdateRespawn(_respawn?.RespawnResetTime);
     }
-
-    //Lua start
-    public void OnSystemLoaded(CryoReturnTimerSystem system)
-    {
-        system.CryoReturnReseted += OnCryoReturnReseted;
-    }
-    public void OnSystemUnloaded(CryoReturnTimerSystem system)
-    {
-        system.CryoReturnReseted -= OnCryoReturnReseted;
-    }
-
-    private void OnCryoReturnReseted()
-    {
-        Gui?.UpdateCryoReturn(_cryo?.CryoReturnTime);
-    }
-
-    //Lua end
 
     public void UpdateGui()
     {

@@ -84,7 +84,7 @@ public abstract class SharedResearchSystem : EntitySystem
         if (!IsTechnologyFactionAllowed(uid, tech))
             return false;
 
-        var techDisciplines = tech.GetAllDisciplines(); // Frontier: Updated to support dual-discipline technologies - tech is available if ANY of its disciplines are supported
+        var techDisciplines = tech.GetAllDisciplines();
         if (!techDisciplines.Any(discipline => component.SupportedDisciplines.Contains(discipline)))
             return false;
 
@@ -151,10 +151,12 @@ public abstract class SharedResearchSystem : EntitySystem
 
     public bool IsTechnologyFactionAllowed(ProtoId<RndFactionPrototype>? researchFaction, TechnologyPrototype tech)
     {
-        if (tech.Factions.Count == 0)
+        if (researchFaction == null)
             return true;
 
-        if (researchFaction == null)
+        if (tech.SignatureFor is { } signature && signature != researchFaction)
+            return false;
+        if (tech.Factions.Count == 0)
             return true;
 
         return tech.Factions.Any(faction => faction == researchFaction);
@@ -270,7 +272,7 @@ public abstract class SharedResearchSystem : EntitySystem
     public FormattedMessage GetTechnologyDescription(
         TechnologyPrototype technology,
         bool includeCost = true,
-        bool includeTier = true,
+        bool includeTier = false,
         bool includePrereqs = false,
         TechDisciplinePrototype? disciplinePrototype = null)
     {
@@ -278,8 +280,8 @@ public abstract class SharedResearchSystem : EntitySystem
         if (includeTier)
         {
             disciplinePrototype ??= PrototypeManager.Index(technology.Discipline);
-            description.AddMarkupOrThrow(Loc.GetString("research-console-tier-discipline-info",
-                ("tier", technology.Tier), ("color", disciplinePrototype.Color), ("discipline", Loc.GetString(disciplinePrototype.Name))));
+            description.AddMarkupOrThrow(Loc.GetString("research-console-discipline-info",
+                ("color", disciplinePrototype.Color), ("discipline", Loc.GetString(disciplinePrototype.Name))));
             description.PushNewline();
         }
 

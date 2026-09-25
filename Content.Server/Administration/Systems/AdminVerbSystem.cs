@@ -1,8 +1,8 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.UI;
-using Content.Server._Lua.Reputation;
 using Content.Server.Disposal.Tube;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles;
@@ -38,7 +38,7 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Server.Shuttles.Components;
 using static Content.Shared.Configurable.ConfigurationComponent;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles;
 
 namespace Content.Server.Administration.Systems
 {
@@ -48,7 +48,7 @@ namespace Content.Server.Administration.Systems
     public sealed partial class AdminVerbSystem : EntitySystem
     {
         [Dependency] private readonly IConGroupController _groupController = default!;
-        [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+        [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
         [Dependency] private readonly IConsoleHost _console = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -57,6 +57,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly AdminSystem _adminSystem = default!;
         [Dependency] private readonly DisposalTubeSystem _disposalTubes = default!;
         [Dependency] private readonly EuiManager _euiManager = default!;
+        [Dependency] private readonly IReputationModerationEuiFactory _reputationEui = default!;
         [Dependency] private readonly GhostRoleSystem _ghostRoleSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly PrayerSystem _prayerSystem = default!;
@@ -116,7 +117,7 @@ namespace Content.Server.Administration.Systems
                             Text = Loc.GetString("reputation-admin-verb-open"),
                             Category = VerbCategory.Admin,
                             Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
-                            Act = () => _euiManager.OpenEui(new ReputationModerationEui(ReputationTargetKind.Player, targetActor.PlayerSession.UserId, targetActor.PlayerSession.Name), player),
+                            Act = () => _euiManager.OpenEui(_reputationEui.Create(ReputationTargetKind.Player, targetActor.PlayerSession.UserId, targetActor.PlayerSession.Name), player),
                             Impact = LogImpact.Low,
                         });
                     }

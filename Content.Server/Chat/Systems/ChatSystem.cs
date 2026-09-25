@@ -1,6 +1,7 @@
-using Content.Server._Lua.ChatFilter; // Lua
-using Content.Server._Lua.Language;
-using Content.Server._Lua.Announce;
+using Content.Lua.Common.ChatFilter;
+using Content.Shared.Language;
+using Content.Shared.Language.Systems;
+using Content.Lua.Shared.Announce;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -10,9 +11,7 @@ using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Discord.DiscordLink;
-using Content.Shared._Lua.Announce;
-using Content.Shared._Lua.Chat.Systems;
-using Content.Shared._Lua.Language;
+using Content.Shared.Chat.Systems;
 using Content.Shared._RMC14.Announce;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -46,6 +45,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using static Content.Server.Corvax.TTS.TTSSystem;
+using Content.Lua.Shared.Language;
 
 namespace Content.Server.Chat.Systems;
 
@@ -60,7 +60,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IChatSanitizationManager _sanitizer = default!;
-    [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
+    [Dependency] private readonly IChatFilterManager _chatFilter = default!; // Lua
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -74,8 +74,8 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly DiscordChatLink _discordChatLink = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly LuaAnnouncementOverlaySystem _announcementOverlay = default!;
+    [Dependency] private readonly ILanguageSystem _language = default!;
+    [Dependency] private readonly ILuaAnnouncementOverlaySystem _announcementOverlay = default!;
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -758,7 +758,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entityName", name),
             ("message", FormattedMessage.EscapeText(message)));
 
-        SendInVoiceRange(ChatChannel.LOOC, name, message, wrappedMessage, obfuscated: string.Empty, obfuscatedWrappedMessage: string.Empty, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId, languageOverride: LanguageSystem.Universal); // Lua
+        SendInVoiceRange(ChatChannel.LOOC, name, message, wrappedMessage, obfuscated: string.Empty, obfuscatedWrappedMessage: string.Empty, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId, languageOverride: SharedLanguageSystem.Universal); // Lua
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"LOOC from {player:Player}: {message}");
         _discordChatLink.SendMessage(message, player.Name, ChatChannel.LOOC);
     }

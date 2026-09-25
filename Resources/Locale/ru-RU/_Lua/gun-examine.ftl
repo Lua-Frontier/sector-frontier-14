@@ -1,6 +1,7 @@
 gun-examinable-verb-text = Просмотреть статистику
 gun-examinable-verb-message = Подробная статистика
 gun-examine = Характеристики оружия:
+gun-examine-nf-caliber = - [color={$color}]Патроны[/color]: [color=lightblue]{$value}[/color]
 gun-examine-nf-recoil = - [color={$color}]Отдача[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] за выстрел
 gun-examine-nf-stability = - [color={$color}]Стабильность[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color] в секунду
 gun-examine-nf-max-angle = - [color={$color}]Максимальный разброс[/color]: [color=lightblue]{NATURALFIXED($value, 1)}°[/color]

@@ -4,14 +4,14 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
+using Content.Lua.Shared.Shipyard;
 using Content.Server._NF.GameRule.Components;
 using Content.Server._NF.GameTicking.Events;
 using Content.Server.Cargo.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules;
-using Content.Server._NF.ShuttleRecords;
 using Content.Shared._NF.Bank;
 using Content.Shared._NF.CCVar;
 using Content.Shared.GameTicking;
@@ -34,12 +34,12 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IBankSystem _bank = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly PointOfInterestSystem _poi = default!;
     [Dependency] private readonly IBaseServer _baseServer = default!;
     [Dependency] private readonly IEntitySystemManager _entSys = default!;
-    [Dependency] private readonly ShuttleRecordsSystem _shuttleRecordsSystem = default!;
+    [Dependency] private readonly IShipyardPreferencesReportSystem _shipyardPreferences = default!;
 
     private readonly HttpClient _httpClient = new();
 
@@ -285,14 +285,24 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         if (webhookUrl == string.Empty)
             return;
 
-        var shipyardStats = _shuttleRecordsSystem.GetStatsPrintout();
-        if (shipyardStats is null)
+        var roundBalances = new List<int>();
+        foreach (var (player, playerInfo) in _players)
+        {
+            var balance = playerInfo.EndBalance;
+            if (_bank.TryGetBalance(player, out var bankBalance))
+                balance = bankBalance;
+            else if (balance < 0)
+                balance = playerInfo.StartBalance;
+
+            if (balance >= 0)
+                roundBalances.Add(balance);
+        }
+
+        var shipyardStatsPrintout = _shipyardPreferences.GetStatsPrintout(roundBalances);
+        if (shipyardStatsPrintout is null)
             return;
 
-        var shipyardStatsPrintout = shipyardStats.Value.Item1;
-        var serialisedData = shipyardStats.Value.Item2;
-
-        Logger.InfoS("discord", shipyardStatsPrintout);
+        _sawmill.Info(shipyardStatsPrintout);
 
         var serverName = _baseServer.ServerName;
         var gameTicker = _entSys.GetEntitySystemOrNull<GameTicker>();
@@ -318,15 +328,7 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
             },
         };
 
-        MultipartFormDataContent form = new MultipartFormDataContent();
-        var ser_payload = JsonSerializer.Serialize(payload);
-        var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
-        form.Add(content, "payload_json");
-        if (serialisedData is not null)
-        {
-            form.Add(new ByteArrayContent(serialisedData, 0, serialisedData.Length), "Document", $"shipstats-{serverName}-{runId}.json");
-        }
-        await SendWebhookPayload(webhookUrl, form);
+        await SendWebhookPayload(webhookUrl, payload);
     }
 
     private async Task SendWebhookPayload(string webhookUrl, WebhookPayload payload)
@@ -334,16 +336,6 @@ public sealed class NFAdventureRuleSystem : GameRuleSystem<NFAdventureRuleCompon
         var ser_payload = JsonSerializer.Serialize(payload);
         var content = new StringContent(ser_payload, Encoding.UTF8, "application/json");
         var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", content);
-        var reply = await request.Content.ReadAsStringAsync();
-        if (!request.IsSuccessStatusCode)
-        {
-            _sawmill.Error($"Discord returned bad status code when posting message: {request.StatusCode}\nResponse: {reply}");
-        }
-    }
-
-    private async Task SendWebhookPayload(string webhookUrl, MultipartFormDataContent payload)
-    {
-        var request = await _httpClient.PostAsync($"{webhookUrl}?wait=true", payload);
         var reply = await request.Content.ReadAsStringAsync();
         if (!request.IsSuccessStatusCode)
         {

@@ -8,8 +8,7 @@ namespace Content.Client._NF.Atmos.Systems;
 // Gas recyclers show pipe direction on examine, arrow sprite reused from TEG functionality
 public sealed class NFGasRecyclerSystem : EntitySystem
 {
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string ArrowPrototype = "TegCirculatorArrow";
+    private static readonly EntProtoId ArrowPrototype = "TegCirculatorArrow";
 
     public override void Initialize()
     {

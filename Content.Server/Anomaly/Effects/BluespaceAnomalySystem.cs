@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.Anomaly.Components;
+using Content.Server.Anomaly;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Database;
@@ -19,6 +20,7 @@ public sealed class BluespaceAnomalySystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly AnomalySynchronizerSystem _synchronizer = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -38,7 +40,16 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         // otherwise borg brains get removed from their body, or PAIs from a PDA
         var mobs = new HashSet<Entity<MobStateComponent>>();
         _lookup.GetEntitiesInRange(xform.Coordinates, range, mobs, flags: LookupFlags.Uncontained);
-        var allEnts = new ValueList<EntityUid>(mobs.Select(m => m.Owner)) { uid };
+        var allEnts = new ValueList<EntityUid>();
+        foreach (var mob in mobs)
+        {
+            if (IsAnomalyImmune(mob.Owner))
+                continue;
+
+            allEnts.Add(mob.Owner);
+        }
+        if (!_synchronizer.IsAnomalyAttached(uid))
+            allEnts.Add(uid);
         var coords = new ValueList<Vector2>();
         foreach (var ent in allEnts)
         {
@@ -65,6 +76,8 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         foreach (var comp in mobs)
         {
             var ent = comp.Owner;
+            if (IsAnomalyImmune(ent))
+                continue;
             var randomX = _random.NextFloat(gridBounds.Left, gridBounds.Right);
             var randomY = _random.NextFloat(gridBounds.Bottom, gridBounds.Top);
 
@@ -82,5 +95,10 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         if (!TryComp<PortalComponent>(uid, out var portal))
             return;
         portal.MaxRandomRadius = (component.MaxPortalRadius - component.MinPortalRadius) * args.Severity + component.MinPortalRadius;
+    }
+
+    private bool IsAnomalyImmune(EntityUid uid)
+    {
+        return HasComp<AnomalyImmuneComponent>(uid) || HasComp<AnomalySynchronizerComponent>(uid);
     }
 }

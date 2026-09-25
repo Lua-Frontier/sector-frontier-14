@@ -1,7 +1,7 @@
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Tools.Components;
 
@@ -10,7 +10,7 @@ namespace Content.Shared.Tools.Components;
 public sealed partial class ToolComponent : Component
 {
     [DataField]
-    public PrototypeFlags<ToolQualityPrototype> Qualities  = [];
+    public HashSet<ProtoId<ToolQualityPrototype>> Qualities = [];
 
     /// <summary>
     ///     For tool interactions that have a delay before action this will modify the rate, time to wait is divided by this value
@@ -31,12 +31,12 @@ public sealed partial class ToolComponent : Component
 /// Attempt event called *before* any do afters to see if the tool usage should succeed or not.
 /// Raised on both the tool and then target.
 /// </summary>
-public sealed class ToolUseAttemptEvent(EntityUid user, float fuel, EntityUid tool, IEnumerable<string> qualities) : CancellableEntityEventArgs // Frontier: added tool, qualities
+public sealed class ToolUseAttemptEvent(EntityUid user, float fuel, EntityUid tool, IEnumerable<ProtoId<ToolQualityPrototype>> qualities) : CancellableEntityEventArgs // Frontier: added tool, qualities
 {
     public EntityUid User { get; } = user;
     public float Fuel = fuel;
     public EntityUid Tool { get; } = tool; // Frontier: the tool being used
-    public IEnumerable<string> Qualities { get; } = qualities; // Frontier: the tool qualities being used here
+    public IEnumerable<ProtoId<ToolQualityPrototype>> Qualities { get; } = qualities; // Frontier: the tool qualities being used here
 }
 
 /// <summary>

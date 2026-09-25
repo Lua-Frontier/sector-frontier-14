@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineCapOVend
   name: Captain-O-Vend
   description: Machine. By the hands that God made clean. Oh, I just want to see you bleed.
@@ -29,5 +29,16 @@
     radius: 1.5
     energy: 1.6
     color: "#101c88"
-#  - type: AccessReader
-#    access: [["Captain"]] нужно
+  - type: Machine
+    board: VendingMachineCapOVendMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

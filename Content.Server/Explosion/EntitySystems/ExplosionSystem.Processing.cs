@@ -22,6 +22,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Explosion.EntitySystems;
 
@@ -692,7 +693,7 @@ sealed class Explosion
         int maxTileBreak,
         bool canCreateVacuum,
         IEntityManager entMan,
-        IMapManager mapMan,
+        SharedMapSystem mapMan,
         EntityUid visualEnt,
         EntityUid? cause,
         SharedMapSystem mapSystem)

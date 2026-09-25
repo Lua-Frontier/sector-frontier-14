@@ -75,6 +75,18 @@
   defaultLinks: [ ArtifactAnalyzerReceiver ]
 
 - type: sourcePort
+  id: DiscoveryAnomalyVesselSender
+  name: signal-port-name-discovery-anomaly-vessel-sender
+  description: signal-port-description-discovery-anomaly-vessel-sender
+  defaultLinks: [ DiscoveryAnomalyVesselReceiver ]
+
+- type: sourcePort
+  id: AnomalySynchronizerConsoleSender
+  name: signal-port-name-anomaly-synchronizer-console-sender
+  description: signal-port-description-anomaly-synchronizer-console-sender
+  defaultLinks: [ AnomalySynchronizerConsoleReceiver ]
+
+- type: sourcePort
   id: Timer
   name: signal-port-name-timer-trigger
   description: signal-port-description-timer-trigger

@@ -6,6 +6,7 @@
 - type: entity
   parent: MagazineGrenadeFrag
   id: NFMagazineGrenadeFrag
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: NFGrenadeFrag
@@ -13,6 +14,7 @@
 - type: entity
   parent: MagazineGrenadeEMP
   id: NFMagazineGrenadeEMP
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: NFGrenadeEMP
@@ -20,6 +22,7 @@
 - type: entity
   parent: MagazineGrenadeFlash
   id: NFMagazineGrenadeFlash
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: NFGrenadeFlash
@@ -27,6 +30,7 @@
 - type: entity
   parent: MagazineGrenadeBlast
   id: NFMagazineGrenadeBlast
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: NFGrenadeBlast
@@ -34,6 +38,7 @@
 - type: entity
   parent: MagazineGrenadeBaton
   id: NFMagazineGrenadeBaton
+  categories: [ HideSpawnMenu ]
   components:
   - type: BallisticAmmoProvider
     proto: NFGrenadeBaton

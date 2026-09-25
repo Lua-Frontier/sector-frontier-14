@@ -30,6 +30,14 @@ public abstract partial class SharedGunSystem
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("gun-examine"));
 
+        if (TryGetGunCaliber(ent.Owner, ent.Comp, out var caliber))
+        {
+            msg.PushNewline();
+            msg.AddMarkupOrThrow(Loc.GetString("gun-examine-nf-caliber",
+                ("color", FireRateExamineColor),
+                ("value", caliber)));
+        }
+
         // Frontier: use nf-prefixed loc strings, no rounding on values
         // Recoil (AngleIncrease)
         msg.PushNewline();
@@ -98,16 +106,11 @@ public abstract partial class SharedGunSystem
     {
         caliber = null;
 
-        // Frontier change: Added ExamineCaliber to guns to note the caliber type in ftl
-        if (!string.IsNullOrEmpty(component.ExamineCaliber))
-        {
-            var caliberName = Loc.GetString(component.ExamineCaliber);
+        if (string.IsNullOrEmpty(component.ExamineCaliber))
+            return false;
 
-            caliber = caliberName;
-            return true;
-        }
-
-        return false;
+        caliber = Loc.GetString(component.ExamineCaliber);
+        return true;
     }
 
     private void InitializeGunExamine()

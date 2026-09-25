@@ -54,6 +54,55 @@ public sealed partial class ResearchServerComponent : Component
 
     [DataField("researchConsoleUpdateTime"), ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ResearchConsoleUpdateTime = TimeSpan.FromSeconds(1);
+
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public int MaxActiveSlots = 4;
+
+    [DataField, AutoNetworkedField]
+    public List<ResearchFocusTarget> FocusTargets = new();
+
+    [DataField, AutoNetworkedField]
+    public List<ResearchProjectEntry> ActiveProjects = new();
+
+    [DataField, AutoNetworkedField]
+    public List<ResearchProjectEntry> QueuedProjects = new();
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<string, int> TechnologyProgress = new();
+}
+
+[DataDefinition]
+[Serializable, NetSerializable]
+public sealed partial class ResearchFocusTarget
+{
+    [DataField]
+    public string Technology = string.Empty;
+
+    [DataField]
+    public List<string> PathSteps = new();
+}
+
+[DataDefinition]
+[Serializable, NetSerializable]
+public sealed partial class ResearchProjectEntry
+{
+    [DataField]
+    public string Technology = string.Empty;
+
+    [DataField]
+    public string TargetId = string.Empty;
+
+    [DataField]
+    public int Progress;
+
+    [DataField]
+    public int Cost;
+
+    [DataField]
+    public bool Started;
+
+    [DataField]
+    public TimeSpan ResearchEndTime;
 }
 
 /// <summary>

@@ -44,6 +44,7 @@ using Robust.Shared.Random;
 using TemperatureCondition = Content.Shared.EntityEffects.EffectConditions.Temperature; // disambiguate the namespace
 using PolymorphEffect = Content.Shared.EntityEffects.Effects.Polymorph;
 using Content.Shared.Humanoid; //Delta-V - Banning humanoids from becoming ghost roles.
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.EntityEffects;
 
@@ -58,7 +59,6 @@ public sealed class EntityEffectSystem : EntitySystem
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly FlammableSystem _flammable = default!;
     [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
@@ -538,13 +538,13 @@ public sealed class EntityEffectSystem : EntitySystem
             var transform = Comp<TransformComponent>(reagentArgs.TargetEntity);
             var mapCoords = _xform.GetMapCoordinates(reagentArgs.TargetEntity, xform: transform);
 
-            if (!_mapManager.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
+            if (!_map.TryFindGridAt(mapCoords, out var gridUid, out var grid) ||
                 !_map.TryGetTileRef(gridUid, grid, transform.Coordinates, out var tileRef))
             {
                 return;
             }
 
-            if (_spreader.RequiresFloorToSpread(args.Effect.PrototypeId) && _turf.IsSpace(tileRef))
+            if (_spreader.RequiresFloorToSpread(new EntProtoId<EdgeSpreaderComponent>(args.Effect.PrototypeId.Id)) && _turf.IsSpace(tileRef))
                 return;
 
             var coords = _map.MapToGrid(gridUid, mapCoords);
@@ -647,9 +647,6 @@ public sealed class EntityEffectSystem : EntitySystem
 
     private void OnExecuteEmote(ref ExecuteEntityEffectEvent<Emote> args)
     {
-        if (args.Effect.EmoteId == null)
-            return;
-
         if (args.Effect.ShowInChat)
             _chat.TryEmoteWithChat(args.Args.TargetEntity, args.Effect.EmoteId, ChatTransmitRange.GhostRangeLimit, forceEmote: args.Effect.Force);
         else

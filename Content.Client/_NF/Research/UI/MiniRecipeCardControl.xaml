@@ -1,27 +1,32 @@
-<Control xmlns="https://spacestation14.io">
-    <BoxContainer Orientation="Horizontal">
+<Control xmlns="https://spacestation14.io" HorizontalExpand="True">
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
         <PanelContainer Name="Background"
                         Access="Public"
                         StyleClasses="PdaBackground"
                         VerticalExpand="False"
                         HorizontalExpand="False"
-                        MaxWidth="10"
-                        Margin="0 0 -5 0"/>
+                        MaxWidth="8"
+                        Margin="0 0 -4 0"/>
         <Button Name="Main"
                 Disabled="True"
                 HorizontalExpand="True"
                 VerticalExpand="False"
                 StyleClasses="ButtonSquare"
-                Margin="0">
-            <BoxContainer Orientation="Horizontal" Margin="0">
+                Margin="0"
+                ClipText="True">
+            <BoxContainer Orientation="Horizontal" Margin="0" HorizontalExpand="True">
                 <EntityPrototypeView Name="Showcase"
                              HorizontalExpand="False"
                              VerticalExpand="False"
                              Margin="1"
-                             Scale="1 1"
-                             MaxSize="64 64"/> <!-- Lua: Added MaxSize="64 64" -->
-                <Control MinWidth="5"/>
-                <RichTextLabel Name="NameLabel" StyleClasses="LabelSubText" VerticalAlignment="Center" MaxWidth="280"/>
+                             Scale="0.75 0.75"
+                             SetSize="32 32"
+                             MaxSize="32 32"/>
+                <Control MinWidth="4"/>
+                <RichTextLabel Name="NameLabel"
+                               StyleClasses="LabelSubText"
+                               VerticalAlignment="Center"
+                               HorizontalExpand="True"/>
             </BoxContainer>
         </Button>
     </BoxContainer>

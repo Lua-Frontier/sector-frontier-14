@@ -22,6 +22,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using YamlDotNet.Serialization.TypeInspectors;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Gameplay
 {
@@ -36,12 +37,12 @@ namespace Content.Client.Gameplay
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] protected readonly IUserInterfaceManager UserInterfaceManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IViewVariablesManager _vvm = default!;
         [Dependency] private readonly IConsoleHost _conHost = default!;
 
+        private SharedMapSystem _mapManager = default!;
         private ClickableEntityComparer _comparer = default!;
 
         private (ViewVariablesPath? path, string[] segments) ResolveVvHoverObject(string path)
@@ -79,6 +80,7 @@ namespace Content.Client.Gameplay
 
         protected override void Startup()
         {
+            _mapManager = _entityManager.System<SharedMapSystem>();
             _vvm.RegisterDomain("enthover", ResolveVvHoverObject, ListVVHoverPaths);
             _inputManager.KeyBindStateChanged += OnKeyBindStateChanged;
             _comparer = new ClickableEntityComparer();

@@ -17,7 +17,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Atmos.Rotting; // Lua
-using Content.Shared._Lua.MedicalScanner.UI; // Lua
+using Content.Shared.MedicalScanner.UI;
 using Content.Shared._Shitmed.Targeting; // Shitmed
 using Content.Shared.FixedPoint;
 using Robust.Server.GameObjects;

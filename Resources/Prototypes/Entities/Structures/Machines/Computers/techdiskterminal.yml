@@ -1,10 +1,8 @@
 - type: entity
   parent: BaseComputer
   id: ComputerTechnologyDiskTerminal
-  # categories: [ HideSpawnMenu ] # Frontier: no tech disks # Lua: yes tesk disks
-  categories: [ DoNotMap ]
-  name: tech disk terminal
-  description: A terminal used to print out technology disks.
+  name: research point disk terminal
+  description: A terminal that prints research point disks for 1000, 5000, 10000, and higher amounts from linked R&D server points.
   components:
   - type: Sprite
     noRot: true

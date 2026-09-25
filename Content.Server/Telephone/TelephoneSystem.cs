@@ -5,9 +5,8 @@ using Content.Server.Interaction;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
-using Content.Shared._Lua.Chat.Systems; // Lua
-using Content.Shared._Lua.Language; // Lua
-using Content.Server._Lua.Language; // Lua
+using Content.Shared.Chat.Systems;
+using Content.Shared.Language;
 using Content.Shared.Chat;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Database;
@@ -26,6 +25,7 @@ using Robust.Shared.Replays;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Lua.Shared.Language;
 
 namespace Content.Server.Telephone;
 
@@ -41,7 +41,7 @@ public sealed class TelephoneSystem : SharedTelephoneSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IReplayRecordingManager _replay = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Lua
+    [Dependency] private readonly ILanguageSystem _language = default!;
 
     // Has set used to prevent telephone feedback loops
     private HashSet<(EntityUid, string, Entity<TelephoneComponent>)> _recentChatMessages = new();

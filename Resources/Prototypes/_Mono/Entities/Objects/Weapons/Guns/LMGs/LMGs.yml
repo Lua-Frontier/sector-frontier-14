@@ -87,7 +87,7 @@
     shape:
     - 0,0,7,4
   - type: Gun
-    examineCaliber: gun-examine-caliber-865 #Lua
+    examineCaliber: gun-examine-caliber-865
 #    minAngle: 24
 #    maxAngle: 36
 #    angleIncrease: 1.5 #Lua 3 -> 1.5
@@ -110,7 +110,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine8x65mmSKR
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
@@ -121,7 +120,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge8x65mmSKR
         priority: 1
         whitelist:
           tags:
@@ -172,7 +170,7 @@
 #    minAngle: -23
 #    maxAngle: -28
   - type: Gun
-    examineCaliber: gun-examine-caliber-76239 #Lua
+    examineCaliber: gun-examine-caliber-76239
 #    minAngle: 24
 #    maxAngle: 36
 #    angleIncrease: 3
@@ -195,7 +193,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmBox
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
@@ -206,7 +203,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -255,7 +251,7 @@
 #    minAngle: -23 #Lua -20 -> -23
 #    maxAngle: -25 #Lua -20 -> -25
   - type: Gun
-    examineCaliber: gun-examine-caliber-6852 #Lua
+    examineCaliber: gun-examine-caliber-6852
     minAngle: 3 #Lua
     maxAngle: 15 #Lua
     angleIncrease: 1.3 #Lua
@@ -286,7 +282,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: AmmoBox68x52mmCaseless
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2
@@ -298,7 +293,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge68x52mmCaseless
         priority: 1
         whitelist:
           tags:
@@ -355,7 +349,7 @@
 #    minAngle: -20
 #    maxAngle: -30
   - type: Gun
-    examineCaliber: gun-examine-caliber-76251 #Lua
+    examineCaliber: gun-examine-caliber-76251
 #    minAngle: 25
 #    maxAngle: 40
 #    angleIncrease: 5
@@ -378,7 +372,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: AmmoBox762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
         priority: 2
@@ -390,7 +383,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:

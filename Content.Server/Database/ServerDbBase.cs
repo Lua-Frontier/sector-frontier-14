@@ -2103,7 +2103,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 .ToListAsync();
 
             return active
-                .OrderByDescending(s => Content.Shared._Lua.SponsorLoadout.DonorGroups.GetTierPriority(s.Role))
+                .OrderByDescending(s => Content.Lua.Shared.SponsorLoadout.DonorGroups.GetTierPriority(s.Role))
                 .ThenByDescending(s => s.StartDate)
                 .FirstOrDefault();
         }

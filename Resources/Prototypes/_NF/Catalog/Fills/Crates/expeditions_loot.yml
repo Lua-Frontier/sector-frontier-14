@@ -8,15 +8,15 @@
   - type: StorageFill
     contents:
       # Expected value: 2.8
-    - id: GeneratorRTGFlatpack
+    - id: GeneratorRTGMachineCircuitboard
       amount: 2
       orGroup: rtg
       prob: 0.4
-    - id: GeneratorRTGFlatpack
+    - id: GeneratorRTGMachineCircuitboard
       amount: 3
       orGroup: rtg
       prob: 0.4
-    - id: GeneratorRTGFlatpack
+    - id: GeneratorRTGMachineCircuitboard
       amount: 4
       orGroup: rtg
       prob: 0.2
@@ -29,15 +29,15 @@
   components:
   - type: StorageFill
     contents:
-    - id: AutolatheFlatpack
+    - id: AutolatheMachineCircuitboard
       amount: 1
-    - id: CircuitImprinterFlatpack
+    - id: CircuitImprinterMachineCircuitboard
       amount: 1
-    - id: ExosuitFabricatorFlatpack
+    - id: ExosuitFabricatorMachineCircuitboard
       amount: 1
-    - id: MaterialReclaimerFlatpack
+    - id: MaterialReclaimerMachineCircuitboard
       amount: 1
-    - id: MachineFlatpackerFlatpack
+    - id: FlatpackerMachineCircuitboard
       amount: 1
 
 - type: entity
@@ -154,11 +154,6 @@
   components:
   - type: StorageFill
     contents:
-    - id: KitchenMicrowaveFlatpack
-    - id: KitchenElectricGrillFlatpack
-    - id: KitchenReagentGrinderFlatpack
-    - id: VendingMachineBoozeFlatpack
-    - id: VendingMachineDinnerwareFlatpack
     - id: VendingMachineRestockChefvend
     - id: VendingMachineRestockDinnerware
 
@@ -188,10 +183,12 @@
   components:
   - type: StorageFill
     contents:
-    - id: HydroponicsTrayEmptyFlatpack
+    - id: HydroponicsTrayMachineCircuitboard
       amount: 3
-    - id: VendingMachineNutriFlatpack
-    - id: VendingMachineSeedsUnlockedFlatpack
+    - id: VendingMachineNutriMachineCircuitboard
+    - id: VendingMachineSeedsUnlockedMachineCircuitboard
+    - id: CrateVendingMachineRestockNutriMaxFilled
+    - id: CrateVendingMachineRestockSeedsFilled
 
 # Medical
 - type: entity
@@ -202,10 +199,10 @@
   components:
   - type: StorageFill
     contents:
-    - id: VendingMachineMedicalFlatpack
+    - id: VendingMachineMedicalMachineCircuitboard
     - id: VendingMachineRestockMedical
-    - id: MedicalTechFabFlatpack
-    - id: StasisBedFlatpack
+    - id: MedicalTechFabCircuitboard
+    - id: StasisBedMachineCircuitboard
       amount: 2
 
 - type: entity
@@ -216,13 +213,12 @@
   components:
   - type: StorageFill
     contents:
-    - id: ChemMasterFlatpack
-    - id: VendingMachineChemicalsFlatpack
+    - id: ChemMasterMachineCircuitboard
+    - id: VendingMachineChemicalsMachineCircuitboard
     - id: VendingMachineRestockChemVend
-    - id: MedicalTechFabFlatpack
-    - id: CryoPodFlatpack
-      amount: 1
-    - id: GasThermoMachineFreezerFlatpack
+    - id: MedicalTechFabCircuitboard
+    - id: CryoPodMachineCircuitboard
+    - id: ThermomachineFreezerMachineCircuitBoard
     - id: SheetSteel
 
 - type: entity
@@ -233,13 +229,13 @@
   components:
   - type: StorageFill
     contents:
-    - id: ChemMasterFlatpack
-    - id: MachineElectrolysisUnitFlatpack
-    - id: BaseGasCondenserFlatpack
-    - id: MachineCentrifugeFlatpack
-    - id: ChemistryHotplateFlatpack
-    - id: KitchenReagentGrinderFlatpack
-    - id: VendingMachineChemicalsFlatpack
+    - id: ChemMasterMachineCircuitboard
+    - id: ElectrolysisUnitMachineCircuitboard
+    - id: CondenserMachineCircuitBoard
+    - id: CentrifugeMachineCircuitboard
+    - id: HotplateMachineCircuitboard
+    - id: ReagentGrinderMachineCircuitboard
+    - id: VendingMachineChemicalsMachineCircuitboard
     - id: VendingMachineRestockChemVend
 
 - type: entity

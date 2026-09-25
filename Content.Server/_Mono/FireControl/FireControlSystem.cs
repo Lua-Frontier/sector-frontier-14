@@ -18,10 +18,10 @@ using Robust.Shared.Timing;
 using Content.Shared.Interaction;
 using Content.Shared._Mono.ShipGuns;
 using Content.Shared.Examine;
-using Content.Shared._Lua.Expedition;
-using Content.Server._Lua.Stargate.Components;
-using Content.Server._Lua.Shuttles.Systems;
-using Content.Shared._Lua.Shuttles.Components;
+using Content.Lua.Shared.Expedition;
+using Content.Lua.Shared.Shuttles;
+using Content.Lua.Shared.Shuttles.Components;
+using Content.Lua.Shared.Stargate;
 
 namespace Content.Server._Mono.FireControl;
 
@@ -35,7 +35,7 @@ public sealed partial class FireControlSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PowerReceiverSystem _power = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
-    [Dependency] private readonly MagneticLatchSystem _magLatch = default!;
+    [Dependency] private readonly IMagneticLatchSystem _magLatch = default!;
     /// <summary>
     /// Dictionary of entities that have visualization enabled
     /// </summary>

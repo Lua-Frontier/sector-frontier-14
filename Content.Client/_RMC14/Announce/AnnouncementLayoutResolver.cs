@@ -29,6 +29,6 @@ public static class AnnouncementLayoutResolver
         if (string.IsNullOrWhiteSpace(hex))
             return null;
 
-        return Color.TryFromHex(hex.Trim());
+        return Color.TryFromHex(hex.Trim(), out var color) ? color : null;
     }
 }

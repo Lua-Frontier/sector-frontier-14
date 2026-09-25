@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Physics.Components;
+using Content.Shared.Anomaly.Components;
 using Content.Shared.Follower.Components;
 using Content.Shared.Throwing;
 using Robust.Server.GameObjects;
@@ -45,7 +46,8 @@ internal sealed class RandomWalkController : VirtualController
         {
             if (HasComp<ActorComponent>(uid)
             || HasComp<ThrownItemComponent>(uid)
-            || HasComp<FollowerComponent>(uid))
+            || HasComp<FollowerComponent>(uid)
+            || HasComp<AnomalySyncHeldComponent>(uid))
                 continue;
 
             var curTime = _timing.CurTime;

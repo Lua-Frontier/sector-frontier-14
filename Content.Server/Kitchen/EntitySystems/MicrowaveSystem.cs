@@ -13,6 +13,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Database;
@@ -213,7 +214,7 @@ namespace Content.Server.Kitchen.EntitySystems
         {
             // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
 
-            var totalReagentsToRemove = new Dictionary<string, FixedPoint2>(recipe.IngredientsReagents);
+            var totalReagentsToRemove = new Dictionary<ProtoId<ReagentPrototype>, FixedPoint2>(recipe.IngredientsReagents);
 
             // this is spaghetti ngl
             foreach (var item in component.Storage.ContainedEntities)
@@ -228,7 +229,7 @@ namespace Content.Server.Kitchen.EntitySystems
                     if (!totalReagentsToRemove.ContainsKey(reagent))
                         continue;
 
-                    var quant = solution.GetTotalPrototypeQuantity(reagent);
+                    var quant = solution.GetTotalPrototypeQuantity(reagent.Id);
 
                     if (quant >= totalReagentsToRemove[reagent])
                     {
@@ -240,7 +241,7 @@ namespace Content.Server.Kitchen.EntitySystems
                         totalReagentsToRemove[reagent] -= quant;
                     }
 
-                    _solutionContainer.RemoveReagent(solutionEntity.Value, reagent, quant);
+                    _solutionContainer.RemoveReagent(solutionEntity.Value, reagent.Id, quant);
                 }
             }
 
@@ -267,7 +268,7 @@ namespace Content.Server.Kitchen.EntitySystems
                             itemID = metaData.EntityPrototype.ID;
                         }
 
-                        if (itemID != recipeSolid.Key)
+                        if (itemID != recipeSolid.Key.Id)
                         {
                             continue;
                         }

@@ -1,4 +1,4 @@
-using Content.Server._Lua.ChatFilter; // Lua
+using Content.Lua.Common.ChatFilter;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -7,7 +7,7 @@ using Content.Server.Discord.DiscordLink;
 using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Server.Sponsors;
-using Content.Shared._Lua.SponsorLoadout;
+using Content.Lua.Shared.SponsorLoadout;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -49,7 +49,7 @@ internal sealed partial class ChatManager : IChatManager
     [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly DiscordChatLink _discordLink = default!;
-    [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
+    [Dependency] private readonly IChatFilterManager _chatFilter = default!; // Lua
     [Dependency] private readonly SponsorManager _sponsorManager = default!; // Lua
 
     /// <summary>

@@ -32,28 +32,16 @@
   id: NFEngineeringBoardsStatic
   recipes:
   - IntercomElectronics
-  - SmallThrusterMachineCircuitboard
-  - SmallGyroscopeMachineCircuitboard
-  - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
-  - SolarAssemblyFlatpack
+  - SolarAssemblyPart
   - ShuttleConsoleCircuitboard
-  - PortableGeneratorPacmanMachineCircuitboard
-  - PortableGeneratorSuperPacmanMachineCircuitboard
-  - PortableGeneratorJrPacmanMachineCircuitboard
-  - ThrusterMachineCircuitboard
-  - GyroscopeMachineCircuitboard
-  - MiniGravityGeneratorCircuitboard
   - MiniStationAnchorCircuitboard
   - GasRecyclerMachineCircuitboard
   - PortableScrubberMachineCircuitBoard
-  - ThermomachineFreezerMachineCircuitBoard
-  - CondenserMachineCircuitBoard
 
 - type: latheRecipePack
   id: NFEngineeringMaterialsStatic
   recipes:
-  #- NFSheetRGlassProcessed
   - NFSheetPGlass1Processed
   - NFSheetRPGlass1Processed
   - NFSheetPlasteel1Processed
@@ -80,12 +68,34 @@
   - PortableGeneratorDKJrMachineCircuitboard
   - LargeThrusterMachineCircuitboard
   - ThrusterLargeMachineCircuitboard
+  - ThrusterRogueMachineCircuitboard
+  - ThrusterMediumRogueMachineCircuitboard
+  - ThrusterLargeRogueMachineCircuitboard
   - ThrusterPiratesMachineCircuitboard
   - ThrusterMediumPiratesMachineCircuitboard
   - ThrusterLargePiratesMachineCircuitboard
   - ThrusterUSSPMachineCircuitboard
   - ThrusterMediumUSSPMachineCircuitboard
   - ThrusterLargeUSSPMachineCircuitboard
+  - SmallThrusterMachineCircuitboard
+  - SmallGyroscopeMachineCircuitboard
+  - MiniStationAnchorCircuitboard
+  - GasMiningDrillMachineCircuitboard
+  - GaslockFrameMachineCircuitboard
+  - MaterialSiloMachineCircuitboard
+  - LargeAPCElectronics
+  - PortableGeneratorPacmanMachineCircuitboard
+  - PortableGeneratorSuperPacmanMachineCircuitboard
+  - PortableGeneratorJrPacmanMachineCircuitboard
+  - ThrusterMachineCircuitboard
+  - GyroscopeMachineCircuitboard
+  - MiniGravityGeneratorCircuitboard
+  - ThermomachineFreezerMachineCircuitBoard
+  - SolarControlComputerCircuitboard
+  - CondenserMachineCircuitBoard
+  - SpaceHeaterMachineCircuitBoard
+  - SolarAssemblyCircuitboard
+  - TeslaGroundingRodCircuitboard
 
 - type: latheRecipePack
   id: NFEngineering
@@ -98,7 +108,6 @@
   - ConstructionBagOfHolding
   - ClothingBeltChiefEngineer
   - ClothingShoesBootsMag
-  # - FireExtinguisherBluespace # Delta-V
   - RPED
   - AdvancedCapacitorStockPart
   - AdvancedMatterBinStockPart
@@ -106,6 +115,9 @@
   - SuperCapacitorStockPart
   - SuperMatterBinStockPart
   - PicoManipulatorStockPart
+  - QuadraticCapacitorStockPart
+  - BluespaceMatterBinStockPart
+  - FemtoManipulatorStockPart
   - NFWeaponParticleDecelerator
 
 - type: latheRecipePack
@@ -113,4 +125,4 @@
   recipes:
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
-  - SolarAssemblyFlatpack
+  - SolarAssemblyPart

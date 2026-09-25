@@ -16,7 +16,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
-using Content.Server._Lua.Shuttles.Components;
+using Content.Lua.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Systems;
 

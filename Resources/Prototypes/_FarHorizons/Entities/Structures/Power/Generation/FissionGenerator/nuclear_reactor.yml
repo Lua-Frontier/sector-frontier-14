@@ -150,15 +150,8 @@
   abstract: true
   categories: [ HideSpawnMenu ]
   components:
-  #- type: AccessReader # You got a permit for that meltdown?
-  #  access: [["Engineering"]]
   - type: Lock
     unlockOnClick: false
-  #- type: WarpPoint
-  #  location: Nuclear Reactor
-  #  blacklist:
-  #    tags:
-  #    - GhostOnlyWarp
   - type: GuideHelp
     guides:
     - NuclearReactor
@@ -170,19 +163,19 @@
 
 - type: entity
   id: NuclearReactorEmpty
-  parent: NuclearReactorCrew
+  parent: [NuclearReactorCrew, ConstructibleMachine]
   suffix: Empty
   components:
   - type: NuclearReactor
     prefab: ReactorPrefabEmpty
-
-- type: entity
-  id: NuclearReactorRandom
-  parent: NuclearReactorCrew
-  suffix: Random
-  components:
-  - type: NuclearReactor
-    prefab: random
+  - type: Machine
+    board: NuclearReactorEmptyMachineCircuitboard
+  - type: Construction
+    graph: Machine3x3
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
 
 - type: entity
   id: NuclearReactorMeltdown
@@ -255,14 +248,6 @@
       bounds: "-1.5,-1.5,1.5,1.5"
 
 - type: entity
-  id: NuclearReactorSmallRandom
-  parent: NuclearReactorSmall
-  suffix: Random
-  components:
-  - type: NuclearReactor
-    prefab: random
-
-- type: entity
   id: NuclearReactorSmallMelted
   parent: NuclearReactorSmall
   suffix: Melted
@@ -278,33 +263,6 @@
 
 # Salvage nuclear reactors
 - type: entity
-  id: NuclearReactorSalvage
-  parent: BaseNuclearReactor
-  abstract: true
-  categories: [ HideSpawnMenu ]
-
-- type: entity
-  id: NuclearReactorNormalSalvage
-  parent: NuclearReactorSalvage
-  suffix: Salvage
-
-- type: entity
-  id: NuclearReactorEmptySalvage
-  parent: NuclearReactorSalvage
-  suffix: "Empty, Salvage"
-  components:
-  - type: NuclearReactor
-    prefab: ReactorPrefabEmpty
-
-- type: entity
-  id: NuclearReactorRandomSalvage
-  parent: NuclearReactorSalvage
-  suffix: "Random, Salvage"
-  components:
-  - type: NuclearReactor
-    prefab: random
-
-- type: entity
   id: NuclearReactorMeltedSalvage
   parent: NuclearReactorEmpty
   suffix: "Melted, Salvage"
@@ -318,46 +276,6 @@
     meltdownRadiation: 3.5
 
 # Small salvage nuclear reactors
-- type: entity
-  id: NuclearReactorSmallSalvage
-  parent: NuclearReactorSalvage
-  suffix: Salvage
-  name: small nuclear reactor
-  components:
-  - type: Sprite
-    sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_nuclear_reactor.rsi
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-1.5,-1.5,1.5,1.5"
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - MachineLayer
-        - HighImpassable
-  - type: NuclearReactor
-    thermalMass: 302400
-    reactorGridWidth: 5
-    reactorGridHeight: 5
-    prefab: ReactorPrefab5x5Normal
-    inletPos: -1, 1
-    inletRot: 180
-    outletPos: 1, 1
-    outletRot: 180
-    arrowPrototype: ReactorSmallFlowArrow
-    gridbounds: [ 12, 11, 0, 0 ]
-
-- type: entity
-  id: NuclearReactorSmallRandomSalvage
-  parent: NuclearReactorSmall
-  suffix: "Random, Salvage"
-  components:
-  - type: NuclearReactor
-    prefab: random
-
 - type: entity
   id: NuclearReactorSmallMeltedSalvage
   parent: NuclearReactorSmall

@@ -1,4 +1,3 @@
-
 - type: entity
   abstract: true
   parent: [BaseItem, RecyclableItemCardboard] # Frontier: added RecyclableItemCardboard
@@ -169,3 +168,30 @@
   - type: BallisticAmmoProvider
     capacity: 210
     proto: Cartridge556x45mmRubber
+
+- type: entity
+  parent: BaseAmmoBox556x45mm
+  id: AmmoBox556x45mmOverpressure
+  name: ammunition box (5.56x45mm overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge556x45mmOverpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: HP
+
+- type: entity
+  parent: AmmoBox556x45mmBigFMJ
+  id: AmmoBox556x45mmBigOverpressure
+  name: big ammunition box (5.56x45mm overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 210
+    proto: Cartridge556x45mmOverpressure
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: HP

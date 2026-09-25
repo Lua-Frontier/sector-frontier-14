@@ -22,7 +22,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Content.Server._NF.SectorServices; // Frontier
-using Content.Shared._Lua.Announce;
+using Content.Lua.Shared.Announce;
 
 namespace Content.Server.Communications
 {

@@ -1,7 +1,7 @@
 using Content.Server.Popups;
 using Content.Shared.Contraband;
 using Content.Server._NF.Security.Components;
-using Content.Server._Lua.Contraband.Systems; // Lua
+using Content.Lua.Shared.Contraband;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Timing;
@@ -18,7 +18,7 @@ public sealed class ContrabandPriceGunSystem : EntitySystem
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ContrabandPricingSystem _contraband = default!; // Lua
+    [Dependency] private readonly IContrabandPricingSystem _contraband = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

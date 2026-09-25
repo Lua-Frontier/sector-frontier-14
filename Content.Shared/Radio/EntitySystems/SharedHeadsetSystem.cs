@@ -22,8 +22,8 @@ public abstract class SharedHeadsetSystem : EntitySystem
             return;
         }
 
-        if (TryComp(uid, out EncryptionKeyHolderComponent? keyHolder))
-            args.Args.Channel ??= keyHolder.DefaultChannel; 
+        if (TryComp(uid, out EncryptionKeyHolderComponent? keyHolder) && keyHolder.DefaultChannel is { } defaultChannel)
+            args.Args.Channel ??= defaultChannel; 
     }
 
     protected virtual void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)

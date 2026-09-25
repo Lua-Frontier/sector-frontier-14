@@ -2,13 +2,18 @@
   id: MedicalAssemblerStatic
   recipes:
   - EmergencyMedipen
-  - AntiPoisonMedipen
-  - Stimpack
-  - CombatMedipen
+  - EthylredoxrazineAutoInjector
+  - AloeCream
   - MedicatedSutureAssembler
   - RegenerativeMeshAssembler
-  - AloeCream
-  - EthylredoxrazineAutoInjector
+- type: latheRecipePack
+  id: MedicalAssemblerDynamic
+  recipes:
+  - AntiPoisonMedipen
+  - Stimpack
+  - StimpackMiniAssembler
+  - CombatMedipen
+  - SpaceMedipen
   - PolyAutoInjector
   - BruizAutoInjector
   - LacerAutoInjector
@@ -21,6 +26,5 @@
   - RadAutoInjector
   - BurnAutoInjector
   - BruteAutoInjector
-  # Lua
   - RegenerativeFireMeshAssembler
   - ImprovedMedicatedSutureAssembler

@@ -1,0 +1,139 @@
+- type: entity
+  id: GeneratorCRPinchMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: CR-pinch generator machine board
+  description: A machine printed circuit board for a SKR CR-class Z-pinch fusion generator. Uses a 2x1 machine frame.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: GeneratorCRPinch
+    frameSize: 2x1
+    requirements:
+      Capacitor: 4
+      Manipulator: 2
+    stackRequirements:
+      Steel: 10
+      Plasteel: 5
+      Plasma: 5
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  id: NuclearReactorSmallEmptyMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small nuclear reactor machine board
+  description: A machine printed circuit board for an empty small nuclear reactor. Uses a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: NuclearReactorSmallEmpty
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+      Manipulator: 4
+    stackRequirements:
+      Steel: 30
+      Plasteel: 15
+      Uranium: 5
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      ArmorPlateEconomy1:
+        amount: 4
+        defaultPrototype: ArmorPlateEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  id: NuclearReactorEmptyMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: nuclear reactor machine board
+  description: A machine printed circuit board for an empty nuclear reactor. Uses a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: NuclearReactorEmpty
+    frameSize: 3x3
+    requirements:
+      Capacitor: 8
+      Manipulator: 6
+    stackRequirements:
+      Steel: 50
+      Plasteel: 25
+      Uranium: 10
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 3
+        defaultPrototype: ComponentBrickEconomy1
+      ArmorPlateEconomy1:
+        amount: 6
+        defaultPrototype: ArmorPlateEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+
+- type: entity
+  id: TurbineSmallMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: small gas turbine machine board
+  description: A machine printed circuit board for a small gas turbine. Uses a 2x2 machine frame.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: TurbineSmall
+    frameSize: 2x2
+    requirements:
+      Capacitor: 4
+      Manipulator: 2
+    stackRequirements:
+      Steel: 20
+      Plasteel: 8
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      MotorEconomy1:
+        amount: 2
+        defaultPrototype: MotorEconomy1
+      ElectromagnetEconomy1:
+        amount: 2
+        defaultPrototype: ElectromagnetEconomy1
+
+- type: entity
+  id: TurbineMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: gas turbine machine board
+  description: A machine printed circuit board for a gas turbine. Uses a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: engineering
+  - type: MachineBoard
+    prototype: Turbine
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+      Manipulator: 3
+    stackRequirements:
+      Steel: 35
+      Plasteel: 15
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      MotorEconomy1:
+        amount: 3
+        defaultPrototype: MotorEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1

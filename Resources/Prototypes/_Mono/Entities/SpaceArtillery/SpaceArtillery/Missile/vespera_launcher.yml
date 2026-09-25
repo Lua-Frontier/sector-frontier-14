@@ -3,8 +3,9 @@
   id: WeaponTurretVespera
   name: ADMP-50 VESPERA Missile Rack
   parent:
-  - BallisticArtilleryUnanchorableMagazine
+  - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   description: A rapid-fire swarm missile rack manufactured by Aetherion Dynamics. Saturates targets with guided warheads to overwhelm defenses. Limited ammo, but deadly. Can be remotely activated or linked to a GCS.
   components:
   - type: StaticPrice
@@ -39,19 +40,15 @@
     powerUsePassive: 750
     powerUseActive: 0
   - type: Actions
-  - type: MagazineAmmoProvider
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MissileMagazine50mmHE
-        insertSound: /Audio/Weapons/Guns/MagIn/hpistol_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-          - MissileMagazine50mm
-        whitelistFailPopup: gun-magazine-whitelist-fail
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: MissileCartridge50mmHE
+    capacity: 78
+    whitelist:
+      tags:
+      - MissileCartridge50mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: RadarBlip
     radarColor: "#FCBA03"
     scale: 2
@@ -63,3 +60,10 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 100
+  - type: Machine
+    board: WeaponTurretVesperaCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

@@ -8,14 +8,14 @@ ent-NFAmmunitionBoxBigRifle10Rubber = Ящик патронов (.10 винто�
 
 #region .20
 ent-NFAmmunitionBoxRifle20 = Коробка патронов (.20 винтовочные)
-ent-NFAmmunitionBoxRifle20Overpressure = Коробка патронов (.20 винтовочные, усиленные)
+ent-AmmoBox556x45mmOverpressure = Коробка патронов (5.56x45mm, усиленные)
 ent-NFAmmunitionBoxRifle20Incendiary = Коробка патронов (.20 винтовочные, зажигательные)
 ent-NFAmmunitionBoxRifle20Uranium = Коробка патронов (.20 винтовочные, урановые)
 ent-NFAmmunitionBoxRifle20Practice = Коробка патронов (.20 винтовочные, учебные)
 ent-NFAmmunitionBoxRifle20Rubber = Коробка патронов (.20 винтовочные, резиновые)
 #region .20 rifle big
 ent-NFAmmunitionBoxBigRifle20 = Ящик патронов (.20 винтовочные)
-ent-NFAmmunitionBoxBigRifle20Overpressure = Ящик патронов (.20 винтовочные, усиленные)
+ent-AmmoBox556x45mmBigOverpressure = Ящик патронов (5.56x45mm, усиленные)
 ent-NFAmmunitionBoxBigRifle20Incendiary = Ящик патронов (.20 винтовочные, зажигательные)
 ent-NFAmmunitionBoxBigRifle20Uranium = Ящик патронов (.20 винтовочные, урановые)
 ent-NFAmmunitionBoxBigRifle20Practice = Ящик патронов (.20 винтовочные,учебные)
@@ -23,7 +23,7 @@ ent-NFAmmunitionBoxBigRifle20Rubber =  Ящик патронов (.20 винто
 
 #region .30 rifle
 ent-NFAmmunitionBoxRifle30 = Коробка патронов (.30 винтовочные)
-ent-NFAmmunitionBoxRifle30Overpressure = Коробка патронов (.30 винтовочные, усиленные)
+ent-AmmoBox762x39mmOverpressure = Коробка патронов (7.62x39mm, усиленные)
 ent-NFAmmunitionBoxRifle30Incendiary = Коробка патронов (.30 винтовочные, зажигательные)
 ent-NFAmmunitionBoxRifle30Uranium = Коробка патронов (.30 винтовочные, урановые)
 ent-NFAmmunitionBoxRifle30Practice = Коробка патронов (.30 винтовочные, учебные)
@@ -31,7 +31,7 @@ ent-NFAmmunitionBoxRifle30Rubber = Коробка патронов (.30 винт
 
 #region .30 rifle big
 ent-NFAmmunitionBoxBigRifle30 = Ящик патронов (.30 винтовочные)
-ent-NFAmmunitionBoxBigRifle30Overpressure = Ящик патронов (.30 винтовочные, усиленные)
+ent-AmmoBox762x39mmBigOverpressure = Ящик патронов (7.62x39mm, усиленные)
 ent-NFAmmunitionBoxBigRifle30Incendiary = Ящик патронов (.30 винтовочные, зажигательные)
 ent-NFAmmunitionBoxBigRifle30Uranium = Ящик патронов (.30 винтовочные, урановые)
 ent-NFAmmunitionBoxBigRifle30Practice = Ящик патронов (.30 винтовочные,учебные)

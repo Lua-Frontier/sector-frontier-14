@@ -1,3 +1,4 @@
+using Content.Lua.Shared.Shuttles;
 using Content.Server._Mono.FireControl; // Lua
 using Content.Server._Mono.NPC.HTN;
 using Content.Server._Mono.Ships.Systems;
@@ -7,12 +8,11 @@ using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
-using Content.Server._Lua.Expedition; // Lua
-using Content.Server._Lua.Shuttles.Systems; // Lua
-using Content.Shared._Lua.Shuttles.Components; // Lua
+using Content.Lua.Shared.Expedition;
+using Content.Lua.Shared.Shuttles.Components;
 using Content.Shared._Crescent.DroneControl;
 using Content.Shared._Crescent.ShipShields;
-using Content.Shared._Lua.Starmap;
+using Content.Lua.Shared.Starmap;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.Shuttles.Components;
 using Content.Shared._NF.Shuttles.Events; // Frontier
@@ -56,7 +56,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -65,8 +65,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly ILogManager _log = default!;
     [Dependency] private readonly FireControlSystem _fireControl = default!; // Lua
-    [Dependency] private readonly ShuttleTabletSystem _tablet = default!; // Lua
-    [Dependency] private readonly ExpeditionSystem _expedition = default!; // Lua
+    [Dependency] private readonly IShuttleTabletSystem _tablet = default!;
+    [Dependency] private readonly IExpeditionSystem _expedition = default!;
     [Dependency] private readonly ShipSteeringSystem _shipSteering = default!; // Lua
     [Dependency] private readonly DeviceListSystem _deviceList = default!; // Lua
 

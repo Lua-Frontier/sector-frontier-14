@@ -13,12 +13,13 @@ namespace Content.Server.NodeContainer.Nodes
             MapGridComponent? grid,
             IEntityManager entMan)
         {
-            if (!xform.Anchored || grid == null)
+            if (!xform.Anchored || grid == null || xform.GridUid == null)
                 yield break;
 
-            var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+            var map = entMan.System<SharedMapSystem>();
+            var gridIndex = map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
-            foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, grid, gridIndex))
+            foreach (var node in NodeHelpers.GetNodesInTile(nodeQuery, map, xform.GridUid.Value, grid, gridIndex))
             {
                 if (node is PortPipeNode)
                     yield return node;

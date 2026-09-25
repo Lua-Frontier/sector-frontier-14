@@ -22,7 +22,7 @@
 #    minAngle: -21
 #    maxAngle: -47
   - type: Gun
-    examineCaliber: gun-examine-caliber-865 #Lua
+    examineCaliber: gun-examine-caliber-865
 #    minAngle: 21 # comment from _Lua
 #    maxAngle: 48
 #    angleIncrease: 27
@@ -44,7 +44,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine8x65mmSKR
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
@@ -54,7 +53,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge8x65mmSKR
         priority: 1
         whitelist:
           tags:
@@ -127,7 +125,7 @@
 #    minAngle: -0 #Lua -21 -> -0
 #    maxAngle: -0 #Lua -47 -> -0
   - type: Gun
-    examineCaliber: gun-examine-caliber-76239 #Lua
+    examineCaliber: gun-examine-caliber-76239
 #    minAngle: 21 # comment from _Lua
 #    maxAngle: 52
 #    angleIncrease: 6
@@ -148,7 +146,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
@@ -158,7 +155,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -199,7 +195,7 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: Gun
-    examineCaliber: gun-examine-caliber-55645 #Lua
+    examineCaliber: gun-examine-caliber-55645
 #    minAngle: 20 # comment from _Lua
 #    maxAngle: 35
 #    angleIncrease: 4
@@ -229,7 +225,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556x45mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
@@ -239,7 +234,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge556x45mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -281,6 +275,7 @@
     minAngle: -20
     maxAngle: -50
   - type: Gun
+    examineCaliber: gun-examine-caliber-76251
     minAngle: 21
     maxAngle: 52
     angleIncrease: 1.4
@@ -293,7 +288,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x51mmFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2
@@ -304,7 +298,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x51mmFMJ
         priority: 1
         whitelist:
           tags:
@@ -369,7 +362,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556x45mmFMJ # Mono
         insertSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagIn/m16_magin.ogg # Mono
         ejectSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagOut/skm_magout.ogg # Mono
         priority: 2
@@ -379,7 +371,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge556x45mmFMJ # Mono
         priority: 1
         whitelist:
           tags:
@@ -427,7 +418,7 @@
     minAngle: -0 #Lua -32 -> -0
     maxAngle: -0 #Lua -52 -> -0
   - type: Gun
-    examineCaliber: gun-examine-caliber-55645 #Lua
+    examineCaliber: gun-examine-caliber-6852-55645
 #    minAngle: 45 # comment from _Lua
 #    maxAngle: 62
 #    angleIncrease: 6
@@ -447,7 +438,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine556x45mmFMJ
         insertSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagIn/m16_magin.ogg
         ejectSound: /Audio/_Mono/Weapons/Guns/SmallArms/MagOut/skm_magout.ogg
         priority: 2
@@ -458,7 +448,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge556x45mmFMJ
         priority: 1
         whitelist:
           tags:

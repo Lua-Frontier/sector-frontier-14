@@ -26,25 +26,27 @@ public sealed partial class ResearchSystem
 
     private void OnClientSelected(EntityUid uid, ResearchClientComponent component, ResearchClientServerSelectedMessage args)
     {
-        if (!TryGetServerById(uid, args.ServerId, out var serveruid, out var serverComponent))
+        if (!TryGetServerById(uid, args.ServerId, out var serveruid, out var serverComponent, args.Actor))
             return;
 
-        // Validate that we can access this server.
-        if (!GetServers(uid).Contains((serveruid.Value, serverComponent)))
+        if (!GetServers(uid, args.Actor).Any(s => s.Owner == serveruid.Value))
             return;
 
         UnregisterClient(uid, component);
-        RegisterClient(uid, serveruid.Value, component, serverComponent);
+        RegisterClient(uid, serveruid.Value, component, serverComponent, user: args.Actor);
+        UpdateClientInterface(uid, component, args.Actor);
     }
 
     private void OnClientDeselected(EntityUid uid, ResearchClientComponent component, ResearchClientServerDeselectedMessage args)
     {
         UnregisterClient(uid, clientComponent: component);
+        UpdateClientInterface(uid, component, args.Actor);
     }
 
     private void OnClientSyncMessage(EntityUid uid, ResearchClientComponent component, ResearchClientSyncMessage args)
     {
-        UpdateClientInterface(uid, component);
+        TryClearIncompatibleServerBinding(uid, component, args.Actor);
+        UpdateClientInterface(uid, component, args.Actor);
     }
 
     private void OnConsoleSelect(EntityUid uid, ResearchClientComponent component, ConsoleServerSelectionMessage args)
@@ -52,21 +54,28 @@ public sealed partial class ResearchSystem
         if (!this.IsPowered(uid, EntityManager))
             return;
 
+        TryClearIncompatibleServerBinding(uid, component, args.Actor);
         _uiSystem.TryToggleUi(uid, ResearchClientUiKey.Key, args.Actor);
+        UpdateClientInterface(uid, component, args.Actor);
     }
     #endregion
 
     private void OnClientRegistrationChanged(EntityUid uid, ResearchClientComponent component, ref ResearchRegistrationChangedEvent args)
     {
-        UpdateClientInterface(uid, component);
+        var actors = _uiSystem.GetActors(uid, ResearchClientUiKey.Key).ToArray();
+        if (actors.Length == 0)
+        {
+            UpdateClientInterface(uid, component);
+            return;
+        }
+
+        foreach (var actor in actors)
+            UpdateClientInterface(uid, component, actor);
     }
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
-        var allServers = GetServers(uid).ToList();
 
-        if (allServers.Count > 0)
-            RegisterClient(uid, allServers[0], component, allServers[0]);
     }
 
     private void OnClientShutdown(EntityUid uid, ResearchClientComponent component, ComponentShutdown args)
@@ -76,7 +85,8 @@ public sealed partial class ResearchSystem
 
     private void OnClientUIOpen(EntityUid uid, ResearchClientComponent component, BoundUIOpenedEvent args)
     {
-        UpdateClientInterface(uid, component);
+        TryClearIncompatibleServerBinding(uid, component, args.Actor);
+        UpdateClientInterface(uid, component, args.Actor);
     }
 
     private void OnClientAnchorStateChanged(Entity<ResearchClientComponent> ent, ref AnchorStateChangedEvent args)
@@ -84,34 +94,22 @@ public sealed partial class ResearchSystem
         if (LifeStage(ent) != EntityLifeStage.MapInitialized) // Frontier: remove whenever the bug here gets sorted out
             return; // Frontier: already registered on map init, no need to register before, no need to register on teardown
 
-        if (args.Anchored)
-        {
-            if (ent.Comp.Server is not null)
-                return;
-
-            var allServers = GetServers(ent).ToList();
-
-            if (allServers.Count > 0)
-                RegisterClient(ent, allServers[0], ent, allServers[0]);
-        }
-        else
-        {
+        if (!args.Anchored)
             UnregisterClient(ent, ent.Comp);
-        }
     }
 
-    private void UpdateClientInterface(EntityUid uid, ResearchClientComponent? component = null)
+    private void UpdateClientInterface(EntityUid uid, ResearchClientComponent? component = null, EntityUid? user = null)
     {
         if (!Resolve(uid, ref component, false))
             return;
 
         TryGetClientServer(uid, out _, out var serverComponent, component);
 
-        var names = GetServerNames(uid);
+        var names = GetServerNames(uid, user);
         var state = new ResearchClientBoundInterfaceState(
             names.Length,
             names,
-            GetServerIds(uid),
+            GetServerIds(uid, user),
             serverComponent?.Id ?? -1);
 
         _uiSystem.SetUiState(uid, ResearchClientUiKey.Key, state);

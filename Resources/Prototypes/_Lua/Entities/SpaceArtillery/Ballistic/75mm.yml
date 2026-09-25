@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  categories: [ ShuttleGun ]
+  parent:
+  - WeaponTurretDravon
+  - ConstructibleMachine
+  id: Weapon75mm
+  name: Пулемёт "75мм"
+  description: Тяжёлый пулемёт, использует снаряды 75мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets80mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets80mm
+  - type: Gun
+    damageModifier: 1
+    fireRate: 1
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua75mm
+    capacity: 1
+    whitelist:
+      tags:
+      - CartridgeLua75mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: Weapon75mmCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

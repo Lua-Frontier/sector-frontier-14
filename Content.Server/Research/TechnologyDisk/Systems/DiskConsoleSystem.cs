@@ -1,10 +1,12 @@
+using Content.Server.Research.Disk;
 using Content.Server.Research.Systems;
 using Content.Server.Research.TechnologyDisk.Components;
-using Content.Shared.UserInterface;
 using Content.Shared.Research;
 using Content.Shared.Research.Components;
+using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Research.TechnologyDisk.Systems;
@@ -16,11 +18,9 @@ public sealed class DiskConsoleSystem : EntitySystem
     [Dependency] private readonly ResearchSystem _research = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
 
-    /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<DiskConsoleComponent, DiskConsolePrintDiskMessage>(OnPrintDisk);
-        SubscribeLocalEvent<DiskConsoleComponent, DiskConsolePrintRareDiskMessage>(OnPrintRareDisk); // Frontier
         SubscribeLocalEvent<DiskConsoleComponent, ResearchServerPointsChangedEvent>(OnPointsChanged);
         SubscribeLocalEvent<DiskConsoleComponent, ResearchRegistrationChangedEvent>(OnRegistrationChanged);
         SubscribeLocalEvent<DiskConsoleComponent, BeforeActivatableUIOpenEvent>(OnBeforeUiOpen);
@@ -38,11 +38,15 @@ public sealed class DiskConsoleSystem : EntitySystem
             if (printing.FinishTime > _timing.CurTime)
                 continue;
 
+            var points = printing.Points;
+            var diskProto = printing.DiskPrototype;
             RemComp(uid, printing);
-            if (!console.DiskRare)
-                Spawn(console.DiskPrototype, xform.Coordinates);
-            else
-                Spawn(console.DiskPrototypeRare, xform.Coordinates);
+
+            var disk = Spawn(diskProto, xform.Coordinates);
+            if (TryComp<ResearchDiskComponent>(disk, out var researchDisk))
+                researchDisk.Points = points;
+
+            UpdateUserInterface(uid, console);
         }
     }
 
@@ -51,38 +55,22 @@ public sealed class DiskConsoleSystem : EntitySystem
         if (HasComp<DiskConsolePrintingComponent>(uid))
             return;
 
-        if (!_research.TryGetClientServer(uid, out var server, out var serverComp))
-            return;
-
-        if (serverComp.Points < component.PricePerDisk)
-            return;
-
-        _research.ModifyServerPoints(server.Value, -component.PricePerDisk, serverComp);
-        _audio.PlayPvs(component.PrintSound, uid);
-
-        var printing = EnsureComp<DiskConsolePrintingComponent>(uid);
-        printing.FinishTime = _timing.CurTime + component.PrintDuration;
-        component.DiskRare = false;
-        UpdateUserInterface(uid, component);
-    }
-
-    private void OnPrintRareDisk(EntityUid uid, DiskConsoleComponent component, DiskConsolePrintRareDiskMessage args) // Frontier
-    {
-        if (HasComp<DiskConsolePrintingComponent>(uid))
+        if (!component.PointDiskAmounts.Contains(args.Points) || args.Points <= 0)
             return;
 
         if (!_research.TryGetClientServer(uid, out var server, out var serverComp))
             return;
 
-        if (serverComp.Points < component.PricePerRareDisk)
+        if (serverComp.Points < args.Points)
             return;
 
-        _research.ModifyServerPoints(server.Value, -component.PricePerRareDisk, serverComp);
+        _research.ModifyServerPoints(server.Value, -args.Points, serverComp);
         _audio.PlayPvs(component.PrintSound, uid);
 
         var printing = EnsureComp<DiskConsolePrintingComponent>(uid);
         printing.FinishTime = _timing.CurTime + component.PrintDuration;
-        component.DiskRare = true;
+        printing.Points = args.Points;
+        printing.DiskPrototype = ResolveDiskPrototype(component, args.Points);
         UpdateUserInterface(uid, component);
     }
 
@@ -108,22 +96,33 @@ public sealed class DiskConsoleSystem : EntitySystem
 
         var totalPoints = 0;
         if (_research.TryGetClientServer(uid, out _, out var server))
-        {
             totalPoints = server.Points;
+
+        var printingBusy = TryComp<DiskConsolePrintingComponent>(uid, out var printing) &&
+                           printing.FinishTime >= _timing.CurTime;
+
+        var options = new List<DiskConsolePointOption>(component.PointDiskAmounts.Count);
+        foreach (var amount in component.PointDiskAmounts)
+        {
+            options.Add(new DiskConsolePointOption(
+                amount,
+                !printingBusy && totalPoints >= amount));
         }
 
-        var canPrint = !(TryComp<DiskConsolePrintingComponent>(uid, out var printing) && printing.FinishTime >= _timing.CurTime) &&
-                       totalPoints >= component.PricePerDisk;
-
-        var canPrintRare = !(TryComp<DiskConsolePrintingComponent>(uid, out var printingRare) && printingRare.FinishTime >= _timing.CurTime) &&
-                       totalPoints >= component.PricePerRareDisk;
-
-        var state = new DiskConsoleBoundUserInterfaceState(totalPoints, component.PricePerDisk, component.PricePerRareDisk, canPrint, canPrintRare);
+        var state = new DiskConsoleBoundUserInterfaceState(totalPoints, printingBusy, options);
         _ui.SetUiState(uid, DiskConsoleUiKey.Key, state);
     }
 
     private void OnShutdown(EntityUid uid, DiskConsolePrintingComponent component, ComponentShutdown args)
     {
         UpdateUserInterface(uid);
+    }
+
+    private static EntProtoId ResolveDiskPrototype(DiskConsoleComponent component, int points)
+    {
+        if (component.PointDiskPrototypes.TryGetValue(points, out var mapped))
+            return mapped;
+
+        return component.DiskPrototype;
     }
 }

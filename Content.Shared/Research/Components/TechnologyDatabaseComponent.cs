@@ -1,22 +1,22 @@
+using Content.Shared.Research.Discovery;
 using Content.Shared._NF.Lathe; // Frontier
 using Content.Shared.Lathe;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Research.Components;
 
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedResearchSystem), typeof(SharedLatheSystem), typeof(SharedBlueprintLatheSystem)), AutoGenerateComponentState] // Frontier: add SharedBlueprintLatheSystem access
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedResearchSystem), typeof(SharedLatheSystem), typeof(SharedBlueprintLatheSystem), typeof(SharedDiscoveryResearchSystem)), AutoGenerateComponentState]
 public sealed partial class TechnologyDatabaseComponent : Component
 {
     /// <summary>
     /// A main discipline that locks out other discipline technology past a certain tier.
     /// </summary>
     [AutoNetworkedField]
-    [DataField("mainDiscipline", customTypeSerializer: typeof(PrototypeIdSerializer<TechDisciplinePrototype>))]
-    public string? MainDiscipline;
+    [DataField("mainDiscipline")]
+    public ProtoId<TechDisciplinePrototype>? MainDiscipline;
 
     [AutoNetworkedField]
     [DataField("currentTechnologyCards")]

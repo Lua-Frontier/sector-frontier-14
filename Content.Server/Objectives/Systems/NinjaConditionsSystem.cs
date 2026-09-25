@@ -26,8 +26,6 @@ public sealed class NinjaConditionsSystem : EntitySystem
 
         SubscribeLocalEvent<SpiderChargeConditionComponent, RequirementCheckEvent>(OnSpiderChargeRequirementCheck);
         SubscribeLocalEvent<SpiderChargeConditionComponent, ObjectiveAfterAssignEvent>(OnSpiderChargeAfterAssign);
-
-        SubscribeLocalEvent<StealResearchConditionComponent, ObjectiveGetProgressEvent>(OnStealResearchGetProgress);
     }
 
     // doorjack
@@ -86,19 +84,4 @@ public sealed class NinjaConditionsSystem : EntitySystem
         _metaData.SetEntityName(uid, title, args.Meta);
     }
 
-    // steal research
-
-    private void OnStealResearchGetProgress(EntityUid uid, StealResearchConditionComponent comp, ref ObjectiveGetProgressEvent args)
-    {
-        args.Progress = StealResearchProgress(comp, _number.GetTarget(uid));
-    }
-
-    private float StealResearchProgress(StealResearchConditionComponent comp, int target)
-    {
-        // prevent divide-by-zero
-        if (target == 0)
-            return 1f;
-
-        return MathF.Min(comp.DownloadedNodes.Count / (float) target, 1f);
-    }
 }

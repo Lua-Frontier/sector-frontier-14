@@ -16,18 +16,28 @@ public sealed class LatheUpdateState : BoundUserInterfaceState
     public bool Looping; // Mono
     public bool Skipping; // Mono
 
+    public TimeSpan? ProductionStartedAt;
+    public TimeSpan? ProductionLength;
+    public bool HasResearchServer;
+
     public LatheUpdateState(
         List<ProtoId<LatheRecipePrototype>> recipes,
         List<LatheRecipeBatch> queue,
         ProtoId<LatheRecipePrototype>? currentlyProducing = null,
         bool looping = false,
-        bool skipping = false)
+        bool skipping = false,
+        TimeSpan? productionStartedAt = null,
+        TimeSpan? productionLength = null,
+        bool hasResearchServer = false)
     {
         Recipes = recipes;
         Queue = queue;
         CurrentlyProducing = currentlyProducing;
         Looping = looping;
         Skipping = skipping;
+        ProductionStartedAt = productionStartedAt;
+        ProductionLength = productionLength;
+        HasResearchServer = hasResearchServer;
     }
 }
 

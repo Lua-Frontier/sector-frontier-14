@@ -1,5 +1,6 @@
 - type: entity
   id: Magazine55_SAMPistol
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (.55 SAM)
   parent: [ BaseItem, RecyclableItemSteelTiny ]
   description: A standard magazine for the MK5 smart magnum, holding 12 rounds.
@@ -31,7 +32,17 @@
   - type: Appearance
 
 - type: entity
+  id: Magazine55_SAMPistolEmpty
+  categories: [ HideSpawnMenu ]
+  parent: Magazine55_SAMPistol
+  name: pistol magazine (.55 SAM)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine55_SAMPistolHighCapacity
+  categories: [ HideSpawnMenu ]
   name: machine pistol magazine (.55 SAM)
   parent: [BaseItem, RecyclableItemSteelTiny]
   description: An extended magazine for the MK5 smart magnum, holding 18 rounds.
@@ -63,3 +74,12 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+- type: entity
+  id: Magazine55_SAMPistolHighCapacityEmpty
+  categories: [ HideSpawnMenu ]
+  parent: Magazine55_SAMPistolHighCapacity
+  name: machine pistol magazine (.55 SAM)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null

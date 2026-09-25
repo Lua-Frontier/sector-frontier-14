@@ -9,6 +9,7 @@ using Content.Shared._NF.Contraband.Components;
 using Content.Shared._NF.Contraband.Events;
 using Content.Shared.Contraband;
 using Content.Shared.Stacks;
+using Content.Shared.Store;
 using Robust.Server.GameObjects;
 using Robust.Server.Containers; // Lua
 using Content.Shared.Weapons.Ranged.Components; // Lua
@@ -18,7 +19,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Containers; // Lua
 using Content.Server._NF.Cargo.Systems;
-using Content.Server._Lua.Contraband.Systems; // Lua
+using Content.Lua.Shared.Contraband; // Lua
 using Content.Server.Hands.Systems;
 
 namespace Content.Server._NF.Contraband.Systems;
@@ -35,7 +36,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly ContrabandPricingSystem _contraband = default!; // Lua
+    [Dependency] private readonly IContrabandPricingSystem _contraband = default!; // Lua
     [Dependency] private readonly ContainerSystem _container = default!; // Lua
 
     private EntityQuery<MobStateComponent> _mobQuery;
@@ -175,7 +176,7 @@ public sealed partial class ContrabandTurnInSystem : SharedContrabandTurnInSyste
                 // Lua start
                 processed.Add(ent);
 
-                if (_contraband.TryGetItemPrice(ent, console.RewardType, CanSell, out var itemPrice, ref toSell))
+                if (_contraband.TryGetItemPrice(ent, new ProtoId<CurrencyPrototype>(console.RewardType.Id), CanSell, out var itemPrice, ref toSell))
                 {
                     amount += itemPrice;
                 }

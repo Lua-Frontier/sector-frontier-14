@@ -4,7 +4,7 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Popups;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Dataset;
 using Content.Shared.Nutrition.Components;

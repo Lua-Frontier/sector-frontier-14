@@ -1,0 +1,38 @@
+- type: technology
+  id: CyberneticDexLeftHand
+  name: research-technology-cybernetic-dex-left-hand
+  entityIcon: DexLeftHand
+  discipline: NFMedical
+  tags:
+  - medical
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - DexLeftHand
+- type: technology
+  id: CyberneticDexRightHand
+  name: research-technology-cybernetic-dex-right-hand
+  entityIcon: DexRightHand
+  discipline: NFMedical
+  tags:
+  - medical
+  signatureFor: Ussp
+  discoveryWeight: 1.35
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - DexRightHand

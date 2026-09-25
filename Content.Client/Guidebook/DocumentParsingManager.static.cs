@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Lua.UIKit.Styles;
 using Content.Client.Guidebook.Controls;
 using Pidgin;
 using Robust.Client.UserInterface;
@@ -69,9 +70,7 @@ public sealed partial class DocumentParsingManager
                     };
 
                     var msg = new FormattedMessage();
-                    // THANK YOU RICHTEXT VERY COOL
-                    // (text doesn't default to white).
-                    msg.PushColor(Color.White);
+                    msg.PushColor(LunaWindowStyle.TextPrimary);
 
                     // If the parsing fails, don't throw an error and instead make an inline error message
                     string? error;
@@ -83,7 +82,7 @@ public sealed partial class DocumentParsingManager
                     }
 
                     msg.Pop();
-                    rt.SetMessage(msg, tagsAllowed: null, defaultColor: Color.White);
+                    rt.SetMessage(msg, tagsAllowed: null, defaultColor: LunaWindowStyle.TextPrimary);
                     return rt;
                 },
                 TextParser)
@@ -92,30 +91,39 @@ public sealed partial class DocumentParsingManager
 
     private static readonly Parser<char, Control> HeaderControlParser = Try(Char('#'))
         .Then(SkipWhitespaces.Then(Map(text => new Label
-                {
-                    Text = text,
-                    StyleClasses = { "LabelHeadingBigger" }
-                },
+        {
+            Text = text,
+            StyleClasses = { "LabelHeadingBigger" },
+            FontOverride = LunaWindowStyle.FontMapLabel,
+            FontColorOverride = LunaWindowStyle.Accent,
+            Margin = new Thickness(0, 4, 0, 10)
+        },
                 AnyCharExcept('\n').AtLeastOnceString())
             .Cast<Control>()))
         .Labelled("header");
 
     private static readonly Parser<char, Control> SubHeaderControlParser = Try(String("##"))
         .Then(SkipWhitespaces.Then(Map(text => new Label
-                {
-                    Text = text,
-                    StyleClasses = { "LabelHeading" }
-                },
+        {
+            Text = text,
+            StyleClasses = { "LabelHeading" },
+            FontOverride = LunaWindowStyle.FontTitle,
+            FontColorOverride = LunaWindowStyle.TextPrimary,
+            Margin = new Thickness(0, 2, 0, 8)
+        },
                 AnyCharExcept('\n').AtLeastOnceString())
             .Cast<Control>()))
         .Labelled("subheader");
 
     private static readonly Parser<char, Control> TertiaryHeaderControlParser = Try(String("###"))
         .Then(SkipWhitespaces.Then(Map(text => new Label
-                {
-                    Text = text,
-                    StyleClasses = { "LabelKeyText" }
-                },
+        {
+            Text = text,
+            StyleClasses = { "LabelKeyText" },
+            FontOverride = LunaWindowStyle.FontBody,
+            FontColorOverride = LunaWindowStyle.Accent,
+            Margin = new Thickness(0, 2, 0, 6)
+        },
                 AnyCharExcept('\n').AtLeastOnceString())
             .Cast<Control>()))
         .Labelled("tertiaryheader");

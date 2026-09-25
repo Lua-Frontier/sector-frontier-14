@@ -1,17 +1,17 @@
 - type: entity
-  id: ADTBaseMagazineShotgunXL
-  name: ammo drum XL (4 gauge) #Lua 4 gauge
+  id: BaseMagazine12_gaugeXL
+  name: ammo drum XL (12 gauge shells)
   parent: BaseItem
   abstract: true
   components:
   - type: Tag
     tags:
-    - MagazineShotgun
+    - Magazine12_gaugeBuckshot
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
       tags:
-        - ShellShotgun23x75mmBuckshot #Lua 4 gauge
+        - ShellShotgun12_gaugeBuckshot
     capacity: 16
     soundRack:
       path: /Audio/_Corvax/Weapons/Guns/Cock/shotgun_cock.ogg # Corvax-Guns
@@ -34,12 +34,28 @@
   - type: Appearance
 
 - type: entity
-  id: ADTMagazineShotgunSlugXL
-  name: ammo drum XL (4 gauge) #Lua 4 gauge
-  parent: ADTBaseMagazineShotgunXL
+  id: Magazine12_gaugeXLEmpty
+  name: ammo drum XL (12 gauge shells any)
+  suffix: empty
+  parent: BaseMagazine12_gaugeXL
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmSlug #Lua 4 gauge
+    proto: null
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: Magazine12_gaugeXLSlug
+  categories: [ HideSpawnMenu ]
+  name: ammo drum XL (12 gauge slug)
+  parent: BaseMagazine12_gaugeXL
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun12_gaugeSlug
   - type: Sprite
     layers:
     - state: slug
@@ -48,12 +64,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: ADTMagazineShotgunXL
-  name: ammo drum XL (4 gauge) #Lua 4 gauge
-  parent: ADTBaseMagazineShotgunXL
+  id: Magazine12_gaugeXL
+  categories: [ HideSpawnMenu ]
+  name: ammo drum XL (12 gauge buckshot)
+  parent: BaseMagazine12_gaugeXL
   components:
   - type: BallisticAmmoProvider
-    proto: ShellShotgun23x75mmBuckshot #Lua 4 gauge
+    proto: ShellShotgun12_gaugeBuckshot
   - type: Sprite
     layers:
     - state: pellets

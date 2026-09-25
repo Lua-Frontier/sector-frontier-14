@@ -44,7 +44,7 @@ public readonly record struct AnnouncementLayoutOverride(
             return null;
 
         var trimmed = value.Trim();
-        return Color.TryFromHex(trimmed) != null ? trimmed : null;
+        return Color.TryFromHex(trimmed, out _) ? trimmed : null;
     }
 
     private static float? NormalizeScale(float? value)
@@ -241,7 +241,7 @@ public static class AnnouncementLayoutOverrides
             return null;
 
         var trimmed = value.Trim();
-        return Color.TryFromHex(trimmed) != null ? trimmed : null;
+        return Color.TryFromHex(trimmed, out _) ? trimmed : null;
     }
 
     private static float? ParseOptionalScale(string value)

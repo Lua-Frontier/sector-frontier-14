@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Shitmed.GoliathTentacle;
 
@@ -10,8 +9,7 @@ namespace Content.Shared._Shitmed.GoliathTentacle;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class GoliathTentacleComponent : Component
 {
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string? Action = "ActionGoliathTentacleCrew";
+    public EntProtoId? Action = "ActionGoliathTentacleCrew";
 
     [DataField, AutoNetworkedField]
     public EntityUid? ActionEntity;

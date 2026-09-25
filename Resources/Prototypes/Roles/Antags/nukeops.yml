@@ -62,9 +62,14 @@
 - type: startingGear
   id: SyndicateOperativeGearFull
   parent: SyndicateOperativeGearFullNoUplink
-  equipment:
-    pocket2: BaseUplinkRadio40TC
-
+  storage:
+    back:
+    - WeaponPistolViper
+    - PinpointerSyndicateNuclear
+    - DeathAcidifierImplanter
+    - ResearchAndDevelopmentServerSyndicateMachineCircuitboard
+    - ResearchComputerSyndicateCircuitboard
+    - ProtolatheMachineCircuitboard
 - type: chameleonOutfit
   id: NukeopsOutfit
   name: roles-antag-nuclear-operative-name
@@ -128,5 +133,3 @@
 - type: startingGear
   id: SyndicateLoneOperativeGearFull
   parent: SyndicateOperativeGearFull
-  equipment:
-    pocket2: BaseUplinkRadio60TC

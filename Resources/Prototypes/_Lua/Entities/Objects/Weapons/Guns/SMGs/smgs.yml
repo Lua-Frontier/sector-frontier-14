@@ -28,7 +28,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine9x19mmSubMachineGunFMJ
         insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
         priority: 2
@@ -37,7 +36,6 @@
             - Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge9x19mmFMJ #Lua 35 -> 9x19
         priority: 1
         whitelist:
           tags:

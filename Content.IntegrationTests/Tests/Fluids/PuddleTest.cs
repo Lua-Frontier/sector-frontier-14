@@ -5,6 +5,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
+using System.Linq;
 
 namespace Content.IntegrationTests.Tests.Fluids
 {
@@ -53,7 +54,7 @@ namespace Content.IntegrationTests.Tests.Fluids
             // Remove all tiles
             await server.WaitPost(() =>
             {
-                var tiles = mapSystem.GetAllTiles(grid.Owner, grid.Comp);
+                var tiles = mapSystem.GetAllTiles(grid.Owner, grid.Comp).ToList();
                 foreach (var tile in tiles)
                 {
                     mapSystem.SetTile(grid, tile.GridIndices, Tile.Empty);

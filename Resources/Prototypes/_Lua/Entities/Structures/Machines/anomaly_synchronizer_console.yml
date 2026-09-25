@@ -1,0 +1,56 @@
+- type: entity
+  parent: BaseComputerAiAccess
+  id: MachineAnomalySynchronizerConsole
+  name: anomaly synchronizer console
+  description: Links to an anomaly synchronizer. Shows anomaly scanner readouts and compresses a held anomaly into a core.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: rdcomp
+    - map: ["computerLayerKeys"]
+      state: rd_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AnomalySynchronizerConsole
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 100
+  - type: DeviceLinkSource
+    range: 30
+    ports:
+    - AnomalySynchronizerConsoleSender
+  - type: ActivatableUI
+    key: enum.AnomalySynchronizerConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AnomalySynchronizerConsoleUiKey.Key:
+        type: AnomalySynchronizerConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: Computer
+    board: AnomalySynchronizerConsoleCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 4.0
+    color: "#b53ca1"
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: AnomalySynchronizerConsoleCircuitboard
+  name: anomaly synchronizer console board
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: MachineAnomalySynchronizerConsole

@@ -2,7 +2,7 @@ using System.Numerics;
 using Content.Client.Actions.UI;
 using Content.Client.Cooldown;
 using Content.Shared.Alert;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;

@@ -32,7 +32,7 @@ public sealed class DeviceLinkingTest
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
         var compFact = server.ResolveDependency<IComponentFactory>();
-        var mapMan = server.ResolveDependency<IMapManager>();
+        var mapMan = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
         var mapSys = server.System<SharedMapSystem>();
         var deviceLinkSys = server.System<DeviceLinkSystem>();
 

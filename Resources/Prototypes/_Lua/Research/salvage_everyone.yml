@@ -1,0 +1,456 @@
+- type: technology
+  id: LuaShipMiningDrill
+  name: lua-research-technology-ship-mining-drill
+  entityIcon: WeaponShipMiningDrill
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Ussp
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ShipMiningDrillMachineCircuitboard
+- type: technology
+  id: NFAdvancedSalvageCyborg
+  name: nf-research-technology-advanced-salvage-cyborg
+  entityIcon: BorgModuleAdvancedMining
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - BorgModuleAdvancedMining
+- type: technology
+  id: NFAdvancedSalvageWeapons
+  name: nf-research-technology-advanced-salvage-weapons
+  entityIcon: WeaponCrusherGlaive
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - WeaponCrusherGlaive
+- type: technology
+  id: BluespaceAirTank
+  name: research-technology-bluespaceairtank
+  entityIcon: BluespaceAirTank
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - BluespaceAirTank
+- type: technology
+  id: SmallBluespaceAirTank
+  name: research-technology-smallbluespaceairtank
+  entityIcon: SmallBluespaceAirTank
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - SmallBluespaceAirTank
+- type: technology
+  id: NFBluespaceOreStorage
+  name: nf-research-technology-excavation-storage
+  entityIcon: OreBagOfHolding
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - OreBagOfHolding
+- type: technology
+  id: MiningDrill
+  name: research-technology-miningdrill
+  entityIcon: MiningDrill
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - MiningDrill
+- type: technology
+  id: MineralScannerEmpty
+  name: research-technology-mineralscannerempty
+  entityIcon: MineralScannerEmpty
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - MineralScannerEmpty
+- type: technology
+  id: NFHardsuitsField
+  name: nf-research-technology-hardsuits-field
+  entityIcon: ClothingOuterHardsuitSalvage
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitSalvage
+- type: technology
+  id: NFIndustrialOreProcessor
+  name: nf-research-technology-industrial-ore-processing
+  entityIcon: OreProcessorIndustrial
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - OreProcessorIndustrialMachineCircuitboard
+- type: technology
+  id: MiningDrillDiamond
+  name: research-technology-miningdrilldiamond
+  entityIcon: MiningDrillDiamond
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - MiningDrillDiamond
+- type: technology
+  id: AdvancedMineralScannerEmpty
+  name: research-technology-advancedmineralscannerempty
+  entityIcon: AdvancedMineralScannerEmpty
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - AdvancedMineralScannerEmpty
+- type: technology
+  id: NFOreProcessor
+  name: nf-research-technology-ore-processing
+  entityIcon: OreProcessor
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2000
+  recipeUnlocks:
+  - OreProcessorMachineCircuitboard
+- type: technology
+  id: NFSalvageGrapplingEquipment
+  name: nf-research-technology-salvage-grappling-equipment
+  entityIcon: WeaponGrapplingGun
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - WeaponGrapplingGun
+- type: technology
+  id: WeaponCrusher
+  name: research-technology-weaponcrusher
+  entityIcon: WeaponCrusher
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - WeaponCrusher
+- type: technology
+  id: WeaponCrusherDagger
+  name: research-technology-weaponcrusherdagger
+  entityIcon: WeaponCrusherDagger
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - WeaponCrusherDagger
+- type: technology
+  id: WeaponMagmiteCrusher
+  name: research-technology-weaponmagmitecrusher
+  entityIcon: WeaponMagmiteCrusher
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - WeaponMagmiteCrusher
+- type: technology
+  id: WeaponMagmiteCrusherGlaive
+  name: research-technology-weaponmagmitecrusherglaive
+  entityIcon: WeaponMagmiteCrusherGlaive
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 20000
+  recipeUnlocks:
+  - WeaponMagmiteCrusherGlaive
+- type: technology
+  id: LuaAdvancedSalvageJetBoots
+  name: research-technology-advanced-jet-boots
+  entityIcon: ClothingShoesBootsJetBoots
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - ClothingShoesBootsJetBoots
+- type: technology
+  id: NFHardsuitsExperimentalIndustrial
+  name: nf-research-technology-hardsuits-experimental-industrial
+  entityIcon: ClothingOuterHardsuitMaximPrototype
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - ClothingOuterHardsuitMaximPrototype
+- type: technology
+  id: ClothingOuterHardsuitSpatio
+  name: research-technology-clothingouterhardsuitspatio
+  entityIcon: ClothingOuterHardsuitSpatio
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitSpatio
+- type: technology
+  id: ClothingOuterHardsuitPilot
+  name: research-technology-clothingouterhardsuitpilot
+  entityIcon: ClothingOuterHardsuitPilot
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitPilot
+- type: technology
+  id: ClothingOuterHardsuitLuxury
+  name: research-technology-clothingouterhardsuitluxury
+  entityIcon: ClothingOuterHardsuitLuxury
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ClothingOuterHardsuitLuxury
+- type: technology
+  id: WeaponProtoKineticAccelerator
+  name: research-technology-weaponprotokineticaccelerator
+  entityIcon: WeaponProtoKineticAccelerator
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - NFWeaponPka
+- type: technology
+  id: WeaponPlasmaCutter
+  name: research-technology-weaponplasmacutter
+  entityIcon: WeaponPlasmaCutter
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponPlasmaCutter
+- type: technology
+  id: WeaponMagmiteAccelerator
+  name: research-technology-weaponmagmiteaccelerator
+  entityIcon: WeaponMagmiteAccelerator
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponMagmiteAccelerator
+- type: technology
+  id: WeaponProtoKineticAcceleratorSawn
+  name: research-technology-weaponprotokineticacceleratorsawn
+  entityIcon: WeaponProtoKineticAcceleratorSawn
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponProtoKineticAcceleratorSawn
+- type: technology
+  id: NFWeaponHoloflareGun
+  name: research-technology-nfweaponholoflaregun
+  entityIcon: NFWeaponHoloflareGun
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - NFWeaponHoloflareGun
+- type: technology
+  id: NFWeaponPkaCannon
+  name: research-technology-nfweaponpkacannon
+  entityIcon: NFWeaponPkaCannon
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - NFWeaponPkaCannon
+- type: technology
+  id: WeaponLaserPistolNF
+  name: research-technology-weaponlaserpistolnf
+  entityIcon: WeaponLaserPistolNF
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - WeaponLaserPistolNF
+- type: technology
+  id: WeaponFlareGun
+  name: research-technology-weaponflaregun
+  entityIcon: WeaponFlareGun
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponFlareGun
+- type: technology
+  id: WeaponFlareGunSecurity
+  name: research-technology-weaponflaregunsecurity
+  entityIcon: WeaponFlareGunSecurity
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3500
+  recipeUnlocks:
+  - WeaponFlareGunSecurity
+- type: technology
+  id: NFBasicPersonalPropulsion
+  name: nf-research-technology-basic-personal-propulsion
+  entityIcon: JetpackBlue
+  discipline: NFSalvage
+  tags:
+  - salvage
+  factions:
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - JetpackBlue

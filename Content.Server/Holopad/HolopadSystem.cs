@@ -4,13 +4,12 @@ using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Telephone;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Holopad;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Power;
 using Content.Shared.Silicons.StationAi;
@@ -18,6 +17,7 @@ using Content.Shared.Speech;
 using Content.Shared.Telephone;
 using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
+using Content.Lua.Shared.Holopad;
 using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Containers;
@@ -43,6 +43,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
     [Dependency] private readonly PvsOverrideSystem _pvs = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly StationRenameHolopadsSystem _renameHolopads = default!; // Frontier
+    [Dependency] private readonly IHolopadAdvertiseSystem _advertise = default!;
 
     private float _updateTimer = 1.0f;
     private const float UpdateTime = 1.0f;
@@ -59,8 +60,6 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         SubscribeLocalEvent<HolopadComponent, HolopadActivateProjectorMessage>(OnHolopadActivateProjector);
         SubscribeLocalEvent<HolopadComponent, HolopadStartBroadcastMessage>(OnHolopadStartBroadcast);
         SubscribeLocalEvent<HolopadComponent, HolopadStationAiRequestMessage>(OnHolopadStationAiRequest);
-
-        SubscribeLocalEvent<HolopadComponent, InteractHandEvent>(OnInteractHand);
 
         // Holopad telephone events
         SubscribeLocalEvent<HolopadComponent, TelephoneStateChangeEvent>(OnTelephoneStateChange);
@@ -183,8 +182,8 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         if (!_accessReaderSystem.IsAllowed(args.Actor, source))
             return;
 
-        if (source.Comp.ScriptedMessages.Count != 0)
-        { StartScriptedBroadcast(source, args.Actor); return; }
+        if (_advertise.TryStartScriptedBroadcast(source, args.Actor))
+            return;
 
         // AI broadcasting
         if (TryComp<StationAiHeldComponent>(args.Actor, out var stationAiHeld))
@@ -550,7 +549,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
                 }
             }
         }
-        UpdateScriptedBroadcasts();
+        _advertise.UpdateScriptedBroadcasts();
     }
 
     public void UpdateUIState(Entity<HolopadComponent> entity, TelephoneComponent? telephone = null)
@@ -587,7 +586,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         _userInterfaceSystem.SetUiState(entity.Owner, uiKey, new HolopadBoundInterfaceState(holopads));
     }
 
-    private void GenerateHologram(Entity<HolopadComponent> entity)
+    public void GenerateHologram(Entity<HolopadComponent> entity)
     {
         if (entity.Comp.Hologram != null ||
             entity.Comp.HologramProtoId == null)
@@ -615,7 +614,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
         }
     }
 
-    private void DeleteHologram(Entity<HolopadHologramComponent> hologram, Entity<HolopadComponent> attachedHolopad)
+    public void DeleteHologram(Entity<HolopadHologramComponent> hologram, Entity<HolopadComponent> attachedHolopad)
     {
         attachedHolopad.Comp.Hologram = null;
 
@@ -868,7 +867,7 @@ public sealed partial class HolopadSystem : SharedHolopadSystem
             Dirty(source);
     }
 
-    private void SetHolopadAmbientState(Entity<HolopadComponent> entity, bool isEnabled)
+    public void SetHolopadAmbientState(Entity<HolopadComponent> entity, bool isEnabled)
     {
         if (TryComp<PointLightComponent>(entity, out var pointLight))
             _pointLightSystem.SetEnabled(entity, isEnabled, pointLight);

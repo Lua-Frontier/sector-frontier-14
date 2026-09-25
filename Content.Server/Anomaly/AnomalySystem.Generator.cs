@@ -2,7 +2,7 @@ using Content.Server.Anomaly.Components;
 using Content.Server.Chat.Systems; // Frontier
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Components;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Anomaly;
 using Content.Shared.CCVar;
 using Content.Shared.Materials;

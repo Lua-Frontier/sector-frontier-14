@@ -9,7 +9,7 @@ using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Content.Shared._NF.CCVar; // Frontier
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
@@ -22,7 +22,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server._NF.Auth; // Frontier
-using Content.Server._Lua.SitePlayerSync;
+using Content.Lua.Common.SitePlayerSync;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -71,7 +71,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly MiniAuthManager _authManager = default!; //Frontier
-        [Dependency] private readonly SitePlayerSyncManager _sitePlayerSync = default!; // Lua
+        [Dependency] private readonly ISitePlayerSyncManager _sitePlayerSync = default!; // Lua
 
         private GameTicker? _ticker;
 

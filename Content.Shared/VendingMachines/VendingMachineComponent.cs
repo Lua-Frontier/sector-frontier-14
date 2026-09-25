@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 using Content.Shared._NF.Bank.Components; // Frontier
 using Content.Shared.Containers.ItemSlots; // Frontier
 
@@ -16,8 +16,8 @@ namespace Content.Shared.VendingMachines
         /// PrototypeID for the vending machine's inventory, see <see cref="VendingMachineInventoryPrototype"/>
         /// </summary>
         // Okay so not using ProtoId here is load-bearing because the ProtoId serializer will log errors if the prototype doesn't exist.
-        [DataField("pack", customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>), required: true)]
-        public string PackPrototypeId = string.Empty;
+        [DataField("pack", required: true)]
+        public ProtoId<VendingMachineInventoryPrototype> PackPrototypeId = string.Empty;
 
         /// <summary>
         /// Used by the server to determine how long the vending machine stays in the "Deny" state.
@@ -37,8 +37,7 @@ namespace Content.Shared.VendingMachines
         // Frontier: random ejection
         /// <summary>
         /// Used by the server to determine how many items the machine allowed to eject from random triggers.
-        /// </summary>
-        [DataField]
+        /// </summarProtoId<VendingMachineInventoryPrototype>     [DataField]
         public int EjectRandomMax = 2;
 
         /// <summary>

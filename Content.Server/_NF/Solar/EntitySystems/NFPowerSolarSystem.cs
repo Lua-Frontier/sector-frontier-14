@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Server._NF.Solar.Components;
-using Content.Server._Lua.Stargate.Components;
+using Content.Lua.Shared.Stargate;
 using Content.Shared;
 using Content.Shared.GameTicking;
 using Content.Shared.Light.Components;
@@ -14,6 +14,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._NF.Solar.EntitySystems;
 
@@ -26,7 +27,7 @@ namespace Content.Server._NF.Solar.EntitySystems;
 internal sealed class NFPowerSolarSystem : EntitySystem
 {
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
@@ -219,7 +220,7 @@ internal sealed class NFPowerSolarSystem : EntitySystem
 
     private bool ShouldCheckOcclusion(MapId mapId)
     {
-        var mapUid = _mapManager.GetMapEntityId(mapId);
+        var mapUid = _mapManager.GetMapOrInvalid(mapId);
         if (mapUid == EntityUid.Invalid)
             return true;
         return !HasComp<StargateDestinationComponent>(mapUid);
@@ -255,7 +256,7 @@ internal sealed class NFPowerSolarSystem : EntitySystem
         angularVelocity = SunAngularVelocity;
         sunlightLevel = 1f;
 
-        var mapUid = _mapManager.GetMapEntityId(mapId);
+        var mapUid = _mapManager.GetMapOrInvalid(mapId);
         if (mapUid == EntityUid.Invalid ||
             !TryComp<LightCycleComponent>(mapUid, out var cycle))
         { return false; }

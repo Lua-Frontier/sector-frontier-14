@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes; // Lua
 using Robust.Shared.Serialization;
+using Robust.Shared.Prototypes;
 using Content.Shared._NF.Shipyard.Prototypes; // Lua
 
 namespace Content.Shared._NF.Shipyard.BUI;

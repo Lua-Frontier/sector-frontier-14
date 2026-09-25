@@ -1,6 +1,6 @@
 using System.Net;
 using Content.Server.Database;
-using Content.Shared._Lua.Info;
+using Content.Lua.Shared.Info;
 using Content.Shared.CCVar;
 using Content.Shared.Info;
 using Robust.Shared.Configuration;

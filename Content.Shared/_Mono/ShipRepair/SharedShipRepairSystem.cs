@@ -11,6 +11,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Mono.ShipRepair;
 
@@ -20,7 +21,6 @@ public abstract partial class SharedShipRepairSystem : EntitySystem
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly ForceParentSystem _parent = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
     [Dependency] private readonly INetManager _net = default!; // .IsServer is kind of a crime but needed to not dupe code
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;

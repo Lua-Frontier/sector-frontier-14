@@ -28,7 +28,10 @@ public sealed class SandboxTest
             ContentAssemblies = new[]
             {
                 typeof(Shared.Entry.EntryPoint).Assembly,
-                typeof(Client.Entry.EntryPoint).Assembly
+                typeof(Client.Entry.EntryPoint).Assembly,
+                typeof(Lua.Shared.Entry.EntryPoint).Assembly,
+                typeof(Lua.Common.Entry.EntryPoint).Assembly,
+                typeof(Lua.Client.Entry.EntryPoint).Assembly,
             },
             Options = new GameControllerOptions { LoadConfigAndUserData = false }
         };

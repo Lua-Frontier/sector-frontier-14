@@ -11,6 +11,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -18,7 +19,7 @@ namespace Content.Server.Atmos.EntitySystems
     public sealed class AtmosDebugOverlaySystem : SharedAtmosDebugOverlaySystem
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
+        [Dependency] private readonly SharedMapSystem _mapManager = default!;
         [Dependency] private readonly IConfigurationManager _configManager = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly MapSystem _mapSystem = default!;

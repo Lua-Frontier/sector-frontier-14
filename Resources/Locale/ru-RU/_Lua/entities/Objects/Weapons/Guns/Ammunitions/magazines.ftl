@@ -1,2 +1,10 @@
 ent-ADTExtMagazineRifle = расширенный магазин хС-67 (5.56х45 мм)
     .desc = Четырёхрядный магазин повышенной ёмкости под патрон 5.56х45 мм. Используется в винтовке хС-67.
+ent-ADTExtMagazineRifleEmpty = расширенный магазин хС-67 (5.56х45 мм)
+    .suffix = пустой
+    .desc = Четырёхрядный магазин повышенной ёмкости под патрон 5.56х45 мм. Используется в винтовке хС-67.
+ent-Magazine12_gaugeXLEmpty = барабан XL (12 gauge)
+ent-Magazine12_gaugeXL = барабан XL (12 gauge, дробь)
+ent-Magazine12_gaugeXLSlug = барабан XL (12 gauge, пуля)
+    .suffix = пустой
+    .desc = Увеличенный барабан под 4 gauge.

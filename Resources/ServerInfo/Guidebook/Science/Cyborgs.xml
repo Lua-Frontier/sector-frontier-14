@@ -1,65 +1,26 @@
-<Document>
-  # Киборги
-  Киборги — гибриды человек-машина, созданные отделом [textlink="робототехники"  link="Robotics"] для разных задач на станции. Связанные строго соблюдаемыми [color=cyan]законами кремния[/color], они служат экипажу безусловно. [italic](Почти всегда.)[italic]
+﻿<Document>
+# Киборги
 
-  ## Базовые компоненты
-  <Box>
-    <GuideEntityEmbed Entity="CyborgEndoskeleton" Caption="Cyborg Endoskeleton"/>
-    <GuideEntityEmbed Entity="ExosuitFabricator" Caption="Exosuit Fabricator"/>
-  </Box>
-  Все киборги собираются на эндоскелете, который печатается на [color=#a4885c]Exosuit Fabricator[/color]. Дальнейшие шаги сборки смотрите через [color=#a4885c]осмотр[/color] эндоскелета. После сборки можно добавлять модули и более ёмкие батареи.
+Киборг - человек (или ИИ) в машинном теле. Науке нужно собрать корпус и вставить мозг.
 
-  Новому киборгу нужен [color=#a4885c]мозг[/color], совместимый с электроникой. Есть два типа, оба могут говорить сами по себе, если шасси демонтировано, заменено или подверглось незапланированному разбору.
-  - [color=#a4885c]Man-Machine Interface[/color] (MMI) — устройство связи биологического мозга с электроникой. Позволяет пострадавшим продолжить службу, даже потеряв тело.
-  - [color=#a4885c]Positronic Brain[/color] — полностью искусственный мозг со спонтанной активностью. Время на "распаковку" нейронов может сильно варьироваться, зато не нужно извлекать мозг из члена экипажа.
-  <Box>
-    <GuideEntityEmbed Entity="MMIFilled" Caption="Man-Machine Interface"/>
-    <GuideEntityEmbed Entity="PositronicBrain" Caption="Positronic Brain"/>
-  </Box>
-  Оба типа можно изготовить без дополнительных исследований.
+## Сборка (кратко)
+<Box>
+  <GuideEntityEmbed Entity="CyborgEndoskeleton"/>
+  <GuideEntityEmbed Entity="MMI"/>
+  <GuideEntityEmbed Entity="PositronicBrain"/>
+</Box>
 
-  ## Типы киборгов
-  После сборки киборгу нужно выбрать специализацию шасси под роль на станции. Это определяет стартовые и дополнительные модули, а также доступ к [color=#a4885c]департаментскому радиоканалу[/color]. Всем киборгам доступен [color=#D381C9]Science[/color] и [color=green]общестанционный[/color] каналы. Все киборги имеют [color=#a4885c]all-access[/color].
-  <Box>
-    <GuideEntityEmbed Entity="BorgChassisGeneric" Caption="Generic"/>
-    <GuideEntityEmbed Entity="BorgChassisEngineer" Caption="Engineering"/>
-    <GuideEntityEmbed Entity="BorgChassisMining" Caption="Salvage"/>
-    <GuideEntityEmbed Entity="BorgChassisJanitor" Caption="Janitor"/>
-    <GuideEntityEmbed Entity="BorgChassisService" Caption="Service"/>
-    <GuideEntityEmbed Entity="BorgChassisMedical" Caption="Medical"/>
-  </Box>
-  <Box>
-    [italic]Примеры разных типов киборгов[/italic]
-  </Box>
-  После специализации сменить тип нельзя — потребуется новое шасси. Мозг, батарея и совместимые модули можно перенести.
+1. Напечатайте детали на фабрикаторе.
+2. Соберите каркас и корпус нужного типа.
+3. Вставьте [bold]ММИ[/bold] с мозгом или [bold]позитронный мозг[/bold].
+4. Зарядите батарею и включите.
 
-  ## Модули
-  <Box>
-    <GuideEntityEmbed Entity="BorgModuleTool" Caption="Tool Cyborg Module"/>
-  </Box>
-  У киборгов нет рук, поэтому они не подбирают вещи как живые. Вместо этого оборудование предоставляют [color=#a4885c]модули[/color]. У каждого типа киборга свой стартовый набор; дополнительные модули печатаются на [color=#a4885c]Exosuit Fabricator[/color].
+## Модули
+Киборгу ставят [bold]модули[/bold] под роль: инженер, медик, шахтёр и т.д. Без нужного модуля многие действия недоступны.
 
-  [color=#a4885c]Универсальные[/color] модули добавляют гибкости: монтировка, GPS, работа с кабелями и прочее. [bold]Универсальное шасси вмещает до пяти дополнительных модулей.[/bold]
-  <Box>
-    <GuideEntityEmbed Entity="BorgModuleCable" Caption="Cable"/>
-    <GuideEntityEmbed Entity="BorgModuleFireExtinguisher" Caption="Fire Extinguisher"/>
-  </Box>
-  <Box>
-    [italic]Примеры универсальных модулей[/italic]
-  </Box>
+## Важно
+- Киборг - полноценный член экипажа, с ним нужно договариваться.
+- Без питания киборг отключится.
+- Ремонт и замена конечностей - через сварку, кабели и новые детали.
 
-  Для специальных задач есть [color=#a4885c]профильные[/color] модули: скан аномалий, стройка, реанимация или уборка проливов. Их корпуса обычно окрашены в цвета соответствующего отдела. Эти модули (кроме [color=#D381C9]научных[/color], подходящих любому шасси) ставятся только на свой тип шасси. [bold]Профильные шасси — инженерное, уборочное, сервисное, медицинское и утилизаторское — вмещают до трёх дополнительных модулей.[/bold]
-  <Box>
-    <GuideEntityEmbed Entity="BorgModuleAnomaly" Caption="Anomaly"/>
-    <GuideEntityEmbed Entity="BorgModuleRCD" Caption="RCD"/>
-    <GuideEntityEmbed Entity="BorgModuleMining" Caption="Mining"/>
-    <GuideEntityEmbed Entity="BorgModuleCleaning" Caption="Cleaning"/>
-    <GuideEntityEmbed Entity="BorgModuleService" Caption="Service"/>
-    <GuideEntityEmbed Entity="BorgModuleChemical" Caption="Chemical"/>
-  </Box>
-  <Box>
-    [italic]Примеры профильных модулей. Обратите внимание на цвета корпусов и плат.
-  </Box>
-  Дополнительные модули с продвинутыми возможностями открываются через новые [textlink="технологии"  link="Technologies"], исследуемые учёными.
 </Document>
-

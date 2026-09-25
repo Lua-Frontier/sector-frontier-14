@@ -764,17 +764,17 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - MedicalTechFabFlatpack
-    - StasisBedFlatpack
-    - ChemMasterFlatpack
-    - MachineElectrolysisUnitFlatpack
-    - BaseGasCondenserFlatpack
-    - MachineCentrifugeFlatpack
-    - ChemistryHotplateFlatpack
-    - KitchenReagentGrinderFlatpack
-    - ComputerCrewMonitoringFlatpack
-    - VendingMachineMedicalFlatpack
-    - VendingMachineWallMedicalFlatpack
-    - VendingMachineChemicalsFlatpack
+    - MedicalTechFabCircuitboard
+    - StasisBedMachineCircuitboard
+    - ChemMasterMachineCircuitboard
+    - ElectrolysisUnitMachineCircuitboard
+    - CondenserMachineCircuitBoard
+    - CentrifugeMachineCircuitboard
+    - HotplateMachineCircuitboard
+    - ReagentGrinderMachineCircuitboard
+    - ComputerCrewMonitoring
+    - VendingMachineMedicalMachineCircuitboard
+    - VendingMachineWallMedical
+    - VendingMachineChemicalsMachineCircuitboard
     chance: 0.95
     offset: 0.0

@@ -1,7 +1,7 @@
 using System.Threading;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
-using Content.Shared._Lua.RoundEnd;
+using Content.Lua.Shared.RoundEnd;
 using Content.Shared.CCVar;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;

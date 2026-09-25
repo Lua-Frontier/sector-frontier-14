@@ -1,0 +1,12 @@
+ent-SolarAssemblyCircuitboard = solar assembly machine board
+    .desc = A machine printed circuit board for solar assembly parts.
+ent-AirlockCircuitboard = airlock machine board
+    .desc = A machine printed circuit board for an airlock.
+ent-AirlockGlassCircuitboard = glass airlock machine board
+    .desc = A machine printed circuit board for a glass airlock.
+ent-AirlockShuttleCircuitboard = docking airlock machine board
+    .desc = A machine printed circuit board for a docking airlock.
+ent-AirlockGlassShuttleCircuitboard = glass docking airlock machine board
+    .desc = A machine printed circuit board for a glass docking airlock.
+ent-TeslaGroundingRodCircuitboard = grounding rod machine board
+    .desc = A machine printed circuit board for a tesla grounding rod.

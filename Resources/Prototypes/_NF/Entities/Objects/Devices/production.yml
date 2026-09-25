@@ -22,7 +22,7 @@
     - type: Sprite
       state: supply
     - type: MachineBoard
-      prototype: SalvageTechfabNF
+      prototype: Autolathe
       requirements:
         MatterBin: 2
         Manipulator: 2
@@ -44,7 +44,7 @@
       sprite: _NF/Objects/Misc/module.rsi
       state: nfsd # dumb, but we don't really have a merc module at the moment
     - type: MachineBoard
-      prototype: MercenaryTechFab
+      prototype: Protolathe
       requirements:
         MatterBin: 2
         Manipulator: 2
@@ -138,7 +138,7 @@
       sprite: _NF/Objects/Misc/module.rsi
       state: nfsd
     - type: MachineBoard
-      prototype: NfsdTechFab
+      prototype: Protolathe
 
 # Thrusters
 - type: entity
@@ -199,6 +199,33 @@
         defaultPrototype: ArmorPlateEconomy1
 
 - type: entity
+  id: ThrusterMediumNfsdMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: NFSD medium thruster machine board
+  description: A circuitboard for an NFSD medium thruster. Requires a 2x2 machine frame.
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Misc/module.rsi
+    state: nfsd
+  - type: MachineBoard
+    prototype: ThrusterMediumNfsd
+    frameSize: 2x2
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Steel: 20
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 4
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
   id: ThrusterUSSPMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: USSP thruster machine board
@@ -225,6 +252,59 @@
       Capacitor: 3
     stackRequirements:
       Steel: 5
+
+- type: entity
+  id: ThrusterMediumRogueMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Rogue medium thruster machine board
+  description: A circuitboard for a Rogue medium thruster. Requires a 2x2 machine frame.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrustermediumRogue
+    frameSize: 2x2
+    requirements:
+      Capacitor: 4
+    stackRequirements:
+      Steel: 20
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 1
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 4
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 4
+        defaultPrototype: ArmorPlateEconomy1
+
+- type: entity
+  id: ThrusterLargeRogueMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: Rogue large thruster machine board
+  description: A circuitboard for a Rogue large thruster. Requires a 3x3 machine frame.
+  components:
+  - type: Sprite
+    state: supply
+  - type: MachineBoard
+    prototype: ThrusterLargeRogue
+    frameSize: 3x3
+    requirements:
+      Capacitor: 6
+    stackRequirements:
+      Steel: 40
+      Plasteel: 10
+    tagRequirements:
+      ComponentBrickEconomy1:
+        amount: 2
+        defaultPrototype: ComponentBrickEconomy1
+      ElectromagnetEconomy1:
+        amount: 6
+        defaultPrototype: ElectromagnetEconomy1
+      ArmorPlateEconomy1:
+        amount: 6
+        defaultPrototype: ArmorPlateEconomy1
 
 - type: entity
   id: ThrusterPiratesMachineCircuitboard

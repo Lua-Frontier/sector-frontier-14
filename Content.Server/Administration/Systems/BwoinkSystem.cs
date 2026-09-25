@@ -5,8 +5,8 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Content.Server._Lua.ChatFilter; // Lua
-using Content.Server._Lua.Reputation;
+using Content.Lua.Common.ChatFilter; // Lua
+using Content.Lua.Shared.Reputation;
 using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Database;
@@ -51,9 +51,9 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         [Dependency] private readonly IServerPreferencesManager _preferencesManager = default!;
         [Dependency] private readonly DiscordChatLink _discordChatLink = default!;
-        [Dependency] private readonly ChatFilterManager _chatFilter = default!; // Lua
+        [Dependency] private readonly IChatFilterManager _chatFilter = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
-        [Dependency] private readonly ReputationSystem _reputation = default!;
+        [Dependency] private readonly IReputationSystem _reputation = default!;
 
         [GeneratedRegex(@"^https://(?:(?:canary|ptb)\.)?discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -432,7 +432,7 @@ namespace Content.Server.Administration.Systems
                     return;
                 }
                 var summary = await _dbManager.GetReputationSummary(record.Kind, record.TargetUserId);
-                _reputation.SetCachedReputation(record.Kind, record.TargetUserId, new ReputationSystem.CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes));
+                _reputation.SetCachedReputation(record.Kind, record.TargetUserId, new CachedReputation(summary.Score, summary.PositiveVotes, summary.NegativeVotes));
                 state.RatingSubmitted = true;
                 SendSystemMessage(channel, Loc.GetString("bwoink-system-admin-rating-submitted", ("admin", state.LastAdminName)));
                 BroadcastConversationState(channel);

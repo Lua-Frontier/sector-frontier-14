@@ -170,3 +170,29 @@
     - state: base-b
       map: ["enum.GunVisualLayers.Base"]
   - type: Appearance
+
+- type: entity
+  parent: BaseAmmoBox357_magnum
+  id: AmmoBox357_magnumOverpressure
+  name: ammunition box (.357 magnum overpressure)
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge357_magnumOverpressure
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: HP
+
+- type: entity
+  parent: BaseAmmoBox357_magnum
+  id: AmmoBox357_magnumEmp
+  name: ammunition box (.357 magnum emp)
+  components:
+  - type: BallisticAmmoProvider
+    proto: Cartridge357_magnumEmp
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: emp

@@ -121,7 +121,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-    - id: Magazine45_ACPPistolHP
+    - id: Magazine45_ACPPistolEmpty
       prob: 0.59
     - id: Magazine45_ACPPistolEmpty
       prob: 0.59
@@ -173,7 +173,7 @@
     items:
     - id: AmmoBox556x45mmHP #Lua 20 -> 556x45
       prob: 0.4
-    - id: NFMagazineClipRifle556x45 #Lua 20 -> 556x45
+    - id: NFMagazineClipRifle556x45Empty
       prob: 0.59
     - id: NFMagazineClipRifle556x45Empty #Lua 20 -> 556x45
       prob: 0.59
@@ -275,7 +275,7 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: SpeedLoader556x45mmFMJ
+    - id: SpeedLoader556x45mmEmpty
       prob: 0.59
     - id: AmmoBox556x45mmFMJ
       prob: 0.59
@@ -387,7 +387,7 @@
     state: icon
   - type: SpawnItemsOnUse
     items:
-    - id: Magazine762x39mmHP #Lua 30 -> 762x39
+    - id: Magazine762x39mmEmpty
       prob: 0.4
     - id: AmmoBox762x39mmHP #Lua 30 -> 762x39
       prob: 0.3

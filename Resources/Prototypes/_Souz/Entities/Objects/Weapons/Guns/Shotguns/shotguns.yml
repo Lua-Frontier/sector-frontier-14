@@ -1,12 +1,10 @@
 # source: Entities/Objects/Weapons/Guns/Shotguns/shotguns.yml
 - type: entity
-  parent: WeaponShotgunEnforcerRubber
-  id: USSPSFWeaponShotgunEnforcerRubber
+  parent: WeaponShotgunEnforcer
+  id: USSPSFWeaponShotgunEnforcer
   categories: [ USSP ]
-  suffix: USSP, Non-Lethal
+  suffix: USSP
   components:
-  - type: BallisticAmmoProvider
-    proto: ShellShotgun12_gaugeBeanbag
   - type: Gun # Corvax-Guns
     soundGunshot:
       path: /Audio/_Corvax/Weapons/Guns/Gunshots/shotgun_metal.ogg

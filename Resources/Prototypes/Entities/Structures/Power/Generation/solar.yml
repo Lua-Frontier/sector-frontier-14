@@ -306,6 +306,23 @@
     node: solarpaneluranium_broken
 
 - type: entity
+  parent: BaseItem
+  id: SolarAssemblyPart
+  name: solar assembly parts
+  description: Parts for constructing a solar assembly. Anchor to a wire to start building a solar panel.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Structures/Power/Generation/solar_panel.rsi
+    state: solar_assembly
+  - type: Tag
+    tags:
+    - SolarAssemblyPart
+  - type: StaticPrice
+    price: 25
+
+- type: entity
   id: SolarAssembly
   name: solar assembly
   description: A solar assembly. Anchor to a wire to start building a solar panel.

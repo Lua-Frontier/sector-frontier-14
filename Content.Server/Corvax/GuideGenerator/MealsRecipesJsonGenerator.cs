@@ -101,7 +101,7 @@ public sealed class MealsRecipesJsonGenerator
                 if (effect.GetType().Equals(typeof(CreateEntityReactionEffect)))
                 {
                     var trueEffect = (CreateEntityReactionEffect) effect;
-                    if (Regex.Match(trueEffect.Entity.ToLower().Trim(), @".*[Ff]ood*").Success) if (!mixableRecipes.ContainsKey(react.Id))
+                    if (Regex.Match(trueEffect.Entity.Id.ToLower().Trim(), @".*[Ff]ood*").Success) if (!mixableRecipes.ContainsKey(react.Id))
                         {
                             mixableRecipes[react.Id] = new Dictionary<string, string>();
                             mixableRecipes[react.Id]["id"] = react.Id;

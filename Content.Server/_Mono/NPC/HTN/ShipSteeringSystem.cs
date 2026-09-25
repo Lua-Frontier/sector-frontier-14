@@ -1,5 +1,5 @@
-using Content.Server._Lua.Shuttles.Components;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles.Components;
+using Content.Lua.Shared.Shuttles;
 using Content.Server.Physics.Controllers;
 using Content.Shared._Mono;
 using Content.Shared._Mono.SpaceArtillery;
@@ -9,18 +9,19 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using System.Numerics;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._Mono.NPC.HTN;
 
 public sealed partial class ShipSteeringSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly SharedMapSystem _mapMan = default!;
     [Dependency] private readonly MoverController _mover = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     private EntityQuery<MapGridComponent> _gridQuery;
     private EntityQuery<ProjectileGridPhaseComponent> _phaseQuery;
     private EntityQuery<PhysicsComponent> _physQuery;

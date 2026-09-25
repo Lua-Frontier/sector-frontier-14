@@ -16,7 +16,8 @@ public class ShuttleRecord(
     uint purchasePrice,
     string vesselPrototypeId,
     TimeSpan? timeOfPurchase = null,
-    TimeSpan? timeOfSale = null
+    TimeSpan? timeOfSale = null,
+    int? buyerBalance = null
 )
 {
     [ViewVariables]
@@ -54,4 +55,7 @@ public class ShuttleRecord(
 
     [ViewVariables]
     public bool PurchasedWithVoucher { get; set; } = purchasedWithVoucher;
+
+    [ViewVariables]
+    public int? BuyerBalance { get; set; } = buyerBalance;
 }

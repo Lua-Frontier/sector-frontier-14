@@ -5,6 +5,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Screens;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.Viewport;
+using Content.Lua.UIKit.Performance;
 using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -13,7 +14,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
-using Content.Client._Lua.UserInterface.Controls; // Lua
 
 namespace Content.Client.Gameplay
 {
@@ -51,7 +51,9 @@ namespace Content.Client.Gameplay
             // Add the hand-item overlay.
             _overlayManager.AddOverlay(new ShowHandItemOverlay());
 
-            _fpsCounter = new HudPerfLabel(_gameTiming, EntitySystem.Get<_Lua.Tick.ClientServerPerfSystem>(), _configurationManager); // Lua fps mod
+            if (IoCManager.Instance!.TryResolveType<IHudPerfLabelFactory>(out var hudPerfFactory))
+                _fpsCounter = hudPerfFactory.Create(_gameTiming, _configurationManager);
+            else _fpsCounter = new Control();
             UserInterfaceManager.PopupRoot.AddChild(_fpsCounter);
             _fpsCounter.Visible = _configurationManager.GetCVar(CCVars.HudFpsCounterVisible);
             _configurationManager.OnValueChanged(CCVars.HudFpsCounterVisible, (show) => { _fpsCounter.Visible = show; });

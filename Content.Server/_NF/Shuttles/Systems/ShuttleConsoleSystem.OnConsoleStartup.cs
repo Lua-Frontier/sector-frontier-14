@@ -3,7 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Server.Shuttles.Components;
-using Content.Shared._Lua.Shuttles.Components; // Lua
+using Content.Lua.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.BUIStates;
 
 namespace Content.Server.Shuttles.Systems;

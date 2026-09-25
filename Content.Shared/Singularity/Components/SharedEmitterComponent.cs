@@ -4,8 +4,6 @@ using Content.Shared.DeviceLinking;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared.Singularity.Components;
 
@@ -28,8 +26,8 @@ public sealed partial class EmitterComponent : Component
     /// <summary>
     /// The entity that is spawned when the emitter fires.
     /// </summary>
-    [DataField("boltType", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string BoltType = "NFEmitterBolt"; // Frontier: use NF prefix
+    [DataField("boltType")]
+    public EntProtoId BoltType = "NFEmitterBolt"; // Frontier: use NF prefix
 
     [DataField]
     public List<EntProtoId> SelectableTypes = new();
@@ -94,8 +92,8 @@ public sealed partial class EmitterComponent : Component
     /// <summary>
     /// The machine part that affects burst delay.
     /// </summary>
-    [DataField("machinePartFireRate", customTypeSerializer: typeof(PrototypeIdSerializer<MachinePartPrototype>))]
-    public string MachinePartFireRate = "Capacitor";
+    [DataField("machinePartFireRate")]
+    public ProtoId<MachinePartPrototype> MachinePartFireRate = "Capacitor";
 
     /// <summary>
     /// The visual state that is set when the emitter is turned on
@@ -112,26 +110,26 @@ public sealed partial class EmitterComponent : Component
     /// <summary>
     /// Signal port that turns on the emitter.
     /// </summary>
-    [DataField("onPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OnPort = "On";
+    [DataField("onPort")]
+    public ProtoId<SinkPortPrototype> OnPort = "On";
 
     /// <summary>
     /// Signal port that turns off the emitter.
     /// </summary>
-    [DataField("offPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string OffPort = "Off";
+    [DataField("offPort")]
+    public ProtoId<SinkPortPrototype> OffPort = "Off";
 
     /// <summary>
     /// Signal port that toggles the emitter on or off.
     /// </summary>
-    [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-    public string TogglePort = "Toggle";
+    [DataField("togglePort")]
+    public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 
     /// <summary>
     /// Map of signal ports to entity prototype IDs of the entity that will be fired.
     /// </summary>
-    [DataField("setTypePorts", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<string, SinkPortPrototype>))]
-    public Dictionary<string, string> SetTypePorts = new();
+    [DataField("setTypePorts")]
+    public Dictionary<ProtoId<SinkPortPrototype>, string> SetTypePorts = new();
 }
 
 [NetSerializable, Serializable]

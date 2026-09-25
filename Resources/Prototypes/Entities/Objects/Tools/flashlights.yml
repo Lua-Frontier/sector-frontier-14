@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: flashlight
   parent: [BaseItem, RecyclableItemDeviceSmall] # Frontier: added RecyclableItemDeviceSmall
   id: FlashlightLantern
@@ -60,7 +60,7 @@
     storedRotation: -90
   - type: PointLight
     enabled: false
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: LightMaskCone
     autoRot: true
     radius: 6
     netsync: false

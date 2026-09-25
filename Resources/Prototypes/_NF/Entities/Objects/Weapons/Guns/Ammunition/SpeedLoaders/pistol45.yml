@@ -42,11 +42,12 @@
 
 - type: entity
   id: NFSpeedLoaderPistol45Overpressure
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.45 pistol, overpressure)"
   parent: NFBaseSpeedLoaderPistol45
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgePistol45Overpressure
+    proto: Cartridge357_magnumOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -67,3 +68,18 @@
       - state: inhand-right-ammo
       - state: inhand-right-stripe
         color: "#ffff00"
+
+- type: entity
+  id: NFSpeedLoaderPistol45Empty
+  name: "speed loader (.45 pistol)"
+  suffix: empty
+  parent: NFBaseSpeedLoaderPistol45
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: base-6
+      map: ["enum.GunVisualLayers.Mag"]

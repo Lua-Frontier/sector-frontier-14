@@ -1,10 +1,10 @@
-using Content.Server._Lua.Language; // Lua
+using Content.Shared.Language;
+using Content.Lua.Shared.Language;
 using Content.Server._NF.Radio; // Frontier
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Radio.Components;
-using Content.Shared._Lua.Language;
 using Content.Shared.Access.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -38,7 +38,7 @@ public sealed class RadioSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Lua
+    [Dependency] private readonly ILanguageSystem _language = default!;
 
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
@@ -228,7 +228,6 @@ public sealed class RadioSystem : EntitySystem
         {
             if (!radio.ReceiveAllChannels)
             {
-                radio.Channels ??= new HashSet<string>();
                 if (!radio.Channels.Contains(channel.ID)) continue;
                 if (TryComp<IntercomComponent>(receiver, out var intercom))
                 {

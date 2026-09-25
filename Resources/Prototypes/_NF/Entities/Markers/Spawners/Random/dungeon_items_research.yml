@@ -280,21 +280,21 @@
         color: red
   - type: RandomSpawner
     prototypes:
-    - ExosuitFabricatorFlatpack
-    - CircuitImprinterFlatpack
-    - ProtolatheFlatpack
-    - MachineArtifactAnalyzerFlatpack
-    - MachineAnomalyVesselFlatpack
-    - MachineAPEFlatpack
-    - MachineArtifactCrusherFlatpack
-    - ComputerResearchAndDevelopmentFlatpack
-    - ResearchAndDevelopmentServerFlatpack
-    - MachineAnomalyVesselExperimentalFlatpack
-    - MachineAnomalyVesselFlatpack
+    - ExosuitFabricatorMachineCircuitboard
+    - CircuitImprinterMachineCircuitboard
+    - ProtolatheMachineCircuitboard
+    - ArtifactAnalyzerMachineCircuitboard
+    - AnomalyVesselCircuitboard
+    - APECircuitboard
+    - ArtifactCrusherMachineCircuitboard
+    - ResearchComputerCircuitboard
+    - ResearchAndDevelopmentServerMachineCircuitboard
+    - AnomalyVesselExperimentalCircuitboard
+    - AnomalyVesselCircuitboard
     chance: 0.95
     offset: 0.0
     rarePrototypes:
-    - MachineAnomalyGeneratorFlatpack
+    - MachineAnomalyGenerator
     - StargateAddressDisk
     rareChance: 0.08
 

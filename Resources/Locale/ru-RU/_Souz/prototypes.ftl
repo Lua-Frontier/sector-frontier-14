@@ -1418,7 +1418,7 @@ ent-USSPSFWeaponFlareGunSecurity = сигнальное ружьё
     .suffix = СССП
 
 # from Resources/Locale/ru-RU/ss14-ru/prototypes/entities/objects/weapons/guns/shotguns/shotguns.ftl
-ent-USSPSFWeaponShotgunEnforcerRubber = { ent-WeaponShotgunEnforcer }
+ent-USSPSFWeaponShotgunEnforcer = { ent-WeaponShotgunEnforcer }
     .desc = { ent-WeaponShotgunEnforcer.desc }
     .suffix = СССП, Дробовик, Травматический
 

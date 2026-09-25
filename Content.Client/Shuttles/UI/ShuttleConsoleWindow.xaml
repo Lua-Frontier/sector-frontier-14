@@ -1,8 +1,6 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       xmlns:ui="clr-namespace:Content.Client.Shuttles.UI"
-                      xmlns:starmap="clr-namespace:Content.Client._Lua.Starmap"
-                      xmlns:exp="clr-namespace:Content.Client._Lua.Expedition.UI"
                       Title="{Loc 'shuttle-console-window-title'}"
                       SetSize="1260 780"
                       MinSize="1260 780">
@@ -51,9 +49,7 @@
                       Margin="5">
             <ui:NavScreen Name="NavContainer" Access="Public" Visible="False"/>
             <ui:MapScreen Name="MapContainer" Visible="False"/>
-            <starmap:StarMapScreen Name="StarMapContainer" Visible="False"/>
             <ui:DockingScreen Name="DockContainer" Visible="False"/>
-            <exp:ExpScreen Name="ExpContainer" Visible="False"/>
         </BoxContainer>
     </BoxContainer>
 </controls:FancyWindow>

@@ -1,4 +1,5 @@
 using Content.Shared.Access.Systems;
+using Content.Shared._Mono.Company;
 using Content.Shared.StationRecords;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -33,6 +34,9 @@ public sealed partial class AccessReaderComponent : Component
     /// </summary>
     [DataField("access")]
     public List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists = new();
+
+    [DataField("accessCompanies")]
+    public HashSet<ProtoId<CompanyPrototype>> AccessCompanies = new();
 
     /// <summary>
     /// A list of <see cref="StationRecordKey"/>s that grant access. Only a single matching key is required to gain access.
@@ -96,15 +100,17 @@ public sealed class AccessReaderComponentState : ComponentState
     public bool Enabled;
     public HashSet<ProtoId<AccessLevelPrototype>> DenyTags;
     public List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists;
+    public HashSet<ProtoId<CompanyPrototype>> AccessCompanies;
     public List<(NetEntity, uint)> AccessKeys;
     public Queue<AccessRecord> AccessLog;
     public int AccessLogLimit;
 
-    public AccessReaderComponentState(bool enabled, HashSet<ProtoId<AccessLevelPrototype>> denyTags, List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists, List<(NetEntity, uint)> accessKeys, Queue<AccessRecord> accessLog, int accessLogLimit)
+    public AccessReaderComponentState(bool enabled, HashSet<ProtoId<AccessLevelPrototype>> denyTags, List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists, HashSet<ProtoId<CompanyPrototype>> accessCompanies, List<(NetEntity, uint)> accessKeys, Queue<AccessRecord> accessLog, int accessLogLimit)
     {
         Enabled = enabled;
         DenyTags = denyTags;
         AccessLists = accessLists;
+        AccessCompanies = accessCompanies;
         AccessKeys = accessKeys;
         AccessLog = accessLog;
         AccessLogLimit = accessLogLimit;

@@ -27,12 +27,25 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
 
         SubscribeLocalEvent<AnalysisConsoleComponent, NewLinkEvent>(OnNewLink);
         SubscribeLocalEvent<AnalysisConsoleComponent, PortDisconnectedEvent>(OnPortDisconnected);
+        SubscribeLocalEvent<ArtifactAnalyzerComponent, LinkAttemptEvent>(OnAnalyzerLinkAttempt);
+    }
+
+    private void OnAnalyzerLinkAttempt(Entity<ArtifactAnalyzerComponent> ent, ref LinkAttemptEvent args)
+    {
+        if (args.Sink != ent.Owner)
+            return;
+
+        if (ent.Comp.Console is { } existing && existing != args.Source && Exists(existing))
+            args.Cancel();
     }
 
     private void OnItemPlaced(Entity<ArtifactAnalyzerComponent> ent, ref ItemPlacedEvent args)
     {
         ent.Comp.CurrentArtifact = args.OtherEntity;
         Dirty(ent);
+
+        var ev = new ArtifactAnalyzerSampleChangedEvent(args.OtherEntity);
+        RaiseLocalEvent(ent, ref ev);
     }
 
     private void OnItemRemoved(Entity<ArtifactAnalyzerComponent> ent, ref ItemRemovedEvent args)
@@ -42,6 +55,9 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
 
         ent.Comp.CurrentArtifact = null;
         Dirty(ent);
+
+        var ev = new ArtifactAnalyzerSampleChangedEvent(null);
+        RaiseLocalEvent(ent, ref ev);
     }
 
     private void OnMapInit(Entity<ArtifactAnalyzerComponent> ent, ref MapInitEvent args)
@@ -71,6 +87,9 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
         analyzer.Console = ent;
         Dirty(args.Sink, analyzer);
         Dirty(ent);
+
+        var ev = new AnalysisConsoleAnalyzerLinkChangedEvent();
+        RaiseLocalEvent(ent, ref ev);
     }
 
     private void OnPortDisconnected(Entity<AnalysisConsoleComponent> ent, ref PortDisconnectedEvent args)
@@ -88,6 +107,9 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
 
         ent.Comp.AnalyzerEntity = null;
         Dirty(ent);
+
+        var ev = new AnalysisConsoleAnalyzerLinkChangedEvent();
+        RaiseLocalEvent(ent, ref ev);
     }
 
     public bool TryGetAnalyzer(Entity<AnalysisConsoleComponent> ent, [NotNullWhen(true)] out Entity<ArtifactAnalyzerComponent>? analyzer)

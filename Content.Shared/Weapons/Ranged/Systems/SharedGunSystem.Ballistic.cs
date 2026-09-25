@@ -7,6 +7,7 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -363,7 +364,105 @@ public abstract partial class SharedGunSystem
         UpdateAmmoCount(entity.Owner);
         Dirty(entity);
     }
+
+    public bool TryGetBallisticInfo(EntityUid uid, out BallisticAmmoInfo info, BallisticAmmoProviderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+        {
+            info = default;
+            return false;
+        }
+
+        info = DescribeBallistic(uid, component);
+        return true;
+    }
+
+    public bool TryGetPrototypeBallisticInfo(EntityPrototype prototype, out BallisticAmmoInfo info)
+    {
+        if (!prototype.TryGetComponent(out BallisticAmmoProviderComponent? component, EntityManager.ComponentFactory))
+        {
+            info = default;
+            return false;
+        }
+
+        var proto = component.Proto;
+        info = new BallisticAmmoInfo(proto, component.Capacity, 0, component.Whitelist, component.InfiniteUnspawned, proto != null);
+        return true;
+    }
+
+    public bool TryAddUnspawnedRound(EntityUid uid, EntProtoId cartridge, BallisticAmmoProviderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return false;
+
+        if (component.InfiniteUnspawned || component.Capacity <= 0)
+            return false;
+
+        if (GetBallisticShots(component) >= component.Capacity)
+            return false;
+
+        if (component.Proto is { } current && current != cartridge)
+            return false;
+
+        if (component.Entities.Count > 0)
+        {
+            var existing = MetaData(component.Entities[^1]).EntityPrototype;
+            if (existing != null && existing.ID != cartridge.Id)
+                return false;
+        }
+
+        if (component.Proto == null)
+        {
+            component.Proto = cartridge;
+            DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Proto));
+        }
+
+        component.UnspawnedCount++;
+        DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));
+        UpdateBallisticAppearance(uid, component);
+        UpdateAmmoCount(uid);
+        return true;
+    }
+
+    public bool TryAssignBallisticProto(EntityUid uid, EntProtoId cartridge, BallisticAmmoProviderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return false;
+
+        if (component.InfiniteUnspawned || component.Entities.Count > 0 || GetBallisticShots(component) > 0)
+            return false;
+
+        if (component.Proto == cartridge)
+            return true;
+
+        component.Proto = cartridge;
+        DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Proto));
+        UpdateBallisticAppearance(uid, component);
+        return true;
+    }
+
+    private BallisticAmmoInfo DescribeBallistic(EntityUid uid, BallisticAmmoProviderComponent component)
+    {
+        EntProtoId? proto = component.Proto;
+        var locked = proto != null || component.Entities.Count > 0;
+        if (proto == null && component.Entities.Count > 0)
+            proto = MetaData(component.Entities[^1]).EntityPrototype?.ID;
+
+        return new BallisticAmmoInfo(
+            proto,
+            component.Capacity,
+            GetBallisticShots(component),
+            component.Whitelist,
+            component.InfiniteUnspawned,
+            locked);
+    }
 }
+
+public readonly record struct BallisticAmmoInfo(
+    EntProtoId? Proto,
+    int Capacity,
+    int Count,
+    EntityWhitelist? Whitelist, bool Infinite, bool TypeLocked);
 
 /// <summary>
 /// DoAfter event for filling one ballistic ammo provider from another.

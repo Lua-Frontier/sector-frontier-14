@@ -22,6 +22,7 @@
     minAngle: -24
     maxAngle: -20
   - type: Gun # L6 LMG stats adjusted
+    examineCaliber: gun-examine-caliber-76239
     minAngle: 24
     maxAngle: 45
     angleIncrease: 2 # Mono
@@ -43,7 +44,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: Magazine762x39mmBox
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -52,7 +52,6 @@
             - Magazine762x39mmBox
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:

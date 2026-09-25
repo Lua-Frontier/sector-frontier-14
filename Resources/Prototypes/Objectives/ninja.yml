@@ -27,21 +27,6 @@
   - type: DoorjackCondition
 
 - type: entity
-  parent: BaseNinjaObjective
-  id: StealResearchObjective
-  description: Your gloves can be used to hack a research server and steal its precious data. If science has been slacking you'll have to get to work.
-  components:
-  - type: Objective
-    icon:
-      sprite: Structures/Machines/server.rsi
-      state: server
-  - type: NumberObjective
-    min: 9
-    max: 13
-    title: objective-condition-steal-research-title
-  - type: StealResearchCondition
-
-- type: entity
   parent: [BaseNinjaObjective, BaseCodeObjective]
   id: SpiderChargeObjective
   description: This bomb can be detonated in a specific location. Note that the bomb will not work anywhere else!

@@ -151,3 +151,18 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#888888"
+
+- type: entity
+  id: Cartridge9x19mmOverpressure
+  name: cartridge (9x19mm overpressure)
+  parent: BaseCartridge9x19mm
+  components:
+  - type: CartridgeAmmo
+    proto: NFBulletPistol35Overpressure
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff8d00"

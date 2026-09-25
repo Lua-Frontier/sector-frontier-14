@@ -24,6 +24,7 @@
   - type: LitOnPowered
   - type: ResearchServer
     faction: Nanotrasen # Lua: single family<multi-family research servers
+    serverName: NATSRV
   - type: DiseaseServer # backmen: для сохранения болезней
   - type: TechnologyDatabase
     supportedDisciplines:
@@ -119,6 +120,7 @@
   - type: LitOnPowered
   - type: ResearchServer
     faction: Syndicate
+    serverName: SYNSRV
   - type: DiseaseServer
   - type: TechnologyDatabase
     supportedDisciplines:

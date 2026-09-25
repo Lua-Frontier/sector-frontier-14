@@ -113,7 +113,7 @@
       tags:
         - Cartridge45_ACPFMJ #Lua Cartridge357_magnumFMJ<Cartridge45_ACPFMJ
 #        - SpeedLoader357_magnumFMJ comment from _Lua
-    proto: Cartridge45_ACPFMJ #Lua Cartridge357_magnumFMJ<Cartridge45_ACPFMJ
+    proto: null #Lua
 
 #region Frontier / Mono leftover Argenti
 - type: entity
@@ -128,6 +128,7 @@
   - type: Clothing
     sprite: _NF/Objects/Weapons/Guns/Revolvers/argenti.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-55645
     fireRate: 2.5
     resetOnHandSelected: false
   - type: RevolverAmmoProvider
@@ -136,19 +137,9 @@
         - Cartridge556x45mmFMJ
         - SpeedLoader556x45mmFMJ
     capacity: 8
-    proto: Cartridge556x45mmFMJ
+    proto: null
     chambers: [ True, True, True, True, True, True, True, True ]
     ammoSlots: [ null, null, null, null, null, null, null, null ]
   - type: StaticPrice
     price: 200
 
-- type: entity
-  parent: WeaponRevolverArgenti
-  id: WeaponRevolverArgentiNonlethal
-  suffix: Non-lethal
-  components:
-  - type: RevolverAmmoProvider
-    capacity: 8
-    proto: Cartridge556x45mmRubber
-    chambers: [ True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null ]

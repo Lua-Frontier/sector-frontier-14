@@ -71,7 +71,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -80,7 +79,6 @@
             - NFMagazineBoxRifle556x45 #Lua 20 -> 556x45
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge556x45mmFMJ #Lua 20 -> 556x45
         priority: 1
         whitelist:
           tags:

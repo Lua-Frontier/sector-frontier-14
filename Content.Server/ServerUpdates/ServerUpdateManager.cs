@@ -51,9 +51,6 @@ public sealed class ServerUpdateManager
     /// <returns>True if the server is going to restart.</returns>
     public bool RoundEnded()
     {
-#if DEBUG
-        return false;
-#else
         if (_updateOnRoundEnd)
         {
             _chatManager.DispatchServerAnnouncement(Loc.GetString("server-updates-shutdown"));
@@ -61,15 +58,7 @@ public sealed class ServerUpdateManager
             return true;
         }
 
-        if (!_playerManager.Sessions.Any(p => p.Status != SessionStatus.Disconnected))
-        {
-            return false;
-        }
-
-        _chatManager.DispatchServerAnnouncement(Loc.GetString("server-restart-round-ended"));
-        DoShutdown(false);
-        return true;
-#endif
+        return false;
     }
 
     private void PlayerManagerOnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)

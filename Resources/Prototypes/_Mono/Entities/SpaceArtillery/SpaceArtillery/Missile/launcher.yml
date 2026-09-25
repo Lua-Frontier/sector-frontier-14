@@ -7,6 +7,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier3HP
+  - ConstructibleMachine
   description: A light torpedo launcher developed by the Syndicate during the corporate war, uses similar systems to the anaconda for self loading munitons.
   components:
   - type: StaticPrice
@@ -53,9 +54,14 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 120
+  - type: Machine
+    board: WeaponTurretSerpentMissileCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # Pre-Fracture
-
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretTorpedoEntropy
@@ -64,6 +70,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier3HP
+  - ConstructibleMachine
   description: An odd weapon of the pre-fracture era, it projects a mass of electrons that seek out the positive charge of nearby targets, overloading systems and shattering sections of hull.
   components:
   - type: StaticPrice
@@ -119,3 +126,9 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 120
+  - type: Machine
+    board: WeaponTurretTorpedoEntropyCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

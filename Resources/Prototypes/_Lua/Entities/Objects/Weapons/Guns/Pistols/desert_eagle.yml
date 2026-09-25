@@ -37,6 +37,7 @@
 - type: entity
   parent: BaseMagazineEagle
   id: MagazineEagle
+  categories: [ HideSpawnMenu ]
   name: пистолетный магазин пустынного орла (.45 магнум)
   components:
   - type: BallisticAmmoProvider
@@ -49,8 +50,24 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  parent: MagazineEagle
+  id: MagazineEagleEmpty
+  name: пистолетный магазин пустынного орла (.45 магнум)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   parent: BaseMagazineEagle
   id: MagazineEagleAP
+  categories: [ HideSpawnMenu ]
   name: пистолетный магазин пустынного орла (.45 магнум бронебойные)
   components:
   - type: BallisticAmmoProvider
@@ -82,6 +99,7 @@
     - suitStorage
     - Belt
   - type: Gun
+    examineCaliber: gun-examine-caliber-357
     fireRate: 2
     selectedMode: SemiAuto
     availableModes:
@@ -96,7 +114,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineEagle
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
@@ -106,7 +123,6 @@
             - MagazineEagleAP
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge357_magnumFMJ #Lua 45 -> Magnum
         priority: 1
         whitelist:
           tags:

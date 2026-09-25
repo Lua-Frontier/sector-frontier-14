@@ -5,7 +5,8 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Validation;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.Serialization.Markdown.Value;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 using Robust.Shared.Serialization.TypeSerializers.Interfaces;
 
 namespace Content.Shared.Containers;
@@ -37,8 +38,6 @@ public sealed partial class ContainerFillComponent : Component
 // or a dictionary serializer that accepts a custom type serializer for the dictionary values
 public sealed class ContainerFillSerializer : ITypeValidator<Dictionary<string, List<string>>, MappingDataNode>
 {
-    private static PrototypeIdListSerializer<EntityPrototype> ListSerializer => new();
-
     public ValidationNode Validate(
         ISerializationManager serializationManager,
         MappingDataNode node,
@@ -50,12 +49,26 @@ public sealed class ContainerFillSerializer : ITypeValidator<Dictionary<string, 
         foreach (var (key, val) in node.Children)
         {
             var listVal = (val is SequenceDataNode seq)
-                ? ListSerializer.Validate(serializationManager, seq, dependencies, context)
+                ? ValidatePrototypeList(seq, dependencies)
                 : new ErrorNode(val, "ContainerFillComponent prototypes must be a sequence/list");
 
             mapping.Add(new ValidatedValueNode(node.GetKeyNode(key)), listVal);
         }
 
         return new ValidatedMappingNode(mapping);
+    }
+
+    private static ValidationNode ValidatePrototypeList(SequenceDataNode node, IDependencyCollection dependencies)
+    {
+        var validations = new List<ValidationNode>();
+
+        foreach (var entry in node)
+        {
+            validations.Add(entry is ValueDataNode valueDataNode
+                ? ProtoIdSerializer<EntityPrototype>.Validate(dependencies, valueDataNode)
+                : new ErrorNode(entry, "ContainerFillComponent prototypes must be value nodes"));
+        }
+
+        return new ValidatedSequenceNode(validations);
     }
 }

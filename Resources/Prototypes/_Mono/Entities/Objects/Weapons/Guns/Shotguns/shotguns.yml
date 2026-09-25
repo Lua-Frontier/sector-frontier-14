@@ -18,7 +18,7 @@
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigLeady.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    examineCaliber: gun-examine-caliber-4g #Lua
+    examineCaliber: gun-examine-caliber-4g
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/bigshotgun_fire.ogg
     fireRate: 2.5 #Lua 1<2.5
@@ -30,7 +30,7 @@
       tags:
       - ShellShotgun23x75mmBuckshot
     capacity: 6
-    proto: ShellShotgun23x75mmBuckshot
+    proto: null
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: StaticPrice
@@ -60,7 +60,7 @@
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigJohnny.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    examineCaliber: gun-examine-caliber-4g #Lua
+    examineCaliber: gun-examine-caliber-4g
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/bigshotgun_fire.ogg
     fireRate: 2.5 #Lua 1<2.5
@@ -73,7 +73,7 @@
       tags:
       - ShellShotgun23x75mmBuckshot
     capacity: 3
-    proto: ShellShotgun23x75mmBuckshot
+    proto: null
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: ItemSlots
@@ -149,7 +149,7 @@
     sprite: _Mono/Objects/Weapons/Guns/Shotguns/BigBuddy.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    examineCaliber: gun-examine-caliber-4g #Lua
+    examineCaliber: gun-examine-caliber-4g
     soundGunshot:
       path: /Audio/_Mono/Weapons/Guns/SmallArms/Gunshots/bigshotgun_fire.ogg
     fireRate: 2.5 #Lua 1<2.5
@@ -161,7 +161,7 @@
       tags:
       - ShellShotgun23x75mmBuckshot
     capacity: 6
-    proto: ShellShotgun23x75mmBuckshot
+    proto: null
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
   - type: StaticPrice

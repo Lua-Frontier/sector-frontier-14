@@ -1,6 +1,6 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Speech.Components;
-using Content.Shared._Lua.Chat.Systems; // Lua
+using Content.Shared.Chat.Systems;
 using Content.Shared.Mind.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Random;

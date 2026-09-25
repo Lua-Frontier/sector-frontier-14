@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Server._Lua.Stargate.Components;
+using Content.Lua.Shared.Stargate;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Shared.Maps;
@@ -8,6 +8,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -24,7 +25,7 @@ namespace Content.Server.Shuttles.Systems;
 /// </summary>
 public sealed class FTLAntiCollisionSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
@@ -45,6 +46,7 @@ public sealed class FTLAntiCollisionSystem : EntitySystem
     private EntityQuery<MapGridComponent> _gridQuery;
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<DockingComponent> _dockingQuery;
+    private List<Entity<MapGridComponent>> _intersectingGrids = new();
 
     public override void Initialize()
     {
@@ -91,9 +93,12 @@ public sealed class FTLAntiCollisionSystem : EntitySystem
 
         // Find nearby grids
         var nearbyGrids = new List<(EntityUid Entity, float Distance)>();
-        foreach (var otherGrid in _mapManager.FindGridsIntersecting(mapId, new Box2(
+        _intersectingGrids.Clear();
+        var intersectingGrids = _intersectingGrids;
+        _mapManager.FindGridsIntersecting(mapId, new Box2(
             shuttlePosition - new Vector2(range, range),
-            shuttlePosition + new Vector2(range, range))))
+            shuttlePosition + new Vector2(range, range)), ref intersectingGrids);
+        foreach (var otherGrid in intersectingGrids)
         {
             // Skip self
             if (otherGrid.Owner == shuttle)
@@ -208,9 +213,12 @@ public sealed class FTLAntiCollisionSystem : EntitySystem
         var checkSize = shipSize + MinimumSafeDistance;
 
         // Check for grids in the area
-        foreach (var otherGrid in _mapManager.FindGridsIntersecting(mapId, new Box2(
+        _intersectingGrids.Clear();
+        var intersectingGrids = _intersectingGrids;
+        _mapManager.FindGridsIntersecting(mapId, new Box2(
             position - new Vector2(checkSize, checkSize),
-            position + new Vector2(checkSize, checkSize))))
+            position + new Vector2(checkSize, checkSize)), ref intersectingGrids);
+        foreach (var otherGrid in intersectingGrids)
         {
             // Skip self
             if (otherGrid.Owner == shuttle)

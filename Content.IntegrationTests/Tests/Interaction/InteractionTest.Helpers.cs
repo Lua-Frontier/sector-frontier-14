@@ -9,6 +9,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Construction.Components;
 using Content.Server.Gravity;
 using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Gravity;
@@ -1145,8 +1146,11 @@ public abstract partial class InteractionTest
     {
         await Server.WaitPost(() =>
         {
+            target ??= Target;
+            var uid = ToServer(target!.Value);
+            var receiver = SEntMan.System<PowerReceiverSystem>();
             var comp = Comp<ApcPowerReceiverComponent>(target);
-            comp.NeedsPower = !comp.NeedsPower;
+            receiver.SetNeedsPower(uid, !comp.NeedsPower, comp);
         });
     }
 

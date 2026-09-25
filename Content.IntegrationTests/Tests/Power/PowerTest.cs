@@ -165,7 +165,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var mapSys = entityManager.System<SharedMapSystem>();
             const float loadPower = 200;
@@ -227,7 +227,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var mapSys = entityManager.System<SharedMapSystem>();
             const float loadPower = 200;
@@ -285,7 +285,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var mapSys = entityManager.System<SharedMapSystem>();
             var gameTiming = server.ResolveDependency<IGameTiming>();
@@ -373,7 +373,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var gameTiming = server.ResolveDependency<IGameTiming>();
             var batterySys = entityManager.System<BatterySystem>();
@@ -473,7 +473,7 @@ namespace Content.IntegrationTests.Tests.Power
 
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
@@ -570,7 +570,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var gameTiming = server.ResolveDependency<IGameTiming>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
@@ -626,7 +626,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var gameTiming = server.ResolveDependency<IGameTiming>();
             var batterySys = entityManager.System<BatterySystem>();
@@ -705,7 +705,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var gameTiming = server.ResolveDependency<IGameTiming>();
             var batterySys = entityManager.System<BatterySystem>();
@@ -784,7 +784,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
@@ -881,7 +881,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var gameTiming = server.ResolveDependency<IGameTiming>();
             var batterySys = entityManager.System<BatterySystem>();
@@ -980,7 +980,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
@@ -1068,7 +1068,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
@@ -1154,7 +1154,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var nodeContainer = entityManager.System<NodeContainerSystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
@@ -1220,7 +1220,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
             var mapSys = entityManager.System<SharedMapSystem>();
@@ -1276,7 +1276,7 @@ namespace Content.IntegrationTests.Tests.Power
         {
             await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
-            var mapManager = server.ResolveDependency<IMapManager>();
+            var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var batterySys = entityManager.System<BatterySystem>();
             var extensionCableSystem = entityManager.System<ExtensionCableSystem>();

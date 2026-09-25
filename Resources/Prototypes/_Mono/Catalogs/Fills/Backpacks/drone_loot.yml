@@ -54,7 +54,7 @@
     - id: SpawnDungeonLootFlatpacks
       prob: 0.15 #Lua: 0.6>0.15
     # rare shard drop even from T1
-    - id: WeaponTurretShardFlatpack
+    - id: WeaponTurretShardCircuitboard
       prob: 0.05 #Lua: 0.5>0.05
     # Research disk, expected value ~30k/drone
     - id: RogueSiliconResearchDisk5000
@@ -114,7 +114,7 @@
     - id: PowerCellMicroreactor
       prob: 0.1 #Lua: added prob
     # free shard
-    - id: WeaponTurretShardFlatpack
+    - id: WeaponTurretShardCircuitboard
       prob: 0.1 #Lua: added prob
     # no flatpacks or boards, just gamble scrap
     # Research disk, expected value ~80k/drone
@@ -177,10 +177,10 @@
     - id: PowerCellMicroreactor
       prob: 0.1 #Lua: added prob
     # free guns
-    - id: WeaponTurretShardFlatpack
+    - id: WeaponTurretShardCircuitboard
       amount: 0 #Lua: 1>0
       maxAmount: 1 #Lua: 2>1
-    - id: WeaponTurretPinholeFlatpack
+    - id: WeaponTurretPinholeCircuitboard
       prob: 0.1 #Lua: added prob
     # no flatpacks or boards, just gamble scrap
     # Research disk, expected value 200k/drone

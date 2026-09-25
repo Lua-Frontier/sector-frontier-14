@@ -3,7 +3,7 @@
 # See AGPLv3.txt for details.
 
 - type: entity
-  parent: VendingMachine
+  parent: [VendingMachine, SmallConstructibleMachine]
   id: VendingMachineClothingParallelOwend
   name: Параллель-О-Венд
   description: Лучшие наряды из неизведанных краёв! Создано BrennNight Industries
@@ -28,7 +28,16 @@
     radius: 2
     energy: 1
     color: "#fa3667"
-
-
-
-
+  - type: Machine
+    board: VendingMachineClothingParallelOwendMachineCircuitboard
+  - type: ContainerContainer
+    containers:
+      cash_slot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_board
+    - machine_parts

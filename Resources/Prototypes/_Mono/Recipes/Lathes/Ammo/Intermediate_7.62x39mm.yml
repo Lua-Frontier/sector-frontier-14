@@ -1,126 +1,147 @@
 #Magazines
 
 - type: latheRecipe
-  parent: BaseAmmoFMJIntermediateMagazineRecipe
-  id: Magazine762x39mmFMJ
-  result: Magazine762x39mmFMJ
-
-- type: latheRecipe
-  parent: BaseAmmoPlasteelAPIntermediateMagazineRecipe
-  id: Magazine762x39mmPlasteelAP
-  result: Magazine762x39mmPlasteelAP
-
-- type: latheRecipe
-  parent: BaseAmmoRubberIntermediateMagazineRecipe
-  id: Magazine762x39mmRubber
-  result: Magazine762x39mmRubber
-
-- type: latheRecipe
-  parent: BaseAmmoIncendiaryIntermediateMagazineRecipe
-  id: Magazine762x39mmIncendiary
-  result: Magazine762x39mmIncendiary
-
-- type: latheRecipe
-  parent: BaseAmmoPracticeIntermediateMagazineRecipe
-  id: Magazine762x39mmPractice
-  result: Magazine762x39mmPractice
-
-- type: latheRecipe
   parent: BaseAmmoEmptyIntermediateMagazineRecipe
   id: Magazine762x39mmEmpty
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindMagazine
   result: Magazine762x39mmEmpty
-
-- type: latheRecipe
-  parent: BaseAmmoUraniumIntermediateMagazineRecipe
-  id: Magazine762x39mmUranium
-  result: Magazine762x39mmUranium
-
-- type: latheRecipe
-  parent: BaseAmmoFMJIntermediateMagazineRecipe
-  id: MagazineDP29
-  result: MagazineDP29
-
-- type: latheRecipe
-  parent: BaseAmmoFMJIntermediateMagazineRecipe
-  id: Magazine762x39mmSubsonic
-  result: Magazine762x39mmSubsonic
-
-- type: latheRecipe
-  parent: BaseAmmoHPIntermediateMagazineRecipe
-  id: Magazine762x39mmHP
-  result: Magazine762x39mmHP
-
-- type: latheRecipe
-  parent: BaseAmmoRIPIntermediateMagazineRecipe
-  id: Magazine762x39mmRIP
-  result: Magazine762x39mmRIP
-
-#Speedloaders
-
-- type: latheRecipe
-  parent: BaseAmmoFMJIntermediateSpeedloaderRecipe
-  id: SpeedLoader762x39mmFMJ
-  result: SpeedLoader762x39mmFMJ
-
-#Boxes
 
 - type: latheRecipe
   parent: BaseAmmoFMJIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmFMJ
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmFMJ
-
-- type: latheRecipe
-  parent: BaseAmmoFMJIntermediateAmmoBoxRecipe
-  id: Magazine762x39mmBox
-  result: Magazine762x39mmBox
-
-- type: latheRecipe
-  parent: BaseAmmoFMJIntermediateAmmoBoxRecipe
-  id: MagazineAsmgtUniversal762x39mm
-  result: MagazineAsmgtUniversal762x39mm
 
 - type: latheRecipe
   parent: BaseAmmoPlasteelAPIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmPlasteelAP
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmPlasteelAP
 
 - type: latheRecipe
   parent: BaseAmmoRubberIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmRubber
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmRubber
 
 - type: latheRecipe
   parent: BaseAmmoIncendiaryIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmIncendiary
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmIncendiary
 
 - type: latheRecipe
   parent: BaseAmmoPracticeIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmPractice
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmPractice
 
 - type: latheRecipe
   parent: BaseAmmoUraniumIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmUranium
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmUranium
 
 - type: latheRecipe
   parent: BaseAmmoFMJIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmSubsonic
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmSubsonic
 
 - type: latheRecipe
   parent: BaseAmmoHPIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmHP
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmHP
 
 - type: latheRecipe
   parent: BaseAmmoRIPIntermediateAmmoBoxRecipe
   id: AmmoBox762x39mmRIP
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmRIP
 
 #big box
 - type: latheRecipe
   parent: BaseAmmoFMJIntermediateBigAmmoBoxRecipe
   id: AmmoBox762x39mmBigFMJ
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindBox
   result: AmmoBox762x39mmBigFMJ
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: AmmoBox762x39mmOverpressure
+  result: AmmoBox762x39mmOverpressure
+  categories:
+  - MiscAmmo
+  - Ammo
+  - AmmoCaliber762x39
+  - AmmoKindBox
+  materials:
+    Steel: 1800
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: AmmoBox762x39mmBigOverpressure
+  result: AmmoBox762x39mmBigOverpressure
+  categories:
+  - MiscAmmo
+  - Ammo
+  - AmmoCaliber762x39
+  - AmmoKindBox
+  materials:
+    Steel: 6000
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyIntermediateMagazineRecipe
+  id: Magazine762x39mmBoxEmpty
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindMagazine
+  result: Magazine762x39mmBoxEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyIntermediateMagazineRecipe
+  id: Magazine762x39mmPkBoxEmpty
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindMagazine
+  result: Magazine762x39mmPkBoxEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyIntermediateMagazineRecipe
+  id: MagazineDP29Empty
+  categories:
+  - AmmoCaliberMisc
+  - AmmoKindMagazine
+  result: MagazineDP29Empty
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyIntermediateMagazineRecipe
+  id: Magazine762x39mmLowCapacityEmpty
+  categories:
+  - AmmoCaliber762x39
+  - AmmoKindMagazine
+  result: Magazine762x39mmLowCapacityEmpty
+

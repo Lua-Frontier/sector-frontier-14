@@ -21,6 +21,7 @@
 
 - type: entity
   id: SpeedLoaderRifleHeavy
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.20 rifle)"
   parent: BaseSpeedLoaderHeavyRifle
   components:
@@ -51,6 +52,7 @@
 
 - type: entity
   id: SpeedLoaderRifleHeavyEmpty
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.20 rifle, any)"
   parent: SpeedLoaderRifleHeavy
   components:
@@ -69,6 +71,7 @@
 
 - type: entity
   id: SpeedLoaderRifleHeavyIncendiary
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.20 rifle, incendiary)"
   parent: BaseSpeedLoaderHeavyRifle
   components:
@@ -89,6 +92,7 @@
 
 - type: entity
   id: SpeedLoaderRifleHeavyPractice
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.20 rifle, practice)"
   parent: BaseSpeedLoaderHeavyRifle
   components:
@@ -112,6 +116,7 @@
 
 - type: entity
   id: SpeedLoaderRifleHeavyUranium
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.20 rifle, uranium)"
   parent: BaseSpeedLoaderHeavyRifle
   components:
@@ -135,6 +140,7 @@
 
 - type: entity
   id: SpeedLoaderRifleHeavyRubber
+  categories: [ HideSpawnMenu ]
   name: "speed loader (.20 rifle, rubber)"
   parent: BaseSpeedLoaderHeavyRifle
   components:

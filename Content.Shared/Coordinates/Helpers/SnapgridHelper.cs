@@ -1,14 +1,15 @@
 using System.Numerics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Coordinates.Helpers
 {
     public static class SnapgridHelper
     {
-        public static EntityCoordinates SnapToGrid(this EntityCoordinates coordinates, IEntityManager? entMan = null, IMapManager? mapManager = null)
+        public static EntityCoordinates SnapToGrid(this EntityCoordinates coordinates, IEntityManager? entMan = null, SharedMapSystem? mapSystem = null)
         {
-            IoCManager.Resolve(ref entMan, ref mapManager);
+            IoCManager.Resolve(ref entMan);
 
             var gridId = coordinates.GetGridUid(entMan);
 

@@ -88,6 +88,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-rocket
     projectileSpeed: 18
     fireRate: 0.5
     soundGunshot:
@@ -122,6 +123,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
   - type: Gun
+    examineCaliber: gun-examine-caliber-rocket
     fireRate: 6
     selectedMode: FullAuto
     availableModes:
@@ -392,6 +394,8 @@
   suffix: Admeme
   description: It fires large meteors.
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-rocket
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -405,6 +409,8 @@
   suffix: Admeme
   description: It fires slow immovable rods.
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-rocket
   - type: BallisticAmmoProvider
     whitelist:
       tags:

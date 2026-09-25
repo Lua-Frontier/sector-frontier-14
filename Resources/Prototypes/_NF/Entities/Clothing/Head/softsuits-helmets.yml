@@ -61,7 +61,7 @@
     enabled: false
     radius: 3
     energy: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: LightMaskCone
     autoRot: true
     netsync: false
 
@@ -281,7 +281,7 @@
     radius: 2
     energy: 2
     color: "#ff7f00"
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: LightMaskDoubleCone
   - type: RotatingLight
     speed: 360
 
@@ -435,7 +435,7 @@
     radius: 2
     energy: 2
     color: blue
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: LightMaskDoubleCone
   - type: RotatingLight
     speed: 360
 
@@ -829,7 +829,7 @@
     radius: 2
     energy: 2
     color: red
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: LightMaskDoubleCone
   - type: RotatingLight
     speed: 360
 
@@ -871,7 +871,7 @@
     enabled: false
     radius: 2
     energy: 2
-    mask: /Textures/_NF/Effects/LightMasks/skullmask.png
+    lightMask: LightMaskSkull
   - type: RotatingLight
     speed: 360
 

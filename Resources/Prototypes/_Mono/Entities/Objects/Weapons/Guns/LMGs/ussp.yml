@@ -17,6 +17,7 @@
     minAngle: -20
     maxAngle: -20
   - type: Gun
+    examineCaliber: gun-examine-caliber-76239
     minAngle: 22
     maxAngle: 40
     angleIncrease: 2
@@ -33,7 +34,6 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineDP29
         insertSound: /Audio/Weapons/Guns/MagIn/sfrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/hpistol_magout.ogg
         priority: 2
@@ -43,7 +43,6 @@
         whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
-        startingItem: Cartridge762x39mmFMJ
         priority: 1
         whitelist:
           tags:

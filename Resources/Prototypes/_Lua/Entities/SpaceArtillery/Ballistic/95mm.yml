@@ -1,0 +1,38 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  categories: [ ShuttleGun ]
+  parent:
+  - WeaponTurretDravon
+  - ConstructibleMachine
+  id: Weapon95mm
+  name: Миномёт "95мм"
+  description: Малый миномёт, использует снаряды 95мм.
+  suffix: ShuttleGun
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets105mm.rsi
+    drawdepth: Mobs
+    layers:
+    - state: turrets105mm
+  - type: Gun
+    damageModifier: 1
+    fireRate: 0.1
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: CartridgeLua95mm
+    capacity: 1
+    whitelist:
+      tags:
+      - CartridgeLua95mm
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Machine
+    board: Weapon95mmCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

@@ -5,7 +5,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SmallThrusterFlatpack
+      - id: SmallThruster
 
 - type: entity
   parent: CrateEngineering
@@ -14,7 +14,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: SmallGyroscopeFlatpack
+      - id: SmallGyroscope
 
 # region Edison
 - type: entity
@@ -25,7 +25,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: EmitterFlatpack
+      - id: Emitter
         amount: 8
 
 - type: entity
@@ -36,7 +36,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaCoilFlatpack
+      - id: TeslaCoil
         amount: 6
 
 - type: entity
@@ -47,7 +47,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: RadiationCollectorFlatpack
+      - id: RadiationCollectorNoTank
         amount: 6
       - id: PlasmaTankFilled
         amount: 6
@@ -60,7 +60,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ContainmentFieldGeneratorFlatpack
+      - id: ContainmentFieldGenerator
         amount: 8
 
 - type: entity
@@ -71,5 +71,5 @@
   components:
   - type: StorageFill
     contents:
-      - id: TeslaGroundingRodFlatpack
+      - id: TeslaGroundingRod
         amount: 4

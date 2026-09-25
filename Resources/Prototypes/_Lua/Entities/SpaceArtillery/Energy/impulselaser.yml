@@ -33,27 +33,6 @@
           BaseUnshaded: impulselaser
     - type: ProjectileBatteryAmmoProvider
       proto: BulletMachineGunImpulseTurret
+    - type: Machine
+      board: ImpulseLaserBaseCircuitboard
 
-- type: entity
-  categories: [ ShuttleGun ]
-  parent: [BaseStructureDisableToolUse, ImpulseLaserBase]
-  id: ImpulseLaserUnanchor
-  suffix: Неоткрепляемый, ShuttleGun
-  placement:
-    mode: SnapgridCenter
-
-- type: entity
-  categories: [ ShuttleGun ]
-  parent: BaseNFFlatpack
-  id: ImpulseLaserBaseFlatpack
-  name: упакованный импульсный лазер
-  description: Упакованный лёгий лазер, использует для питания энергоячейки импульсного лазера.
-  components:
-  - type: Flatpack
-    entity: ImpulseLaserBase
-  - type: StaticPrice
-    price: 250
-  - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
-    layers:
-    - state: ship_weapon

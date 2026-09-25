@@ -4,42 +4,62 @@
 
 - type: entity
   categories: [ ShuttleGun ]
-  parent: WeaponTurretHarbringer
+  parent:
+  - WeaponTurretType54
+  - ConstructibleMachine
   id: TeslaTurretBase
   name: Тесла
-  description: Тесла турель, использует для питания энергоячейки тесла турели.
+  description: Тесла турель. Питается от бортовой батареи SpaceArtillery.
   suffix: ShuttleGun
   components:
-    - type: Sprite
-      sprite: _Lua/Objects/Weapons/Guns/Turrets/teslaturret.rsi
-      drawdepth: Mobs
-      layers:
-        - map: ["enum.DamageStateVisualLayers.Base"]
-        - state: teslaturret
-          sprite: _Lua/Objects/Weapons/Guns/Turrets/teslaturret.rsi
-    - type: ProjectileBatteryAmmoProvider
-      proto: TeslaGunTurretBullet
-
-- type: entity
-  categories: [ ShuttleGun ]
-  parent: [BaseStructureDisableToolUse, TeslaTurretBase]
-  id: TeslaTurretUnanchor
-  suffix: Неоткрепляемый для кораблей, ShuttleGun
-  placement:
-    mode: SnapgridCenter
-
-- type: entity
-  categories: [ ShuttleGun ]
-  parent: BaseNFFlatpack
-  id: TeslaTurretBaseFlatpack
-  name: упакованная тесла турель
-  description: Упакованная тесла турель, использует для питания энергоячейки тесла турели.
-  components:
-  - type: Flatpack
-    entity: TeslaTurretBase
-  - type: StaticPrice
-    price: 250
   - type: Sprite
-    sprite: _Lua/Flatpack/flatpack.rsi
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/teslaturret.rsi
+    drawdepth: Mobs
     layers:
-    - state: ship_weapon
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: teslaturret
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/teslaturret.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: teslaturret
+      Critical:
+        Base: teslaturret
+      Dead:
+        Base: teslaturret
+  - type: Gun
+    damageModifier: 1
+    fireRate: 1
+    recoil: 5
+    minAngle: 0
+    maxAngle: 5
+    projectileSpeed: 320
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+    soundEmpty:
+      path: /Audio/Weapons/click.ogg
+  - type: Battery
+    maxCharge: 220
+    startingCharge: 220
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 220
+  - type: SpaceArtillery
+    powerChargeRate: 220
+    powerUsePassive: 750
+    powerUseActive: 0
+  - type: ProjectileBatteryAmmoProvider
+    proto: TeslaGunTurretBullet
+    fireCost: 220
+  - type: ShipGunType
+    shipType: Energy
+  - type: ShipGunClass
+    shipClass: Medium
+  - type: Machine
+    board: TeslaTurretBaseCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

@@ -1,6 +1,6 @@
 using Content.Shared._NF.Bank;
 using System.Linq;
-using Content.Server._Lua.Bank;
+using Content.Lua.Shared.Bank;
 using Content.Server.Cargo.Components;
 using Content.Shared._NF.Bank.BUI;
 using Content.Shared._NF.ShuttleRecords;
@@ -16,7 +16,7 @@ namespace Content.Server._NF.ShuttleRecords;
 
 public sealed partial class ShuttleRecordsSystem
 {
-    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IBankSystem _bank = default!;
     public void InitializeShuttleRecords()
     {
         SubscribeLocalEvent<ShuttleRecordsConsoleComponent, BoundUIOpenedEvent>(OnConsoleUiOpened);

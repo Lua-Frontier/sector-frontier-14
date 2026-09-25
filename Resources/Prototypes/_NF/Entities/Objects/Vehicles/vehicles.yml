@@ -59,7 +59,7 @@
     enabled: false
     radius: 3.5
     softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: LightMaskCone
     autoRot: true
   - type: RandomMetadata
     descriptionSegments: [DescriptionsATV]
@@ -95,7 +95,7 @@
       enabled: false
       radius: 3.5
       softness: 2
-      mask: /Textures/Effects/LightMasks/cone.png
+      lightMask: LightMaskCone
       autoRot: true
     - type: ItemSlots
       slots:
@@ -433,7 +433,7 @@
     enabled: false
     radius: 3.5
     softness: 2
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: LightMaskCone
     autoRot: true
 
 - type: entity
@@ -637,7 +637,7 @@
     radius: 7
     energy: 3
     color: "#FF4020"
-    mask: /Textures/Effects/LightMasks/double_cone.png
+    lightMask: LightMaskDoubleCone
   - type: Tag
     tags:
       - DoorBumpOpener

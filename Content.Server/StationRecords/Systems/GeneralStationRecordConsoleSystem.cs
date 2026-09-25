@@ -1,11 +1,10 @@
-using Content.Server._Lua.StationRecords.Systems;
+using Content.Lua.Shared.StationRecords;
 using Content.Server._NF.Station.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Components;
 using Content.Server.Popups;
-using Content.Shared._Lua.StationRecords;
 using Content.Shared._NF.Shipyard.Components;
 using Content.Shared._NF.StationRecords;
 using Content.Shared.Access.Components;
@@ -26,7 +25,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly StationJobsSystem _stationJobsSystem = default!; // Frontier
     [Dependency] private readonly IAdminLogManager _adminLog = default!; // Frontier
-    [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!;// Lua
+    [Dependency] private readonly IShipCrewAssignmentSystem _shipCrew = default!;
     [Dependency] private readonly PopupSystem _popup = default!; // Lua
 
     public override void Initialize()

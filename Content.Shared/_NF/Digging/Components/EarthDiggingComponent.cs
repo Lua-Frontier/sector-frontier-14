@@ -1,5 +1,5 @@
 using Content.Shared.Tools;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NF.Digging.Components;
 
@@ -9,8 +9,7 @@ public sealed partial class EarthDiggingComponent : Component
     [ViewVariables, DataField]
     public bool ToolComponentNeeded = true;
 
-    [ViewVariables, DataField(customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
-    public string QualityNeeded = "Digging";
+    public ProtoId<ToolQualityPrototype> QualityNeeded = "Digging";
 
     [ViewVariables, DataField]
     public float Delay = 2f;

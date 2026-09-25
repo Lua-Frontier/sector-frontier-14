@@ -62,6 +62,8 @@
   parent: ThrusterMedium
   suffix: Syndicate, 104.6
   components:
+  - type: Machine
+    board: ThrusterMediumRogueMachineCircuitboard
   - type: Thruster
     baseThrust: 350
     thrust: 732.2
@@ -90,7 +92,7 @@
   suffix: Syndicate, 114
   components:
   - type: Machine
-    board: ThrusterLargeMachineCircuitboard
+    board: ThrusterLargeRogueMachineCircuitboard
   - type: Thruster
     baseThrust: 800
     thrust: 1824

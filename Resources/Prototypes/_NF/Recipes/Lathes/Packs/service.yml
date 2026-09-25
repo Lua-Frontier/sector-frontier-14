@@ -102,9 +102,7 @@
 
 - type: latheRecipePack
   id: NFServiceBoardsStatic
-  recipes:
-  - CondimentDispenserCircuitboard
-  - ImpCoffeeMachineCircuitboard #imp
+  recipes: []
 
 - type: latheRecipePack
   id: NFLightsColoredStatic
@@ -136,7 +134,6 @@
   - MegaSprayBottle
   - ServiceSelectiveDropper
   - PlantAnalyzer
-  - HotplateMachineCircuitboard
 
 - type: latheRecipePack
   id: NFServiceBoards
@@ -152,13 +149,18 @@
   - BiogeneratorMachineCircuitboard
   - DeepFryerMachineCircuitboard
   - PortablePumpMachineCircuitBoard
+  - NFHolopadShipMachineCircuitboard
+  - VendingMachineNutriMachineCircuitboard
+  - VendingMachineSeedsUnlockedMachineCircuitboard
+  - CondimentDispenserCircuitboard
+  - ComputerWithdrawBankATMComputerCircuitboard
 
 - type: latheRecipePack
   id: NFService
   recipes:
   - ServiceSelectiveDropper # Frontier
   - PlantAnalyzer # Frontier
-  - JanicartFlatpack # Frontier
+  - NFVehicleJanicartKey # Frontier
   - PlantBagOfHolding # Delta-V
 
 - type: latheRecipePack
@@ -168,7 +170,6 @@
   - NFServiceClothingNeckCrucifix
   - NFServiceUrnMortuary
   - NFServiceUrn
-  # Sash and mask are here and not in a uniform printer because other tech fabs have belts and masks
   - ClothingBeltChaplainSash
   - NFServiceClothingMaskPlague
   # No bible because of the familiar

@@ -1,5 +1,6 @@
 - type: entity
   id: MagazinePistolCaselessRifleRubber
+  categories: [ HideSpawnMenu ]
   name: pistol magazine (.25 caseless, rubber)
   parent: BaseMagazinePistolCaselessRifle
   components:
@@ -32,6 +33,7 @@
 
 - type: entity
   id: MagazineCaselessRifleRubber
+  categories: [ HideSpawnMenu ]
   name: magazine (.25 caseless, rubber)
   parent: BaseMagazineCaselessRifle
   components:
@@ -47,6 +49,7 @@
 
 - type: entity
   id: MagazineCaselessRifleShortRubber
+  categories: [ HideSpawnMenu ]
   name: short magazine (.25 caseless, rubber)
   parent: BaseMagazineCaselessRifle
   components:

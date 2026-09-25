@@ -103,11 +103,12 @@
 
 - type: entity
   id: NFMagazineRifle20Overpressure
+  categories: [ HideSpawnMenu ]
   name: magazine (.20 rifle, overpressure)
   parent: NFBaseMagazineRifle20
   components:
   - type: BallisticAmmoProvider
-    proto: NFCartridgeRifle20Overpressure
+    proto: Cartridge556x45mmOverpressure
   - type: Sprite
     layers:
     - state: base
@@ -129,6 +130,7 @@
 
 - type: entity
   id: NFMagazineDrumRifle556x45Empty
+  categories: [ HideSpawnMenu ]
   name: drum magazine (5.56x45mm rifle, any)
   parent: NFBaseMagazineDrumRifle556x45
   suffix: empty
@@ -138,17 +140,29 @@
 
 - type: entity
   id: NFMagazineDrumRifle556x45
+  categories: [ HideSpawnMenu ]
   name: drum magazine (5.56x45mm rifle)
   parent: NFBaseMagazineDrumRifle556x45
 
 - type: entity
   id: NFMagazineBoxRifle556x45
+  categories: [ HideSpawnMenu ]
   name: box magazine (5.56x45mm rifle)
   parent: NFBaseMagazineBoxRifle556x45
 
 - type: entity
+  id: NFMagazineBoxRifle556x45Empty
+  categories: [ HideSpawnMenu ]
+  parent: NFMagazineBoxRifle556x45
+  name: box magazine (5.56x45mm rifle)
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   parent: BaseMagazineRifle
   id: NFMagazineClipRifle556x45Empty
+  categories: [ HideSpawnMenu ]
   name: clip (.20 rifle, any)
   suffix: empty
   components:
@@ -188,6 +202,7 @@
 - type: entity
   parent: NFMagazineClipRifle556x45Empty
   id: NFMagazineClipRifle556x45
+  categories: [ HideSpawnMenu ]
   name: clip (.20 rifle)
   suffix: full
   components:
@@ -203,6 +218,7 @@
 - type: entity
   parent: NFMagazineClipRifle556x45Empty
   id: NFMagazineClipRifle556x45Rubber
+  categories: [ HideSpawnMenu ]
   name: clip (.20 rifle, rubber)
   suffix: full
   components:

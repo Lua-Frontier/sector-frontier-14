@@ -100,6 +100,9 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
     private void OnStartCollide(Entity<AnomalyComponent> anomaly, ref StartCollideEvent args)
     {
+        if (TryComp<AnomalySyncHeldComponent>(anomaly, out var held) && held.Compressing)
+            return;
+
         if (!TryComp<AnomalousParticleComponent>(args.OtherEntity, out var particle))
             return;
 

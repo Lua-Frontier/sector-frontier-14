@@ -52,8 +52,29 @@ anomaly-sync-disconnected = Соединение с аномалией было 
 anomaly-sync-no-anomaly = Отсутствует аномалия в пределах диапазона.
 anomaly-sync-examine-connected = Он [color=darkgreen]присоединён[/color] к аномалии.
 anomaly-sync-examine-not-connected = Он [color=darkred]не присоединён[/color] к аномалии.
-anomaly-sync-connect-verb-text = Присоединить аномалию
-anomaly-sync-connect-verb-message = Присоединить близлежащую аномалию к { $machine }.
+anomaly-sync-compress-start = Сжатие аномалии начато.
+anomaly-sync-compress-complete = Сжатие завершено. Получено ядро аномалии.
+anomaly-sync-compress-no-core = У этой аномалии нет ядра.
+anomaly-sync-console-title = Синхронизатор аномалий
+anomaly-sync-console-connect = Захват
+anomaly-sync-console-disconnect = Отпустить
+anomaly-sync-console-compress = Сжать
+anomaly-sync-console-compressing = Сжатие {$percent}%
+anomaly-sync-console-compress-idle = Готово к сжатию
+anomaly-sync-console-linked = Синхронизатор подключён: {$name}.
+anomaly-sync-console-unlinked = Синхронизатор не подключён
+anomaly-sync-console-no-anomaly = Аномалия не захвачена
+anomaly-sync-console-phase-none = Фаза: -
+anomaly-sync-console-phase-decaying = Фаза: угасание
+anomaly-sync-console-phase-stable = Фаза: стабильна
+anomaly-sync-console-phase-growing = Фаза: рост
+anomaly-sync-console-meters = Опасность {$severity}% | Стабильность {$stability}% | Здоровье {$health}%
+anomaly-sync-console-battery = Батарея
+anomaly-sync-console-battery-empty = Нет аккумулятора
+anomaly-sync-console-battery-level = Заряд {$percent}%
+anomaly-sync-console-battery-charging = Зарядка {$percent}%
+anomaly-sync-connect-verb-text = Захватить аномалию
+anomaly-sync-connect-verb-message = Захватить близлежащую аномалию с помощью { $machine }.
 anomaly-generator-ui-title = генератор аномалий
 anomaly-generator-fuel-display = Топливо:
 anomaly-generator-cooldown = Перезарядка: [color=gray]{ $time }[/color]

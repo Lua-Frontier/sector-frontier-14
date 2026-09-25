@@ -1,9 +1,6 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using Content.Server.Shuttles.Systems;
-using Content.Tests;
-using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -13,7 +10,7 @@ using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests.Shuttle;
 
-public sealed class DockTest : ContentUnitTest
+public sealed class DockTest
 {
     private static IEnumerable<object[]> TestSource()
     {
@@ -32,7 +29,7 @@ public sealed class DockTest : ContentUnitTest
         var map = await pair.CreateTestMap();
 
         var entManager = server.ResolveDependency<IEntityManager>();
-        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
         var dockingSystem = entManager.System<DockingSystem>();
         var mapSystem = entManager.System<SharedMapSystem>();
         var xformSystem = entManager.System<SharedTransformSystem>();

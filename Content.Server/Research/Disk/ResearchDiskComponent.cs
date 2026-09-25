@@ -15,5 +15,10 @@ namespace Content.Server.Research.Disk
         /// </remarks>
         [DataField("unlockAllTech")]
         public bool UnlockAllTech = false;
+
+        [DataField]
+        public bool UnlockFactionTechnologies;
+        [DataField]
+        public bool UnlockAllTechnologies;
     }
 }

@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Shared._NF.SectorServices.Prototypes;
 using Content.Shared.GameTicking;
 using JetBrains.Annotations;
@@ -11,7 +11,7 @@ namespace Content.Server._NF.SectorServices;
 public sealed class SectorServiceSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
 
     private readonly Dictionary<MapId, EntityUid> _servicesByMap = new();
     private readonly Dictionary<EntityUid, MapId> _hostMaps = new();

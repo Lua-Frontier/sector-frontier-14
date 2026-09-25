@@ -1,6 +1,6 @@
-using Content.Server._Lua.SpaceWhale;
+using Content.Lua.Shared.SpaceWhale;
 using Content.Server.Popups;
-using Content.Shared.Lua.CLVar;
+using Content.Lua.Common.CLVar;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;

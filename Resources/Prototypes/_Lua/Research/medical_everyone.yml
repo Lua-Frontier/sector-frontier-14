@@ -1,0 +1,927 @@
+- type: technology
+  id: EnergyScalpel
+  name: research-technology-energyscalpel
+  entityIcon: EnergyScalpel
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - EnergyScalpel
+- type: technology
+  id: EnergyCautery
+  name: research-technology-energycautery
+  entityIcon: EnergyCautery
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - EnergyCautery
+- type: technology
+  id: AdvancedRetractor
+  name: research-technology-advancedretractor
+  entityIcon: AdvancedRetractor
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - AdvancedRetractor
+- type: technology
+  id: BorgModuleAdvancedSurgery
+  name: research-technology-borgmoduleadvancedsurgery
+  entityIcon: BorgModuleAdvancedSurgery
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - BorgModuleAdvancedSurgery
+- type: technology
+  id: CyberneticEyesBasic
+  name: research-technology-cybernetic-eyes-basic
+  entityIcon: BasicCyberneticEyes
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - BasicCyberneticEyes
+- type: technology
+  id: CyberneticEyesMedical
+  name: research-technology-cybernetic-eyes-medical
+  entityIcon: MedicalCyberneticEyes
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 4000
+  recipeUnlocks:
+  - MedicalCyberneticEyes
+- type: technology
+  id: CyberneticLeftArm
+  name: research-technology-cybernetic-left-arm
+  entityIcon: LeftArmCybernetic
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2000
+  recipeUnlocks:
+  - LeftArmCybernetic
+- type: technology
+  id: CyberneticLeftLeg
+  name: research-technology-cybernetic-left-leg
+  entityIcon: LeftLegCybernetic
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2000
+  recipeUnlocks:
+  - LeftLegCybernetic
+- type: technology
+  id: CyberneticRightArm
+  name: research-technology-cybernetic-right-arm
+  entityIcon: RightArmCybernetic
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2000
+  recipeUnlocks:
+  - RightArmCybernetic
+- type: technology
+  id: CyberneticRightLeg
+  name: research-technology-cybernetic-right-leg
+  entityIcon: RightLegCybernetic
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 2000
+  recipeUnlocks:
+  - RightLegCybernetic
+- type: technology
+  id: HighEndSurgeryAutodoc
+  name: research-technology-high-end-surgery-autodoc
+  entityIcon: AutodocCircuitboard
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - AutodocCircuitboard
+- type: technology
+  id: HighEndSurgeryOmnimed
+  name: research-technology-high-end-surgery-omnimed
+  entityIcon: OmnimedTool
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Ussp
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - ShitmedOmnimedTool
+- type: technology
+  id: HighEndSurgeryOperatingTable
+  name: research-technology-high-end-surgery-operating-table
+  entityIcon: OperatingTableCircuitboard
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - OperatingTableCircuitboard
+- type: technology
+  id: LuaSmartFridge
+  name: lua-research-technology-smart-fridge
+  entityIcon: SmartFridge
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 15000
+  recipeUnlocks:
+  - SmartFridgeCircuitboard
+- type: technology
+  id: VaccinatorMachineCircuitboard
+  name: research-technology-vaccinatormachinecircuitboard
+  entityIcon: Vaccinator
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - VaccinatorMachineCircuitboard
+- type: technology
+  id: LuaVirology
+  name: research-technology-diagnosermachinecircuitboard
+  entityIcon: DiseaseDiagnoser
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - DiagnoserMachineCircuitboard
+- type: technology
+  id: StasisBedMachineCircuitboard
+  name: research-technology-stasisbedmachinecircuitboard
+  entityIcon: StasisBed
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - StasisBedMachineCircuitboard
+- type: technology
+  id: CryoPodMachineCircuitboard
+  name: research-technology-cryopodmachinecircuitboard
+  entityIcon: CryoPod
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Pirates
+  - Ussp
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - CryoPodMachineCircuitboard
+- type: technology
+  id: MedicalScannerMachineCircuitboard
+  name: research-technology-medicalscannermachinecircuitboard
+  entityIcon: MedicalScanner
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - MedicalScannerMachineCircuitboard
+- type: technology
+  id: CloningPodMachineCircuitboard
+  name: research-technology-cloningpodmachinecircuitboard
+  entityIcon: CloningPod
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - CloningPodMachineCircuitboard
+- type: technology
+  id: CloningConsoleComputerCircuitboard
+  name: research-technology-cloningconsolecomputercircuitboard
+  entityIcon: ComputerCloningConsole
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - CloningConsoleComputerCircuitboard
+- type: technology
+  id: ChemMasterMachineCircuitboard
+  name: research-technology-chemmastermachinecircuitboard
+  entityIcon: ChemMaster
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ChemMasterMachineCircuitboard
+- type: technology
+  id: NFBasicMedicine
+  name: research-technology-chemdispensermachinecircuitboard
+  entityIcon: ChemDispenserEmpty
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - ChemDispenserMachineCircuitboard
+- type: technology
+  id: VendingMachineMedicalMachineCircuitboard
+  name: research-technology-vendingmachinemedicalmachinecircuitboard
+  entityIcon: VendingMachineMedical
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - VendingMachineMedicalMachineCircuitboard
+- type: technology
+  id: VendingMachineChemicalsMachineCircuitboard
+  name: research-technology-vendingmachinechemicalsmachinecircuitboard
+  entityIcon: VendingMachineChemicals
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - VendingMachineChemicalsMachineCircuitboard
+- type: technology
+  id: CryostasisBeaker
+  name: research-technology-cryostasisbeaker
+  entityIcon: CryostasisBeaker
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Ussp
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - CryostasisBeaker
+- type: technology
+  id: SyringeCryostasis
+  name: research-technology-syringecryostasis
+  entityIcon: SyringeCryostasis
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - SyringeCryostasis
+- type: technology
+  id: BluespaceBeaker
+  name: research-technology-bluespacebeaker
+  entityIcon: BluespaceBeaker
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - BluespaceBeaker
+- type: technology
+  id: SyringeBluespace
+  name: research-technology-syringebluespace
+  entityIcon: SyringeBluespace
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - SyringeBluespace
+- type: technology
+  id: JugBluespace
+  name: research-technology-jugbluespace
+  entityIcon: JugBluespace
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - JugBluespace
+- type: technology
+  id: VialBluespace
+  name: research-technology-vialbluespace
+  entityIcon: VialBluespace
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - VialBluespace
+- type: technology
+  id: NFEngineeringMedicine
+  name: research-technology-medicalassemblermachinecircuitboard
+  entityIcon: MedicalAssembler
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  - LuaTech
+  cost: 7500
+  recipeUnlocks:
+  - MedicalAssemblerMachineCircuitboard
+- type: technology
+  id: HotplateMachineCircuitboard
+  name: research-technology-hotplatemachinecircuitboard
+  entityIcon: ChemistryHotplate
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - HotplateMachineCircuitboard
+- type: technology
+  id: NFHardsuitsMedical
+  name: nf-research-technology-hardsuits-medical
+  entityIcon: ClothingOuterHardsuitMedical
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ClothingOuterHardsuitMedical
+- type: technology
+  id: BorgModuleAdvancedParamedic
+  name: research-technology-borgmoduleadvancedparamedic
+  entityIcon: BorgModuleAdvancedParamedic
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedParamedic
+- type: technology
+  id: BorgModuleAdvancedChemical
+  name: research-technology-borgmoduleadvancedchemical
+  entityIcon: BorgModuleAdvancedChemical
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleAdvancedChemical
+- type: technology
+  id: NFReinforcedJug
+  name: nf-research-technology-reinforced-jug
+  entityIcon: ReinforcedJug
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Neutral
+  cost: 2500
+  recipeUnlocks:
+  - ReinforcedJug
+- type: technology
+  id: LauncherSyringe
+  name: research-technology-launchersyringe
+  entityIcon: LauncherSyringe
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - LauncherSyringe
+- type: technology
+  id: MiniSyringe
+  name: research-technology-minisyringe
+  entityIcon: MiniSyringe
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Neutral
+  cost: 10000
+  recipeUnlocks:
+  - MiniSyringe
+- type: technology
+  id: AntiPoisonMedipen
+  name: research-technology-antipoisonmedipen
+  entityIcon: AntiPoisonMedipen
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - AntiPoisonMedipen
+  discoveryWeight: 1.5
+- type: technology
+  id: PunctAutoInjector
+  name: research-technology-punctautoinjector
+  entityIcon: PunctAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - PunctAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: PyraAutoInjector
+  name: research-technology-pyraautoinjector
+  entityIcon: PyraAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - PyraAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: RadAutoInjector
+  name: research-technology-radautoinjector
+  entityIcon: RadAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - RadAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: Stimpack
+  name: research-technology-stimpack
+  entityIcon: Stimpack
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - Stimpack
+- type: technology
+  id: AirlossAutoInjector
+  name: research-technology-airlossautoinjector
+  entityIcon: AirlossAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - AirlossAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: HemostasisAutoInjector
+  name: research-technology-hemostasisautoinjector
+  entityIcon: HemostasisAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - HemostasisAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: StimulantAutoInjector
+  name: research-technology-stimulantautoinjector
+  entityIcon: StimulantAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1500
+  recipeUnlocks:
+  - StimulantAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: CrisisAutoInjector
+  name: research-technology-crisisautoinjector
+  entityIcon: CrisisAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - CrisisAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: LacerAutoInjector
+  name: research-technology-lacerautoinjector
+  entityIcon: LacerAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - LacerAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: BruizAutoInjector
+  name: research-technology-bruizautoinjector
+  entityIcon: BruizAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - BruizAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: PolyAutoInjector
+  name: research-technology-polyautoinjector
+  entityIcon: PolyAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1500
+  recipeUnlocks:
+  - PolyAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: SpaceMedipen
+  name: research-technology-spacemedipen
+  entityIcon: SpaceMedipen
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 500
+  recipeUnlocks:
+  - SpaceMedipen
+  discoveryWeight: 1.5
+- type: technology
+  id: StimpackMiniAssembler
+  name: research-technology-stimpackmini
+  entityIcon: StimpackMini
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 5000
+  recipeUnlocks:
+  - StimpackMiniAssembler
+- type: technology
+  id: RegenerativeFireMeshAssembler
+  name: research-technology-regenerativefiremesh
+  entityIcon: RegenerativeFireMesh
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - RegenerativeFireMeshAssembler
+- type: technology
+  id: ImprovedMedicatedSutureAssembler
+  name: research-technology-improvedmedicatedsuture
+  entityIcon: ImprovedMedicatedSuture
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 7500
+  recipeUnlocks:
+  - ImprovedMedicatedSutureAssembler
+- type: technology
+  id: BruteAutoInjector
+  name: research-technology-bruteautoinjector
+  entityIcon: BruteAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - BruteAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: BurnAutoInjector
+  name: research-technology-burnautoinjector
+  entityIcon: BurnAutoInjector
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 1000
+  recipeUnlocks:
+  - BurnAutoInjector
+  discoveryWeight: 1.5
+- type: technology
+  id: CombatMedipen
+  name: research-technology-combatmedipen
+  entityIcon: CombatMedipen
+  discipline: NFMedical
+  tags:
+  - medical
+  factions:
+  - Nanotrasen
+  - Syndicate
+  - Pirates
+  - Ussp
+  - Security
+  - Neutral
+  cost: 3000
+  recipeUnlocks:
+  - CombatMedipen
+  discoveryWeight: 1.5

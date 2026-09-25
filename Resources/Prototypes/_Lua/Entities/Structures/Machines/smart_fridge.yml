@@ -17,12 +17,3 @@
       Manipulator: 2
     stackRequirements:
       Glass: 3
-
-- type: entity
-  parent: BaseNFFlatpack
-  id: SmartFridgeFlatpack
-  name: smart fridge flatpack
-  description: A flatpack used for constructing a smart fridge.
-  components:
-  - type: Flatpack
-    entity: SmartFridge

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Numerics;
 using System.IO;
 using System.Threading.Tasks;
-using Content.Server._Lua.Sectors;
+using Content.Lua.Server.Sectors;
 using Content.Client.Markers;
 using Content.IntegrationTests;
 using Content.IntegrationTests.Pair;
@@ -155,7 +155,7 @@ namespace Content.MapRenderer.Painters
             await _pair.RunTicksSync(10);
             await Task.WhenAll(client.WaitIdleAsync(), server.WaitIdleAsync());
 
-            var sMapManager = server.ResolveDependency<IMapManager>();
+            var sMapManager = server.ResolveDependency<IEntityManager>().System<SharedMapSystem>();
 
             var tilePainter = new TilePainter(client, server);
             var entityPainter = new GridPainter(client, server);

@@ -34,7 +34,7 @@ public sealed partial class TraitorRuleComponent : Component
     /// Give this traitor an Uplink on spawn.
     /// </summary>
     [DataField]
-    public bool GiveUplink = true;
+    public bool GiveUplink = false;
 
     /// <summary>
     /// Give this traitor the codewords.

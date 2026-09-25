@@ -17,6 +17,7 @@ namespace Content.Shared.Tag;
 public sealed class TagSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IComponentFactory _factory = default!;
 
     private EntityQuery<TagComponent> _tagQuery;
 
@@ -711,5 +712,33 @@ public sealed class TagSystem : EntitySystem
     private void AssertValidTag(string id)
     {
         DebugTools.Assert(_proto.HasIndex<TagPrototype>(id), $"Unknown tag: {id}");
+    }
+
+    public bool PrototypeHasAnyTag(EntityPrototype prototype, IEnumerable<ProtoId<TagPrototype>> tags)
+    {
+        if (!prototype.TryGetComponent(out TagComponent? component, _factory))
+            return false;
+
+        foreach (var tag in tags)
+        {
+            if (component.Tags.Contains(tag))
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool PrototypeHasAllTags(EntityPrototype prototype, IEnumerable<ProtoId<TagPrototype>> tags)
+    {
+        if (!prototype.TryGetComponent(out TagComponent? component, _factory))
+            return false;
+
+        foreach (var tag in tags)
+        {
+            if (!component.Tags.Contains(tag))
+                return false;
+        }
+
+        return true;
     }
 }

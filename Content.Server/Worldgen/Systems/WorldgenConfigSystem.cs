@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Administration;
 using Content.Server.GameTicking.Events;
 using Content.Server.Worldgen.Components;
@@ -19,7 +19,7 @@ namespace Content.Server.Worldgen.Systems;
 /// </summary>
 public sealed class WorldgenConfigSystem : EntitySystem
 {
-    [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IConsoleHost _conHost = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;

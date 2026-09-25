@@ -1,41 +1,4 @@
 # Hardsuit
-- type: sponsorLoadout
-  id: Sil
-  ownerLogin: _Sil
-  tier: god
-  entities:
-    - ClothingBackpackSil
-    - HypospraySil
-    - ClothingBeltSilFilled
-    - ClothingMaskGasSil
-    - ClothingShoesBootsSil
-    - PDASil
-    - AirTankSil
-    - ClothingUniformJumpsuitSil
-    - ClothingNeckSil
-    - ClothingHandsGlovesSil
-    - ClothingEyesHudSil
-    - ViolinInstrument
-    - PlushieSilAily
-    - PlushieSilAizek
-    - PlushieSilAzrail
-    - PlushieSilEmilia
-    - PlushieSilEva
-    - PlushieSilKrivazora
-    - PlushieSilAzrailHardsuit
-    - PlushieSilSharp
-    - PlushieSilRenaTakala
-    - PlushieSilEso
-    - PlushieSilKel
-    - PlushieSilWeaver
-    - PlushieSilEyrinLiht
-    - PlushieSilKelicKato1
-    - PlushieSilKelicKato2
-    - PlushieSilYuliWinter
-    - PlushieSilEkaterinaAkkerman
-    - PlushieSilYohanaWinter
-    - PlushieSilGermanKvaSki
-    - PlushieSilTimAkkerman
 
 - type: entity
   parent: [ClothingOuterHardsuitAtmos, HardsuitSpeedBuff]
@@ -155,7 +118,6 @@
     sprite: _Lua/Sponsor/Sil/jumpsuit.rsi
   - type: Clothing
     sprite: _Lua/Sponsor/Sil/jumpsuit.rsi
-
 
 # Neck
 - type: entity
@@ -408,13 +370,13 @@
     size: Normal
   - type: MultipleTool
     entries:
-    - behavior: Prying
+    - behavior: [ Prying ]
       sprite:
         sprite: _Lua/Sponsor/Sil/tools_jawsoflife.rsi
         state: syn_jaws_pry
       useSound: /Audio/Items/jaws_pry.ogg
       changeSound: /Audio/Items/change_jaws.ogg
-    - behavior: Cutting
+    - behavior: [ Cutting ]
       sprite:
         sprite: _Lua/Sponsor/Sil/tools_jawsoflife.rsi
         state: syn_jaws_cutter
@@ -447,7 +409,7 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-    - behavior: Screwing
+    - behavior: [ Screwing ]
       sprite:
         sprite: _Lua/Sponsor/Sil/tools_powerdrill.rsi
         state: drill_screw
@@ -455,7 +417,7 @@
         path: /Audio/Items/drill_use.ogg
       changeSound:
         path: /Audio/Items/change_drill.ogg
-    - behavior: Anchoring
+    - behavior: [ Anchoring ]
       sprite:
         sprite: _Lua/Sponsor/Sil/tools_powerdrill.rsi
         state: drill_bolt

@@ -5,7 +5,7 @@ using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.GC;
 using Content.Server.Worldgen.Tools;
-using Content.Server._Lua.Stargate.Components;
+using Content.Lua.Shared.Stargate;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
@@ -17,7 +17,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.Shuttles.Components;
 using Content.Server._NF.Worldgen.Components.Debris; // Frontier
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Worldgen.Systems.Debris;
 
@@ -31,11 +32,11 @@ public sealed class DebrisFeaturePlacerSystem : BaseWorldSystem
     [Dependency] private readonly PoissonDiskSampler _sampler = default!;
     [Dependency] private readonly TransformSystem _xformSys = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedMapSystem _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
 
     private ISawmill _sawmill = default!;
     private const int StargateInitialDebrisBudget = 18;

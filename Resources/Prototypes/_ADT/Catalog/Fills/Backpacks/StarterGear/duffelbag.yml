@@ -7,7 +7,7 @@
   - type: StorageFill
     contents:
       - id: WeaponRifleAk
-      - id: Magazine762x39mmFMJ #Lua 30 -> 762x39
+      - id: Magazine762x39mmEmpty
         amount: 4
 
 - type: entity
@@ -18,7 +18,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine9x19mmSubMachineGunFMJ #Lua 35 -> 9x19
+      - id: Magazine9x19mmSubMachineGunEmpty
         amount: 4
 
 - type: entity
@@ -29,10 +29,10 @@
   components:
   - type: StorageFill
     contents:
-      - id: Magazine12_gaugeSlug
-      - id: Magazine12_gaugeSlug
-      - id: Magazine12_gaugeBuckshot
-      - id: Magazine12_gaugeBuckshot
+      - id: Magazine12_gaugeEmpty
+      - id: Magazine12_gaugeEmpty
+      - id: Magazine12_gaugeEmpty
+      - id: Magazine12_gaugeEmpty
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmoBundle
@@ -42,9 +42,9 @@
   components:
   - type: StorageFill
     contents:
-      - id: ADTMagazineShotgunSlugXL
-      - id: ADTMagazineShotgunSlugXL
-      - id: ADTMagazineShotgunXL
+      - id: Magazine12_gaugeXLEmpty
+      - id: Magazine12_gaugeXLEmpty
+      - id: Magazine12_gaugeXLEmpty
         amount: 2
 
 - type: entity
@@ -56,7 +56,7 @@
   - type: StorageFill
     contents:
       - id: ADTWeaponRifleXC67
-      - id: ADTExtMagazineRifle
+      - id: ADTExtMagazineRifleEmpty
         amount: 2
 
 - type: entity
@@ -67,5 +67,5 @@
   components:
   - type: StorageFill
     contents:
-      - id: ADTExtMagazineRifle
+      - id: ADTExtMagazineRifleEmpty
         amount: 3

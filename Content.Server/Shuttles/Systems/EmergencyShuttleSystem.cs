@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -40,7 +40,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.Shuttles;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -72,8 +72,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 

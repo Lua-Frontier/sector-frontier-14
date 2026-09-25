@@ -19,8 +19,8 @@ using Robust.Shared.Containers;
 using Content.Server._NF.Station.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
-using Content.Server._Lua.StationRecords.Systems;
-using Content.Server._Lua.Shuttles.Systems;
+using Content.Lua.Shared.StationRecords;
+using Content.Lua.Shared.Shuttles;
 
 namespace Content.Server._NF.Shipyard.Systems;
 
@@ -29,7 +29,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly DockingSystem _docking = default!;
     [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly ShuttleGridAccessSystem _gridAccess = default!;
+    [Dependency] private readonly IShuttleGridAccessSystem _gridAccess = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
@@ -37,7 +37,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ShipOwnershipSystem _shipOwnership = default!;
-    [Dependency] private readonly ShipCrewAssignmentSystem _shipCrew = default!; // Lua
+    [Dependency] private readonly IShipCrewAssignmentSystem _shipCrew = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;

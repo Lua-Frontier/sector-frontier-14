@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server._NF.CryoSleep;
 using Content.Server.Afk;
 using Content.Server.Station.Components;
@@ -22,7 +22,7 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
 {
     [Dependency] private readonly IAfkManager _afk = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly SectorSystem _sectors = default!;
+    [Dependency] private readonly ISectorSystem _sectors = default!;
     [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 

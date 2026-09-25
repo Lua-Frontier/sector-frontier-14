@@ -2,8 +2,8 @@
                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                      xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                      Title="{Loc 'tech-disk-ui-name'}"
-                     MinSize="400 260"
-                     SetSize="400 260">
+                     MinSize="400 360"
+                     SetSize="400 420">
     <BoxContainer Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True"
@@ -11,30 +11,23 @@
         <Button Name="ServerButton"
                 Text="{Loc 'lathe-menu-server-list'}"
                 HorizontalAlignment="Left"></Button>
-        <PanelContainer Margin="0 10 0 0" VerticalExpand="True">
+        <Label Name="TotalLabel"
+               Margin="0 10 0 6"
+               HorizontalAlignment="Center"/>
+        <Label Name="HintLabel"
+               HorizontalAlignment="Center"
+               Margin="0 0 0 8"/>
+        <PanelContainer VerticalExpand="True">
             <PanelContainer.PanelOverride>
                 <graphics:StyleBoxFlat BackgroundColor="#000000FF"/>
             </PanelContainer.PanelOverride>
-            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Center">
-                <Label Name="TotalLabel"
-                       HorizontalAlignment="Center">
-                </Label>
-                <BoxContainer MinHeight="20"></BoxContainer>
-                <Button
-                    Name="PrintButton"
-                    Text="{Loc 'tech-disk-ui-print-button'}"
-                    MaxWidth="240"
-                    HorizontalAlignment="Center"
-                    VerticalExpand="False">
-                </Button>
-                <Button
-                    Name="PrintRareButton"
-                    Text="{Loc 'tech-disk-ui-print-rare-button'}"
-                    MaxWidth="240"
-                    HorizontalAlignment="Center"
-                    VerticalExpand="False">
-                </Button>
-            </BoxContainer>
+            <ScrollContainer HScrollEnabled="False" VerticalExpand="True">
+                <BoxContainer Name="OptionsContainer"
+                              Orientation="Vertical"
+                              SeparationOverride="6"
+                              Margin="8"
+                              HorizontalExpand="True"/>
+            </ScrollContainer>
         </PanelContainer>
     </BoxContainer>
 </controls:FancyWindow>

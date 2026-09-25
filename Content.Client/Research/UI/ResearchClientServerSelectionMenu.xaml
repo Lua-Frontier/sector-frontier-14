@@ -1,9 +1,30 @@
 ﻿<DefaultWindow xmlns="https://spacestation14.io"
+            xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
             Title="{Loc 'research-client-server-selection-menu-title'}"
-            MinSize="300 300"
-            SetSize="300 300">
-    <ItemList Name="Servers"
-              SelectMode="Single">
-        <!-- Servers are added here by code -->
-    </ItemList>
+            MinSize="320 320"
+            SetSize="320 340">
+    <BoxContainer Orientation="Vertical" SeparationOverride="6" Margin="4">
+        <BoxContainer Orientation="Horizontal"
+                      SeparationOverride="8"
+                      MinHeight="20"
+                      VerticalAlignment="Center">
+            <PanelContainer Name="StatusDot"
+                            SetSize="10 10"
+                            MinSize="10 10"
+                            MaxSize="10 10"
+                            Margin="0 1 0 0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"/>
+            <Label Name="StatusLabel"
+                   VerticalAlignment="Center"
+                   HorizontalExpand="True"
+                   ClipText="True"/>
+        </BoxContainer>
+        <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+            <BoxContainer Name="ServerList"
+                          Orientation="Vertical"
+                          SeparationOverride="2"
+                          HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
 </DefaultWindow>

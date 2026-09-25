@@ -1,4 +1,4 @@
-using Content.Server._Lua.Sectors;
+using Content.Lua.Shared.Sectors;
 using Content.Server.Administration.Logs;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -13,14 +13,14 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Content.Shared._NF.CryoSleep.Events;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Lua.Expedition;
+using Content.Lua.Shared.Expedition;
 
 namespace Content.Server._NF.CryoSleep;
 
 public sealed partial class CryoSleepSystem
 {
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SectorIdleFreezeSystem _sectorIdleFreeze = default!;
+    [Dependency] private readonly ISectorIdleFreezeSystem _sectorIdleFreeze = default!;
 
     private void InitReturning()
     {

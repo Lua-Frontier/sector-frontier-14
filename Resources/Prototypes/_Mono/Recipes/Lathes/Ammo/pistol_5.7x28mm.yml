@@ -1,0 +1,92 @@
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine57x28mmSubMachineGunEmpty
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindMagazine
+  result: Magazine57x28mmSubMachineGunEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmFMJ
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmFMJ
+
+- type: latheRecipe
+  parent: BaseAmmoPlasteelAPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmPlasteelAP
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmPlasteelAP
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmRubber
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmRubber
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmIncendiary
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoPracticePistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmPractice
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmPractice
+
+- type: latheRecipe
+  parent: BaseAmmoUraniumPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmUranium
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmUranium
+
+- type: latheRecipe
+  parent: BaseAmmoHPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmHP
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmHP
+
+- type: latheRecipe
+  parent: BaseAmmoRIPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox57x28mmRIP
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmRIP
+
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberBigAmmoBoxRecipe
+  id: AmmoBox57x28mmBigFMJ
+  categories:
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  result: AmmoBox57x28mmBigFMJ
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: AmmoBox57x28mmEmp
+  result: AmmoBox57x28mmEmp
+  categories:
+  - MiscAmmo
+  - Ammo
+  - AmmoCaliber57x28
+  - AmmoKindBox
+  materials:
+    Plasma: 800
+    Silver: 400

@@ -4,7 +4,7 @@
 
 - type: entity
   categories: [ ShuttleGun ]
-  parent: [BallisticArtillery, BallisticArtilleryTier1HP]
+  parent: [BallisticArtillery, BallisticArtilleryTier1HP, ConstructibleMachine]
   id: WeaponShuttleGrapplingTurret
   name: Турель-гарпун
   description: Шаттл-гарпун для зацепа за другой шаттл. Крюк отображается на радаре.
@@ -20,10 +20,6 @@
       drawdepth: Mobs
       layers:
         - state: turret
-    - type: ContainerContainer
-      containers:
-        machine_board: !type:Container
-        machine_parts: !type:Container
     - type: Battery
       maxCharge: 5000
       startingCharge: 5000
@@ -55,3 +51,9 @@
       autoRecharge: true
       autoRechargeRate: 100
     - type: ShuttleGrappleTurret
+    - type: Machine
+      board: WeaponShuttleGrapplingTurretCircuitboard
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container

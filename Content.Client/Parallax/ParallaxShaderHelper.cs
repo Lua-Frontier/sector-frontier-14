@@ -201,7 +201,9 @@ public static class ParallaxShaderHelper
         float zoom,
         float viewScale)
     {
-        var screenBounds = new Box2(bounds.Left, bounds.Bottom, bounds.Right, bounds.Top);
+        var screenBounds = Box2.FromDimensions(
+            new Vector2(bounds.Left, 0f),
+            new Vector2(Math.Max(bounds.Width, 1f), Math.Max(bounds.Height, 1f)));
         var density = Math.Clamp(p.StarDensity, 0f, 1.5f);
         var proto = p.Proto;
 

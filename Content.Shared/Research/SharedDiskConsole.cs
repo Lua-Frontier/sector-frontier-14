@@ -9,32 +9,44 @@ public enum DiskConsoleUiKey : byte
 }
 
 [Serializable, NetSerializable]
+public sealed class DiskConsolePointOption
+{
+    public int Points;
+    public bool CanPrint;
+
+    public DiskConsolePointOption()
+    {
+    }
+
+    public DiskConsolePointOption(int points, bool canPrint)
+    {
+        Points = points;
+        CanPrint = canPrint;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class DiskConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
-    public bool CanPrint;
-    public bool CanPrintRare; // Frontier
-    public int PointCost;
-    public int PointCostRare; // Frontier
     public int ServerPoints;
+    public bool Printing;
+    public List<DiskConsolePointOption> Options = new();
 
-    public DiskConsoleBoundUserInterfaceState(int serverPoints, int pointCost, int pointCostRare, bool canPrint, bool canPrintRare) // Frontier: add pointCostRare, canPrintRare
+    public DiskConsoleBoundUserInterfaceState(int serverPoints, bool printing, List<DiskConsolePointOption> options)
     {
-        CanPrint = canPrint;
-        CanPrintRare = canPrintRare; // Frontier
-        PointCost = pointCost;
-        PointCostRare = pointCostRare; // Frontier
         ServerPoints = serverPoints;
+        Printing = printing;
+        Options = options;
     }
 }
 
 [Serializable, NetSerializable]
 public sealed class DiskConsolePrintDiskMessage : BoundUserInterfaceMessage
 {
+    public int Points;
 
-}
-
-[Serializable, NetSerializable] // Frontier
-public sealed class DiskConsolePrintRareDiskMessage : BoundUserInterfaceMessage
-{
-
+    public DiskConsolePrintDiskMessage(int points)
+    {
+        Points = points;
+    }
 }

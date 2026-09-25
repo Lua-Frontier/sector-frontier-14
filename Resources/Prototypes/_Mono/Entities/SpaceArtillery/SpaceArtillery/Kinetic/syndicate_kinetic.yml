@@ -11,6 +11,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier1HP
+  - ConstructibleMachine
   description: A large, twin-barrelled scatter cannon, firing bursts of canister shot to shred any incoming missiles or potential boarders. Uses a self loading mechanism similar to the anaconda handgun.
   components:
   - type: StaticPrice
@@ -69,7 +70,12 @@
   - type: ShipRepairable
     repairTime: 10
     repairCost: 30
-
+  - type: Machine
+    board: WeaponTurretAdderScattercannonCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretFang
@@ -78,6 +84,7 @@
   parent:
   - BallisticArtillery
   - BallisticArtilleryTier3HP
+  - ConstructibleMachine
   description: A heavy 90mm autocannon of syndicate design, created during the corporate war. Made for shattering opponent destroyers. Uses a self loading mechanism similar to the anaconda handgun.
   components:
   - type: StaticPrice
@@ -150,13 +157,20 @@
   - type: ShipRepairable
     repairTime: 20
     repairCost: 80
-
+  - type: Machine
+    board: WeaponTurretFangCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretHydra
   name: Hydra 220mm battery
   suffix: Large, T4
-  parent: BallisticArtilleryUnanchorable
+  parent:
+  - BallisticArtilleryUnanchorable
+  - ConstructibleMachine
   description: A main cannonade of syndicate origin, the hydra is a monstrous tri-barreled battery of 220-millimeter pain, designed to shatter corpations' toughest vessels. Loads with a similar mechanism as the anaconda handgun.
   components:
   - type: StaticPrice
@@ -247,7 +261,12 @@
   - type: ShipRepairable
     repairTime: 40
     repairCost: 250
-
+  - type: Machine
+    board: WeaponTurretHydraCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 - type: entity
   categories: [ ShuttleGun ]
   id: WeaponTurretLeviathan
@@ -256,6 +275,7 @@
   parent:
   - BallisticArtilleryUnanchorable
   - BallisticArtilleryTier5HP
+  - ConstructibleMachine
   description: A heavy artillery gun of syndicate origin, the leviathan is tyrannic testiment of Syndicate ingenuity, designed to send a message. Able to crack NanoTrasen battleships, and small fighters in a single shell. Loads with a similar mechanism as the anaconda handgun.
   components:
   - type: StaticPrice
@@ -324,4 +344,9 @@
   - type: ShipRepairable
     repairTime: 40
     repairCost: 250
-
+  - type: Machine
+    board: WeaponTurretLeviathanCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

@@ -5,6 +5,7 @@
   parent:
   - BallisticArtilleryUnanchorableCartridge
   - BallisticArtilleryTier4HP
+  - ConstructibleMachine
   description: A heavy built-in torpedo rack for cruisers which relies on manual loading, usually done at harbor. Despite this, it has the largest missiles in the sector.
   components:
   - type: StaticPrice
@@ -34,6 +35,8 @@
       tags:
       - Asm220Torpedo
     capacity: 4
+    infiniteUnspawned: true
+    proto: Asm220TorpedoHE
     soundInsert:
       path: /Audio/Items/rped.ogg
   - type: Actions
@@ -48,23 +51,10 @@
   - type: ShipRepairable
     repairTime: 30
     repairCost: 100
-
-- type: entity
-  categories: [ ShuttleGun ]
-  id: WeaponTurretASM220Station
-  suffix: Supercap/Station, Infinite HE, I'll kill you if you put this on a normal capital.
-  parent:
-  - WeaponTurretASM220
-  description: A heavy built-in torpedo rack for cruisers which relies on manual loading, usually done at harbor. Despite this, it has the largest missiles in the sector. This one is connected to a system for autoloading the VLS from a capital or stations reserves.
-  components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - Asm220Torpedo
-    capacity: 4
-    soundInsert:
-      path: /Audio/Items/rped.ogg
-    infiniteUnspawned: True
-    proto: Asm220TorpedoHE
-  - type: ShipGunClass
-    shipClass: Heavy
+  - type: Machine
+    board: WeaponTurretASM220Circuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container

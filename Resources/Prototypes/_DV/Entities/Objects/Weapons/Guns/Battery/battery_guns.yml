@@ -157,7 +157,7 @@
     - suitStorage # Frontier
     sprite: _DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
   - type: Gun
-    fireRate: 2.5
+    fireRate: 2.2
     shotsPerBurst: 3
     burstCooldown: 0.5
     burstFireRate: 6
@@ -170,19 +170,19 @@
     soundEmpty:
       path: /Audio/_DV/Weapons/Guns/Empty/dry_fire.ogg
   - type: Battery
-    maxCharge: 3600 # Mono 2000->3600
-    startingCharge: 3600 # Mono 2000->3600
+    maxCharge: 2000
+    startingCharge: 2000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 60 # Mono 100 -> 60
+    fireCost: 50
   - type: EnergyGun
     fireModes:
     - proto: BulletDisabler
-      fireCost: 60 # Mono 100 -> 60
+      fireCost: 50
       name: disable
       state: disabler
     - proto: BulletEnergyGunLaser
-      fireCost: 90 # Mono 200 -> 90
+      fireCost: 80
       name: lethal
       state: lethal
     # - proto: BulletEnergyGunIon

@@ -1,4 +1,5 @@
 using Content.Server.Engineering.Components;
+using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
@@ -19,6 +20,7 @@ namespace Content.Server.Engineering.EntitySystems
         [Dependency] private readonly TurfSystem _turfSystem = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedMapSystem _maps = default!;
+        [Dependency] private readonly PopupSystem _popup = default!;
 
         public override void Initialize()
         {
@@ -46,7 +48,10 @@ namespace Content.Server.Engineering.EntitySystems
             }
 
             if (!IsTileClear())
+            {
+                _popup.PopupCursor(Loc.GetString("spawn-after-interact-tile-blocked"), args.User);
                 return;
+            }
 
             if (component.DoAfterTime > 0)
             {
@@ -61,7 +66,11 @@ namespace Content.Server.Engineering.EntitySystems
             }
 
             if (component.Deleted || !IsTileClear())
+            {
+                if (!component.Deleted && !IsTileClear())
+                    _popup.PopupCursor(Loc.GetString("spawn-after-interact-tile-blocked"), args.User);
                 return;
+            }
 
             if (TryComp(uid, out StackComponent? stackComp)
                 && component.RemoveOnInteract && !_stackSystem.Use(uid, 1, stackComp))
@@ -69,7 +78,9 @@ namespace Content.Server.Engineering.EntitySystems
                 return;
             }
 
-            Spawn(component.Prototype, args.ClickLocation.SnapToGrid(grid));
+            var spawned = Spawn(component.Prototype, args.ClickLocation.SnapToGrid(grid));
+            var ev = new SpawnAfterInteractSpawnedEvent(args.User, uid);
+            RaiseLocalEvent(spawned, ref ev);
 
             if (component.RemoveOnInteract && stackComp == null)
                 QueueDel(uid); // Frontier: TryQueueDel<QueueDel

@@ -105,7 +105,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     private void OnBoundUIOpened(EntityUid uid, SiliconLawBoundComponent component, BoundUIOpenedEvent args)
     {
         TryComp(uid, out IntrinsicRadioTransmitterComponent? intrinsicRadio);
-        var radioChannels = intrinsicRadio?.Channels;
+        var radioChannels = intrinsicRadio?.Channels
+            .Select(channel => channel.ToString())
+            .ToHashSet();
 
         var state = new SiliconLawBuiState(GetLaws(uid).Laws, radioChannels);
         _userInterface.SetUiState(args.Entity, SiliconLawsUiKey.Key, state);

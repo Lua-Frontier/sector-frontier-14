@@ -1,10 +1,11 @@
 - type: entity
-  categories: [ HideSpawnMenu ]
   name: Kardashev-Mosin
   parent: [BaseWeaponSniper, BaseGunWieldable, NFBaseGunMeleeAttackBayonet, BaseC3SyndicateContraband]
   id: WeaponSniperMosin
   description: A true relic, the Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Loads 5 rounds of 7.62x54mmR.
   components:
+  - type: Gun
+    examineCaliber: gun-examine-caliber-76254
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
     layers:
@@ -54,4 +55,4 @@
       tags:
       - Cartridge762x54mmRFMJ
     capacity: 5
-    proto: Cartridge762x54mmRFMJ
+    proto: null

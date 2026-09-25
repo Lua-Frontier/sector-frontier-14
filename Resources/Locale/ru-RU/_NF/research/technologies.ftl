@@ -9,6 +9,7 @@ nf-research-discipline-service = Обслуживание
 
 # Сохраняйте ключи в алфавитном порядке
 nf-research-technology-abnormal-artifact-manipulation = Переработка артефактов
+nf-research-technology-anomaly-core-harnessing = Использование ядер аномалий
 nf-research-technology-advanced-anomalous-research = Продвинутое изучение аномалий
 nf-research-technology-advanced-atmospherics = Продвинутые атмос-технологии
 nf-research-technology-advanced-atmospherics-portable = Портативные атмос-системы
@@ -59,7 +60,6 @@ nf-research-technology-biomass = Переработка органики
 nf-research-technology-bluespace-cargo-transport = Блюспейс-транспортировка грузов
 nf-research-technology-bluespace-chemistry = Блюспейс-химия
 nf-research-technology-bluespace-storage = Блюспейс-хранилище
-nf-research-technology-bluespace-time-manipulation = Манипулирование блюспейс-временем
 nf-research-technology-bounty-hunting = Основы поддержания порядка
 nf-research-technology-clowning-utilities = Инструменты клоунады
 nf-research-technology-combat-propulsion = Боевая персональная тяга
@@ -132,6 +132,7 @@ nf-research-technology-space-handheld-scanning = Портативное обна
 nf-research-technology-space-scanning = Радар
 nf-research-technology-special-means = Специальные средства
 nf-research-technology-super-parts = Суперкомпоненты
+nf-research-technology-bluespace-parts = Блюспейс-компоненты
 nf-research-technology-syringe-gun = Шприцемёт
 nf-research-technology-trash-power-generators = Тепловые генераторы
 nf-research-technology-vim = Вим

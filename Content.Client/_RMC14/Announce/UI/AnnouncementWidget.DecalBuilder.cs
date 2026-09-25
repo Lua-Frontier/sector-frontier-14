@@ -1,5 +1,6 @@
 using System;
-using Content.Client._Lua.Announce;
+using Content.Lua.UIKit.Announce;
+using Content.Client._RMC14.Announce;
 using Content.Shared._RMC14.Announce;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -51,7 +52,7 @@ public sealed partial class AnnouncementWidget
             {
                 var resPath = NormalizeDecalRsiPath(announcement.DecalRsi!);
                 var holopadRsiPath = ToHolopadRsiPath(resPath);
-                var portraitSystem = _owner._entityManager.System<AnnouncementPortraitSystem>();
+                var portraitSystem = _owner._entityManager.System<IAnnouncementPortraitSystem>();
                 var flagEntity = portraitSystem.CreateHologramFlag(holopadRsiPath, announcement.DecalState!);
                 if (flagEntity == null)
                     return null;

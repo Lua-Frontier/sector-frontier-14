@@ -281,6 +281,26 @@
   id: SeedExtractorMachineCircuitboard
   result: SeedExtractorMachineCircuitboard
 
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: VendingMachineNutriMachineCircuitboard
+  result: VendingMachineNutriMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: VendingMachineSeedsUnlockedMachineCircuitboard
+  result: VendingMachineSeedsUnlockedMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: VendingMachineMedicalMachineCircuitboard
+  result: VendingMachineMedicalMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseMedicalMachineRecipeCategory ]
+  id: VendingMachineChemicalsMachineCircuitboard
+  result: VendingMachineChemicalsMachineCircuitboard
+
 # Kitchen
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
@@ -331,6 +351,12 @@
   result: ShuttleGunKineticCircuitboard
   completetime: 6
 
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseSecurityMachineRecipeCategory ]
+  id: ShuttleGunKineticOldCircuitboard
+  result: ShuttleGunKineticOldCircuitboard
+  completetime: 6
+
 ## Miscellaneous
 
 - type: latheRecipe
@@ -378,6 +404,11 @@
   parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
   id: ResearchAndDevelopmentServerMercMachineCircuitboard
   result: ResearchAndDevelopmentServerMercMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: ResearchAndDevelopmentServerLuaTechMachineCircuitboard
+  result: ResearchAndDevelopmentServerLuaTechMachineCircuitboard
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseResearchMachineRecipeCategory ]

@@ -4,6 +4,7 @@ using Content.Shared.Mind.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using System.Numerics;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server._Mono.Cleanup;
 
@@ -13,7 +14,7 @@ namespace Content.Server._Mono.Cleanup;
 public sealed class CleanupHelperSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly SharedMapSystem _mapMan = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 

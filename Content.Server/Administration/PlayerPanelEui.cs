@@ -5,7 +5,6 @@ using Content.Server.Administration.Notes;
 using Content.Server.Administration.Systems;
 using Content.Server.Database;
 using Content.Server.EUI;
-using Content.Server._Lua.Reputation;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Content.Shared.Eui;
@@ -24,6 +23,7 @@ public sealed class PlayerPanelEui : BaseEui
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private readonly IReputationModerationEuiFactory _reputationEui = default!;
 
     private readonly LocatedPlayerData _targetPlayer;
     private int? _notes;
@@ -165,7 +165,7 @@ public sealed class PlayerPanelEui : BaseEui
                 break;
             case PlayerPanelOpenReputationMessage:
                 if (_admins.GetAdminData(Player)?.CanModeratePlayerReputation() != true) return;
-                _eui.OpenEui(new ReputationModerationEui(ReputationTargetKind.Player, _targetPlayer.UserId, _targetPlayer.Username), Player);
+                _eui.OpenEui(_reputationEui.Create(ReputationTargetKind.Player, _targetPlayer.UserId, _targetPlayer.Username), Player);
                 break;
         }
     }

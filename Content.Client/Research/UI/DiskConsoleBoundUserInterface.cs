@@ -1,47 +1,41 @@
 using Content.Shared.Research;
 using Content.Shared.Research.Components;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
-namespace Content.Client.Research.UI
+namespace Content.Client.Research.UI;
+
+public sealed class DiskConsoleBoundUserInterface : BoundUserInterface
 {
-    public sealed class DiskConsoleBoundUserInterface : BoundUserInterface
+    [ViewVariables]
+    private DiskConsoleMenu? _menu;
+
+    public DiskConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-        [ViewVariables]
-        private DiskConsoleMenu? _menu;
+    }
 
-        public DiskConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+    protected override void Open()
+    {
+        base.Open();
+
+        _menu = this.CreateWindow<DiskConsoleMenu>();
+
+        _menu.OnServerButtonPressed += () =>
         {
-        }
-
-        protected override void Open()
+            SendMessage(new ConsoleServerSelectionMessage());
+        };
+        _menu.OnPrintButtonPressed += points =>
         {
-            base.Open();
+            SendMessage(new DiskConsolePrintDiskMessage(points));
+        };
+    }
 
-            _menu = this.CreateWindow<DiskConsoleMenu>();
+    protected override void UpdateState(BoundUserInterfaceState state)
+    {
+        base.UpdateState(state);
 
-            _menu.OnServerButtonPressed += () =>
-            {
-                SendMessage(new ConsoleServerSelectionMessage());
-            };
-            _menu.OnPrintButtonPressed += () =>
-            {
-                SendMessage(new DiskConsolePrintDiskMessage());
-            };
-            _menu.OnPrintRareButtonPressed += () => // Frontier: Rare disk
-            {
-                SendMessage(new DiskConsolePrintRareDiskMessage());
-            };
-        }
+        if (state is not DiskConsoleBoundUserInterfaceState msg)
+            return;
 
-        protected override void UpdateState(BoundUserInterfaceState state)
-        {
-            base.UpdateState(state);
-
-            if (state is not DiskConsoleBoundUserInterfaceState msg)
-                return;
-
-            _menu?.Update(msg);
-        }
+        _menu?.Update(msg);
     }
 }

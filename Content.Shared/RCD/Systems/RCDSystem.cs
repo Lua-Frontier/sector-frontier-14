@@ -12,7 +12,8 @@ using Content.Shared.Maps;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
-using Content.Shared._Lua.Stargate;
+using Content.Shared.EmergencyRockCutter;
+using Content.Shared.Stargate;
 using Content.Shared._NF.GridAccess; // Frontier
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
@@ -84,6 +85,9 @@ public sealed class RCDSystem : EntitySystem
         }
 
         // The RCD has no valid recipes somehow? Get rid of it
+        if (HasComp<EmergencyLabAssemblerComponent>(uid))
+            return;
+
         QueueDel(uid);
     }
 
@@ -333,7 +337,8 @@ public sealed class RCDSystem : EntitySystem
 
         // Play audio and consume charges
         _audio.PlayPredicted(component.SuccessSound, uid, args.User);
-        _sharedCharges.AddCharges(uid, -args.Cost);
+        if (!HasComp<EmergencyLabAssemblerComponent>(uid))
+            _sharedCharges.AddCharges(uid, -args.Cost);
     }
 
     private void OnRCDconstructionGhostRotationEvent(RCDConstructionGhostRotationEvent ev, EntitySessionEventArgs session)
@@ -363,24 +368,25 @@ public sealed class RCDSystem : EntitySystem
     {
         var prototype = _protoManager.Index(component.ProtoId);
 
-        // Check that the RCD has enough ammo to get the job done
-        var charges = _sharedCharges.GetCurrentCharges(uid);
-
-        // Both of these were messages were suppose to be predicted, but HasInsufficientCharges wasn't being checked on the client for some reason?
-        if (charges == 0)
+        if (!HasComp<EmergencyLabAssemblerComponent>(uid))
         {
-            if (popMsgs)
-                _popup.PopupClient(Loc.GetString("rcd-component-no-ammo-message"), uid, user);
+            var charges = _sharedCharges.GetCurrentCharges(uid);
 
-            return false;
-        }
+            if (charges == 0)
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-no-ammo-message"), uid, user);
 
-        if (prototype.Cost > charges)
-        {
-            if (popMsgs)
-                _popup.PopupClient(Loc.GetString("rcd-component-insufficient-ammo-message"), uid, user);
+                return false;
+            }
 
-            return false;
+            if (prototype.Cost > charges)
+            {
+                if (popMsgs)
+                    _popup.PopupClient(Loc.GetString("rcd-component-insufficient-ammo-message"), uid, user);
+
+                return false;
+            }
         }
 
         // Exit if the target / target location is obstructed

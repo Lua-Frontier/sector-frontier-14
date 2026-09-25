@@ -5,7 +5,6 @@ using Content.Shared.Store;
 using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Revenant.Components;
 
@@ -21,14 +20,14 @@ public sealed partial class RevenantComponent : Component
     [AutoNetworkedField]
     public FixedPoint2 Essence = 75;
 
-    [DataField("stolenEssenceCurrencyPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<CurrencyPrototype>))]
-    public string StolenEssenceCurrencyPrototype = "StolenEssence";
+    [DataField("stolenEssenceCurrencyPrototype")]
+    public ProtoId<CurrencyPrototype> StolenEssenceCurrencyPrototype = "StolenEssence";
 
     /// <summary>
     /// Prototype to spawn when the entity dies.
     /// </summary>
-    [DataField("spawnOnDeathPrototype", customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string SpawnOnDeathPrototype = "Ectoplasm";
+    [DataField("spawnOnDeathPrototype")]
+    public EntProtoId SpawnOnDeathPrototype = "Ectoplasm";
 
     /// <summary>
     /// The entity's current max amount of essence. Can be increased
@@ -54,7 +53,7 @@ public sealed partial class RevenantComponent : Component
 
     // Here's the gist of the harvest ability:
     // Step 1: The revenant clicks on an entity to "search" for it's soul, which creates a doafter.
-    // Step 2: After the doafter is completed, the soul is "found" and can be harvested.
+    // Step 2: After the doafter is completed, the soul is "found" and can be harvProtoId<CurrencyPrototype>
     // Step 3: Clicking the entity again begins to harvest the soul, which causes the revenant to become vulnerable
     // Step 4: The second doafter for the harvest completes, killing the target and granting the revenant essence.
     #region Harvest Ability

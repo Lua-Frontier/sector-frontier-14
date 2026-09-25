@@ -1,7 +1,5 @@
 # Most of these have DO NOT MAP, since stations are completely unequipped to deal with ship combat + these are basically placeholder.
 
-# Most of these have DO NOT MAP, since stations are completely unequipped to deal with ship combat + these are basically placeholder.
-
 - type: entity
   id: ShuttleGunBase
   parent: BaseStructure
@@ -52,22 +50,26 @@
     doAfterDelay: 3 # Frontier
 
 # ---- Laser weapon branch ----
-# naming: LSE (Laser) + conventional power + suffix (c for PowerCage, e for wired energy) + Name
-# example: LSE-100e "Clown destroyer" (powered by the wiring, very weak)
 
 - type: entity
   id: ShuttleGunSvalinnMachineGun
-  parent: [ ShuttleGunBase, ConstructibleMachine]
+  parent:
+  - BallisticArtillery
+  - BallisticArtilleryTier1HP
+  - ConstructibleMachine
   name: LSE-400c "Svalinn machine gun"
   description: Basic stationary laser unit. Effective against live targets and electronics. Uses regular power cells to fire, and has an extremely high rate of fire.
   components:
+  - type: StaticPrice
+    price: 1500
   - type: RadarBlip
     radarColor: "#1c89d1"
     scale: 1
+    visibleFromOtherGrids: true
   - type: ShipGunType
     shipType: Energy
-  - type: ShipGunClass # Lua
-    shipClass: Superlight # Lua
+  - type: ShipGunClass
+    shipClass: Superlight
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
     layers:
@@ -75,63 +77,89 @@
     - state: mag-unshaded-9
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      cell_slot: !type:ContainerSlot
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 400
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 900 #150 - Mono balance buff by salo
+        damage: 900
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    fireRate: 6 #3
+    fireRate: 6
     useKey: false
+    recoil: 0
+    minAngle: 0
+    maxAngle: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
       params:
         variation: 0.05
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 400
+    powerUsePassive: 150
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: MagazineVisuals
     magState: mag
     steps: 10
     zeroVisible: true
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedSvalinnShuttleLaser
+    fireCost: 10
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 20
   - type: Machine
     board: ShuttleGunSvalinnMachineGunCircuitboard
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: Magazine
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-  - type: HitscanBatteryAmmoProvider
-    proto: NFRedLightLaser # Frontier: use NF prefix
-    fireCost: 10 #50
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 - type: entity
   id: ShuttleGunPerforator
-  parent: [ ShuttleGunBase, ConstructibleMachine]
+  parent:
+  - BallisticArtillery
+  - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   name: LSE-1200c "Perforator"
   description: Advanced stationary laser unit. Annihilates electronics and is extremely dangerous to health! Uses the power cage to fire.
   components:
+  - type: StaticPrice
+    price: 2500
   - type: RadarBlip
     radarColor: "#1c89d1"
     scale: 1
+    visibleFromOtherGrids: true
   - type: ShipGunType
     shipType: Energy
-  - type: ShipGunClass # Lua
-    shipClass: Superlight # Lua
+  - type: ShipGunClass
+    shipClass: Superlight
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/laser.rsi
     layers:
@@ -139,16 +167,22 @@
     - state: mag-unshaded-9
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      cell_slot: !type:ContainerSlot
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 600
+  - type: ExaminableBattery
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 #300
+        damage: 1200
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
@@ -156,68 +190,84 @@
           acts: ["Destruction"]
   - type: Gun
     fireRate: 2
+    recoil: 0
+    minAngle: 0
+    maxAngle: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_perforator.ogg
       params:
         variation: 0.05
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 600
+    powerUsePassive: 250
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: MagazineVisuals
     magState: mag
     steps: 10
     zeroVisible: true
+  - type: HitscanBatteryAmmoProvider
+    proto: NFRedShuttleLaser
+    fireCost: 50
+  - type: ShipRepairable
+    repairTime: 15
+    repairCost: 40
   - type: Machine
     board: ShuttleGunPerforatorCircuitboard
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: Magazine
-        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-        whitelist:
-          tags:
-            - PowerCage
-  - type: HitscanBatteryAmmoProvider
-    proto: NFRedShuttleLaser # Frontier: use NF variant
-    fireCost: 50 #150
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 # ---- Launchers ----
-# naming: EXP (Explosion) + conventional power + suffix (g for Grenade, c for RPG Cartridge) + Name
-# example: EXP-100c "Poppy"
 
 - type: entity
   id: ShuttleGunFriendship
-  parent: [ShuttleGunBase, ConstructibleMachine]
+  parent:
+  - BallisticArtilleryCartridge
+  - BallisticArtilleryTier1HP
+  - ConstructibleMachine
   name: EXP-320g "Friendship"
   description: A small stationary grenade launcher that holds 2 grenades.
   components:
+  - type: StaticPrice
+    price: 1500
   - type: ShipGunType
     shipType: Ballistic
-  - type: ShipGunClass # Lua
-    shipClass: Light # Lua
+  - type: ShipGunClass
+    shipClass: Light
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
     layers:
     - state: exp-320g
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      ballistic-ammo: !type:Container
+  - type: Appearance
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 900 #200
+        damage: 900
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 120 #80
+    projectileSpeed: 280
     fireRate: 2
     angleDecay: 45
     minAngle: 0
@@ -228,54 +278,81 @@
         pitch: 0.8
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 100
+    powerUsePassive: 100
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: BallisticAmmoProvider
     whitelist:
       tags:
         - Grenade
-        - NFCartridgeGrenade40mm #frontier
+        - NFCartridgeGrenade40mm
     capacity: 2
+    infiniteUnspawned: true
+    proto: NFGrenadeBlast
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: Machine
-    board: ShuttleGunFriendshipCircuitboard
   - type: MagazineVisuals
     magState: mag
     steps: 8
     zeroVisible: false
+  - type: ShipRepairable
+    repairTime: 10
+    repairCost: 20
+  - type: Machine
+    board: ShuttleGunFriendshipCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
 
 - type: entity
   id: ShuttleGunDuster
-  parent: [ShuttleGunBase, ConstructibleMachine]
+  parent:
+  - BallisticArtilleryCartridge
+  - BallisticArtilleryTier2HP
+  - ConstructibleMachine
   name: EXP-2100g "Duster"
   description: A powerful stationary grenade launcher. A cartridge is required for use.
   components:
+  - type: StaticPrice
+    price: 2000
   - type: ShipGunType
     shipType: Ballistic
-  - type: ShipGunClass # Lua
-    shipClass: Medium # Lua
+  - type: ShipGunClass
+    shipClass: Medium
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
     layers:
     - state: exp-2100g
     - state: mag-7
       map: ["enum.GunVisualLayers.Mag"]
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
-      gun_magazine: !type:ContainerSlot
+  - type: Appearance
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1200 #350
+        damage: 1200
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 200 #40
+    projectileSpeed: 280
     fireRate: 0.3
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
@@ -284,44 +361,63 @@
         pitch: 0.8
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
-  - type: Machine
-    board: ShuttleGunDusterCircuitboard
-  - type: MagazineAmmoProvider
+  - type: SpaceArtillery
+    powerChargeRate: 150
+    powerUsePassive: 150
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: MagazineVisuals
     magState: mag
     steps: 8
     zeroVisible: false
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        priority: 2
-        whitelist:
-          tags:
-          - MagazineGrenade
-        insertSound:
-          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
-          params:
-            pitch: 2
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: BallisticAmmoProvider
+    infiniteUnspawned: true
+    proto: NFGrenadeBlast
+    capacity: 5
+    whitelist:
+      tags:
+      - Grenade
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: ShipRepairable
+    repairTime: 15
+    repairCost: 40
+  - type: Machine
+    board: ShuttleGunDusterCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ballistic-ammo: !type:Container
 
 # ---- Other weapon ----
 
 - type: entity
   id: ShuttleGunPirateCannon
-  parent: [BaseStructureDisableToolUse, ShuttleGunBase, BaseC3PirateContrabandNoValue] # Frontier: Added BaseStructureDisableToolUse, BaseC3PirateContrabandNoValue
+  parent:
+  - BaseStructureDisableToolUse
+  - BallisticArtilleryCartridge
+  - BallisticArtilleryTier2HP
+  - BaseC3PirateContrabandNoValue
+  - ConstructibleMachine
   name: pirate ship cannon
   description: Kaboom!
   components:
+  - type: StaticPrice
+    price: 1500
   - type: ShipGunType
     shipType: Ballistic
-  - type: ShipGunClass # Lua
-    shipClass: Medium # Lua
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container
+  - type: ShipGunClass
+    shipClass: Medium
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -329,7 +425,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 2000 #300
+        damage: 2000
       behaviors:
         - !type:DoActsBehavior
           acts: ["Destruction"]
@@ -337,35 +433,70 @@
     sprite: Objects/Weapons/Guns/Shuttles/pirate_cannon.rsi
     layers:
     - state: base
+  - type: Appearance
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Gun
     fireRate: 0.5
+    projectileSpeed: 280
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 100
+    powerUsePassive: 50
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: BallisticAmmoProvider
     whitelist:
       tags:
         - CannonBall
     capacity: 2
-    proto: NFCannonBall # Frontier: use NF variant
+    infiniteUnspawned: true
+    proto: NFCannonBall
     soundInsert:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: NpcFactionMember # Frontier
-    factions: # Frontier
-    - NFPirate # Frontier
-  - type: Rotatable # Frontier
-    rotateWhileAnchored: true # Frontier
-  - type: Machine # Lua
-    board: ShuttleGunPirateCannonCircuitboard # Lua
+  - type: NpcFactionMember
+    factions:
+    - NFPirate
+  - type: Rotatable
+    rotateWhileAnchored: true
+  - type: ShipRepairable
+    repairTime: 15
+    repairCost: 30
+  - type: Machine
+    board: ShuttleGunPirateCannonCircuitboard
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
 
 - type: entity
   id: ShuttleGunKinetic
-  parent: [ ShuttleGunBase, ConstructibleMachine]
-  name: PTK-1500e "Matter Dematerializer" # Frontier: "800"<"1500e" (consistent with naming scheme)
-  description: Mining turret, effective for blasting hardened targets, but overpowered for softer rock. Gradually accumulates charges on its own. # Frontier: description changed
+  parent:
+  - BallisticArtillery
+  - BallisticArtilleryTier1HP
+  - ConstructibleMachine
+  name: PTK-1500e "Matter Dematerializer"
+  description: Mining turret, effective for blasting hardened targets, but overpowered for softer rock. Gradually accumulates charges on its own.
   components:
+  - type: StaticPrice
+    price: 1500
   - type: RadarBlip
     radarColor: "#53ff6a"
     scale: 1
+    visibleFromOtherGrids: true
     gridConfig:
       color: "#53ff6a"
       shape: Square
@@ -374,104 +505,165 @@
       bounds: "-0.7,-0.7,0.7,0.7"
   - type: ShipGunType
     shipType: Mining
-  - type: ShipGunClass # Lua
-    shipClass: Light # Lua
+  - type: ShipGunClass
+    shipClass: Light
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/kinetic.rsi
     layers:
     - state: ptk-800
     - state: mag-7
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
+  - type: Appearance
+  - type: AmmoCounter
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 650 #100
+        damage: 650
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 60 #20-35<60 - Lua
+    projectileSpeed: 60
     fireRate: 2
-    selectedMode: SemiAuto
+    useKey: false
+    recoil: 0
+    selectedMode: FullAuto
     angleDecay: 45
     minAngle: 5
     maxAngle: 15
     availableModes:
-    - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
       params:
         variation: 0.12
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 200
+    powerUsePassive: 0
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2 #3
+    rechargeCooldown: 2
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
         pitch: 1.2
         variation: 0.08
   - type: BasicEntityAmmoProvider
-    proto: NFBulletCharge #NFBulletCharge<NFBulletKineticShuttle<NFBulletKineticMediumPower -  Lua
-    capacity: 5 #10
-    count: 5 #10
-  - type: Machine
-    board: ShuttleGunKineticCircuitboard
-  - type: ExtensionCableReceiver # Frontier
-  - type: ApcPowerReceiver # Frontier
-    powerLoad: 1500 # Frontier
-
+    proto: NFBulletKineticShuttle
+    capacity: 5
+    count: 5
   - type: ShipRepairable
     repairCost: 2
+  - type: Machine
+    board: ShuttleGunKineticCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
 - type: entity
-  parent: ShuttleGunBase
   id: ShuttleGunKineticOld
+  parent:
+  - BallisticArtillery
+  - BallisticArtilleryTier1HP
+  - ConstructibleMachine
   name: exomorphic dematerializer
   description: An ancient ship gun, utilizing biomechanical systems to store and release energy. While unique in its design, it has been rendered obsolete due to its inferior charging and firing speed compared to mechanical constructions.
   components:
+  - type: StaticPrice
+    price: 2000
+  - type: RadarBlip
+    radarColor: "#53ff6a"
+    scale: 1
+    visibleFromOtherGrids: true
+  - type: ShipGunType
+    shipType: Mining
+  - type: ShipGunClass
+    shipClass: Light
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/xeno.rsi
     layers:
     - state: rail
+  - type: Appearance
+  - type: AmmoCounter
+  - type: WirelessNetworkConnection
+    range: 500
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 400
       behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 20
-    fireRate: 0.2
-    selectedMode: SemiAuto
+    projectileSpeed: 40
+    fireRate: 0.75
+    useKey: false
+    recoil: 0
+    selectedMode: FullAuto
     angleDecay: 45
     minAngle: 5
     maxAngle: 15
     availableModes:
-    - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
       params:
         variation: 0.12
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: SpaceArtillery
+    powerChargeRate: 100
+    powerUsePassive: 0
+    powerUseActive: 0
+  - type: FireControlRotate
+  - type: Actions
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: DeviceLinkSink
+    ports:
+    - SpaceArtilleryLoad
+    - Toggle
+    - On
+    - Off
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 35
+    rechargeCooldown: 6
     rechargeSound:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
       params:
         pitch: 1.2
         variation: 0.08
   - type: BasicEntityAmmoProvider
-    proto: NFBulletKineticShuttle # Frontier: use NF variant
+    proto: NFBulletKineticShuttle
     capacity: 3
     count: 3
-  - type: DeviceLinkSink
-    ports:
-    - Trigger
+  - type: ShipRepairable
+    repairCost: 3
+  - type: Machine
+    board: ShuttleGunKineticOldCircuitboard
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

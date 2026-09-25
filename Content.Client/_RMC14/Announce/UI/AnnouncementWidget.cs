@@ -1,5 +1,6 @@
 using System.Numerics;
-using Content.Client._Lua.Announce;
+using Content.Lua.UIKit.Announce;
+using Content.Client._RMC14.Announce;
 using Content.Client._RMC14.Announce.Styling;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._RMC14.Announce;
@@ -144,7 +145,7 @@ public sealed partial class AnnouncementWidget : UIWidget
         _activeTextMaxWidth = 0f;
         _cachedLayoutSize = Vector2.Zero;
         ResetLayoutState();
-        _entityManager.System<AnnouncementPortraitSystem>().ReleaseHologram(_ownedPortraitHologram);
+        IoCManager.Resolve<IEntityManager>().System<IAnnouncementPortraitSystem>().ReleaseHologram(_ownedPortraitHologram);
         _ownedPortraitHologram = null;
     }
 

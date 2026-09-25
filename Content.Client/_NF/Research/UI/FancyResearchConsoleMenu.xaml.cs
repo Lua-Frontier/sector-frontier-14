@@ -229,6 +229,11 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             control.IsSelected = tech.Key == CurrentTech;
         }
 
+        if (CurrentTech != null)
+            DragContainer.SetFocusTech(CurrentTech.Value);
+        else
+            DragContainer.SetFocusTech(null);
+
         ApplyCamera();
         if (!_centeredOnce)
         {
@@ -257,7 +262,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             if (!_research.IsDisciplineFactionAllowed(Entity, discipline))
                 continue;
 
-            var tier = _research.GetTierCompletionPercentage(Entity, database, discipline, _prototype);
+            var completion = _research.GetTierCompletionPercentage(Entity, database, discipline, _prototype);
 
             var texture = new TextureRect
             {
@@ -266,7 +271,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             };
             var label = new RichTextLabel();
             texture.Texture = _sprite.Frame0(discipline.Icon);
-            label.SetMessage(Loc.GetString("research-console-tier-percentage", ("perc", tier)));
+            label.SetMessage(Loc.GetString("research-console-discipline-percentage", ("perc", completion)));
 
             var control = new BoxContainer
             {
@@ -355,6 +360,18 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         if (!_player.LocalEntity.HasValue)
             return;
 
+        if (!rightClick && CurrentTech == proto.ID)
+        {
+            CurrentTech = null;
+            foreach (var child in DragContainer.Children)
+            {
+                if (child is FancyResearchConsoleItem techItem)
+                    techItem.IsSelected = false;
+            }
+            DragContainer.SetFocusTech(null);
+            return;
+        }
+
         // Update selection
         CurrentTech = proto.ID;
 
@@ -366,6 +383,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
                 techItem.IsSelected = techItem.Prototype.ID == CurrentTech;
             }
         }
+        DragContainer.SetFocusTech(proto.ID);
 
         // Create and add info panel
         var control = new FancyTechnologyInfoPanel(proto, _researchFaction, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);

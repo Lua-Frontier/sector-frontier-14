@@ -44,6 +44,20 @@ namespace Content.Server.Power.EntitySystems
             _provQuery = GetEntityQuery<ApcPowerProviderComponent>();
         }
 
+        public override void SetNeedsPower(EntityUid uid, bool value, SharedApcPowerReceiverComponent? receiver = null)
+        {
+            base.SetNeedsPower(uid, value, receiver);
+            if (ResolveApc(uid, ref receiver))
+                EntityManager.System<PowerNetSystem>().QueueApcPowerReceiverUpdate(uid);
+        }
+
+        public override void SetPowerDisabled(EntityUid uid, bool value, SharedApcPowerReceiverComponent? receiver = null)
+        {
+            base.SetPowerDisabled(uid, value, receiver);
+            if (ResolveApc(uid, ref receiver))
+                EntityManager.System<PowerNetSystem>().QueueApcPowerReceiverUpdate(uid);
+        }
+
         private void OnExamined(Entity<ApcPowerReceiverComponent> ent, ref ExaminedEvent args)
         {
             args.PushMarkup(GetExamineText(ent.Comp.Powered));

@@ -350,6 +350,21 @@
       Plasma: 5
 
 - type: entity
+  id: ResearchAndDevelopmentServerLuaTechMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: LuaTech R&D server machine board
+  description: A machine printed circuit board for a LuaTech R&D server.
+  categories: [ LuaTech ]
+  components:
+  - type: LuaTech
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ResearchAndDevelopmentServerLuaTech
+    stackRequirements:
+      Plasma: 5
+
+- type: entity
   id: BiogeneratorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: biogenerator machine board

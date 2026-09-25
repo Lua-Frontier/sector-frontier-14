@@ -1,17 +1,3 @@
-- type: sponsorLoadout
-  id: EllisTinker
-  ownerLogin: EllisTinker
-  tier: rank3
-  entities:
-    - ClothingBackpackEllisTinker
-    - ClothingBeltEllisTinkerFilled
-    - ClothingShoesBootsMagEllisTinker
-    - PDAEllisTinker
-    - ClothingUniformJumpsuitEllisTinker
-    - ClothingNeckEllisTinker
-    - ClothingHandsGlovesEllisTinker
-    - JetpackVoidEllisTinker
-
 - type: entity
   parent: [ClothingOuterHardsuitAtmos, HardsuitSpeedBuff]
   id: ClothingOuterHardsuitEllisTinker
@@ -105,7 +91,6 @@
     sprite: _Lua/Sponsor/EllisTinker/jumpsuit.rsi
   - type: Clothing
     sprite: _Lua/Sponsor/EllisTinker/jumpsuit.rsi
-
 
 # Neck
 - type: entity
@@ -259,13 +244,13 @@
     size: Normal
   - type: MultipleTool
     entries:
-    - behavior: Prying
+    - behavior: [ Prying ]
       sprite:
         sprite: _Lua/Sponsor/EllisTinker/tools_jawsoflife.rsi
         state: syn_jaws_pry
       useSound: /Audio/Items/jaws_pry.ogg
       changeSound: /Audio/Items/change_jaws.ogg
-    - behavior: Cutting
+    - behavior: [ Cutting ]
       sprite:
         sprite: _Lua/Sponsor/EllisTinker/tools_jawsoflife.rsi
         state: syn_jaws_cutter
@@ -298,7 +283,7 @@
   - type: MultipleTool
     statusShowBehavior: true
     entries:
-    - behavior: Screwing
+    - behavior: [ Screwing ]
       sprite:
         sprite: _Lua/Sponsor/EllisTinker/tools_powerdrill.rsi
         state: drill_screw
@@ -306,7 +291,7 @@
         path: /Audio/Items/drill_use.ogg
       changeSound:
         path: /Audio/Items/change_drill.ogg
-    - behavior: Anchoring
+    - behavior: [ Anchoring ]
       sprite:
         sprite: _Lua/Sponsor/EllisTinker/tools_powerdrill.rsi
         state: drill_bolt

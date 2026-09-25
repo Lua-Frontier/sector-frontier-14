@@ -1,4 +1,5 @@
-using Content.Client._Lua.VendingMachines;
+using Content.Client.UserInterface;
+using Content.Lua.UIKit.Machines;
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Cargo.Components;
 using Content.Shared.VendingMachines;
@@ -6,10 +7,10 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.VendingMachines;
 
-public sealed class VendingMachineBoundUserInterface : BoundUserInterface
+public sealed class VendingMachineBoundUserInterface : FactoryBoundUserInterface
 {
     [ViewVariables]
-    private LuaVendingMachineWindow? _menu;
+    private ILuaVendingMachineWindow? _menu;
 
     [ViewVariables]
     private List<VendingMachineInventoryEntry> _cachedInventory = new();
@@ -28,9 +29,13 @@ public sealed class VendingMachineBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+        if (!IoCManager.Instance!.TryResolveType<ILuaMachineUiFactory>(out var factory))
+            return;
+
         if (EntMan.TryGetComponent<MarketModifierComponent>(Owner, out var market))
             _mod = market.Mod;
-        _menu = this.CreateWindowCenteredLeft<LuaVendingMachineWindow>();
+        _menu = factory.CreateVendingMachineWindow();
+        OpenWindowCenteredLeft(_menu.Window);
         if (EntMan.TryGetComponent(Owner, out MetaDataComponent? meta))
             _menu.Title = meta.EntityName;
         else
@@ -86,6 +91,7 @@ public sealed class VendingMachineBoundUserInterface : BoundUserInterface
         _menu.OnItemSelected -= OnItemSelected;
         _menu.OnClose -= Close;
         _menu.Dispose();
+        _menu = null;
     }
 
     public bool TryUpdateCashSlotBalance()

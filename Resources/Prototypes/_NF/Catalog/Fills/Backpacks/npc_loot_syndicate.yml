@@ -76,7 +76,7 @@
     items:
       - id: WeaponRevolverRitland45Expedition
         prob: 0.65
-      - id: SpeedLoader357_magnumUranium #Lua 45 -> Magnum
+      - id: SpeedLoader357_magnumEmpty
         prob: 0.65
       - id: SpaceCash5000
         prob: 0.4
@@ -108,7 +108,7 @@
     items:
       - id: WeaponRevolverRitland45Expedition
         prob: 0.65
-      - id: SpeedLoader357_magnumIncendiary #Lua 45 -> Magnum
+      - id: SpeedLoader357_magnumEmpty
         prob: 0.65
       - id: SpaceCash2500
         prob: 0.4
@@ -136,9 +136,9 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: SpeedLoader357_magnumFMJ #Lua 45 -> Magnum
+      - id: SpeedLoader357_magnumEmpty
         prob: 0.65
-      - id: SpeedLoader357_magnumHP #Lua 45 -> Magnum
+      - id: SpeedLoader357_magnumEmpty
         prob: 0.65
       - id: SpaceCash2500
         prob: 0.4
@@ -303,7 +303,7 @@
     items:
       - id: WeaponRifleAssaultSmExpedition
         prob: 0.65
-      - id: Magazine762x39mmUranium #Lua 30 -> 762x39
+      - id: Magazine762x39mmEmpty
         prob: 0.65
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -333,7 +333,7 @@
   - type: SpawnItemsOnUse
     items:
 #      - id: NFWeaponRifleAssaultM90GrenadeLauncherExpedition #comment from _Lua
-      - id: Magazine556x45mmIncendiary #Lua 20 -> 556x45
+      - id: Magazine556x45mmEmpty
         prob: 0.65
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -362,7 +362,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: Magazine762x39mmHP #Lua 30 -> 762x39
+      - id: Magazine762x39mmEmpty
         prob: 0.65
       - id: ClothingShoesBootsMagSyndie
       - id: SpaceCash10000
@@ -420,7 +420,7 @@
     items:
       - id: WeaponSubMachineGunC20rExpedition
         prob: 0.65
-      - id: Magazine9x19mmSubMachineGunUranium #Lua 35 -> 9x19
+      - id: Magazine9x19mmSubMachineGunEmpty
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -448,7 +448,7 @@
     items:
       - id: WeaponSubMachineGunWt550Expedition
         prob: 0.65
-      - id: Magazine46x30mmSubMachineGunTopMountedFMJ
+      - id: Magazine46x30mmSubMachineGunTopMountedEmpty
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -528,7 +528,7 @@
     items:
       - id: WeaponPistolViperExpedition
         prob: 0.65
-      - id: Magazine9x19mmPistolUranium #Lua 35 -> 9x19
+      - id: Magazine9x19mmPistolEmpty
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -549,7 +549,7 @@
     items:
       - id: WeaponPistolMk58Expedition
         prob: 0.65
-      - id: Magazine45_ACPPistolIncendiary
+      - id: Magazine45_ACPPistolEmpty
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4
@@ -568,7 +568,7 @@
   components:
   - type: SpawnItemsOnUse
     items:
-      - id: Magazine9x19mmPistolHP #Lua 35 -> 9x19
+      - id: Magazine9x19mmPistolEmpty
         prob: 0.65
       - id: SpaceCash1000
         prob: 0.4

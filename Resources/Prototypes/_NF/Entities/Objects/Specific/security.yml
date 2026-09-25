@@ -22,6 +22,14 @@
   - type: Currency
     price:
       FrontierUplinkCoin: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      FrontierUplinkCoin: 1
+  - type: Tag
+    tags:
+    - Sheet
+    - RawMaterial
 
 - type: entity
   parent: FrontierUplinkCoin
@@ -46,59 +54,6 @@
   components:
   - type: Stack
     count: 10
-
-# Uplinks
-- type: entity
-  parent: [BaseItem, StorePresetSecurityUplink, BaseC3CentCommContraband, BaseNanotrasenContrabandT1]  # Lua-changes: added BaseC3CentCommContraband
-  id: BaseSecurityUplinkRadio
-  name: NFSD uplink
-  description: Retro looking old radio...
-  suffix: Empty
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Objects/Devices/communication.rsi
-    layers:
-    - state: old-radio
-  - type: Item
-    sprite: Objects/Devices/communication.rsi
-    heldPrefix: old-radio
-  - type: UserInterface
-    interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
-  - type: ActivatableUI
-    key: enum.StoreUiKey.Key
-  - type: Tag
-    tags:
-    - SecurityUplink
-
-- type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadioDebug
-  suffix: Security, DEBUG
-  components:
-  - type: Store
-    balance:
-      FrontierUplinkCoin: 99999
-
-- type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadioSheriff
-  suffix: Sheriff 20
-  components:
-  - type: Store
-    balance:
-      FrontierUplinkCoin: 20
-
-- type: entity
-  parent: BaseSecurityUplinkRadio
-  id: BaseSecurityUplinkRadioOfficer
-  suffix: Officer 15
-  components:
-  - type: Store
-    balance:
-      FrontierUplinkCoin: 15
 
 - type: entity
   name: NFSD deployable barrier

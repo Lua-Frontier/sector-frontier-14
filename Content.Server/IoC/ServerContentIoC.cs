@@ -1,9 +1,3 @@
-using Content.Server._Lua.ChatFilter; // Lua
-using Content.Server._Lua.Info; // Lua
-using Content.Server._Lua.Networking; // Lua
-using Content.Shared._Lua.Info; // Lua
-using Content.Server._Lua.SponsorPlayer; // Lua
-using Content.Server._Lua.SitePlayerSync; // Lua
 using Content.Server._NF.Auth;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -52,8 +46,6 @@ internal static class ServerContentIoC
         deps.Register<IChatManager, ChatManager>();
         deps.Register<ISharedChatManager, ChatManager>();
         deps.Register<IChatSanitizationManager, ChatSanitizationManager>();
-        deps.Register<ChatFilterManager>(); // Lua
-        deps.Register<DecryptFailLogger>(); // Lua
         deps.Register<IServerPreferencesManager, ServerPreferencesManager>();
         deps.Register<IServerDbManager, ServerDbManager>();
         deps.Register<RecipeManager, RecipeManager>();
@@ -68,8 +60,6 @@ internal static class ServerContentIoC
         deps.Register<IAfkManager, AfkManager>();
         deps.Register<IGameMapManager, GameMapManager>();
         deps.Register<RulesManager, RulesManager>();
-        deps.Register<PublicOfferManager>(); // Lua
-        deps.Register<IPublicOfferGate, PublicOfferManager>(); // Lua
         deps.Register<IBanManager, BanManager>();
         deps.Register<ContentNetworkResourceManager>();
         deps.Register<IAdminNotesManager, AdminNotesManager>();
@@ -80,8 +70,7 @@ internal static class ServerContentIoC
         deps.Register<UserDbDataManager>();
         deps.Register<JoinQueueManager>(); // Corvax-Queue
         deps.Register<TTSManager>(); // Corvax-TTS
-        deps.Register<SponsorMusicManager>(); // Lua SponsorPlayer
-        deps.Register<SitePlayerSyncManager>();
+        // SponsorMusicManager + SitePlayerSyncManager live in Content.Lua.Server EntryPoint
         deps.Register<DiscordAuthManager>(); // Corvax-DiscordAuth
         deps.Register<ServerInfoManager>();
         deps.Register<PoissonDiskSampler>();

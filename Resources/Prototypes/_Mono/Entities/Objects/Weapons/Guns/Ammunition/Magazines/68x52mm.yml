@@ -53,6 +53,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessBig
+  categories: [ HideSpawnMenu ]
   name: "box magazine (6.8x52mm STANAG Caseless)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -67,7 +68,16 @@
     zeroVisible: false
 
 - type: entity
+  id: Magazine68x52mmCaselessBigEmpty
+  parent: Magazine68x52mmCaselessBig
+  name: "box magazine (6.8x52mm STANAG Caseless) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine68x52mmCaseless
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG Caseless)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -82,6 +92,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessPractice
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG Caseless practice)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -110,6 +121,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessShort
+  categories: [ HideSpawnMenu ]
   name: "short magazine (6.8x52mm STANAG Caseless)"
   parent: BaseMagazine68x52mmCaselessShort
   components:
@@ -124,7 +136,16 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
+  id: Magazine68x52mmCaselessShortEmpty
+  parent: Magazine68x52mmCaselessShort
+  name: "short magazine (6.8x52mm STANAG Caseless) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+- type: entity
   id: Magazine68x52mmCaselessShortPractice
+  categories: [ HideSpawnMenu ]
   name: "short magazine (6.8x52mm STANAG Caseless practice)"
   parent: BaseMagazine68x52mmCaselessShort
   components:
@@ -140,6 +161,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessRubber
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG Caseless rubber)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -157,6 +179,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessHP
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG Caseless HP)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -171,6 +194,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessRIP
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG Caseless RIP)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -187,6 +211,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessPlasteelAP
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG Caseless AP)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -203,6 +228,7 @@
 
 - type: entity
   id: Magazine68x52mmCaselessPlasma
+  categories: [ HideSpawnMenu ]
   name: "magazine (6.8x52mm STANAG caseless plasma)"
   parent: BaseMagazine68x52mmCaseless
   components:
@@ -214,3 +240,11 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+- type: entity
+  id: Magazine68x52mmCaselessPlasmaEmpty
+  parent: Magazine68x52mmCaselessPlasma
+  name: "magazine (6.8x52mm STANAG caseless plasma) any"
+  suffix: empty
+  components:
+  - type: BallisticAmmoProvider
+    proto: null

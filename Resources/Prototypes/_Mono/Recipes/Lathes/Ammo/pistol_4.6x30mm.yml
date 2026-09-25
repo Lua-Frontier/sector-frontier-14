@@ -1,0 +1,92 @@
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine46x30mmSubMachineGunTopMountedEmpty
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindMagazine
+  result: Magazine46x30mmSubMachineGunTopMountedEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmFMJ
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmFMJ
+
+- type: latheRecipe
+  parent: BaseAmmoPlasteelAPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmPlasteelAP
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmPlasteelAP
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmRubber
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmRubber
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmIncendiary
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoPracticePistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmPractice
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmPractice
+
+- type: latheRecipe
+  parent: BaseAmmoUraniumPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmUranium
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmUranium
+
+- type: latheRecipe
+  parent: BaseAmmoHPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmHP
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmHP
+
+- type: latheRecipe
+  parent: BaseAmmoRIPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox46x30mmRIP
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmRIP
+
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberBigAmmoBoxRecipe
+  id: AmmoBox46x30mmBigFMJ
+  categories:
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  result: AmmoBox46x30mmBigFMJ
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: AmmoBox46x30mmEmp
+  result: AmmoBox46x30mmEmp
+  categories:
+  - MiscAmmo
+  - Ammo
+  - AmmoCaliber46x30
+  - AmmoKindBox
+  materials:
+    Plasma: 800
+    Silver: 400
