@@ -467,7 +467,8 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
                     entityUid: EntityManager.GetNetEntity(shuttleUid),
                     purchasedWithVoucher: voucherUsed,
                     purchasePrice: (uint)vessel.Price,
-                    vesselPrototypeId: vessel.ID
+                    vesselPrototypeId: vessel.ID,
+                    buyerBalance: balance
                 )
             );
         }

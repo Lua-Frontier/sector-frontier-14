@@ -34,3 +34,17 @@ public-transit-departure = Транспорт направляется в { $des
 public-transit-arrival = Благодарим за выбор общественного транспорта NT. Следующий шаттл до { $destination } отправляется через { $waittime } секунд.
 shuttle-ftl-too-many = Слишком много активных экспедиций!
 adventure-webhook-ledger-start = Бухгалтерский учёт
+adventure-webhook-shipstats-start = Предпочтения верфи
+adventure-webhook-shipstats-summary = Всего: {$ships} · Брошено: {$abandoned} · Ср. время: {$avgTime}
+adventure-webhook-shipstats-thresholds = Пороги раунда: новички ≤ {$newcomers} · низкий ≤ {$low} · средний ≤ {$mid}
+adventure-webhook-shipstats-category-newcomers = **Новички** (≤ {$max})
+adventure-webhook-shipstats-category-low = **Низкий класс** ({$min}-{$max})
+adventure-webhook-shipstats-category-mid = **Средний класс** ({$min}-{$max})
+adventure-webhook-shipstats-category-high = **Высокий класс** (≥ {$min})
+adventure-webhook-shipstats-entry = {$count}× {$ship} · ср. {$avgTime} · брошено {$abandoned}/{$count}
+adventure-webhook-shipstats-empty = Нет покупок
+adventure-webhook-shipstats-avg-na = -
+
+adventure-webhook-footer =
+    Сервер: {$serverName}
+    Раунд: #{$roundId}

@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Lua.Shared.SponsorLoadout;
 
-[Prototype]
+[Prototype("sponsorLoadout")]
 public sealed partial class SponsorLoadoutPrototype : IPrototype
 {
     [IdDataField]
