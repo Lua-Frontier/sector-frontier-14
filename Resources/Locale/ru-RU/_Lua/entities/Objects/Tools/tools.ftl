@@ -25,6 +25,7 @@ rcd-component-circuit-imprinter = Принтер плат
 rcd-component-autolathe = Автолат
 rcd-component-protolathe = Протолат
 rcd-component-analysis-console = Аналитическая консоль
+rcd-component-discovery-analysis-console = Консоль анализа данных исследований
 rcd-component-artifact-analyzer = Анализатор артефактов
 rcd-component-rnd-console = Консоль R&D
 rcd-component-rnd-server = Сервер R&D

@@ -16,6 +16,7 @@ rcd-component-circuit-imprinter = Circuit Imprinter
 rcd-component-autolathe = Autolathe
 rcd-component-protolathe = Protolathe
 rcd-component-analysis-console = Analysis Console
+rcd-component-discovery-analysis-console = Research Data Analysis Console
 rcd-component-artifact-analyzer = Artifact Analyzer
 rcd-component-rnd-console = R&D Console
 rcd-component-rnd-server = R&D Server

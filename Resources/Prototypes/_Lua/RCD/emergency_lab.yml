@@ -59,6 +59,21 @@
   fx: EffectRCDConstruct2
 
 - type: rcd
+  id: EmergencyLabDiscoveryAnalysisConsole
+  name: rcd-component-discovery-analysis-console
+  category: EmergencyLab
+  sprite:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  mode: ConstructObject
+  prototype: MachineDiscoveryAnalysisConsole
+  cost: 1
+  delay: 2
+  collisionMask: Impassable
+  rotation: User
+  fx: EffectRCDConstruct2
+
+- type: rcd
   id: EmergencyLabArtifactAnalyzer
   name: rcd-component-artifact-analyzer
   category: EmergencyLab

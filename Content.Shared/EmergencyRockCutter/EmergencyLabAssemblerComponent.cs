@@ -15,14 +15,7 @@ public sealed partial class EmergencyLabAssemblerComponent : Component
     [DataField, AutoNetworkedField]
     public HashSet<ProtoId<RCDPrototype>> RemainingPrototypes = new();
     [DataField]
-    public List<ProtoId<RCDPrototype>> SharedPrototypes = new()
-    {
-        "EmergencyLabCircuitImprinter",
-        "EmergencyLabAutolathe",
-        "EmergencyLabProtolathe",
-        "EmergencyLabAnalysisConsole",
-        "EmergencyLabArtifactAnalyzer",
-    };
+    public List<ProtoId<RCDPrototype>> SharedPrototypes = new();
     [DataField]
     public Dictionary<ProtoId<RndFactionPrototype>, List<ProtoId<RCDPrototype>>> FactionPrototypes = new()
     {
