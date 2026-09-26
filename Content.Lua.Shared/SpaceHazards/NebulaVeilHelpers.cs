@@ -20,11 +20,32 @@ public static class NebulaVeilHelpers
         if (delta.LengthSquared() > radius * radius)
             return false;
 
-        var contour = AmbientSpaceNebulaNoise.BuildMidLayerContour(fieldPos, radius, field.Seed, field.Density);
-        return ContainsPoint(contour, delta);
+        return ContainsPoint(GetOrBuildContour(field, radius), delta);
     }
 
-    private static bool ContainsPoint(ReadOnlySpan<Vector2> polygon, Vector2 point)
+    public static Vector2[] GetOrBuildContour(AmbientSpaceFieldComponent field, float? radiusOverride = null)
+    {
+        var radius = MathF.Max(radiusOverride ?? field.Radius, 1f);
+        if (field.MidContourCache != null
+            && field.ContourCacheSeed == field.Seed
+            && MathF.Abs(field.ContourCacheRadius - radius) <= 0.01f
+            && MathF.Abs(field.ContourCacheDensity - field.Density) <= 0.001f)
+        {
+            return field.MidContourCache;
+        }
+
+        field.MidContourCache = AmbientSpaceNebulaNoise.BuildMidLayerContour(
+            Vector2.Zero,
+            radius,
+            field.Seed,
+            field.Density);
+        field.ContourCacheSeed = field.Seed;
+        field.ContourCacheRadius = radius;
+        field.ContourCacheDensity = field.Density;
+        return field.MidContourCache;
+    }
+
+    private static bool ContainsPoint(Vector2[] polygon, Vector2 point)
     {
         if (polygon.Length < 3)
             return false;

@@ -45,6 +45,7 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SectorLandmarkAnchorSystem _landmarks = default!;
     [Dependency] private readonly ShipSteeringSystem _shipSteering = default!;
+    [Dependency] private readonly SpaceHazardActivitySystem _activity = default!;
 
     private bool _enabled = true;
 
@@ -125,6 +126,8 @@ public sealed class AmbientSpaceFieldPlacerSystem : EntitySystem
 
             ApplyDeterministicVisuals(field, seed, radius);
             Dirty(ent, field);
+            if (TryComp<SpaceHazardActivityComponent>(ent, out var activity))
+                _activity.SyncActivationRange(ent, radius + 64f);
             if (field.HasWeather)
                 EnsureWeatherRadarBlip(ent, field);
             _landmarks.LockToMap(ent);

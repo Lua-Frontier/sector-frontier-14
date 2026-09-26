@@ -77,7 +77,7 @@ public sealed partial class ShuttleRadarLuaDraw
             if (field.Seed == 0)
                 continue;
 
-            var points = GetOrBuildNavContour(uid, field.Seed, radius, field.Density, worldPos);
+            var points = GetFieldContour(field, radius);
             if (!NebulaVisibility.HasVisibleMidLayer(mapId, worldPos, points))
                 continue;
 
@@ -88,7 +88,6 @@ public sealed partial class ShuttleRadarLuaDraw
             drawn++;
         }
 
-        PruneNavContourCache(ctx.EntManager);
         DrawCelestialContours(ctx, mapId, consolePos, view, maxDist);
     }
 
@@ -125,43 +124,6 @@ public sealed partial class ShuttleRadarLuaDraw
             var angle = i * MathF.Tau / points.Length;
             points[i] = new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * radius;
         }
-    }
-
-    private Vector2[] GetOrBuildNavContour(EntityUid uid, int seed, float radius, float density, Vector2 worldPos)
-    {
-        if (!_nebulaNavCache.TryGetValue(uid, out var cache)
-            || cache.Seed != seed
-            || MathF.Abs(cache.Radius - radius) > 0.01f
-            || MathF.Abs(cache.Density - density) > 0.001f
-            || cache.Points.Length == 0)
-        {
-            cache = new NebulaContourCache
-            {
-                Seed = seed,
-                Radius = radius,
-                Density = density,
-                Points = AmbientSpaceNebulaNoise.BuildMidLayerContour(worldPos, radius, seed, density),
-            };
-            _nebulaNavCache[uid] = cache;
-        }
-
-        return cache.Points;
-    }
-
-    private void PruneNavContourCache(IEntityManager entManager)
-    {
-        if (_nebulaNavCache.Count <= MaxNavNebulaContours * 2)
-            return;
-
-        var toRemove = new List<EntityUid>();
-        foreach (var (uid, _) in _nebulaNavCache)
-        {
-            if (!entManager.EntityExists(uid))
-                toRemove.Add(uid);
-        }
-
-        foreach (var uid in toRemove)
-            _nebulaNavCache.Remove(uid);
     }
 
     private static void DrawClosedPolyline(

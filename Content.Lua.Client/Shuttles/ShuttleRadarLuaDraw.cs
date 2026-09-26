@@ -23,13 +23,10 @@ public sealed partial class ShuttleRadarLuaDraw : IShuttleRadarLuaDraw
 {
     private const int MaxNavNebulaContours = 20;
     private const int CelestialContourSegments = 48;
-    private const int MaxMapNebulaContourCache = 512;
     private const float PingCycleSeconds = 2.0f;
     private const float BlipFadeFraction = 0.65f;
 
     private AmbientSpaceNebulaVisibility? _nebulaVisibility;
-    private readonly Dictionary<EntityUid, NebulaContourCache> _nebulaNavCache = new();
-    private readonly Dictionary<EntityUid, NebulaContourCache> _nebulaMapCache = new();
     private readonly List<(EntityUid Uid, AmbientSpaceFieldComponent Field, TransformComponent Xform, Vector2 Pos, float Radius)> _nebulaFieldScratch = new();
     private readonly List<(EntityUid Uid, AmbientSpaceFieldComponent Field, Vector2 Pos, float Radius)> _mapFieldScratch = new();
     private readonly Vector2[] _celestialContourScratch = new Vector2[CelestialContourSegments];
@@ -57,13 +54,8 @@ public sealed partial class ShuttleRadarLuaDraw : IShuttleRadarLuaDraw
         }
     }
 
-    private sealed class NebulaContourCache
-    {
-        public int Seed;
-        public float Radius;
-        public float Density;
-        public Vector2[] Points = Array.Empty<Vector2>();
-    }
+    private static Vector2[] GetFieldContour(AmbientSpaceFieldComponent field, float radius)
+        => NebulaVeilHelpers.GetOrBuildContour(field, radius);
 
     public bool IsRadarBlipIconDrawnElsewhere(IEntityManager entManager, EntityUid uid, bool showIff)
     {

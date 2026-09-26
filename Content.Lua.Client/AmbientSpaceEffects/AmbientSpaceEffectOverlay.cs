@@ -19,11 +19,18 @@ namespace Content.Lua.Client.AmbientSpaceEffects;
 
 public sealed class AmbientSpaceEffectOverlay : Overlay
 {
+    private enum LodMode : byte
+    {
+        Near,
+        Far,
+    }
+
     private const float FixedVisualRange = 8000f;
     private const int FixedMaxFields = 20;
     private readonly HashSet<EntityUid> _scratchFieldUids = new();
 
     private static readonly ProtoId<ShaderPrototype> FallbackShader = "AmbientNebula";
+    private static readonly ProtoId<ShaderPrototype> BakedShader = "AmbientNebulaBaked";
     private static readonly ProtoId<ShaderPrototype> StencilMaskShader = "StencilMask";
     private static readonly StencilParameters NebulaStencil = new()
     {
@@ -47,7 +54,11 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
     private readonly EntityLookupSystem _lookup;
     private readonly AmbientSpaceNebulaVisibility _visibility;
     private readonly IGameTiming _timing;
-    private readonly Dictionary<(EntityUid Uid, AmbientSpaceLayer Layer), ShaderInstance> _fieldShaders = new();
+    private readonly AmbientSpaceNebulaBakeCache _bakeCache;
+    private readonly Dictionary<(EntityUid Uid, AmbientSpaceLayer Layer, string ShaderId), ShaderInstance> _fieldShaders = new();
+    private readonly Dictionary<(EntityUid Uid, AmbientSpaceLayer Layer), ShaderInstance> _bakedDrawShaders = new();
+    private ShaderInstance? _bakeProcShader;
+    private readonly Dictionary<(EntityUid Uid, AmbientSpaceLayer Layer), LodMode> _lodModes = new();
     private readonly List<(EntityUid Uid, AmbientSpaceFieldComponent Field, TransformComponent Xform)> _fieldScratch = new();
     private List<Entity<MapGridComponent>> _grids = new();
     private bool _fieldsCacheValid;
@@ -78,6 +89,7 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         _lookup = entManager.System<EntityLookupSystem>();
         _visibility = new AmbientSpaceNebulaVisibility(entManager, _mapManager, prototypes);
         _timing = IoCManager.Resolve<IGameTiming>();
+        _bakeCache = new AmbientSpaceNebulaBakeCache(_clyde);
         ZIndex = 0;
     }
 
@@ -107,6 +119,8 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         if (quality <= 1 && layer == AmbientSpaceLayer.Upper)
             return;
 
+        _bakeCache.BeginTick(_timing.CurTick);
+
         var handle = args.WorldHandle;
         var eyePos = args.Viewport.Eye?.Position.Position ?? args.WorldAABB.Center;
         var qualityF = quality >= 2 ? 1f : 0f;
@@ -122,13 +136,13 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
             handle.SetTransform(Matrix3x2.Identity);
             handle.UseShader(_prototypes.Index(StencilMaskShader).Instance());
             handle.DrawTextureRect(_stencilTarget!.Texture, args.WorldBounds);
-            DrawFieldsDirect(args, layer.Value, eyePos, quality, qualityF, maxFields, densityMul);
+            DrawFieldsCore(handle, layer.Value, eyePos, quality, qualityF, maxFields, densityMul);
             handle.SetTransform(Matrix3x2.Identity);
             handle.UseShader(null);
             return;
         }
 
-        DrawFieldsDirect(args, layer.Value, eyePos, quality, qualityF, maxFields, densityMul);
+        DrawFieldsCore(handle, layer.Value, eyePos, quality, qualityF, maxFields, densityMul);
         handle.SetTransform(Matrix3x2.Identity);
         handle.UseShader(null);
     }
@@ -213,18 +227,6 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         }, Color.Transparent);
     }
 
-    private void DrawFieldsDirect(
-        in OverlayDrawArgs args,
-        AmbientSpaceLayer layer,
-        Vector2 eyePos,
-        int quality,
-        float qualityF,
-        int maxFields,
-        float densityMul)
-    {
-        DrawFieldsCore(args.WorldHandle, layer, eyePos, quality, qualityF, maxFields, densityMul);
-    }
-
     private void DrawFieldsCore(
         DrawingHandleWorld handle,
         AmbientSpaceLayer layer,
@@ -234,6 +236,10 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         int maxFields,
         float densityMul)
     {
+        AmbientSpaceNebulaBakeCache.LodThresholds(quality, out var nearDist, out var farDist);
+        var maxNear = AmbientSpaceNebulaBakeCache.MaxNearPerLayer(quality);
+        var nearDrawn = 0;
+
         var drawn = 0;
         foreach (var (uid, field, xform) in _fieldScratch)
         {
@@ -278,8 +284,6 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
                 _ => 2f,
             };
             var paletteColor = AmbientSpacePalette.ColorFromSeed(field.Seed);
-            var shaderId = layer == AmbientSpaceLayer.Mid ? "AmbientNebulaMid" : effect.Shader;
-            var shader = GetFieldShader(uid, layer, shaderId);
             var shaderSeed = AmbientSpacePalette.ShaderSeedFromField(field.Seed);
             var time = (float) _timing.CurTime.TotalSeconds + shaderSeed * 0.37f;
             var particleScale = quality switch
@@ -288,25 +292,88 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
                 >= 2 => effect.ParticleScale,
                 _ => effect.ParticleScale * 0.75f,
             };
-            shader.SetParameter("nebula_color", paletteColor.WithAlpha(1f));
-            shader.SetParameter("seed", shaderSeed);
-            shader.SetParameter("density", field.Density);
-            shader.SetParameter("layer_alpha", opacity);
-            shader.SetParameter("particle_scale", particleScale);
-            shader.SetParameter("quality", qualityF);
-            shader.SetParameter("field_radius", radius);
-            shader.SetParameter("layer_id", layerId);
-            shader.SetParameter("time", time);
-            shader.SetParameter("time_speed", effect.FlowSpeed);
 
-            handle.UseShader(shader);
-            handle.SetTransform(Matrix3Helpers.CreateTranslation(drawPos));
-            handle.DrawTextureRect(Texture.White, Box2.CenteredAround(Vector2.Zero, new Vector2(radius * 2f, radius * 2f)));
+            var dist = FieldPriority(eyePos, fieldPos, radius);
+            var lod = ResolveLod(uid, layer, dist, nearDist, farDist);
+            if (lod == LodMode.Near)
+            {
+                if (nearDrawn >= maxNear)
+                    lod = LodMode.Far;
+                else
+                    nearDrawn++;
+            }
+
+            if (lod == LodMode.Far)
+            {
+                var baked = _bakeCache.GetOrBake(
+                    handle,
+                    GetBakeProcShader(),
+                    uid,
+                    field,
+                    layer,
+                    radius,
+                    quality,
+                    layerId,
+                    particleScale,
+                    qualityF);
+
+                if (baked == null)
+                    continue;
+
+                var drawShader = GetBakedDrawShader(uid, layer);
+                drawShader.SetParameter("nebula_color", paletteColor.WithAlpha(1f));
+                drawShader.SetParameter("layer_alpha", opacity);
+                drawShader.SetParameter("time", time);
+                drawShader.SetParameter("layer_id", layerId);
+                drawShader.SetParameter("seed", shaderSeed);
+
+                handle.UseShader(drawShader);
+                handle.SetTransform(Matrix3Helpers.CreateTranslation(drawPos));
+                handle.DrawTextureRect(baked, Box2.CenteredAround(Vector2.Zero, new Vector2(radius * 2f, radius * 2f)));
+            }
+            else
+            {
+                var shaderId = layer == AmbientSpaceLayer.Mid ? "AmbientNebulaMid" : effect.Shader;
+                var shader = GetFieldShader(uid, layer, shaderId);
+                shader.SetParameter("nebula_color", paletteColor.WithAlpha(1f));
+                shader.SetParameter("seed", shaderSeed);
+                shader.SetParameter("density", field.Density);
+                shader.SetParameter("layer_alpha", opacity);
+                shader.SetParameter("particle_scale", particleScale);
+                shader.SetParameter("quality", qualityF);
+                shader.SetParameter("field_radius", radius);
+                shader.SetParameter("layer_id", layerId);
+                shader.SetParameter("time", time);
+                shader.SetParameter("time_speed", effect.FlowSpeed);
+
+                handle.UseShader(shader);
+                handle.SetTransform(Matrix3Helpers.CreateTranslation(drawPos));
+                handle.DrawTextureRect(Texture.White, Box2.CenteredAround(Vector2.Zero, new Vector2(radius * 2f, radius * 2f)));
+            }
 
             drawn++;
             if (drawn >= maxFields)
                 break;
         }
+    }
+
+    private LodMode ResolveLod(EntityUid uid, AmbientSpaceLayer layer, float dist, float nearDist, float farDist)
+    {
+        var key = (uid, layer);
+        if (_lodModes.TryGetValue(key, out var current))
+        {
+            if (current == LodMode.Near && dist > farDist)
+                current = LodMode.Far;
+            else if (current == LodMode.Far && dist < nearDist)
+                current = LodMode.Near;
+
+            _lodModes[key] = current;
+            return current;
+        }
+
+        var initial = dist <= nearDist ? LodMode.Near : LodMode.Far;
+        _lodModes[key] = initial;
+        return initial;
     }
 
     private void EnsureFieldCache(MapId mapId, Vector2 eyePos)
@@ -356,6 +423,8 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         });
 
         PruneFieldShaders();
+        PruneLodModes();
+        _bakeCache.Prune(_scratchFieldUids);
     }
 
     private static float FieldPriority(Vector2 eyePos, Vector2 fieldPos, float radius)
@@ -365,7 +434,7 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
 
     private ShaderInstance GetFieldShader(EntityUid uid, AmbientSpaceLayer layer, string id)
     {
-        var key = (uid, layer);
+        var key = (uid, layer, id);
         if (_fieldShaders.TryGetValue(key, out var existing))
             return existing;
 
@@ -380,13 +449,78 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
         return instance;
     }
 
+    private ShaderInstance GetBakeProcShader()
+    {
+        return _bakeProcShader ??= _prototypes.Index(FallbackShader).InstanceUnique();
+    }
+
+    private ShaderInstance GetBakedDrawShader(EntityUid uid, AmbientSpaceLayer layer)
+    {
+        var key = (uid, layer);
+        if (_bakedDrawShaders.TryGetValue(key, out var existing))
+            return existing;
+
+        var instance = _prototypes.Index(BakedShader).InstanceUnique();
+        if (layer is AmbientSpaceLayer.Mid or AmbientSpaceLayer.Upper)
+            instance.Stencil = NebulaStencil;
+        _bakedDrawShaders[key] = instance;
+        return instance;
+    }
+
     private void PruneFieldShaders()
     {
-        if (_fieldShaders.Count == 0)
+        if (_fieldShaders.Count != 0)
+        {
+            List<(EntityUid Uid, AmbientSpaceLayer Layer, string ShaderId)>? toRemove = null;
+            foreach (var key in _fieldShaders.Keys)
+            {
+                if (_entManager.EntityExists(key.Uid) && _scratchFieldUids.Contains(key.Uid))
+                    continue;
+
+                toRemove ??= new List<(EntityUid, AmbientSpaceLayer, string)>();
+                toRemove.Add(key);
+            }
+
+            if (toRemove != null)
+            {
+                foreach (var key in toRemove)
+                {
+                    _fieldShaders.Remove(key, out var shader);
+                    shader?.Dispose();
+                }
+            }
+        }
+
+        if (_bakedDrawShaders.Count == 0)
+            return;
+
+        List<(EntityUid Uid, AmbientSpaceLayer Layer)>? bakedRemove = null;
+        foreach (var key in _bakedDrawShaders.Keys)
+        {
+            if (_entManager.EntityExists(key.Uid) && _scratchFieldUids.Contains(key.Uid))
+                continue;
+
+            bakedRemove ??= new List<(EntityUid, AmbientSpaceLayer)>();
+            bakedRemove.Add(key);
+        }
+
+        if (bakedRemove == null)
+            return;
+
+        foreach (var key in bakedRemove)
+        {
+            _bakedDrawShaders.Remove(key, out var shader);
+            shader?.Dispose();
+        }
+    }
+
+    private void PruneLodModes()
+    {
+        if (_lodModes.Count == 0)
             return;
 
         List<(EntityUid Uid, AmbientSpaceLayer Layer)>? toRemove = null;
-        foreach (var key in _fieldShaders.Keys)
+        foreach (var key in _lodModes.Keys)
         {
             if (_entManager.EntityExists(key.Uid) && _scratchFieldUids.Contains(key.Uid))
                 continue;
@@ -399,9 +533,6 @@ public sealed class AmbientSpaceEffectOverlay : Overlay
             return;
 
         foreach (var key in toRemove)
-        {
-            _fieldShaders.Remove(key, out var shader);
-            shader?.Dispose();
-        }
+            _lodModes.Remove(key);
     }
 }

@@ -2,6 +2,7 @@
 // Copyright (c) 2026 LuaCorp Contributors
 // See AGPLv3.txt for details.
 
+using System.Numerics;
 using Content.Lua.Shared.SpaceHazards;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -33,4 +34,10 @@ public sealed partial class AmbientSpaceFieldComponent : Component
     public List<ProtoId<NebulaWeatherPrototype>> Weathers = new();
 
     public bool HasWeather => Weathers.Count > 0 || Weather != null;
+
+    public Vector2[]? MidContourCache;
+
+    public int ContourCacheSeed;
+    public float ContourCacheRadius;
+    public float ContourCacheDensity;
 }

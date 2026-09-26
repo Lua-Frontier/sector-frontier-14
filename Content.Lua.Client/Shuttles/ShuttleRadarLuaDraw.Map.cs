@@ -83,13 +83,11 @@ public sealed partial class ShuttleRadarLuaDraw
 
         foreach (var (uid, field, worldPos, radius) in _mapFieldScratch)
         {
-            var points = GetOrBuildMapContour(uid, field.Seed, radius, field.Density, worldPos);
+            var points = GetFieldContour(field, radius);
             var color = AmbientSpacePalette.ResolveFieldColor(field);
             DrawMapFilledContour(ctx, points, worldPos, color.WithAlpha(field.HasWeather ? 0.1f : 0.05f));
             DrawMapClosedPolyline(ctx, points, worldPos, color.WithAlpha(0.85f));
         }
-
-        PruneMapContourCache(ctx.EntManager);
     }
 
     private void DrawMapCelestialIcons(in ShuttleMapLuaDrawContext ctx)
@@ -234,27 +232,6 @@ public sealed partial class ShuttleRadarLuaDraw
         ctx.DrawSoftText(ctx.Handle, labelText, labelPos, 1f, labelColor.WithAlpha(0.9f), Color.Black.WithAlpha(0.5f));
     }
 
-    private Vector2[] GetOrBuildMapContour(EntityUid uid, int seed, float radius, float density, Vector2 worldPos)
-    {
-        if (!_nebulaMapCache.TryGetValue(uid, out var cache)
-            || cache.Seed != seed
-            || MathF.Abs(cache.Radius - radius) > 0.01f
-            || MathF.Abs(cache.Density - density) > 0.001f
-            || cache.Points.Length == 0)
-        {
-            cache = new NebulaContourCache
-            {
-                Seed = seed,
-                Radius = radius,
-                Density = density,
-                Points = AmbientSpaceNebulaNoise.BuildMidLayerContour(worldPos, radius, seed, density),
-            };
-            _nebulaMapCache[uid] = cache;
-        }
-
-        return cache.Points;
-    }
-
     private void DrawMapFilledContour(
         in ShuttleMapLuaDrawContext ctx,
         ReadOnlySpan<Vector2> worldPoints,
@@ -278,22 +255,6 @@ public sealed partial class ShuttleRadarLuaDraw
 
         _mapNebulaFillScratch[count - 1] = _mapNebulaFillScratch[1];
         ctx.Handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, new Span<Vector2>(_mapNebulaFillScratch, 0, count), color);
-    }
-
-    private void PruneMapContourCache(IEntityManager entManager)
-    {
-        if (_nebulaMapCache.Count <= MaxMapNebulaContourCache)
-            return;
-
-        var toRemove = new List<EntityUid>();
-        foreach (var (uid, _) in _nebulaMapCache)
-        {
-            if (!entManager.EntityExists(uid))
-                toRemove.Add(uid);
-        }
-
-        foreach (var uid in toRemove)
-            _nebulaMapCache.Remove(uid);
     }
 
     private static void DrawMapClosedPolyline(

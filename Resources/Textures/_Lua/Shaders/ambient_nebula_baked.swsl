@@ -1,0 +1,13 @@
+light_mode unshaded;
+uniform highp vec4 nebula_color;
+uniform highp float layer_alpha;
+uniform highp float time;
+uniform highp float layer_id;
+uniform highp float seed;
+void fragment() {
+    highp float seedF = seed;
+    highp vec4 tex = texture(TEXTURE, UV);
+    highp float breath = 0.94 + 0.06 * sin(time * 0.35 + seedF + layer_id * 1.7);
+    highp float a = tex.a * layer_alpha * nebula_color.a * breath;
+    COLOR = vec4(nebula_color.rgb, clamp(a, 0.0, 1.0));
+}

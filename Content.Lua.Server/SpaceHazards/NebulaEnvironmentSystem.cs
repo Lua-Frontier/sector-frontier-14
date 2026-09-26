@@ -3,26 +3,25 @@
 // See AGPLv3.txt for details.
 
 using System.Collections.Generic;
-using System.Linq;
 using System.Numerics;
 using Content.Server.Radio;
 using Content.Server.Shuttles.Events;
 using Content.Lua.Shared.AmbientSpaceEffects;
 using Content.Lua.Shared.SpaceHazards;
-using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Lua.Server.SpaceHazards;
 
-public sealed class NebulaEnvironmentSystem : EntitySystem, INebulaEnvironmentSystem
+public sealed class NebulaEnvironmentSystem : SharedNebulaEnvironmentSystem, INebulaEnvironmentSystem
 {
     private const int MaxParentChecks = 8;
 
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     private readonly Dictionary<EntityUid, float> _thrustResistance = new();
+    private readonly Dictionary<EntityUid, float> _thrustMultiplierCache = new();
+    private readonly List<NebulaWeatherPrototype> _weatherScratch = new();
 
     public override void Initialize()
     {
@@ -30,37 +29,61 @@ public sealed class NebulaEnvironmentSystem : EntitySystem, INebulaEnvironmentSy
         SubscribeLocalEvent<ConsoleFTLAttemptEvent>(OnFtlAttempt);
         SubscribeLocalEvent<RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
-        SubscribeLocalEvent<GunComponent, QueryFireRateMultiplierEvent>(OnFireRateQuery);
         SubscribeLocalEvent<NebulaThrustResistanceComponent, ComponentStartup>(OnThrustResistanceChanged);
         SubscribeLocalEvent<NebulaThrustResistanceComponent, ComponentShutdown>(OnThrustResistanceChanged);
         SubscribeLocalEvent<NebulaThrustResistanceComponent, EntParentChangedMessage>(OnThrustResistanceMoved);
+        SubscribeLocalEvent<NebulaPresenceComponent, ComponentShutdown>(OnPresenceShutdown);
     }
 
     public float GetThrustMultiplier(EntityUid gridUid)
     {
+        if (_thrustMultiplierCache.TryGetValue(gridUid, out var cached))
+            return cached;
+
         var multiplier = 1f;
-        foreach (var weather in GetActiveWeathers(gridUid))
-            multiplier = MathF.Min(multiplier, weather.ThrustMultiplier);
+        if (TryFillActiveWeathers(gridUid, _weatherScratch))
+        {
+            foreach (var weather in _weatherScratch)
+                multiplier = MathF.Min(multiplier, weather.ThrustMultiplier);
+        }
 
-        if (multiplier >= 1f)
-            return multiplier;
+        if (multiplier < 1f)
+        {
+            var resistance = GetGridThrustResistance(gridUid);
+            multiplier = float.Lerp(multiplier, 1f, resistance);
+        }
 
-        var resistance = GetGridThrustResistance(gridUid);
-        return float.Lerp(multiplier, 1f, resistance);
+        _thrustMultiplierCache[gridUid] = multiplier;
+        return multiplier;
+    }
+
+    public void InvalidateThrustCache(EntityUid gridUid)
+        => _thrustMultiplierCache.Remove(gridUid);
+
+    private void OnPresenceShutdown(EntityUid uid, NebulaPresenceComponent component, ComponentShutdown args)
+    {
+        _thrustMultiplierCache.Remove(uid);
+        _thrustResistance.Remove(uid);
     }
 
     private void OnThrustResistanceChanged(Entity<NebulaThrustResistanceComponent> ent, ref ComponentStartup args)
-        => _thrustResistance.Clear();
+        => ClearThrustCaches();
 
     private void OnThrustResistanceChanged(Entity<NebulaThrustResistanceComponent> ent, ref ComponentShutdown args)
-        => _thrustResistance.Clear();
+        => ClearThrustCaches();
 
     private void OnThrustResistanceMoved(Entity<NebulaThrustResistanceComponent> ent, ref EntParentChangedMessage args)
-        => _thrustResistance.Clear();
+        => ClearThrustCaches();
+
+    private void ClearThrustCaches()
+    {
+        _thrustResistance.Clear();
+        _thrustMultiplierCache.Clear();
+    }
 
     private void OnFtlAttempt(ref ConsoleFTLAttemptEvent args)
     {
-        var blockedAtOrigin = GetActiveWeathers(args.Uid).Any(weather => weather.BlocksFtl);
+        var blockedAtOrigin = HasBlockingWeather(args.Uid, static w => w.BlocksFtl);
         var blockedAtDestination = args.Destination is { } destination && IsFtlBlockedAt(destination);
         if (!blockedAtOrigin && !blockedAtDestination)
             return;
@@ -127,6 +150,9 @@ public sealed class NebulaEnvironmentSystem : EntitySystem, INebulaEnvironmentSy
 
     private bool FieldBlocksFtl(AmbientSpaceFieldComponent field)
     {
+        if (!field.HasWeather)
+            return false;
+
         if (field.Weathers.Count > 0)
         {
             foreach (var weatherId in field.Weathers)
@@ -155,25 +181,6 @@ public sealed class NebulaEnvironmentSystem : EntitySystem, INebulaEnvironmentSy
             args.Cancelled = true;
     }
 
-    private void OnFireRateQuery(Entity<GunComponent> ent, ref QueryFireRateMultiplierEvent args)
-    {
-        var xform = Transform(ent.Owner);
-        if (xform.GridUid is not { } gridUid)
-            return;
-
-        var cooldownMultiplier = 1f;
-        foreach (var weather in GetActiveWeathers(gridUid))
-            cooldownMultiplier = MathF.Max(cooldownMultiplier, weather.WeaponCooldownMultiplier);
-
-        if (cooldownMultiplier <= 1f)
-            return;
-
-        var resistance = HasComp<NebulaWeaponResistanceComponent>(ent.Owner)
-            ? Math.Clamp(Comp<NebulaWeaponResistanceComponent>(ent.Owner).Resistance, 0f, 1f)
-            : 0f;
-        args.ReloadTimeMul *= float.Lerp(cooldownMultiplier, 1f, resistance);
-    }
-
     private bool IsRadioBlocked(EntityUid uid)
     {
         if (Deleted(uid) || HasComp<NebulaRadioProtectedComponent>(uid))
@@ -185,13 +192,13 @@ public sealed class NebulaEnvironmentSystem : EntitySystem, INebulaEnvironmentSy
             if (HasComp<NebulaRadioProtectedComponent>(current))
                 return false;
 
-            if (GetActiveWeathers(current).Any(weather => weather.RadioBlackout))
+            if (HasBlockingWeather(current, static w => w.RadioBlackout))
                 return true;
 
             if (!TryComp(current, out TransformComponent? xform))
                 break;
 
-            if (xform.GridUid is { } grid && GetActiveWeathers(grid).Any(weather => weather.RadioBlackout))
+            if (xform.GridUid is { } grid && HasBlockingWeather(grid, static w => w.RadioBlackout))
                 return true;
 
             if (!xform.ParentUid.Valid || xform.ParentUid == current)
@@ -203,23 +210,18 @@ public sealed class NebulaEnvironmentSystem : EntitySystem, INebulaEnvironmentSy
         return false;
     }
 
-    private IEnumerable<NebulaWeatherPrototype> GetActiveWeathers(EntityUid uid)
+    private bool HasBlockingWeather(EntityUid uid, Func<NebulaWeatherPrototype, bool> predicate)
     {
-        if (!TryComp(uid, out NebulaPresenceComponent? presence))
-            yield break;
+        if (!TryFillActiveWeathers(uid, _weatherScratch))
+            return false;
 
-        if (presence.ActiveWeathers.Count == 0)
+        foreach (var weather in _weatherScratch)
         {
-            if (_prototypes.TryIndex(presence.Weather, out NebulaWeatherPrototype? fallback))
-                yield return fallback;
-            yield break;
+            if (predicate(weather))
+                return true;
         }
 
-        foreach (var weatherId in presence.ActiveWeathers)
-        {
-            if (_prototypes.TryIndex(weatherId, out NebulaWeatherPrototype? weather))
-                yield return weather;
-        }
+        return false;
     }
 
     private float GetGridThrustResistance(EntityUid gridUid)

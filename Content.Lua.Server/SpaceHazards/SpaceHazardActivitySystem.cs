@@ -42,12 +42,31 @@ public sealed class SpaceHazardActivitySystem : EntitySystem, ISpaceHazardActivi
     private void OnShutdown(EntityUid uid, SpaceHazardActivityComponent activity, ComponentShutdown args)
     { Unregister(uid); }
 
+    public void SyncActivationRange(EntityUid uid, float requiredRange)
+    {
+        if (!TryComp(uid, out SpaceHazardActivityComponent? activity))
+            return;
+
+        var range = MathF.Max(requiredRange, 1f);
+        if (TryComp(uid, out AmbientSpaceFieldComponent? field))
+            range = MathF.Max(range, field.Radius + 64f);
+
+        if (MathF.Abs(activity.ActivationRange - range) < 0.01f && _index.ContainsKey(uid))
+            return;
+
+        activity.ActivationRange = range;
+        Register(uid, activity);
+    }
+
     private void Register(EntityUid uid, SpaceHazardActivityComponent activity)
     {
         if (_index.ContainsKey(uid)) Unregister(uid);
         if (!TryComp(uid, out TransformComponent? xform) || xform.MapID == MapId.Nullspace) return;
         var pos = _transform.GetWorldPosition(xform);
         var range = MathF.Max(activity.ActivationRange, 1f);
+        if (TryComp(uid, out AmbientSpaceFieldComponent? field))
+            range = MathF.Max(range, field.Radius + 64f);
+        activity.ActivationRange = range;
         _maxActivationRange = MathF.Max(_maxActivationRange, range);
         var cellX = CellCoord(pos.X);
         var cellY = CellCoord(pos.Y);
