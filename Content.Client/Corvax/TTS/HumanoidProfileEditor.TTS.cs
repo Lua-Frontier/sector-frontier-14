@@ -2,7 +2,8 @@ using System.Linq;
 using Content.Client.Corvax.TTS;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Preferences;
-using Robust.Shared.Timing;
+using Robust.Shared.Configuration;
+using CCCVarsDef = Content.Shared.Corvax.CCCVars.CCCVars;
 
 namespace Content.Client.Lobby.UI;
 
@@ -12,11 +13,13 @@ public sealed partial class HumanoidProfileEditor
 
     private void InitializeVoice()
     {
-        _voiceList = _prototypeManager
-            .EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(o => o.RoundStart)
-            .OrderBy(o => Loc.TryGetString(o.Name, out var name) ? name : o.Name)
-            .ToList();
+        ReloadVoiceList();
+
+        _cfgManager.OnValueChanged(CCCVarsDef.TTSNtts, _ =>
+        {
+            ReloadVoiceList();
+            UpdateTTSVoicesControls();
+        });
 
         VoiceButton.OnItemSelected += args =>
         {
@@ -25,6 +28,14 @@ public sealed partial class HumanoidProfileEditor
         };
 
         VoicePlayButton.OnPressed += _ => PlayPreviewTTS();
+    }
+
+    private void ReloadVoiceList()
+    {
+        var ntts = TTSVoiceListing.IsNttsBackend(_cfgManager);
+        _voiceList = TTSVoiceListing.EnumerateForBackend(_prototypeManager, ntts)
+            .OrderBy(o => Loc.TryGetString(o.Name, out var name) ? name : o.Name)
+            .ToList();
     }
 
     private void UpdateTTSVoicesControls()
@@ -46,19 +57,6 @@ public sealed partial class HumanoidProfileEditor
 
             if (firstVoiceChoiceId == 1)
                 firstVoiceChoiceId = i;
-
-            // Не спонсоры могут прослушивать голоса в лобби
-            // if (voice.SponsorOnly)
-            // {
-            //     if (!IoCManager.Resolve<SponsorsManager>().TryGetInfo(out var sponsor))
-            //     {
-            //         VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
-            //     }
-            //     else if (!sponsor.AllowedMarkings.Contains(voice.ID))
-            //     {
-            //         VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
-            //     }
-            // }
         }
 
         var voiceChoiceId = _voiceList.FindIndex(x => x.ID == Profile.Voice);

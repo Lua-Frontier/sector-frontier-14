@@ -86,9 +86,10 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             if (VoiceSelector.SelectedMetadata != null)
                 OnVoiceChange!((string)VoiceSelector.SelectedMetadata);
         };
-        _voices = proto
-            .EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(o => o.RoundStart)
+        VoiceSelector.Clear();
+        _voices = TTSVoiceListing.EnumerateForBackend(
+                proto,
+                TTSVoiceListing.IsNttsBackend(IoCManager.Resolve<IConfigurationManager>()))
             .OrderBy(o => Loc.TryGetString(o.Name, out var name) ? name : o.Name)
             .ToList();
         for (var i = 0; i < _voices.Count; i++)

@@ -1,13 +1,11 @@
+using System.IO;
 using Content.Shared.Chat;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Robust.Client.Audio;
-using Robust.Client.ResourceManagement;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.ContentPack;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Corvax.TTS;
 
@@ -18,12 +16,10 @@ namespace Content.Client.Corvax.TTS;
 public sealed class TTSSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceManager _res = default!;
+    [Dependency] private readonly IAudioManager _audioManager = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
 
     private ISawmill _sawmill = default!;
-    private readonly MemoryContentRoot _contentRoot = new();
-    private static readonly ResPath Prefix = ResPath.Root / "TTS";
 
     /// <summary>
     /// Reducing the volume of the TTS when whispering. Will be converted to logarithm.
@@ -38,12 +34,12 @@ public sealed class TTSSystem : EntitySystem
     private float _volume = 0.0f;
     private float _volumeRadio = 0.0f;
     private bool _playRadio = true;
-    private int _fileIdx = 0;
+    private bool _alive = true;
 
     public override void Initialize()
     {
         _sawmill = Logger.GetSawmill("tts");
-        _res.AddRoot(Prefix, _contentRoot);
+        _alive = true;
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(CCCVars.TTSVolumeRadio, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(CCCVars.RadioTTSSoundsEnabled, OnTtsPlayRadioChanged, true);
@@ -52,11 +48,11 @@ public sealed class TTSSystem : EntitySystem
 
     public override void Shutdown()
     {
+        _alive = false;
         base.Shutdown();
         _cfg.UnsubValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged);
         _cfg.UnsubValueChanged(CCCVars.TTSVolumeRadio, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(CCCVars.RadioTTSSoundsEnabled, OnTtsPlayRadioChanged);
-        _contentRoot.Dispose();
     }
 
     public void RequestPreviewTTS(string voiceId)
@@ -73,6 +69,7 @@ public sealed class TTSSystem : EntitySystem
     {
         _volumeRadio = volume;
     }
+
     private void OnTtsPlayRadioChanged(bool radio)
     {
         _playRadio = radio;
@@ -80,36 +77,74 @@ public sealed class TTSSystem : EntitySystem
 
     private void OnPlayTTS(PlayTTSEvent ev)
     {
-        if (ev.IsRadio && !_playRadio)
-        {
+        if (!_alive)
             return;
-        }
+
+        if (ev.IsRadio && !_playRadio)
+            return;
+
+        if (ev.Data.Length == 0)
+            return;
 
         _sawmill.Verbose($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
 
-        var filePath = new ResPath($"{_fileIdx++}.ogg");
-        _contentRoot.AddOrUpdateFile(filePath, ev.Data);
-
-        var audioResource = new AudioResource();
-        audioResource.Load(IoCManager.Instance!, Prefix / filePath);
+        AudioStream stream;
+        try
+        {
+            stream = LoadStream(ev);
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"Failed to load TTS audio ({ev.Data.Length} bytes, fmt={ev.AudioFormat}): {e.Message}");
+            return;
+        }
 
         var audioParams = AudioParams.Default
             .WithVolume(AdjustVolume(ev.IsWhisper, ev.IsRadio))
             .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
-        var soundSpecifier = new ResolvedPathSpecifier(Prefix / filePath);
-
         if (ev.SourceUid != null)
         {
             var sourceUid = GetEntity(ev.SourceUid.Value);
-            _audio.PlayEntity(audioResource.AudioStream, sourceUid, soundSpecifier, audioParams);
+            if (!sourceUid.IsValid() || Deleted(sourceUid))
+                return;
+
+            _audio.PlayEntity(stream, sourceUid, null, audioParams);
         }
         else
         {
-            _audio.PlayGlobal(audioResource.AudioStream, soundSpecifier, audioParams);
+            _audio.PlayGlobal(stream, null, audioParams);
+        }
+    }
+
+    private AudioStream LoadStream(PlayTTSEvent ev)
+    {
+        using var memory = new MemoryStream(ev.Data, writable: false);
+        var ext = ResolveExtension(ev);
+
+        if (ext == "wav")
+            return _audioManager.LoadAudioWav(memory, "tts");
+
+        return _audioManager.LoadAudioOggVorbis(memory, "tts");
+    }
+
+    private static string ResolveExtension(PlayTTSEvent ev)
+    {
+        if (!string.IsNullOrWhiteSpace(ev.AudioFormat))
+        {
+            var fmt = ev.AudioFormat.TrimStart('.').ToLowerInvariant();
+            if (fmt is "wav" or "ogg")
+                return fmt;
         }
 
-        _contentRoot.RemoveFile(filePath);
+        if (ev.Data.Length >= 12 &&
+            ev.Data[0] == (byte) 'R' &&
+            ev.Data[1] == (byte) 'I' &&
+            ev.Data[2] == (byte) 'F' &&
+            ev.Data[3] == (byte) 'F')
+            return "wav";
+
+        return "ogg";
     }
 
     private float AdjustVolume(bool isWhisper, bool isRadio)

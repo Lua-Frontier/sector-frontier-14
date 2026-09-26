@@ -31,4 +31,7 @@ public sealed partial class TTSVoicePrototype : IPrototype
 
     [DataField("sponsorOnly")]
     public bool SponsorOnly { get; private set; } = false;
+
+    [DataField("ntts")]
+    public bool Ntts { get; private set; } = false;
 }

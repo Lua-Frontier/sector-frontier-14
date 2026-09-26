@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Shared._Mono.Company;
 using Content.Shared._NF.Bank;
 using Content.Shared.CCVar;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -357,10 +358,13 @@ namespace Content.Shared.Preferences
             }
 
             // Corvax-TTS-Start
-            var voiceId = random.Pick(prototypeManager
-                .EnumeratePrototypes<TTSVoicePrototype>()
-                .Where(o => CanHaveVoice(o, sex) && !o.SponsorOnly).ToArray()
-            ).ID;
+            var ntts = IoCManager.Resolve<IConfigurationManager>().GetCVar(Content.Shared.Corvax.CCCVars.CCCVars.TTSNtts);
+            var voiceChoices = TTSVoiceListing.EnumerateForBackend(prototypeManager, ntts)
+                .Where(o => CanHaveVoice(o, sex) && !o.SponsorOnly)
+                .ToArray();
+            var voiceId = voiceChoices.Length > 0
+                ? random.Pick(voiceChoices).ID
+                : TTSVoiceListing.PickDefaultVoiceId(prototypeManager, ntts, sex);
             // Corvax-TTS-End
 
             var gender = Gender.Epicene;
@@ -1042,8 +1046,9 @@ namespace Content.Shared.Preferences
 
             // Corvax-TTS-Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
-            if (voice is null || !CanHaveVoice(voice, Sex))
-                Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+            var ntts = IoCManager.Resolve<IConfigurationManager>().GetCVar(Content.Shared.Corvax.CCCVars.CCCVars.TTSNtts);
+            if (voice is null || !CanHaveVoice(voice, Sex) || !TTSVoiceListing.MatchesBackend(voice, ntts))
+                Voice = TTSVoiceListing.PickDefaultVoiceId(prototypeManager, ntts, Sex);
             // Corvax-TTS-End
         }
 

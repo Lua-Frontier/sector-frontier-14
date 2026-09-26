@@ -11,7 +11,9 @@ using Content.Lua.Server.Networking;
 using Content.Lua.Server.Reputation;
 using Content.Lua.Server.SponsorPlayer;
 using Content.Lua.Server.SitePlayerSync;
+using Content.Lua.Server.TTS;
 using Content.Server.Administration;
+using Content.Server.Corvax.TTS;
 using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 
@@ -35,6 +37,7 @@ public sealed class EntryPoint : GameServer
         deps.Register<ISitePlayerSyncManager, SitePlayerSyncManager>();
         deps.Register<IAlertLevelAdminEuiFactory, AlertLevelAdminEuiFactory>();
         deps.Register<IReputationModerationEuiFactory, ReputationModerationEuiFactory>();
+        deps.Register<INttsTtsClient, NttsTtsClient>(overwrite: true);
     }
 
     public override void PostInit()

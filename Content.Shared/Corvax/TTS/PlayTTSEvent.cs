@@ -11,11 +11,19 @@ public sealed class PlayTTSEvent : EntityEventArgs
     public bool IsWhisper { get; }
     public bool IsRadio { get; }
 
-    public PlayTTSEvent(byte[] data, NetEntity? sourceUid = null, bool isWhisper = false, bool isRadio = false)
+    public string AudioFormat { get; }
+
+    public PlayTTSEvent(
+        byte[] data,
+        NetEntity? sourceUid = null,
+        bool isWhisper = false,
+        bool isRadio = false,
+        string audioFormat = "ogg")
     {
         Data = data;
         SourceUid = sourceUid;
         IsWhisper = isWhisper;
         IsRadio = isRadio;
+        AudioFormat = string.IsNullOrWhiteSpace(audioFormat) ? "ogg" : audioFormat;
     }
 }

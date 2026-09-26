@@ -70,6 +70,7 @@ internal static class ServerContentIoC
         deps.Register<UserDbDataManager>();
         deps.Register<JoinQueueManager>(); // Corvax-Queue
         deps.Register<TTSManager>(); // Corvax-TTS
+        deps.Register<INttsTtsClient, NullNttsTtsClient>();
         // SponsorMusicManager + SitePlayerSyncManager live in Content.Lua.Server EntryPoint
         deps.Register<DiscordAuthManager>(); // Corvax-DiscordAuth
         deps.Register<ServerInfoManager>();
