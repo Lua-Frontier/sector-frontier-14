@@ -56,11 +56,6 @@
   equipment:
     back: USSPSFClothingBackpackBlueShield
 
-- type: loadout #lua
-  id: UsspLoadoutOuterRIGSecurity
-  equipment:
-    outerClothing: USSPSFClothingOuterRIGSecurity
-
 - type: loadoutGroup
   id: UsspCivilianBackpack
   name: loadout-group-contractor-backpack
@@ -80,7 +75,6 @@
   - UsspLoadoutBackpackSecurity
   - UsspLoadoutSatchelSecurity
   - UsspLoadoutDuffelSecurity
-  - UsspLoadoutClothingBackpackRIGSecurity
   fallbacks:
   - UsspLoadoutBackpackSecurity
 
@@ -431,46 +425,34 @@
     outerClothing: USSPSFClothingOuterHardsuitSecurity
 
 - type: loadout
-  id: UsspLoadoutClothingBackpackRIGSecurity
-  equipment:
-    Back: USSPSFClothingBackpackRIGSecurity
-
-- type: loadout
   id: UsspLoadoutOuterClothingSecurityRed
   equipment:
-    Back: USSPSFClothingOuterHardsuitSecurityRed
+    outerClothing: USSPSFClothingOuterHardsuitSecurityRed
 
 - type: loadout
   id: UsspLoadoutOuterClothingHardsuitCap
   equipment:
-    Back: USSPSFClothingOuterHardsuitCap
+    outerClothing: USSPSFClothingOuterHardsuitCap
 
 - type: loadout
   id: UsspLoadoutOuterClothingHardsuitBrigmedic
   equipment:
-    Back: USSPSFClothingOuterHardsuitBrigmedic
+    outerClothing: USSPSFClothingOuterHardsuitBrigmedic
 
 - type: loadout
   id: UsspLoadoutOuterClothingHardsuitBlueShield
   equipment:
-    Back: USSPSFClothingOuterHardsuitBlueShield
-
-- type: loadout
-  id: UsspLoadoutOuterClothingOuterRIGSecurityAdvanced
-  equipment:
-    Back: USSPSFClothingOuterRIGSecurityAdvanced
+    outerClothing: USSPSFClothingOuterHardsuitBlueShield
 
 - type: loadout
   id: UsspLoadoutOuterClothingOuterHardsuitSecurityPilot
   equipment:
-    Back: USSPSFClothingOuterHardsuitSecurityPilot
+    outerClothing: USSPSFClothingOuterHardsuitSecurityPilot
 
 - type: loadout
   id: UsspLoadoutOuterClothingHardsuitL27
   equipment:
-    Back: ClothingOuterHardsuitUsspL27
-
-
+    outerClothing: ClothingOuterHardsuitUsspL27
 
 #Lua outer end
 
@@ -514,7 +496,6 @@
   - UsspLoadoutOuterWinterCapWhite
   - UsspLoadoutOuterWinterCapBlack
   - UsspLoadoutOuterClothingHardsuitCap
-  - UsspLoadoutOuterClothingOuterRIGSecurityAdvanced
 
 - type: loadoutGroup
   id: UsspHoSOuterClothing
