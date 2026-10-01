@@ -50,12 +50,14 @@ public sealed class PhotocopierUiState : BoundUserInterfaceState
 [Serializable, NetSerializable]
 public sealed class PhotocopierChoseFormMessage : BoundUserInterfaceMessage
 {
-    public readonly PaperworkFormPrototype PaperworkForm;
+    // Lua start
+    public readonly string PaperworkFormId;
 
-    public PhotocopierChoseFormMessage(PaperworkFormPrototype paperworkForm)
+    public PhotocopierChoseFormMessage(string paperworkFormId)
     {
-        PaperworkForm = paperworkForm;
+        PaperworkFormId = paperworkFormId;
     }
+    // Lua end
 }
 
 [Serializable, NetSerializable]

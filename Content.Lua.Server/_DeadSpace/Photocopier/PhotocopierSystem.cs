@@ -13,6 +13,7 @@ using Content.Shared.Emag.Systems;
 using Content.Lua.Shared._DeadSpace.Photocopier;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration; // Lua
+using Robust.Shared.Prototypes; // Lua
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.ContentPack;
@@ -44,6 +45,7 @@ public sealed class PhotocopierSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!; // Lua
+    [Dependency] private readonly IPrototypeManager _prototype = default!; // Lua
 
     private const string PaperSlotId = "Paper";
 
@@ -249,7 +251,12 @@ public sealed class PhotocopierSystem : EntitySystem
 
     private void OnFormButtonPressed(EntityUid uid, PhotocopierComponent component, PhotocopierChoseFormMessage args)
     {
-        component.ChosenPaper = args.PaperworkForm;
+        // Lua start
+        if (!_prototype.TryIndex<PaperworkFormPrototype>(args.PaperworkFormId, out var form))
+            return;
+
+        component.ChosenPaper = form;
+        // Lua end
         UpdateUserInterface(uid, component);
     }
 
@@ -267,6 +274,11 @@ public sealed class PhotocopierSystem : EntitySystem
 
     private void OnPrintButtonPressed(EntityUid uid, PhotocopierComponent component, PhotocopierPrintMessage args)
     {
+        // Lua start
+        if (args.Amount < 1 || args.Amount > 6)
+            return;
+        // Lua end
+
         if (args.Amount > component.TonerLeft)
         {
             _popupSystem.PopupEntity(Loc.GetString("photocopier-popup-low-toner-amount"), uid, args.Actor);
