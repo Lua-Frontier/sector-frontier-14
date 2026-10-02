@@ -7,25 +7,24 @@
   parent: BaseVessel
   id: Feledor
   name: Feledor
-  description: Нет документации
+  description: Ранее - грозный пиратский корабль. Ныне - лишь тень былой мощи, чьи чертежи утекли в массы.
   limit: 1
-  price: 530000
-  mass: 781.5
+  price: 400000
+  mass: 1781.5
   category: Large
   group: BlackMarket
   class:
-  - Pirate
   - Botany # Lua
   - Fighter # Lua
   engine:
   - Bluespace # Lua
   - Bananium
-  shuttlePath: /Maps/_Lua/Shuttles/Pirates/Feledor.yml
+  shuttlePath: /Maps/_Lua/Shuttles/BlackMarket/Feledor.yml
 
 - type: gameMap
   id: Feledor
   mapName: 'Feledor'
-  mapPath: /Maps/_Lua/Shuttles/Pirates/Feledor.yml
+  mapPath: /Maps/_Lua/Shuttles/BlackMarket/Feledor.yml
   minPlayers: 0
   stations:
     Feledor:
