@@ -14,6 +14,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Security.Cryptography;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -36,6 +37,8 @@ public sealed class SponsorMusicManager : ISponsorMusicManager
     private static readonly TimeSpan TrackRetryDelay = TimeSpan.FromMilliseconds(60);
     private static readonly TimeSpan TrackCacheLifetime = TimeSpan.FromMinutes(10);
     private const int TrackCacheEntryLimit = 6;
+    private static readonly Regex TrackIdRegex = new("^[A-Za-z0-9_-]{1,64}$", RegexOptions.Compiled);
+    private static readonly Regex TrackHashRegex = new("^[0-9a-fA-F]{64}$", RegexOptions.Compiled);
 
     public void Initialize()
     {
@@ -86,13 +89,18 @@ public sealed class SponsorMusicManager : ISponsorMusicManager
     public async Task<byte[]?> FetchTrack(string userId, string trackId, string? trackHash = null)
     {
         if (string.IsNullOrEmpty(_apiUrl)) return null;
+        if (!TrackIdRegex.IsMatch(trackId))
+        {
+            _sawmill.Warning($"FetchTrack rejected invalid track id for {userId}: {trackId}");
+            return null;
+        }
         if (TryGetCachedTrack(trackHash, userId, trackId, out var cached)) return cached;
         for (var attempt = 1; attempt <= 2; attempt++)
         {
             try
             {
                 using var cts = new CancellationTokenSource(TrackTimeout);
-                using var request = CreateRequest(HttpMethod.Get, $"{_apiUrl}/api/game/sponsor-music/{userId}/track/{trackId}");
+                using var request = CreateRequest(HttpMethod.Get, $"{_apiUrl}/api/game/sponsor-music/{userId}/track/{Uri.EscapeDataString(trackId)}");
                 using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cts.Token);
                 if (!response.IsSuccessStatusCode)
                 {
@@ -149,14 +157,19 @@ public sealed class SponsorMusicManager : ISponsorMusicManager
             }
         }
 
-        if (trackHash != null && TryReadTrackFromDiskCache(trackHash, out data))
+        if (IsValidTrackHash(trackHash) && TryReadTrackFromDiskCache(trackHash!, out data))
         {
             if (data == null) return false;
-            CacheTrack(trackHash, userId, trackId, data);
+            CacheTrack(trackHash!, userId, trackId, data);
             return true;
         }
         data = null;
         return false;
+    }
+
+    private static bool IsValidTrackHash(string? hash)
+    {
+        return hash != null && TrackHashRegex.IsMatch(hash);
     }
 
     private void CacheTrack(string hash, string userId, string trackId, byte[] data)
@@ -198,6 +211,7 @@ public sealed class SponsorMusicManager : ISponsorMusicManager
 
     private void WriteTrackToDiskCache(string hash, byte[] data)
     {
+        if (!IsValidTrackHash(hash)) return;
         var path = GetDiskCachePath(hash);
         if (_res.UserData.Exists(path)) return;
         try
