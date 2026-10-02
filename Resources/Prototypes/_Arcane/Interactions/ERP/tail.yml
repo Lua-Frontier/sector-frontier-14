@@ -1,0 +1,111 @@
+- type: panelInteraction
+  id: TailPat
+  category: Tail
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - проводит рукой по хвосту $target.
+  - поглаживает хвост $target.
+  - игриво ласкает хвостик $target.
+  - гладит $target по хвосту.
+  - гладит хвост $target.
+  - водит ладошкой по хвостику $target.
+  - водит рукой вдоль хвоста $target.
+  icon: _Arcane/Interface/ErpPanel/pat_tail.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: TailHug
+  category: Tail
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - сплетается хвостиками с $target.
+  - обвивает хвост $target своим.
+  - игриво ласкает хвостик $target своим.
+  - обнимается хвостиками с $target.
+  - оплетает хвост $target своим.
+  icon: _Arcane/Interface/ErpPanel/tail_hug.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: FriendlyTailPull
+  category: Tail
+  targetArouse: -5
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - игриво дёргает $target за хвост.
+  - тянет за кончик хвоста $target.
+  - слегка тянет хвостик $target.
+  - хватает $target за хвост и несильно тянет.
+  - теребит хвостик $target.
+  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: WagTail
+  category: Tail
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - радостно виляет хвостом.
+  - взволнованно обмахивает хвостом.
+  - дружелюбно помахивает хвостом.
+  - игриво крутит хвостом.
+  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: TuckTail
+  category: Tail
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - испуганно поджимает хвост.
+  - прячет хвост между ног.
+  - робко прижимает хвост к телу.
+  - боязливо подгибает хвост.
+  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: StepOnTail
+  category: Tail
+  targetArouse: -10
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - сильно наступает на хвост $target.
+  - придавливает ногой хвост $target.
+  - грубо наступает прямо на хвост $target.
+  - не глядя делает шаг назад и наступает на хвост $target.
+  - намеренно прижимает подошвой хвост $target к полу.
+  - резко наступает на самый кончик хвоста $target.
+  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail

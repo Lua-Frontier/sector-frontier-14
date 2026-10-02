@@ -1,0 +1,80 @@
+- type: panelInteraction
+  id: Handshake
+  category: Hands
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/handshake.ogg
+  messages:
+  - пожимает руку $target.
+  - дружески жмёт руку $target.
+  - принимает рукопожатие $target.
+  - жмёт руку $target.
+  - берёт $target за руку и пожимает её.
+  icon: _Arcane/Interface/ErpPanel/friendly.png
+
+- type: panelInteraction
+  id: HighFive
+  category: Hands
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang4.ogg
+  - /Audio/_Arcane/Interactions/bang5.ogg
+  - /Audio/_Arcane/Interactions/bang6.ogg
+  messages:
+  - даёт пять $target!
+  - ударяет ладошкой по ладошке $target.
+  - звонко шлёпает $target по ладошке!
+  icon: _Arcane/Interface/ErpPanel/high_five.png
+
+- type: panelInteraction
+  id: KissHand
+  category: Hands
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - галантно целует руку $target.
+  - нежно берёт руку $target и прикладывает к губам.
+  - почтительно целует $target в руку.
+  - прикасается губами к тыльной стороне ладони $target.
+  - с улыбкой целует руку $target.
+  icon: _Arcane/Interface/ErpPanel/kiss_hand.png
+
+- type: panelInteraction
+  id: PushUpsFloor
+  category: Hands
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  selfMessages:
+  - размашисто отжимается на ладонях.
+  - тяжело отжимается до пола.
+  - методично отжимается подход за подходом.
+  - плавно отжимается на вдохе.
+  icon: _Arcane/Interface/ErpPanel/push_ups.png
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+
+- type: panelInteraction
+  id: PinToWall
+  category: Hands
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - грубо прижимает $target у стены.
+  - резко вжимает $target в стену, блокируя пути к отходу.
+  - владно прижимает $target к стене, нависая сверху.
+  - аккуратно, но настойчиво прижимает $target у стены.
+  - собственнически вжимает $target в ближайшую стену.
+  - мягко загоняет $target в угол и прижимает к стене.
+  icon: _Arcane/Interface/ErpPanel/kabedon.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:NearbyStaticEntityRequirement
+    tags:
+    - Wall

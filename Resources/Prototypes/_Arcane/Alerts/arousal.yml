@@ -1,0 +1,32 @@
+﻿- type: alertCategory
+  id: Arousal
+
+- type: alert
+  id: ArousalAroused
+  category: Arousal
+  icons:
+  - sprite: /Textures/_Arcane/Interface/Alerts/arousal.rsi
+    state: aroused
+  name: alerts-arousal-aroused-name
+  description: alerts-arousal-aroused-desc
+
+- type: alert
+  id: ArousalHeated
+  category: Arousal
+  icons:
+  - sprite: /Textures/_Arcane/Interface/Alerts/arousal.rsi
+    state: heated
+  name: alerts-arousal-heated-name
+  description: alerts-arousal-heated-desc
+
+- type: alertCategory
+  id: ArousalRefractory
+
+- type: alert
+  id: ArousalRefractory
+  category: ArousalRefractory
+  icons:
+  - sprite: /Textures/_Arcane/Interface/Alerts/arousal.rsi
+    state: refractory
+  name: alerts-arousal-refractory-name
+  description: alerts-arousal-refractory-desc

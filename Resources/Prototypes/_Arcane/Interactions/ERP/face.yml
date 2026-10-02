@@ -1,0 +1,358 @@
+- type: panelInteraction
+  id: CheeksKiss
+  category: Face
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  messages:
+  - нежно целует $target в щёку.
+  - прикладывает губы к щеке $target.
+  - оставляет лёгкий поцелуй на щеке $target.
+  - ласково целует $target в щёчку.
+  - мягко касается губами щеки $target.
+  icon: _Arcane/Interface/ErpPanel/cheeks_kiss.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: CheeksKissBoth
+  category: Face
+  targetArouse: 5
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
+  messages:
+  - целует $target поочерёдно в обе щёки.
+  - оставляет поцелуи на обеих щеках $target.
+  - нежно целует $target в левую, потом в правую щёку.
+  - приветливо целует $target в обе щёчки.
+  icon: _Arcane/Interface/ErpPanel/cheeks_kiss_both.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: CheeksPat
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  messages:
+  - легонько хлопает $target по щекам.
+  - похлопывает $target по щекам.
+  - несильно шлёпает $target по щеке.
+  - слегка хлопает $target по щёчкам.
+  - игриво похлопывает $target по щеке.
+  icon: _Arcane/Interface/ErpPanel/cheeks_pat.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: CheeksPress
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - сжимает щёки $target руками.
+  - прижимает щёки $target ладонями.
+  - сдавливает щёчки $target, заставляя $target сложить губы бантиком.
+  - мнёт щёки $target.
+  - игриво сжимает лицо $target ладонями.
+  icon: _Arcane/Interface/ErpPanel/cheeks_press.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: GentleKiss
+  category: Face
+  userArouse: 3
+  targetArouse: 5
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
+  - /Audio/_Arcane/Interactions/kiss4.ogg
+  - /Audio/_Arcane/Interactions/kiss5.ogg
+  messages:
+  - нежно целует $target в губы.
+  - мягко касается губами губ $target.
+  - оставляет долгий нежный поцелуй на губах $target.
+  - медленно целует $target, едва касаясь губами.
+  - нежно прижимается губами к губам $target.
+  - тихо целует $target в губы.
+  icon: _Arcane/Interface/ErpPanel/gentle_kiss.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: KissLips
+  category: Face
+  userArouse: 5
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
+  - /Audio/_Arcane/Interactions/kiss4.ogg
+  - /Audio/_Arcane/Interactions/kiss5.ogg
+  messages:
+  - страстно целует $target в губы.
+  - притягивает $target и жадно целует в губы.
+  - горячо целует $target, обхватив лицо руками.
+  - глубоко целует $target, не отпуская.
+  - страстно прижимается губами к губам $target.
+  icon: _Arcane/Interface/ErpPanel/kiss_lips.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: FaceRubCat
+  category: Face
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - трётся мордочкой о лицо $target.
+  - мурча, трётся щёкой об щёку $target.
+  - нежно тычется носиком в лицо $target.
+  - водит мордашкой по щеке $target.
+  - мягко трётся о лицо $target.
+  icon: _Arcane/Interface/ErpPanel/face_rub_cat.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: FacePussySitting
+  category: Face
+  userArouse: 10
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - садится лицом на $target.
+  - плавно опускается вагиной на лицо $target.
+  - садится на лицо $target, прижимаясь вплотную.
+  - усаживается на лицо $target.
+  - опускается на лицо $target, обхватив ляжками голову.
+  icon: _Arcane/Interface/ErpPanel/face_sitting.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: FaceSitting
+  category: Face
+  userArouse: 5
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/champ_fingering.ogg
+  messages:
+  - садится лицом на $target.
+  - плавно опускается задницей на лицо $target.
+  - садится на лицо $target, прижимаясь вплотную.
+  - усаживается на лицо $target.
+  - приземляется на лицо $target, обхватив ляжками голову.
+  icon: _Arcane/Interface/ErpPanel/face_sitting.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: FaceDickSlap
+  category: Face
+  userArouse: 10
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  messages:
+  - шлёпает членом по лицу $target.
+  - хлопает пенисом по щеке $target.
+  - игриво бьёт $target своим членом по лицу.
+  - проводит членом по лицу $target.
+  - несильно шлёпает $target членом по щеке.
+  icon: _Arcane/Interface/ErpPanel/face_dick_slap.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: LegsSqueezeface
+  category: Face
+  userArouse: 10
+  targetArouse: 5
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - зажимает лицо $target между ляжками.
+  - сдавливает голову $target ляжками.
+  - крепко обхватывает лицо $target своими ляжками.
+  - сжимает голову $target между ног.
+  - удерживает лицо $target ляжками.
+  icon: _Arcane/Interface/ErpPanel/legs_squeeze_face.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+
+- type: panelInteraction
+  id: Mewing
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - мяукает прямо в лицо $target.
+  - смотрит $target в глаза и мяукает.
+  - издаёт тихое «мяу» в сторону $target.
+  - игриво мяукает на $target.
+  - трётся о $target и мяукает.
+  icon: _Arcane/Interface/ErpPanel/mewing.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Ariral
+
+- type: panelInteraction
+  id: FriendlyNoseBoop
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - тыкает пальчиком в носик $target.
+  - игриво дотрагивается до носика $target.
+  - легонько тыкает $target по носу.
+  - бупает $target по носику.
+  - аккуратно нажимает на носик $target.
+  icon: _Arcane/Interface/ErpPanel/friendly_nose_boop.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: Kitty
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - трётся мордочкой о $target.
+  - мурча, трётся щёкой о $target.
+  - нежно трётся мордашкой об $target.
+  - тычется носиком в $target.
+  - игриво трётся о $target щёкой.
+  icon: _Arcane/Interface/ErpPanel/kitty.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: BlowSlap
+  targetArouse: -5
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  messages:
+  - отвешивает пощёчину $target!
+  - резко бьёт $target по щеке.
+  - звонко даёт пощёчину $target.
+  - хлёстко бьёт $target по щеке.
+  - с размаху шлёпает $target по щеке.
+  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+
+- type: panelInteraction
+  id: BlowSlapUsers
+  targetArouse: -5
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  selfMessages:
+  - отвешивает себе пощёчину!
+  - резко бьёт себя по щеке.
+  - звонко даёт себе пощёчину.
+  - хлёстко бьёт себя по щеке.
+  - шлёпает себя по щеке.
+  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+
+- type: panelInteraction
+  id: HittingFace
+  targetArouse: -10
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  selfMessages:
+  - тяжело бьет себя ладонью по лицу.
+  - горько хлопает ладонью по лицу.
+  - сокрушенно закрывает лицо руками.
+  - устало роняет лицо в ладони.
+  - безнадежно припечатывает руку к лицу.
+  - разочарованно трет лицо ладонями.
+  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+
+- type: panelInteraction
+  id: ShedTear
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/disappointment.ogg
+  messages:
+  - смотрит на $target, выпуская слезу.
+  - жалобно глядит на $target, пуская большую слезу.
+  - грустно уставился на $target, испуская слезинку.
+  - взирает на $target, роняя слезу.
+  - несчастно косится на $target, смахивая слезу.
+  - всматривается в $target, проливая слезу.
+  icon: _Arcane/Interface/ErpPanel/cry.png
+
+- type: panelInteraction
+  id: KissForehead
+  category: Face
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - чмокает $target в лоб.
+  - нежно целует $target в лоб.
+  - оставляет короткий поцелуй на лбу $target.
+  - ласково прижимается губами ко лбу $target.
+  - тепло целует $target в лоб, выражая заботу.
+  - аккуратно касается губами лба $target.
+  icon: _Arcane/Interface/ErpPanel/kiss_forehead.png
+  tags:
+  - RequiresERP

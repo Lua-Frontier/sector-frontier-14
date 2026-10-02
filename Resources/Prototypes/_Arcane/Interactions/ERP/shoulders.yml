@@ -1,0 +1,53 @@
+- type: panelInteraction
+  id: PatShoulder
+  category: Shoulders
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  messages:
+  - хлопает $target по плечу.
+  - дружески похлопывает $target по плечу.
+  - несколько раз хлопает $target по плечу.
+  - ободряюще похлопывает $target по плечу.
+  - легонько шлёпает $target по плечу.
+  icon: _Arcane/Interface/ErpPanel/pat_shoulder.png
+
+- type: panelInteraction
+  id: ShoulderMassage
+  category: Shoulders
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - мягко разминает плечи $target.
+  - осторожно массирует напряжённые плечи $target.
+  - проводит ладонями по плечам $target, снимая напряжение.
+  - медленно массирует шею и плечи $target.
+  - нежно надавливает пальцами на плечи $target.
+  - ласково разминает мышцы плеч $target.
+  - успокаивающе массирует плечи $target.
+  - проводит руками вдоль плеч $target, расслабляя их.
+  - аккуратно массирует плечи $target круговыми движениями.
+  - заботливо разминает плечи $target.
+  selfMessages:
+  - устало разминает собственные плечи.
+  - медленно массирует себе плечи, расслабляясь.
+  - потирает собственные плечи, снимая напряжение.
+  - осторожно разминает затёкшие плечи.
+  - довольно массирует собственные плечи.
+  icon: _Arcane/Interface/ErpPanel/shoulder_massage.png
+
+- type: panelInteraction
+  id: HugShoulders
+  category: Shoulders
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  - /Audio/_Arcane/Interactions/pat2.ogg
+  messages:
+  - дружески обнимает $target за плечи.
+  - тепло приобнимает $target за плечи, выражая поддержку.
+  - нежно привлекает $target к себе, обхватив за плечи.
+  - успокаивающе кладет руки на плечи $target и обнимает.
+  - крепко обнимает $target за плечи в знак приветствия.
+  icon: _Arcane/Interface/ErpPanel/pat_shoulders.png
+  

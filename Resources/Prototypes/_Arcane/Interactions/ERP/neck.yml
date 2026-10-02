@@ -1,0 +1,171 @@
+- type: panelInteraction
+  id: BiteNeck
+  category: Neck
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - вцепляется зубами в шею $target!
+  - оставляет болезненный укус на шее $target.
+  - резко кусает $target за шею.
+  - прихватывает шею $target зубами.
+  - впивается клыками в шею $target.
+  - медленно кусает $target за шею.
+  - оставляет след от укуса на шее $target.
+  - прикусывает шею $target.
+  icon: _Arcane/Interface/ErpPanel/bite_neck.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: LickNeck
+  category: Neck
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  targetArouse: 3
+  messages:
+  - едва касаясь кожи, проводит языком вдоль шеи $target.
+  - оставляет медленный влажный след на шее $target.
+  - дразняще касается языком шеи $target.
+  - мягко облизывает чувствительное место на шее $target.
+  - проводит кончиком языка по шее $target, вызывая мурашки.
+  - неторопливо скользит языком вдоль шеи $target.
+  - игриво прихватывает губами шею $target, проводя языком по коже.
+  - нежно касается языком шеи $target, будто пробуя её на вкус.
+  - медленно проводит языком под ухом $target.
+  - оставляет лёгкий поцелуй и след языка на шее $target.
+  icon: _Arcane/Interface/ErpPanel/lick_neck.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: KissNeck
+  category: Neck
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
+  targetArouse: 3
+  messages:
+  - мягко прижимается губами к шее $target.
+  - оставляет короткий нежный поцелуй на шее $target.
+  - медленно покрывает шею $target лёгкими поцелуями.
+  - касается губами кожи шеи $target, задерживаясь на мгновение.
+  - оставляет тёплый поцелуй под ухом $target.
+  - ласково целует шею $target, вызывая дрожь.
+  - осыпает шею $target короткими поцелуями.
+  - игриво целует шею $target, едва касаясь кожи.
+  - нежно целует чувствительное место на шее $target.
+  - оставляет долгий поцелуй на шее $target.
+  icon: _Arcane/Interface/ErpPanel/kiss_neck.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: NuzzleNeck
+  category: Neck
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - уютно утыкается носом в шею $target.
+  - нежно тычется в шею $target.
+  - прижимается лицом к шее $target.
+  - мягко утыкается в шею $target.
+  - уткнувшись, прижимается к шее $target.
+  icon: _Arcane/Interface/ErpPanel/sniff_neck.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SpeciesRequirement
+    inverted: true
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: NuzzleNeckVulpa
+  category: Neck
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - тычет мордочкой в шею $target.
+  - нежно тычется носом в шею $target.
+  - утыкается мордашкой в шею $target, мурча.
+  - прижимает мордочку к шее $target.
+  - водит носиком по шее $target.
+  icon: _Arcane/Interface/ErpPanel/sniff_neck_vulp.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: PlayfulNibble
+  category: Neck
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - игриво покусывает шею $target.
+  - тихонько кусает за шею $target.
+  - слегка прикусывает шею $target.
+  - игриво цапает шею $target своими зубками.
+  - нежно жуёт шею $target.
+  icon: _Arcane/Interface/ErpPanel/bite_neck.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: StretchNeck
+  category: Neck
+  sounds:
+  - /Audio/_Arcane/Interactions/stretch_neck.ogg
+  selfMessages:
+  - плавно водит ладонями по кругу шеи, разогревая кожу и мышцы.
+  - медленно склоняет голову к плечам, растягивая боковые линии шеи.
+  - интенсивно растирает шею руками.
+  - плавно перекатывает голову по груди.
+  - плотно обхватывает ладонями шею.
+  - медленно вращает плечами назад.
+  - осторожно тянет подбородок к потолку. 
+  icon: _Arcane/Interface/ErpPanel/pat_neck.png
+
+- type: panelInteraction
+  id: GrabsNeck
+  category: Neck
+  targetArouse: -15
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - грубо хватает за шею $target!
+  - яростно сжимает пальцы на горле $target!
+  - жестко захватывает шею $target!
+  - агрессивно сдавливает шею $target!
+  icon: _Arcane/Interface/ErpPanel/grab_neck.png
+
+- type: panelInteraction
+  id: StepOnNeck
+  category: Neck
+  targetArouse: -15
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - ударяет и держит стопу в области шеи $target.
+  - жестоко давит шею $target при помощи стопы.
+  - Давит ногой на область шеи $target.
+  - удерживает шею $target стопой в одном положении.
+  - ограничивает движение шеи $target своей ногой.
+  icon: _Arcane/Interface/ErpPanel/step_on_neck.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:TargetOnFloorRequirement

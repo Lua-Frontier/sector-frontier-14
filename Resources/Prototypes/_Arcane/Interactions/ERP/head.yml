@@ -1,0 +1,121 @@
+- type: panelInteraction
+  id: HornsPat
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - гладит рога $target.
+  - проводит рукой по рогам $target.
+  - восхищённо трогает рога $target.
+  - аккуратно поглаживает рог $target.
+  - нежно касается рогов $target.
+  icon: _Arcane/Interface/ErpPanel/horns_pat.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+
+- type: panelInteraction
+  id: PetHead
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - гладит $target по голове.
+  - нежно проводит рукой по голове $target.
+  - ласково треплет $target по голове.
+  - мягко поглаживает голову $target.
+  - заботливо гладит $target по головке.
+  - проводит ладонью по волосам $target.
+  icon: _Arcane/Interface/ErpPanel/pet_head.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: HornsBlowjobF
+  category: Head
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/oral1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  messages:
+  - облизывает рог $target.
+  - нежно лижет рог $target.
+  - проводит языком по рогу $target.
+  - медленно лижет кончик рога $target.
+  - захватывает губами рог $target.
+  icon: _Arcane/Interface/ErpPanel/horns_blowjob_female.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+
+- type: panelInteraction
+  id: GiveSlapHead
+  category: Head
+  targetArouse: -10
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - резко отвешивает звонкий подзатыльник $target.
+  - грубо бьет ладонью по затылку $target.
+  - яростно дает тяжелый подзатыльник $target.
+  - жестко припечатывает ладонь к затылку $target.
+  icon: _Arcane/Interface/ErpPanel/slap_back_of_head.png
+
+- type: panelInteraction
+  id: RuffleHair
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - взъерошивает волосы $target.
+  - шутливо ерошит прическу $target.
+  - запускает руку в волосы $target и растрепывает их.
+  - дружески взлохмачивает волосы на голове $target.
+  - легким движением путает волосы $target.
+  - задорно треплет $target по шевелюре.
+  icon: _Arcane/Interface/ErpPanel/ruffle_head.png
+
+- type: panelInteraction
+  id: TapCrown
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - стучит $target по макушке.
+  - шутливо тукает $target по макушке пальцами.
+  - легко щелкает $target по темени.
+  - привлекает внимание, постукивая по макушке $target.
+  - легонько барабанит пальцами по макушке $target.
+  - дает дружеский щелчок по макушке $target.
+  icon: _Arcane/Interface/ErpPanel/pat_back_of_head.png
+
+- type: panelInteraction
+  id: KissBackOfHead
+  category: Head
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - нежно целует $target в затылок.
+  - мягко прижимается губами к затылку $target.
+  - оставляет ласковый поцелуй на затылке $target.
+  - трепетно целует $target со спины в затылок.
+  - едва ощутимо касается губами затылка $target.
+  - зарывается пальцами в волосы и целует $target в затылок.
+  icon: _Arcane/Interface/ErpPanel/kiss_back_of_head.png
+  tags:
+  - RequiresERP
+
+

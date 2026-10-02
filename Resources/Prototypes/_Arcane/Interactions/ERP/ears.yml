@@ -1,0 +1,108 @@
+- type: panelInteraction
+  id: BiteEars
+  category: Ears
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - кусает ухо $target!
+  - покусывает ухо $target.
+  - осторожно прикусывает ухо $target.
+  - слегка кусает $target за ухо.
+  - игриво покусывает ушко $target.
+  - прихватывает ухо $target зубами.
+  - нежно прикусывает мочку уха $target.
+  - оставляет лёгкий укус на ухе $target.
+  - внезапно кусает $target за ушко.
+  - медленно покусывает ухо $target.
+  icon: _Arcane/Interface/ErpPanel/bite_ears.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: BiteEarsHuman
+  category: Ears
+  targetArouse: 3
+  sounds:
+  - /Audio/_Arcane/Interactions/pat1.ogg
+  messages:
+  - кусает ухо $target.
+  - осторожно прикусывает ухо $target.
+  - слегка кусает $target за ухо.
+  - игриво покусывает ушко $target.
+  - нежно прикусывает мочку уха $target.
+  - внезапно кусает $target за ушко.
+  icon: _Arcane/Interface/ErpPanel/bite_ears_human.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: EarsKiss
+  category: Ears
+  targetArouse: 5
+  sounds:
+  - /Audio/_Arcane/Interactions/kiss1.ogg
+  - /Audio/_Arcane/Interactions/kiss2.ogg
+  - /Audio/_Arcane/Interactions/kiss3.ogg
+  messages:
+  - нежно целует $target в ушко.
+  - касается губами уха $target.
+  - оставляет нежный поцелуй на ухе $target.
+  - медленно целует мочку уха $target.
+  - прижимается губами к ушку $target.
+  - целует $target за ухом.
+  icon: _Arcane/Interface/ErpPanel/ears_kiss.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: PatEars
+  category: Ears
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  - /Audio/_Arcane/Interactions/friction2.ogg
+  messages:
+  - гладит ушки $target.
+  - нежно чешет за ушком $target.
+  - ласково поглаживает ушки $target.
+  - осторожно трогает пушистые ушки $target.
+  - проводит пальцем по ушку $target.
+  - почёсывает $target за ушком.
+  icon: _Arcane/Interface/ErpPanel/pat_ears.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: PatEarsHuman
+  category: Ears
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  messages:
+  - теребит ухо $target.
+  - аккуратно трогает ушко $target.
+  - лёгонько мнёт ухо $target.
+  - игриво тянет $target за ухо.
+  - нежно трогает мочку уха $target.
+  icon: _Arcane/Interface/ErpPanel/pat_ears_human.png
+  tags:
+  - RequiresERP
+
+- type: panelInteraction
+  id: ScratchingEars
+  category: Ears
+  sounds:
+  - /Audio/_Arcane/Interactions/friction1.ogg
+  selfMessages:
+  - чешет за ухом.
+  - слегка почесывает ухо.
+  - почесывает мочку уха.
+  - почесывает за ухом.
+  - трет кожу за ухом.
+  icon: _Arcane/Interface/ErpPanel/pat_ears_human.png

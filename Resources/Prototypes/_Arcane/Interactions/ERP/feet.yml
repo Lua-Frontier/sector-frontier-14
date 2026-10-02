@@ -1,0 +1,42 @@
+- type: panelInteraction
+  id: FeetMouth
+  category: Feet
+  userArouse: 5
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/oral1.ogg
+  - /Audio/_Arcane/Interactions/oral2.ogg
+  messages:
+  - берёт ногу $target в рот.
+  - облизывает пальчики ног $target.
+  - медленно берёт ступню $target в рот.
+  - сосёт пальцы ног $target.
+  - проводит языком по ступне $target.
+  - нежно обсасывает пальчики $target.
+  icon: _Arcane/Interface/ErpPanel/feet_mouth.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:EmptyInventorySlotRequirement
+    slot: shoes
+
+- type: panelInteraction
+  id: ShiftWeight
+  category: Feet
+  userArouse: 5
+  targetArouse: 5
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  - /Audio/_Arcane/Interactions/bang2.ogg
+  - /Audio/_Arcane/Interactions/bang3.ogg
+  messages:
+  - уверенно проводит ладонь на бедро $target.
+  - аккуратно опускает ладонь на бедро $target.
+  - собственнически сжимает ладонью бедро $target.
+  - дразняще проводит ладонью по бедру $target.
+  - осторожно накрывает ладонью бедро $target.
+  - мягко кладёт ладонь на бедре $target.
+  icon: _Arcane/Interface/ErpPanel/hand_on_hip.png
+  tags:
+  - RequiresERP
+

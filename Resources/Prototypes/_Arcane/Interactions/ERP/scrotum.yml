@@ -1,0 +1,98 @@
+- type: panelInteraction
+  id: FondleScrotum
+  category: Scrotum
+  userArouse: 10
+  targetArouse: 10
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  selfMessages:
+  - водит рукой по своей мошонке.
+  - массажирует свою мошонку.
+  - ласкает свои яйца.
+  - теребенькает свою мошонку.
+  - быстро водит рукой по мошонке вверх-вниз.
+  - сжимает свои яйца.
+  - обхватывает мошонку рукой и активно ласкает его.
+  icon: _Arcane/Interface/ErpPanel/touch_balls.png
+  tags:
+  - RequiresERP
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: MassageScrotum
+  category: Scrotum
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  messages:
+  - водит рукой по мошонке $target.
+  - массажирует мошонку $target.
+  - ласкает яйца $target.
+  - теребенькает мошонку $target.
+  - быстро водит рукой по мошонке $target вверх-вниз.
+  - сжимает яйца $target.
+  - обхватывает рукой мошонку $target и активно ласкает его.
+  icon: _Arcane/Interface/ErpPanel/grab_balls.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+      - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin   
+
+- type: panelInteraction
+  id: SuckScrotum
+  category: Scrotum
+  userArouse: 5
+  targetArouse: 15
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  messages:
+  - обхватывает губами яйца $target.
+  - осторожно сосет яйца $target.
+  - обхватывает яйцо $target и нежно посасывает.
+  - ласкет яйца $target.
+  - обхватывает губами мошонку $target и нежно посасывает.
+  - жамкает яйца $target своими губами.
+  icon: _Arcane/Interface/ErpPanel/lick_balls.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: RubbingFaceScrotum
+  category: Scrotum
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sounds:
+  - /Audio/_Arcane/Interactions/bang1.ogg
+  messages:
+  - втирается лицом в яйца $target.
+  - упирается носом в мошонку $target.
+  - трётся щекой об яйца $target.
+  - трётся лбом об яйца $target.
+  icon: _Arcane/Interface/ErpPanel/kiss_balls.png
+  tags:
+  - RequiresERP
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
