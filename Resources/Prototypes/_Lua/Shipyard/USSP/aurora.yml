@@ -1,0 +1,35 @@
+- type: vessel
+  id: Aurora
+  parent: BaseVesselAntag
+  name: Aurora
+  description: Судно, летающее сквозь века. Сам великий вождь народов благословил это судно для ловли врагов коммунизма.
+  price: 384523
+  mass: 177
+  category: Small
+  group: Ussp
+  access: USSP
+  shuttlePath: /Maps/_Lua/Shuttles/USSP/Aurora.yml
+  guidebookPage: Null
+  class:
+  - Fighter
+  - Patrol
+  engine:
+  - Uranium
+
+- type: gameMap
+  id: Aurora
+  mapName: 'Aurora'
+  mapPath: /Maps/_Lua/Shuttles/USSP/Aurora.yml
+  minPlayers: 0
+  stations:
+    Aurora:
+      stationProto: StandardFrontierVessel
+      gridComponents:
+      - type: VesselInfo
+        description: "Outdated, yet still reliable."
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Aurora {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

@@ -1,0 +1,34 @@
+- type: vessel
+  id: Juk
+  parent: BaseVesselAntag
+  name: Juk
+  description: Лучшая техника для ландшафтного дизайна в космосе. Чувствуйте ритм!!!
+  price: 536177
+  mass: 47
+  category: Small
+  group: Ussp
+  access: USSP
+  shuttlePath: /Maps/_Lua/Shuttles/USSP/Juk.yml
+  guidebookPage: Null
+  class:
+  - Salvage
+  engine:
+  - Plasma
+
+- type: gameMap
+  id: Juk
+  mapName: 'Juk'
+  mapPath: /Maps/_Lua/Shuttles/USSP/Juk.yml
+  minPlayers: 0
+  stations:
+    Juk:
+      stationProto: StandardFrontierVessel
+      gridComponents:
+      - type: VesselInfo
+        description: "Outdated, yet still reliable."
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Juk {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

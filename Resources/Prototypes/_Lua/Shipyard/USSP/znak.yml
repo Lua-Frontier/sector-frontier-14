@@ -1,0 +1,36 @@
+- type: vessel
+  id: Znak
+  parent: BaseVesselAntag
+  name: Znak
+  description: Младший товарищ "Герба", но не менее опасный. Служит для патрулирования и охоты на врагов коммунизма.
+  limit: 3
+  price: 409523
+  mass: 145
+  category: Small
+  group: Ussp
+  access: USSP
+  shuttlePath: /Maps/_Lua/Shuttles/USSP/Znak.yml
+  guidebookPage: Null
+  class:
+  - Fighter
+  - Patrol
+  engine:
+  - Bluespace
+
+- type: gameMap
+  id: Znak
+  mapName: 'Znak'
+  mapPath: /Maps/_Lua/Shuttles/USSP/Znak.yml
+  minPlayers: 0
+  stations:
+    Znak:
+      stationProto: StandardFrontierVessel
+      gridComponents:
+      - type: VesselInfo
+        description: "Outdated, yet still reliable."
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: 'Znak {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'

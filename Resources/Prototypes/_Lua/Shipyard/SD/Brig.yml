@@ -1,0 +1,32 @@
+- type: vessel
+  parent: BaseVessel
+  id: Brig
+  name: Brig
+  description: Передвижная мини-станция Frontline Solutions. Несёт на себе всё необходимое, а также консоль парковки шаттлов. Настоящая головная боль преступников.
+  limit: 1
+  price: 1041293
+  mass: 456
+  category: Medium
+  group: Security
+  class:
+  - Nfsd
+  - Medical # Lua
+  - Capital # Lua
+  engine:
+  - Bluespace # Lua
+  shuttlePath: /Maps/_Lua/Shuttles/SD/Brig.yml
+
+- type: gameMap
+  id: Brig
+  mapName: 'Brig'
+  mapPath: /Maps/_Lua/Shuttles/SD/Brig.yml
+  minPlayers: 0
+  stations:
+    Brig:
+      stationProto: StandardFrontierVessel
+      components:
+      - type: StationNameSetup
+        mapNameTemplate: 'Brig {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+            prefixCreator: '14'
