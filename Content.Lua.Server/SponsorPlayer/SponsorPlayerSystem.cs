@@ -178,12 +178,23 @@ public sealed class SponsorPlayerSystem : EntitySystem
         var userId = comp.OwnerUserId;
         var range = comp.Range;
         var capturedUid = uid;
-        var trackHash = msg.TrackHash ?? string.Empty;
-        var track = new SponsorTrackInfo(msg.TrackId, msg.TrackTitle ?? msg.TrackId, trackHash, 0);
-        var history = BuildDirectHistory(comp.PlaybackHistory, comp.PlaybackHistoryIndex, msg.TrackId);
+        var requestedTrackId = msg.TrackId;
+        var history = BuildDirectHistory(comp.PlaybackHistory, comp.PlaybackHistoryIndex, requestedTrackId);
         _ = Task.Run(async () =>
         {
-            var data = await _musicManager.FetchTrack(userId, msg.TrackId, trackHash);
+            var tracks = await _musicManager.FetchTrackList(userId);
+            if (tracks == null)
+            {
+                _pendingTracks.Enqueue((capturedUid, null));
+                return;
+            }
+            var track = FindTrackById(tracks, requestedTrackId);
+            if (track == null)
+            {
+                _sawmill.Warning($"SponsorPlayer: track {requestedTrackId} not found in track list of {userId}");
+                return;
+            }
+            var data = await _musicManager.FetchTrack(userId, track.Id, track.Hash);
             _pendingAudio.Enqueue(new PendingAudioRequest(capturedUid, data, range, track, history.History, history.Index));
         });
     }
