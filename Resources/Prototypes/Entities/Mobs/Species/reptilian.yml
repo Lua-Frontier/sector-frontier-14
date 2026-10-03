@@ -37,6 +37,11 @@
     allowedEmotes: ['Thump', 'Hiss'] # Imp: add ReptilianHiss
   - type: TypingIndicator
     proto: lizard
+  # Lua start
+  - type: EmoteIconOverride
+    icons:
+      Hiss: _Impstation/Interface/Emotes/hiss.png
+  # Lua end
   - type: Vocal
     sounds:
       Male: MaleReptilian

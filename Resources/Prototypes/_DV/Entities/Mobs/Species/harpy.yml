@@ -121,7 +121,7 @@
   - type: Speech
     speechSounds: Harpy
     speechVerb: Harpy
-    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'Beep', 'HarpyRev', 'HarpyCaw', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Squish'] # Frontier: add Belch, Squish
+    allowedEmotes: ['Meow', 'Hiss', 'Mew', 'Purr', 'Growl', 'Bark', 'Snarl', 'Whine', 'Howl', 'Awoo', 'HarpyHonk', 'HarpyRing', 'HarpyPew', 'HarpyBang', 'HarpyBeep', 'HarpyRev', 'HarpyCaw', 'Chirp', 'Squish', 'Chitter', 'Squeak', 'Click', 'Belch', 'Bubble', 'Pop', 'Yip', 'Bagawk', 'HarpyToy'] # Frontier: add Belch, Squish # Lua: add HarpyHonk, HarpyBeep, Chirp, Bubble, Pop, Yip, Bagawk, HarpyToy
   - type: LanguageKnowledge # Lua start
     speaks:
     - Intergalactic
@@ -134,6 +134,176 @@
       Male: SoundsHarpy
       Female: SoundsHarpy
       Unsexed: SoundsHarpy
+  # Lua start
+  - type: HarpyMimicry
+    sounds:
+      HarpyBang:
+      - name: harpy-mimicry-pistol
+        icon: WeaponPistolViper
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-mk58
+        icon: WeaponPistolMk58
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-c20r
+        icon: WeaponSubMachineGunC20r
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-atreides
+        icon: WeaponSubMachineGunAtreides
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-blastdoor
+        icon: BlastDoor
+        sound:
+          path: /Audio/Machines/blastdoor.ogg
+      - name: harpy-mimicry-vending
+        icon: VendingMachineCola
+        sound:
+          path: /Audio/Machines/machine_vend.ogg
+      HarpyPew:
+      - name: harpy-mimicry-laser
+        icon: WeaponLaserCarbine
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-laser-cannon
+        icon: WeaponLaserCannon
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-taser
+        icon: WeaponTaser
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+      - name: harpy-mimicry-disabler
+        icon: WeaponDisabler
+        sound:
+          path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+      - name: harpy-mimicry-emitter
+        icon: Emitter
+        sound:
+          path: /Audio/Weapons/emitter.ogg
+          params:
+            volume: -5
+      HarpyRing:
+      - name: harpy-mimicry-desk-bell
+        icon: DeskBell
+        sound:
+          path: /Audio/Items/desk_bell_ring.ogg
+      - name: harpy-mimicry-holopad
+        icon: Holopad
+        sound:
+          path: /Audio/Machines/double_ring.ogg
+      HarpyBeep:
+      - name: harpy-mimicry-defibrillator
+        icon: Defibrillator
+        sound:
+          path: /Audio/Items/Defib/defib_ready.ogg
+      - name: harpy-mimicry-health-analyzer
+        icon: HandheldHealthAnalyzer
+        sound:
+          path: /Audio/Items/Medical/healthscanner.ogg
+      - name: harpy-mimicry-airlock-deny
+        icon: Airlock
+        sound:
+          path: /Audio/Machines/airlock_deny.ogg
+      - name: harpy-mimicry-vending-jingle
+        icon: VendingMachineCola
+        sound:
+          path: /Audio/Machines/vending_jingle.ogg
+      HarpyHonk:
+      - name: harpy-mimicry-bikehorn
+        icon: BikeHorn
+        sound:
+          path: /Audio/Items/bikehorn.ogg
+          params:
+            volume: -5
+      - name: harpy-mimicry-goose
+        icon: MobGoose
+        sound:
+          path: /Audio/Animals/goose_honk.ogg
+          params:
+            volume: -5
+      Hiss:
+      - name: harpy-mimicry-airlock
+        icon: Airlock
+        sound:
+          path: /Audio/_Lua/Machines/airlock_open.ogg
+      - name: harpy-mimicry-welder
+        icon: Welder
+        sound:
+          path: /Audio/Items/welder.ogg
+      - name: harpy-mimicry-hypospray
+        icon: Hypospray
+        sound:
+          path: /Audio/Items/hypospray.ogg
+      - name: harpy-mimicry-spray
+        icon: SprayBottle
+        sound:
+          path: /Audio/Effects/spray.ogg
+      - name: harpy-mimicry-disposal
+        icon: DisposalUnit
+        sound:
+          path: /Audio/Machines/disposalflush.ogg
+      - name: harpy-mimicry-ratchet
+        icon: Wrench
+        sound:
+          path: /Audio/Items/ratchet.ogg
+      Click:
+      - name: harpy-mimicry-flashlight
+        icon: FlashlightLantern
+        sound:
+          path: /Audio/Items/flashlight_on.ogg
+      - name: harpy-mimicry-screwdriver
+        icon: Screwdriver
+        sound:
+          path: /Audio/Machines/screwdriveropen.ogg
+      - name: harpy-mimicry-pistol-cock
+        icon: WeaponPistolMk58
+        sound:
+          path: /Audio/Items/pistol_cock.ogg
+      HarpyToy:
+      - name: harpy-mimicry-toy-shark
+        icon: PlushieSharkBlue
+        sound:
+          path: /Audio/Items/Toys/rawr.ogg
+      - name: harpy-mimicry-toy-duck
+        icon: ToyRubberDuck
+        sound:
+          path: /Audio/Items/Toys/quack.ogg
+      - name: harpy-mimicry-toy-xeno
+        icon: PlushieXeno
+        sound:
+          path: /Audio/Weapons/Xeno/alien_spitacid.ogg
+      - name: harpy-mimicry-toy-carp
+        icon: PlushieCarp
+        sound:
+          path: /Audio/Effects/bite.ogg
+      - name: harpy-mimicry-toy-lizard
+        icon: PlushieLizard
+        sound:
+          path: /Audio/Items/Toys/weh.ogg
+      - name: harpy-mimicry-toy-mouse
+        icon: PlushieHampter
+        sound:
+          path: /Audio/Items/Toys/mousesqueek.ogg
+      - name: harpy-mimicry-toy-hew
+        icon: PlushieLizardInversed
+        sound:
+          path: /Audio/Items/Toys/hew.ogg
+  # Lua end
   - type: InstrumentVisuals
   - type: GenericVisualizer
     visuals:

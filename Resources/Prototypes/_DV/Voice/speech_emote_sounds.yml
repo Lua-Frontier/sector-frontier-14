@@ -13,7 +13,7 @@
     Cough:
       collection: MaleCoughs
     Sigh:
-      collection: MaleSigh
+      collection: HarpySigh # Lua: MaleSigh < HarpySigh
     Crying:
       collection: HarpyCry
     Whistle:
@@ -30,13 +30,19 @@
       collection: HarpyPurrs
     HarpyRing:
       collection: HarpyRings
+    # Lua start
+    HarpyHonk:
+      collection: HarpyHonks
+      params:
+        volume: -5
+    # Lua end
     HarpyPew:
       collection: HarpyPews
     HarpyBang:
       collection: HarpyBangs
       params: # Frontier
         volume: -5 # Frontier
-    Beep:
+    HarpyBeep: # Lua: Beep < HarpyBeep
       collection: HarpyBeeps
     HarpyRev:
       collection: HarpyRevs
@@ -70,6 +76,18 @@
       collection: Hew
     Gasp:
       collection: HarpyGasp
+    # Lua start
+    Yawn:
+      collection: HarpyYawns
+    Snore:
+      collection: Snores
+    Yip:
+      collection: VulpkaninYips
+    Bagawk:
+      collection: Bagawk
+    HarpyToy:
+      collection: ToySqueak
+    # Lua end
     DefaultDeathgasp:
       collection: DeathGasp
     Belch: # Frontier

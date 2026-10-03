@@ -1,5 +1,7 @@
 using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
+using Content.Lua.Shared.Emotes; // Lua
+using Content.Lua.Shared.HarpyMimicry; // Lua
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Input;
@@ -28,8 +30,8 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
     private static readonly Dictionary<EmoteCategory, (string Tooltip, SpriteSpecifier Sprite)> EmoteGroupingInfo
         = new Dictionary<EmoteCategory, (string Tooltip, SpriteSpecifier Sprite)>
     {
-        [EmoteCategory.General] = ("emote-menu-category-general", new SpriteSpecifier.Texture(new ResPath("/Textures/Clothing/Head/Soft/mimesoft.rsi/icon.png"))),
-        [EmoteCategory.Hands] = ("emote-menu-category-hands", new SpriteSpecifier.Texture(new ResPath("/Textures/Clothing/Hands/Gloves/latex.rsi/icon.png"))),
+        [EmoteCategory.General] = ("emote-menu-category-general", new SpriteSpecifier.Rsi(new ResPath("/Textures/Clothing/Head/Soft/mimesoft.rsi"), "icon")), // Lua
+        [EmoteCategory.Hands] = ("emote-menu-category-hands", new SpriteSpecifier.Rsi(new ResPath("/Textures/Clothing/Hands/Gloves/latex.rsi"), "icon")), // Lua
         [EmoteCategory.Vocal] = ("emote-menu-category-vocal", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/vocal.png"))),
     };
 
@@ -159,12 +161,7 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
                 emotesByCategory.Add(emote.Category, list);
             }
 
-            var actionOption = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote)
-            {
-                Sprite = emote.Icon,
-                ToolTip = Loc.GetString(emote.Name)
-            };
-            list.Add(actionOption);
+            list.Add(CreateEmoteOption(emote, player.Value)); // Lua
         }
 
         var models = new RadialMenuOption[emotesByCategory.Count];
@@ -188,4 +185,66 @@ public sealed class EmotesUIController : UIController, IOnStateChanged<GameplayS
     {
         _entityManager.RaisePredictiveEvent(new PlayEmoteMessage(prototype.ID));
     }
+
+    // Lua start
+    private RadialMenuOption CreateEmoteOption(EmotePrototype emote, EntityUid player)
+    {
+        var icon = _entityManager.TryGetComponent<EmoteIconOverrideComponent>(player, out var iconOverride)
+            && iconOverride.Icons.TryGetValue(emote.ID, out var customIcon)
+                ? customIcon
+                : emote.Icon;
+
+        var ownVoice = new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote)
+        {
+            Sprite = icon,
+            ToolTip = Loc.GetString(emote.Name)
+        };
+
+        if (!_entityManager.TryGetComponent<HarpyMimicryComponent>(player, out var mimicry))
+            return ownVoice;
+
+        var mimicrySystem = EntitySystemManager.GetEntitySystem<SharedHarpyMimicrySystem>();
+        var options = mimicrySystem.GetOptions((player, mimicry), emote);
+        if (options.Count == 0)
+            return ownVoice;
+
+        var nested = new List<RadialMenuOption>();
+        var own = mimicrySystem.GetOwnVoice((player, mimicry), emote, options);
+        if (own.Files.Count == own.Total)
+        {
+            nested.Add(new RadialMenuActionOption<EmotePrototype>(HandleRadialButtonClick, emote)
+            {
+                Sprite = icon,
+                ToolTip = Loc.GetString("harpy-mimicry-own-voice")
+            });
+        }
+        else if (own.Files.Count > 0)
+        {
+            nested.Add(new RadialMenuActionOption<EmotePrototype>(
+                selected => _entityManager.RaisePredictiveEvent(new PlayHarpyMimicEmoteMessage(selected.ID, null, SharedHarpyMimicrySystem.OwnVoiceIndex)),
+                emote)
+            {
+                Sprite = icon,
+                ToolTip = Loc.GetString("harpy-mimicry-own-voice")
+            });
+        }
+
+        foreach (var option in options)
+        {
+            nested.Add(new RadialMenuActionOption<HarpyMimicOption>(
+                selected => _entityManager.RaisePredictiveEvent(new PlayHarpyMimicEmoteMessage(emote.ID, selected.Species, selected.SoundIndex)),
+                option)
+            {
+                IconEntity = option.Icon,
+                ToolTip = Loc.GetString(option.Name)
+            });
+        }
+
+        return new RadialMenuNestedLayerOption(nested)
+        {
+            Sprite = icon,
+            ToolTip = Loc.GetString(emote.Name)
+        };
+    }
+    // Lua end
 }

@@ -117,6 +117,11 @@
   - type: Perishable
   - type: Damageable
     damageModifierSet: Vulpkanin
+  # Lua start
+  - type: EmoteIconOverride
+    icons:
+      Growl: _Goobstation/Interface/Emotes/snarl.png
+  # Lua end
   - type: Vocal
     sounds:
       Male: MaleVulpkanin
