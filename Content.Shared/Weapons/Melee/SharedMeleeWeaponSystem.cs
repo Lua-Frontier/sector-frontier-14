@@ -18,6 +18,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Mech.Components; // Lua
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
@@ -369,6 +370,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (!CombatMode.IsInCombatMode(user))
             return false;
 
+        if (!GetCoordinates(attack.Coordinates).IsValid(EntityManager)) // Lua
+            return false;
+
         EntityUid? target = null;
         switch (attack)
         {
@@ -417,6 +421,14 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             swings++;
         }
 
+        // Lua start
+        if (weapon.SwingBeverage)
+        {
+            weapon.SwingLeft = !weapon.SwingLeft;
+            DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.SwingLeft));
+        }
+        // Lua end
+
         DirtyField(weaponUid, weapon, nameof(MeleeWeaponComponent.NextAttack));
 
         // Do this AFTER attack so it doesn't spam every tick
@@ -442,13 +454,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             {
                 case LightAttackEvent light:
                     DoLightAttack(user, light, weaponUid, weapon, session);
-                    animation = weapon.Animation;
+                    animation = GetLightAnimation(user, weaponUid, weapon); // Lua
                     break;
                 case DisarmAttackEvent disarm:
                     if (!DoDisarm(user, disarm, weaponUid, weapon, session))
                         return false;
 
-                    animation = weapon.Animation;
+                    animation = GetLightAnimation(user, weaponUid, weapon); // Lua
                     break;
                 case HeavyAttackEvent heavy:
                     if (!DoHeavyAttack(user, heavy, weaponUid, weapon, session))
@@ -571,6 +583,27 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     }
 
     protected abstract void DoDamageEffect(List<EntityUid> targets, EntityUid? user,  TransformComponent targetXform);
+
+    // Lua start
+    private EntProtoId GetLightAnimation(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon)
+    {
+        if (weapon.Animation == MeleeWeaponComponent.ItemLightAnimation && IsUnarmedWeapon(user, weaponUid))
+            return MeleeWeaponComponent.UnarmedLightAnimation;
+
+        return weapon.Animation;
+    }
+
+    protected bool IsUnarmedWeapon(EntityUid user, EntityUid weaponUid)
+    {
+        if (weaponUid == user)
+            return true;
+
+        if (TryComp<MechPilotComponent>(user, out var pilot) && pilot.Mech == weaponUid)
+            return true;
+
+        return _inventory.TryGetSlotEntity(user, "gloves", out var gloves) && gloves == weaponUid;
+    }
+    // Lua end
 
     private bool DoHeavyAttack(EntityUid user, HeavyAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
     {

@@ -100,7 +100,12 @@ public sealed partial class MeleeWeaponComponent : Component
     public Angle Angle = Angle.FromDegrees(60);
 
     [DataField, AutoNetworkedField]
-    public EntProtoId Animation = "WeaponArcPunch";
+    public EntProtoId Animation = ItemLightAnimation; // Lua
+
+    // Lua start
+    public static readonly EntProtoId ItemLightAnimation = "WeaponArcThrust";
+    public static readonly EntProtoId UnarmedLightAnimation = "WeaponArcPunch";
+    // Lua end
 
     [DataField, AutoNetworkedField]
     public EntProtoId WideAnimation = "WeaponArcSlash";
@@ -114,6 +119,14 @@ public sealed partial class MeleeWeaponComponent : Component
 
     [DataField, AutoNetworkedField]
     public bool SwingLeft;
+
+    // Lua start
+    [DataField, AutoNetworkedField]
+    public bool SwingBeverage = true;
+
+    [DataField, AutoNetworkedField]
+    public float AnimationOffset = 1f;
+    // Lua end
 
 
     // Sounds
