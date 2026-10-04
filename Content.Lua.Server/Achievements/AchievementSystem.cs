@@ -117,6 +117,7 @@ public sealed class AchievementSystem : EntitySystem
     private async void OnTryUnlockAchievement(TryUnlockAchievementMessage message)
     {
         if (!_players.TryGetSessionByChannel(message.MsgChannel, out var session)) return;
+        if (!_prototypes.TryIndex<AchievementPrototype>(message.AchievementId, out var proto) || !proto.ClientUnlockable) return;
         await TryUnlockAsync(session, message.AchievementId);
     }
 
