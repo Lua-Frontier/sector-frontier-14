@@ -426,27 +426,15 @@ namespace Content.Client.Wires.UI
                     var colorValue = _color.ColorValue();
                     var tex = _resourceCache.GetTexture(_isCut ? TextureCut[_type] : TextureNormal[_type]);
 
-                    var l = 0f;
-                    var r = tex.Width + l;
-                    var t = 0f;
-                    var b = tex.Height + t;
+                    // Lua start
+                    var size = tex.Size * UIScale;
+                    var rect = UIBox2.FromDimensions(Vector2.Zero, size);
+                    var scale = new Vector2(_mirror ? -1f : 1f, _flip ? -1f : 1f);
+                    var offset = new Vector2(_mirror ? size.X : 0f, _flip ? size.Y : 0f);
+                    var transform = handle.GetTransform();
+                    handle.SetTransform(Matrix3x2.CreateScale(scale) * Matrix3x2.CreateTranslation(offset) * transform);
+                    // Lua end
 
-                    if (_flip)
-                    {
-                        (t, b) = (b, t);
-                    }
-
-                    if (_mirror)
-                    {
-                        (l, r) = (r, l);
-                    }
-
-                    l *= UIScale;
-                    r *= UIScale;
-                    t *= UIScale;
-                    b *= UIScale;
-
-                    var rect = new UIBox2(l, t, r, b);
                     if (_isCut)
                     {
                         var copper = Color.Orange;
@@ -455,6 +443,7 @@ namespace Content.Client.Wires.UI
                     }
 
                     handle.DrawTextureRect(tex, rect, colorValue);
+                    handle.SetTransform(transform); // Lua
                 }
             }
         }

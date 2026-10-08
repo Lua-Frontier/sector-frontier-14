@@ -328,6 +328,20 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
             GetFirstAvailableContainer().AddButton(button);
         }
 
+        // Lua start
+        if (location.GetUILocation() != HandUILocation.Left && button.Parent is { } parent)
+        {
+            var index = 0;
+            foreach (var child in parent.Children)
+            {
+                if (child == button || child is HandButton { HandLocation: HandLocation.Left })
+                    break;
+                index++;
+            }
+            button.SetPositionInParent(index);
+        }
+        // Lua end
+
         // If we don't have a status for this hand type yet, set it.
         // This means we have status filled by default in most scenarios,
         // otherwise the user'd need to switch hands to "activate" the hands the first time.

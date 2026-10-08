@@ -1,6 +1,7 @@
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared._Shitmed.Body.Events;
+using Content.Shared._Shitmed.Cybernetics; // Lua
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -302,7 +303,8 @@ public partial class SharedBodySystem
         }
 
         // LIVE the body part
-        if (!partEnt.Comp.Enabled && integrity <= partEnt.Comp.IntegrityThresholds[partEnt.Comp.EnableIntegrity] && !severed)
+        if (!partEnt.Comp.Enabled && integrity <= partEnt.Comp.IntegrityThresholds[partEnt.Comp.EnableIntegrity] && !severed
+            && !(TryComp<CyberneticsComponent>(partEnt, out var cybernetics) && cybernetics.Disabled)) // Lua
         {
             var ev = new BodyPartEnableChangedEvent(true);
             RaiseLocalEvent(partEnt, ref ev);

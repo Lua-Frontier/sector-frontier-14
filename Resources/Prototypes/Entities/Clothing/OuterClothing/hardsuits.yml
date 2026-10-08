@@ -873,7 +873,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/cybersun.rsi
   - type: PressureProtection
-    highPressureMultiplier: 0.2
+    highPressureMultiplier: 0.05 # Lua 0.2 > 0.05
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.2

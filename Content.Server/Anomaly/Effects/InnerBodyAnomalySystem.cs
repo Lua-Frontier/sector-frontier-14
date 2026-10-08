@@ -207,7 +207,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 
     private void RemoveAnomalyFromBody(Entity<InnerBodyAnomalyComponent> ent)
     {
-        if (!ent.Comp.Injected)
+        if (!ent.Comp.Injected || TerminatingOrDeleted(ent)) // Lua
             return;
 
         if (_proto.TryIndex(ent.Comp.InjectionProto, out var injectedAnom))

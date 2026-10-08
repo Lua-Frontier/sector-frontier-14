@@ -15,6 +15,8 @@
     - Trash
   - type: SpaceGarbage
     cleanupExempt: true # Mono
+  - type: TimedDespawn # Lua
+    lifetime: 900
 
 - type: entity
   parent: PresentRandom

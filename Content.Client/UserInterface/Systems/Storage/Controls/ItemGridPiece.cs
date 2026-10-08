@@ -176,7 +176,7 @@ public sealed class ItemGridPiece : Control, IEntityControl
 
             var sizeDifference = ((boundingGrid.Size + Vector2i.One) * _centerTexture.Size * 2 - sprite.Size) * UIScale;
 
-            var spriteBox = new Box2Rotated(new Box2(0f, sprite.Height * scale, sprite.Width * scale, 0f), -iconRotation, Vector2.Zero);
+            var spriteBox = new Box2Rotated(new Box2(0f, 0f, sprite.Width * scale, sprite.Height * scale), -iconRotation, Vector2.Zero); // Lua Box2(0, H, W, 0) > Box2(0, 0, W, H)
             var root = spriteBox.CalcBoundingBox().BottomLeft;
             var pos = PixelPosition * 2
                       + (Parent?.GlobalPixelPosition ?? Vector2.Zero)

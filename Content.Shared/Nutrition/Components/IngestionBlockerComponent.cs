@@ -1,4 +1,5 @@
 using Content.Shared.Nutrition.EntitySystems;
+using Robust.Shared.GameStates; // Lua
 
 namespace Content.Shared.Nutrition.Components;
 
@@ -9,13 +10,13 @@ namespace Content.Shared.Nutrition.Components;
 ///     In the event that more head-wear & mask functionality is added (like identity systems, or raising/lowering of
 ///     masks), then this component might become redundant.
 /// </remarks>
-[RegisterComponent, Access(typeof(FoodSystem), typeof(SharedDrinkSystem), typeof(IngestionBlockerSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(FoodSystem), typeof(SharedDrinkSystem), typeof(IngestionBlockerSystem))] // Lua
 public sealed partial class IngestionBlockerComponent : Component
 {
     /// <summary>
     ///     Is this component currently blocking consumption.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("enabled")]
-    public bool Enabled { get; set; } = true;
+    [DataField("enabled"), AutoNetworkedField] // Lua
+    public bool Enabled = true;
 }

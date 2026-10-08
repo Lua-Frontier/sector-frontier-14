@@ -9,6 +9,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
@@ -20,6 +21,7 @@ public sealed class StandingStateSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!; // WD EDIT
     [Dependency] private readonly SharedBuckleSystem _buckle = default!; // WD EDIT
+    [Dependency] private readonly INetManager _net = default!; // Lua
 
     // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
     public const int StandingCollisionLayer = (int)CollisionGroup.MidImpassable;
@@ -140,9 +142,9 @@ public sealed class StandingStateSystem : EntitySystem
         if (standingState.LifeStage <= ComponentLifeStage.Starting)
             return true;
 
-        if (playSound)
+        if (playSound && _net.IsServer) // Lua
         {
-            _audio.PlayPredicted(standingState.DownSound, uid, uid);
+            _audio.PlayPvs(standingState.DownSound, uid);
         }
 
         _movement.RefreshMovementSpeedModifiers(uid); // WD EDIT

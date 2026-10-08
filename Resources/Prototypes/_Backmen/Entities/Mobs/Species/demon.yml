@@ -16,6 +16,8 @@
     - HeadSide
     - Tail
   - type: Hunger
+  - type: Puller # Lua
+    needsHands: false
   - type: Thirst
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5

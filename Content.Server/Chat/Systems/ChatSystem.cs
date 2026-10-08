@@ -852,9 +852,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         var language = languageOverride ?? _language.GetLanguage(source);
         var orgMsg = new HashSet<ICommonSession>();
         var obsMsg = new HashSet<ICommonSession>();
-        foreach (var (session, data) in GetRecipients(source, Transform(source).GridUid == null ? 0.3f : VoiceRange))
+        var sourceGrid = Transform(source).GridUid;
+        foreach (var (session, data) in GetRecipients(source, VoiceRange))
         {
-            if (session.AttachedEntity != null && Transform(session.AttachedEntity.Value).GridUid != Transform(source).GridUid && !CheckAttachedGrids(source, session.AttachedEntity.Value)) continue;
+            if (session.AttachedEntity != null && sourceGrid != null && Transform(session.AttachedEntity.Value).GridUid is { } listenerGrid && listenerGrid != sourceGrid && !CheckAttachedGrids(source, session.AttachedEntity.Value)) continue;
             var entRange = MessageRangeCheck(session, data, range);
             if (entRange == MessageRangeCheckResult.Disallowed)
                 continue;

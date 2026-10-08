@@ -3,6 +3,8 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
+using Content.Shared.Body.Part; // Lua
+using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs.Components;
@@ -55,6 +57,7 @@ namespace Content.Shared.Cuffs
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+        [Dependency] private readonly SharedBodySystem _body = default!; // Lua
 
         public override void Initialize()
         {
@@ -172,7 +175,7 @@ namespace Content.Shared.Cuffs
 
         public void UpdateCuffState(EntityUid uid, CuffableComponent component)
         {
-            var canInteract = TryComp(uid, out HandsComponent? hands) && hands.Hands.Count > component.CuffedHandCount;
+            var canInteract = component.CuffedHandCount == 0 || TryComp(uid, out HandsComponent? hands) && hands.Hands.Count > component.CuffedHandCount; // Lua
 
             if (canInteract == component.CanStillInteract)
                 return;
@@ -402,7 +405,7 @@ namespace Content.Shared.Cuffs
                 return;
 
             var dirty = false;
-            var handCount = CompOrNull<HandsComponent>(ent.Owner)?.Count ?? 0;
+            var handCount = GetCuffableHandCount(ent.Owner, CompOrNull<HandsComponent>(ent.Owner)); // Lua
 
             while (ent.Comp.CuffedHandCount > handCount && ent.Comp.CuffedHandCount > 0)
             {
@@ -418,7 +421,29 @@ namespace Content.Shared.Cuffs
             {
                 UpdateCuffState(ent.Owner, ent.Comp);
             }
+
+            // Lua start
+            if (_net.IsClient)
+                return;
+
+            foreach (var cuff in ent.Comp.Container.ContainedEntities)
+            {
+                var blocked = _hands.EnumerateHeld(ent.Owner).Count(held => TryComp<VirtualItemComponent>(held, out var virt) && virt.BlockingEntity == cuff);
+
+                for (; blocked < 2 && _virtualItem.TrySpawnVirtualItemInHand(cuff, ent.Owner, out var virtItem); blocked++)
+                {
+                    EnsureComp<UnremoveableComponent>(virtItem.Value);
+                }
+            }
+            // Lua end
         }
+
+        // Lua start
+        private int GetCuffableHandCount(EntityUid uid, HandsComponent? hands)
+        {
+            return Math.Max(hands?.Count ?? 0, _body.GetBodyChildrenOfType(uid, BodyPartType.Hand).Count());
+        }
+        // Lua end
 
         /// <summary>
         ///     Adds virtual cuff items to the user's hands.
@@ -474,7 +499,7 @@ namespace Content.Shared.Cuffs
             // if the amount of hands the target has is equal to or less than the amount of hands that are cuffed
             // don't apply the new set of cuffs
             // (how would you even end up with more cuffed hands than actual hands? either way accounting for it)
-            if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
+            if (TryComp<HandsComponent>(target, out var hands) && GetCuffableHandCount(target, hands) <= component.CuffedHandCount) // Lua
                 return false;
 
             var ev = new TargetHandcuffedEvent();
@@ -501,7 +526,7 @@ namespace Content.Shared.Cuffs
                 return true;
             }
 
-            if (cuffable.CuffedHandCount >= hands.Count)
+            if (cuffable.CuffedHandCount >= GetCuffableHandCount(target, hands)) // Lua
             {
                 _popup.PopupClient(Loc.GetString("handcuff-component-target-has-no-free-hands-error",
                     ("targetName", Identity.Name(target, EntityManager, user))), user, user);

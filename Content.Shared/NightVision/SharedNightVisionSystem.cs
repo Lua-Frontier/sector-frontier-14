@@ -54,8 +54,7 @@ public abstract partial class SharedNightVisionSystem : EntitySystem
         if (!ent.Comp.RelayOverlay)
             return;
 
-        ent.Comp.Enabled = false; // mono
-        RefreshOverlay(ent);
+        SetEnabled((ent, ent.Comp), false, args.Equipee); // Lua Enabled = false, RefreshOverlay(ent) > SetEnabled
     }
     protected virtual void OnRefreshEquipmentHud(Entity<NightVisionComponent> ent, ref InventoryRelayedEvent<RefreshNightVisionEvent> args)
     {

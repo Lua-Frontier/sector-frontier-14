@@ -81,7 +81,12 @@ reagent-desc-ariral-sweat = Говорят, его токсичность — э
 
 generic-reagent-effect-dizzy = Вы чувствуете головокружение и видите разноцветные фигуры...
 
-petting-failure-ariral = Вы тянетесь обнять {THE($target)}, но вспоминаете, что {SUBJECT($target)} {CONJUGATE-BE($target)} токсичен при прикосновении!
+petting-failure-ariral = Вы тянетесь обнять { $target }, но вспоминаете, что { GENDER($target) ->
+        [male] он токсичен
+        [female] она токсична
+        [epicene] они токсичны
+       *[neuter] оно токсично
+    } при прикосновении!
 
 ent-OrganAriralBrain = мозг
     .desc = 90% времени думает о креветках.

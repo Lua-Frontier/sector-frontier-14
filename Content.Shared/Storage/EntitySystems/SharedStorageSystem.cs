@@ -191,7 +191,20 @@ public abstract class SharedStorageSystem : EntitySystem
 
         UpdateOccupied((container.Owner, storage));
 
-        if (!ItemFitsInGridLocation((itemEnt.Owner, itemEnt.Comp), (container.Owner, storage), loc))
+        // Lua start
+        var occupied = new Dictionary<Vector2i, ulong>();
+        RemoveOccupied(storage.Grid, occupied);
+
+        foreach (var (stored, storedLoc) in storage.StoredItems)
+        {
+            if (stored != itemEnt.Owner && _itemQuery.TryGetComponent(stored, out var storedItem))
+                AddOccupied((stored, storedItem), storedLoc, occupied);
+        }
+
+        _ignored.Clear();
+
+        if (!ItemFitsInGridLocation(occupied, ItemSystem.GetAdjustedItemShape(itemEnt, loc), _ignored))
+        // Lua end
         {
             ContainerSystem.Remove(itemEnt.Owner, container, force: true);
         }

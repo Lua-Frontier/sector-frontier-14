@@ -28,6 +28,7 @@ public sealed class DashAbilitySystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!; // Lua
 
     public override void Initialize()
     {
@@ -36,7 +37,23 @@ public sealed class DashAbilitySystem : EntitySystem
         SubscribeLocalEvent<DashAbilityComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<DashAbilityComponent, DashEvent>(OnDash);
         SubscribeLocalEvent<DashAbilityComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<DashAbilityComponent, ComponentInit>(OnComponentInit); // Lua
+        SubscribeLocalEvent<DashAbilityComponent, ComponentShutdown>(OnComponentShutdown);
     }
+
+    // Lua start
+    private void OnComponentInit(EntityUid uid, DashAbilityComponent comp, ref ComponentInit args)
+    {
+        if (comp.IsUser)
+            comp.DashActionEntity = _actions.AddAction(uid, comp.DashAction);
+    }
+
+    private void OnComponentShutdown(EntityUid uid, DashAbilityComponent comp, ref ComponentShutdown args)
+    {
+        if (comp.IsUser)
+            _actions.RemoveAction(comp.DashActionEntity);
+    }
+    // Lua end
 
     private void OnMapInit(Entity<DashAbilityComponent> ent, ref MapInitEvent args)
     {
@@ -82,7 +99,7 @@ public sealed class DashAbilitySystem : EntitySystem
             return;
         }
 
-        if (!_sharedCharges.TryUseCharge(uid))
+        if (HasComp<LimitedChargesComponent>(uid) && !_sharedCharges.TryUseCharge(uid)) // Lua
         {
             _popup.PopupClient(Loc.GetString("dash-ability-no-charges", ("item", uid)), user, user);
             return;

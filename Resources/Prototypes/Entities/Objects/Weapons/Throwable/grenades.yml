@@ -399,9 +399,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default # same as macrobomb
-    totalIntensity: 3500
-    intensitySlope: 15
-    maxIntensity: 70
+    totalIntensity: 1000 # Lua 3500 > 1000
+    intensitySlope: 10 # Lua 15 > 10
+    maxIntensity: 35 # Lua 70 > 35
     canCreateVacuum: true
   - type: OnUseTimerTrigger
     delay: 3 # by canon

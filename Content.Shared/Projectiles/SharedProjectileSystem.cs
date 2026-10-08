@@ -242,6 +242,9 @@ public abstract partial class SharedProjectileSystem : EntitySystem
 
     private void OnTileFriction(Entity<ProjectileComponent> ent, ref TileFrictionEvent args)
     {
+        if (ent.Comp.OnlyCollideWhenShot && (ent.Comp.Weapon == null || ent.Comp.ProjectileSpent)) // Lua
+            return;
+
         args.Modifier = ent.Comp.LinearDampening;
     }
 

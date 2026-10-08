@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -22,6 +23,7 @@ public abstract partial class SharedGunSystem
     protected virtual void InitializeBallistic()
     {
         SubscribeLocalEvent<BallisticAmmoProviderComponent, ComponentInit>(OnBallisticInit);
+        SubscribeLocalEvent<BallisticAmmoProviderComponent, ComponentStartup>(OnBallisticStartup); // Lua
         SubscribeLocalEvent<BallisticAmmoProviderComponent, MapInitEvent>(OnBallisticMapInit);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, TakeAmmoEvent>(OnBallisticTakeAmmo);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, CheckShootPrototypeEvent>(OnBallisticCheckProto); // Mono
@@ -264,6 +266,25 @@ public abstract partial class SharedGunSystem
         // to ensure it's correct).
         UpdateBallisticAppearance(uid, component);
     }
+
+    // Lua start
+    private void OnBallisticStartup(EntityUid uid, BallisticAmmoProviderComponent component, ComponentStartup args)
+    {
+        if (_netManager.IsClient)
+            return;
+
+        if (!HasComp<ProjectileBatteryAmmoProviderComponent>(uid) && !HasComp<HitscanBatteryAmmoProviderComponent>(uid))
+            return;
+
+        foreach (var ammo in component.Container.ContainedEntities.ToArray())
+        {
+            QueueDel(ammo);
+        }
+
+        component.Entities.Clear();
+        RemCompDeferred<BallisticAmmoProviderComponent>(uid);
+    }
+    // Lua end
 
     private void OnBallisticMapInit(EntityUid uid, BallisticAmmoProviderComponent component, MapInitEvent args)
     {

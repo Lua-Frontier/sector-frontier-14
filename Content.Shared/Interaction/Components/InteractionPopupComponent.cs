@@ -62,6 +62,9 @@ public sealed partial class InteractionPopupComponent : Component
     [DataField("successChance")]
     public float SuccessChance = 1.0f; // Always succeed, unless specified otherwise on the yaml prototype.
 
+    [DataField]
+    public bool SuccessForSameSpecies; // Lua
+
     /// <summary>
     /// If set, shows a message to all surrounding players but NOT the current player.
     /// </summary>
