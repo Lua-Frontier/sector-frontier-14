@@ -2,16 +2,16 @@
   id: Europa
   parent: BaseVesselAntag
   name: Europa
-  description: Большой боевой корабль с тяжелым вооружением и крепкими стенами
-  price: 337498
+  description: Большой боевой корабль с тяжелым вооружением и крепкими стенами, некогда был присвоен пиратами и выпускался на их обходных верфях. Нынче - возвращен в лоно Синдиката.
+  price: 425000
   mass: 837
   limit: 1
   category: Large
   group: BlackMarket
-  shuttlePath: /Maps/_Mono/Shuttles/BlackMarket/europa.yml
+  shuttlePath: /Maps/_Lua/Shuttles/Typan/europa.yml
   guidebookPage: Null
   class:
-  - Pirate
+  - Syndicate
   - Medical # Lua
   - Capital
   engine:
@@ -20,7 +20,7 @@
 - type: gameMap
   id: Europa
   mapName: 'Europa'
-  mapPath: /Maps/_Mono/Shuttles/BlackMarket/europa.yml
+  mapPath: /Maps/_Lua/Shuttles/Typan/europa.yml
   minPlayers: 0
   stations:
     Europa:
