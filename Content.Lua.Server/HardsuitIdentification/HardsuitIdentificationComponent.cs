@@ -51,13 +51,7 @@ public sealed partial class HardsuitIdentificationComponent : Component
     };
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public int CountdownDuration = 5000;
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ExplosionIntensity = 1.0f;
-
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float AcidStrength = 1.0f;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool AllowMultipleDNA = true;
@@ -66,7 +60,7 @@ public sealed partial class HardsuitIdentificationComponent : Component
     public List<string> AuthorizedDNA = new();
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public bool GibWearer = true;
+    public bool GibWearer = false;
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CreateAcidEffect = false;

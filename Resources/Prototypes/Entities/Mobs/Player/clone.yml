@@ -74,6 +74,13 @@
   - ShortWhitelist # Frontier
   - SizeAttribute # Frontier
   - NFSalvageMobRestrictions # Frontier
+  # Lua start
+  - Company
+  - MailDisabled
+  - SalaryTracking
+  # Lua end
+  eventComponents:
+  - JobTracking # Lua
   blacklist:
     components:
     - AttachedClothing # helmets, which are part of the suit

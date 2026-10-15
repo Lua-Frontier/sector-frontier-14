@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.Construction; // Frontier
+using Content.Server.Body.Components;
 using Content.Server.Botany.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Materials;
@@ -7,13 +8,12 @@ using Content.Server.Power.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body.Components;
-using Content.Shared.CCVar;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Construction.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
@@ -27,10 +27,8 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Throwing;
-using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -40,7 +38,6 @@ namespace Content.Server.Medical.BiomassReclaimer
 {
     public sealed class BiomassReclaimerSystem : EntitySystem
     {
-        [Dependency] private readonly IConfigurationManager _configManager = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedJitteringSystem _jitteringSystem = default!;
@@ -52,10 +49,10 @@ namespace Content.Server.Medical.BiomassReclaimer
         [Dependency] private readonly IRobustRandom _robustRandom = default!;
         [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly MaterialStorageSystem _material = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly SharedBodySystem _body = default!; // Lua
 
         public static readonly ProtoId<MaterialPrototype> BiomassPrototype = "Biomass";
 
@@ -258,6 +255,17 @@ namespace Content.Server.Medical.BiomassReclaimer
                 }
             }
 
+            // Lua start
+            foreach (var organ in _body.GetBodyOrgans(toProcess))
+            {
+                if (!HasComp<BrainComponent>(organ.Id))
+                    continue;
+
+                _transform.DropNextTo(organ.Id, ent.Owner);
+                break;
+            }
+            // Lua end
+
             QueueDel(toProcess);
         }
 
@@ -279,14 +287,9 @@ namespace Content.Server.Medical.BiomassReclaimer
             if (!isPlant && reclaimer.Comp.SafetyEnabled && !_mobState.IsDead(dragged))
                 return false;
 
-            // Reject souled bodies in easy mode.
-            if (_configManager.GetCVar(CCVars.BiomassEasyMode) &&
-                HasComp<HumanoidAppearanceComponent>(dragged) &&
-                _minds.TryGetMind(dragged, out _, out var mind))
-            {
-                if (mind.UserId != null && _playerManager.TryGetSessionById(mind.UserId.Value, out _))
-                    return false;
-            }
+            // Reject souled bodies.
+            if (_minds.TryGetMind(dragged, out _, out var mind) && mind.UserId != null) // Lua
+                return false;
 
             return true;
         }

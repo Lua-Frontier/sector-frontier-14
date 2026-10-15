@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server.Morgue.Components;
+namespace Content.Shared.Morgue.Components; // Lua Server > Shared
 
 [RegisterComponent]
 public sealed partial class CrematoriumComponent : Component

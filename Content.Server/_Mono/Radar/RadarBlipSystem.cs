@@ -3,11 +3,15 @@ using Content.Server._Mono.Projectiles.TargetSeeking;
 using Content.Lua.Shared.AmbientSpaceEffects;
 using Content.Lua.Shared.Shuttles.Components;
 using Content.Lua.Shared.SpaceHazards;
+using Content.Server.Body.Components;
 using Content.Shared._Mono.Radar;
+using Content.Shared.Body.Organ;
+using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -28,6 +32,7 @@ public sealed partial class RadarBlipSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ISpaceHazardActivitySystem _hazardActivity = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!; // Lua
 
     private TimeSpan _nextMobBlipCheck;
     private readonly Dictionary<MapId, (TimeSpan BuiltAt, List<(AmbientSpaceFieldComponent Field, Vector2 Pos)> Fields)> _veilCache = new();
@@ -54,16 +59,17 @@ public sealed partial class RadarBlipSystem : EntitySystem
             var isDead = mobState.CurrentState == MobState.Dead;
             if (isDead)
             {
-                if (!HasComp<RadarBlipComponent>(mobUid))
+                var blipUid = GetBrain(mobUid) ?? mobUid; // Lua
+                if (!HasComp<RadarBlipComponent>(blipUid))
                 {
-                    var rb = EnsureComp<RadarBlipComponent>(mobUid);
+                    var rb = EnsureComp<RadarBlipComponent>(blipUid);
                     rb.VisibleFromOtherGrids = true;
                     rb.RequireNoGrid = false;
                     rb.RadarColor = Color.Red;
                     rb.Scale = 0f;
                     rb.Enabled = true;
                     rb.MaxDistance = 512f;
-                    var icon = EnsureComp<RadarBlipIconComponent>(mobUid);
+                    var icon = EnsureComp<RadarBlipIconComponent>(blipUid);
                     icon.Icon = new Robust.Shared.Utility.ResPath("/Textures/_Lua/Interface/Radar/dead_cross.png");
                     icon.Scale = 0.6f;
                 }
@@ -74,6 +80,30 @@ public sealed partial class RadarBlipSystem : EntitySystem
                 RemComp<RadarBlipIconComponent>(mobUid);
             }
         }
+
+        // Lua start
+        var brainQuery = EntityQueryEnumerator<RadarBlipComponent, BrainComponent, OrganComponent>();
+        while (brainQuery.MoveNext(out var brainUid, out _, out _, out var organ))
+        {
+            var revived = TryComp<MobStateComponent>(organ.Body, out var bodyState) && bodyState.CurrentState != MobState.Dead;
+            if (!revived && !HasComp<MMIComponent>(Transform(brainUid).ParentUid))
+                continue;
+
+            RemComp<RadarBlipComponent>(brainUid);
+            RemComp<RadarBlipIconComponent>(brainUid);
+        }
+        // Lua end
+    }
+
+    private EntityUid? GetBrain(EntityUid body) // Lua
+    {
+        foreach (var organ in _body.GetBodyOrgans(body))
+        {
+            if (HasComp<BrainComponent>(organ.Id))
+                return organ.Id;
+        }
+
+        return null;
     }
 
     private void OnBlipsRequested(RequestBlipsEvent ev, EntitySessionEventArgs args)

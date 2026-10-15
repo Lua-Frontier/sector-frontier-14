@@ -12,6 +12,8 @@ using Content.Shared.Chat.Systems;
 using Content.Lua.Shared.HardsuitIdentification;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Forensics.Components;
@@ -27,6 +29,7 @@ namespace Content.Lua.Server.HardsuitIdentification;
 public sealed class HardsuitIdentificationSystem : EntitySystem
 {
     [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -145,12 +148,17 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
 
     private void Explosion(EntityUid hardsuit, EntityUid wearer, HardsuitIdentificationComponent comp)
     {
-        var intensity = 4 * comp.ExplosionIntensity;
+        var intensity = 120 * comp.ExplosionIntensity;
         _explosionSystem.QueueExplosion(hardsuit, ExplosionSystem.DefaultExplosionPrototypeId,
-            intensity, 1, 2, maxTileBreak: 0);
-        if (comp.GibWearer && TryComp<BodyComponent>(wearer, out var body) &&
-            ((_inventory.TryGetSlotEntity(wearer, "outerClothing", out var hardsuitEntity) && hardsuitEntity == hardsuit) ||
-             (_inventory.TryGetSlotEntity(wearer, "back", out var backpackEntity) && backpackEntity == hardsuit)))
+            intensity, 3, 10, canCreateVacuum: false);
+        var worn = (_inventory.TryGetSlotEntity(wearer, "outerClothing", out var hardsuitEntity) && hardsuitEntity == hardsuit) ||
+                   (_inventory.TryGetSlotEntity(wearer, "back", out var backpackEntity) && backpackEntity == hardsuit);
+        if (worn && !comp.GibWearer)
+        {
+            if (TryComp<StaminaComponent>(wearer, out var stamina))
+                _stamina.TakeStaminaDamage(wearer, stamina.CritThreshold, stamina, hardsuit, ignoreResist: true);
+        }
+        else if (worn && TryComp<BodyComponent>(wearer, out var body))
         {
             var ents = _bodySystem.GibBody(wearer, true, body, false);
             foreach (var part in ents)
@@ -304,7 +312,6 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
                 _popupSystem.PopupEntity(Loc.GetString("hardsuit-identification-dna-was-stored"), args.Performer, args.Performer);
             }
             comp.DNAWasStored = true;
-            Dirty(uid, comp);
         }
         else
         {
@@ -344,9 +351,8 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
             comp.AuthorizedDNA.Clear();
             comp.DNAWasStored = false;
             comp.IdentificationMode = HardsuitIdentificationMode.Registration;
-            _popupSystem.PopupEntity("hardsuit-identification-dna-cleared", args.Performer, args.Performer);
+            _popupSystem.PopupEntity(Loc.GetString("hardsuit-identification-dna-cleared"), args.Performer, args.Performer);
         }
-        Dirty(uid, comp);
         args.Handled = true;
     }
 
@@ -373,7 +379,6 @@ public sealed class HardsuitIdentificationSystem : EntitySystem
             return;
         }
         comp.IdentificationMode = HardsuitIdentificationMode.Locked;
-        Dirty(uid, comp);
         _popupSystem.PopupEntity(Loc.GetString("hardsuit-identification-locked"), args.Performer, args.Performer);
         args.Handled = true;
     }

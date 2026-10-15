@@ -5,6 +5,7 @@ using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._NF.Roles.Components;
 using Content.Shared._NF.Roles.Systems;
+using Content.Shared.Cloning.Events; // Lua
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Content.Shared.Tag;
@@ -36,7 +37,23 @@ public sealed class JobTrackingSystem : SharedJobTrackingSystem
         SubscribeLocalEvent<JobTrackingComponent, CryosleepBeforeMindRemovedEvent>(OnJobBeforeCryoEntered);
         SubscribeLocalEvent<JobTrackingComponent, MindAddedMessage>(OnJobMindAdded);
         SubscribeLocalEvent<JobTrackingComponent, MindRemovedMessage>(OnJobMindRemoved);
+        SubscribeLocalEvent<JobTrackingComponent, CloningEvent>(OnCloning); // Lua
     }
+
+    // Lua start
+    // Inactive copy: the slot is closed again by OnJobMindAdded when the mind enters the clone.
+    private void OnCloning(Entity<JobTrackingComponent> ent, ref CloningEvent args)
+    {
+        if (!args.Settings.EventComponents.Contains(Factory.GetRegistration(ent.Comp.GetType()).Name))
+            return;
+
+        var clone = EnsureComp<JobTrackingComponent>(args.CloneUid);
+        clone.Job = ent.Comp.Job;
+        clone.SpawnStation = ent.Comp.SpawnStation;
+        clone.Active = false;
+        Dirty(args.CloneUid, clone);
+    }
+    // Lua end
 
     // If, through admin jiggery pokery, the player returns (or the mob is controlled), we should close the slot if it's opened.
     private void OnJobMindAdded(Entity<JobTrackingComponent> ent, ref MindAddedMessage ev)

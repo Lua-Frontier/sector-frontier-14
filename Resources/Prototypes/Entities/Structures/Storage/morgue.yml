@@ -123,6 +123,25 @@
       path: /Audio/Items/deconstruct.ogg
   - type: EntityStorageLayingDownOverride
   - type: Crematorium
+  - type: Damageable # Lua start
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 2
+            max: 4
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ] # Lua end
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container

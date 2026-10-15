@@ -1,5 +1,5 @@
+using Content.Server.Body.Components;
 using Content.Server.Ghost;
-using Content.Server.Morgue.Components;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Database;
@@ -10,6 +10,7 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Morgue;
+using Content.Shared.Morgue.Components;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
 using Content.Shared.Storage;
@@ -23,7 +24,7 @@ using Robust.Server.Player; // Frontier
 
 namespace Content.Server.Morgue;
 
-public sealed class CrematoriumSystem : EntitySystem
+public sealed class CrematoriumSystem : SharedCrematoriumSystem // Lua
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -33,6 +34,7 @@ public sealed class CrematoriumSystem : EntitySystem
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedMindSystem _minds = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!; // Frontier
     [Dependency] private readonly IPlayerManager _player = default!; // Frontier
 
@@ -43,7 +45,6 @@ public sealed class CrematoriumSystem : EntitySystem
         SubscribeLocalEvent<CrematoriumComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<CrematoriumComponent, GetVerbsEvent<AlternativeVerb>>(AddCremateVerb);
         SubscribeLocalEvent<CrematoriumComponent, SuicideByEnvironmentEvent>(OnSuicideByEnvironment);
-        SubscribeLocalEvent<ActiveCrematoriumComponent, StorageOpenAttemptEvent>(OnAttemptOpen);
     }
 
     private void OnExamine(EntityUid uid, CrematoriumComponent component, ExaminedEvent args)
@@ -70,11 +71,6 @@ public sealed class CrematoriumSystem : EntitySystem
                 args.PushMarkup(Loc.GetString("crematorium-entity-storage-component-on-examine-details-empty"));
             }
         }
-    }
-
-    private void OnAttemptOpen(EntityUid uid, ActiveCrematoriumComponent component, ref StorageOpenAttemptEvent args)
-    {
-        args.Cancelled = true;
     }
 
     private void AddCremateVerb(EntityUid uid, CrematoriumComponent component, GetVerbsEvent<AlternativeVerb> args)
@@ -146,19 +142,58 @@ public sealed class CrematoriumSystem : EntitySystem
 
         if (storage.Contents.ContainedEntities.Count > 0)
         {
+            var coords = Transform(uid).Coordinates;
+            var brains = new List<EntityUid>();
             for (var i = storage.Contents.ContainedEntities.Count - 1; i >= 0; i--)
             {
                 var item = storage.Contents.ContainedEntities[i];
                 _containers.Remove(item, storage.Contents);
+                // Lua start
+                if (HasComp<BrainComponent>(item))
+                {
+                    brains.Add(item);
+                    continue;
+                }
+
+                var found = new List<EntityUid>();
+                CollectBrains(item, found);
+                foreach (var brain in found)
+                {
+                    if (_containers.TryGetContainingContainer((brain, null, null), out var container))
+                        _containers.Remove(brain, container, force: true, destination: coords);
+                    else
+                        _transform.SetCoordinates(brain, coords);
+                }
+
+                brains.AddRange(found);
+                // Lua end
                 Del(item);
             }
-            var ash = Spawn("Ash", Transform(uid).Coordinates);
+            var ash = Spawn("Ash", coords);
             _containers.Insert(ash, storage.Contents);
+            foreach (var brain in brains) // Lua
+            {
+                _containers.Insert(brain, storage.Contents);
+            }
         }
 
         _entityStorage.OpenStorage(uid, storage);
         _audio.PlayPvs(component.CremateFinishSound, uid);
     }
+
+    // Lua start
+    private void CollectBrains(EntityUid uid, List<EntityUid> brains)
+    {
+        var children = Transform(uid).ChildEnumerator;
+        while (children.MoveNext(out var child))
+        {
+            if (HasComp<BrainComponent>(child))
+                brains.Add(child);
+            else
+                CollectBrains(child, brains);
+        }
+    }
+    // Lua end
 
     private void OnSuicideByEnvironment(EntityUid uid, CrematoriumComponent component, SuicideByEnvironmentEvent args)
     {
