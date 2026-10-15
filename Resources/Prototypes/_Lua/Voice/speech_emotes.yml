@@ -1,0 +1,66 @@
+- type: emote
+  id: Yip
+  name: chat-emote-name-yip
+  category: Vocal
+  available: false
+  icon: _Goobstation/Interface/Emotes/bark.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-yip"]
+  chatTriggers:
+    - yip
+    - yips
+    - тяв
+    - тявк
+    - тявкнуть
+
+- type: emote
+  id: Bagawk
+  name: chat-emote-name-bagawk
+  category: Vocal
+  available: false
+  icon:
+    sprite: _Moffstation/Actions/resomi.rsi
+    state: bird_call
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-bagawk"]
+  chatTriggers:
+    - bagawk
+    - bagawks
+    - bawk
+    - bawks
+    - кудахчет
+    - кудахтать
+    - кудах
+    - кококо
+
+- type: emote
+  id: HarpyToy
+  name: chat-emote-name-harpy-toy
+  category: Vocal
+  available: false
+  icon:
+    sprite: Objects/Fun/Plushies/bee.rsi
+    state: icon
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-harpy-toy"]
+  chatTriggers:
+    - toy
+    - toysqueak
+    - игрушка
+    - пищит игрушкой
+    - пищит как игрушка

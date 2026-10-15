@@ -7,6 +7,8 @@ using Robust.Client.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.Input;
+using Robust.Client.UserInterface.Controls; // Lua
+using Robust.Shared.Prototypes; // Lua
 
 namespace Content.Client.UserInterface.Controls;
 
@@ -138,6 +140,21 @@ public sealed partial class SimpleRadialMenu : RadialMenu
             button.Scale = scale;
         }
 
+        // Lua start
+        if (model.IconEntity is { } iconEntity)
+        {
+            var view = new EntityPrototypeView
+            {
+                Scale = new Vector2(2f, 2f),
+                Stretch = SpriteView.StretchMode.Fill,
+                OverrideDirection = Direction.South,
+                MouseFilter = MouseFilterMode.Ignore
+            };
+            view.SetPrototype(iconEntity);
+            button.AddChild(view);
+        }
+        // Lua end
+
         if (model is RadialMenuActionOption actionOption)
         {
             button.OnPressed += _ =>
@@ -234,6 +251,7 @@ public abstract class RadialMenuOption
     public string? ToolTip { get; init; }
 
     public SpriteSpecifier? Sprite { get; init; }
+    public EntProtoId? IconEntity { get; init; } // Lua
     public Color? BackgroundColor { get; set; }
     public Color? HoverBackgroundColor { get; set; }
 }

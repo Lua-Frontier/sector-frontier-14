@@ -38,7 +38,7 @@ public partial class ChatSystem
                     dict[lowerWord] = value.Add(emote);
 
                     var errMsg = $"Duplicate of emote word {lowerWord}";
-                    Log.Warning(errMsg);
+                    Log.Debug(errMsg); // Lua: Warning > Debug
 
                     continue;
                 }
@@ -164,7 +164,7 @@ public partial class ChatSystem
         }
 
         // optional override params > general params for all sounds in set > individual sound params
-        var param = audioParams ?? proto.GeneralParams ?? sound.Params;
+        var param = audioParams ?? proto.GeneralParams?.AddVolume(sound.Params.Volume) ?? sound.Params; // Lua
         _audio.PlayPvs(sound, uid, param);
         return true;
     }
