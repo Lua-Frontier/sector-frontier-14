@@ -43,6 +43,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         _xformQuery = GetEntityQuery<TransformComponent>();
         SubscribeNetworkEvent<MeleeLungeEvent>(OnMeleeLunge);
         UpdatesOutsidePrediction = true;
+        UpdatesAfter.Add(typeof(TransformSystem)); // Lua
     }
 
     public override void FrameUpdate(float frameTime)
