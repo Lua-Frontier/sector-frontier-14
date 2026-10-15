@@ -44,6 +44,9 @@ public sealed partial class AchievementPrototype : IPrototype
     public bool Disabled;
 
     [DataField]
+    public bool ClientUnlockable;
+
+    [DataField]
     public string? UnlockSpecies;
 
     [DataField]
