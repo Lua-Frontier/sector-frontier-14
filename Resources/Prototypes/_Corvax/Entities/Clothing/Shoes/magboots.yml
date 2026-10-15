@@ -9,6 +9,9 @@
     state: icon
   - type: Clothing
     sprite: Corvax/Clothing/Shoes/Boots/jetboots.rsi
+    quickEquip: true # Lua
+  - type: ActivatableUI
+    verbOnly: true # Lua
   - type: Jetpack
     jetpackEffect: JetpackEffectTrailJetBoots
   - type: Magboots

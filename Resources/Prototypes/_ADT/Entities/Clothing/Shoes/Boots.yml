@@ -92,6 +92,11 @@
         - 0.153853429 # nitrogen
   - type: ActivatableUI
     key: enum.SharedGasTankUiKey.Key
+    verbOnly: true # Lua
+  - type: UseDelay # Lua
+    delays:
+      gasTank:
+        length: 1.0
   - type: UserInterface
     interfaces:
       enum.SharedGasTankUiKey.Key:

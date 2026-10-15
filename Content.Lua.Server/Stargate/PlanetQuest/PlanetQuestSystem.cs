@@ -3,6 +3,7 @@
 // See AGPLv3.txt for details.
 
 using Content.Lua.Server.Bank;
+using Content.Server._NF.Salvage; // Lua
 using Content.Server.Popups;
 using Content.Lua.Shared.Stargate.PlanetQuest;
 using Content.Shared.Ghost;
@@ -71,7 +72,7 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
 
             _activePlanetMaps.Add(mapId);
 
-            if (HasComp<GhostComponent>(ent))
+            if (HasComp<GhostComponent>(ent) || HasComp<NFSalvageMobRestrictionsComponent>(ent)) // Lua: NFSalvageMobRestrictions
                 continue;
 
             if (!_playersOnPlanetMap.TryGetValue(mapId, out var set))
@@ -156,7 +157,7 @@ public sealed class PlanetQuestSystem : SharedPlanetQuestSystem
         {
             if (session.AttachedEntity is not { } playerEnt) continue;
             if (!TryComp<TransformComponent>(playerEnt, out var xform) || xform.MapID != mapId) continue;
-            if (HasComp<GhostComponent>(playerEnt)) continue;
+            if (HasComp<GhostComponent>(playerEnt) || HasComp<NFSalvageMobRestrictionsComponent>(playerEnt)) continue; // Lua: NFSalvageMobRestrictions
             playerList.Add(playerEnt);
         }
 

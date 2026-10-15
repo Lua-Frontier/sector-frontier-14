@@ -178,7 +178,7 @@ public sealed partial class TTSSystem : EntitySystem
         var obf = _language.ObfuscateSpeech(args.Message, lang);
         foreach (var device in args.Receivers)
         {
-            var recipients = Filter.Pvs(device).Recipients;
+            var recipients = Filter.Entities(device).Recipients; // Lua Pvs > Entities
             if (!recipients.Any()) continue;
             var org = new List<ICommonSession>();
             var obs = new List<ICommonSession>();

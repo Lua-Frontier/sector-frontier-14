@@ -87,7 +87,7 @@ public abstract class SharedGasTankSystem : EntitySystem
 
     private void OnActionToggle(Entity<GasTankComponent> gasTank, ref ToggleActionEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || args.Action.Owner != gasTank.Comp.ToggleActionEntity) // Lua: Action check
             return;
 
         ToggleInternals(gasTank, user: args.Performer);

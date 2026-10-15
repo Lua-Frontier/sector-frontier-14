@@ -12,6 +12,8 @@
   - type: Item
     sprite: Objects/Tanks/Jetpacks/black.rsi
     size: Huge
+  - type: ActivatableUI
+    verbOnly: true # Lua
   - type: UserInterface
     interfaces:
       enum.SharedGasTankUiKey.Key:
@@ -22,7 +24,7 @@
         length: 1.0
   - type: Clothing
     sprite: Objects/Tanks/Jetpacks/black.rsi
-    quickEquip: false
+    quickEquip: true # Lua false > true
     slots:
     - Back
     - SuitStorage

@@ -1,9 +1,0 @@
-ent-MagazineNovaliteC1Empty = обойма (5.56x45mm любой)
-    .suffix = пустой
-    .desc = { ent-BaseMagazineRifle.desc }
-ent-MagazineNovaliteC1 = обойма (5.56x45mm)
-    .suffix = полный
-    .desc = { ent-MagazineNovaliteC1Empty.desc }
-ent-MagazineNovaliteC1Rubber = обойма (5.56x45mm резиновый)
-    .suffix = полный
-    .desc = { ent-MagazineNovaliteC1Empty.desc }

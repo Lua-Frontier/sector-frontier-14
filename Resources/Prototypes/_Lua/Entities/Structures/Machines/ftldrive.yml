@@ -6,6 +6,8 @@
   components:
     - type: Transform
       noRot: false
+    - type: Pullable # Lua
+      fixedRotation: true
     - type: Sprite
       sprite: _Lua/Structures/Shuttles/ftlengine.rsi
       snapCardinals: true

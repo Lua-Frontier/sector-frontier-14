@@ -11,12 +11,11 @@
 
 - type: cargoProduct
   id: FoodMRE
-  abstract: true # Frontier
   icon:
     sprite: Objects/Consumable/Food/snacks.rsi
     state: nutribrick
   product: CrateFoodMRE
-  cost: 1400
+  cost: 10000 # Lua 1400 > 10000, abstract removed
   category: cargoproduct-category-name-food
   group: market
 

@@ -925,7 +925,8 @@ public abstract partial class SharedSurgerySystem
             if (surgeryStep == step)
                 break;
 
-            if (!IsStepComplete(body, part, surgeryStep, surgery))
+            if (!IsStepComplete(body, part, surgeryStep, surgery)
+                && !HasComp<SurgeryRepeatableStepComponent>(GetSingleton(surgeryStep))) // Lua
                 return false;
         }
 

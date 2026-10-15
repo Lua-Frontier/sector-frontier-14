@@ -98,6 +98,9 @@
     state: icon
   - type: Clothing
     sprite: Clothing/Shoes/Boots/magboots-syndicate.rsi
+    quickEquip: true # Lua
+  - type: ActivatableUI
+    verbOnly: true # Lua
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9

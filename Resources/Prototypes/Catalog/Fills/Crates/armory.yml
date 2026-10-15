@@ -93,11 +93,15 @@
   id: CrateArmoryRifle
   parent: [ CrateWeaponSecure, BaseC2ContrabandUnredeemable ] # Frontier: BaseSecurityContraband<BaseC2ContrabandUnredeemable
   name: SMG crate #Lua rifle<SMG
-  description: Contains two high-powered SMGs with four mags. Requires Armory access to open. #Lua rifles<SMGs
+  description: Contains two high-powered SMGs with four mags. Requires Mercenary access to open. #Lua rifles<SMGs
   components:
+  - type: AccessReader # Lua Armory > Mercenary + factions
+    access: [["Mercenary"], ["SyndicateAgent"], ["Security"], ["USSP"], ["Pirate"]]
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunDrozd #Lua
       amount: 1 #Lua 2<1
     - id: Magazine45_ACPSubMachineGunEmpty
       amount: 4
+    - id: AmmoBox45_ACPFMJ # Lua
+      amount: 2

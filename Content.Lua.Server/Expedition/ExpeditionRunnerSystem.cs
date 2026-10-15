@@ -5,6 +5,7 @@ using Content.Lua.Shared.Sectors;
 // See AGPLv3.txt for details.
 
 using System.Numerics;
+using Content.Server._NF.Salvage; // Lua
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
 using Content.Server.Mind;
@@ -136,6 +137,7 @@ public sealed class ExpeditionRunnerSystem : EntitySystem
         while (query.MoveNext(out var uid, out _, out var mobState, out var mobXform))
         {
             if (mobXform.MapUid != xform.MapUid) continue;
+            if (HasComp<NFSalvageMobRestrictionsComponent>(uid)) continue; // Lua
             if (_mobState.IsDead(uid, mobState) || _mobState.IsCritical(uid, mobState)) continue;
             if (mobXform.GridUid != ev.Uid)
             {

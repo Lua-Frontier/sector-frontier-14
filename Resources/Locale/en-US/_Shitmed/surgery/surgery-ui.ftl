@@ -7,6 +7,7 @@ surgery-ui-window-require = Requires
 surgery-ui-window-parts = < Parts
 surgery-ui-window-surgeries = < Surgeries
 surgery-ui-window-steps = < Steps
+surgery-ui-window-no-surgeries = No surgeries available.
 surgery-ui-window-steps-error-skills = You have no surgical skills.
 surgery-ui-window-steps-error-table = You need an operating table for this.
 surgery-ui-window-steps-error-armor = You need to remove their armor!

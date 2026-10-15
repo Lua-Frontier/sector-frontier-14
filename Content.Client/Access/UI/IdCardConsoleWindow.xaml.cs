@@ -37,6 +37,7 @@ namespace Content.Client.Access.UI
         private string?[]? _lastShuttleName;
         private string? _lastJobProto;
         private bool _interfaceEnabled = false;
+        private bool _jobPresetValid; // Lua
 
         // The job that will be picked if the ID doesn't have a job on the station.
         private static ProtoId<JobPrototype> _defaultJob = "Contractor"; // Frontier: Passenger<Contractor
@@ -141,6 +142,7 @@ namespace Content.Client.Access.UI
 
             JobTitleLineEdit.Text = Loc.GetString(job.Name);
             args.Button.SelectId(args.Id);
+            _jobPresetValid = true; // Lua
 
             ClearAllAccess();
 
@@ -249,7 +251,11 @@ namespace Content.Client.Access.UI
                 jobIndex = _jobPrototypeIds.IndexOf(_defaultJob);
             }
 
-            JobPresetOptionButton.SelectId(jobIndex);
+            // Lua start
+            _jobPresetValid = jobIndex >= 0;
+            if (_jobPresetValid)
+                JobPresetOptionButton.SelectId(jobIndex);
+            // Lua end
 
             _lastFullName = state.TargetIdFullName;
             _lastJobTitle = state.TargetIdJobTitle;
@@ -294,7 +300,8 @@ namespace Content.Client.Access.UI
         private void SubmitData()
         {
             // Don't send this if it isn't dirty.
-            var jobProtoDirty = _lastJobProto != null &&
+            var jobProtoDirty = _jobPresetValid && // Lua
+                                _lastJobProto != null &&
                                 _jobPrototypeIds[JobPresetOptionButton.SelectedId] != _lastJobProto;
 
             _owner.SubmitData(

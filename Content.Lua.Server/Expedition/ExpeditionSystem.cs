@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Content.Lua.Server.Achievements;
 using Content.Lua.Server.Shuttles.Systems;
 using Content.Lua.Server.Stargate.Systems;
+using Content.Server._NF.Salvage; // Lua
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Components;
@@ -281,7 +282,7 @@ public sealed class ExpeditionSystem : EntitySystem, IExpeditionSystem
         {
             if (mobXform.MapUid != consoleXform.MapUid) continue;
             if (!mindContainer.HasMind) continue;
-            if (HasComp<ActiveNPCComponent>(uid)) continue;
+            if (HasComp<ActiveNPCComponent>(uid) || HasComp<NFSalvageMobRestrictionsComponent>(uid)) continue; // Lua: NFSalvageMobRestrictions
             if (mobXform.GridUid != shuttleGrid)
             {
                 PlayDeny(console);

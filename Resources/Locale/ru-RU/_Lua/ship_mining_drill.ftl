@@ -5,7 +5,7 @@ ship-mining-drill-examined-off = Бур [color=red]выключен[/color].
 ship-mining-drill-examined-trunk = [color=green]Ствол утилизации[/color] подключён.
 ship-mining-drill-examined-no-trunk = Нет ствола утилизации. Поставьте его на [color=cyan]центральный тайл[/color].
 
-ent-WeaponShipMiningDrill = корабельный шахтёрский бур
+ent-WeaponShipMiningDrill = Корабельный шахтёрский бур
     .desc = Корабельный бур, коронка выступает на тайл вперёд и дробит породу. Подключите ствол утилизации к центру, чтобы засасывать руду в трубы. Включается с консоли управления вооружением (требуется сервер вооружения).
     .suffix = Shuttle
 

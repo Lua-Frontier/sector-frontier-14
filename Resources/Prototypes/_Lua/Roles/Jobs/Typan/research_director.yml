@@ -11,7 +11,7 @@
   description: Директор исследований из далёкого космоса.
   startingGear: SyndicateRD
   icon: "JobIconSyndicateRD"
-  supervisors: job-supervisors-typan-syndicate
+  supervisors: job-supervisors-typan-telecommunications-officer # Lua
   canBeAntag: false
   hideConsoleVisibility: true
   requirements:
@@ -63,9 +63,11 @@
     outerClothing: ClothingOuterCoatRDOutpostTypan
     gloves: ClothingHandsRDOutpostTypan
     id: SyndiPDARD
-    back: ClothingBackpackSyndicateFilled
     jumpsuit: ClothingUniformJumpsuitSyndieFormal
     belt: ClothingBeltAssaultOutpostTypan
+  storage:
+    back:
+    - EmergencyRockCutter # Lua
 
 - type: chameleonOutfit
   id: OutpostTypanRDChameleonOutfit

@@ -8,6 +8,7 @@ surgery-ui-window-require = Требуется
 surgery-ui-window-parts = < Части
 surgery-ui-window-surgeries = < Операции
 surgery-ui-window-steps = < Этапы
+surgery-ui-window-no-surgeries = Нет доступных операций.
 surgery-ui-window-steps-error-skills = У вас нет хирургических навыков.
 surgery-ui-window-steps-error-table = Для этого нужен операционный стол.
 surgery-ui-window-steps-error-armor = Необходимо снять обмурдирование!

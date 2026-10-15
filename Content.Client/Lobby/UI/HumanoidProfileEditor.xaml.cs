@@ -2062,6 +2062,19 @@ namespace Content.Client.Lobby.UI
         {
             SaveButton.Disabled = Profile is null || !IsDirty;
             ResetButton.Disabled = Profile is null || !IsDirty;
+
+            // Lua start
+            if (SaveButton.Disabled)
+            {
+                SaveButton.RemoveStyleClass("ButtonAccept");
+                ResetButton.RemoveStyleClass(StyleBase.ButtonCaution);
+            }
+            else
+            {
+                SaveButton.AddStyleClass("ButtonAccept");
+                ResetButton.AddStyleClass(StyleBase.ButtonCaution);
+            }
+            // Lua end
         }
 
         private void InitializeHairGradientControls() //Lua start

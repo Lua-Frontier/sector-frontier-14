@@ -88,6 +88,8 @@
   components:
   - type: Machine
     board: LargeThrusterMachineCircuitboard
+  - type: Rotatable
+    pivot: 0.5,-0.5 # Lua
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster64.rsi
     offset: 0.5,-0.5
@@ -114,6 +116,8 @@
   components:
   - type: Machine
     board: ThrusterLargeMachineCircuitboard
+  - type: Rotatable
+    pivot: 1,-1 # Lua
   - type: Sprite
     sprite: _Lua/Structures/Shuttles/thruster96.rsi
     offset: 1,-1

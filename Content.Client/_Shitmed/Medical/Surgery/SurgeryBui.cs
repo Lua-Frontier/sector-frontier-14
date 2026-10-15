@@ -1,11 +1,13 @@
 using Content.Client._Shitmed.Xenonids.UI;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Shared._Shitmed.Medical.Surgery;
+using Content.Shared._Shitmed.Medical.Surgery.Steps; // Lua
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Client.UserInterface.Controls; // Lua
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -170,6 +172,8 @@ public sealed partial class SurgeryBui : BoundUserInterface
                 OnPartPressed(netEntity, surgeries);
         }
 
+        if (_window.Parts.ChildCount == 0) // Lua
+            _window.Parts.AddChild(new Label { Text = Loc.GetString("surgery-ui-window-no-surgeries") });
 
         if (!_window.IsOpen)
             _window.OpenCentered();
@@ -298,6 +302,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
 
         var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent);
         var i = 0;
+        var afterRepeatable = false; // Lua
         foreach (var child in _window.Steps.Children)
         {
             if (child is not SurgeryStepButton stepButton)
@@ -313,7 +318,8 @@ public sealed partial class SurgeryBui : BoundUserInterface
             else if (i < next.Value.Step)
                 status = StepStatus.Complete;
 
-            stepButton.Button.Disabled = status != StepStatus.Next;
+            stepButton.Button.Disabled = status != StepStatus.Next && !afterRepeatable; // Lua: afterRepeatable
+            afterRepeatable = status == StepStatus.Next && _entities.HasComponent<SurgeryRepeatableStepComponent>(stepButton.Step);
 
             var stepName = new FormattedMessage();
             stepName.AddText(_entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityName);

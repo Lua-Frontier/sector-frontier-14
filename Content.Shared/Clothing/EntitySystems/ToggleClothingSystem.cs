@@ -51,6 +51,9 @@ public sealed class ToggleClothingSystem : EntitySystem
 
     private void OnToggleAction(Entity<ToggleClothingComponent> ent, ref ToggleActionEvent args)
     {
+        if (args.Action.Owner != ent.Comp.ActionEntity) // Lua
+            return;
+
         args.Handled = _toggle.Toggle(ent.Owner, args.Performer);
     }
 

@@ -35,6 +35,8 @@
     size: Huge
     shape: # Lua
       - 0,0,3,2 # Lua
+  - type: ActivatableUI
+    verbOnly: true # Lua
   - type: UserInterface
     interfaces:
       enum.SharedGasTankUiKey.Key:
@@ -45,7 +47,7 @@
         length: 1.0
   - type: Clothing
     sprite: _DV/Objects/Tanks/Jetpacks/blue.rsi # DeltaV - Modified sprites to allow SUITSTORAGE use.
-    quickEquip: false
+    quickEquip: true # Lua false > true
     slots:
     - Back
     - SuitStorage # DeltaV - Allow all jetpacks to fit in the suit storage slot

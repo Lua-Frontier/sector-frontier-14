@@ -75,7 +75,7 @@ namespace Content.Server.Rotatable
             Verb resetRotation = new()
             {
                 DoContactInteraction = true,
-                Act = () => Comp<TransformComponent>(uid).LocalRotation = Angle.Zero,
+                Act = () => Rotate(uid, component, Angle.Zero), // Lua
                 Category = VerbCategory.Rotate,
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/refresh.svg.192dpi.png")),
                 Text = "Reset",
@@ -87,7 +87,7 @@ namespace Content.Server.Rotatable
             // rotate clockwise
             Verb rotateCW = new()
             {
-                Act = () => Comp<TransformComponent>(uid).LocalRotation -= component.Increment,
+                Act = () => Rotate(uid, component, Transform(uid).LocalRotation - component.Increment), // Lua
                 Category = VerbCategory.Rotate,
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png")),
                 Priority = -1,
@@ -98,7 +98,7 @@ namespace Content.Server.Rotatable
             // rotate counter-clockwise
             Verb rotateCCW = new()
             {
-                Act = () => Comp<TransformComponent>(uid).LocalRotation += component.Increment,
+                Act = () => Rotate(uid, component, Transform(uid).LocalRotation + component.Increment), // Lua
                 Category = VerbCategory.Rotate,
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rotate_ccw.svg.192dpi.png")),
                 Priority = 0,
@@ -106,6 +106,32 @@ namespace Content.Server.Rotatable
             };
             args.Verbs.Add(rotateCCW);
         }
+
+        // Lua start
+        private void Rotate(EntityUid uid, RotatableComponent component, Angle rotation)
+        {
+            var xform = Transform(uid);
+            if (component.Pivot == System.Numerics.Vector2.Zero)
+            {
+                xform.LocalRotation = rotation;
+                return;
+            }
+
+            var anchored = xform.Anchored;
+            if (anchored)
+                _transform.Unanchor(uid, xform);
+
+            var oldPos = xform.LocalPosition;
+            var pos = oldPos + xform.LocalRotation.RotateVec(component.Pivot) - rotation.RotateVec(component.Pivot);
+            _transform.SetLocalPositionRotation(uid, pos, rotation, xform);
+
+            if (!anchored || _transform.AnchorEntity(uid, xform))
+                return;
+
+            _transform.SetLocalPositionRotation(uid, oldPos, rotation, xform);
+            _transform.AnchorEntity(uid, xform);
+        }
+        // Lua end
 
         /// <summary>
         ///     Replace a flippable entity with it's flipped / mirror-symmetric entity.
@@ -141,7 +167,7 @@ namespace Content.Server.Rotatable
                 return false;
             }
 
-            Transform(entity).LocalRotation -= rotatableComp.Increment;
+            Rotate(entity, rotatableComp, Transform(entity).LocalRotation - rotatableComp.Increment); // Lua
             return true;
         }
 
@@ -166,7 +192,7 @@ namespace Content.Server.Rotatable
                 return false;
             }
 
-            Transform(entity).LocalRotation += rotatableComp.Increment;
+            Rotate(entity, rotatableComp, Transform(entity).LocalRotation + rotatableComp.Increment); // Lua
             return true;
         }
 

@@ -626,12 +626,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             message,
             language);
 
-        var wrappedUnknownMessage = WrapWhisperMessage(source,
-            "chat-manager-entity-whisper-unknown-wrap-message",
-            nameIdentity,
-            message,
-            language);
-
         // end-backmen: language
 
         var orgMsg = new HashSet<ICommonSession>(); // Lua
@@ -665,6 +659,8 @@ public sealed partial class ChatSystem : SharedChatSystem
             //If listener is too far and has no line of sight, they can't identify the whisperer's identity
             else
             {
+                var perceivedMessage = FormattedMessage.EscapeText(canUnderstandLanguage ? obfuscatedMessage : languageObfuscatedMessageLongRange); // Lua: was clear message
+                var wrappedUnknownMessage = WrapWhisperMessage(source, "chat-manager-entity-whisper-unknown-wrap-message", nameIdentity, perceivedMessage, language);
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedUnknownMessage, source, false, session.Channel); continue; // backmen: language
             }
             // start-backmen: language

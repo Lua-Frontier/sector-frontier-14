@@ -1,0 +1,66 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: loadoutGroup
+  id: OutpostTypanBackpack
+  name: loadout-group-outpost-typan-backpack
+  loadouts:
+  - OutpostTypanBackpackSyndicate
+  - OutpostTypanBackpackDuffelSyndicate
+  - OutpostTypanBackpackMessengerSyndicate
+  - OutpostTypanBackpackSatchel
+  fallbacks:
+  - OutpostTypanBackpackSyndicate
+
+- type: loadout
+  id: OutpostTypanBackpackSyndicate
+  dummyEntity: ClothingBackpackSyndicate
+  previewEntity: ClothingBackpackSyndicate
+  equipment:
+    back: ClothingBackpackSyndicate
+  storage:
+    back:
+    - BoxSurvival
+    - WeaponPistolViper
+    - Magazine9x19mmPistolFMJ
+    - Telecrystal10
+
+- type: loadout
+  id: OutpostTypanBackpackDuffelSyndicate
+  dummyEntity: ClothingBackpackDuffelSyndicate
+  previewEntity: ClothingBackpackDuffelSyndicate
+  equipment:
+    back: ClothingBackpackDuffelSyndicate
+  storage:
+    back:
+    - BoxSurvival
+    - WeaponPistolViper
+    - Magazine9x19mmPistolFMJ
+    - Telecrystal10
+
+- type: loadout
+  id: OutpostTypanBackpackMessengerSyndicate
+  dummyEntity: ClothingBackpackMessengerSyndicate
+  previewEntity: ClothingBackpackMessengerSyndicate
+  equipment:
+    back: ClothingBackpackMessengerSyndicate
+  storage:
+    back:
+    - BoxSurvival
+    - WeaponPistolViper
+    - Magazine9x19mmPistolFMJ
+    - Telecrystal10
+
+- type: loadout
+  id: OutpostTypanBackpackSatchel
+  dummyEntity: ClothingBackpackSatchelOutpostTypan
+  previewEntity: ClothingBackpackSatchelOutpostTypan
+  equipment:
+    back: ClothingBackpackSatchelOutpostTypan
+  storage:
+    back:
+    - BoxSurvival
+    - WeaponPistolViper
+    - Magazine9x19mmPistolFMJ
+    - Telecrystal10

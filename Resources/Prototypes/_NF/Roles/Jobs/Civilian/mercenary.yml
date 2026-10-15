@@ -18,7 +18,7 @@
     #   role: JobSecurityCadet
     #   time: 36000 #Lua 10h
     - !type:OverallPlaytimeRequirement
-      time: 36000 #Lua 10h
+      time: 86400 # Lua 36000 > 86400 (24h)
   startingGear: MercenaryGear
   canBeAntag: true
   icon: "JobIconMercenary"

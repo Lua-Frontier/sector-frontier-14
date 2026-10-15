@@ -23,5 +23,8 @@ namespace Content.Shared.Rotatable
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("increment")]
         public Angle Increment { get; private set; } = Angle.FromDegrees(90);
+
+        [DataField]
+        public System.Numerics.Vector2 Pivot; // Lua
     }
 }
