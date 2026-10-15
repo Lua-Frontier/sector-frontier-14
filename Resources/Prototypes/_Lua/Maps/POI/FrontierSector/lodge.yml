@@ -11,28 +11,30 @@
 - type: pointOfInterest
   id: Lodge
   parent: [BasePOI, BaseRepairablePOI]
-  name: 'Аванпост Экспедиций'
+  name: 'Повреждённый Аванпост Экспедиций'
   minimumDistance: 2300 #1650 Lua
   maximumDistance: 5400 #3400 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/Expedition_Outpost.yml
+  # gridPath: /Maps/_Lua/POI/Expedition_Outpost.yml
+  gridPath: /Maps/_Lua/POI/ExpeditionOutpostDamaged.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/space-outpost.png
     scale: 1.2
     allowWhenHidden: true
-  - type: GridGodMode
-  - type: IFF
-    color: "#3737F8"
+  # - type: IFF
+  #   color: "#3737F8"
 
 - type: gameMap
   id: Lodge
-  mapName: 'Аванпост Экспедиций'
-  mapPath: /Maps/_Lua/POI/Expedition_Outpost.yml
+  mapName: 'Повреждённый Аванпост Экспедиций'
+  # mapPath: /Maps/_Lua/POI/Expedition_Outpost.yml
+  mapPath: /Maps/_Lua/POI/ExpeditionOutpostDamaged.yml
   minPlayers: 0
   stations:
     Lodge:
-      stationProto: MarketFrontierOutpost
+      # stationProto: MarketFrontierOutpost
+      stationProto: StandardFrontierOutpost
       components:
         - type: FactionCapture
           captureWholeStation: true
@@ -40,14 +42,16 @@
           trackOnInit: true
           doNotCull: true
         - type: StationNameSetup
-          mapNameTemplate: 'Аванпост Экспедиций'
-        - type: ExtraStationInformation
-          iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
-          stationSubtext: 'frontier-lobby-erc-subtext'
-          stationDescription: 'frontier-lobby-erc-description'
-          lobbySortOrder: 3
-          requiredCompany: Nanotrasen
+          mapNameTemplate: 'Повреждённый Аванпост Экспедиций'
+        # - type: ExtraStationInformation
+        #   iconPath: /Textures/Structures/Wallmounts/flags.rsi/expedition_flag.png
+        #   stationSubtext: 'frontier-lobby-erc-subtext'
+        #   stationDescription: 'frontier-lobby-erc-description'
+        #   lobbySortOrder: 3
+        #   requiredCompany: Nanotrasen
         - type: StationJobs
-          availableJobs:
-            Vip: [ -1, -1 ]
-            Pilot: [ -1, -1 ]
+          availableJobs: {}
+        # - type: StationJobs
+        #   availableJobs:
+        #     Vip: [ -1, -1 ]
+        #     Pilot: [ -1, -1 ]

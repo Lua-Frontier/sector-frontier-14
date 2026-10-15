@@ -8,12 +8,12 @@
   id: Medical
   parent: [BasePOI, BaseRepairablePOI]
   # parent: BasePOI
-  name: 'Медицинский Центр'
+  name: 'Повреждённый Медицинский Центр'
   minimumDistance: 1000 #450 Lua
   maximumDistance: 2000 #600 Lua
   spawnGroup: Required
-  gridPath: /Maps/_Lua/POI/MedCenterShuttle.yml
-  # gridPath: /Maps/_Lua/POI/Med2.yml
+  # gridPath: /Maps/_Lua/POI/MedCenterShuttle.yml
+  gridPath: /Maps/_Lua/POI/MedCenterShuttleDamaged.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/medical.png
@@ -22,36 +22,38 @@
   - type: SolarPoweredGrid
     trackOnInit: true
     doNotCull: true
-  - type: GridGodMode
-  - type: IFF
-    color: "#00b7eb"
+  # - type: IFF
+  #   color: "#00b7eb"
 
 - type: gameMap
   id: Medical
-  mapName: 'Медицинский Центр'
-  mapPath: /Maps/_Lua/POI/MedCenterShuttle.yml
-  # mapPath: /Maps/_Lua/POI/Med2.yml
+  mapName: 'Повреждённый Медицинский Центр'
+  # mapPath: /Maps/_Lua/POI/MedCenterShuttle.yml
+  mapPath: /Maps/_Lua/POI/MedCenterShuttleDamaged.yml
   minPlayers: 0
   stations:
     Medical:
-      stationProto: RecordsFrontierOutpost
+      # stationProto: RecordsFrontierOutpost
+      stationProto: StandardFrontierOutpost
       components:
         - type: FactionCapture
           captureWholeStation: true
         - type: StationNameSetup
-          mapNameTemplate: 'Медицинский Центр'
-        - type: ExtraStationInformation
-          iconPath: /Textures/Structures/Wallmounts/flags.rsi/medical_flag.png
-          stationSubtext: 'frontier-lobby-medical-subtext'
-          stationDescription: 'frontier-lobby-medical-description'
-          lobbySortOrder: 4
-          requiredCompany: Nanotrasen
+          mapNameTemplate: 'Повреждённый Медицинский Центр'
+        # - type: ExtraStationInformation
+        #   iconPath: /Textures/Structures/Wallmounts/flags.rsi/medical_flag.png
+        #   stationSubtext: 'frontier-lobby-medical-subtext'
+        #   stationDescription: 'frontier-lobby-medical-description'
+        #   lobbySortOrder: 4
+        #   requiredCompany: Nanotrasen
         - type: StationJobs
-          availableJobs:
-            DirectorOfCare: [ 1, 1 ]
-            Paramedic: [ 5, 5 ] #Lua 2<5
-            MedicalDoctor: [ 3, 3 ] #Lua
-            Chemist: [ 1, 1 ] #Lua
-          tags:
-          - HeadOfPersonnel
-          - HeadOfSecurity
+          availableJobs: {}
+        # - type: StationJobs
+        #   availableJobs:
+        #     DirectorOfCare: [ 1, 1 ]
+        #     Paramedic: [ 5, 5 ] #Lua 2<5
+        #     MedicalDoctor: [ 3, 3 ] #Lua
+        #     Chemist: [ 1, 1 ] #Lua
+        #   tags:
+        #   - HeadOfPersonnel
+        #   - HeadOfSecurity

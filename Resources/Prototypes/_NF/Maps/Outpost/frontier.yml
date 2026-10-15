@@ -47,8 +47,6 @@
             Vip: [ -1, -1 ]
             #Contractor: [ -1, -1 ]
             Pilot: [ -1, -1 ]
-            MedicalDoctor: [ 1, 1 ]
-            Chemist: [ 1, 1 ]
             #Borg: [ -1, -1 ]
             StationRepresentative: [ 1, 1 ]
             StationTrafficController: [ 1, 1 ]
@@ -57,6 +55,10 @@
             NFJanitor: [ 1, 1 ]
             MailCarrier: [ 1, 1 ]
             FrontierEngineer: [ 1, 1 ]
+            DirectorOfCare: [ 1, 1 ]
+            Paramedic: [ 5, 5 ] #Lua 2<5
+            MedicalDoctor: [ 4, 4 ] #Lua
+            Chemist: [ 1, 1 ] #Lua
           tags:
           - HeadOfPersonnel
           - HeadOfSecurity

@@ -20,7 +20,8 @@
   minimumDistance: 6000 #3250 Lua
   maximumDistance: 9000 #5600 Lua
   spawnGroup: AsteroidRequired
-  gridPath: /Maps/_NF/POI/mchobo.yml
+  # gridPath: /Maps/_NF/POI/mchobo.yml
+  gridPath: /Maps/_Lua/POI/MCCargo.yml
   addComponents:
   - type: RadarBlipIcon
     icon: /Textures/_Lua/Interface/Radar/space-outpost.png
@@ -30,7 +31,8 @@
 - type: gameMap
   id: McHoboLua
   mapName: "Заброшенный МакКарго"
-  mapPath: /Maps/_NF/POI/mchobo.yml
+  # mapPath: /Maps/_NF/POI/mchobo.yml
+  mapPath: /Maps/_Lua/POI/MCCargo.yml
   minPlayers: 0
   stations:
     McHoboLua:
