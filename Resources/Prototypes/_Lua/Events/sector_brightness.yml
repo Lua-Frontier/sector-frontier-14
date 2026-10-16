@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseGameRule
+  id: SectorBrightness
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-sector-brightness-start-announcement
+    endAnnouncement: station-event-sector-brightness-end-announcement
+    announcementScope: Map
+    startAudio:
+      path: /Audio/Ambience/ambiholy.ogg
+    endAudio:
+      path: /Audio/Ambience/ambiholy.ogg
+    weight: 0.5
+    earliestStart: 45
+    minimumPlayers: 15
+    maxOccurrences: 5
+    reoccurrenceDelay: 600
+    duration: 540
+    maxDuration: 660
+    blockingEvents:
+    - SectorDarkness
+    - SectorBrightness
+  - type: SectorBrightnessRule
+    sector: AsteroidSectorDefault
+    ambientColor: "#8C98AA"
+    lightEnergyMultiplier: 1.15
+    lightSaturationMultiplier: 1.2
+    messageChancePerSecond: 0.003
+    messages:
+    - station-event-sector-brightness-message-1
+    - station-event-sector-brightness-message-2
+    - station-event-sector-brightness-message-3
+    - station-event-sector-brightness-message-4
+    - station-event-sector-brightness-message-5
+    - station-event-sector-brightness-message-6
+    - station-event-sector-brightness-message-7
+    - station-event-sector-brightness-message-8
+    music:
+      path: /Audio/_Lua/Events/sectorbrightness.ogg
+      params:
+        volume: -4

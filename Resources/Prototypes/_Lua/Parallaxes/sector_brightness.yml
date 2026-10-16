@@ -1,0 +1,20 @@
+- type: parallax
+  id: SectorBrightness
+  parent: BaseTelescope
+  seed: 77
+  scrollSpeed: 0.0015, 0.0015
+  starDensity: 1.2
+  baseColor: "#B8D4EC"
+  nebulaColor: "#CFE8FF"
+  accentColor: "#FFF4D6"
+  horizonColor: "#9FC4FF"
+  nebulaIntensity: 2.6
+  imageLayers:
+  - path: /Textures/_Lua/Effects/parallax_noise_opacity.png
+    slowness: 0.995
+    scale: 1.5, 1.5
+    scrolling: 0.004, 0.002
+  - path: /Textures/_Lua/Parallaxes/Tortuga/AsteroidsBack.png
+    slowness: 0.80
+    scale: 0.8, 0.8
+    scrolling: -0.0005, -0.0009

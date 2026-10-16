@@ -6,13 +6,13 @@
     - id: NFIonStorm
     - id: NFPowerGridCheck
     # - id: NFRandomSentience Lua Disable
-    # - id: NFSolarFlare # Lua Disable
     - id: NFVentClog
     - id: NFBluespaceCargoCrate
     - id: NFBluespaceMcCargoCrate
-    - id: NFBluespaceSyndicateCrate
     - id: NFBluespaceBrokenMcDelivery
     - id: NFSmugglingFax
+    - id: SectorDarkness # Lua
+    - id: SectorBrightness # Lua
 
 - type: entity
   id: NFBreakerFlip
@@ -51,26 +51,6 @@
   - type: PowerGridCheckRule
 
 - type: entity
-  parent: BaseGameRule
-  id: NFSolarFlare
-  components:
-  - type: StationEvent
-    startAudio:
-      path: /Audio/_Lua/Announcements/attention.ogg # Lua
-    weight: 4
-    earliestStart: 15
-    reoccurrenceDelay: 45
-    startAnnouncement: station-event-solar-flare-nf-start-announcement
-    endAnnouncement: station-event-solar-flare-nf-end-announcement
-    announcementScope: Map
-    duration: 120
-    maxDuration: 240
-  - type: SolarFlareRule
-    allChannels: true
-    lightBreakChancePerSecond: 0.0003
-    doorToggleChancePerSecond: 0.001
-
-- type: entity
   id: NFVentClog
   parent: BaseStationEventLongDelay
   components:
@@ -90,10 +70,13 @@
   id: NFIonStorm
   components:
   - type: StationEvent
-    earliestStart: 15 # Frontier
+    earliestStart: 45 # Lua: 15<45
     startAnnouncement: station-event-ion-storm-nf-start-announcement
     announcementScope: Map
-    weight: 8
-    reoccurrenceDelay: 120 # Frontier: 20<120
+    weight: 2 # Lua: 8<2
+    reoccurrenceDelay: 300 # Lua: 120<300
     duration: 1
   - type: IonStormRule
+    sectors: # Lua
+    - AsteroidSectorDefault
+    - FrontierSector

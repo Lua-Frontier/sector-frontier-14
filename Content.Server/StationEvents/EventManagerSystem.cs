@@ -253,6 +253,9 @@ public sealed class EventManagerSystem : EntitySystem
         if (GameTicker.IsGameRuleActive(prototype.ID))
             return false;
 
+        if (IsBlocked(EntityUid.Invalid, stationEvent)) // Lua
+            return false;
+
         if (stationEvent.MaxOccurrences.HasValue && GetOccurrences(prototype) >= stationEvent.MaxOccurrences.Value)
         {
             return false;
@@ -302,4 +305,20 @@ public sealed class EventManagerSystem : EntitySystem
 
         return true;
     }
+
+    // Lua start
+    public bool IsBlocked(EntityUid uid, StationEventComponent stationEvent)
+    {
+        if (stationEvent.BlockingEvents.Count == 0)
+            return false;
+
+        foreach (var rule in GameTicker.GetAddedGameRules())
+        {
+            if (rule != uid && MetaData(rule).EntityPrototype?.ID is { } id && stationEvent.BlockingEvents.Contains(id))
+                return true;
+        }
+
+        return false;
+    }
+    // Lua end
 }

@@ -4,5 +4,3 @@ ent-BluespaceCargoCrate = { ent-BaseStationEventNFModerateDelay }
     .desc = { ent-BaseStationEventNFModerateDelay.desc }
 ent-BluespaceMcCargoCrate = { ent-BaseStationEventNFModerateDelay }
     .desc = { ent-BaseStationEventNFModerateDelay.desc }
-ent-BluespaceSyndicateCrate = { ent-BaseStationEventNFModerateDelay }
-    .desc = { ent-BaseStationEventNFModerateDelay.desc }

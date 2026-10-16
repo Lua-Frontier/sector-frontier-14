@@ -1,0 +1,41 @@
+- type: entity
+  parent: BaseGameRule
+  id: SectorDarkness
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-sector-darkness-start-announcement
+    endAnnouncement: station-event-sector-darkness-end-announcement
+    announcementScope: Map
+    startAudio:
+      path: /Audio/_Lua/Events/sectordarkness_start.ogg
+    endAudio:
+      path: /Audio/_Lua/Events/sectordarkness_start.ogg
+    weight: 0.5
+    earliestStart: 45
+    minimumPlayers: 15
+    maxOccurrences: 5
+    reoccurrenceDelay: 600
+    duration: 540
+    maxDuration: 660
+    blockingEvents:
+    - SectorDarkness
+    - SectorBrightness
+  - type: SectorDarknessRule
+    sector: AsteroidSectorDefault
+    lightBreakChancePerSecond: 0.0001
+    doorToggleChancePerSecond: 0.001
+    lightFlickerChancePerSecond: 0.0005
+    messageChancePerSecond: 0.005
+    messages:
+    - station-event-sector-darkness-message-1
+    - station-event-sector-darkness-message-2
+    - station-event-sector-darkness-message-3
+    - station-event-sector-darkness-message-4
+    - station-event-sector-darkness-message-5
+    - station-event-sector-darkness-message-6
+    - station-event-sector-darkness-message-7
+    - station-event-sector-darkness-message-8
+    music:
+      path: /Audio/_Lua/Events/sectordarkness.ogg
+      params:
+        volume: -2

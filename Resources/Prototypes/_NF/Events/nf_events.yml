@@ -48,25 +48,6 @@
     requireSafeAtmosphere: true
 
 - type: entity
-  id: NFBluespaceSyndicateCrate
-  parent: NFBaseStationEventModerateDelay
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    startAnnouncement: bluespace-syndicate-crate-event-announcement
-    announcementScope: Station
-    startAudio:
-      path: /Audio/_Lua/Announcements/attention.ogg # Lua
-    weight: 0
-    duration: 35
-    earliestStart: 90
-    minimumPlayers: 20
-    reoccurrenceDelay: 480 # 8 hours
-  - type: BluespaceCargoRule
-    spawnerPrototype: CrateCybersunJuggernautBundle
-    maximumSpawns: 1
-
-- type: entity
   id: NFSmugglingFax
   parent: BaseStationEventShortDelay
   components:

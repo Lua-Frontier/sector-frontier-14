@@ -3,7 +3,6 @@ using Content.Shared.Roles; // Frontier
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes; // Frontier
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.StationEvents.Components;
 
@@ -84,6 +83,12 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public int ReoccurrenceDelay = 30;
+
+    /// <summary>
+    ///     Lua: the event can't be added while any of these game rules is added.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId> BlockingEvents = new();
 
     /// <summary>
     ///     How long the event lasts.

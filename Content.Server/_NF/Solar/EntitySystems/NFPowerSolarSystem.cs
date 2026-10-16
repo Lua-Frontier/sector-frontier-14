@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
 using Content.Server._NF.Solar.Components;
+using Content.Lua.Shared.SectorBrightness; // Lua
 using Content.Lua.Shared.Stargate;
 using Content.Shared;
 using Content.Shared.GameTicking;
@@ -158,6 +159,16 @@ internal sealed class NFPowerSolarSystem : EntitySystem
     {
         var entity = panel.Owner;
         var xform = EntityManager.GetComponent<TransformComponent>(entity);
+
+        // Lua start
+        if (HasComp<SectorBrightnessComponent>(xform.MapUid))
+        {
+            panel.Comp.Coverage = 1f;
+            UpdateSupply(panel, panel);
+            return;
+        }
+        // Lua end
+
         var towardsSun = GetSunAngle(xform.MapID);
         var sunlightLevel = GetSunlightLevel(xform.MapID);
 
