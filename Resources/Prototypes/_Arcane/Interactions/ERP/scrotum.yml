@@ -1,0 +1,70 @@
+- type: panelInteraction
+  id: FondleScrotum
+  category: Scrotum
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  sound:
+    collection: ErpBang
+  selfMessages: ErpFondleScrotumSelfMessages
+  icon: _Arcane/Interface/ErpPanel/touch_balls.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: MassageScrotum
+  category: Scrotum
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpMassageScrotumMessages
+  icon: _Arcane/Interface/ErpPanel/grab_balls.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+      - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin   
+
+- type: panelInteraction
+  id: SuckScrotum
+  category: Scrotum
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 15
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpSuckScrotumMessages
+  icon: _Arcane/Interface/ErpPanel/lick_balls.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: RubbingFaceScrotum
+  category: Scrotum
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpRubbingFaceScrotumMessages
+  icon: _Arcane/Interface/ErpPanel/head-balls.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin

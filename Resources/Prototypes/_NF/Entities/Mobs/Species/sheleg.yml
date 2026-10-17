@@ -5,6 +5,11 @@
   id: BaseMobSheleg
   abstract: true
   components:
+  - type: ErpContactDamage # Lua
+    damage:
+      types:
+        Cold: 2
+    popups: ErpContactDamageSheleg
   - type: Sprite
     scale: 1.15, 1.2 # tall but dont make it too thin or its going to look bad
   - type: HumanoidAppearance

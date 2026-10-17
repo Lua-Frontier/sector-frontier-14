@@ -1,0 +1,233 @@
+- type: panelInteraction
+  id: CheeksKiss
+  category: Face
+  kind: Erotic
+  targetArouse: 3
+  sound:
+    collection: ErpKiss
+  messages: ErpCheeksKissMessages
+  icon: _Arcane/Interface/ErpPanel/cheeks_kiss.png
+
+- type: panelInteraction
+  id: CheeksKissBoth
+  category: Face
+  kind: Erotic
+  targetArouse: 5
+  sound:
+    collection: ErpKiss
+  messages: ErpCheeksKissBothMessages
+  icon: _Arcane/Interface/ErpPanel/cheeks_kiss_both.png
+
+- type: panelInteraction
+  id: CheeksPat
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpCheeksPatMessages
+  icon: _Arcane/Interface/ErpPanel/cheeks_pat.png
+
+- type: panelInteraction
+  id: CheeksPress
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpCheeksPressMessages
+  icon: _Arcane/Interface/ErpPanel/cheeks_press.png
+
+- type: panelInteraction
+  id: GentleKiss
+  category: Face
+  kind: Erotic
+  userArouse: 3
+  targetArouse: 5
+  sound:
+    collection: ErpKiss
+  messages: ErpGentleKissMessages
+  icon: _Arcane/Interface/ErpPanel/gentle_kiss.png
+
+- type: panelInteraction
+  id: KissLips
+  category: Face
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  sound:
+    collection: ErpKiss
+  messages: ErpKissLipsMessages
+  icon: _Arcane/Interface/ErpPanel/kiss_lips.png
+
+- type: panelInteraction
+  id: FaceRubCat
+  category: Face
+  kind: Erotic
+  targetArouse: 3
+  sound:
+    collection: ErpFriction
+  messages: ErpFaceRubCatMessages
+  icon: _Arcane/Interface/ErpPanel/face_rub_cat.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: FacePussySitting
+  category: Face
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  sound:
+    collection: ErpChampFingering
+  messages: ErpFacePussySittingMessages
+  icon: _Arcane/Interface/ErpPanel/face_sitting.png
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: FaceSitting
+  category: Face
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  sound:
+    collection: ErpChampFingering
+  messages: ErpFaceSittingMessages
+  icon: _Arcane/Interface/ErpPanel/face_sitting.png
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: FaceDickSlap
+  category: Face
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 3
+  sound:
+    collection: ErpBang
+  messages: ErpFaceDickSlapMessages
+  icon: _Arcane/Interface/ErpPanel/face_dick_slap.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: LegsSqueezeface
+  category: Face
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 5
+  sound:
+    collection: ErpFriction
+  messages: ErpLegsSqueezefaceMessages
+  icon: _Arcane/Interface/ErpPanel/legs_squeeze_face.png
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+
+- type: panelInteraction
+  id: Mewing
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  selfMessages: ErpMewingSelfMessages
+  icon: _Arcane/Interface/ErpPanel/mewing.png
+
+- type: panelInteraction
+  id: SuspiciousLook
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpVineBoom
+  selfMessages: ErpSuspiciousLookSelfMessages
+  icon: _Arcane/Interface/ErpPanel/heart_icon.png
+
+- type: panelInteraction
+  id: FriendlyNoseBoop
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpFriendlyNoseBoopMessages
+  icon: _Arcane/Interface/ErpPanel/friendly_nose_boop.png
+
+- type: panelInteraction
+  id: Kitty
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpKittyMessages
+  icon: _Arcane/Interface/ErpPanel/kitty.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: BlowSlap
+  targetArouse: -5
+  category: Face
+  kind: Harmful
+  sound:
+    collection: ErpBang
+  messages: ErpBlowSlapMessages
+  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+
+- type: panelInteraction
+  id: BlowSlapUsers
+  targetArouse: -5
+  category: Face
+  kind: Harmful
+  sound:
+    collection: ErpBang
+  selfMessages: ErpBlowSlapUsersSelfMessages
+  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+
+- type: panelInteraction
+  id: HittingFace
+  targetArouse: -10
+  category: Face
+  kind: Harmful
+  sound:
+    collection: ErpBang
+  selfMessages: ErpHittingFaceSelfMessages
+  icon: _Arcane/Interface/ErpPanel/blow_slap.png
+
+- type: panelInteraction
+  id: ShedTear
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpDisappointment
+  messages: ErpShedTearMessages
+  icon: _Arcane/Interface/ErpPanel/cry.png
+
+- type: panelInteraction
+  id: KissForehead
+  category: Face
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpKissForeheadMessages
+  icon: _Arcane/Interface/ErpPanel/kiss_forehead.png

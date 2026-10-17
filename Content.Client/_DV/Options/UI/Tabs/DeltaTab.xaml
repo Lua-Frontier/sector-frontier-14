@@ -12,6 +12,8 @@
                    FontColorOverride="{xNamespace:Static s:StyleNano.NanoGold}"
                    StyleClasses="LabelKeyText"/>
             <CheckBox Name="DisableFiltersCheckBox" Text="{Loc 'ui-options-no-filters'}" />
+            <!-- Lua -->
+            <CheckBox Name="ErpPanelCheckBox" Text="{Loc 'ui-options-erp-panel'}" ToolTip="{Loc 'ui-options-erp-panel-tooltip'}" />
         </BoxContainer>
         <controls:StripeBack HasBottomEdge="False" HasMargins="False">
             <Button Name="ApplyButton"

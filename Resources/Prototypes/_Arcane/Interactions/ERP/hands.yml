@@ -1,0 +1,52 @@
+- type: panelInteraction
+  id: Handshake
+  category: Hands
+  kind: Safe
+  range: 1.5
+  sound:
+    collection: ErpHandshake
+  messages: ErpHandshakeMessages
+  icon: _Arcane/Interface/ErpPanel/friendly.png
+
+- type: panelInteraction
+  id: HighFive
+  category: Hands
+  kind: Safe
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpHighFiveMessages
+  icon: _Arcane/Interface/ErpPanel/high_five.png
+
+- type: panelInteraction
+  id: KissHand
+  category: Hands
+  kind: Safe
+  sound:
+    collection: ErpKiss
+  messages: ErpKissHandMessages
+  icon: _Arcane/Interface/ErpPanel/kiss_hand.png
+
+- type: panelInteraction
+  id: PushUpsFloor
+  category: Hands
+  kind: Safe
+  sound:
+    collection: ErpBang
+  selfMessages: ErpPushUpsFloorSelfMessages
+  icon: _Arcane/Interface/ErpPanel/push_ups.png
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
+
+- type: panelInteraction
+  id: PinToWall
+  category: Hands
+  kind: Safe
+  sound:
+    collection: ErpKiss
+  messages: ErpPinToWallMessages
+  icon: _Arcane/Interface/ErpPanel/kabedon.png
+  targetRequirements:
+  - !type:NearbyStaticEntityRequirement
+    tags:
+    - Wall

@@ -1,0 +1,189 @@
+<!-- Lua: palette comes from LunaWindowStyle, see ApplyLunaInterior -->
+<styles:LunaWindow xmlns="https://spacestation14.io"
+                   xmlns:styles="clr-namespace:Content.Lua.UIKit.Styles;assembly=Content.Lua.UIKit"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   x:Class="Content.Client._Arcane.ErpPanel.ErpPanelWindow"
+                   Title="{Loc erp-panel-title}"
+                   Resizable="True"
+                   MinSize="580 620"
+                   SetSize="580 740">
+    <PanelContainer Name="Shell" HorizontalExpand="True" VerticalExpand="True" Margin="4 2 4 4">
+        <BoxContainer Orientation="Vertical"
+                      Margin="12"
+                      SeparationOverride="10">
+            <PanelContainer Name="AccentStripe" HorizontalExpand="True" SetHeight="3"/>
+
+            <PanelContainer Name="TargetPanel" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical"
+                              Margin="12 10"
+                              SeparationOverride="8">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="10">
+                        <TextureRect TexturePath="/Textures/_Arcane/Interface/ErpPanel/heart_icon.png"
+                                     Stretch="KeepAspectCentered"
+                                     SetSize="42 42"
+                                     VerticalAlignment="Center"/>
+                        <BoxContainer Orientation="Vertical"
+                                      HorizontalExpand="True"
+                                      SeparationOverride="2">
+                            <Label Name="TargetCaption"
+                                   Text="{Loc erp-panel-target-label}"/>
+                            <Label Name="HeaderLabel"
+                                   StyleClasses="LabelHeadingBigger"
+                                   ClipText="True"
+                                   HorizontalExpand="True"/>
+                        </BoxContainer>
+                    </BoxContainer>
+
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                        <Label Name="ArousalCaption"
+                               Text="{Loc erp-panel-arousal-level}"
+                               VerticalAlignment="Center"/>
+                        <ProgressBar Name="ArousalProgressBar"
+                                     HorizontalExpand="True"
+                                     MinHeight="18"
+                                     MinValue="0"
+                                     Value="0"
+                                     MaxValue="1"/>
+                        <PanelContainer Name="ArousalValuePanel" SetWidth="54" VerticalAlignment="Center">
+                            <Label Name="ArousalValueLabel"
+                                   HorizontalAlignment="Center"/>
+                        </PanelContainer>
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+
+            <PanelContainer Name="ModifiersPanel" HorizontalExpand="True">
+                <BoxContainer Orientation="Vertical"
+                              Margin="10 8"
+                              SeparationOverride="7">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                        <TextureRect Name="ModifiersIcon"
+                                     TexturePath="/Textures/Interface/VerbIcons/settings.svg.192dpi.png"
+                                     Stretch="KeepAspectCentered"
+                                     SetSize="18 18"
+                                     VerticalAlignment="Center"/>
+                        <Label Name="ModifiersTitle"
+                               Text="{Loc erp-panel-settings-title}"
+                               StyleClasses="LabelHeading"
+                               HorizontalExpand="True"
+                               VerticalAlignment="Center"/>
+                        <Button Name="ModifiersVisibilityButton"
+                                StyleClasses="ButtonSmall"
+                                Text="{Loc erp-panel-hide-modifiers}"/>
+                    </BoxContainer>
+
+                    <GridContainer Name="ModifiersContent"
+                                   Columns="3"
+                                   HSeparationOverride="10"
+                                   VSeparationOverride="6">
+                        <CheckBox Name="CustomArousalToggle"
+                                  Text="{Loc erp-panel-arousal-multiplier-label}"
+                                  ToolTip="{Loc erp-panel-custom-arousal-button-tooltip}"/>
+                        <Slider Name="ArousalSlider"
+                                HorizontalExpand="True"
+                                MinWidth="240"
+                                MinValue="0"
+                                Value="100"
+                                Disabled="True"/>
+                        <Label Name="ArousalLabel"
+                               SetWidth="44"
+                               HorizontalAlignment="Right"/>
+
+                        <CheckBox Name="CustomMoaningToggle"
+                                  Text="{Loc erp-panel-moaning-multiplier-label}"
+                                  ToolTip="{Loc erp-panel-custom-moaning-button-tooltip}"/>
+                        <Slider Name="MoaningSlider"
+                                HorizontalExpand="True"
+                                MinWidth="240"
+                                MinValue="0"
+                                Value="100"
+                                Disabled="True"/>
+                        <Label Name="MoaningLabel"
+                               SetWidth="44"
+                               HorizontalAlignment="Right"/>
+                    </GridContainer>
+                    <!-- Lua -->
+                    <CheckBox Name="PrivateModeToggle"
+                              Text="{Loc erp-panel-private-mode-label}"
+                              ToolTip="{Loc erp-panel-private-mode-tooltip}"/>
+                    <CheckBox Name="LungeToggle"
+                              Text="{Loc erp-panel-lunge-label}"
+                              ToolTip="{Loc erp-panel-lunge-tooltip}"/>
+                </BoxContainer>
+            </PanelContainer>
+
+            <PanelContainer Name="SearchPanel" HorizontalExpand="True">
+                <BoxContainer Orientation="Horizontal"
+                              Margin="8 6"
+                              SeparationOverride="7">
+                    <TextureRect Name="SearchIcon"
+                                 TexturePath="/Textures/Interface/VerbIcons/examine.svg.192dpi.png"
+                                 Stretch="KeepAspectCentered"
+                                 SetSize="22 22"
+                                 VerticalAlignment="Center"/>
+                    <LineEdit Name="SearchInput"
+                              StyleClasses="LineEditDark"
+                              HorizontalExpand="True"
+                              PlaceHolder="{Loc erp-panel-search-placeholder}"/>
+                    <Button Name="ClearSearchButton"
+                            StyleClasses="ButtonSquare"
+                            SetSize="30 30"
+                            ToolTip="{Loc erp-panel-search-clear-tooltip}">
+                        <TextureRect TexturePath="/Textures/Interface/VerbIcons/close.svg.192dpi.png"
+                                     Stretch="KeepAspectCentered"
+                                     SetSize="16 16"
+                                     MouseFilter="Ignore"/>
+                    </Button>
+                </BoxContainer>
+            </PanelContainer>
+
+            <BoxContainer Orientation="Vertical" SeparationOverride="3">
+                <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+                    <Label Name="InteractionsTitle"
+                           Text="{Loc erp-panel-interactions-title}"
+                           StyleClasses="LabelHeading"
+                           HorizontalExpand="True"
+                           VerticalAlignment="Center"/>
+                    <Button Name="ExpandAllButton"
+                            StyleClasses="ButtonSmall"
+                            Text="{Loc erp-panel-expand-all}"/>
+                    <Button Name="CollapseAllButton"
+                            StyleClasses="ButtonSmall"
+                            Text="{Loc erp-panel-collapse-all}"/>
+                </BoxContainer>
+                <Label Name="ResultsLabel"
+                       VerticalAlignment="Center"/>
+            </BoxContainer>
+
+            <PanelContainer Name="ListPanel" HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="8">
+                    <ScrollContainer Name="InteractionScroll"
+                                     HScrollEnabled="False"
+                                     HorizontalExpand="True"
+                                     VerticalExpand="True">
+                        <BoxContainer Name="ButtonsContainer"
+                                      Orientation="Vertical"
+                                      SeparationOverride="6"/>
+                    </ScrollContainer>
+
+                    <BoxContainer Name="EmptyStateContainer"
+                                  Orientation="Vertical"
+                                  Visible="False"
+                                  HorizontalExpand="True"
+                                  VerticalExpand="True"
+                                  HorizontalAlignment="Center"
+                                  VerticalAlignment="Center"
+                                  SeparationOverride="8">
+                        <TextureRect Name="EmptyStateIcon"
+                                     TexturePath="/Textures/Interface/VerbIcons/examine.svg.192dpi.png"
+                                     Stretch="KeepAspectCentered"
+                                     SetSize="34 34"
+                                     HorizontalAlignment="Center"/>
+                        <Label Name="EmptyStateLabel"
+                               HorizontalAlignment="Center"/>
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </PanelContainer>
+</styles:LunaWindow>

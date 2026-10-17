@@ -1,0 +1,97 @@
+- type: panelInteraction
+  id: HornsPat
+  category: Head
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpHornsPatMessages
+  icon: _Arcane/Interface/ErpPanel/horns_pat.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+
+- type: panelInteraction
+  id: PetHead
+  category: Head
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpPetHeadMessages
+  icon: _Arcane/Interface/ErpPanel/pet_head.png
+
+- type: panelInteraction
+  id: HornsBlowjobF
+  category: Head
+  kind: Erotic
+  userArouse: 15
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpOral
+  messages: ErpHornsBlowjobFMessages
+  icon: _Arcane/Interface/ErpPanel/horns_blowjob_female.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: LickHorns
+  category: Head
+  kind: Erotic
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpOral
+  messages: ErpLickHornsMessages
+  icon: _Arcane/Interface/ErpPanel/lick-horms.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+
+- type: panelInteraction
+  id: GiveSlapHead
+  category: Head
+  kind: Harmful
+  targetArouse: -10
+  sound:
+    collection: ErpFriction
+  messages: ErpGiveSlapHeadMessages
+  icon: _Arcane/Interface/ErpPanel/slap_back_of_head.png
+
+- type: panelInteraction
+  id: RuffleHair
+  category: Head
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpRuffleHairMessages
+  icon: _Arcane/Interface/ErpPanel/ruffle_head.png
+
+- type: panelInteraction
+  id: TapCrown
+  category: Head
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpTapCrownMessages
+  icon: _Arcane/Interface/ErpPanel/pat_back_of_head.png
+
+- type: panelInteraction
+  id: KissBackOfHead
+  category: Head
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpKissBackOfHeadMessages
+  icon: _Arcane/Interface/ErpPanel/kiss_back_of_head.png
+
+

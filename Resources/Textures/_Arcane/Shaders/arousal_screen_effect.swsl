@@ -1,0 +1,24 @@
+uniform highp float intensity;
+uniform highp float motionScale;
+
+const highp float EffectStrength = 0.7;
+
+void fragment()
+{
+    highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+    highp float time = TIME * motionScale;
+
+    highp float nearestEdge = min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y));
+    highp float edgeVignette = 1.0 - smoothstep(0.0, 0.30, nearestEdge);
+    highp vec2 centered = vec2((uv.x - 0.5) * aspect * 0.72, uv.y - 0.5);
+    highp float cornerVignette = smoothstep(0.28, 0.72, length(centered));
+    highp float vignette = max(edgeVignette * 0.88, cornerVignette * 0.45);
+
+    highp float pulse = mix(1.0, 0.96 + sin(time * 2.1) * 0.04, motionScale * intensity);
+    highp float vignetteAlpha = vignette * intensity * (0.10 + intensity * 0.28) *
+                                pulse * EffectStrength;
+    highp vec3 vignetteColor = vec3(0.91, 0.16, 0.42);
+
+    COLOR = vec4(vignetteColor, clamp(vignetteAlpha, 0.0, 0.82));
+}

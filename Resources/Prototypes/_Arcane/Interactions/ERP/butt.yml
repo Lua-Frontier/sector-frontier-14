@@ -1,0 +1,113 @@
+- type: panelInteraction
+  id: ButtNearCock
+  category: Butt
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpButtNearCockMessages
+  icon: _Arcane/Interface/ErpPanel/cock_near_ass.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: ButtMassage
+  category: Butt
+  kind: Erotic
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpButtMassageMessages
+  icon: _Arcane/Interface/ErpPanel/butt_massage.png
+
+- type: panelInteraction
+  id: ButtTail
+  category: Butt
+  kind: Erotic
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpButtTailMessages
+  icon: _Arcane/Interface/ErpPanel/butt_tail.png
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: HandsOnButt
+  category: Butt
+  kind: Erotic
+  userArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpHandsOnButtMessages
+  icon: _Arcane/Interface/ErpPanel/hands_on_butt.png
+
+- type: panelInteraction
+  id: KissButt
+  category: Butt
+  kind: Erotic
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpKiss
+  messages: ErpKissButtMessages
+  icon: _Arcane/Interface/ErpPanel/kiss_butt.png
+
+- type: panelInteraction
+  id: SlapButt
+  category: Butt
+  kind: Erotic
+  userArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpSlapButtMessages
+  icon: _Arcane/Interface/ErpPanel/slap_butt.png
+
+- type: panelInteraction
+  id: HornsAssF
+  category: Butt
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpHornsAssFMessages
+  icon: _Arcane/Interface/ErpPanel/horns_ass_female.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+
+- type: panelInteraction
+  id: CockNearAssTail
+  category: Butt
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpCockNearAssTailMessages
+  icon: _Arcane/Interface/ErpPanel/cock_near_ass_tail.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:MarkingCategoryRequirement
+    category: Tail
+

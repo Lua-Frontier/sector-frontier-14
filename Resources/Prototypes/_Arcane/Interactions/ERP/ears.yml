@@ -1,0 +1,63 @@
+- type: panelInteraction
+  id: BiteEars
+  category: Ears
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpBiteEarsMessages
+  icon: _Arcane/Interface/ErpPanel/bite_ears.png
+
+- type: panelInteraction
+  id: BiteEarsHuman
+  category: Ears
+  kind: Erotic
+  targetArouse: 3
+  sound:
+    collection: ErpPat
+  messages: ErpBiteEarsHumanMessages
+  icon: _Arcane/Interface/ErpPanel/bite_ears_human.png
+
+- type: panelInteraction
+  id: EarsKiss
+  category: Ears
+  kind: Erotic
+  targetArouse: 5
+  sound:
+    collection: ErpKiss
+  messages: ErpEarsKissMessages
+  icon: _Arcane/Interface/ErpPanel/ears_kiss.png
+
+- type: panelInteraction
+  id: PatEars
+  category: Ears
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpPatEarsMessages
+  icon: _Arcane/Interface/ErpPanel/pat_ears.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Demon
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: PatEarsHuman
+  category: Ears
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpPatEarsHumanMessages
+  icon: _Arcane/Interface/ErpPanel/pat_ears_human.png
+
+- type: panelInteraction
+  id: ScratchingEars
+  category: Ears
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  selfMessages: ErpScratchingEarsSelfMessages
+  icon: _Arcane/Interface/ErpPanel/pat_ears_human.png

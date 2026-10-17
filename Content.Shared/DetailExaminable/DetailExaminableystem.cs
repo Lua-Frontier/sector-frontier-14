@@ -1,3 +1,4 @@
+using Content.Shared._Arcane.ERP; // Lua
 using Content.Shared.ERP;
 using Content.Shared.Examine;
 using Content.Lua.Common.CLVar;
@@ -26,14 +27,20 @@ public sealed class DetailExaminableSystem : EntitySystem
         if (!HasComp<ActorComponent>(ent))
             return;
 
-        var color = ent.Comp.ERPStatus switch
+        // Lua start
+        var status = TryComp<ErpStatusComponent>(ent, out var erpStatus)
+            ? erpStatus.Status
+            : ent.Comp.ERPStatus;
+        // Lua end
+
+        var color = status switch // Lua
         {
             EnumERPStatus.FULL => "green",
             EnumERPStatus.HALF => "yellow",
             _ => "red"
         };
 
-        var statusText = FormattedMessage.EscapeText(ent.Comp.GetERPStatusName());
+        var statusText = FormattedMessage.EscapeText(DetailExaminableComponent.GetERPStatusName(status)); // Lua
         args.PushMarkup($"[color={color}]{statusText}[/color]");
     }
 }

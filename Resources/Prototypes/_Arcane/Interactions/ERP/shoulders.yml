@@ -1,0 +1,28 @@
+- type: panelInteraction
+  id: PatShoulder
+  category: Shoulders
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpPatShoulderMessages
+  icon: _Arcane/Interface/ErpPanel/pat_shoulder.png
+
+- type: panelInteraction
+  id: ShoulderMassage
+  category: Shoulders
+  kind: Safe
+  sound:
+    collection: ErpFriction
+  messages: ErpShoulderMassageMessages
+  selfMessages: ErpShoulderMassageSelfMessages
+  icon: _Arcane/Interface/ErpPanel/shoulder_massage.png
+
+- type: panelInteraction
+  id: HugShoulders
+  category: Shoulders
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpHugShouldersMessages
+  icon: _Arcane/Interface/ErpPanel/pat_shoulders.png
+  

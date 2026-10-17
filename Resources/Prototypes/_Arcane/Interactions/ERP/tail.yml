@@ -1,0 +1,78 @@
+- type: panelInteraction
+  id: TailPat
+  category: Tail
+  kind: Safe
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpTailPatMessages
+  icon: _Arcane/Interface/ErpPanel/pat_tail.png
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: TailHug
+  category: Tail
+  kind: Safe
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpTailHugMessages
+  icon: _Arcane/Interface/ErpPanel/tail_hug.png
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: FriendlyTailPull
+  category: Tail
+  kind: Harmful
+  targetArouse: -5
+  sound:
+    collection: ErpPat
+  messages: ErpFriendlyTailPullMessages
+  icon: _Arcane/Interface/ErpPanel/friendly_tail_pull.png
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: WagTail
+  category: Tail
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpWagTailMessages
+  icon: _Arcane/Interface/ErpPanel/wagging-tail.png
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: TuckTail
+  category: Tail
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpTuckTailMessages
+  icon: _Arcane/Interface/ErpPanel/tail-down.png
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: StepOnTail
+  category: Tail
+  kind: Harmful
+  targetArouse: -10
+  sound:
+    collection: ErpPat
+  messages: ErpStepOnTailMessages
+  icon: _Arcane/Interface/ErpPanel/step-on-tail.png
+  targetRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail

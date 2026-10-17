@@ -14,9 +14,9 @@ public sealed partial class DetailExaminableComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public EnumERPStatus ERPStatus = EnumERPStatus.NO;
 
-    public string GetERPStatusName()
+    public static string GetERPStatusName(EnumERPStatus status) // Lua
     {
-        switch (ERPStatus)
+        switch (status)
         {
             case EnumERPStatus.HALF:
                 return Loc.GetString("humanoid-erp-status-half");

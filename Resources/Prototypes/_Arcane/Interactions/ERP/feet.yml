@@ -1,0 +1,25 @@
+- type: panelInteraction
+  id: FeetMouth
+  category: Feet
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  sound:
+    collection: ErpOral
+  messages: ErpFeetMouthMessages
+  icon: _Arcane/Interface/ErpPanel/feet_mouth.png
+  targetRequirements:
+  - !type:EmptyInventorySlotRequirement
+    slot: shoes
+
+- type: panelInteraction
+  id: ShiftWeight
+  category: Feet
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 5
+  sound:
+    collection: ErpBang
+  messages: ErpShiftWeightMessages
+  icon: _Arcane/Interface/ErpPanel/hand_on_hip.png
+

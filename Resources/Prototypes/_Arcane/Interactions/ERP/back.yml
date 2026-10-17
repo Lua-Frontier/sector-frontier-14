@@ -1,0 +1,18 @@
+- type: panelInteraction
+  id: FingerTap
+  category: Back
+  kind: Safe
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpFingerTapMessages
+  icon: _Arcane/Interface/ErpPanel/friendly_finger_tap.png
+
+- type: panelInteraction
+  id: StretchBody
+  category: Back
+  kind: Safe
+  sound:
+    collection: ErpStretchBody
+  selfMessages: ErpStretchBodySelfMessages
+  icon: _Arcane/Interface/ErpPanel/stretch_full_body.png

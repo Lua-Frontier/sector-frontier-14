@@ -1,0 +1,198 @@
+- type: panelInteraction
+  id: SuckCock
+  category: Penis
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 15
+  range: 1.5
+  sound:
+    collection: ErpOral
+  messages: ErpSuckCockMessages
+  icon: _Arcane/Interface/ErpPanel/cock_tongue_fap.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: SlimeFuckCock
+  category: Penis
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpBlowjob
+  messages: ErpSlimeFuckCockMessages
+  icon: _Arcane/Interface/ErpPanel/cock_slime_sex.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - SlimePerson
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: CockFap
+  category: Penis
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  selfMessages: ErpCockFapSelfMessages
+  icon: _Arcane/Interface/ErpPanel/cock_fap.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: CockFootjob
+  category: Penis
+  kind: Erotic
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpCockFootjobMessages
+  icon: _Arcane/Interface/ErpPanel/cock_footjob.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: CockSwordmanship
+  category: Penis
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpCockSwordmanshipMessages
+  icon: _Arcane/Interface/ErpPanel/cock_swordmanship.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: CockFapTail
+  category: Penis
+  kind: Erotic
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpCockFapTailMessages
+  icon: _Arcane/Interface/ErpPanel/cock_tail_fap.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: CockFuckLegs
+  category: Penis
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpCockFuckLegsMessages
+  icon: _Arcane/Interface/ErpPanel/legs_cock_fuck.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: CockBlowjob
+  category: Penis
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 20
+  range: 1.5
+  sound:
+    collection: ErpBlowjob
+  messages: ErpCockBlowjobMessages
+  icon: _Arcane/Interface/ErpPanel/cock_blowjob.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: LegsCockFuckTail
+  category: Penis
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpLegsCockFuckTailMessages
+  icon: _Arcane/Interface/ErpPanel/legs_cock_fuckt_tail.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: PillowFap
+  category: Penis
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpOral
+  selfMessages: ErpPillowFapSelfMessages
+  icon: _Arcane/Interface/ErpPanel/fuck_pillow.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:NearbyTargetRequirement
+    range: 0.2
+    tags:
+    - Bed
+

@@ -1,0 +1,138 @@
+- type: panelInteraction
+  id: PussyFingering
+  category: Pussy
+  kind: Erotic
+  userArouse: 3
+  targetArouse: 10
+  sound:
+    collection: ErpChampFingering
+  messages: ErpPussyFingeringMessages
+  selfMessages: ErpPussyFingeringSelfMessages
+  icon: _Arcane/Interface/ErpPanel/pussy_fingering.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: PussyLicking
+  category: Pussy
+  kind: Erotic
+  userArouse: 3
+  targetArouse: 10
+  sound:
+    collection: ErpBlowjob
+  messages: ErpPussyLickingMessages
+  icon: _Arcane/Interface/ErpPanel/pussy_lick.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: PussyScissors
+  category: Pussy
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  sound:
+    collection: ErpChampFingering
+  messages: ErpPussyScissorsMessages
+  icon: _Arcane/Interface/ErpPanel/pussy_scissors.png
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: PussyTouch
+  category: Pussy
+  kind: Erotic
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpPussyTouchMessages
+  icon: _Arcane/Interface/ErpPanel/pussy_touch.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: PussyTailFuck
+  category: Pussy
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 15
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpPussyTailFuckMessages
+  icon: _Arcane/Interface/ErpPanel/pussy_tail_fuck.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: CockPussyFuck
+  category: Pussy
+  kind: Erotic
+  userArouse: 15
+  targetArouse: 20
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpCockPussyFuckMessages
+  icon: _Arcane/Interface/ErpPanel/fuck_pussy.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: WallPussyFuck
+  category: Pussy
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  sound:
+    collection: ErpKiss
+  messages: ErpWallPussyFuckMessages
+  icon: _Arcane/Interface/ErpPanel/kabedon.png
+  targetRequirements:
+  - !type:NearbyStaticEntityRequirement
+    tags:
+    - Wall
+  userRequirements:
+  - !type:ArousalRequirement
+

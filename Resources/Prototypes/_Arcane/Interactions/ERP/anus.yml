@@ -1,0 +1,146 @@
+- type: panelInteraction
+  id: AnusFuck
+  category: Anus
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpAsscrap
+  messages: ErpAnusFuckMessages
+  icon: _Arcane/Interface/ErpPanel/fuck_ass.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: AnusLick
+  category: Anus
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpAnusLickMessages
+  icon: _Arcane/Interface/ErpPanel/anal_lick.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: AnusFingering
+  category: Anus
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpAnusFingeringMessages
+  icon: _Arcane/Interface/ErpPanel/anal_fingering.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: AnusTailFuck
+  category: Anus
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpAsscrap
+  messages: ErpAnusTailFuckMessages
+  icon: _Arcane/Interface/ErpPanel/butt_tail_fuck.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: AnalLick2
+  category: Anus
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 15
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpAnalLick2Messages
+  icon: _Arcane/Interface/ErpPanel/deep_anal_lick.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: AnalFingering2
+  category: Anus
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 15
+  range: 1.5
+  sound:
+    collection: ErpChampFingering
+  messages: ErpAnalFingering2Messages
+  icon: _Arcane/Interface/ErpPanel/anal_fingering2.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: InsertFingersAnus
+  category: Anus
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  sound:
+    collection: ErpChampFingering
+  selfMessages: ErpInsertFingersAnusSelfMessages
+  icon: _Arcane/Interface/ErpPanel/anal_fingering.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: RunningFingerAnus
+  category: Anus
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 5
+  sound:
+    collection: ErpChampFingering
+  selfMessages: ErpRunningFingerAnusSelfMessages
+  icon: _Arcane/Interface/ErpPanel/anal_fingering.png
+  targetRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+
+- type: panelInteraction
+  id: WallAnusFuck
+  category: Anus
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 10
+  sound:
+    collection: ErpAsscrap
+  messages: ErpWallAnusFuckMessages
+  icon: _Arcane/Interface/ErpPanel/kabedon.png
+  targetRequirements:
+  - !type:NearbyStaticEntityRequirement
+    tags:
+    - Wall
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+

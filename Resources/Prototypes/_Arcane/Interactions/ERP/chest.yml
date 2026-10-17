@@ -1,0 +1,203 @@
+- type: panelInteraction
+  id: BoobsSlap
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpBoobsSlapMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_slap.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: BoobsPaw
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpBoobsPawMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_paw.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: BoobsFuck
+  category: Chest
+  kind: Erotic
+  userArouse: 10
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpBang
+  messages: ErpBoobsFuckMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_fuck.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+  userRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Male
+  - !type:ExposedBodyPartRequirement
+    part: Groin
+  - !type:ArousalRequirement
+
+- type: panelInteraction
+  id: BoobsSqueeze
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpBoobsSqueezeMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_squeeze.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: BoobsKisses
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpKiss
+  messages: ErpBoobsKissesMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_many_kisses.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: BoobsTail
+  category: Chest
+  kind: Erotic
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpFriction
+  messages: ErpBoobsTailMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_tail.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+  userRequirements:
+  - !type:MarkingCategoryRequirement
+    category: Tail
+
+- type: panelInteraction
+  id: BoobsMassage
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpBoobsMassageMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_massage.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: BoobsSuck
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 10
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpBoobsSuckMessages
+  icon: _Arcane/Interface/ErpPanel/boobs_suck.png
+  targetRequirements:
+  - !type:SexRequirement
+    sexes:
+    - Female
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: FondleBoobs
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpPat
+  selfMessages: ErpFondleBoobsSelfMessages
+  icon: _Arcane/Interface/ErpPanel/pat_man_chest.png
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: RubbingNipples
+  category: Chest
+  kind: Erotic
+  userArouse: 5
+  targetArouse: 5
+  range: 1.5
+  sound:
+    collection: ErpPat
+  selfMessages: ErpRubbingNipplesSelfMessages
+  icon: _Arcane/Interface/ErpPanel/touch_man_nipples.png
+  userRequirements:
+  - !type:ExposedBodyPartRequirement
+    part: Chest
+
+- type: panelInteraction
+  id: StrikeCoolPose
+  category: Chest
+  kind: Safe
+  sound:
+    collection: ErpClick
+  selfMessages: ErpStrikeCoolPoseSelfMessages
+  icon: _Arcane/Interface/ErpPanel/cool_pose.png
+
+- type: panelInteraction
+  id: HugWings
+  category: Chest
+  kind: Safe
+  range: 1.5
+  sound:
+    collection: ErpPat
+  messages: ErpHugWingsMessages
+  icon: _Arcane/Interface/ErpPanel/hug-wings.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Harpy
+    - Moth

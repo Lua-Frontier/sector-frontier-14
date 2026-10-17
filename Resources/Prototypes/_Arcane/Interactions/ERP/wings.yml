@@ -1,0 +1,57 @@
+- type: panelInteraction
+  id: FlutterWings
+  category: Wings
+  kind: Safe
+  sound:
+    collection: ErpPat
+  selfMessages: ErpFlutterWingsSelfMessages
+  icon: _Arcane/Interface/ErpPanel/shaking-moth-wings.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Harpy
+    - Moth
+
+- type: panelInteraction
+  id: SlapFaceWithWing
+  category: Wings
+  kind: Harmful
+  targetArouse: -1
+  sound:
+    collection: ErpPat
+  messages: ErpSlapFaceWithWingMessages
+  icon: _Arcane/Interface/ErpPanel/slap-wing-face.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Harpy
+    - Moth
+
+- type: panelInteraction
+  id: PullWing
+  category: Wings
+  kind: Harmful
+  targetArouse: -5
+  sound:
+    collection: ErpPat
+  messages: ErpPullWingMessages
+  icon: _Arcane/Interface/ErpPanel/pat-wings.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Harpy
+    - Moth
+
+- type: panelInteraction
+  id: PetWings
+  category: Wings
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpPetWingsMessages
+  icon: _Arcane/Interface/ErpPanel/hug-wings.png
+  targetRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Harpy
+    - Moth

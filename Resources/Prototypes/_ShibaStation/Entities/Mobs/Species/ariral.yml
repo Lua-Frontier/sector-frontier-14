@@ -5,6 +5,11 @@
   id: BaseMobAriral
   abstract: true
   components:
+  - type: ErpContactDamage # Lua
+    damage:
+      types:
+        Poison: 2
+    popups: ErpContactDamageAriral
   - type: EggAriralLayer
     eggSpawn:
     - id: FoodAriralEggLaid

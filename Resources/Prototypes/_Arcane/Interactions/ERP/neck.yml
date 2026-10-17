@@ -1,0 +1,104 @@
+- type: panelInteraction
+  id: BiteNeck
+  category: Neck
+  kind: Safe
+  sound:
+    collection: ErpPat
+  messages: ErpBiteNeckMessages
+  icon: _Arcane/Interface/ErpPanel/bite_neck.png
+
+- type: panelInteraction
+  id: LickNeck
+  category: Neck
+  kind: Erotic
+  sound:
+    collection: ErpKiss
+  targetArouse: 3
+  messages: ErpLickNeckMessages
+  icon: _Arcane/Interface/ErpPanel/lick_neck.png
+
+- type: panelInteraction
+  id: KissNeck
+  category: Neck
+  kind: Erotic
+  sound:
+    collection: ErpKiss
+  targetArouse: 3
+  messages: ErpKissNeckMessages
+  icon: _Arcane/Interface/ErpPanel/kiss_neck.png
+
+- type: panelInteraction
+  id: NuzzleNeck
+  category: Neck
+  kind: Erotic
+  targetArouse: 3
+  sound:
+    collection: ErpFriction
+  messages: ErpNuzzleNeckMessages
+  icon: _Arcane/Interface/ErpPanel/sniff_neck.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    inverted: true
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: NuzzleNeckVulpa
+  category: Neck
+  kind: Erotic
+  targetArouse: 3
+  sound:
+    collection: ErpFriction
+  messages: ErpNuzzleNeckVulpaMessages
+  icon: _Arcane/Interface/ErpPanel/sniff_neck_vulp.png
+  userRequirements:
+  - !type:SpeciesRequirement
+    species:
+    - Felinid
+    - Vulpkanin
+    - Ariral
+    - Avali
+
+- type: panelInteraction
+  id: PlayfulNibble
+  category: Neck
+  kind: Erotic
+  targetArouse: 3
+  sound:
+    collection: ErpPat
+  messages: ErpPlayfulNibbleMessages
+  icon: _Arcane/Interface/ErpPanel/bite_neck.png
+
+- type: panelInteraction
+  id: StretchNeck
+  category: Neck
+  kind: Safe
+  sound:
+    collection: ErpStretchNeck
+  selfMessages: ErpStretchNeckSelfMessages
+  icon: _Arcane/Interface/ErpPanel/pat_neck.png
+
+- type: panelInteraction
+  id: GrabsNeck
+  category: Neck
+  kind: Harmful
+  targetArouse: -15
+  sound:
+    collection: ErpPat
+  messages: ErpGrabsNeckMessages
+  icon: _Arcane/Interface/ErpPanel/grab_neck.png
+
+- type: panelInteraction
+  id: StepOnNeck
+  category: Neck
+  kind: Harmful
+  targetArouse: -15
+  sound:
+    collection: ErpPat
+  messages: ErpStepOnNeckMessages
+  icon: _Arcane/Interface/ErpPanel/step_on_neck.png
+  targetRequirements:
+  - !type:TargetOnFloorRequirement
